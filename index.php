@@ -43,6 +43,6 @@ $css  = $wp ? get_stylesheet_uri() : 'style.css';
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
   <script src="<?= htmlspecialchars($base) ?>/app.js?v=2.1" defer></script>
-  <?php if ($wp) wp_footer(); ?>
+  <?php /* wp_footer() omitted for this standalone demo theme to avoid WooCommerce frontend fatal. */ ?>
 </body>
 </html>
