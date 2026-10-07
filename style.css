@@ -10,7 +10,27 @@ Version: 2.1
   --blue:#2457D6;--blue-d:#1B44A8;--ink:#0F1A33;--muted:#5F6B85;
   --line:#DDE3EF;--bg:#F6F8FC;--soft:#E9F0FF;--ok:#12805C;--bad:#C62F3B;--r:14px
 }
-html{scroll-behavior:smooth}
+html{
+  scroll-behavior:smooth;
+  width:100%!important;
+  max-width:none!important;
+}
+
+html body.edunext-app{
+  width:100%!important;
+  max-width:none!important;
+  min-width:320px;
+  margin:0!important;
+  padding:0!important;
+  overflow-x:hidden;
+}
+
+body.edunext-app .topbar,
+body.edunext-app #app,
+body.edunext-app footer{
+  width:100%!important;
+  max-width:none!important;
+}
 
 body.edunext-app{
   margin:0!important;padding:0!important;min-width:320px;background:var(--bg)!important;
