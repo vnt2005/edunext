@@ -1,0 +1,110 @@
+(()=>{
+const $=s=>document.querySelector(s),app=$('#app');
+const esc=s=>String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+const money=n=>n.toLocaleString('vi-VN')+'đ',ini=n=>n.split(' ').slice(-2).map(x=>x[0]).join('');
+const CATS=['Lập trình','Data / AI','Thiết kế','Ngoại ngữ','Marketing'];
+const C=[
+{id:'csharp',t:'Lập trình C# từ cơ bản đến nâng cao',cat:'Lập trình',tc:'Nguyễn Văn Minh',r:4.9,n:1245,lvl:'Cơ bản',p:599000,o:799000,h:24,tag:'Bán chạy',c:'',L:['Cài đặt và Hello World','Biến và kiểu dữ liệu','Rẽ nhánh và vòng lặp','Class và OOP','Kế thừa và đa hình']},
+{id:'api',t:'Xây dựng REST API với ASP.NET Core',cat:'Lập trình',tc:'Trần Quốc Huy',r:4.8,n:986,lvl:'Trung cấp',p:699000,o:899000,h:18,tag:'Thực chiến',c:'a',L:['Routing và Controller','Dependency Injection','Entity Framework Core','Xác thực JWT','Triển khai API']},
+{id:'data',t:'Data Analytics & AI cho người mới',cat:'Data / AI',tc:'Lê Hoàng Nam',r:4.9,n:2130,lvl:'Cơ bản',p:799000,o:1099000,h:32,tag:'Mới',c:'g',L:['Tư duy dữ liệu','Excel và SQL cơ bản','Trực quan hóa dữ liệu','Machine Learning nhập môn','Dự án phân tích']},
+{id:'english',t:'English Communication for Work',cat:'Ngoại ngữ',tc:'Emily Tran',r:4.8,n:1560,lvl:'Trung cấp',p:499000,o:649000,h:16,tag:'Top rated',c:'',L:['Họp và giao tiếp xã giao','Viết email chuyên nghiệp','Thuyết trình','Đàm phán','Phỏng vấn']},
+{id:'design',t:'UI/UX Design từ Zero đến Portfolio',cat:'Thiết kế',tc:'Phạm Minh Anh',r:4.7,n:870,lvl:'Cơ bản',p:649000,o:849000,h:20,tag:'Portfolio',c:'a',L:['Nguyên lý thiết kế','Nghiên cứu người dùng','Wireframe','Prototype trên Figma','Dựng portfolio']},
+{id:'marketing',t:'Digital Marketing thực chiến',cat:'Marketing',tc:'Đỗ Gia Bảo',r:4.9,n:1020,lvl:'Trung cấp',p:549000,o:749000,h:14,tag:'Bán chạy',c:'g',L:['Chiến lược nội dung','SEO cơ bản','Quảng cáo trả phí','Email marketing','Đo lường hiệu quả']}];
+const Q={csharp:[
+{q:'Từ khóa nào dùng để khai báo một class trong C#?',o:['function','class','object','def'],a:1},
+{q:'Kiểu dữ liệu nào lưu số nguyên?',o:['string','int','bool','char'],a:1},
+{q:'Cách viết đúng để class Dog kế thừa class Animal?',o:['class Dog : Animal','class Dog extends Animal','class Dog inherits Animal','class Dog -> Animal'],a:0},
+{q:'Tính chất OOP nào cho phép cùng một phương thức có hành vi khác nhau ở các lớp con?',o:['Đóng gói','Đa hình','Khai báo','Biên dịch'],a:1}]};
+
+let D;try{D=JSON.parse(localStorage.getItem('edn'))}catch(e){}D=D||{users:[],me:null,en:{}};
+const save=()=>{try{localStorage.setItem('edn',JSON.stringify(D))}catch(e){}};
+const me=()=>D.users.find(u=>u.email===D.me);
+const EN=()=>D.me?(D.en[D.me]=D.en[D.me]||{}):{};
+const find=id=>C.find(c=>c.id===id);
+const pct=c=>{const e=EN()[c.id];return e?Math.round(e.done.length/c.L.length*100):0};
+const nextL=c=>{const e=EN()[c.id],k=c.L.findIndex((_,i)=>!e.done.includes(i));return k<0?0:k};
+const passed=c=>{const e=EN()[c.id];return e&&e.done.length===c.L.length&&(!Q[c.id]||e.q>=70)};
+const F0=()=>({q:'',cat:'',lvl:'',price:'',sort:'pop'});
+let f=F0(),next='',qz={i:0,a:[],res:null},hook=null;
+const go=p=>{location.hash=p},to=p=>location.hash==='#'+p?render():go(p);
+function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove('show'),2400)}
+const guard=(p)=>{next=p;toast('Vui lòng đăng nhập để tiếp tục');go('/login');return ''};
+
+/* ---------- Views ---------- */
+const card=c=>`<article class="card"><a href="#/course/${c.id}" class="thumb ${c.c}"><span class="badge">${c.tag}</span><b>${c.cat}</b></a><div class="cb"><span class="cat">${c.cat} - ${c.lvl}</span><h3><a href="#/course/${c.id}">${c.t}</a></h3><div class="tm"><span class="av">${ini(c.tc)}</span>${c.tc}</div><div class="meta">★ ${c.r} (${c.n.toLocaleString('vi-VN')} học viên), ${c.h} giờ</div><div class="price"><strong>${money(c.p)}</strong><del>${money(c.o)}</del></div><a class="btn btn-p btn-s" href="#/course/${c.id}">${EN()[c.id]?'Tiếp tục học':'Xem khóa học'}</a></div></article>`;
+const nf=()=>'<div class="wrap page"><div class="empty">Không tìm thấy trang này. <a href="#/">Về trang chủ</a></div></div>';
+
+const home=()=>`<section class="hero"><div class="wrap hg"><div><h1>Học đúng kiến thức, phát triển đúng tương lai</h1><p>Chọn khóa học, học từng bài, làm quiz và nhận chứng chỉ. Tiến độ của bạn được lưu lại để lần sau học tiếp đúng chỗ đã dừng.</p><form class="sbar" data-form="search"><input name="q" placeholder="Tìm khóa học, kỹ năng hoặc chủ đề" aria-label="Tìm khóa học"><button class="btn btn-p">Tìm khóa học</button></form><div class="chips">${CATS.map(x=>`<button class="chip" data-a="cat" data-v="${x}">${x}</button>`).join('')}</div></div><div class="hart"><div><b>${C.length}</b><span>khóa học có lộ trình bài học rõ ràng</span></div><div><b>${Math.max(...C.map(c=>c.n)).toLocaleString('vi-VN')}</b><span>học viên ở khóa học đông nhất</span></div><div><b>4.8/5</b><span>điểm đánh giá trung bình</span></div></div></div></section>
+<section class="sec"><div class="wrap"><div class="sh"><div><h2>Khóa học nổi bật</h2><p>Những khóa được học viên chọn nhiều nhất.</p></div><a href="#/courses">Xem tất cả</a></div><div class="grid">${[...C].sort((a,b)=>b.n-a.n).slice(0,3).map(card).join('')}</div></div></section>
+<section class="sec" id="cats"><div class="wrap"><div class="sh"><div><h2>Chọn theo lĩnh vực</h2></div></div><div class="cats">${CATS.map(x=>`<button class="cc" data-a="cat" data-v="${x}"><b>${x}</b><span>${C.filter(c=>c.cat===x).length} khóa học</span></button>`).join('')}</div></div></section>
+<section class="sec"><div class="wrap"><div class="sh"><h2>Vì sao học trên EduNext</h2></div><div class="why"><div><h3>Giảng viên thực chiến</h3><p>Bài học xây từ công việc thật.</p></div><div><h3>Học mọi lúc</h3><p>Dùng được trên điện thoại, máy tính bảng và máy tính.</p></div><div><h3>Theo dõi tiến độ</h3><p>Biết mình đã học đến đâu và nên học gì tiếp.</p></div><div><h3>Có chứng chỉ</h3><p>Hoàn thành bài học và quiz để nhận chứng chỉ.</p></div></div></div></section>
+<section class="sec" id="faq"><div class="wrap narrow"><div class="sh"><h2>Câu hỏi thường gặp</h2></div>${[['Tôi có học được trên điện thoại không?','Có. Giao diện tự co giãn theo mọi kích thước màn hình.'],['Tôi nhận chứng chỉ bằng cách nào?','Hoàn thành tất cả bài học và đạt từ 70 điểm ở bài kiểm tra (nếu khóa có quiz), sau đó mở trang chứng chỉ.'],['Tiến độ học được lưu ở đâu?','Bản demo này lưu trên trình duyệt của bạn, nên đổi trình duyệt hoặc xóa dữ liệu sẽ mất tiến độ.'],['Có thể học lại sau khi hoàn thành không?','Có. Bạn xem lại được mọi bài học đã đăng ký.']].map(x=>`<details><summary>${x[0]}</summary><p>${x[1]}</p></details>`).join('')}</div></section>
+<section class="sec"><div class="wrap"><div class="cta"><div><h2>Bắt đầu học hôm nay</h2><p>Tạo tài khoản miễn phí và đăng ký khóa học đầu tiên.</p></div><a class="btn btn-g" href="#/register">Tạo tài khoản</a></div></div></section>`;
+
+const grp=(t,k,o)=>`<div><h4>${t}</h4>${o.map(x=>Array.isArray(x)?x:[x,x||'Tất cả']).map(([v,l])=>`<label><input type="radio" name="${k}" data-f="${k}" value="${v}" ${f[k]===v?'checked':''}> ${l}</label>`).join('')}</div>`;
+const courses=()=>{hook=list;return `<div class="wrap page"><h1>Khóa học</h1><div class="cl"><aside class="fc">${grp('Danh mục','cat',['',...CATS])}${grp('Cấp độ','lvl',['','Cơ bản','Trung cấp'])}${grp('Giá','price',[['','Tất cả'],['1','Dưới 600.000đ'],['2','600.000đ - 700.000đ'],['3','Trên 700.000đ']])}<button class="btn btn-g" data-a="clear">Xóa bộ lọc</button></aside><section><div class="tb"><input data-f="q" value="${esc(f.q)}" placeholder="Tìm theo tên khóa, giảng viên, lĩnh vực" aria-label="Tìm khóa học"><select data-f="sort" aria-label="Sắp xếp">${[['pop','Phổ biến nhất'],['lo','Giá thấp đến cao'],['hi','Giá cao đến thấp']].map(([v,l])=>`<option value="${v}" ${f.sort===v?'selected':''}>${l}</option>`).join('')}</select></div><p class="muted" id="cnt"></p><div class="grid" id="list"></div></section></div></div>`};
+function list(){const q=f.q.trim().toLowerCase(),pr=c=>!f.price||(f.price==='1'?c.p<600000:f.price==='2'?c.p>=600000&&c.p<=700000:c.p>700000);
+const r=C.filter(c=>(!q||(c.t+' '+c.cat+' '+c.tc).toLowerCase().includes(q))&&(!f.cat||c.cat===f.cat)&&(!f.lvl||c.lvl===f.lvl)&&pr(c)).sort((a,b)=>f.sort==='lo'?a.p-b.p:f.sort==='hi'?b.p-a.p:b.n-a.n);
+$('#cnt').textContent=r.length+' khóa học';$('#list').innerHTML=r.length?r.map(card).join(''):'<div class="empty">Không có khóa học khớp bộ lọc. Hãy bỏ bớt điều kiện lọc.</div>'}
+
+const detail=id=>{const c=find(id);if(!c)return nf();const e=EN()[id];
+return `<div class="wrap page"><div class="bc"><a href="#/courses">Khóa học</a> / ${c.t}</div><div class="dg"><div><div class="prev ${c.c}"><b>${c.cat}</b></div><h1>${c.t}</h1><div class="tm"><span class="av">${ini(c.tc)}</span>${c.tc}</div><p class="muted">${c.h} giờ học, ${c.L.length} bài, cấp độ ${c.lvl.toLowerCase()}. Học xong bạn có thể làm bài tập thực hành${Q[id]?', làm quiz':''} và nhận chứng chỉ.</p><div class="box"><h3>Nội dung khóa học</h3>${c.L.map((l,i)=>`<div class="lr"><span>Bài ${i+1}: ${l}</span><span class="muted">${e?(e.done.includes(i)?'Đã học':'Chưa học'):'Cần đăng ký'}</span></div>`).join('')}</div></div>
+<aside class="box buy"><div class="bigp">${money(c.p)}</div><del class="muted">${money(c.o)}</del>${e?`<div class="bar"><span style="width:${pct(c)}%"></span></div><p class="muted">${pct(c)}% hoàn thành</p><a class="btn btn-p w" href="#/learn/${id}/${nextL(c)}">Tiếp tục học</a>`:`<p></p><button class="btn btn-p w" data-a="enroll" data-v="${id}">Đăng ký khóa học</button>`}<ul><li>Truy cập mọi bài học</li><li>Lưu tiến độ tự động</li><li>Chứng chỉ khi hoàn thành</li></ul></aside></div></div>`};
+
+const learn=(id,i)=>{const c=find(id),e=EN()[id];if(!c)return nf();if(!D.me)return guard(`/learn/${id}/${i}`);if(!e){toast('Hãy đăng ký khóa học trước');go('/course/'+id);return ''}
+i=Math.min(+i,c.L.length-1);const d=e.done.includes(i),all=e.done.length===c.L.length;
+return `<div class="wrap page"><div class="bc"><a href="#/dashboard">Của tôi</a> / <a href="#/course/${id}">${c.t}</a> / Bài ${i+1}</div><div class="ll"><section><div class="vid"><div><span>▶</span>Video bài ${i+1}: ${c.L[i]}<br><small class="muted">(Khung video minh họa, gắn link video thật vào đây)</small></div></div><div class="box" style="margin-top:14px"><h2>${c.L[i]}</h2><div class="tabs"><button class="tab on" data-a="tab" data-v="0">Mô tả</button><button class="tab" data-a="tab" data-v="1">Ghi chú</button></div><div class="pn" data-p="0"><p class="muted">Nội dung bài ${i+1} của khóa "${c.t}". Xem hết video rồi bấm "Đánh dấu đã học" để lưu tiến độ.</p></div><div class="pn hidden" data-p="1"><textarea id="note" data-c="${id}" data-i="${i}" placeholder="Ghi chú của bạn cho bài này (tự động lưu)">${esc((e.n||{})[i]||'')}</textarea></div><div class="acts">${i>0?`<a class="btn btn-g" href="#/learn/${id}/${i-1}">Bài trước</a>`:''}<button class="btn ${d?'btn-g':'btn-p'}" data-a="done" data-v="${id},${i}">${d?'Bỏ đánh dấu đã học':'Đánh dấu đã học'}</button>${i<c.L.length-1?`<a class="btn btn-g" href="#/learn/${id}/${i+1}">Bài tiếp</a>`:''}${all?`<a class="btn btn-p" href="#/${Q[id]&&!(e.q>=70)?'quiz':'cert'}/${id}">${Q[id]&&!(e.q>=70)?'Làm bài kiểm tra':'Nhận chứng chỉ'}</a>`:''}</div></div></section>
+<aside class="box side"><h3>Tiến độ ${pct(c)}%</h3><div class="bar"><span style="width:${pct(c)}%"></span></div>${c.L.map((l,k)=>`<a class="li ${k===i?'on':''}" href="#/learn/${id}/${k}"><i>${e.done.includes(k)?'✓':k+1}</i>${l}</a>`).join('')}</aside></div></div>`};
+
+const quiz=id=>{const c=find(id),e=EN()[id];if(!c||!Q[id])return nf();if(!D.me)return guard('/quiz/'+id);if(!e){go('/course/'+id);return ''}
+if(e.done.length<c.L.length){toast('Hãy học hết các bài trước khi làm kiểm tra');go('/learn/'+id+'/'+nextL(c));return ''}
+qz={i:0,a:[],res:null};hook=()=>qr(id);return `<div class="wrap page narrow"><div class="bc"><a href="#/course/${id}">${c.t}</a> / Bài kiểm tra</div><h1>Bài kiểm tra cuối khóa</h1><div class="box" id="qz"></div></div>`};
+function qr(id){const qs=Q[id],box=$('#qz');if(qz.res!==null){const ok=qz.res>=70;box.innerHTML=`<div class="res"><div class="score">${qz.res}/100</div><h2>${ok?'Bạn đã đạt bài kiểm tra':'Chưa đạt, cần tối thiểu 70 điểm'}</h2>${ok?`<a class="btn btn-p" href="#/cert/${id}">Nhận chứng chỉ</a>`:''}<button class="btn btn-g" data-a="qretry" data-v="${id}">Làm lại</button></div>`;return}
+const q=qs[qz.i];box.innerHTML=`<div class="qh"><span>Câu ${qz.i+1}/${qs.length}</span></div><div class="bar"><span style="width:${(qz.i+1)/qs.length*100}%"></span></div><div class="qq">${q.q}</div>${q.o.map((o,k)=>`<button class="opt ${qz.a[qz.i]===k?'sel':''}" data-a="opt" data-v="${k},${id}">${o}</button>`).join('')}<div class="qf"><button class="btn btn-g" data-a="qgo" data-v="-1,${id}" ${qz.i?'':'disabled'}>Câu trước</button><button class="btn btn-p" data-a="qgo" data-v="1,${id}">${qz.i===qs.length-1?'Nộp bài':'Câu tiếp'}</button></div>`}
+
+const cert=id=>{const c=find(id);if(!c)return nf();if(!D.me)return guard('/cert/'+id);if(!EN()[id]){go('/course/'+id);return ''}
+if(!passed(c)){toast('Hoàn thành khóa học và bài kiểm tra để nhận chứng chỉ');go('/learn/'+id+'/'+nextL(c));return ''}
+const u=me(),code='EDU-'+new Date().getFullYear()+'-'+String(Math.abs([...(u.email+id)].reduce((h,ch)=>(h*31+ch.charCodeAt(0))|0,7))%1000000).padStart(6,'0');
+return `<div class="wrap page narrow"><div class="bc"><a href="#/dashboard">Của tôi</a> / Chứng chỉ</div><div class="cert"><div class="mark">E</div><p class="muted">Chứng chỉ hoàn thành khóa học</p><h2>${c.t}</h2><p class="muted">Cấp cho</p><div class="cname">${esc(u.name)}</div><div class="cmeta"><div><small class="muted">Ngày cấp</small><br><b>${new Date().toLocaleDateString('vi-VN')}</b></div><div><small class="muted">Mã chứng chỉ</small><br><b>${code}</b></div></div></div><div class="acts"><button class="btn btn-p" data-a="print">In hoặc lưu PDF</button><a class="btn btn-g" href="#/dashboard">Về trang cá nhân</a></div></div>`};
+
+const field=(n,l,t)=>`<div class="fg"><label for="f-${n}">${l}</label><input id="f-${n}" name="${n}" type="${t}" autocomplete="${n==='pw'?'current-password':n}"></div>`;
+const auth=m=>{if(D.me){go('/dashboard');return ''}const r=m==='register';return `<div class="auth"><form class="box ac" data-form="${m}" novalidate><h2>${r?'Tạo tài khoản miễn phí':'Đăng nhập'}</h2>${r?field('name','Họ và tên','text'):''}${field('email','Email','email')}${field('pw','Mật khẩu (tối thiểu 6 ký tự)','password')}${r?'<label class="chk"><input type="checkbox" name="ok"> Tôi đồng ý với điều khoản sử dụng</label>':''}<p class="err" id="err" role="alert"></p><button class="btn btn-p w">${r?'Tạo tài khoản':'Đăng nhập'}</button><p class="sw">${r?'Đã có tài khoản? <a href="#/login">Đăng nhập</a>':'Chưa có tài khoản? <a href="#/register">Tạo tài khoản</a>'}</p></form></div>`};
+
+const dash=()=>{if(!D.me)return guard('/dashboard');const u=me(),mine=C.filter(c=>EN()[c.id]),done=mine.reduce((s,c)=>s+EN()[c.id].done.length,0),avg=mine.length?Math.round(mine.reduce((s,c)=>s+pct(c),0)/mine.length):0;
+return `<div class="wrap page"><h1>Xin chào, ${esc(u.name)}</h1><div class="stats"><div><b>${mine.length}</b><span>khóa học đã đăng ký</span></div><div><b>${done}</b><span>bài đã học</span></div><div><b>${avg}%</b><span>tiến độ trung bình</span></div></div><h2>Khóa học của tôi</h2>${mine.length?`<div class="grid">${mine.map(c=>`<article class="card"><div class="thumb ${c.c}"><b>${c.cat}</b></div><div class="cb"><h3>${c.t}</h3><div class="bar"><span style="width:${pct(c)}%"></span></div><span class="muted">${pct(c)}% hoàn thành</span><div class="acts" style="margin:0"><a class="btn btn-p btn-s" href="#/learn/${c.id}/${nextL(c)}">Tiếp tục học</a>${pct(c)===100?`<a class="btn btn-g btn-s" href="#/${passed(c)?'cert':'quiz'}/${c.id}">${passed(c)?'Chứng chỉ':'Làm quiz'}</a>`:''}</div></div></article>`).join('')}</div>`:'<div class="empty">Bạn chưa đăng ký khóa học nào. <a href="#/courses">Xem danh sách khóa học</a></div>'}</div>`};
+
+/* ---------- Router ---------- */
+const R=[[/^\/?$/,home],[/^\/courses$/,courses],[/^\/course\/(\w+)$/,detail],[/^\/learn\/(\w+)\/(\d+)$/,learn],[/^\/quiz\/(\w+)$/,quiz],[/^\/cert\/(\w+)$/,cert],[/^\/(login|register)$/,auth],[/^\/dashboard$/,dash]];
+function nav(){const m=me();document.body.classList.add('edunext-ready');$('#auth').innerHTML=m?`<a class="btn btn-g btn-s" href="#/dashboard">${esc(m.name.split(' ').pop())}</a><button class="btn btn-p btn-s" data-a="logout">Đăng xuất</button>`:'<a class="btn btn-g btn-s" href="#/login">Đăng nhập</a><a class="btn btn-p btn-s" href="#/register">Đăng ký</a>';$('#nav').classList.remove('open')}
+function render(keep){const p=location.hash.slice(1)||'/';hook=null;let h;for(const[re,fn]of R){const m=p.match(re);if(m){h=fn(...m.slice(1));break}}
+app.innerHTML=h===undefined?nf():h;if(hook)hook();nav();if(!keep)scrollTo(0,0)}
+
+/* ---------- Actions ---------- */
+const A={
+menu:()=>$('#nav').classList.toggle('open'),
+sc:id=>{$('#nav').classList.remove('open');const s=()=>{const el=document.getElementById(id);el&&el.scrollIntoView({behavior:'smooth'})};const p=location.hash.slice(1);if(!p||p==='/')s();else{go('/');setTimeout(s,80)}},
+cat:v=>{f=F0();f.cat=v;to('/courses')},
+clear:()=>{f=F0();render(true)},
+enroll:id=>{if(!D.me){next='/course/'+id;toast('Đăng nhập để đăng ký khóa học');return go('/login')}EN()[id]={done:[],q:null,n:{}};save();toast('Đăng ký thành công');go('/learn/'+id+'/0')},
+done:v=>{const[id,i]=v.split(','),e=EN()[id],k=+i,x=e.done.indexOf(k);x<0?e.done.push(k):e.done.splice(x,1);save();toast(x<0?'Đã lưu tiến độ':'Đã bỏ đánh dấu');render(true)},
+tab:(v,t)=>{document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('on',b===t));document.querySelectorAll('.pn').forEach(p=>p.classList.toggle('hidden',p.dataset.p!==v))},
+opt:v=>{const[k,id]=v.split(',');qz.a[qz.i]=+k;qr(id)},
+qgo:v=>{const[d,id]=v.split(','),n=Q[id].length;if(+d>0&&qz.a[qz.i]==null)return toast('Hãy chọn một đáp án');
+if(+d>0&&qz.i===n-1){qz.res=Math.round(Q[id].filter((q,i)=>qz.a[i]===q.a).length/n*100);const e=EN()[id];e.q=Math.max(e.q||0,qz.res);save()}else qz.i+=+d;qr(id)},
+qretry:id=>{qz={i:0,a:[],res:null};qr(id)},
+logout:()=>{D.me=null;save();toast('Đã đăng xuất');to('/')},
+print:()=>print()};
+document.addEventListener('click',e=>{const t=e.target.closest('[data-a]');if(t&&A[t.dataset.a])A[t.dataset.a](t.dataset.v,t)});
+const onf=e=>{const t=e.target;if(t.id==='note'){const en=EN()[t.dataset.c];(en.n=en.n||{})[t.dataset.i]=t.value;save();return}if(t.dataset.f&&$('#list')){f[t.dataset.f]=t.value;list()}};
+document.addEventListener('input',onf);document.addEventListener('change',onf);
+document.addEventListener('submit',e=>{const fm=e.target.closest('[data-form]');if(!fm)return;e.preventDefault();const k=fm.dataset.form,v=Object.fromEntries(new FormData(fm));
+if(k==='search'){f=F0();f.q=(v.q||'').trim();fm.reset();$('#nav').classList.remove('open');return to('/courses')}
+const err=m=>{$('#err').textContent=m},email=(v.email||'').trim().toLowerCase();
+if(!/^\S+@\S+\.\S+$/.test(email))return err('Email chưa đúng định dạng.');
+if((v.pw||'').length<6)return err('Mật khẩu cần tối thiểu 6 ký tự.');
+if(k==='register'){if(!(v.name||'').trim())return err('Vui lòng nhập họ và tên.');if(!v.ok)return err('Bạn cần đồng ý với điều khoản sử dụng.');if(D.users.some(u=>u.email===email))return err('Email này đã đăng ký. Hãy đăng nhập.');D.users.push({name:v.name.trim(),email,pw:v.pw})}
+else if(!D.users.some(u=>u.email===email&&u.pw===v.pw))return err('Sai email hoặc mật khẩu.');
+D.me=email;save();toast('Xin chào '+me().name);const n=next||'/dashboard';next='';go(n)});
+addEventListener('hashchange',()=>render());
+render();
+})();
