@@ -4,7 +4,7 @@
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#10223F">
-    <meta name="description" content="EduNext - nền tảng học trực tuyến: học theo lộ trình, làm quiz, nhận chứng chỉ.">
+    <meta name="description" content="EduNext - website bán khóa học trực tuyến với nội dung, đánh giá và thanh toán rõ ràng.">
     <?php wp_head(); ?>
 </head>
 <body <?php body_class('edunext-app'); ?>>
@@ -14,13 +14,13 @@
     <div class="wrap hd">
         <a class="brand" href="<?php echo esc_url(home_url('/#/' )); ?>">
             <span class="mark">E</span>
-            <span class="brand-copy"><strong>EduNext</strong><small>Learning platform</small></span>
+            <span class="brand-copy"><strong>EduNext</strong><small>Course store</small></span>
         </a>
 
         <nav id="nav" aria-label="Điều hướng chính">
             <a href="#/">Trang chủ</a>
             <a href="#/courses">Khóa học</a>
-            <a href="#/courses">Lộ trình</a>
+            <a href="#/courses">Khóa bán chạy</a>
             <a href="#/courses">Danh mục</a>
             <a href="#/">Hỏi đáp</a>
             <a href="#/blog">Blog</a>
