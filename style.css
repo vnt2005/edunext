@@ -1930,18 +1930,11 @@ body.edunext-app .floating-facebook{
 body.edunext-app .floating-phone{
   color:#D46A3B;
 }
-body.edunext-app .floating-zalo-mark{
+body.edunext-app .floating-zalo-svg{
   width:27px;
   height:27px;
-  display:grid;
-  place-items:center;
-  border-radius:8px;
-  background:currentColor;
-  color:#fff;
-  font-size:14px;
-  line-height:1;
-  font-weight:900;
-  font-family:Arial,sans-serif;
+  display:block;
+  color:#0068FF;
 }
 body.edunext-app .floating-facebook-mark{
   display:block;
@@ -1970,11 +1963,9 @@ body.edunext-app .floating-phone svg{
     width:43px;
     height:43px;
   }
-  body.edunext-app .floating-zalo-mark{
+  body.edunext-app .floating-zalo-svg{
     width:24px;
     height:24px;
-    border-radius:7px;
-    font-size:13px;
   }
   body.edunext-app .floating-facebook-mark{font-size:28px}
   body.edunext-app .floating-phone svg{width:19px;height:19px}
