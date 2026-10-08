@@ -25,6 +25,9 @@ $css  = $wp ? get_stylesheet_uri() : 'style.css';
         <a href="#/courses">Khóa học</a>
         <button data-a="sc" data-v="cats">Danh mục</button>
         <button data-a="sc" data-v="faq">Hỏi đáp</button>
+        <a href="#/blog">Blog</a>
+        <a href="#/about">Giới thiệu</a>
+        <a href="#/contact">Liên hệ</a>
         <form class="sf" data-form="search"><input name="q" placeholder="Tìm khóa học..." aria-label="Tìm khóa học"></form>
       </nav>
       <div id="auth" class="au"></div>
@@ -62,6 +65,9 @@ $css  = $wp ? get_stylesheet_uri() : 'style.css';
         <div class="ft-col">
           <h3>EduNext</h3>
           <p>Học đúng kiến thức, phát triển đúng tương lai.</p>
+          <a href="#/blog">Blog</a>
+          <a href="#/about">Giới thiệu</a>
+          <a href="#/contact">Liên hệ</a>
           <p class="ft-muted">Theo dõi tiến độ học tập của bạn ngay trên trình duyệt.</p>
         </div>
       </div>
