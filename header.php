@@ -19,26 +19,36 @@
     </div>
 
     <nav id="nav" class="lms-nav" aria-label="Điều hướng chính">
+        <div class="lms-nav-group-label">HỌC TẬP</div>
         <a href="#/" class="lms-nav-item"><span class="lms-nav-icon">⌂</span><span>Trang chủ</span></a>
-        <a href="#/courses" class="lms-nav-item"><span class="lms-nav-icon">▦</span><span>Khóa học</span></a>
-        <a href="#/best-sellers" class="lms-nav-item"><span class="lms-nav-icon">↗</span><span>Khóa bán chạy</span></a>
+        <a href="#/dashboard" class="lms-nav-item"><span class="lms-nav-icon">▣</span><span>Trang học tập</span></a>
+        <a href="#/cert/csharp" class="lms-nav-item"><span class="lms-nav-icon">◇</span><span>Chứng chỉ</span></a>
+
+        <div class="lms-nav-group-label">KHÁM PHÁ</div>
+        <a href="#/courses" class="lms-nav-item"><span class="lms-nav-icon">⌘</span><span>Khám phá</span></a>
+        <a href="#/best-sellers" class="lms-nav-item"><span class="lms-nav-icon">↗</span><span>Bán chạy</span></a>
         <a href="#/categories" class="lms-nav-item"><span class="lms-nav-icon">◫</span><span>Danh mục</span></a>
         <a href="#/blog" class="lms-nav-item"><span class="lms-nav-icon">▤</span><span>Blog</span></a>
+
+        <div class="lms-nav-group-label">HỖ TRỢ</div>
         <a href="#/faq" class="lms-nav-item"><span class="lms-nav-icon">?</span><span>Hỏi đáp</span></a>
     </nav>
 
     <div class="lms-sidebar-bottom">
-        <a href="#/dashboard" class="lms-nav-item"><span class="lms-nav-icon">◎</span><span>Trang học tập</span></a>
+        <a href="#/register" class="lms-nav-item"><span class="lms-nav-icon">＋</span><span>Tạo tài khoản</span></a>
     </div>
 </aside>
 
 <header class="topbar-reference">
     <div class="topbar-inner-reference">
         <button class="mb lms-mobile-menu" data-a="menu" aria-label="Mở menu">☰</button>
+        <div class="lms-breadcrumb"><a href="#/">EduNext</a><span>/</span><strong id="lms-breadcrumb-current">Trang chủ</strong></div>
+        <span class="lms-topbar-spacer"></span>
         <form class="sf lms-search" data-form="search">
             <span class="lms-search-icon" aria-hidden="true">⌕</span>
             <input name="q" placeholder="Tìm khóa học..." aria-label="Tìm khóa học">
         </form>
+        <button class="lms-notify" type="button" aria-label="Thông báo">♢</button>
         <div id="auth" class="au lms-auth"></div>
     </div>
 </header>
