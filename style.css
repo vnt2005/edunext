@@ -180,6 +180,18 @@ body.edunext-app .cc:hover{border-color:var(--blue)}
 body.edunext-app .cc b{display:block;overflow-wrap:anywhere}
 body.edunext-app .cc span{font-size:13px;color:var(--muted)}
 
+body.edunext-app .roadmap-track{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:10px}
+body.edunext-app .roadmap-track::before{content:"";position:absolute;left:8%;right:8%;top:25px;height:2px;background:var(--line);z-index:0}
+body.edunext-app .roadmap-step{position:relative;z-index:1;min-width:0}
+body.edunext-app .roadmap-dot{width:50px;height:50px;margin:0 auto 14px;border-radius:50%;display:grid;place-items:center;background:var(--blue);color:#fff;font-size:14px;font-weight:800;border:5px solid var(--bg)}
+body.edunext-app .roadmap-card{height:100%;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:20px;box-shadow:0 8px 24px rgba(15,26,51,.05)}
+body.edunext-app .roadmap-tag{display:inline-block;font-size:12px;font-weight:700;color:var(--blue);margin-bottom:8px}
+body.edunext-app .roadmap-card h3{margin:0 0 8px;font-size:18px}
+body.edunext-app .roadmap-card p{margin:0 0 16px;color:var(--muted);font-size:14px;line-height:1.65}
+body.edunext-app .roadmap-card a{display:flex;align-items:center;justify-content:space-between;gap:10px;color:var(--ink);font-weight:700;font-size:14px}
+body.edunext-app .roadmap-card a:hover{color:var(--blue)}
+body.edunext-app .roadmap-card a span{color:var(--blue);font-size:18px;flex:0 0 auto}
+
 body.edunext-app .why{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
 body.edunext-app .why div{
   min-width:0;padding:18px;border-top:3px solid var(--blue);background:#fff;border-radius:0 0 var(--r) var(--r)
