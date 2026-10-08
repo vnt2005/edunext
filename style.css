@@ -385,6 +385,76 @@ body.edunext-app .platform-stats{
   grid-template-columns:repeat(4,minmax(0,1fr));
   gap:16px;
 }
+body.edunext-app .section-note{
+  color:var(--muted);
+  font-size:13px;
+  font-weight:600;
+}
+body.edunext-app .blog-grid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:16px;
+}
+body.edunext-app .blog-card{
+  min-width:0;
+  overflow:hidden;
+}
+body.edunext-app .blog-cover{
+  min-height:126px;
+  padding:18px;
+  background:var(--ink);
+  color:#fff;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+body.edunext-app .blog-cover span{
+  align-self:flex-start;
+  background:rgba(255,255,255,.12);
+  border-radius:999px;
+  padding:4px 9px;
+  font-size:11px;
+  font-weight:700;
+}
+body.edunext-app .blog-cover b{
+  font-size:20px;
+  letter-spacing:.02em;
+}
+body.edunext-app .blog-body{
+  padding:18px;
+}
+body.edunext-app .blog-meta{
+  display:flex;
+  justify-content:space-between;
+  gap:8px;
+  color:var(--muted);
+  font-size:12px;
+}
+body.edunext-app .blog-meta span{
+  color:var(--blue);
+  font-weight:700;
+}
+body.edunext-app .blog-body h3{
+  margin:10px 0 8px;
+  font-size:16px;
+  line-height:1.4;
+  overflow-wrap:anywhere;
+}
+body.edunext-app .blog-body p{
+  margin:0;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.6;
+}
+body.edunext-app .blog-read{
+  margin-top:14px;
+  padding-top:12px;
+  border-top:1px solid var(--line);
+  color:var(--blue);
+  font-size:12px;
+  font-weight:700;
+}
+
 body.edunext-app .stat{
   min-width:0;
   padding:22px;
@@ -644,6 +714,8 @@ body.edunext-app{
   body.edunext-app .sh{flex-wrap:wrap}
 }
 @media (max-width:960px){
+  body.edunext-app .blog-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+
   body.edunext-app .platform-stats{grid-template-columns:repeat(2,minmax(0,1fr))}
 
   body.edunext-app .hg,
@@ -764,6 +836,9 @@ body.edunext-app{
   body.edunext-app .cert{padding:34px 16px}
 }
 @media (max-width:640px){
+  body.edunext-app .blog-grid{grid-template-columns:1fr}
+  body.edunext-app .section-note{width:100%}
+
   body.edunext-app .platform-stats{grid-template-columns:1fr}
 
   body.edunext-app .review{flex-basis:100%}
