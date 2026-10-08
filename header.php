@@ -23,6 +23,7 @@
             <a href="#/courses">Lộ trình</a>
             <a href="#/courses">Danh mục</a>
             <a href="#/">Hỏi đáp</a>
+            <a href="#/blog">Blog</a>
         </nav>
 
         <form class="sf" data-form="search">
