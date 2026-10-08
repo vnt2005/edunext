@@ -95,12 +95,50 @@ const u=me(),discount=c.o>c.p?c.o-c.p:0,orderId='EDN-'+Date.now().toString().sli
 return `<div class="wrap page"><div class="bc"><a href="#/courses">Khóa học</a> / Thanh toán</div><div class="checkout-grid"><section><h1>Thanh toán khóa học</h1><p class="muted">Học ngay thông tin trước khi xác nhận đăng ký.</p><div class="box checkout-box"><h2>Thông tin học viên</h2><div class="checkout-user"><div class="av">${ini(u.name)}</div><div><b>${esc(u.name)}</b><span>${esc(u.email)}</span></div></div></div><div class="box checkout-box"><h2>Phương thức thanh toán</h2><label class="pay-option"><input type="radio" name="payment" value="bank" checked><span><b>Chuyển khoản ngân hàng</b><small>Thanh toán qua tài khoản ngân hàng — bản demo.</small></span></label><label class="pay-option"><input type="radio" name="payment" value="wallet"><span><b>Ví điện tử</b><small>Thanh toán nhanh bằng ví điện tử — bản demo.</small></span></label><label class="pay-option"><input type="radio" name="payment" value="card"><span><b>Thẻ ngân hàng</b><small>Visa / Mastercard / ATM — bản demo.</small></span></label><div class="pay-note">Đây là giao diện mô phỏng. Chưa kết nối cổng thanh toán thật.</div></div></section><aside class="box checkout-summary"><h2>Đơn hàng</h2><div class="checkout-course"><div class="thumb ${c.c}"><b>${c.cat}</b></div><div><span class="cat">${c.cat}</span><h3>${c.t}</h3><p class="muted">${c.h} giờ · ${c.L.length} bài · ${c.lvl}</p></div></div><div class="sum-row"><span>Giá niêm yết</span><del>${money(c.o)}</del></div><div class="sum-row"><span>Ưu đãi</span><strong class="discount">-${money(discount)}</strong></div><div class="sum-total"><span>Tổng thanh toán</span><b>${money(c.p)}</b></div><button class="btn btn-p w" data-a="pay" data-v="${id}">Xác nhận thanh toán</button><p class="checkout-safe">Mã đơn hàng: ${orderId}<br>Thanh toán an toàn trong bản demo.</p></aside></div></div>`;
 };
 
-const learn=(id,i)=>{const c=find(id),e=EN()[id];if(!c)return nf();if(!D.me)return guard("/learn/"+id+"/"+i);if(!e){toast("Hãy mua khóa học trước");go("/course/"+id);return ""}i=Math.min(+i,c.L.length-1);const d=e.done.includes(i),all=e.done.length===c.L.length;const start=(c.s&&c.s[i])||0;const video=c.v?'<iframe src="https://www.youtube.com/embed/'+c.v+'?rel=0&modestbranding=1&playsinline=1&start='+start+'" title="'+esc(c.L[i])+'" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>':'<div>Video bài '+(i+1)+': '+c.L[i]+'</div>';return `<div class="cio-learn-shell">
+const learn=(id,i)=>{
+  const c=find(id),e=EN()[id];
+  if(!c)return nf();
+  if(!D.me)return guard('/learn/'+id+'/'+i);
+  if(!e){toast('Hãy mua khóa học trước');go('/course/'+id);return ''}
+  i=Math.min(Math.max(+i,0),c.L.length-1);
+  const d=e.done.includes(i),all=e.done.length===c.L.length;
+  const start=(c.s&&c.s[i])||0;
+  const video=c.v
+    ? '<iframe src="https://www.youtube.com/embed/'+c.v+'?rel=0&modestbranding=1&playsinline=1&start='+start+'" title="'+esc(c.L[i])+'" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>'
+    : '<div>Video bài '+(i+1)+': '+esc(c.L[i])+'</div>';
+
+  const prev=i>0?'<a class="btn btn-g" href="#/learn/'+id+'/'+(i-1)+'">← Bài trước</a>':'';
+  const doneBtn='<button class="btn '+(d?'btn-g':'btn-p')+'" data-a="done" data-v="'+id+','+i+'">'+(d?'Bỏ đánh dấu':'Đánh dấu đã học')+'</button>';
+  const next=i<c.L.length-1?'<a class="btn btn-g" href="#/learn/'+id+'/'+(i+1)+'">Bài tiếp →</a>':'';
+  const final=all?'<a class="btn btn-p" href="#/'+(Q[id]&&!(e.q>=70)?'quiz':'cert')+'/'+id+'">'+(Q[id]&&!(e.q>=70)?'Làm quiz':'Xem chứng chỉ')+'</a>':'';
+
+  return `<div class="cio-learn-shell">
 <div class="cio-learn-top"><a href="#/dashboard">← Trang học tập</a><strong>${esc(c.t)}</strong><span>${pct(c)}% hoàn thành</span></div>
 <div class="cio-learn-layout">
-<aside class="cio-lesson-sidebar"><div class="cio-lesson-head"><span>${c.cat}</span><h2>${c.t}</h2><div class="cio-progress-line"><span style="width:${pct(c)}%"></span></div></div><div class="cio-lesson-list">${c.L.map((l,k)=>'<a class="'+(k===i?'active ':'')+(e.done.includes(k)?'done':'')+'" href="#/learn/'+id+'/'+k+'"><span>'+String(k+1).padStart(2,'0')+'</span><b>'+l+'</b><small>'+ (e.done.includes(k)?'Đã học':'Bài học') +'</small></a>').join('')}</div></aside>
-<main class="cio-learn-content"><div class="cio-video-wrap">${video}</div><div class="cio-lesson-content"><div class="cio-lesson-heading"><div><span class="cio-eyebrow">BÀI ${i+1}/${c.L.length}</span><h1>${c.L[i]}</h1></div><span class="cio-lesson-badge">${d?'Đã hoàn thành':'Đang học'}</span></div><p>Nội dung bài học tập trung vào <strong>${esc(c.L[i])}</strong>. Xem video và đánh dấu hoàn thành để cập nhật tiến độ.</p><div class="cio-lesson-actions">${i>0?'<a class="btn btn-g" href="#/learn/'+id+'/'+(i-1)+'">← Bài trước</a>':''}<button class="btn '+(d?'btn-g':'btn-p')+'" data-a="done" data-v="'+id+','+i+'">'+(d?'Bỏ đánh dấu':'Đánh dấu đã học')+'</button>${i<c.L.length-1?'<a class="btn btn-g" href="#/learn/'+id+'/'+(i+1)+'">Bài tiếp →</a>':''}${all?'<a class="btn btn-p" href="#/'+(Q[id]&&!(e.q>=70)?'quiz':'cert')+'/'+id+'">'+(Q[id]&&!(e.q>=70)?'Làm quiz':'Xem chứng chỉ')+'</a>':''}</div></div></main>
-</div></div>`};const quiz=id=>{const c=find(id),e=EN()[id];if(!c||!Q[id])return nf();if(!D.me)return guard('/quiz/'+id);if(!e){go('/course/'+id);return ''}
+<aside class="cio-lesson-sidebar">
+  <div class="cio-lesson-head">
+    <span>${esc(c.cat)}</span>
+    <h2>${esc(c.t)}</h2>
+    <div class="cio-progress-line"><span style="width:${pct(c)}%"></span></div>
+  </div>
+  <div class="cio-lesson-list">
+    ${c.L.map((l,k)=>'<a class="'+(k===i?'active ':'')+(e.done.includes(k)?'done':'')+'" href="#/learn/'+id+'/'+k+'"><span>'+String(k+1).padStart(2,'0')+'</span><b>'+esc(l)+'</b><small>'+(e.done.includes(k)?'Đã học':'Bài học')+'</small></a>').join('')}
+  </div>
+</aside>
+<main class="cio-learn-content">
+  <div class="cio-video-wrap">${video}</div>
+  <div class="cio-lesson-content">
+    <div class="cio-lesson-heading">
+      <div><span class="cio-eyebrow">BÀI ${i+1}/${c.L.length}</span><h1>${esc(c.L[i])}</h1></div>
+      <span class="cio-lesson-badge">${d?'Đã hoàn thành':'Đang học'}</span>
+    </div>
+    <p>Nội dung bài học tập trung vào <strong>${esc(c.L[i])}</strong>. Xem video và đánh dấu hoàn thành để cập nhật tiến độ.</p>
+    <div class="cio-lesson-actions">${prev}${doneBtn}${next}${final}</div>
+  </div>
+</main>
+</div>
+</div>`;
+};const quiz=id=>{const c=find(id),e=EN()[id];if(!c||!Q[id])return nf();if(!D.me)return guard('/quiz/'+id);if(!e){go('/course/'+id);return ''}
 if(e.done.length<c.L.length){toast('Hãy học hết các bài trước khi làm kiểm tra');go('/learn/'+id+'/'+nextL(c));return ''}
 qz={i:0,a:[],res:null};hook=()=>qr(id);return `<div class="wrap page narrow"><div class="bc"><a href="#/course/${id}">${c.t}</a> / Bài kiểm tra</div><h1>Bài kiểm tra cuối khóa</h1><div class="box" id="qz"></div></div>`};
 function qr(id){const qs=Q[id],box=$('#qz');if(qz.res!==null){const ok=qz.res>=70;box.innerHTML=`<div class="res"><div class="score">${qz.res}/100</div><h2>${ok?'Bạn đã đạt bài kiểm tra':'Chưa đạt, cần tối thiểu 70 điểm'}</h2>${ok?`<a class="btn btn-p" href="#/cert/${id}">Hoàn thành</a>`:''}<button class="btn btn-g" data-a="qretry" data-v="${id}">Làm lại</button></div>`;return}
