@@ -1435,3 +1435,639 @@ body.edunext-app .admin-activity-row strong{white-space:nowrap}
   body.edunext-app .checkout-summary{padding:16px}
   body.edunext-app .course-facts{grid-template-columns:1fr}
 }
+
+
+/* =========================================================
+   EduNext User UI refresh
+   Inspired by modern LMS patterns: focused hero, soft surfaces,
+   strong typography, rich course cards and progress-first dashboard.
+   ========================================================= */
+
+body.edunext-app{
+  --blue:#4F46E5;
+  --blue-d:#3730A3;
+  --ink:#111827;
+  --muted:#667085;
+  --line:#E6E8F0;
+  --bg:#F7F8FC;
+  --soft:#EEF2FF;
+  --ok:#16A36B;
+  --bad:#D92D20;
+  --r:18px;
+  background:
+    radial-gradient(circle at 8% 0%,rgba(99,102,241,.08),transparent 24rem),
+    radial-gradient(circle at 92% 8%,rgba(168,85,247,.07),transparent 22rem),
+    var(--bg)!important;
+  color:var(--ink);
+}
+
+body.edunext-app .topbar{
+  background:rgba(247,248,252,.82);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(230,232,240,.88);
+}
+
+body.edunext-app .brand{
+  font-size:22px;
+  letter-spacing:-.04em;
+}
+
+body.edunext-app .mark{
+  width:38px;
+  height:38px;
+  border-radius:12px;
+  background:linear-gradient(135deg,#4F46E5,#7C3AED);
+  box-shadow:0 8px 20px rgba(79,70,229,.24);
+}
+
+body.edunext-app #nav>a,
+body.edunext-app #nav>button{
+  color:#475467;
+  border-radius:11px;
+  font-weight:600;
+}
+
+body.edunext-app #nav>a:hover,
+body.edunext-app #nav>button:hover{
+  background:#fff;
+  color:var(--blue);
+  box-shadow:0 5px 16px rgba(16,24,40,.05);
+}
+
+body.edunext-app .au .btn,
+body.edunext-app .btn{
+  border-radius:12px;
+  font-weight:700;
+}
+
+body.edunext-app .btn-p{
+  background:linear-gradient(135deg,#4F46E5,#6D5DFB);
+  box-shadow:0 10px 24px rgba(79,70,229,.20);
+}
+
+body.edunext-app .btn-p:hover{
+  background:linear-gradient(135deg,#4338CA,#5B4BEA);
+  box-shadow:0 13px 28px rgba(79,70,229,.25);
+}
+
+body.edunext-app .btn-g{
+  border-color:#E4E7EC;
+  background:#fff;
+}
+
+body.edunext-app .btn-g:hover{
+  border-color:#C7D2FE;
+  background:#F8FAFF;
+}
+
+body.edunext-app .hero{
+  padding:76px 0 34px;
+}
+
+body.edunext-app .hero .hg{
+  grid-template-columns:minmax(0,1.05fr) minmax(360px,.95fr);
+  gap:44px;
+  align-items:center;
+}
+
+body.edunext-app .hero .hero-copy{
+  position:relative;
+}
+
+body.edunext-app .hero h1{
+  max-width:700px;
+  font-size:clamp(38px,5.2vw,68px);
+  line-height:1.05;
+  letter-spacing:-.055em;
+  margin-bottom:20px;
+}
+
+body.edunext-app .hero h1::after{
+  content:"";
+  display:block;
+  width:92px;
+  height:7px;
+  margin-top:16px;
+  border-radius:99px;
+  background:linear-gradient(90deg,#4F46E5,#A855F7);
+  opacity:.9;
+}
+
+body.edunext-app .hero p{
+  max-width:620px;
+  font-size:17px;
+  line-height:1.8;
+  color:#667085;
+}
+
+body.edunext-app .sbar{
+  max-width:650px;
+  margin-top:26px;
+  border:1px solid #E3E7EF;
+  border-radius:16px;
+  padding:7px;
+  box-shadow:0 16px 36px rgba(16,24,40,.08);
+}
+
+body.edunext-app .sbar input{
+  padding:11px 12px;
+}
+
+body.edunext-app .sbar .btn{
+  min-width:125px;
+}
+
+body.edunext-app .chips{
+  gap:9px;
+  margin-top:14px;
+}
+
+body.edunext-app .chip{
+  border-color:#E4E7EC;
+  background:#fff;
+  box-shadow:0 2px 8px rgba(16,24,40,.03);
+}
+
+body.edunext-app .chip:hover{
+  border-color:#C7D2FE;
+  background:#EEF2FF;
+  color:#4338CA;
+}
+
+body.edunext-app .hart{
+  position:relative;
+  overflow:hidden;
+  min-height:390px;
+  background:
+    radial-gradient(circle at 78% 20%,rgba(255,255,255,.18),transparent 15rem),
+    linear-gradient(145deg,#171B4D,#33208E 58%,#7C3AED);
+  border-radius:30px;
+  padding:30px;
+  box-shadow:0 24px 60px rgba(49,46,129,.24);
+}
+
+body.edunext-app .hart::before{
+  content:"";
+  position:absolute;
+  width:250px;
+  height:250px;
+  right:-80px;
+  top:-80px;
+  border-radius:50%;
+  background:rgba(255,255,255,.10);
+}
+
+body.edunext-app .hart::after{
+  content:"";
+  position:absolute;
+  width:180px;
+  height:180px;
+  left:-85px;
+  bottom:-90px;
+  border-radius:50%;
+  background:rgba(255,255,255,.06);
+}
+
+body.edunext-app .hart div{
+  position:relative;
+  z-index:1;
+  border-left:3px solid rgba(255,255,255,.72);
+  padding:17px 0 17px 18px;
+  margin-bottom:9px;
+}
+
+body.edunext-app .hart b{
+  font-size:38px;
+  letter-spacing:-.04em;
+}
+
+body.edunext-app .hart span{
+  color:#D8DBF9;
+  font-size:13px;
+}
+
+body.edunext-app .sec{
+  padding:48px 0;
+}
+
+body.edunext-app .sh{
+  margin-bottom:22px;
+}
+
+body.edunext-app .sh h2{
+  font-size:clamp(25px,3vw,36px);
+  letter-spacing:-.045em;
+}
+
+body.edunext-app .sh p{
+  color:#667085;
+}
+
+body.edunext-app .sh a{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+}
+
+body.edunext-app .grid{
+  gap:20px;
+}
+
+body.edunext-app .card{
+  border:1px solid #E5E7EB;
+  border-radius:20px;
+  background:#fff;
+  box-shadow:0 8px 28px rgba(16,24,40,.055);
+  transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;
+}
+
+body.edunext-app .card:hover{
+  transform:translateY(-5px);
+  border-color:#D6D9F8;
+  box-shadow:0 20px 42px rgba(16,24,40,.10);
+}
+
+body.edunext-app .thumb{
+  min-height:180px;
+  border-radius:20px 20px 0 0;
+  background:
+    radial-gradient(circle at 85% 15%,rgba(255,255,255,.22),transparent 8rem),
+    linear-gradient(135deg,#3730A3,#6366F1);
+}
+
+body.edunext-app .thumb.a{
+  background:
+    radial-gradient(circle at 80% 18%,rgba(255,255,255,.18),transparent 7rem),
+    linear-gradient(135deg,#0F766E,#14B8A6);
+}
+
+body.edunext-app .thumb.g{
+  background:
+    radial-gradient(circle at 82% 15%,rgba(255,255,255,.16),transparent 8rem),
+    linear-gradient(135deg,#B45309,#F59E0B);
+}
+
+body.edunext-app .thumb::after{
+  content:"";
+  position:absolute;
+  width:115px;
+  height:115px;
+  right:20px;
+  bottom:20px;
+  border:1px solid rgba(255,255,255,.22);
+  border-radius:36px;
+  transform:rotate(18deg);
+}
+
+body.edunext-app .badge{
+  top:14px;
+  left:14px;
+  padding:5px 10px;
+  box-shadow:0 5px 12px rgba(16,24,40,.10);
+}
+
+body.edunext-app .cb{
+  padding:18px;
+  gap:10px;
+}
+
+body.edunext-app .cb h3{
+  font-size:18px;
+  line-height:1.35;
+}
+
+body.edunext-app .cb .btn{
+  border-radius:10px;
+}
+
+body.edunext-app .cat{
+  color:#4F46E5;
+  font-weight:700;
+}
+
+body.edunext-app .av{
+  background:#EEF2FF;
+  color:#4F46E5;
+}
+
+body.edunext-app .price strong{
+  color:#111827;
+}
+
+body.edunext-app .price del{
+  color:#98A2B3;
+}
+
+body.edunext-app .cats{
+  gap:14px;
+}
+
+body.edunext-app .cc{
+  background:#fff;
+  border:1px solid #E5E7EB;
+  border-radius:17px;
+  padding:20px;
+  box-shadow:0 6px 18px rgba(16,24,40,.04);
+  transition:.2s ease;
+}
+
+body.edunext-app .cc:hover{
+  transform:translateY(-3px);
+  border-color:#C7D2FE;
+  box-shadow:0 15px 28px rgba(16,24,40,.08);
+}
+
+body.edunext-app .roadmap-card,
+body.edunext-app .teacher-card,
+body.edunext-app .review-card,
+body.edunext-app .blog-card,
+body.edunext-app .about-main,
+body.edunext-app .about-values,
+body.edunext-app .contact-form-box,
+body.edunext-app .contact-info,
+body.edunext-app .box{
+  border-color:#E5E7EB;
+  box-shadow:0 7px 24px rgba(16,24,40,.045);
+}
+
+body.edunext-app .roadmap-dot{
+  background:linear-gradient(135deg,#4F46E5,#7C3AED);
+  box-shadow:0 8px 18px rgba(79,70,229,.20);
+}
+
+body.edunext-app .roadmap-card a:hover,
+body.edunext-app .teacher-link:hover,
+body.edunext-app .blog-body a:hover{
+  color:#4F46E5;
+}
+
+body.edunext-app .stats-panel{
+  border-radius:26px;
+  padding:34px;
+  background:
+    radial-gradient(circle at 92% 5%,rgba(168,85,247,.24),transparent 17rem),
+    linear-gradient(135deg,#111827,#24235C);
+  box-shadow:0 22px 48px rgba(17,24,39,.18);
+}
+
+body.edunext-app .stat-item{
+  border-color:rgba(255,255,255,.12);
+  background:rgba(255,255,255,.07);
+}
+
+body.edunext-app .cta{
+  border-radius:26px;
+  padding:38px;
+  background:linear-gradient(135deg,#4F46E5,#7C3AED);
+  box-shadow:0 24px 46px rgba(79,70,229,.20);
+}
+
+body.edunext-app .cta .btn-g{
+  background:#fff;
+  color:#312E81;
+  border-color:#fff;
+}
+
+body.edunext-app .page{
+  padding-top:42px;
+}
+
+body.edunext-app .dg,
+body.edunext-app .checkout-grid{
+  gap:26px;
+}
+
+body.edunext-app .prev{
+  min-height:250px;
+  border-radius:24px;
+  box-shadow:0 16px 36px rgba(16,24,40,.10);
+}
+
+body.edunext-app .dg h1{
+  font-size:clamp(34px,4.5vw,54px);
+  letter-spacing:-.055em;
+}
+
+body.edunext-app .course-facts{
+  gap:10px 12px;
+}
+
+body.edunext-app .course-facts span{
+  background:#fff;
+  border:1px solid #E5E7EB;
+  border-radius:999px;
+  padding:7px 11px;
+  font-size:12px;
+}
+
+body.edunext-app .buy{
+  border-radius:20px;
+  box-shadow:0 18px 40px rgba(16,24,40,.08);
+}
+
+body.edunext-app .buy .bigp{
+  font-size:38px;
+  color:#111827;
+  letter-spacing:-.04em;
+}
+
+body.edunext-app .lr{
+  padding:15px 0;
+}
+
+body.edunext-app .checkout-summary{
+  border-radius:20px;
+  box-shadow:0 18px 40px rgba(16,24,40,.08);
+}
+
+body.edunext-app .auth{
+  min-height:80vh;
+  background:
+    radial-gradient(circle at 18% 24%,rgba(99,102,241,.10),transparent 17rem),
+    radial-gradient(circle at 84% 80%,rgba(168,85,247,.08),transparent 18rem);
+}
+
+body.edunext-app .ac{
+  border-radius:22px;
+  border-color:#E5E7EB;
+  padding:30px;
+  box-shadow:0 24px 60px rgba(16,24,40,.10);
+}
+
+body.edunext-app .ac h2{
+  font-size:29px;
+  letter-spacing:-.045em;
+}
+
+body.edunext-app .fg input,
+body.edunext-app .tb input,
+body.edunext-app .tb select{
+  border-color:#E1E4EA;
+  border-radius:12px;
+  min-height:44px;
+}
+
+body.edunext-app .fc{
+  border-radius:18px;
+  box-shadow:0 10px 28px rgba(16,24,40,.05);
+}
+
+body.edunext-app .dash-page{
+  padding-top:48px;
+}
+
+body.edunext-app .dash-head{
+  padding:26px;
+  border-radius:24px;
+  background:
+    radial-gradient(circle at 95% 10%,rgba(124,58,237,.17),transparent 14rem),
+    linear-gradient(135deg,#141B3C,#282364);
+  color:#fff;
+  align-items:center;
+  box-shadow:0 20px 42px rgba(30,27,75,.17);
+}
+
+body.edunext-app .dash-head p,
+body.edunext-app .dash-head .muted{
+  color:#C8CEF0;
+}
+
+body.edunext-app .dash-head .dash-kicker{
+  color:#A9B9FF;
+}
+
+body.edunext-app .dash-head h1{
+  color:#fff;
+}
+
+body.edunext-app .dash-actions .btn-g{
+  background:rgba(255,255,255,.10);
+  border-color:rgba(255,255,255,.16);
+  color:#fff;
+}
+
+body.edunext-app .dash-stats>div{
+  border-radius:17px;
+  border-color:#E5E7EB;
+  box-shadow:0 7px 22px rgba(16,24,40,.04);
+}
+
+body.edunext-app .dash-stats b{
+  color:#111827;
+  letter-spacing:-.04em;
+}
+
+body.edunext-app .dash-feature{
+  border:0;
+  border-radius:23px;
+  background:
+    radial-gradient(circle at 90% 18%,rgba(124,58,237,.14),transparent 15rem),
+    linear-gradient(135deg,#EEF2FF,#F8F7FF);
+  box-shadow:0 18px 40px rgba(16,24,40,.07);
+}
+
+body.edunext-app .dash-feature-side{
+  border-left-color:#DDE2F4;
+}
+
+body.edunext-app .dash-feature-number{
+  background:linear-gradient(135deg,#4F46E5,#9333EA);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+
+body.edunext-app .dash-progress,
+body.edunext-app .dash-achievement{
+  border-radius:18px;
+}
+
+body.edunext-app .bar{
+  height:8px;
+  background:#E7E9F1;
+  overflow:hidden;
+  border-radius:99px;
+}
+
+body.edunext-app .bar span{
+  background:linear-gradient(90deg,#4F46E5,#8B5CF6);
+  border-radius:99px;
+}
+
+body.edunext-app footer{
+  margin-top:28px;
+  background:#0F172A;
+}
+
+@media (max-width:960px){
+  body.edunext-app .hero{
+    padding-top:48px;
+  }
+
+  body.edunext-app .hero .hg{
+    grid-template-columns:1fr;
+  }
+
+  body.edunext-app .hart{
+    min-height:330px;
+  }
+}
+
+@media (max-width:640px){
+  body.edunext-app .wrap,
+  body.edunext-app .page{
+    width:min(100% - 24px,1200px)!important;
+  }
+
+  body.edunext-app .hero{
+    padding-top:32px;
+  }
+
+  body.edunext-app .hero h1{
+    font-size:clamp(35px,12vw,48px);
+  }
+
+  body.edunext-app .sbar{
+    flex-direction:column;
+  }
+
+  body.edunext-app .sbar .btn{
+    width:100%;
+  }
+
+  body.edunext-app .grid{
+    grid-template-columns:1fr;
+  }
+
+  body.edunext-app .cats{
+    grid-template-columns:1fr 1fr;
+  }
+
+  body.edunext-app .dash-head{
+    align-items:flex-start;
+    flex-direction:column;
+    padding:22px;
+  }
+
+  body.edunext-app .dash-actions{
+    width:100%;
+  }
+
+  body.edunext-app .dash-actions .btn{
+    flex:1;
+  }
+}
+
+@media (max-width:440px){
+  body.edunext-app .cats{
+    grid-template-columns:1fr;
+  }
+
+  body.edunext-app .stats-grid{
+    grid-template-columns:1fr;
+  }
+
+  body.edunext-app .stats-panel{
+    padding:24px;
+  }
+}
