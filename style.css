@@ -435,6 +435,8 @@ body.edunext-app{
   body.edunext-app .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   body.edunext-app .cats{grid-template-columns:repeat(3,minmax(0,1fr))}
   body.edunext-app .why{grid-template-columns:1fr 1fr}
+  body.edunext-app .roadmap-track{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+  body.edunext-app .roadmap-track::before{display:none}
   body.edunext-app .buy,
   body.edunext-app .side{position:static}
   body.edunext-app .buy{top:auto}
@@ -501,6 +503,10 @@ body.edunext-app{
   body.edunext-app .why{
     grid-template-columns:1fr;
   }
+  body.edunext-app .roadmap-track{grid-template-columns:1fr;gap:16px}
+  body.edunext-app .roadmap-step{display:grid;grid-template-columns:42px minmax(0,1fr);gap:12px;align-items:start}
+  body.edunext-app .roadmap-dot{width:42px;height:42px;margin:0;border-width:3px}
+  body.edunext-app .roadmap-card{padding:18px}
   body.edunext-app .cats{grid-template-columns:repeat(2,minmax(0,1fr))}
   body.edunext-app .hero{padding:40px 0 28px}
   body.edunext-app .hg{gap:24px}
