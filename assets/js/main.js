@@ -41,22 +41,93 @@ const OUTCOMES={
 "Marketing":["Hiểu các khái niệm quan trọng trong lĩnh vực","Học theo ví dụ và tình huống thực tế","Luyện tập theo từng mục tiêu nhỏ","Xây dựng nền tảng để học chuyên sâu"]
 };
 
-const home=()=>`<section class="hero"><div class="wrap hg"><div><h1>Học đúng kiến thức, phát triển đúng tương lai</h1><p>Chọn khóa học, học từng bài, làm quiz và nhận chứng chỉ. Tiến độ của bạn được lưu lại để lần sau học tiếp đúng chỗ đã dừng.</p><form class="sbar" data-form="search"><input name="q" placeholder="Tìm khóa học, kỹ năng hoặc chủ đề" aria-label="Tìm khóa học"><button class="btn btn-p">Tìm khóa học</button></form><div class="chips">${CATS.map(x=>`<button class="chip" data-a="cat" data-v="${x}">${x}</button>`).join('')}</div></div><div class="hart"><div><b>${C.length}</b><span>khóa học có lộ trình bài học rõ ràng</span></div><div><b>${Math.max(...C.map(c=>c.n)).toLocaleString('vi-VN')}</b><span>học viên ở khóa học đông nhất</span></div><div><b>4.8/5</b><span>điểm đánh giá trung bình</span></div></div></div></section>
-<section class="sec"><div class="wrap"><div class="sh"><div><h2>Khóa học nổi bật</h2><p>Những khóa được học viên chọn nhiều nhất.</p></div><a href="#/courses">Xem tất cả</a></div><div class="grid">${[...C].sort((a,b)=>b.n-a.n).slice(0,3).map(card).join('')}</div></div></section>
-<section class="sec" id="cats"><div class="wrap"><div class="sh"><div><h2>Chọn theo lĩnh vực</h2><p>Khám phá khóa học theo mục tiêu học tập.</p></div></div><div class="cats">${CATS.map(x=>`<button class="cc" data-a="cat" data-v="${x}"><b>${x}</b><span>${C.filter(c=>c.cat===x).length} khóa học</span></button>`).join('')}</div></div></section>
-<section class="sec roadmap" id="roadmap"><div class="wrap"><div class="sh"><div><h2>Lộ trình học tập</h2><p>Từng bước từ nền tảng đến kỹ năng thực chiến, chọn điểm bắt đầu phù hợp với mục tiêu của bạn.</p></div><a href="#/courses">Xem tất cả khóa học</a></div><div class="roadmap-track">
-<div class="roadmap-step"><div class="roadmap-dot">01</div><div class="roadmap-card"><span class="roadmap-tag">Bước 1 · Nền tảng</span><h3>Xây nền kiến thức</h3><p>Nắm tư duy và kiến thức cốt lõi trước khi đi vào chuyên môn.</p><a href="#/course/csharp">C# từ cơ bản đến nâng cao <span>→</span></a></div></div>
-<div class="roadmap-step"><div class="roadmap-dot">02</div><div class="roadmap-card"><span class="roadmap-tag">Bước 2 · Chuyên môn</span><h3>Phát triển kỹ năng</h3><p>Học công cụ và kỹ thuật cần thiết để xây dựng sản phẩm thực tế.</p><a href="#/course/api">REST API với ASP.NET Core <span>→</span></a></div></div>
-<div class="roadmap-step"><div class="roadmap-dot">03</div><div class="roadmap-card"><span class="roadmap-tag">Bước 3 · Thực hành</span><h3>Áp dụng vào dự án</h3><p>Kết hợp kiến thức, luyện tập qua bài học và hoàn thành các mục tiêu thực hành.</p><a href="#/course/data">Data Analytics & AI <span>→</span></a></div></div>
-<div class="roadmap-step"><div class="roadmap-dot">04</div><div class="roadmap-card"><span class="roadmap-tag">Bước 4 · Phát triển</span><h3>Hoàn thiện năng lực</h3><p>Kiểm tra kiến thức, hoàn thành khóa học và xây dựng nền tảng cho bước tiếp theo.</p><a href="#/courses">Khám phá khóa học tiếp theo <span>→</span></a></div></div>
-</div></div></section>
-<section class="sec teachers" id="teachers"><div class="wrap"><div class="sh"><div><h2>Đội ngũ giảng viên</h2><p>Học cùng những giảng viên phụ trách trực tiếp các khóa học trên EduNext.</p></div><a href="#/courses">Khám phá khóa học</a></div><div class="teacher-grid">${[...new Map(C.map(c=>[c.tc,c])).values()].map(c=>`<article class="teacher-card"><div class="teacher-avatar">${ini(c.tc)}</div><div class="teacher-body"><span class="teacher-cat">${c.cat}</span><h3>${c.tc}</h3><p>Phụ trách khóa học <strong>${c.t}</strong>, tập trung vào kiến thức ${c.lvl.toLowerCase()} và thực hành.</p><div class="teacher-meta"><span>${C.filter(x=>x.tc===c.tc).length} khóa học</span><span>${c.n.toLocaleString('vi-VN')} học viên</span><span>★ ${c.r}</span></div><a class="teacher-link" href="#/course/${c.id}">Xem khóa học <span>→</span></a></div></article>`).join('')}</div></div></section>
-<section class="sec reviews" id="reviews"><div class="wrap"><div class="sh"><div><h2>Học viên nói gì về EduNext</h2><p>Những phản hồi mẫu từ học viên sau khi trải nghiệm các khóa học.</p></div></div><div class="review-grid"><article class="review-card"><div class="review-top"><div class="review-avatar">NL</div><div><h3>Nguyễn Linh</h3><span>Lập trình C# từ cơ bản đến nâng cao</span></div></div><div class="review-stars" aria-label="5 trên 5 sao">★★★★★</div><p>“Nội dung đi từ nền tảng nên rất dễ theo dõi. Phần bài học được chia nhỏ, học mỗi ngày một ít mà vẫn nắm được tiến độ.”</p></article><article class="review-card"><div class="review-top"><div class="review-avatar">HT</div><div><h3>Hoàng Trung</h3><span>Xây dựng REST API với ASP.NET Core</span></div></div><div class="review-stars" aria-label="5 trên 5 sao">★★★★★</div><p>“Mình thích cách khóa học đi thẳng vào các phần cần dùng khi làm API. Có video, bài học và tiến độ nên học khá liền mạch.”</p></article><article class="review-card"><div class="review-top"><div class="review-avatar">MA</div><div><h3>Mai Anh</h3><span>UI/UX Design từ Zero đến Portfolio</span></div></div><div class="review-stars" aria-label="5 trên 5 sao">★★★★★</div><p>“Lộ trình rõ ràng, phần thực hành giúp mình hình dung được nên làm gì tiếp theo thay vì chỉ đọc lý thuyết.”</p></article></div></div></section>
-<section class="sec stats-section" id="stats"><div class="wrap"><div class="stats-panel"><div class="stats-heading"><span class="stats-kicker">EduNext trong những con số</span><h2>Nền tảng học tập được xây quanh trải nghiệm thực tế</h2><p>Từ những khóa học đầu tiên đến lộ trình hoàn thành, mọi con số đều tập trung vào một mục tiêu: giúp bạn học đều và tiến bộ rõ ràng.</p></div><div class="stats-grid"><div class="stat-item"><b>6</b><span>khóa học</span></div><div class="stat-item"><b>7.811+</b><span>lượt học viên</span></div><div class="stat-item"><b>124</b><span>giờ nội dung</span></div><div class="stat-item"><b>4.8/5</b><span>đánh giá trung bình</span></div></div></div></div></section>
-<section class="sec"><div class="wrap"><div class="sh"><h2>Vì sao học trên EduNext</h2></div><div class="why"><div><h3>Giảng viên thực chiến</h3><p>Bài học xây từ công việc thật.</p></div><div><h3>Học mọi lúc</h3><p>Dùng được trên điện thoại, máy tính bảng và máy tính.</p></div><div><h3>Theo dõi tiến độ</h3><p>Biết mình đã học đến đâu và nên học gì tiếp.</p></div><div><h3>Có chứng chỉ</h3><p>Hoàn thành bài học và quiz để nhận chứng chỉ.</p></div></div></div></section>
-<section class="sec blog" id="blog"><div class="wrap"><div class="sh"><div><h2>Bài viết mới nhất</h2><p>Kiến thức ngắn gọn giúp bạn học đúng hướng và áp dụng tốt hơn.</p></div><a href="#/courses">Xem các khóa học</a></div><div class="blog-grid"><article class="blog-card"><div class="blog-cover"><span>Lập trình</span><b>8 phút đọc</b></div><div class="blog-body"><span class="blog-tag">Lập trình</span><h3>Bắt đầu học C# từ đâu nếu bạn là người mới?</h3><p>Lộ trình nền tảng, OOP và những bài tập đầu tiên nên học theo thứ tự nào.</p><a href="#/course/csharp">Đọc và học tiếp <span>→</span></a></div></article><article class="blog-card"><div class="blog-cover"><span>ASP.NET Core</span><b>10 phút đọc</b></div><div class="blog-body"><span class="blog-tag">ASP.NET Core</span><h3>REST API cần những kiến thức nào trước khi bắt đầu?</h3><p>Các khái niệm quan trọng về routing, DI, EF Core và JWT để học API hiệu quả hơn.</p><a href="#/course/api">Đọc và học tiếp <span>→</span></a></div></article><article class="blog-card"><div class="blog-cover"><span>Kỹ năng học tập</span><b>6 phút đọc</b></div><div class="blog-body"><span class="blog-tag">Kỹ năng học tập</span><h3>Cách xây dựng lộ trình tự học IT không bị quá tải</h3><p>Chia mục tiêu thành từng bước nhỏ, theo dõi tiến độ và duy trì nhịp học đều mỗi ngày.</p><a href="#/course/data">Đọc và học tiếp <span>→</span></a></div></article></div></div></section>
-<section class="sec" id="faq"><div class="wrap narrow"><div class="sh"><h2>Câu hỏi thường gặp</h2></div>${[['Tôi có học được trên điện thoại không?','Có. Giao diện tự co giãn theo mọi kích thước màn hình.'],['Tôi nhận chứng chỉ bằng cách nào?','Hoàn thành tất cả bài học và đạt từ 70 điểm ở bài kiểm tra (nếu khóa có quiz), sau đó mở trang chứng chỉ.'],['Tiến độ học được lưu ở đâu?','Bản demo này lưu trên trình duyệt của bạn, nên đổi trình duyệt hoặc xóa dữ liệu sẽ mất tiến độ.'],['Có thể học lại sau khi hoàn thành không?','Có. Bạn xem lại được mọi bài học đã đăng ký.']].map(x=>`<details><summary>${x[0]}</summary><p>${x[1]}</p></details>`).join('')}</div></section>
-<section class="sec"><div class="wrap"><div class="cta"><div><h2>Bắt đầu học hôm nay</h2><p>Tạo tài khoản miễn phí và đăng ký khóa học đầu tiên.</p></div><a class="btn btn-g" href="#/register">Tạo tài khoản</a></div></div></section>`;
+const home=()=>\`<main class="home-new">
+<section class="hero-edu"><div class="wrap home-grid">
+  <div class="hero-copy">
+    <span class="eyebrow">EDUNEXT · ONLINE LEARNING</span>
+    <h1>Học điều bạn cần. <em>Tiến xa hơn.</em></h1>
+    <p class="hero-lead">Một không gian học tập tập trung vào khóa học, lộ trình và tiến độ — không rườm rà, không mất dấu bạn đang học tới đâu.</p>
+    <form class="hero-search" data-form="search"><input name="q" placeholder="Bạn muốn học gì hôm nay?" aria-label="Tìm khóa học"><button class="btn btn-p">Tìm khóa học</button></form>
+    <div class="hero-links"><button data-a="sc" data-v="cats">Khám phá danh mục</button><a href="#/courses">Xem toàn bộ khóa học →</a></div>
+  </div>
+  <div class="learning-preview">
+    <div class="preview-top"><span>KHÔNG GIAN HỌC TẬP</span><span class="live-dot">● Đang mở</span></div>
+    <div class="preview-course">
+      <div class="preview-label">Khóa học nổi bật</div>
+      <h2>${C[0].t}</h2>
+      <p>${C[0].cat} · ${C[0].lvl} · ${C[0].h} giờ</p>
+      <div class="preview-progress"><span style="width:${D.me&&EN()[C[0].id]?pct(C[0]):0}%"></span></div>
+      <div class="preview-row"><span>${D.me&&EN()[C[0].id]?pct(C[0])+'% đã hoàn thành':'Bắt đầu từ bài đầu tiên'}</span><a href="#/course/${C[0].id}">Mở khóa học →</a></div>
+    </div>
+    <div class="preview-lessons">
+      <div><span class="lesson-index">01</span><span><b>Tư duy nền tảng</b><small>Video · 18 phút</small></span><span>✓</span></div>
+      <div><span class="lesson-index">02</span><span><b>Kiểu dữ liệu & biến</b><small>Video · 24 phút</small></span><span>→</span></div>
+      <div><span class="lesson-index">03</span><span><b>OOP trong thực tế</b><small>Quiz · 10 câu</small></span><span>○</span></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="quick-strip"><div class="wrap quick-grid">
+  <div><strong>${C.length}</strong><span>khóa học</span></div>
+  <div><strong>7.8K+</strong><span>lượt học viên</span></div>
+  <div><strong>124+</strong><span>giờ nội dung</span></div>
+  <div><strong>4.8/5</strong><span>đánh giá trung bình</span></div>
+  <div class="quick-note">Học trên máy tính<br><span>và thiết bị di động</span></div>
+</div></section>
+
+<section class="home-section"><div class="wrap">
+  <div class="section-heading split"><div><span class="eyebrow">KHÓA HỌC</span><h2>Chọn một khóa học để bắt đầu</h2><p>Những nội dung được thiết kế theo từng bước, có bài học, quiz và tiến độ rõ ràng.</p></div><a href="#/courses" class="section-link">Xem tất cả →</a></div>
+  <div class="featured-courses">${[...C].sort((a,b)=>b.n-a.n).slice(0,3).map((c,i)=>\`<article class="feature-course ${i===0?'feature-main':''}">
+    <div class="feature-cover ${c.c}"><span>${String(i+1).padStart(2,'0')}</span><b>${c.cat}</b></div>
+    <div class="feature-content"><span class="feature-meta">${c.lvl} · ${c.h} giờ · ★ ${c.r}</span><h3><a href="#/course/${c.id}">${c.t}</a></h3><p>${c.tc}</p><div class="feature-bottom"><strong>${money(c.p)}</strong><a href="#/course/${c.id}">${EN()[c.id]?'Tiếp tục':'Xem khóa học'} →</a></div></div>
+  </article>\`).join('')}</div>
+</div></section>
+
+<section class="home-section home-section-alt"><div class="wrap">
+  <div class="section-heading"><span class="eyebrow">KHÁM PHÁ</span><h2>Học theo mục tiêu của bạn</h2><p>Không cần xem hàng chục lựa chọn. Bắt đầu từ đúng lĩnh vực bạn đang cần.</p></div>
+  <div class="category-list">${CATS.map((x,i)=>\`<button class="category-row" data-a="cat" data-v="${x}">
+    <span class="category-num">${String(i+1).padStart(2,'0')}</span><span class="category-name"><b>${x}</b><small>${C.filter(c=>c.cat===x).length} khóa học đang có</small></span><span class="category-arrow">↗</span>
+  </button>\`).join('')}</div>
+</div></section>
+
+<section class="home-section"><div class="wrap">
+  <div class="section-heading split"><div><span class="eyebrow">LỘ TRÌNH</span><h2>Từ nền tảng đến kỹ năng thực tế</h2><p>Đi theo thứ tự hợp lý để không bị học lan man.</p></div><a href="#/courses" class="section-link">Khám phá khóa học →</a></div>
+  <div class="pathway">
+    <article><span>01</span><h3>Nền tảng</h3><p>Hiểu tư duy lập trình và các khái niệm cốt lõi.</p><a href="#/course/csharp">Bắt đầu với C# →</a></article>
+    <article><span>02</span><h3>Backend & API</h3><p>Xây dựng API, kết nối dữ liệu và hiểu cách một backend vận hành.</p><a href="#/course/api">Học ASP.NET Core →</a></article>
+    <article><span>03</span><h3>Dữ liệu & AI</h3><p>Phân tích dữ liệu và mở rộng nền tảng sang các bài toán AI.</p><a href="#/course/data">Học Data / AI →</a></article>
+    <article><span>04</span><h3>Kỹ năng bổ trợ</h3><p>Tiếng Anh, thiết kế và marketing để hoàn thiện năng lực.</p><a href="#/courses">Xem thêm khóa học →</a></article>
+  </div>
+</div></section>
+
+<section class="home-section dark-learning"><div class="wrap learning-story">
+  <div class="story-copy"><span class="eyebrow">TRẢI NGHIỆM HỌC</span><h2>Mỗi lần quay lại, bạn biết mình nên học gì tiếp.</h2><p>EduNext giữ lại tiến độ trên trình duyệt để bạn có thể mở lại khóa học, tiếp tục bài đang dang dở và kiểm tra kết quả khi hoàn thành.</p><a class="btn btn-light" href="#/dashboard">${D.me?'Mở trang học tập':'Xem cách học'}</a></div>
+  <div class="story-list">
+    <div><span>01</span><div><b>Chọn khóa học</b><p>Tìm theo kỹ năng hoặc mục tiêu.</p></div></div>
+    <div><span>02</span><div><b>Học từng bài</b><p>Video và nội dung được chia thành phần nhỏ.</p></div></div>
+    <div><span>03</span><div><b>Kiểm tra</b><p>Hoàn thành quiz để kiểm tra mức độ nắm bài.</p></div></div>
+    <div><span>04</span><div><b>Nhận chứng chỉ</b><p>Hoàn tất khóa học và mở chứng chỉ của bạn.</p></div></div>
+  </div>
+</div></section>
+
+<section class="home-section"><div class="wrap">
+  <div class="section-heading split"><div><span class="eyebrow">GIẢNG VIÊN</span><h2>Những người đứng sau khóa học</h2><p>Tập trung vào chuyên môn và nội dung, thay vì những profile quá phô trương.</p></div></div>
+  <div class="instructor-row">${[...new Map(C.map(c=>[c.tc,c])).values()].slice(0,4).map(c=>\`<a class="instructor-item" href="#/course/${c.id}"><span class="instructor-avatar">${ini(c.tc)}</span><span><b>${c.tc}</b><small>${c.cat} · ${C.filter(x=>x.tc===c.tc).length} khóa học</small></span><span class="instructor-arrow">→</span></a>\`).join('')}</div>
+</div></section>
+
+<section class="home-section quote-section"><div class="wrap quote-wrap">
+  <div class="quote-mark">“</div>
+  <blockquote>Học hiệu quả không phải là mở thêm thật nhiều tab. Là biết hôm nay mình cần học gì, học đến đâu và bước tiếp theo là gì.</blockquote>
+  <p>— Triết lý trải nghiệm học tập của EduNext</p>
+</div></section>
+
+<section class="home-section faq-section"><div class="wrap faq-layout">
+  <div><span class="eyebrow">HỎI ĐÁP</span><h2>Những điều bạn thường muốn biết trước khi bắt đầu</h2><a href="#/courses" class="section-link">Bắt đầu khám phá →</a></div>
+  <div>${[['Tôi có thể học trên điện thoại không?','Có. Giao diện được thiết kế responsive để học trên máy tính và thiết bị di động.'],['Tiến độ học được lưu như thế nào?','Bản demo lưu tiến độ trên trình duyệt bạn đang sử dụng để có thể quay lại học tiếp.'],['Làm sao để nhận chứng chỉ?','Hoàn thành toàn bộ bài học và đạt yêu cầu quiz của khóa học, sau đó mở trang chứng chỉ.']].map(x=>\`<details><summary>${x[0]}</summary><p>${x[1]}</p></details>\`).join('')}</div>
+</div></section>
+
+<section class="home-section home-end"><div class="wrap end-box"><div><span class="eyebrow">BẮT ĐẦU</span><h2>Chọn một khóa học. Bắt đầu từ bài đầu tiên.</h2><p>Không cần chuẩn bị quá nhiều. Chỉ cần chọn đúng nội dung bạn muốn học hôm nay.</p></div><a class="btn btn-p" href="#/courses">Khám phá khóa học</a></div></section>
+</main>\`;
 
 const grp=(t,k,o)=>`<div><h4>${t}</h4>${o.map(x=>Array.isArray(x)?x:[x,x||'Tất cả']).map(([v,l])=>`<label><input type="radio" name="${k}" data-f="${k}" value="${v}" ${f[k]===v?'checked':''}> ${l}</label>`).join('')}</div>`;
 const courses=()=>{hook=list;return `<div class="wrap page"><h1>Khóa học</h1><div class="cl"><aside class="fc">${grp('Danh mục','cat',['',...CATS])}${grp('Cấp độ','lvl',['','Cơ bản','Trung cấp'])}${grp('Giá','price',[['','Tất cả'],['1','Dưới 600.000đ'],['2','600.000đ - 700.000đ'],['3','Trên 700.000đ']])}<button class="btn btn-g" data-a="clear">Xóa bộ lọc</button></aside><section><div class="tb"><input data-f="q" value="${esc(f.q)}" placeholder="Tìm theo tên khóa, giảng viên, lĩnh vực" aria-label="Tìm khóa học"><select data-f="sort" aria-label="Sắp xếp">${[['pop','Phổ biến nhất'],['lo','Giá thấp đến cao'],['hi','Giá cao đến thấp']].map(([v,l])=>`<option value="${v}" ${f.sort===v?'selected':''}>${l}</option>`).join('')}</select></div><p class="muted" id="cnt"></p><div class="grid" id="list"></div></section></div></div>`};
