@@ -55,6 +55,7 @@ $css  = $wp ? get_stylesheet_uri() : 'style.css';
           <a href="#/login">Đăng nhập</a>
           <a href="#/register">Đăng ký</a>
           <a href="#/dashboard">Trang cá nhân</a>
+          <a href="#/teacher">Giảng viên</a>
         </div>
 
         <div class="ft-col">
