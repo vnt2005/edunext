@@ -4,12 +4,12 @@ const esc=s=>String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;'
 const money=n=>n.toLocaleString('vi-VN')+'đ',ini=n=>n.split(' ').slice(-2).map(x=>x[0]).join('');
 const CATS=['Lập trình','Data / AI','Thiết kế','Ngoại ngữ','Marketing'];
 const C=[
-{id:'csharp',t:'Lập trình C# từ cơ bản đến nâng cao',cat:'Lập trình',tc:'Nguyễn Văn Minh',r:4.9,n:1245,lvl:'Cơ bản',p:599000,o:799000,h:24,tag:'Bán chạy',c:'',L:['Cài đặt và Hello World','Biến và kiểu dữ liệu','Rẽ nhánh và vòng lặp','Class và OOP','Kế thừa và đa hình'],v:'GhQdlIFylQ8',s:[0,300,1200,2100,3000]},
-{id:'api',t:'Xây dựng REST API với ASP.NET Core',cat:'Lập trình',tc:'Trần Quốc Huy',r:4.8,n:986,lvl:'Trung cấp',p:699000,o:899000,h:18,tag:'Thực chiến',c:'a',L:['Routing và Controller','Dependency Injection','Entity Framework Core','Xác thực JWT','Triển khai API'],v:'AhAxLiGC7Pc',s:[0,300,1100,1700,2400]},
-{id:'data',t:'Data Analytics & AI cho người mới',cat:'Data / AI',tc:'Lê Hoàng Nam',r:4.9,n:2130,lvl:'Cơ bản',p:799000,o:1099000,h:32,tag:'Mới',c:'g',L:['Tư duy dữ liệu','Excel và SQL cơ bản','Trực quan hóa dữ liệu','Machine Learning nhập môn','Dự án phân tích'],v:'zwasdVPPFFw',s:[0,240,480,720,960]},
-{id:'english',t:'English Communication for Work',cat:'Ngoại ngữ',tc:'Emily Tran',r:4.8,n:1560,lvl:'Trung cấp',p:499000,o:649000,h:16,tag:'Top rated',c:'',L:['Họp và giao tiếp xã giao','Viết email chuyên nghiệp','Thuyết trình','Đàm phán','Phỏng vấn'],v:'MTM_bnkrz-c',s:[0,600,1500,2400,3300]},
-{id:'design',t:'UI/UX Design từ Zero đến Portfolio',cat:'Thiết kế',tc:'Phạm Minh Anh',r:4.7,n:870,lvl:'Cơ bản',p:649000,o:849000,h:20,tag:'Portfolio',c:'a',L:['Nguyên lý thiết kế','Nghiên cứu người dùng','Wireframe','Prototype trên Figma','Dựng portfolio'],v:'MBblN98-5lg',s:[0,715,3600,7200,10800]},
-{id:'marketing',t:'Digital Marketing thực chiến',cat:'Marketing',tc:'Đỗ Gia Bảo',r:4.9,n:1020,lvl:'Trung cấp',p:549000,o:749000,h:14,tag:'Bán chạy',c:'g',L:['Chiến lược nội dung','SEO cơ bản','Quảng cáo trả phí','Email marketing','Đo lường hiệu quả'],v:'YhK_PGhdPe8',s:[0,300,600,900,1200]}];
+{id:'csharp',t:'Lập trình C# từ cơ bản đến nâng cao',cat:'Lập trình',tc:'Nguyễn Văn Minh',r:4.9,n:1245,lvl:'Cơ bản',p:599000,o:799000,h:24,tag:'Bán chạy',c:'',L:['Cài đặt và Hello World','Biến và kiểu dữ liệu','Rẽ nhánh và vòng lặp','Class và OOP','Kế thừa và đa hình'],v:['GhQdlIFylQ8','yquQ9mLtkN8','E4RObAcqvE0','WKmDq62x_rE','t8kkigBSPzc'],s:[0,300,1200,2100,3000]},
+{id:'api',t:'Xây dựng REST API với ASP.NET Core',cat:'Lập trình',tc:'Trần Quốc Huy',r:4.8,n:986,lvl:'Trung cấp',p:699000,o:899000,h:18,tag:'Thực chiến',c:'a',L:['Routing và Controller','Dependency Injection','Entity Framework Core','Xác thực JWT','Triển khai API'],v:['AhAxLiGC7Pc','TNqSTYcVyCY','39rSVOScx9c','8FvN5bhVYxY','OE0_9c-K-Ow'],s:[0,300,1100,1700,2400]},
+{id:'data',t:'Data Analytics & AI cho người mới',cat:'Data / AI',tc:'Lê Hoàng Nam',r:4.9,n:2130,lvl:'Cơ bản',p:799000,o:1099000,h:32,tag:'Mới',c:'g',L:['Tư duy dữ liệu','Excel và SQL cơ bản','Trực quan hóa dữ liệu','Machine Learning nhập môn','Dự án phân tích'],v:['v2oNWja7M2E','7mz73uXD9DA','P9texQKZtG4','OmW9YvxSl1E','-rbJV1_krGE'],s:[0,240,480,720,960]},
+{id:'english',t:'English Communication for Work',cat:'Ngoại ngữ',tc:'Emily Tran',r:4.8,n:1560,lvl:'Trung cấp',p:499000,o:649000,h:16,tag:'Top rated',c:'',L:['Họp và giao tiếp xã giao','Viết email chuyên nghiệp','Thuyết trình','Đàm phán','Phỏng vấn'],v:['iqmOQ4_M3u0','jCYLhRKMk8A','bSTVMAP-UyM','lQJKmRD1gYg','UzFm6AwGHJE'],s:[0,600,1500,2400,3300]},
+{id:'design',t:'UI/UX Design từ Zero đến Portfolio',cat:'Thiết kế',tc:'Phạm Minh Anh',r:4.7,n:870,lvl:'Cơ bản',p:649000,o:849000,h:20,tag:'Portfolio',c:'a',L:['Nguyên lý thiết kế','Nghiên cứu người dùng','Wireframe','Prototype trên Figma','Dựng portfolio'],v:['mmgxspm9JWs','1ucLq6JTxac','BkKCtCGzZiA','FfeuWbZSRj4','MBblN98-5lg'],s:[0,715,3600,7200,10800]},
+{id:'marketing',t:'Digital Marketing thực chiến',cat:'Marketing',tc:'Đỗ Gia Bảo',r:4.9,n:1020,lvl:'Trung cấp',p:549000,o:749000,h:14,tag:'Bán chạy',c:'g',L:['Chiến lược nội dung','SEO cơ bản','Quảng cáo trả phí','Email marketing','Đo lường hiệu quả'],v:['Ea1hFxPx3JA','MD5-HByRxoA','szSiTVQqvGs','2I6JqAHvFAw','gIDE-jfIQtc'],s:[0,300,600,900,1200]}];
 const COURSE_IMAGES={
 csharp:'https://images.unsplash.com/photo-1618477247222-acbdb0e159b3?auto=format&fit=crop&q=82&w=1200',
 api:'https://images.unsplash.com/photo-1637044527362-5ac1dc1d7446?auto=format&fit=crop&q=82&w=1200',
@@ -102,9 +102,9 @@ const learn=(id,i)=>{
   if(!e){toast('Hãy mua khóa học trước');go('/course/'+id);return ''}
   i=Math.min(Math.max(+i,0),c.L.length-1);
   const d=e.done.includes(i),all=e.done.length===c.L.length;
-  const start=(c.s&&c.s[i])||0;
-  const video=c.v
-    ? '<iframe src="https://www.youtube-nocookie.com/embed/'+c.v+'?rel=0&modestbranding=1&playsinline=1&start='+start+'" title="'+esc(c.L[i])+'" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>'
+  const videoId=Array.isArray(c.v)?c.v[i]:c.v;
+  const video=videoId
+    ? '<iframe src="https://www.youtube-nocookie.com/embed/'+videoId+'?rel=0&modestbranding=1&playsinline=1" title="'+esc(c.L[i])+'" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>'
     : '<div>Video bài '+(i+1)+': '+esc(c.L[i])+'</div>';
 
   const prev=i>0?'<a class="btn btn-g" href="#/learn/'+id+'/'+(i-1)+'">← Bài trước</a>':'';
