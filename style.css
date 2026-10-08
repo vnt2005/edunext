@@ -3235,3 +3235,102 @@ body.edunext-app .lms-admin-mode .lms-profile-copy strong{color:#e5e7eb}
 body.edunext-app .lms-admin-mode .lms-profile-chevron{color:#64748b}
 body.edunext-app .lms-admin-mode .lms-profile-menu{background:#111827;border-color:#263244}
 body.edunext-app .lms-admin-mode .lms-profile-menu a,body.edunext-app .lms-admin-mode .lms-profile-menu button{color:#cbd5e1}
+
+/* Improve course learning screen readability and ClassroomIO proportions */
+body.edunext-app .cio-learn-shell{
+  min-height:calc(100vh - 48px);
+  background:#fff;
+}
+body.edunext-app .cio-learn-top{
+  height:54px;
+  padding:0 22px;
+  gap:20px;
+}
+body.edunext-app .cio-learn-top a{
+  font-size:12px;
+  font-weight:600;
+}
+body.edunext-app .cio-learn-top strong{
+  font-size:14px;
+  font-weight:700;
+}
+body.edunext-app .cio-learn-top span{
+  font-size:12px;
+}
+body.edunext-app .cio-learn-layout{
+  grid-template-columns:300px minmax(0,1fr);
+  min-height:calc(100vh - 102px);
+}
+body.edunext-app .cio-lesson-head{
+  padding:20px 18px;
+}
+body.edunext-app .cio-lesson-head>span{
+  font-size:10px;
+}
+body.edunext-app .cio-lesson-head h2{
+  margin:6px 0 13px;
+  font-size:16px;
+  line-height:1.35;
+}
+body.edunext-app .cio-lesson-list>a{
+  grid-template-columns:32px 1fr;
+  gap:8px;
+  padding:13px 16px;
+}
+body.edunext-app .cio-lesson-list>a>span{
+  font-size:10px;
+  padding-top:1px;
+}
+body.edunext-app .cio-lesson-list>a b{
+  font-size:12px;
+  line-height:1.35;
+}
+body.edunext-app .cio-lesson-list>a small{
+  font-size:10px;
+}
+body.edunext-app .cio-learn-content{
+  padding:24px 28px 48px;
+  background:#f8fafc;
+}
+body.edunext-app .cio-video-wrap{
+  width:min(920px,100%);
+  border-radius:8px;
+}
+body.edunext-app .cio-lesson-content{
+  width:min(920px,100%);
+  margin-top:20px;
+  padding:24px;
+}
+body.edunext-app .cio-lesson-heading h1{
+  font-size:28px;
+  line-height:1.2;
+}
+body.edunext-app .cio-lesson-badge{
+  padding:7px 10px;
+  font-size:10px;
+}
+body.edunext-app .cio-lesson-content>p{
+  margin-top:10px;
+  font-size:14px;
+  line-height:1.75;
+}
+body.edunext-app .cio-lesson-actions{
+  gap:10px;
+  margin-top:20px;
+}
+@media (max-width:1000px){
+  body.edunext-app .cio-learn-layout{
+    grid-template-columns:260px minmax(0,1fr);
+  }
+}
+@media (max-width:760px){
+  body.edunext-app .cio-learn-content{
+    padding:18px 14px 36px;
+  }
+  body.edunext-app .cio-lesson-content{
+    padding:18px;
+  }
+  body.edunext-app .cio-lesson-heading h1{
+    font-size:22px;
+  }
+}
