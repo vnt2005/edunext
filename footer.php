@@ -1,44 +1,19 @@
-<footer class="site-footer">
+<footer class="site-footer footer-new">
     <div class="wrap">
-        <div class="ft-grid">
-            <div class="ft-brand">
+        <div class="footer-topline">
+            <div>
                 <a class="ft-logo" href="<?php echo esc_url(home_url('/#/' )); ?>">
-                    <span class="mark">E</span>EduNext
+                    <span class="mark">E</span><span><strong>EduNext</strong><small>Learning platform</small></span>
                 </a>
-                <p>Học từng bước, theo dõi tiến độ, làm quiz và nhận chứng chỉ.</p>
-                <span class="ft-demo">Nền tảng học trực tuyến • Bản demo</span>
+                <p>Học theo lộ trình rõ ràng, theo dõi tiến độ và tiếp tục đúng nơi bạn đã dừng lại.</p>
             </div>
-
-            <div class="ft-col">
-                <h3>Học tập</h3>
-                <a href="#/courses">Khóa học</a>
-                <button data-a="sc" data-v="cats">Danh mục</button>
-                <button data-a="sc" data-v="faq">Hỏi đáp</button>
-            </div>
-
-            <div class="ft-col">
-                <h3>Tài khoản</h3>
-                <a href="#/login">Đăng nhập</a>
-                <a href="#/register">Đăng ký</a>
-                <a href="#/dashboard">Trang cá nhân</a>
-                <a href="#/teacher">Giảng viên</a>
-                <a href="#/admin">Quản trị</a>
-            </div>
-
-            <div class="ft-col">
-                <h3>EduNext</h3>
-                <p>Học đúng kiến thức, phát triển đúng tương lai.</p>
-                <a href="#/blog">Blog</a>
-                <a href="#/about">Giới thiệu</a>
-                <a href="#/contact">Liên hệ</a>
-                <p class="ft-muted">Theo dõi tiến độ học tập của bạn ngay trên trình duyệt.</p>
+            <div class="footer-links">
+                <div><h3>Học tập</h3><a href="#/courses">Khóa học</a><a href="#/dashboard">Trang học tập</a><a href="#/login">Đăng nhập</a></div>
+                <div><h3>Khám phá</h3><a href="#/">Lộ trình</a><a href="#/">Hỏi đáp</a><a href="#/blog">Blog</a></div>
+                <div><h3>EduNext</h3><a href="#/about">Giới thiệu</a><a href="#/contact">Liên hệ</a></div>
             </div>
         </div>
-
-        <div class="ft-bottom">
-            <span>© <?php echo esc_html(wp_date('Y')); ?> EduNext. Bản demo.</span>
-            <span>Học mọi lúc • Tiến bộ từng bước</span>
-        </div>
+        <div class="ft-bottom"><span>© <?php echo esc_html(wp_date('Y')); ?> EduNext.</span><span>Học đều · tiến bộ rõ ràng</span></div>
     </div>
 </footer>
 
