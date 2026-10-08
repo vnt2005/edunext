@@ -1892,3 +1892,90 @@ body.edunext-app .contact-hours b,
 body.edunext-app .contact-hours span{display:block}
 body.edunext-app .contact-hours b{font-size:12px;color:var(--edn-navy)}
 body.edunext-app .contact-hours span{margin-top:2px;color:var(--muted);font-size:12px}
+
+
+/* Global floating contact shortcuts */
+body.edunext-app .floating-contact{
+  position:fixed;
+  right:18px;
+  bottom:24px;
+  z-index:9998;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+body.edunext-app .floating-contact-item{
+  width:48px;
+  height:48px;
+  display:grid;
+  place-items:center;
+  border:1px solid rgba(16,34,63,.13);
+  border-radius:50%;
+  background:#fff;
+  color:var(--edn-navy);
+  box-shadow:0 8px 22px rgba(16,34,63,.14);
+  text-decoration:none;
+  transition:transform .18s ease,box-shadow .18s ease;
+}
+body.edunext-app .floating-contact-item:hover{
+  transform:translateY(-2px);
+  box-shadow:0 12px 26px rgba(16,34,63,.2);
+}
+body.edunext-app .floating-zalo{
+  color:#0068FF;
+}
+body.edunext-app .floating-facebook{
+  color:#1877F2;
+}
+body.edunext-app .floating-phone{
+  color:#D46A3B;
+}
+body.edunext-app .floating-zalo-mark{
+  width:27px;
+  height:27px;
+  display:grid;
+  place-items:center;
+  border-radius:8px;
+  background:currentColor;
+  color:#fff;
+  font-size:14px;
+  line-height:1;
+  font-weight:900;
+  font-family:Arial,sans-serif;
+}
+body.edunext-app .floating-facebook-mark{
+  display:block;
+  font-family:Arial,sans-serif;
+  font-size:31px;
+  line-height:1;
+  font-weight:800;
+  transform:translateY(2px);
+}
+body.edunext-app .floating-phone svg{
+  width:21px;
+  height:21px;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.9;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+@media (max-width:700px){
+  body.edunext-app .floating-contact{
+    right:12px;
+    bottom:16px;
+    gap:8px;
+  }
+  body.edunext-app .floating-contact-item{
+    width:43px;
+    height:43px;
+  }
+  body.edunext-app .floating-zalo-mark{
+    width:24px;
+    height:24px;
+    border-radius:7px;
+    font-size:13px;
+  }
+  body.edunext-app .floating-facebook-mark{font-size:28px}
+  body.edunext-app .floating-phone svg{width:19px;height:19px}
+}
