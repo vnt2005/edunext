@@ -3148,3 +3148,18 @@ body.admin-bar.edunext-app #app{
     padding-top:94px;
   }
 }
+
+/* Fix LMS content width: sidebar offset must not increase the page width */
+body.edunext-app #app{
+  width:calc(100% - 220px)!important;
+  max-width:none!important;
+  margin-left:220px;
+  margin-right:0;
+}
+
+@media (max-width:850px){
+  body.edunext-app #app{
+    width:100%!important;
+    margin-left:0;
+  }
+}
