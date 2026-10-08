@@ -312,6 +312,75 @@ body.edunext-app .teacher-rating span{
   font-weight:400;
 }
 
+body.edunext-app .review-controls{
+  display:flex;
+  gap:8px;
+  flex:0 0 auto;
+}
+body.edunext-app .reviews-viewport{
+  overflow:hidden;
+}
+body.edunext-app .reviews-track{
+  display:flex;
+  gap:16px;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  scroll-behavior:smooth;
+  scrollbar-width:none;
+  padding:2px;
+}
+body.edunext-app .reviews-track::-webkit-scrollbar{display:none}
+body.edunext-app .review{
+  flex:0 0 calc((100% - 32px)/3);
+  min-width:280px;
+  scroll-snap-align:start;
+  padding:20px;
+}
+body.edunext-app .review-top{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+body.edunext-app .review-av{
+  width:44px;
+  height:44px;
+  flex:0 0 44px;
+  border-radius:50%;
+  background:var(--soft);
+  color:var(--blue);
+  display:grid;
+  place-items:center;
+  font-size:12px;
+  font-weight:800;
+}
+body.edunext-app .review h3{
+  margin:0;
+  font-size:16px;
+}
+body.edunext-app .review-top p{
+  margin:3px 0 0;
+  color:var(--muted);
+  font-size:13px;
+}
+body.edunext-app .review-rating{
+  margin-top:16px;
+  color:#B26A00;
+  font-size:14px;
+  letter-spacing:.04em;
+}
+body.edunext-app .review-text{
+  min-height:96px;
+  margin:10px 0 14px;
+  line-height:1.65;
+  color:var(--ink);
+}
+body.edunext-app .review-course{
+  padding-top:12px;
+  border-top:1px solid var(--line);
+  color:var(--muted);
+  font-size:12px;
+}
+
 body.edunext-app .why{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
 body.edunext-app .why div{
   min-width:0;padding:18px;border-top:3px solid var(--blue);background:#fff;border-radius:0 0 var(--r) var(--r)
@@ -598,6 +667,8 @@ body.edunext-app{
   }
 }
 @media (max-width:760px){
+  body.edunext-app .review{flex-basis:calc((100% - 10px)/2)}
+
   body.edunext-app .teachers{grid-template-columns:1fr 1fr}
 
   body.edunext-app .roadmap{padding:22px}
@@ -662,6 +733,8 @@ body.edunext-app{
   body.edunext-app .cert{padding:34px 16px}
 }
 @media (max-width:640px){
+  body.edunext-app .review{flex-basis:100%}
+
   body.edunext-app .teachers{grid-template-columns:1fr}
 
   body.edunext-app .brand{font-size:19px}
