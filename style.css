@@ -1677,3 +1677,54 @@ body.edunext-app .footer-new .ft-bottom{display:flex;justify-content:space-betwe
   body.edunext-app .footer-new .ft-bottom{display:block}
   body.edunext-app .footer-new .ft-bottom span{display:block;margin-top:4px}
 }
+
+
+/* Course imagery */
+body.edunext-app .thumb,
+body.edunext-app .feature-cover,
+body.edunext-app .prev{position:relative;overflow:hidden}
+
+body.edunext-app .thumb{isolation:isolate;min-height:180px;background:#20375D}
+body.edunext-app .thumb img,
+body.edunext-app .feature-cover img,
+body.edunext-app .prev img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  display:block;z-index:0
+}
+body.edunext-app .thumb-shade,
+body.edunext-app .feature-cover-shade,
+body.edunext-app .prev-shade{
+  position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(8,20,38,.10) 0%,rgba(8,20,38,.72) 100%);
+  z-index:1
+}
+body.edunext-app .thumb>b,
+body.edunext-app .thumb>.badge,
+body.edunext-app .feature-cover>span,
+body.edunext-app .feature-cover>b,
+body.edunext-app .prev>b{position:relative;z-index:2}
+
+body.edunext-app .thumb:hover img,
+body.edunext-app .feature-course:hover .feature-cover img{transform:scale(1.035);transition:transform .35s ease}
+body.edunext-app .thumb img,
+body.edunext-app .feature-cover img{transition:transform .35s ease}
+
+body.edunext-app .preview-course{position:relative;overflow:hidden}
+body.edunext-app .preview-image{height:150px;position:relative;overflow:hidden;margin:-24px -22px 18px}
+body.edunext-app .preview-image::after{
+  content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,34,63,.04),rgba(16,34,63,.52))
+}
+body.edunext-app .preview-image img{width:100%;height:100%;object-fit:cover;display:block}
+
+body.edunext-app .feature-cover{background:#20375D}
+body.edunext-app .feature-main .feature-cover{min-height:210px}
+
+body.edunext-app .prev{min-height:190px;background:#20375D;display:flex;align-items:flex-end;padding:18px;color:#fff;margin-bottom:18px}
+body.edunext-app .prev b{font-size:18px}
+
+@media (max-width:700px){
+  body.edunext-app .preview-image{height:125px}
+  body.edunext-app .thumb{min-height:155px}
+  body.edunext-app .feature-main .feature-cover,
+  body.edunext-app .feature-cover{min-height:170px}
+}
