@@ -28,6 +28,11 @@
             </form>
         </nav>
 
+        <?php if (is_user_logged_in() && current_user_can('edit_edunext_courses')) : ?>
+            <a class="btn btn-g btn-s" href="<?php echo esc_url(admin_url('admin.php?page=edunext')); ?>">
+                <?php echo current_user_can('manage_edunext') ? 'Quản trị' : 'Giảng viên'; ?>
+            </a>
+        <?php endif; ?>
         <div id="auth" class="au"></div>
         <button class="mb" data-a="menu" aria-label="Mở menu">☰</button>
     </div>
