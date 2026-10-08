@@ -18,7 +18,7 @@ function edunext_setup(): void {
 add_action('after_setup_theme', 'edunext_setup');
 
 function edunext_enqueue_assets(): void {
-    $version = '2.4';
+    $version = '3.0';
 
     wp_enqueue_style(
         'edunext-fonts',
@@ -43,3 +43,5 @@ function edunext_enqueue_assets(): void {
     );
 }
 add_action('wp_enqueue_scripts', 'edunext_enqueue_assets');
+
+require_once get_theme_file_path('includes/admin.php');
