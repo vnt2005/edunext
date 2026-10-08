@@ -2573,3 +2573,551 @@ body.edunext-app .lms-course-toolbar select{height:33px;font-size:10px}
   body.edunext-app .lms-breadcrumb span{display:none}
   body.edunext-app .lms-search{width:auto;flex:1}
 }
+
+
+/* =========================================================
+   ClassroomIO screen-level visual matching
+   ========================================================= */
+body.edunext-app .cio-eyebrow{
+  display:block;
+  margin-bottom:5px;
+  color:#94a3b8;
+  font-size:9px;
+  font-weight:800;
+  letter-spacing:.11em;
+}
+body.edunext-app .cio-page-head,
+body.edunext-app .cio-admin-head,
+body.edunext-app .cio-builder-head{
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  gap:20px;
+  padding:0 0 18px;
+  border-bottom:1px solid #e2e8f0;
+}
+body.edunext-app .cio-page-head h1,
+body.edunext-app .cio-admin-head h1,
+body.edunext-app .cio-builder-head h1{
+  margin:0;
+  color:#0f172a;
+  font-size:30px;
+  line-height:1.15;
+  letter-spacing:-.03em;
+}
+body.edunext-app .cio-page-head p,
+body.edunext-app .cio-admin-head p{
+  margin:6px 0 0;
+  color:#64748b;
+  font-size:11px;
+}
+body.edunext-app .cio-course-toolbar,
+body.edunext-app .cio-admin-toolbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  padding:14px 0 8px;
+}
+body.edunext-app .cio-search-local{
+  width:290px;
+  max-width:100%;
+  position:relative;
+}
+body.edunext-app .cio-search-local>span{
+  position:absolute;
+  left:12px;
+  top:8px;
+  color:#94a3b8;
+}
+body.edunext-app .cio-search-local input{
+  width:100%;
+  height:34px;
+  padding:0 12px 0 32px;
+  border:1px solid #e2e8f0;
+  border-radius:6px;
+  background:#fff;
+  color:#0f172a;
+  outline:none;
+  font-size:11px;
+}
+body.edunext-app .cio-course-toolbar select,
+body.edunext-app .cio-admin-toolbar select{
+  height:34px;
+  min-width:125px;
+  border:1px solid #e2e8f0;
+  border-radius:6px;
+  background:#fff;
+  color:#475569;
+  font-size:10px;
+  padding:0 28px 0 10px;
+}
+body.edunext-app .cio-filter-row{
+  display:flex;
+  gap:6px;
+  overflow:auto;
+  padding:4px 0 12px;
+}
+body.edunext-app .cio-filter-chip{
+  height:28px;
+  padding:0 10px;
+  border:1px solid #e2e8f0;
+  border-radius:6px;
+  background:#fff;
+  color:#64748b;
+  font-size:9px;
+  font-weight:700;
+  white-space:nowrap;
+}
+body.edunext-app .cio-filter-chip.active{
+  border-color:#bfdbfe;
+  background:#eff6ff;
+  color:#2563eb;
+}
+body.edunext-app .cio-count-row{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  margin:7px 0 12px;
+  color:#94a3b8;
+  font-size:9px;
+}
+body.edunext-app .cio-count-row #cnt{color:#475569;font-weight:700}
+body.edunext-app .cio-course-grid{
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:14px!important;
+}
+body.edunext-app .cio-course-card,
+body.edunext-app .cio-learning-card,
+body.edunext-app .cio-admin-card{
+  min-width:0;
+  overflow:hidden;
+  border:1px solid #e2e8f0;
+  border-radius:8px;
+  background:#fff;
+  box-shadow:0 1px 2px rgba(15,23,42,.03);
+}
+body.edunext-app .cio-course-image{
+  position:relative;
+  display:block;
+  aspect-ratio:16/8.9;
+  overflow:hidden;
+  background:#e2e8f0;
+}
+body.edunext-app .cio-course-image img,
+body.edunext-app .cio-learning-image img,
+body.edunext-app .cio-admin-image img,
+body.edunext-app .cio-detail-cover img{
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:cover;
+}
+body.edunext-app .cio-course-image .lms-course-category{
+  left:9px;
+  bottom:9px;
+}
+body.edunext-app .cio-course-body{padding:12px}
+body.edunext-app .cio-course-body h3{
+  min-height:36px;
+  margin:0;
+  font-size:13px;
+  line-height:1.35;
+}
+body.edunext-app .cio-course-body h3 a{color:#0f172a;text-decoration:none}
+body.edunext-app .cio-course-body h3 a:hover{color:#2563eb}
+body.edunext-app .cio-course-category-text{margin:4px 0 0;color:#94a3b8;font-size:9px}
+body.edunext-app .cio-course-meta{
+  display:flex;
+  gap:12px;
+  margin-top:10px;
+  color:#64748b;
+  font-size:9px;
+}
+body.edunext-app .cio-course-price{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  margin-top:12px;
+  color:#0f172a;
+  font-size:13px;
+  font-weight:800;
+}
+body.edunext-app .cio-course-price del{color:#94a3b8;font-size:9px;font-weight:500}
+body.edunext-app .cio-course-progress{margin-top:11px}
+body.edunext-app .cio-course-progress>div,
+body.edunext-app .cio-progress-line{
+  height:5px;
+  overflow:hidden;
+  border-radius:999px;
+  background:#e2e8f0;
+}
+body.edunext-app .cio-course-progress>div>span,
+body.edunext-app .cio-progress-line>span{
+  display:block;
+  height:100%;
+  background:#10b981;
+  border-radius:999px;
+}
+body.edunext-app .cio-course-progress small{display:block;margin-top:4px;color:#64748b;font-size:8px}
+
+body.edunext-app .cio-stat-grid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:10px;
+  margin:16px 0;
+}
+body.edunext-app .cio-stat-grid>div,
+body.edunext-app .cio-builder-stats>div{
+  padding:15px;
+  border:1px solid #e2e8f0;
+  border-radius:7px;
+  background:#fff;
+}
+body.edunext-app .cio-stat-grid span,
+body.edunext-app .cio-builder-stats span{
+  display:block;
+  color:#94a3b8;
+  font-size:9px;
+  text-transform:uppercase;
+  letter-spacing:.05em;
+}
+body.edunext-app .cio-stat-grid b,
+body.edunext-app .cio-builder-stats b{
+  display:block;
+  margin-top:5px;
+  font-size:22px;
+  color:#0f172a;
+}
+body.edunext-app .cio-tabs{
+  display:flex;
+  gap:18px;
+  margin:3px 0 14px;
+  border-bottom:1px solid #e2e8f0;
+}
+body.edunext-app .cio-tabs span{
+  padding:0 0 9px;
+  color:#94a3b8;
+  font-size:10px;
+  font-weight:700;
+}
+body.edunext-app .cio-tabs span.active{
+  color:#0f172a;
+  border-bottom:2px solid #2563eb;
+}
+body.edunext-app .cio-dashboard-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:14px;
+}
+body.edunext-app .cio-learning-image{
+  display:block;
+  aspect-ratio:16/8.8;
+  overflow:hidden;
+  background:#e2e8f0;
+}
+body.edunext-app .cio-learning-body{padding:12px}
+body.edunext-app .cio-card-status{
+  color:#16a34a;
+  font-size:8px;
+  font-weight:800;
+  letter-spacing:.06em;
+}
+body.edunext-app .cio-learning-body h3{margin:5px 0;font-size:13px;line-height:1.35}
+body.edunext-app .cio-learning-body h3 a{color:#0f172a;text-decoration:none}
+body.edunext-app .cio-learning-body p{margin:0;color:#94a3b8;font-size:9px}
+body.edunext-app .cio-progress-line{margin-top:11px}
+body.edunext-app .cio-learning-foot{
+  display:flex;
+  justify-content:space-between;
+  gap:8px;
+  margin-top:6px;
+  color:#64748b;
+  font-size:9px;
+}
+body.edunext-app .cio-learning-foot a{color:#2563eb;text-decoration:none;font-weight:700}
+body.edunext-app .cio-empty{
+  padding:42px 20px;
+  text-align:center;
+  border:1px dashed #cbd5e1;
+  border-radius:8px;
+  background:#fff;
+}
+body.edunext-app .cio-empty h3{margin:0;font-size:16px}
+body.edunext-app .cio-empty p{color:#64748b;font-size:11px}
+
+body.edunext-app .cio-completed-section{margin-top:24px}
+body.edunext-app .cio-section-title{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+body.edunext-app .cio-section-title h2{margin:0;font-size:18px}
+body.edunext-app .cio-section-title a{font-size:10px;color:#2563eb;text-decoration:none}
+
+body.edunext-app .cio-course-detail{padding-top:12px}
+body.edunext-app .cio-course-crumb{
+  display:flex;align-items:center;gap:7px;
+  color:#94a3b8;font-size:9px;margin-bottom:12px
+}
+body.edunext-app .cio-course-crumb a{color:#64748b;text-decoration:none}
+body.edunext-app .cio-detail-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 310px;
+  gap:22px;
+}
+body.edunext-app .cio-detail-cover{
+  position:relative;
+  aspect-ratio:16/7.5;
+  overflow:hidden;
+  border-radius:7px;
+  background:#e2e8f0;
+}
+body.edunext-app .cio-detail-cover span{
+  position:absolute;left:12px;bottom:12px;
+  padding:5px 8px;border-radius:5px;
+  background:rgba(255,255,255,.94);
+  font-size:9px;font-weight:800;color:#334155
+}
+body.edunext-app .cio-detail-kicker{margin-top:16px;color:#2563eb;font-size:9px;font-weight:800;text-transform:uppercase}
+body.edunext-app .cio-course-detail h1{margin:7px 0;font-size:32px;line-height:1.12;letter-spacing:-.03em}
+body.edunext-app .cio-detail-lead{max-width:720px;margin:0;color:#64748b;font-size:12px;line-height:1.7}
+body.edunext-app .cio-detail-meta{
+  display:flex;gap:16px;flex-wrap:wrap;
+  margin:14px 0;
+  color:#64748b;font-size:9px
+}
+body.edunext-app .cio-detail-tabs{
+  display:flex;gap:18px;
+  border-bottom:1px solid #e2e8f0;
+  margin-top:20px;
+}
+body.edunext-app .cio-detail-tabs span{
+  padding-bottom:9px;
+  color:#94a3b8;font-size:10px;font-weight:700
+}
+body.edunext-app .cio-detail-tabs .active{color:#0f172a;border-bottom:2px solid #2563eb}
+body.edunext-app .cio-content-list{border:1px solid #e2e8f0;border-top:0;background:#fff}
+body.edunext-app .cio-content-row{
+  display:grid;
+  grid-template-columns:36px minmax(0,1fr) 90px;
+  align-items:center;
+  gap:10px;
+  min-height:52px;
+  padding:0 13px;
+  border-bottom:1px solid #f1f5f9;
+}
+body.edunext-app .cio-content-row:last-child{border-bottom:0}
+body.edunext-app .cio-content-row>span{font-size:9px;color:#94a3b8;font-weight:800}
+body.edunext-app .cio-content-row b{font-size:10px;color:#334155}
+body.edunext-app .cio-content-row small{text-align:right;color:#94a3b8;font-size:8px}
+body.edunext-app .cio-purchase-card{
+  align-self:start;
+  position:sticky;
+  top:70px;
+  padding:18px;
+  border:1px solid #e2e8f0;
+  border-radius:8px;
+  background:#fff;
+}
+body.edunext-app .cio-price{font-size:24px;font-weight:800;color:#0f172a}
+body.edunext-app .cio-price del{margin-left:5px;color:#94a3b8;font-size:10px;font-weight:500}
+body.edunext-app .cio-purchase-card>p{margin:7px 0 14px;color:#64748b;font-size:10px;line-height:1.6}
+body.edunext-app .cio-owned{margin-bottom:10px;padding:8px;border-radius:5px;background:#ecfdf5;color:#15803d;font-size:9px;font-weight:700}
+body.edunext-app .cio-purchase-list{margin-top:15px;padding-top:13px;border-top:1px solid #e2e8f0;display:grid;gap:9px}
+body.edunext-app .cio-purchase-list span{color:#475569;font-size:9px}
+
+body.edunext-app .cio-learn-shell{min-height:calc(100vh - 48px);background:#fff}
+body.edunext-app .cio-learn-top{
+  position:sticky;top:48px;z-index:50;
+  height:46px;display:flex;align-items:center;gap:16px;
+  padding:0 18px;border-bottom:1px solid #e2e8f0;background:#fff
+}
+body.edunext-app .cio-learn-top a{font-size:10px;color:#64748b;text-decoration:none}
+body.edunext-app .cio-learn-top strong{font-size:11px;color:#0f172a}
+body.edunext-app .cio-learn-top span{margin-left:auto;color:#64748b;font-size:9px}
+body.edunext-app .cio-learn-layout{display:grid;grid-template-columns:285px minmax(0,1fr);min-height:calc(100vh - 94px)}
+body.edunext-app .cio-lesson-sidebar{border-right:1px solid #e2e8f0;background:#fff}
+body.edunext-app .cio-lesson-head{padding:17px;border-bottom:1px solid #e2e8f0}
+body.edunext-app .cio-lesson-head>span{color:#2563eb;font-size:8px;font-weight:800;text-transform:uppercase}
+body.edunext-app .cio-lesson-head h2{margin:5px 0 11px;font-size:13px;line-height:1.35}
+body.edunext-app .cio-lesson-list>a{
+  display:grid;
+  grid-template-columns:26px 1fr;
+  gap:6px;
+  position:relative;
+  padding:10px 13px;
+  border-bottom:1px solid #f1f5f9;
+  color:#64748b;
+  text-decoration:none;
+}
+body.edunext-app .cio-lesson-list>a.active{background:#eff6ff;color:#0f172a}
+body.edunext-app .cio-lesson-list>a.done b{color:#15803d}
+body.edunext-app .cio-lesson-list>a>span{font-size:8px;color:#94a3b8}
+body.edunext-app .cio-lesson-list>a b{font-size:9px;font-weight:700}
+body.edunext-app .cio-lesson-list>a small{grid-column:2;font-size:7px;color:#94a3b8}
+body.edunext-app .cio-learn-content{background:#f8fafc;padding:18px 22px 40px}
+body.edunext-app .cio-video-wrap{
+  width:min(880px,100%);
+  margin:0 auto;
+  aspect-ratio:16/9;
+  background:#0f172a;
+  border-radius:7px;
+  overflow:hidden;
+}
+body.edunext-app .cio-video-wrap iframe{width:100%;height:100%;border:0}
+body.edunext-app .cio-lesson-content{
+  width:min(880px,100%);
+  margin:16px auto 0;
+  padding:18px;
+  border:1px solid #e2e8f0;
+  border-radius:8px;
+  background:#fff;
+}
+body.edunext-app .cio-lesson-heading{display:flex;align-items:start;justify-content:space-between;gap:16px}
+body.edunext-app .cio-lesson-heading h1{margin:4px 0 0;font-size:22px}
+body.edunext-app .cio-lesson-badge{
+  padding:5px 8px;
+  border-radius:5px;
+  background:#ecfdf5;
+  color:#15803d;
+  font-size:8px;
+  font-weight:800;
+}
+body.edunext-app .cio-lesson-content>p{color:#64748b;font-size:11px;line-height:1.7}
+body.edunext-app .cio-lesson-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:15px}
+
+body.edunext-app .cio-builder-head{align-items:center}
+body.edunext-app .cio-back{display:block;margin-bottom:7px;color:#64748b;font-size:9px;text-decoration:none}
+body.edunext-app .cio-builder-stats{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:10px;
+  margin:16px 0;
+}
+body.edunext-app .cio-builder-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 285px;
+  gap:14px;
+}
+body.edunext-app .cio-builder-main,
+body.edunext-app .cio-builder-side-card{
+  border:1px solid #e2e8f0;
+  border-radius:8px;
+  background:#fff;
+}
+body.edunext-app .cio-panel-head{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:15px;border-bottom:1px solid #e2e8f0
+}
+body.edunext-app .cio-panel-head h2{margin:0;font-size:15px}
+body.edunext-app .cio-panel-head p{margin:4px 0 0;color:#64748b;font-size:9px}
+body.edunext-app .cio-builder-section{margin:12px}
+body.edunext-app .cio-section-bar{
+  display:flex;justify-content:space-between;
+  padding:9px 11px;border:1px solid #e2e8f0;border-radius:6px 6px 0 0;background:#f8fafc;
+  color:#334155;font-size:9px
+}
+body.edunext-app .cio-section-bar>span{color:#64748b;font-size:13px}
+body.edunext-app .cio-builder-item{
+  display:grid;
+  grid-template-columns:30px minmax(0,1fr) 16px;
+  align-items:center;
+  gap:7px;
+  min-height:44px;
+  padding:0 10px;
+  border:1px solid #e2e8f0;
+  border-top:0;
+}
+body.edunext-app .cio-builder-item>span:first-child{color:#94a3b8;font-size:8px;font-weight:800}
+body.edunext-app .cio-builder-item b{display:block;color:#334155;font-size:9px}
+body.edunext-app .cio-builder-item small{display:block;margin-top:2px;color:#94a3b8;font-size:7px}
+body.edunext-app .cio-builder-item>span:last-child{color:#94a3b8}
+body.edunext-app .cio-builder-item.quiz-item{background:#eff6ff}
+body.edunext-app .cio-builder-side{display:grid;gap:12px}
+body.edunext-app .cio-builder-side-card{padding:15px}
+body.edunext-app .cio-builder-side-card h2{margin:4px 0 12px;font-size:14px}
+body.edunext-app .cio-builder-side-card>div{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-top:1px solid #f1f5f9}
+body.edunext-app .cio-builder-side-card small{color:#94a3b8;font-size:8px}
+body.edunext-app .cio-builder-side-card b{color:#334155;font-size:9px}
+body.edunext-app .cio-builder-side-card em{
+  padding:3px 6px;border-radius:4px;background:#dcfce7;color:#15803d;
+  font-size:7px;font-style:normal;font-weight:800
+}
+body.edunext-app .cio-big-number{font-size:28px!important;color:#0f172a!important}
+
+body.edunext-app .cio-admin{
+  margin-left:-24px;
+  margin-right:-24px;
+  padding:26px 28px 60px;
+  background:#0b1220;
+  min-height:calc(100vh - 48px);
+  color:#fff;
+}
+body.edunext-app .lms-admin-mode .topbar-reference{background:#0f4fd8;border-color:#0f4fd8}
+body.edunext-app .lms-admin-mode .lms-breadcrumb,
+body.edunext-app .lms-admin-mode .lms-breadcrumb a,
+body.edunext-app .lms-admin-mode .lms-breadcrumb strong,
+body.edunext-app .lms-admin-mode .lms-search-icon{color:#fff}
+body.edunext-app .lms-admin-mode .lms-search input{background:#fff}
+body.edunext-app .lms-admin-mode .lms-notify{background:transparent;color:#fff;border-color:rgba(255,255,255,.4)}
+body.edunext-app .cio-admin-head{border-color:#243044}
+body.edunext-app .cio-admin-head h1{color:#fff}
+body.edunext-app .cio-admin-head p{color:#94a3b8}
+body.edunext-app .cio-admin .cio-eyebrow{color:#64748b}
+body.edunext-app .cio-admin-toolbar{padding-top:18px}
+body.edunext-app .cio-admin-toolbar input,
+body.edunext-app .cio-admin-toolbar select{border-color:#273449}
+body.edunext-app .cio-admin-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:14px!important}
+body.edunext-app .cio-admin-card{border-color:#273449;background:#111827}
+body.edunext-app .cio-admin-image{position:relative;aspect-ratio:16/8.8;overflow:hidden}
+body.edunext-app .cio-admin-image span{
+  position:absolute;left:8px;bottom:8px;padding:4px 6px;border-radius:4px;
+  color:#fff;background:rgba(15,23,42,.8);font-size:7px;font-weight:800
+}
+body.edunext-app .cio-admin-body{padding:12px}
+body.edunext-app .cio-admin-body h3{margin:0;color:#fff;font-size:13px;line-height:1.35}
+body.edunext-app .cio-admin-body p{margin:4px 0 0;color:#94a3b8;font-size:9px}
+body.edunext-app .cio-admin-meta{display:flex;gap:12px;margin-top:12px;color:#94a3b8;font-size:8px}
+body.edunext-app .cio-admin-footer{display:flex;align-items:center;justify-content:space-between;margin-top:12px;padding-top:9px;border-top:1px solid #273449}
+body.edunext-app .cio-admin-footer em{
+  padding:3px 6px;border-radius:4px;background:#052e16;color:#4ade80;font-size:7px;font-style:normal;font-weight:800
+}
+body.edunext-app .cio-admin-footer b{color:#fff;font-size:12px}
+body.edunext-app .cio-admin-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}
+body.edunext-app .cio-admin-summary>div{padding:13px;border:1px solid #273449;border-radius:7px;background:#111827}
+body.edunext-app .cio-admin-summary span{display:block;color:#64748b;font-size:8px;text-transform:uppercase}
+body.edunext-app .cio-admin-summary b{display:block;margin-top:5px;color:#fff;font-size:20px}
+body.edunext-app .lms-admin-mode .lms-sidebar{background:#111827;border-right-color:#263244}
+body.edunext-app .lms-admin-mode .lms-brand strong,
+body.edunext-app .lms-admin-mode .lms-nav-item{color:#e5e7eb}
+body.edunext-app .lms-admin-mode .lms-brand small,
+body.edunext-app .lms-admin-mode .lms-nav-group-label,
+body.edunext-app .lms-admin-mode .lms-nav-icon{color:#64748b}
+body.edunext-app .lms-admin-mode .lms-nav-item:hover{background:#1f2937}
+body.edunext-app .lms-admin-mode .lms-nav-item.active{background:#1d4ed8;color:#fff}
+body.edunext-app .lms-builder-mode .lms-nav-item.active{background:#eff6ff;color:#2563eb}
+
+@media (max-width:1000px){
+  body.edunext-app .cio-course-grid,
+  body.edunext-app .cio-dashboard-grid,
+  body.edunext-app .cio-admin-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  body.edunext-app .cio-detail-grid{grid-template-columns:1fr}
+  body.edunext-app .cio-purchase-card{position:static}
+}
+@media (max-width:760px){
+  body.edunext-app .cio-page-head,
+  body.edunext-app .cio-admin-head,
+  body.edunext-app .cio-builder-head{display:block}
+  body.edunext-app .cio-page-head .btn,
+  body.edunext-app .cio-admin-head .btn{margin-top:12px}
+  body.edunext-app .cio-stat-grid,
+  body.edunext-app .cio-builder-stats{grid-template-columns:repeat(2,1fr)}
+  body.edunext-app .cio-course-grid,
+  body.edunext-app .cio-dashboard-grid,
+  body.edunext-app .cio-admin-grid{grid-template-columns:1fr!important}
+  body.edunext-app .cio-builder-grid{grid-template-columns:1fr}
+  body.edunext-app .cio-search-local{width:100%}
+  body.edunext-app .cio-course-toolbar,
+  body.edunext-app .cio-admin-toolbar{display:block}
+  body.edunext-app .cio-toolbar-right{margin-top:8px}
+  body.edunext-app .cio-learn-layout{grid-template-columns:1fr}
+  body.edunext-app .cio-lesson-sidebar{display:none}
+  body.edunext-app .cio-admin{margin-left:-14px;margin-right:-14px;padding-left:14px;padding-right:14px}
+}
