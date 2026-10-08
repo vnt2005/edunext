@@ -14,7 +14,7 @@ $css  = $wp ? get_stylesheet_uri() : 'style.css';
   <title>EduNext - Học đúng kiến thức, phát triển đúng tương lai</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="<?= htmlspecialchars($css) ?>?v=2.2">
+  <link rel="stylesheet" href="<?= htmlspecialchars($css) ?>?v=2.3">
   <?php if ($wp) wp_head(); ?>
 </head>
 <body <?php if ($wp) { body_class('edunext-app'); } else { echo 'class="edunext-app"'; } ?>>
@@ -34,15 +34,45 @@ $css  = $wp ? get_stylesheet_uri() : 'style.css';
 
   <main id="app"><noscript><div class="wrap page">Trang cần bật JavaScript để hoạt động.</div></noscript></main>
 
-  <footer>
+  <footer class="site-footer">
     <div class="wrap">
-      <div><b>EduNext</b><br>Học từng bước, theo dõi tiến độ, nhận chứng chỉ.</div>
-      <div>© <?= date('Y') ?> EduNext. Bản demo.</div>
+      <div class="ft-grid">
+        <div class="ft-brand">
+          <a class="ft-logo" href="#/"><span class="mark">E</span>EduNext</a>
+          <p>Học từng bước, theo dõi tiến độ, làm quiz và nhận chứng chỉ.</p>
+          <span class="ft-demo">Nền tảng học trực tuyến • Bản demo</span>
+        </div>
+
+        <div class="ft-col">
+          <h3>Học tập</h3>
+          <a href="#/courses">Khóa học</a>
+          <button data-a="sc" data-v="cats">Danh mục</button>
+          <button data-a="sc" data-v="faq">Hỏi đáp</button>
+        </div>
+
+        <div class="ft-col">
+          <h3>Tài khoản</h3>
+          <a href="#/login">Đăng nhập</a>
+          <a href="#/register">Đăng ký</a>
+          <a href="#/dashboard">Trang cá nhân</a>
+        </div>
+
+        <div class="ft-col">
+          <h3>EduNext</h3>
+          <p>Học đúng kiến thức, phát triển đúng tương lai.</p>
+          <p class="ft-muted">Theo dõi tiến độ học tập của bạn ngay trên trình duyệt.</p>
+        </div>
+      </div>
+
+      <div class="ft-bottom">
+        <span>© <?= date('Y') ?> EduNext. Bản demo.</span>
+        <span>Học mọi lúc • Tiến bộ từng bước</span>
+      </div>
     </div>
   </footer>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
-  <script src="<?= htmlspecialchars($base) ?>/app.js?v=2.1" defer></script>
+  <script src="<?= htmlspecialchars($base) ?>/app.js?v=2.3" defer></script>
   <?php /* wp_footer() omitted for this standalone demo theme to avoid WooCommerce frontend fatal. */ ?>
 </body>
 </html>
