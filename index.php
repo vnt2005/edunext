@@ -14,7 +14,7 @@ $css  = $wp ? get_stylesheet_uri() : 'style.css';
   <title>EduNext - Học đúng kiến thức, phát triển đúng tương lai</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="<?= htmlspecialchars($css) ?>?v=2.1">
+  <link rel="stylesheet" href="<?= htmlspecialchars($css) ?>?v=2.2">
   <?php if ($wp) wp_head(); ?>
 </head>
 <body <?php if ($wp) { body_class('edunext-app'); } else { echo 'class="edunext-app"'; } ?>>
@@ -43,6 +43,6 @@ $css  = $wp ? get_stylesheet_uri() : 'style.css';
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
   <script src="<?= htmlspecialchars($base) ?>/app.js?v=2.1" defer></script>
-  <?php if ($wp) wp_footer(); ?>
+  <?php /* wp_footer() omitted for this standalone demo theme to avoid WooCommerce frontend fatal. */ ?>
 </body>
 </html>
