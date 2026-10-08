@@ -13,6 +13,7 @@ if (!defined('ABSPATH')) {
 function edunext_sync_roles(): void {
     $teacher_caps = [
         'read' => true,
+        'upload_files' => true,
         'edit_edunext_courses' => true,
         'publish_edunext_courses' => true,
         'delete_edunext_courses' => true,
@@ -225,7 +226,8 @@ function edunext_admin_menu(): void {
         'Khóa học',
         'Khóa học',
         'edit_edunext_courses',
-        'edit.php?post_type=edunext_course'
+        'edunext-courses',
+        'edunext_redirect_to_courses'
     );
 
     if (current_user_can('manage_edunext_users')) {
@@ -255,6 +257,15 @@ function edunext_admin_menu(): void {
         'edunext_render_reports'
     );
 }
+function edunext_redirect_to_courses(): void {
+    if (!current_user_can('edit_edunext_courses')) {
+        wp_die('Bạn không có quyền quản lý khóa học.');
+    }
+
+    wp_safe_redirect(admin_url('edit.php?post_type=edunext_course'));
+    exit;
+}
+
 add_action('admin_menu', 'edunext_admin_menu', 20);
 
 function edunext_render_dashboard(): void {
@@ -361,7 +372,7 @@ function edunext_render_dashboard(): void {
                             $status_label = $course->post_status === 'publish' ? 'Đang xuất bản' : 'Bản nháp';
                             ?>
                             <div class="edunext-course-row">
-                                <div class="edunext-course-avatar"><?php echo esc_html(mb_substr(get_the_title($course), 0, 1)); ?></div>
+                                <div class="edunext-course-avatar"><?php echo esc_html(substr(wp_strip_all_tags(get_the_title($course)), 0, 1)); ?></div>
                                 <div class="edunext-course-main">
                                     <strong><?php echo esc_html(get_the_title($course)); ?></strong>
                                     <span><?php echo esc_html($level ?: 'Chưa đặt cấp độ'); ?></span>
@@ -419,7 +430,11 @@ function edunext_render_reports(): void {
         <div class="edunext-stat-grid edunext-stat-grid-small">
             <div class="edunext-stat-card">
                 <span>Tổng khóa học</span>
-                <strong><?php echo esc_html(array_sum((array) $course_counts)); ?></strong>
+                <strong><?php echo esc_html(
+                    (int) ($course_counts->publish ?? 0)
+                    + (int) ($course_counts->draft ?? 0)
+                    + (int) ($course_counts->pending ?? 0)
+                ); ?></strong>
             </div>
             <div class="edunext-stat-card">
                 <span>Đang xuất bản</span>
@@ -499,3 +514,19 @@ function edunext_restrict_teacher_menu(): void {
     }
 }
 add_action('admin_menu', 'edunext_restrict_teacher_menu', 999);
+
+function edunext_restrict_teacher_courses(WP_Query $query): void {
+    if (!is_admin() || !$query->is_main_query()) {
+        return;
+    }
+
+    if ($query->get('post_type') !== 'edunext_course') {
+        return;
+    }
+
+    if (!current_user_can('edit_others_edunext_courses')) {
+        $query->set('author', get_current_user_id());
+    }
+}
+add_action('pre_get_posts', 'edunext_restrict_teacher_courses');
+
