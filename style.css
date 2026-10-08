@@ -1374,3 +1374,64 @@ body.edunext-app{
 @media (prefers-reduced-motion:reduce){
   body.edunext-app *{transition:none!important;scroll-behavior:auto!important}
 }
+
+
+/* Final responsive polish: dashboard, checkout, teacher/admin and learning pages */
+body.edunext-app .admin-table-wrap{
+  width:100%;
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+}
+body.edunext-app .admin-table{min-width:720px}
+body.edunext-app .checkout-course{min-width:0}
+body.edunext-app .checkout-course .thumb{flex:0 0 150px}
+body.edunext-app .checkout-course h3,
+body.edunext-app .teacher-course-info h3,
+body.edunext-app .dash-feature h2{overflow-wrap:anywhere}
+body.edunext-app .teacher-student-info{min-width:0}
+body.edunext-app .teacher-student-info b,
+body.edunext-app .teacher-student-info small{overflow-wrap:anywhere}
+body.edunext-app .teacher-activity-row>div,
+body.edunext-app .admin-activity-row>div{min-width:0}
+body.edunext-app .teacher-activity-row strong,
+body.edunext-app .admin-activity-row strong{white-space:nowrap}
+
+@media (max-width:760px){
+  body.edunext-app .dash-head{align-items:flex-start;flex-direction:column}
+  body.edunext-app .dash-actions,
+  body.edunext-app .teacher-actions,
+  body.edunext-app .admin-actions{
+    width:100%;display:flex;flex-wrap:wrap
+  }
+  body.edunext-app .dash-actions .btn,
+  body.edunext-app .teacher-actions .btn,
+  body.edunext-app .admin-actions .btn{flex:1 1 180px}
+  body.edunext-app .checkout-course{grid-template-columns:1fr}
+  body.edunext-app .checkout-course .thumb{width:100%;min-height:120px}
+  body.edunext-app .pay-option{align-items:flex-start}
+  body.edunext-app .sum-row{gap:10px}
+  body.edunext-app .sum-total{align-items:flex-start;gap:12px}
+  body.edunext-app .teacher-lower-grid{gap:16px}
+  body.edunext-app .teacher-student-row,
+  body.edunext-app .teacher-activity-row,
+  body.edunext-app .admin-activity-row{min-width:0}
+}
+
+@media (max-width:560px){
+  body.edunext-app .dash-actions,
+  body.edunext-app .teacher-actions,
+  body.edunext-app .admin-actions{flex-direction:column}
+  body.edunext-app .dash-actions .btn,
+  body.edunext-app .teacher-actions .btn,
+  body.edunext-app .admin-actions .btn{width:100%;flex-basis:auto}
+  body.edunext-app .dash-feature{padding:18px}
+  body.edunext-app .dash-feature-side{padding-top:16px}
+  body.edunext-app .teacher-course-side{align-items:stretch;flex-direction:column}
+  body.edunext-app .teacher-course-side .btn{width:100%}
+  body.edunext-app .teacher-student-row{align-items:flex-start;flex-wrap:wrap}
+  body.edunext-app .teacher-student-progress{
+    width:100%;flex-basis:100%;margin-left:46px;max-width:calc(100% - 46px)
+  }
+  body.edunext-app .checkout-summary{padding:16px}
+  body.edunext-app .course-facts{grid-template-columns:1fr}
+}
