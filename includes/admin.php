@@ -14,10 +14,17 @@ function edunext_sync_roles(): void {
     $teacher_caps = [
         'read' => true,
         'upload_files' => true,
+        'edit_edunext_course' => true,
+        'read_edunext_course' => true,
+        'delete_edunext_course' => true,
         'edit_edunext_courses' => true,
+        'edit_others_edunext_courses' => false,
         'publish_edunext_courses' => true,
-        'delete_edunext_courses' => true,
         'read_private_edunext_courses' => true,
+        'delete_edunext_courses' => true,
+        'delete_private_edunext_courses' => true,
+        'delete_published_edunext_courses' => true,
+        'delete_others_edunext_courses' => false,
         'view_edunext_reports' => true,
     ];
 
@@ -44,6 +51,9 @@ function edunext_sync_roles(): void {
             'manage_edunext' => true,
             'manage_edunext_users' => true,
             'view_edunext_reports' => true,
+            'edit_edunext_course' => true,
+            'read_edunext_course' => true,
+            'delete_edunext_course' => true,
             'edit_edunext_courses' => true,
             'edit_others_edunext_courses' => true,
             'publish_edunext_courses' => true,
@@ -59,7 +69,7 @@ function edunext_sync_roles(): void {
         }
     }
 }
-add_action('after_setup_theme', 'edunext_sync_roles');
+add_action('init', 'edunext_sync_roles', 5);
 
 function edunext_register_course_content(): void {
     register_taxonomy(
@@ -108,6 +118,7 @@ function edunext_register_course_content(): void {
             'capability_type' => ['edunext_course', 'edunext_courses'],
             'map_meta_cap' => true,
             'has_archive' => false,
+            'query_var' => false,
         ]
     );
 }
