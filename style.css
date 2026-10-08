@@ -3181,3 +3181,37 @@ body.edunext-app #nav.lms-nav .lms-nav-icon{
   flex:0 0 18px;
   width:18px;
 }
+
+/* Align and enlarge the LMS search icon */
+body.edunext-app .lms-search .lms-search-icon{
+  position:absolute;
+  left:12px;
+  top:50%;
+  width:18px;
+  height:18px;
+  display:grid;
+  place-items:center;
+  transform:translateY(-50%);
+  color:#64748b;
+  font-size:0;
+  line-height:1;
+  z-index:2;
+}
+body.edunext-app .lms-search .lms-search-icon::before{
+  content:"";
+  width:10px;
+  height:10px;
+  border:1.8px solid currentColor;
+  border-radius:50%;
+}
+body.edunext-app .lms-search .lms-search-icon::after{
+  content:"";
+  position:absolute;
+  width:7px;
+  height:1.8px;
+  background:currentColor;
+  border-radius:999px;
+  transform:rotate(45deg);
+  left:11px;
+  top:13px;
+}
