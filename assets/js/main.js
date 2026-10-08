@@ -9,7 +9,7 @@ const C=[
 {id:'data',t:'Data Analytics & AI cho người mới',cat:'Data / AI',tc:'Lê Hoàng Nam',r:4.9,n:2130,lvl:'Cơ bản',p:799000,o:1099000,h:32,tag:'Mới',c:'g',L:['Tư duy dữ liệu','Excel và SQL cơ bản','Trực quan hóa dữ liệu','Machine Learning nhập môn','Dự án phân tích'],v:'zwasdVPPFFw',s:[0,240,480,720,960]},
 {id:'english',t:'English Communication for Work',cat:'Ngoại ngữ',tc:'Emily Tran',r:4.8,n:1560,lvl:'Trung cấp',p:499000,o:649000,h:16,tag:'Top rated',c:'',L:['Họp và giao tiếp xã giao','Viết email chuyên nghiệp','Thuyết trình','Đàm phán','Phỏng vấn'],v:'MTM_bnkrz-c',s:[0,600,1500,2400,3300]},
 {id:'design',t:'UI/UX Design từ Zero đến Portfolio',cat:'Thiết kế',tc:'Phạm Minh Anh',r:4.7,n:870,lvl:'Cơ bản',p:649000,o:849000,h:20,tag:'Portfolio',c:'a',L:['Nguyên lý thiết kế','Nghiên cứu người dùng','Wireframe','Prototype trên Figma','Dựng portfolio'],v:'MBblN98-5lg',s:[0,715,3600,7200,10800]},
-{id:'marketing',t:'Digital Marketing thực chiến',cat:'Marketing',tc:'Đỗ Gia Bảo',r:4.9,n:1020,lvl:'Trung cấp',p:549000,o:749000,h:14,tag:'Bán chạy',c:'g',L:['Chiến lược nội dung','SEO cơ bản','Quảng cáo trả phí','Email marketing','Đo lường hiệu quả'],v:'7dRBdPQGzs',s:[0,300,600,900,1200]}];
+{id:'marketing',t:'Digital Marketing thực chiến',cat:'Marketing',tc:'Đỗ Gia Bảo',r:4.9,n:1020,lvl:'Trung cấp',p:549000,o:749000,h:14,tag:'Bán chạy',c:'g',L:['Chiến lược nội dung','SEO cơ bản','Quảng cáo trả phí','Email marketing','Đo lường hiệu quả'],v:'YhK_PGhdPe8',s:[0,300,600,900,1200]}];
 const COURSE_IMAGES={
 csharp:'https://images.unsplash.com/photo-1618477247222-acbdb0e159b3?auto=format&fit=crop&q=82&w=1200',
 api:'https://images.unsplash.com/photo-1637044527362-5ac1dc1d7446?auto=format&fit=crop&q=82&w=1200',
@@ -104,7 +104,7 @@ const learn=(id,i)=>{
   const d=e.done.includes(i),all=e.done.length===c.L.length;
   const start=(c.s&&c.s[i])||0;
   const video=c.v
-    ? '<iframe src="https://www.youtube.com/embed/'+c.v+'?rel=0&modestbranding=1&playsinline=1&start='+start+'" title="'+esc(c.L[i])+'" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>'
+    ? '<iframe src="https://www.youtube-nocookie.com/embed/'+c.v+'?rel=0&modestbranding=1&playsinline=1&start='+start+'" title="'+esc(c.L[i])+'" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>'
     : '<div>Video bài '+(i+1)+': '+esc(c.L[i])+'</div>';
 
   const prev=i>0?'<a class="btn btn-g" href="#/learn/'+id+'/'+(i-1)+'">← Bài trước</a>':'';
