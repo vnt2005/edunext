@@ -322,6 +322,51 @@ body.edunext-app .empty{
 }
 body.edunext-app .empty a{color:var(--blue);font-weight:600}
 
+body.edunext-app .checkout-grid{
+  display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:22px;align-items:start;margin-top:18px
+}
+body.edunext-app .checkout-box{margin-top:16px}
+body.edunext-app .checkout-box h2,
+body.edunext-app .checkout-summary h2{font-size:20px;margin-bottom:16px}
+body.edunext-app .checkout-user{display:flex;align-items:center;gap:12px}
+body.edunext-app .checkout-user .av{
+  width:44px;height:44px;flex-basis:44px;font-size:13px
+}
+body.edunext-app .checkout-user b{display:block}
+body.edunext-app .checkout-user span{display:block;color:var(--muted);font-size:13px;overflow-wrap:anywhere}
+body.edunext-app .pay-option{
+  display:flex;align-items:flex-start;gap:12px;padding:14px 0;border-top:1px solid var(--line);cursor:pointer
+}
+body.edunext-app .pay-option input{margin-top:4px;accent-color:var(--blue)}
+body.edunext-app .pay-option span{min-width:0}
+body.edunext-app .pay-option b{display:block;font-size:14px}
+body.edunext-app .pay-option small{display:block;color:var(--muted);font-size:12px;margin-top:3px}
+body.edunext-app .pay-option:has(input:checked){color:var(--blue)}
+body.edunext-app .pay-note{
+  margin-top:12px;padding:11px 12px;border-radius:10px;background:var(--soft);color:var(--blue);font-size:13px
+}
+body.edunext-app .checkout-summary{position:sticky;top:86px}
+body.edunext-app .checkout-course{
+  display:grid;grid-template-columns:92px minmax(0,1fr);gap:12px;align-items:start;padding-bottom:16px;border-bottom:1px solid var(--line)
+}
+body.edunext-app .checkout-course .thumb{min-height:92px;border-radius:11px;padding:10px}
+body.edunext-app .checkout-course .thumb b{font-size:13px}
+body.edunext-app .checkout-course h3{margin:4px 0 6px;font-size:16px}
+body.edunext-app .checkout-course p{margin:0;font-size:12px}
+body.edunext-app .sum-row,
+body.edunext-app .sum-total{
+  display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 0
+}
+body.edunext-app .sum-row{font-size:14px;color:var(--muted)}
+body.edunext-app .sum-row .discount{color:var(--ok)}
+body.edunext-app .sum-total{
+  border-top:1px solid var(--line);margin-top:4px;padding-top:16px;font-size:15px
+}
+body.edunext-app .sum-total b{font-size:24px}
+body.edunext-app .checkout-safe{
+  margin:12px 0 0;text-align:center;color:var(--muted);font-size:12px;line-height:1.6
+}
+
 body.edunext-app .dg{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:24px;align-items:start}
 body.edunext-app .prev{
   min-height:280px;border-radius:var(--r);background:#1F3E9A;color:#fff;display:flex;align-items:flex-end;
@@ -521,7 +566,8 @@ body.edunext-app{
   body.edunext-app .hg,
   body.edunext-app .dg,
   body.edunext-app .ll,
-  body.edunext-app .cl{
+  body.edunext-app .cl,
+  body.edunext-app .checkout-grid{
     grid-template-columns:1fr;
   }
   body.edunext-app .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -534,7 +580,8 @@ body.edunext-app{
   body.edunext-app .stats-panel{grid-template-columns:1fr}
   body.edunext-app .roadmap-track::before{display:none}
   body.edunext-app .buy,
-  body.edunext-app .side{position:static}
+  body.edunext-app .side,
+  body.edunext-app .checkout-summary{position:static}
   body.edunext-app .buy{top:auto}
 
   body.edunext-app .mb{
