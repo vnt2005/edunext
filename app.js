@@ -129,7 +129,7 @@ qgo:v=>{const[d,id]=v.split(','),n=Q[id].length;if(+d>0&&qz.a[qz.i]==null)return
 if(+d>0&&qz.i===n-1){qz.res=Math.round(Q[id].filter((q,i)=>qz.a[i]===q.a).length/n*100);const e=EN()[id];e.q=Math.max(e.q||0,qz.res);save()}else qz.i+=+d;qr(id)},
 qretry:id=>{qz={i:0,a:[],res:null};qr(id)},
 logout:()=>{D.me=null;save();toast('Đã đăng xuất');to('/')},
-teacher-demo:()=>toast('Tính năng giảng viên đang ở chế độ demo'),print:()=>print(),pay:id=>{const c=find(id);if(!c||!D.me)return;D.orders=D.orders||[];const method=(document.querySelector('input[name="payment"]:checked')||{}).value||'bank';D.orders.push({id:'EDN-'+Date.now().toString().slice(-8),courseId:id,email:D.me,amount:c.p,method,status:'paid',createdAt:new Date().toISOString()});EN()[id]={done:[],q:null,n:{}};save();toast('Thanh toán thành công');go('/learn/'+id+'/0')}};
+'teacher-demo':()=>toast('Tính năng giảng viên đang ở chế độ demo'),print:()=>print(),pay:id=>{const c=find(id);if(!c||!D.me)return;D.orders=D.orders||[];const method=(document.querySelector('input[name="payment"]:checked')||{}).value||'bank';D.orders.push({id:'EDN-'+Date.now().toString().slice(-8),courseId:id,email:D.me,amount:c.p,method,status:'paid',createdAt:new Date().toISOString()});EN()[id]={done:[],q:null,n:{}};save();toast('Thanh toán thành công');go('/learn/'+id+'/0')}};
 document.addEventListener('click',e=>{const t=e.target.closest('[data-a]');if(t&&A[t.dataset.a])A[t.dataset.a](t.dataset.v,t)});
 const onf=e=>{const t=e.target;if(t.id==='note'){const en=EN()[t.dataset.c];(en.n=en.n||{})[t.dataset.i]=t.value;save();return}if(t.dataset.f&&$('#list')){f[t.dataset.f]=t.value;list()}};
 document.addEventListener('input',onf);document.addEventListener('change',onf);
