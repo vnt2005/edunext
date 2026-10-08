@@ -3215,3 +3215,23 @@ body.edunext-app .lms-search .lms-search-icon::after{
   left:11px;
   top:13px;
 }
+
+/* ClassroomIO-style sidebar profile */
+body.edunext-app .lms-sidebar-profile{position:relative}
+body.edunext-app .lms-profile{position:relative;width:100%}
+body.edunext-app .lms-profile summary{list-style:none;min-height:56px;display:flex;align-items:center;gap:10px;width:100%;padding:8px 10px;border-radius:7px;cursor:pointer;color:#334155}
+body.edunext-app .lms-profile summary::-webkit-details-marker{display:none}
+body.edunext-app .lms-profile summary:hover{background:#f8fafc}
+body.edunext-app .lms-profile-avatar{width:32px;height:32px;flex:0 0 32px;display:grid;place-items:center;border-radius:50%;background:#dbeafe;color:#1d4ed8;font-size:10px;font-weight:800;letter-spacing:-.02em}
+body.edunext-app .lms-profile-copy{min-width:0;flex:1}
+body.edunext-app .lms-profile-copy strong{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#334155;font-size:11px;font-weight:700;line-height:1.2}
+body.edunext-app .lms-profile-copy small{display:block;margin-top:2px;color:#94a3b8;font-size:9px;line-height:1.2}
+body.edunext-app .lms-profile-chevron{flex:0 0 auto;color:#94a3b8;font-size:20px;line-height:1;transform:translateY(-1px)}
+body.edunext-app .lms-profile-menu{position:absolute;left:10px;right:10px;bottom:62px;padding:5px;border:1px solid #e2e8f0;border-radius:7px;background:#fff;box-shadow:0 12px 28px rgba(15,23,42,.12)}
+body.edunext-app .lms-profile-menu a,body.edunext-app .lms-profile-menu button{width:100%;display:block;padding:8px 9px;border:0;border-radius:5px;background:transparent;color:#475569;text-align:left;text-decoration:none;font-size:10px;cursor:pointer}
+body.edunext-app .lms-profile-menu a:hover,body.edunext-app .lms-profile-menu button:hover{background:#f1f5f9;color:#0f172a}
+body.edunext-app .lms-admin-mode .lms-profile summary:hover{background:#1f2937}
+body.edunext-app .lms-admin-mode .lms-profile-copy strong{color:#e5e7eb}
+body.edunext-app .lms-admin-mode .lms-profile-chevron{color:#64748b}
+body.edunext-app .lms-admin-mode .lms-profile-menu{background:#111827;border-color:#263244}
+body.edunext-app .lms-admin-mode .lms-profile-menu a,body.edunext-app .lms-admin-mode .lms-profile-menu button{color:#cbd5e1}
