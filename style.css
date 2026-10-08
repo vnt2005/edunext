@@ -1572,7 +1572,6 @@ body.edunext-app .pathway a:hover{color:var(--edn-blue)}
 body.edunext-app .dark-learning{background:var(--edn-navy);color:#fff}
 body.edunext-app .dark-learning .learning-story{display:grid;grid-template-columns:1.05fr .95fr;gap:75px;align-items:start}
 body.edunext-app .dark-learning .eyebrow{color:#9CB9F4}
-body.edunext.app .story-copy h2{color:#fff}
 body.edunext-app .story-copy h2{font-size:clamp(31px,4vw,46px);line-height:1.08;letter-spacing:-.035em;color:#fff;margin:0 0 17px}
 body.edunext-app .story-copy p{max-width:570px;color:#B8C5D7;font-size:14px;line-height:1.8;margin:0 0 25px}
 body.edunext-app .btn-light{background:#fff;color:var(--edn-navy);border-color:#fff;border-radius:5px}
@@ -1626,6 +1625,7 @@ body.edunext-app .footer-new .ft-bottom{display:flex;justify-content:space-betwe
 
 @media (max-width:1000px){
   body.edunext-app .topbar-new #nav{display:none}
+  body.edunext-app .topbar-new .mb{display:grid;place-items:center}
   body.edunext-app .topbar-new .sf{margin-left:auto}
   body.edunext-app .home-grid{grid-template-columns:1fr;gap:40px}
   body.edunext-app .hero-copy h1{max-width:800px}
@@ -1663,10 +1663,10 @@ body.edunext-app .footer-new .ft-bottom{display:flex;justify-content:space-betwe
   body.edunext-app .category-row{grid-template-columns:44px 1fr auto}
   body.edunext-app .category-name b{font-size:17px}
   body.edunext-app .pathway{grid-template-columns:1fr}
-  body.edunext-app .pathway article,.body.edunext-app .pathway article:nth-child(2){border-right:0;border-bottom:1px solid #D5D9E0}
+  body.edunext-app .pathway article,body.edunext-app .pathway article:nth-child(2){border-right:0;border-bottom:1px solid #D5D9E0}
   body.edunext-app .pathway article:last-child{border-bottom:0}
   body.edunext-app .instructor-row{grid-template-columns:1fr}
-  body.edunext-app .instructor-item,.body.edunext-app .instructor-item:nth-child(2){border-right:0;border-bottom:1px solid #D5D9E0}
+  body.edunext-app .instructor-item,body.edunext-app .instructor-item:nth-child(2){border-right:0;border-bottom:1px solid #D5D9E0}
   body.edunext-app .instructor-item:last-child{border-bottom:0}
   body.edunext-app .faq-layout{grid-template-columns:1fr;gap:34px}
   body.edunext-app .faq-layout h2{font-size:29px}
