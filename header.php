@@ -20,9 +20,9 @@
         <nav id="nav" aria-label="Điều hướng chính">
             <a href="#/">Trang chủ</a>
             <a href="#/courses">Khóa học</a>
-            <a href="#/courses">Khóa bán chạy</a>
-            <a href="#/courses">Danh mục</a>
-            <a href="#/">Hỏi đáp</a>
+            <a href="#/best-sellers">Khóa bán chạy</a>
+            <a href="#/categories">Danh mục</a>
+            <a href="#/faq">Hỏi đáp</a>
             <a href="#/blog">Blog</a>
         </nav>
 
