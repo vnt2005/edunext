@@ -34,7 +34,7 @@
         <a href="#/faq" class="lms-nav-item"><span class="lms-nav-icon">?</span><span>Hỏi đáp</span></a>
     </nav>
 
-    <div class="lms-sidebar-bottom">
+    <div class="lms-sidebar-bottom" id="lms-sidebar-profile">
         <a href="#/register" class="lms-nav-item"><span class="lms-nav-icon">＋</span><span>Tạo tài khoản</span></a>
     </div>
 </aside>
