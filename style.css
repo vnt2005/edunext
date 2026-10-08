@@ -1728,3 +1728,117 @@ body.edunext-app .prev b{font-size:18px}
   body.edunext-app .feature-main .feature-cover,
   body.edunext-app .feature-cover{min-height:170px}
 }
+
+
+/* =========================================================
+   Blog — editorial learning content
+   ========================================================= */
+body.edunext-app .home-blog-section{background:#F3F1EC;border-top:1px solid #E1DED6}
+body.edunext-app .blog-home-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);
+  gap:18px;
+  align-items:stretch
+}
+body.edunext-app .blog-feature,
+body.edunext-app .blog-mini,
+body.edunext-app .blog-page-feature,
+body.edunext-app .blog-page-card{
+  background:#fff;border:1px solid #D8DBE1;min-width:0
+}
+body.edunext-app .blog-feature{display:grid;grid-template-rows:auto 1fr}
+body.edunext-app .blog-home-image,
+body.edunext-app .blog-mini-image,
+body.edunext-app .blog-page-feature-image,
+body.edunext-app .blog-page-card-image{
+  position:relative;display:block;overflow:hidden;background:#20375D
+}
+body.edunext-app .blog-home-image{height:300px}
+body.edunext-app .blog-home-image img,
+body.edunext-app .blog-mini-image img,
+body.edunext-app .blog-page-feature-image img,
+body.edunext-app .blog-page-card-image img{
+  width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s ease
+}
+body.edunext-app .blog-home-image::after,
+body.edunext-app .blog-page-feature-image::after,
+body.edunext-app .blog-page-card-image::after{
+  content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,28,49,.04),rgba(12,28,49,.6))
+}
+body.edunext-app .blog-home-image span,
+body.edunext-app .blog-page-feature-image span,
+body.edunext-app .blog-page-card-image span{
+  position:absolute;z-index:2;left:16px;bottom:15px;padding:5px 9px;background:rgba(255,255,255,.92);color:var(--edn-navy);
+  font-size:10px;font-weight:800;letter-spacing:.04em;text-transform:uppercase
+}
+body.edunext-app .blog-feature:hover img,
+body.edunext-app .blog-mini:hover img,
+body.edunext-app .blog-page-card:hover img,
+body.edunext-app .blog-page-feature:hover img{transform:scale(1.035)}
+body.edunext-app .blog-home-body{padding:24px;display:flex;flex-direction:column}
+body.edunext-app .blog-home-meta{display:flex;gap:12px;align-items:center;color:#858D99;font-size:10px;text-transform:uppercase;letter-spacing:.08em;font-weight:800}
+body.edunext-app .blog-home-meta span+span{padding-left:12px;border-left:1px solid #DADDE2}
+body.edunext-app .blog-home-body h3{font-size:28px;line-height:1.18;letter-spacing:-.03em;color:var(--edn-navy);margin:13px 0 11px}
+body.edunext-app .blog-home-body p{margin:0;color:#6A7280;font-size:13px;line-height:1.75}
+body.edunext-app .blog-read-link{display:inline-block;margin-top:auto;padding-top:23px;font-size:12px;font-weight:800;color:var(--edn-blue)}
+body.edunext-app .blog-home-list{display:grid;grid-template-rows:repeat(3,1fr);gap:12px}
+body.edunext-app .blog-mini{display:grid;grid-template-columns:140px 1fr;gap:16px;padding:12px}
+body.edunext-app .blog-mini-image{height:100%;min-height:142px}
+body.edunext-app .blog-mini>div{padding:4px 5px 5px 0;display:flex;flex-direction:column}
+body.edunext-app .blog-mini-meta{display:flex;justify-content:space-between;gap:8px;color:#7C8593;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.06em}
+body.edunext-app .blog-mini h3{margin:8px 0 7px;color:var(--edn-navy);font-size:17px;line-height:1.27}
+body.edunext-app .blog-mini p{margin:0;color:#727A88;font-size:11px;line-height:1.65;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+
+body.edunext-app .blog-page{padding-top:38px}
+body.edunext-app .blog-page-head{
+  display:flex;justify-content:space-between;align-items:end;gap:30px;padding-bottom:29px;border-bottom:1px solid #D8DBE1
+}
+body.edunext-app .blog-page-head h1{max-width:780px;font-size:clamp(38px,5vw,60px);line-height:1.03;color:var(--edn-navy);letter-spacing:-.045em;margin:0 0 12px}
+body.edunext-app .blog-page-head p{max-width:750px;margin:0;color:#687180;font-size:15px;line-height:1.8}
+body.edunext-app .blog-topic-row{display:flex;flex-wrap:wrap;gap:7px;padding:17px 0 27px}
+body.edunext-app .topic{
+  border:1px solid #D8DBE1;background:#fff;padding:8px 13px;color:#687180;font-size:11px;font-weight:700
+}
+body.edunext-app .topic.active,.body.edunext-app .topic:hover{border-color:#9DB5E8;color:var(--edn-blue);background:#F3F6FD}
+body.edunext-app .blog-page-feature{
+  display:grid;grid-template-columns:1.12fr .88fr;margin-bottom:22px
+}
+body.edunext-app .blog-page-feature-image{min-height:410px}
+body.edunext-app .blog-page-feature-body{padding:38px;display:flex;flex-direction:column;justify-content:center}
+body.edunext-app .blog-page-feature-body h2{font-size:34px;line-height:1.15;letter-spacing:-.035em;color:var(--edn-navy);margin:12px 0}
+body.edunext-app .blog-page-feature-body p{margin:0;color:#6B7482;font-size:13px;line-height:1.8}
+body.edunext-app .blog-page-note{margin-top:14px!important;padding-top:14px;border-top:1px solid #E3E5E8}
+body.edunext-app .blog-page-feature-body .btn{margin-top:22px;align-self:flex-start}
+body.edunext-app .blog-page-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+body.edunext-app .blog-page-card{display:flex;flex-direction:column}
+body.edunext-app .blog-page-card-image{height:210px}
+body.edunext-app .blog-page-card-body{padding:20px 21px 23px;display:flex;flex-direction:column;flex:1}
+body.edunext-app .blog-page-card-body h2{font-size:22px;line-height:1.28;letter-spacing:-.025em;color:var(--edn-navy);margin:11px 0 9px}
+body.edunext-app .blog-page-card-body p{margin:0;color:#6D7582;font-size:13px;line-height:1.7}
+body.edunext-app .blog-page-footer{
+  display:flex;justify-content:space-between;align-items:center;gap:25px;margin-top:34px;padding:31px 34px;
+  background:#E8E4DB;border:1px solid #D7D2C9
+}
+body.edunext-app .blog-page-footer h2{margin:0 0 7px;color:var(--edn-navy);font-size:28px}
+body.edunext-app .blog-page-footer p{margin:0;color:#6B717B;font-size:12px}
+body.edunext-app .blog-page-footer .btn{white-space:nowrap}
+
+@media (max-width:900px){
+  body.edunext-app .blog-home-grid{grid-template-columns:1fr}
+  body.edunext-app .blog-home-list{grid-template-rows:none}
+  body.edunext-app .blog-page-head{display:block}
+  body.edunext-app .blog-page-head .btn{margin-top:18px}
+  body.edunext-app .blog-page-feature{grid-template-columns:1fr}
+  body.edunext-app .blog-page-feature-image{min-height:300px}
+}
+@media (max-width:700px){
+  body.edunext-app .blog-home-image{height:240px}
+  body.edunext-app .blog-mini{grid-template-columns:102px 1fr}
+  body.edunext-app .blog-mini-image{min-height:112px}
+  body.edunext-app .blog-mini h3{font-size:15px}
+  body.edunext-app .blog-page-grid{grid-template-columns:1fr}
+  body.edunext-app .blog-page-feature-body{padding:26px}
+  body.edunext-app .blog-page-feature-body h2{font-size:28px}
+  body.edunext-app .blog-page-footer{display:block;padding:26px}
+  body.edunext-app .blog-page-footer .btn{margin-top:18px}
+}
