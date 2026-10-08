@@ -249,6 +249,69 @@ body.edunext-app .road-step small{
   color:var(--muted);
   font-size:12px;
 }
+body.edunext-app .teachers{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:16px;
+}
+body.edunext-app .teacher{
+  min-width:0;
+  padding:20px;
+}
+body.edunext-app .teacher-head{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+body.edunext-app .teacher-av{
+  width:52px;
+  height:52px;
+  flex:0 0 52px;
+  border-radius:50%;
+  background:var(--soft);
+  color:var(--blue);
+  display:grid;
+  place-items:center;
+  font-size:13px;
+  font-weight:800;
+}
+body.edunext-app .teacher h3{
+  margin:0;
+  font-size:16px;
+  overflow-wrap:anywhere;
+}
+body.edunext-app .teacher-head p{
+  margin:4px 0 0;
+  color:var(--muted);
+  font-size:13px;
+}
+body.edunext-app .teacher-meta{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  margin-top:16px;
+  padding-top:14px;
+  border-top:1px solid var(--line);
+  color:var(--muted);
+  font-size:13px;
+}
+body.edunext-app .teacher-course{
+  margin-top:12px;
+  font-weight:700;
+  color:var(--ink);
+  overflow-wrap:anywhere;
+}
+body.edunext-app .teacher-rating{
+  margin-top:8px;
+  color:#B26A00;
+  font-size:13px;
+  font-weight:700;
+}
+body.edunext-app .teacher-rating span{
+  color:var(--muted);
+  font-weight:400;
+}
+
 body.edunext-app .why{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
 body.edunext-app .why div{
   min-width:0;padding:18px;border-top:3px solid var(--blue);background:#fff;border-radius:0 0 var(--r) var(--r)
@@ -535,6 +598,8 @@ body.edunext-app{
   }
 }
 @media (max-width:760px){
+  body.edunext-app .teachers{grid-template-columns:1fr 1fr}
+
   body.edunext-app .roadmap{padding:22px}
   body.edunext-app .roadmap-steps{
     grid-template-columns:1fr;
@@ -597,6 +662,8 @@ body.edunext-app{
   body.edunext-app .cert{padding:34px 16px}
 }
 @media (max-width:640px){
+  body.edunext-app .teachers{grid-template-columns:1fr}
+
   body.edunext-app .brand{font-size:19px}
   body.edunext-app .mark{
     width:34px;
