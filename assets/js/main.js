@@ -83,14 +83,14 @@ const home=()=>\`<main class="home-new">
   </article>\`).join('')}</div>
 </div></section>
 
-<section class="home-section home-section-alt"><div class="wrap">
+<section id="cats" class="home-section home-section-alt"><div class="wrap">
   <div class="section-heading"><span class="eyebrow">KHÁM PHÁ</span><h2>Học theo mục tiêu của bạn</h2><p>Không cần xem hàng chục lựa chọn. Bắt đầu từ đúng lĩnh vực bạn đang cần.</p></div>
   <div class="category-list">${CATS.map((x,i)=>\`<button class="category-row" data-a="cat" data-v="${x}">
     <span class="category-num">${String(i+1).padStart(2,'0')}</span><span class="category-name"><b>${x}</b><small>${C.filter(c=>c.cat===x).length} khóa học đang có</small></span><span class="category-arrow">↗</span>
   </button>\`).join('')}</div>
 </div></section>
 
-<section class="home-section"><div class="wrap">
+<section id="roadmap" class="home-section"><div class="wrap">
   <div class="section-heading split"><div><span class="eyebrow">LỘ TRÌNH</span><h2>Từ nền tảng đến kỹ năng thực tế</h2><p>Đi theo thứ tự hợp lý để không bị học lan man.</p></div><a href="#/courses" class="section-link">Khám phá khóa học →</a></div>
   <div class="pathway">
     <article><span>01</span><h3>Nền tảng</h3><p>Hiểu tư duy lập trình và các khái niệm cốt lõi.</p><a href="#/course/csharp">Bắt đầu với C# →</a></article>
@@ -121,7 +121,7 @@ const home=()=>\`<main class="home-new">
   <p>— Triết lý trải nghiệm học tập của EduNext</p>
 </div></section>
 
-<section class="home-section faq-section"><div class="wrap faq-layout">
+<section id="faq" class="home-section faq-section"><div class="wrap faq-layout">
   <div><span class="eyebrow">HỎI ĐÁP</span><h2>Những điều bạn thường muốn biết trước khi bắt đầu</h2><a href="#/courses" class="section-link">Bắt đầu khám phá →</a></div>
   <div>${[['Tôi có thể học trên điện thoại không?','Có. Giao diện được thiết kế responsive để học trên máy tính và thiết bị di động.'],['Tiến độ học được lưu như thế nào?','Bản demo lưu tiến độ trên trình duyệt bạn đang sử dụng để có thể quay lại học tiếp.'],['Làm sao để nhận chứng chỉ?','Hoàn thành toàn bộ bài học và đạt yêu cầu quiz của khóa học, sau đó mở trang chứng chỉ.']].map(x=>\`<details><summary>${x[0]}</summary><p>${x[1]}</p></details>\`).join('')}</div>
 </div></section>
