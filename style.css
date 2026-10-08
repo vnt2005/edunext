@@ -220,6 +220,24 @@ body.edunext-app .teacher-link{
 body.edunext-app .teacher-link:hover{color:var(--blue)}
 body.edunext-app .teacher-link span{color:var(--blue);font-size:18px;flex:0 0 auto}
 
+body.edunext-app .stats-panel{
+  display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1.9fr);gap:20px;
+  background:var(--ink);color:#fff;border-radius:20px;padding:28px
+}
+body.edunext-app .stats-heading{min-width:0}
+body.edunext-app .stats-kicker{
+  display:inline-block;color:#9DB8FF;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px
+}
+body.edunext-app .stats-heading h2{margin-bottom:10px}
+body.edunext-app .stats-heading p{margin:0;color:#C9D4F0;font-size:14px;line-height:1.7}
+body.edunext-app .stats-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+body.edunext-app .stat-item{
+  min-width:0;background:rgba(255,255,255,.07);border:1px solid rgba(184,196,227,.18);
+  border-radius:14px;padding:20px
+}
+body.edunext-app .stat-item b{display:block;font-size:32px;line-height:1.1;margin-bottom:6px}
+body.edunext-app .stat-item span{color:#C9D4F0;font-size:13px}
+
 body.edunext-app .review-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
 body.edunext-app .review-card{
   min-width:0;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:20px;
@@ -484,6 +502,7 @@ body.edunext-app{
   body.edunext-app .cats{grid-template-columns:repeat(3,minmax(0,1fr))}
   body.edunext-app .why{grid-template-columns:1fr 1fr}
   body.edunext-app .roadmap-track{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+  body.edunext-app .stats-panel{grid-template-columns:1fr}
   body.edunext-app .roadmap-track::before{display:none}
   body.edunext-app .buy,
   body.edunext-app .side{position:static}
