@@ -46,21 +46,28 @@ $css  = $wp ? get_stylesheet_uri() : 'style.css';
         <div class="ft-col">
           <h3>Học tập</h3>
           <a href="#/courses">Khóa học</a>
-          <button data-a="sc" data-v="cats">Danh mục</button>
-          <button data-a="sc" data-v="faq">Hỏi đáp</button>
+          <button data-a="sc" data-v="roadmap">Lộ trình học</button>
+          <button data-a="sc" data-v="teachers">Giảng viên</button>
+          <button data-a="sc" data-v="blog">Blog</button>
         </div>
 
         <div class="ft-col">
-          <h3>Tài khoản</h3>
+          <h3>Hỗ trợ</h3>
+          <button data-a="sc" data-v="faq">Câu hỏi thường gặp</button>
           <a href="#/login">Đăng nhập</a>
           <a href="#/register">Đăng ký</a>
           <a href="#/dashboard">Trang cá nhân</a>
         </div>
 
         <div class="ft-col">
-          <h3>EduNext</h3>
+          <h3>Về EduNext</h3>
           <p>Học đúng kiến thức, phát triển đúng tương lai.</p>
-          <p class="ft-muted">Theo dõi tiến độ học tập của bạn ngay trên trình duyệt.</p>
+          <p class="ft-muted">Nền tảng học trực tuyến dành cho học sinh, sinh viên và người đi làm.</p>
+          <div class="ft-social" aria-label="Mạng xã hội">
+            <span>Facebook</span>
+            <span>YouTube</span>
+            <span>LinkedIn</span>
+          </div>
         </div>
       </div>
 
