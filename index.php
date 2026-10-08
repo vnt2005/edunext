@@ -25,7 +25,7 @@ $css  = $wp ? get_stylesheet_uri() : 'style.css';
         <a href="#/courses">Khóa học</a>
         <button data-a="sc" data-v="cats">Danh mục</button>
         <button data-a="sc" data-v="faq">Hỏi đáp</button>
-        <form class="sf" data-form="search"><input name="q" placeholder="Tìm khóa học..." aria-label="Tìm khóa học"></form>
+        
       </nav>
       <div id="auth" class="au"></div>
       <button class="mb" data-a="menu" aria-label="Mở menu">☰</button>
