@@ -538,6 +538,16 @@ body.edunext-app{
   }
 }
 @media (max-width:420px){
+  body.edunext-app .ft-grid{
+    grid-template-columns:1fr;
+    gap:24px;
+  }
+  body.edunext-app .ft-brand{
+    grid-column:auto;
+  }
+  body.edunext-app footer{
+    padding-top:36px;
+  }
   body.edunext-app .wrap,
   body.edunext-app .page{
     width:calc(100% - 20px)!important;
