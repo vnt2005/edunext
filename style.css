@@ -1852,3 +1852,43 @@ body.edunext-app .preview-buy-row{
 body.edunext-app .preview-buy-row strong{font-size:21px;color:var(--edn-navy)}
 body.edunext-app .preview-buy-row del{margin-left:7px;color:#9299A5;font-size:11px}
 body.edunext-app .preview-buy-row .btn{white-space:nowrap}
+
+
+/* Contact channel icons */
+body.edunext-app .contact-detail{
+  display:flex!important;
+  align-items:center;
+  gap:12px;
+  padding:13px 0!important;
+  border-top:1px solid var(--line);
+}
+body.edunext-app .contact-detail:first-of-type{border-top:0}
+body.edunext-app .contact-detail-icon{
+  width:42px;height:42px;flex:0 0 42px;
+  display:grid;place-items:center;
+  border:1px solid #D7DCE5;
+  background:#F7F9FC;
+  color:var(--edn-blue);
+}
+body.edunext-app .contact-detail-icon svg{
+  width:22px;height:22px;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.8;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+body.edunext-app .contact-detail:nth-of-type(1) .contact-detail-icon svg path:first-child{fill:currentColor;stroke:none}
+body.edunext-app .contact-detail:nth-of-type(2) .contact-detail-icon svg path:first-child{fill:currentColor;stroke:none}
+body.edunext-app .contact-detail>span:last-child b,
+body.edunext-app .contact-detail>span:last-child small{display:block}
+body.edunext-app .contact-detail>span:last-child b{font-size:13px;color:var(--edn-navy)}
+body.edunext-app .contact-detail>span:last-child small{margin-top:2px;color:var(--muted);font-size:11px}
+body.edunext-app .contact-hours{
+  padding:12px 0;
+  border-top:1px solid var(--line);
+}
+body.edunext-app .contact-hours b,
+body.edunext-app .contact-hours span{display:block}
+body.edunext-app .contact-hours b{font-size:12px;color:var(--edn-navy)}
+body.edunext-app .contact-hours span{margin-top:2px;color:var(--muted);font-size:12px}
