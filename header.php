@@ -22,7 +22,7 @@
         <div class="lms-nav-group-label">HỌC TẬP</div>
         <a href="#/" class="lms-nav-item"><span class="lms-nav-icon">⌂</span><span>Trang chủ</span></a>
         <a href="#/dashboard" class="lms-nav-item"><span class="lms-nav-icon">▣</span><span>Trang học tập</span></a>
-        <a href="#/dashboard" class="lms-nav-item"><span class="lms-nav-icon">◇</span><span>Chứng chỉ</span></a>
+        <a href="#/certificates" class="lms-nav-item"><span class="lms-nav-icon">◇</span><span>Chứng chỉ</span></a>
 
         <div class="lms-nav-group-label">KHÁM PHÁ</div>
         <a href="#/courses" class="lms-nav-item"><span class="lms-nav-icon">⌘</span><span>Khám phá</span></a>
