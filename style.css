@@ -494,6 +494,27 @@ body.edunext-app .cta{
 }
 body.edunext-app .cta p{margin:0;color:#D6E2FF}
 body.edunext-app .cta .btn-g{color:var(--ink)}
+body.edunext-app .cta-kicker{
+  display:inline-block;
+  margin-bottom:8px;
+  color:#D6E2FF;
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:.08em;
+}
+body.edunext-app .cta h2{
+  margin:0 0 8px;
+}
+body.edunext-app .cta-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+body.edunext-app .cta-register{
+  background:#fff;
+  color:var(--ink);
+}
+
 
 /* Pages */
 body.edunext-app .page{padding:32px 0 64px;min-height:70vh}
