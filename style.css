@@ -548,6 +548,7 @@ body.edunext-app{
   }
 }
 @media (max-width:760px){
+  body.edunext-app .roadmap-course-grid{grid-template-columns:1fr}
   body.edunext-app .roadmap{padding:22px}
   body.edunext-app .roadmap-steps{
     grid-template-columns:1fr;
