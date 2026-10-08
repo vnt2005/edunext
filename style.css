@@ -1435,3 +1435,30 @@ body.edunext-app .admin-activity-row strong{white-space:nowrap}
   body.edunext-app .checkout-summary{padding:16px}
   body.edunext-app .course-facts{grid-template-columns:1fr}
 }
+
+/* Real admin / teacher workspaces */
+body.edunext-app .admin-wide{
+  margin-top:18px;
+  min-width:0;
+}
+body.edunext-app .admin-wide .sh{
+  align-items:center;
+}
+body.edunext-app .admin-wide .admin-table{
+  min-width:820px;
+}
+body.edunext-app .status-off{
+  color:var(--bad);
+  font-size:12px;
+  font-weight:700;
+  white-space:nowrap;
+}
+body.edunext-app .admin-table button:disabled{
+  opacity:.45;
+  cursor:not-allowed;
+}
+@media (max-width:960px){
+  body.edunext-app .admin-wide .admin-table{
+    min-width:760px;
+  }
+}
