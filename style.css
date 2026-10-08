@@ -380,6 +380,35 @@ body.edunext-app .review-course{
   color:var(--muted);
   font-size:12px;
 }
+body.edunext-app .platform-stats{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:16px;
+}
+body.edunext-app .stat{
+  min-width:0;
+  padding:22px;
+  text-align:center;
+}
+body.edunext-app .stat b{
+  display:block;
+  color:var(--blue);
+  font-size:32px;
+  line-height:1.1;
+}
+body.edunext-app .stat span{
+  display:block;
+  margin-top:8px;
+  font-size:15px;
+  font-weight:800;
+}
+body.edunext-app .stat small{
+  display:block;
+  margin-top:7px;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.5;
+}
 
 body.edunext-app .why{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
 body.edunext-app .why div{
@@ -615,6 +644,8 @@ body.edunext-app{
   body.edunext-app .sh{flex-wrap:wrap}
 }
 @media (max-width:960px){
+  body.edunext-app .platform-stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+
   body.edunext-app .hg,
   body.edunext-app .dg,
   body.edunext-app .ll,
@@ -733,6 +764,8 @@ body.edunext-app{
   body.edunext-app .cert{padding:34px 16px}
 }
 @media (max-width:640px){
+  body.edunext-app .platform-stats{grid-template-columns:1fr}
+
   body.edunext-app .review{flex-basis:100%}
 
   body.edunext-app .teachers{grid-template-columns:1fr}
