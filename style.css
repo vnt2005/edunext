@@ -3380,3 +3380,34 @@ body.edunext-app .lms-topbar-profile .lms-profile-menu{
   body.edunext-app .lms-topbar-profile .lms-profile-chevron{display:none}
   body.edunext-app .lms-topbar-profile .lms-profile-avatar{width:30px;height:30px;flex-basis:30px}
 }
+
+
+/* The generic details rule adds a border to every details element.
+   Reset it specifically for the topbar learner profile container. */
+body.edunext-app #lms-topbar-profile,
+body.edunext-app #lms-topbar-profile .lms-profile,
+body.edunext-app #lms-topbar-profile.lms-topbar-profile details,
+body.edunext-app #lms-topbar-profile .lms-profile summary{
+  margin:0 !important;
+  border:0 !important;
+  border-radius:0 !important;
+  outline:0 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+}
+body.edunext-app #lms-topbar-profile .lms-profile{
+  padding:0 !important;
+}
+body.edunext-app #lms-topbar-profile .lms-profile summary{
+  min-height:36px !important;
+  min-width:170px;
+  padding:4px 0 !important;
+}
+body.edunext-app #lms-topbar-profile .lms-profile summary:hover,
+body.edunext-app #lms-topbar-profile .lms-profile summary:focus,
+body.edunext-app #lms-topbar-profile .lms-profile summary:focus-visible{
+  border:0 !important;
+  outline:0 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+}
