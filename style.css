@@ -3389,3 +3389,88 @@ body.edunext-app .cio-courses-page .lms-course-price del{
 body.edunext-app .cio-courses-page .lms-course-progress small{
   font-size:11px;
 }
+/* Place learner profile in the top bar; clicking it opens the dashboard directly */
+body.edunext-app .lms-sidebar-bottom[hidden]{display:none!important}
+body.edunext-app .lms-top-profile{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  max-width:210px;
+  min-width:0;
+  padding:5px 9px;
+  border:1px solid #e2e8f0;
+  border-radius:9px;
+  background:#fff;
+  color:#334155;
+  text-decoration:none;
+  transition:background .15s ease,border-color .15s ease;
+}
+body.edunext-app .lms-top-profile:hover{
+  background:#f8fafc;
+  border-color:#cbd5e1;
+}
+body.edunext-app .lms-top-profile .lms-profile-avatar{
+  width:34px;
+  height:34px;
+  flex-basis:34px;
+  font-size:11px;
+}
+body.edunext-app .lms-top-profile-copy{
+  display:block;
+  min-width:0;
+}
+body.edunext-app .lms-top-profile-copy strong{
+  display:block;
+  max-width:130px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  color:#334155;
+  font-size:12px;
+  font-weight:700;
+  line-height:1.25;
+}
+body.edunext-app .lms-top-profile-copy small{
+  display:block;
+  margin-top:2px;
+  color:#94a3b8;
+  font-size:10px;
+  line-height:1.2;
+}
+body.edunext-app .lms-top-logout{
+  display:grid;
+  place-items:center;
+  width:32px;
+  height:32px;
+  flex:0 0 32px;
+  border:1px solid #e2e8f0;
+  border-radius:7px;
+  background:#fff;
+  color:#64748b;
+  font-size:18px;
+  cursor:pointer;
+}
+body.edunext-app .lms-top-logout:hover{
+  background:#f1f5f9;
+  color:#0f172a;
+}
+body.edunext-app .lms-admin-mode .lms-top-profile{
+  background:#111827;
+  border-color:#263244;
+}
+body.edunext-app .lms-admin-mode .lms-top-profile-copy strong{
+  color:#e5e7eb;
+}
+body.edunext-app .lms-admin-mode .lms-top-logout{
+  background:#111827;
+  border-color:#263244;
+  color:#cbd5e1;
+}
+@media (max-width:620px){
+  body.edunext-app .lms-topbar-inner-reference{gap:7px}
+  body.edunext-app .lms-top-profile{gap:6px;padding:4px 6px;max-width:118px}
+  body.edunext-app .lms-top-profile .lms-profile-avatar{width:29px;height:29px;flex-basis:29px}
+  body.edunext-app .lms-top-profile-copy strong{max-width:68px;font-size:10px}
+  body.edunext-app .lms-top-profile-copy small{display:none}
+  body.edunext-app .lms-top-logout{width:28px;height:30px;flex-basis:28px;font-size:16px}
+}
