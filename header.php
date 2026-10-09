@@ -34,9 +34,6 @@
         <a href="#/faq" class="lms-nav-item"><span class="lms-nav-icon">?</span><span>Hỏi đáp</span></a>
     </nav>
 
-    <div class="lms-sidebar-bottom" id="lms-sidebar-profile">
-        <a href="#/register" class="lms-nav-item"><span class="lms-nav-icon">＋</span><span>Tạo tài khoản</span></a>
-    </div>
 </aside>
 
 <header class="topbar-reference">
@@ -49,6 +46,7 @@
             <input name="q" placeholder="Tìm khóa học..." aria-label="Tìm khóa học">
         </form>
         <button class="lms-notify" type="button" aria-label="Thông báo">♢</button>
+    <div id="lms-topbar-profile" class="lms-topbar-profile"></div>
         <div id="auth" class="au lms-auth"></div>
     </div>
 </header>
