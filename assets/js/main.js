@@ -56,14 +56,67 @@ const OUTCOMES={
 "Marketing":["Hiểu các khái niệm quan trọng trong lĩnh vực","Học theo ví dụ và tình huống thực tế","Luyện tập theo từng mục tiêu nhỏ","Xây dựng nền tảng để học chuyên sâu"]
 };
 
-const home=()=>{const popular=[...C].sort((a,b)=>b.n-a.n),owned=C.filter(x=>EN()[x.id]).slice(0,4);return `<div class="lms-store-home">
-<section class="lms-welcome"><div><span class="eyebrow">EDUNEXT · COURSE STORE</span><h1>Khám phá khóa học theo cách đơn giản hơn.</h1><p>Tìm nội dung phù hợp, xem giá và chương trình học rõ ràng, rồi mua khóa học bạn thật sự muốn học.</p></div><a class="btn btn-p" href="#/courses">Xem tất cả khóa học</a></section>
-<section id="cats" class="lms-category-section"><div class="lms-section-head"><div><span class="lms-kicker">DANH MỤC</span><h2>Tìm theo chủ đề</h2></div><a href="#/courses">Xem tất cả →</a></div><div class="lms-category-chips">${CATS.map((x,i)=>'<button class="lms-category-chip" data-a="cat" data-v="'+x+'"><span>'+String(i+1).padStart(2,'0')+'</span>'+x+'</button>').join('')}</div></section>
-${D.me&&owned.length?'<section class="lms-home-section"><div class="lms-section-head"><div><span class="lms-kicker">TIẾP TỤC</span><h2>Khóa học của bạn</h2></div><a href="#/dashboard">Trang học tập →</a></div><div class="grid lms-course-grid">'+owned.map(card).join('')+'</div></section>':''}
-<section class="lms-home-section"><div class="lms-section-head"><div><span class="lms-kicker">NỔI BẬT</span><h2>Khóa học được quan tâm nhiều</h2><p>Thiết kế theo kiểu LMS gọn, tập trung vào việc chọn khóa học và bắt đầu học nhanh.</p></div><a href="#/best-sellers">Xem bán chạy →</a></div><div class="grid lms-course-grid">${popular.slice(0,4).map(card).join('')}</div></section>
-<section class="lms-home-section lms-info-grid"><a class="lms-info-card" href="#/dashboard"><span>01</span><div><b>Mua một lần, học theo tiến độ</b><p>Sau khi thanh toán, khóa học được lưu trong tài khoản và bạn có thể quay lại bất cứ lúc nào.</p></div><strong>→</strong></a><a class="lms-info-card" href="#/blog"><span>02</span><div><b>Blog học tập thực tế</b><p>Bài viết ngắn về C#, API, dự án và cách học để áp dụng ngay vào project.</p></div><strong>→</strong></a></section>
-<section class="lms-home-section lms-blog-strip"><div class="lms-section-head"><div><span class="lms-kicker">BLOG</span><h2>Đọc thêm trước khi bắt đầu</h2></div><a href="#/blog">Xem blog →</a></div><div class="lms-blog-grid">${BLOG_ARTICLES.slice(0,3).map(a=>'<article class="lms-blog-card"><a href="#/blog"><img src="'+a.image+'" alt="'+esc(a.title)+'" loading="lazy"></a><div><span>'+a.tag+'</span><h3><a href="#/blog">'+a.title+'</a></h3><p>'+a.excerpt+'</p></div></article>').join('')}</div></section>
-<section class="lms-bottom-cta"><div><span class="lms-kicker">EDUNEXT</span><h2>Chọn một khóa học và bắt đầu ngay hôm nay.</h2><p>Không cần lướt qua hàng chục màn hình. Tìm khóa học, xem nội dung, mua và học.</p></div><a class="btn btn-p" href="#/courses">Khám phá khóa học</a></section>
+const home=()=>{const popular=[...C].sort((a,b)=>b.n-a.n),owned=C.filter(x=>EN()[x.id]).slice(0,4),avgRating=(C.reduce((sum,c)=>sum+c.r,0)/C.length).toFixed(1);
+const categoryItems=[
+{name:'Lập trình',desc:'Xây dựng kỹ năng và dự án thực tế',image:'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=85&w=900'},
+{name:'Data / AI',desc:'Khám phá dữ liệu và trí tuệ nhân tạo',image:'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=85&w=900'},
+{name:'Thiết kế',desc:'Biến ý tưởng thành trải nghiệm đẹp',image:'https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&q=85&w=900'},
+{name:'Ngoại ngữ',desc:'Tự tin giao tiếp trong công việc',image:'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=85&w=900'},
+{name:'Marketing',desc:'Tiếp cận khách hàng và phát triển thương hiệu',image:'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=85&w=900'}
+];
+const categoryMarkup=categoryItems.map(x=>'<button class="edn-category-card" type="button" data-a="cat" data-v="'+x.name+'"><span class="edn-category-photo"><img src="'+x.image+'" alt="'+x.name+'" loading="lazy"><span class="edn-category-arrow">↗</span></span><span class="edn-category-name">'+x.name+'</span><span class="edn-category-desc">'+x.desc+'</span></button>').join('');
+const stories=[
+{image:'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&q=85&w=700',label:'HỌC TẬP',title:'Từng bước làm chủ kỹ năng mới'},
+{image:'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=85&w=700',label:'THỰC HÀNH',title:'Biến kiến thức thành sản phẩm'},
+{image:'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=85&w=700',label:'PHÁT TRIỂN',title:'Học theo nhịp độ của riêng bạn'},
+{image:'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=85&w=700',label:'CỘNG ĐỒNG',title:'Cùng nhau tiến bộ mỗi ngày'}
+];
+return `<div class="lms-store-home edn-home">
+<section class="edn-hero">
+  <div class="edn-hero-copy">
+    <span class="edn-hero-eyebrow"><span>✦</span> HỌC CÙNG CHUYÊN GIA</span>
+    <h1>Học mọi lúc, mọi nơi.<br><span>Kiến tạo tương lai.</span></h1>
+    <p>Khám phá kiến thức mới, phát triển kỹ năng và tự tin tiến xa hơn với những khóa học phù hợp dành cho bạn.</p>
+    <form class="edn-hero-search" data-form="search">
+      <span aria-hidden="true">⌕</span>
+      <input name="q" type="search" placeholder="Tìm khóa học của bạn..." aria-label="Tìm khóa học">
+      <button type="submit">Tìm kiếm <span>→</span></button>
+    </form>
+    <div class="edn-hero-actions"><a class="edn-hero-primary" href="#/courses">Khám phá khóa học <span>↗</span></a><a class="edn-hero-secondary" href="#/categories">Xem danh mục</a></div>
+    <div class="edn-hero-trust"><span class="edn-trust-stars">★★★★★</span><span><strong>${avgRating}/5</strong> điểm đánh giá khóa học</span><i></i><span><strong>${C.length}</strong> khóa học để khám phá</span></div>
+  </div>
+  <div class="edn-hero-visual" aria-label="Không gian học tập">
+    <div class="edn-hero-orbit edn-hero-orbit-one"></div><div class="edn-hero-orbit edn-hero-orbit-two"></div>
+    <span class="edn-hero-spark edn-spark-one">✦</span><span class="edn-hero-spark edn-spark-two">✳</span>
+    <img class="edn-hero-person" src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&q=90&w=1000" alt="Học viên đang học tập" fetchpriority="high">
+    <div class="edn-floating-stat edn-floating-rating"><strong>${avgRating}</strong><span class="edn-stat-stars">★★★★★</span><small>Đánh giá khóa học</small></div>
+    <div class="edn-floating-stat edn-floating-topics"><span class="edn-topic-symbol">✦</span><div><strong>${CATS.length} chủ đề</strong><small>Khám phá lĩnh vực bạn yêu thích</small></div></div>
+  </div>
+</section>
+<section id="cats" class="edn-categories-section">
+  <div class="edn-section-heading"><div><span class="edn-section-kicker">KHÁM PHÁ ĐIỀU BẠN YÊU THÍCH</span><h2>Khám phá danh mục nổi bật</h2><p>Bắt đầu từ lĩnh vực phù hợp với mục tiêu của bạn.</p></div><a class="edn-text-link" href="#/courses">Tất cả khóa học <span>→</span></a></div>
+  <div class="edn-category-grid">${categoryMarkup}</div>
+</section>
+${D.me&&owned.length?'<section class="edn-owned-section"><div class="edn-section-heading"><div><span class="edn-section-kicker">TIẾP TỤC HÀNH TRÌNH</span><h2>Chào mừng bạn quay trở lại</h2><p>Tiếp tục từ nơi bạn đã dừng lại.</p></div><a class="edn-text-link" href="#/dashboard">Trang học tập <span>→</span></a></div><div class="grid lms-course-grid edn-popular-grid">'+owned.map(card).join('')+'</div></section>':''}
+<section class="edn-popular-section">
+  <div class="edn-section-heading"><div><span class="edn-section-kicker">ĐƯỢC QUAN TÂM NHIỀU</span><h2>Khóa học nổi bật</h2><p>Lựa chọn kiến thức thực tế và bắt đầu nâng cấp bản thân ngay hôm nay.</p></div><a class="edn-text-link" href="#/best-sellers">Xem bán chạy <span>→</span></a></div>
+  <div class="edn-course-tabs"><button type="button" class="edn-course-tab is-active" data-a="clear">Tất cả</button>${CATS.map(x=>'<button type="button" class="edn-course-tab" data-a="cat" data-v="'+x+'">'+x+'</button>').join('')}</div>
+  <div class="grid lms-course-grid edn-popular-grid">${popular.slice(0,6).map(card).join('')}</div>
+  <div class="edn-popular-footer"><a class="edn-outline-link" href="#/courses">Khám phá tất cả khóa học <span>→</span></a></div>
+</section>
+<section class="edn-learning-banner">
+  <div class="edn-learning-banner-content"><span class="edn-section-kicker">LỘ TRÌNH CỦA RIÊNG BẠN</span><h2>Tiến bộ từng ngày,<br><span>theo cách của bạn.</span></h2><p>Lưu lại tiến độ, quay lại bài học gần nhất và theo dõi những gì bạn đã hoàn thành.</p><a class="edn-light-button" href="${D.me?'#/dashboard':'#/register'}">${D.me?'Tiếp tục học':'Bắt đầu hành trình'} <span>→</span></a></div>
+  <div class="edn-learning-graphic"><div class="edn-progress-card"><div class="edn-progress-card-head"><span class="edn-progress-icon">✓</span><span><strong>Lộ trình học tập</strong><small>Chia nhỏ mục tiêu của bạn</small></span></div><div class="edn-progress-row"><span>Kiến thức nền tảng</span><strong>01</strong></div><div class="edn-progress-bar"><span style="width:78%"></span></div><div class="edn-progress-row"><span>Thực hành dự án</span><strong>02</strong></div><div class="edn-progress-bar blue"><span style="width:54%"></span></div><div class="edn-progress-card-foot"><span>✦</span> Mỗi bước tiến đều đáng giá</div></div><span class="edn-graphic-dot edn-graphic-dot-one"></span><span class="edn-graphic-dot edn-graphic-dot-two"></span></div>
+</section>
+<section class="edn-stories-section">
+  <div class="edn-section-heading"><div><span class="edn-section-kicker">HỌC TẬP • THỰC HÀNH • PHÁT TRIỂN</span><h2>Cùng nhau tiến bộ mỗi ngày</h2><p>Mỗi hành trình bắt đầu bằng một bài học và lớn dần qua từng lần thực hành.</p></div><a class="edn-text-link" href="#/blog">Đọc chia sẻ học tập <span>→</span></a></div>
+  <div class="edn-stories-grid">${stories.map(s=>'<a class="edn-story-card" href="#/blog"><img src="'+s.image+'" alt="" loading="lazy"><span class="edn-story-shade"></span><span class="edn-story-label">'+s.label+'</span><span class="edn-story-content"><strong>'+s.title+'</strong><small>Khám phá bài viết <b>↗</b></small></span></a>').join('')}</div>
+</section>
+<section class="edn-blog-section">
+  <div class="edn-section-heading"><div><span class="edn-section-kicker">GÓC KIẾN THỨC EDUNEXT</span><h2>Ý tưởng hay cho hành trình học tập</h2><p>Chia sẻ ngắn gọn để bạn học tốt hơn và áp dụng được nhiều hơn.</p></div><a class="edn-text-link" href="#/blog">Tất cả bài viết <span>→</span></a></div>
+  <div class="lms-blog-grid edn-home-blog-grid">${BLOG_ARTICLES.slice(0,3).map(a=>'<article class="lms-blog-card"><a href="#/blog"><img src="'+a.image+'" alt="'+esc(a.title)+'" loading="lazy"></a><div><span>'+a.tag+'</span><h3><a href="#/blog">'+a.title+'</a></h3><p>'+a.excerpt+'</p><a class="edn-blog-read" href="#/course/'+a.course+'">Tìm hiểu khóa học liên quan <span>→</span></a></div></article>').join('')}</div>
+</section>
+<section class="edn-bottom-cta"><div><span class="edn-section-kicker">BƯỚC TIẾP THEO BẮT ĐẦU TỪ BẠN</span><h2>Sẵn sàng khám phá điều mới?</h2><p>Chọn một khóa học phù hợp và bắt đầu hành trình của bạn cùng EduNext.</p></div><a href="#/courses">Tìm khóa học phù hợp <span>→</span></a></section>
 </div>`};const grp=(t,k,o)=>`<div><h4>${t}</h4>${o.map(x=>Array.isArray(x)?x:[x,x||'Tất cả']).map(([v,l])=>`<label><input type="radio" name="${k}" data-f="${k}" value="${v}" ${f[k]===v?'checked':''}> ${l}</label>`).join('')}</div>`;
 const list=()=>{const root=$('#list');if(!root)return;let rows=C.filter(c=>{const q=(f.q||'').trim().toLowerCase();return (!q||[c.t,c.cat,c.tc,c.lvl].some(v=>String(v).toLowerCase().includes(q)))&&(!f.cat||c.cat===f.cat)});if(f.sort==='lo')rows.sort((a,b)=>a.p-b.p);else if(f.sort==='hi')rows.sort((a,b)=>b.p-a.p);else rows.sort((a,b)=>b.n-a.n);root.innerHTML=rows.map(card).join('');const count=$('#cnt');if(count)count.textContent=rows.length;};const courses=()=>{hook=list;return `<div class="wrap page cio-courses-page">
 <div class="cio-page-head">
