@@ -5206,3 +5206,599 @@ body.edunext-app .edn-certificate-support a b{font-size:10px}
  body.edunext-app .edn-certificate-stat strong{font-size:18px}
  body.edunext-app .edn-certificate-value-card{min-height:155px}
 }
+/* =========================================================
+   EduNext Explore page — visual course discovery dashboard
+   ========================================================= */
+body.edunext-app #app .edn-explore-page{
+  width:100%;
+  max-width:1480px!important;
+  margin:0 auto;
+  padding:14px 18px 42px;
+  color:#172b4d;
+}
+body.edunext-app .edn-explore-hero{
+  position:relative;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,.94fr);
+  align-items:center;
+  min-height:238px;
+  overflow:hidden;
+  isolation:isolate;
+  border:1px solid #b5dcff;
+  border-radius:13px;
+  background:linear-gradient(110deg,#168de8 0%,#387cf4 48%,#8fc7ff 100%);
+  box-shadow:0 8px 22px rgba(29,111,210,.09);
+}
+body.edunext-app .edn-explore-hero:before{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  top:-190px;
+  left:36%;
+  width:390px;
+  height:390px;
+  border:1px solid rgba(255,255,255,.15);
+  border-radius:50%;
+  box-shadow:0 0 0 25px rgba(255,255,255,.035),0 0 0 57px rgba(255,255,255,.025);
+}
+body.edunext-app .edn-explore-hero-copy{
+  position:relative;
+  z-index:3;
+  align-self:center;
+  max-width:620px;
+  padding:25px 0 25px 28px;
+  color:#fff;
+}
+body.edunext-app .edn-explore-hero-kicker{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  min-height:23px;
+  padding:0 10px;
+  border-radius:999px;
+  background:rgba(255,255,255,.91);
+  color:#177bd2;
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:.04em;
+}
+body.edunext-app .edn-explore-hero h1{
+  margin:13px 0 9px;
+  color:#fff;
+  font-size:clamp(27px,2.5vw,38px);
+  font-weight:900;
+  line-height:1.12;
+  letter-spacing:-.045em;
+}
+body.edunext-app .edn-explore-hero-copy>p{
+  max-width:490px;
+  margin:0;
+  color:rgba(255,255,255,.9);
+  font-size:10px;
+  line-height:1.75;
+}
+body.edunext-app .edn-explore-hero-button{
+  display:inline-flex;
+  align-items:center;
+  gap:11px;
+  min-height:35px;
+  margin-top:15px;
+  padding:0 14px;
+  border:1px solid rgba(255,255,255,.6);
+  border-radius:999px;
+  background:#fff;
+  color:#0878cf;
+  font-size:9px;
+  font-weight:900;
+  text-decoration:none;
+  box-shadow:0 5px 13px rgba(14,69,145,.13);
+  transition:transform .16s ease,box-shadow .16s ease;
+}
+body.edunext-app .edn-explore-hero-button:hover{transform:translateY(-2px);box-shadow:0 8px 17px rgba(14,69,145,.2)}
+body.edunext-app .edn-explore-hero-button b{font-size:14px}
+body.edunext-app .edn-explore-hero-image{
+  position:absolute;
+  z-index:1;
+  top:0;
+  right:0;
+  bottom:0;
+  width:52%;
+  overflow:hidden;
+  background:#85b8f1;
+}
+body.edunext-app .edn-explore-hero-image:before{
+  content:"";
+  position:absolute;
+  z-index:1;
+  inset:0;
+  background:linear-gradient(90deg,#377cf1 0%,rgba(55,124,241,.77) 12%,rgba(55,124,241,.08) 46%,rgba(55,124,241,.02) 100%);
+  pointer-events:none;
+}
+body.edunext-app .edn-explore-hero-image img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center 43%;
+}
+body.edunext-app .edn-explore-float-icon{
+  position:absolute;
+  z-index:2;
+  display:grid;
+  place-items:center;
+  width:38px;
+  height:38px;
+  border:1px solid rgba(255,255,255,.6);
+  border-radius:11px;
+  background:rgba(255,255,255,.88);
+  color:#157dde;
+  font-size:20px;
+  font-weight:900;
+  box-shadow:0 7px 15px rgba(26,71,139,.12);
+}
+body.edunext-app .edn-float-cap{left:19%;top:22%;transform:rotate(-8deg)}
+body.edunext-app .edn-float-chart{right:18%;top:27%;font-size:25px;transform:rotate(6deg)}
+body.edunext-app .edn-float-idea{right:31%;bottom:17%;width:32px;height:32px;border-radius:10px;background:#ff8c5a;color:#fff;transform:rotate(9deg)}
+
+body.edunext-app .edn-explore-categories{margin:16px 0 27px;scroll-margin-top:80px}
+body.edunext-app .edn-explore-category-grid{
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:12px;
+}
+body.edunext-app .edn-explore-category{
+  display:block;
+  min-width:0;
+  padding:0;
+  overflow:hidden;
+  border:1px solid #e5edf7;
+  border-radius:11px;
+  background:#fff;
+  color:#172b4d;
+  text-align:left;
+  cursor:pointer;
+  box-shadow:0 4px 12px rgba(27,64,111,.035);
+  transition:transform .16s ease,border-color .16s ease,box-shadow .16s ease;
+}
+body.edunext-app .edn-explore-category:hover,
+body.edunext-app .edn-explore-category.is-selected{
+  transform:translateY(-2px);
+  border-color:#82bbfa;
+  box-shadow:0 8px 17px rgba(30,105,185,.1);
+}
+body.edunext-app .edn-explore-category-image{
+  position:relative;
+  display:block;
+  height:82px;
+  overflow:hidden;
+  background:#e8f3ff;
+}
+body.edunext-app .edn-explore-category-image:after{
+  content:"";
+  position:absolute;
+  inset:40% 0 0;
+  background:linear-gradient(transparent,rgba(8,28,57,.26));
+  pointer-events:none;
+}
+body.edunext-app .edn-explore-category-image img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:transform .3s ease;
+}
+body.edunext-app .edn-explore-category:hover .edn-explore-category-image img{transform:scale(1.05)}
+body.edunext-app .edn-explore-category-name{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:5px;
+  min-height:34px;
+  padding:0 10px;
+  color:#263957;
+  font-size:10px;
+  font-weight:850;
+}
+body.edunext-app .edn-explore-category-name b{color:#5f7fa8;font-size:13px;font-weight:500}
+body.edunext-app .edn-explore-category.is-selected .edn-explore-category-name{color:#087fe0}
+
+body.edunext-app .edn-explore-course-sections{margin-top:2px}
+body.edunext-app .edn-explore-dual-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  margin-bottom:11px;
+}
+body.edunext-app .edn-explore-dual-head h2,
+body.edunext-app .edn-explore-section-mini-head h2{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin:0;
+  color:#1e3354;
+  font-size:19px;
+  font-weight:900;
+  line-height:1.25;
+  letter-spacing:-.025em;
+}
+body.edunext-app .edn-explore-heading-icon{color:#1094eb;font-size:19px}
+body.edunext-app .edn-explore-dual-head p{
+  margin:5px 0 0;
+  color:#8995a8;
+  font-size:9px;
+  line-height:1.5;
+}
+body.edunext-app .edn-explore-search{flex:0 1 300px;min-width:180px}
+body.edunext-app .edn-explore-search form{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  min-height:35px;
+  padding:0 6px 0 12px;
+  border:1px solid #e0e9f5;
+  border-radius:999px;
+  background:#fff;
+}
+body.edunext-app .edn-explore-search form>span{color:#7c91ad;font-size:20px}
+body.edunext-app .edn-explore-search input{
+  flex:1;
+  min-width:0;
+  height:30px;
+  border:0;
+  outline:0;
+  background:transparent;
+  color:#263957;
+  font:inherit;
+  font-size:9px;
+}
+body.edunext-app .edn-explore-search input::placeholder{color:#a1adbf}
+body.edunext-app .edn-explore-search button{
+  display:grid;
+  place-items:center;
+  width:25px;
+  height:25px;
+  border:0;
+  border-radius:50%;
+  background:#087fe0;
+  color:#fff;
+  font-size:13px;
+  cursor:pointer;
+}
+body.edunext-app .edn-explore-main-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1.72fr) minmax(0,1fr);
+  align-items:stretch;
+  gap:15px;
+}
+body.edunext-app #explore-featured{min-width:0}
+body.edunext-app .edn-explore-feature-course{
+  display:grid;
+  grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);
+  align-items:stretch;
+  min-height:222px;
+  overflow:hidden;
+  border:1px solid #e7edf6;
+  border-radius:12px;
+  background:#fff;
+  box-shadow:0 5px 16px rgba(32,66,111,.04);
+}
+body.edunext-app .edn-explore-feature-image{
+  position:relative;
+  display:block;
+  min-height:100%;
+  overflow:hidden;
+  background:#e2ecf7;
+}
+body.edunext-app .edn-explore-feature-image img{
+  display:block;
+  width:100%;
+  height:100%;
+  min-height:222px;
+  object-fit:cover;
+  transition:transform .3s ease;
+}
+body.edunext-app .edn-explore-feature-course:hover .edn-explore-feature-image img{transform:scale(1.035)}
+body.edunext-app .edn-explore-badge{
+  position:absolute;
+  top:10px;
+  left:10px;
+  padding:5px 8px;
+  border-radius:999px;
+  background:#e0f1ff;
+  color:#087fe0;
+  font-size:8px;
+  font-weight:900;
+}
+body.edunext-app .edn-explore-feature-body{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  min-width:0;
+  padding:15px 15px 13px;
+}
+body.edunext-app .edn-explore-pills{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+body.edunext-app .edn-explore-pills>span{
+  display:inline-flex;
+  align-items:center;
+  min-height:20px;
+  padding:0 8px;
+  border-radius:999px;
+  background:#e2f1ff;
+  color:#1681d7;
+  font-size:8px;
+  font-weight:850;
+}
+body.edunext-app .edn-explore-feature-body h3{
+  display:-webkit-box;
+  margin:8px 0 6px;
+  overflow:hidden;
+  color:#1a2f50;
+  font-size:14px;
+  font-weight:900;
+  line-height:1.35;
+  letter-spacing:-.02em;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:2;
+}
+body.edunext-app .edn-explore-feature-body h3 a{color:inherit;text-decoration:none}
+body.edunext-app .edn-explore-feature-body h3 a:hover{color:#087fe0}
+body.edunext-app .edn-explore-feature-body>p{
+  display:-webkit-box;
+  margin:0;
+  overflow:hidden;
+  color:#8390a4;
+  font-size:9px;
+  line-height:1.65;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:3;
+}
+body.edunext-app .edn-explore-course-meta{
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:8px 12px;
+  margin-top:10px;
+  color:#8492a7;
+  font-size:8px;
+  line-height:1.4;
+}
+body.edunext-app .edn-explore-rating{display:inline-flex;align-items:center;gap:3px;color:#f5a623}
+body.edunext-app .edn-explore-rating b{color:#617692;font-weight:850}
+body.edunext-app .edn-explore-rating small{color:#91a0b5;font-size:7px}
+body.edunext-app .edn-explore-price-row{
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:7px;
+  width:100%;
+  margin-top:auto;
+  padding-top:12px;
+}
+body.edunext-app .edn-explore-price{color:#1b3153;font-size:13px;font-weight:900;white-space:nowrap}
+body.edunext-app .edn-explore-price-row del{color:#a1adbd;font-size:8px}
+body.edunext-app .edn-explore-discount{
+  display:inline-flex;
+  align-items:center;
+  min-height:17px;
+  padding:0 5px;
+  border-radius:5px;
+  background:#fff0e8;
+  color:#fa673e;
+  font-size:7px;
+  font-weight:900;
+}
+body.edunext-app .edn-explore-cta{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  min-height:34px;
+  margin-left:auto;
+  padding:0 12px;
+  border-radius:8px;
+  background:#0789e5;
+  color:#fff;
+  font-size:8px;
+  font-weight:900;
+  text-decoration:none;
+  white-space:nowrap;
+  transition:background .15s ease,transform .15s ease;
+}
+body.edunext-app .edn-explore-cta:hover{transform:translateY(-1px);background:#076fc0}
+body.edunext-app .edn-explore-cta b{font-size:13px}
+body.edunext-app .edn-explore-popular{min-width:0}
+body.edunext-app .edn-explore-section-mini-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:11px;
+}
+body.edunext-app .edn-explore-section-mini-head h2{font-size:17px}
+body.edunext-app .edn-explore-section-mini-head h2>span{color:#168fe6;font-size:20px}
+body.edunext-app .edn-explore-section-mini-head>a{
+  flex:0 0 auto;
+  color:#1682dc;
+  font-size:8px;
+  font-weight:850;
+  text-decoration:none;
+  white-space:nowrap;
+}
+body.edunext-app .edn-explore-section-mini-head>a:hover{color:#075fa8}
+body.edunext-app .edn-explore-popular-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  align-items:stretch;
+  gap:10px;
+}
+body.edunext-app .edn-explore-popular-card{
+  display:flex;
+  flex-direction:column;
+  min-width:0;
+  overflow:hidden;
+  border:1px solid #e7edf6;
+  border-radius:10px;
+  background:#fff;
+  box-shadow:0 4px 12px rgba(32,66,111,.035);
+  transition:transform .15s ease,box-shadow .15s ease;
+}
+body.edunext-app .edn-explore-popular-card:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(32,66,111,.08)}
+body.edunext-app .edn-explore-popular-image{
+  position:relative;
+  display:block;
+  height:83px;
+  overflow:hidden;
+  background:#e3edf8;
+}
+body.edunext-app .edn-explore-popular-image img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .3s ease}
+body.edunext-app .edn-explore-popular-card:hover .edn-explore-popular-image img{transform:scale(1.045)}
+body.edunext-app .edn-explore-popular-image>span{
+  position:absolute;
+  left:8px;
+  bottom:7px;
+  padding:4px 7px;
+  border-radius:999px;
+  background:rgba(226,242,255,.95);
+  color:#147cd2;
+  font-size:7px;
+  font-weight:850;
+}
+body.edunext-app .edn-explore-popular-body{display:flex;flex:1;flex-direction:column;align-items:flex-start;min-width:0;padding:9px 9px 10px}
+body.edunext-app .edn-explore-popular-body h3{
+  display:-webkit-box;
+  min-height:30px;
+  margin:0;
+  overflow:hidden;
+  color:#203553;
+  font-size:9px;
+  font-weight:900;
+  line-height:1.45;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:2;
+}
+body.edunext-app .edn-explore-popular-body h3 a{color:inherit;text-decoration:none}
+body.edunext-app .edn-explore-popular-body h3 a:hover{color:#0789e5}
+body.edunext-app .edn-explore-popular-body .edn-explore-course-meta{gap:6px;margin-top:7px;font-size:7px}
+body.edunext-app .edn-explore-popular-body .edn-explore-price-row{gap:5px;padding-top:9px}
+body.edunext-app .edn-explore-popular-body .edn-explore-price{font-size:10px}
+body.edunext-app .edn-explore-popular-body .edn-explore-price-row del{font-size:7px}
+body.edunext-app .edn-explore-small-count{color:#92a0b3;font-size:7px}
+body.edunext-app .edn-explore-empty{
+  margin:13px 0;
+  padding:23px 15px;
+  border:1px dashed #d5e2f1;
+  border-radius:12px;
+  background:#f9fcff;
+  text-align:center;
+}
+body.edunext-app .edn-explore-empty[hidden]{display:none!important}
+body.edunext-app .edn-explore-empty strong{display:block;color:#203553;font-size:13px}
+body.edunext-app .edn-explore-empty p{margin:6px 0 10px;color:#8492a5;font-size:10px}
+body.edunext-app .edn-explore-empty button{border:0;background:transparent;color:#087fe0;font-size:10px;font-weight:850;cursor:pointer}
+body.edunext-app .edn-explore-new-section{margin-top:26px}
+body.edunext-app .edn-explore-new-section .edn-explore-section-mini-head{margin-bottom:11px}
+body.edunext-app .edn-explore-new-section .edn-explore-section-mini-head h2{font-size:18px}
+body.edunext-app .edn-explore-new-section .edn-explore-section-mini-head p{margin:4px 0 0;color:#8a97aa;font-size:8px}
+body.edunext-app .edn-explore-result-count{display:none}
+body.edunext-app .edn-explore-new-grid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:11px;
+}
+body.edunext-app .edn-explore-new-card{
+  display:grid;
+  grid-template-columns:76px minmax(0,1fr);
+  align-items:stretch;
+  min-width:0;
+  min-height:103px;
+  overflow:hidden;
+  border:1px solid #e6edf6;
+  border-radius:10px;
+  background:#fff;
+  box-shadow:0 4px 12px rgba(32,66,111,.03);
+  transition:transform .15s ease,box-shadow .15s ease;
+}
+body.edunext-app .edn-explore-new-card:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(32,66,111,.075)}
+body.edunext-app .edn-explore-new-image{display:block;min-height:103px;overflow:hidden;background:#e6eef8}
+body.edunext-app .edn-explore-new-image img{display:block;width:100%;height:100%;min-height:103px;object-fit:cover;transition:transform .3s ease}
+body.edunext-app .edn-explore-new-card:hover .edn-explore-new-image img{transform:scale(1.04)}
+body.edunext-app .edn-explore-new-body{display:flex;flex-direction:column;align-items:flex-start;min-width:0;padding:9px}
+body.edunext-app .edn-explore-new-tag{display:inline-flex;align-items:center;max-width:100%;min-height:17px;padding:0 7px;overflow:hidden;border-radius:999px;background:#eeeaff;color:#7964d9;font-size:7px;font-weight:850;text-overflow:ellipsis;white-space:nowrap}
+body.edunext-app .edn-explore-new-card:nth-child(2) .edn-explore-new-tag{background:#e2f2ff;color:#1985d7}
+body.edunext-app .edn-explore-new-card:nth-child(3) .edn-explore-new-tag{background:#e0f7e7;color:#268c55}
+body.edunext-app .edn-explore-new-card:nth-child(4) .edn-explore-new-tag{background:#e1efff;color:#2c79d0}
+body.edunext-app .edn-explore-new-body h3{
+  display:-webkit-box;
+  min-height:27px;
+  margin:5px 0 0;
+  overflow:hidden;
+  color:#263b5a;
+  font-size:8px;
+  font-weight:900;
+  line-height:1.4;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:2;
+}
+body.edunext-app .edn-explore-new-body h3 a{color:inherit;text-decoration:none}
+body.edunext-app .edn-explore-new-body h3 a:hover{color:#087fe0}
+body.edunext-app .edn-explore-new-body .edn-explore-course-meta{gap:6px;margin-top:5px;font-size:6px}
+body.edunext-app .edn-explore-new-body .edn-explore-price-row{gap:5px;padding-top:5px}
+body.edunext-app .edn-explore-new-body .edn-explore-price{font-size:9px}
+body.edunext-app .edn-explore-new-body .edn-explore-price-row del{font-size:6px}
+@media(max-width:1250px){
+ body.edunext-app #app .edn-explore-page{padding:13px 14px 34px}
+ body.edunext-app .edn-explore-hero{min-height:220px}
+ body.edunext-app .edn-explore-hero-copy{padding-left:22px}
+ body.edunext-app .edn-explore-category-grid{gap:9px}
+ body.edunext-app .edn-explore-category-image{height:72px}
+ body.edunext-app .edn-explore-main-grid{grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:11px}
+ body.edunext-app .edn-explore-feature-course{grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr)}
+ body.edunext-app .edn-explore-feature-body{padding:12px}
+ body.edunext-app .edn-explore-course-meta{gap:6px 8px}
+ body.edunext-app .edn-explore-cta{min-height:30px;padding:0 8px}
+ body.edunext-app .edn-explore-new-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(max-width:980px){
+ body.edunext-app .edn-explore-main-grid{grid-template-columns:1fr}
+ body.edunext-app .edn-explore-feature-course{min-height:220px}
+ body.edunext-app .edn-explore-popular-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ body.edunext-app .edn-explore-popular-image{height:115px}
+ body.edunext-app .edn-explore-popular-body h3{font-size:11px}
+ body.edunext-app .edn-explore-popular-body .edn-explore-price{font-size:12px}
+ body.edunext-app .edn-explore-new-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:620px){
+ body.edunext-app #app .edn-explore-page{padding:9px 9px 25px}
+ body.edunext-app .edn-explore-hero{grid-template-columns:1fr;min-height:280px;border-radius:11px}
+ body.edunext-app .edn-explore-hero-copy{align-self:start;width:77%;padding:23px 0 20px 17px}
+ body.edunext-app .edn-explore-hero h1{font-size:27px}
+ body.edunext-app .edn-explore-hero-copy>p{font-size:9px}
+ body.edunext-app .edn-explore-hero-image{width:49%;opacity:.86}
+ body.edunext-app .edn-explore-hero-image:before{background:linear-gradient(90deg,#377cf1 0%,rgba(55,124,241,.65) 18%,rgba(55,124,241,.02) 100%)}
+ body.edunext-app .edn-explore-float-icon{width:29px;height:29px;border-radius:8px;font-size:15px}
+ body.edunext-app .edn-explore-category-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+ body.edunext-app .edn-explore-category-image{height:76px}
+ body.edunext-app .edn-explore-category-name{min-height:32px;padding:0 8px;font-size:9px}
+ body.edunext-app .edn-explore-categories{margin:12px 0 23px}
+ body.edunext-app .edn-explore-dual-head{display:block}
+ body.edunext-app .edn-explore-dual-head h2{font-size:17px}
+ body.edunext-app .edn-explore-search{margin-top:10px;max-width:100%}
+ body.edunext-app .edn-explore-main-grid{gap:18px}
+ body.edunext-app .edn-explore-feature-course{grid-template-columns:1fr}
+ body.edunext-app .edn-explore-feature-image{height:170px}
+ body.edunext-app .edn-explore-feature-image img{min-height:170px;max-height:170px}
+ body.edunext-app .edn-explore-feature-body{padding:13px}
+ body.edunext-app .edn-explore-feature-body h3{font-size:14px}
+ body.edunext-app .edn-explore-feature-body>p{font-size:10px}
+ body.edunext-app .edn-explore-popular-grid{gap:9px}
+ body.edunext-app .edn-explore-popular-image{height:90px}
+ body.edunext-app .edn-explore-popular-body{padding:8px}
+ body.edunext-app .edn-explore-popular-body h3{font-size:9px}
+ body.edunext-app .edn-explore-new-grid{grid-template-columns:1fr;gap:9px}
+ body.edunext-app .edn-explore-new-card{grid-template-columns:91px minmax(0,1fr);min-height:92px}
+ body.edunext-app .edn-explore-new-image,body.edunext-app .edn-explore-new-image img{min-height:92px}
+ body.edunext-app .edn-explore-new-body h3{font-size:10px}
+ body.edunext-app .edn-explore-new-body .edn-explore-course-meta{font-size:8px}
+ body.edunext-app .edn-explore-new-body .edn-explore-price{font-size:11px}
+}
