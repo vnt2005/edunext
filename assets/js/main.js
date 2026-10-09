@@ -129,7 +129,7 @@ const featureRoot=$('#explore-featured'),popularRoot=$('#explore-popular'),newRo
 if(featureRoot)featureRoot.innerHTML=featured?exploreWideCard(featured):'';
 if(popularRoot)popularRoot.innerHTML=popular.map(explorePopularCard).join('');
 if(newRoot)newRoot.innerHTML=newer.map(exploreCompactCard).join('');
-if(featureSection)featureSection.hidden=!featured;
+if(featureSection)featureSection.hidden=false;
 if(popularSection)popularSection.hidden=!popular.length;
 if(empty)empty.hidden=rows.length>0;
 if(count)count.textContent=rows.length;
