@@ -3325,3 +3325,67 @@ body.edunext-app .cio-lesson-actions{
     font-size:22px;
   }
 }
+/* Course listing typography: improve readability without changing the layout */
+body.edunext-app .cio-courses-page .cio-eyebrow{
+  font-size:11px;
+  margin-bottom:7px;
+}
+body.edunext-app .cio-courses-page .cio-page-head h1{
+  font-size:36px;
+  line-height:1.15;
+}
+body.edunext-app .cio-courses-page .cio-page-head p{
+  font-size:14px;
+  line-height:1.6;
+}
+body.edunext-app .cio-courses-page .cio-search-local>span{
+  top:10px;
+  font-size:17px;
+}
+body.edunext-app .cio-courses-page .cio-search-local input{
+  height:40px;
+  font-size:14px;
+}
+body.edunext-app .cio-courses-page .cio-course-toolbar select{
+  height:40px;
+  font-size:13px;
+}
+body.edunext-app .cio-courses-page .cio-filter-chip{
+  height:34px;
+  padding:0 12px;
+  font-size:11px;
+}
+body.edunext-app .cio-courses-page .cio-filter-row{
+  gap:8px;
+}
+body.edunext-app .cio-courses-page .cio-count-row{
+  font-size:12px;
+  margin:9px 0 14px;
+}
+body.edunext-app .cio-courses-page .lms-course-category{
+  font-size:10px;
+}
+body.edunext-app .cio-courses-page .lms-course-body{
+  padding:14px;
+}
+body.edunext-app .cio-courses-page .lms-course-body h3{
+  min-height:46px;
+  font-size:16px;
+  line-height:1.4;
+}
+body.edunext-app .cio-courses-page .lms-course-category-text{
+  font-size:12px;
+}
+body.edunext-app .cio-courses-page .lms-course-meta{
+  gap:14px;
+  font-size:12px;
+}
+body.edunext-app .cio-courses-page .lms-course-price{
+  font-size:16px;
+}
+body.edunext-app .cio-courses-page .lms-course-price del{
+  font-size:12px;
+}
+body.edunext-app .cio-courses-page .lms-course-progress small{
+  font-size:11px;
+}
