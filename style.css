@@ -3343,12 +3343,20 @@ body.edunext-app .lms-topbar-profile .lms-profile summary{
   max-width:220px;
   gap:8px;
   padding:4px 0;
-  border:0;
-  border-radius:0;
-  background:transparent;
-  box-shadow:none;
+  border:0 !important;
+  outline:0 !important;
+  border-radius:0 !important;
+  background:transparent !important;
+  box-shadow:none !important;
 }
-body.edunext-app .lms-topbar-profile .lms-profile summary:hover{background:transparent}
+body.edunext-app .lms-topbar-profile .lms-profile summary:hover,
+body.edunext-app .lms-topbar-profile .lms-profile summary:focus,
+body.edunext-app .lms-topbar-profile .lms-profile summary:focus-visible{
+  border:0 !important;
+  outline:0 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+}
 body.edunext-app .lms-topbar-profile .lms-profile-copy strong{font-size:12px}
 body.edunext-app .lms-topbar-profile .lms-profile-copy small{font-size:10px}
 body.edunext-app .lms-topbar-profile .lms-profile-menu{
