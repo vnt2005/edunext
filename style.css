@@ -4202,3 +4202,8 @@ body.edunext-app .edn-course-support-card a{color:#087fc9;font-size:10px;font-we
   body.edunext-app .edn-course-lesson-duration{display:none}
   body.edunext-app .edn-course-side{grid-template-columns:1fr}
 }
+/* Button reset for the course outline jump action */
+body.edunext-app button.edn-course-learn-more{
+  font-family:inherit;
+  cursor:pointer;
+}
