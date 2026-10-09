@@ -130,20 +130,54 @@ const list=()=>{const root=$('#list');if(!root)return;let rows=C.filter(c=>{cons
 <div class="cio-filter-row"><button class="cio-filter-chip '+(!f.cat?'active':'')+'" data-a="clear">Tất cả</button>${CATS.map(x=>'<button class="cio-filter-chip '+(f.cat===x?'active':'')+'" data-a="cat" data-v="'+x+'">'+x+'</button>').join('')}</div>
 <div class="cio-count-row"><span id="cnt"></span><span>Khóa học được chọn</span></div>
 <div class="grid cio-course-grid" id="list"></div>
-</div>`};const detail=id=>{const c=find(id);if(!c)return nf();const e=EN()[id];return `<div class="wrap page cio-course-detail">
-<div class="cio-course-crumb"><a href="#/courses">Khóa học</a><span>/</span><span>${c.t}</span></div>
-<div class="cio-detail-grid">
-<section>
-<div class="cio-detail-cover"><img src="${COURSE_IMAGES[c.id]}" alt="${esc(c.t)}"><span>${c.tag}</span></div>
-<div class="cio-detail-kicker">${c.cat} · ${c.lvl}</div>
-<h1>${c.t}</h1>
-<p class="cio-detail-lead">Khóa học gồm ${c.L.length} bài học, khoảng ${c.h} giờ nội dung và quiz cuối khóa. Bạn có thể xem nội dung trước khi quyết định mua.</p>
-<div class="cio-detail-meta"><span>★ ${c.r}</span><span>${c.n.toLocaleString("vi-VN")} học viên</span><span>${c.L.length} bài học</span><span>${c.h} giờ</span></div>
-<div class="cio-detail-tabs"><span class="active">Nội dung khóa học</span><span>Bạn sẽ học được gì</span></div>
-<div class="cio-content-list">${c.L.map((l,i)=>'<div class="cio-content-row"><span>'+String(i+1).padStart(2,'0')+'</span><b>'+l+'</b><small>Video bài học</small></div>').join('')}</div>
+</div>`};const detail=id=>{const c=find(id);if(!c)return nf();const e=EN()[id],favKey=D.me||'guest',favorites=(D.favorites&&Array.isArray(D.favorites[favKey]))?D.favorites[favKey]:[],isFav=favorites.includes(id),goals=OUTCOMES[c.cat]||["Nắm kiến thức nền tảng của khóa học","Thực hành qua các bài học có hướng dẫn","Áp dụng kiến thức vào tình huống thực tế","Theo dõi tiến độ và ôn tập nội dung"];
+const quizCount=Q[c.id]?Q[c.id].length:null;
+return `<div class="wrap page edn-course-page">
+<div class="cio-course-crumb edn-course-crumb"><a href="#/courses">Khóa học</a><span>/</span><span>${esc(c.t)}</span></div>
+<section class="edn-course-hero" style="--edn-course-image:url('${COURSE_IMAGES[c.id]}')">
+  <div class="edn-course-hero-overlay"></div>
+  <div class="edn-course-hero-content">
+    <span class="edn-course-eyebrow">${esc(c.cat)} <i></i> ${esc(c.lvl)}</span>
+    <h1>${esc(c.t)}</h1>
+    <p>Phát triển kỹ năng với ${c.L.length} bài học được sắp xếp theo lộ trình rõ ràng, cùng ${c.h} giờ nội dung học tập để bạn tiến bộ từng bước.</p>
+    <div class="edn-course-hero-actions">
+      ${e?'<a class="edn-course-buy" href="#/learn/'+id+'/'+nextL(c)+'"><span>TIẾP TỤC HỌC</span><strong>Vào bài học <b>→</b></strong></a>':'<button class="edn-course-buy" type="button" data-a="enroll" data-v="'+id+'"><span>ĐĂNG KÝ KHÓA HỌC</span><strong>'+money(c.p)+' <b>⌄</b></strong></button>'}
+      <button class="edn-course-favorite ${isFav?'is-favorite':''}" type="button" data-a="favorite" data-v="${id}" aria-pressed="${isFav}" aria-label="${isFav?'Bỏ khỏi yêu thích':'Thêm vào yêu thích'}" title="${isFav?'Bỏ khỏi yêu thích':'Thêm vào yêu thích'}">${isFav?'♥':'♡'}</button>
+      <a class="edn-course-learn-more" href="#edn-course-content">XEM NỘI DUNG</a>
+    </div>
+    <div class="edn-course-social-proof"><span class="edn-course-rating-stars">★★★★★</span><strong>${c.r}/5</strong><span>${c.n.toLocaleString("vi-VN")} lượt đăng ký quan tâm</span></div>
+  </div>
+  <span class="edn-course-hero-tag">${esc(c.tag)}</span>
 </section>
-<aside class="cio-purchase-card"><div class="cio-price">${money(c.p)} <del>${money(c.o)}</del></div><p>Thanh toán một lần để mở toàn bộ nội dung khóa học.</p>${e?'<div class="cio-owned">✓ Bạn đã mua khóa học này</div><a class="btn btn-p w" href="#/learn/'+id+'/'+nextL(c)+'">Tiếp tục học</a>':'<button class="btn btn-p w" data-a="enroll" data-v="'+id+'">Mua khóa học</button>'}<div class="cio-purchase-list"><span>✓ Truy cập toàn bộ bài học</span><span>✓ Lưu tiến độ học tập</span><span>✓ Quiz và chứng chỉ</span></div></aside>
-</div></div>`};const checkout=id=>{const c=find(id);if(!c)return nf();if(!D.me)return guard('/checkout/'+id);if(EN()[id]){go('/course/'+id);return ''}
+<section class="edn-course-facts" aria-label="Thông tin khóa học">
+  <div class="edn-course-fact"><span class="edn-fact-icon">▤</span><span>Bài học</span><strong>${c.L.length}</strong></div>
+  <div class="edn-course-fact"><span class="edn-fact-icon">▷</span><span>Thời lượng video</span><strong>${c.h} giờ</strong></div>
+  <div class="edn-course-fact"><span class="edn-fact-icon">☑</span><span>Câu hỏi quiz</span><strong>${quizCount===null?'Chưa có':quizCount}</strong></div>
+  <div class="edn-course-fact"><span class="edn-fact-icon">▣</span><span>Trình độ</span><strong>${esc(c.lvl)}</strong></div>
+  <div class="edn-course-fact"><span class="edn-fact-icon">▧</span><span>Chứng chỉ</span><strong>PDF khi hoàn thành</strong></div>
+  <div class="edn-course-fact"><span class="edn-fact-icon">◷</span><span>Quyền truy cập</span><strong>Không giới hạn</strong></div>
+</section>
+<div class="edn-course-detail-grid">
+  <section class="edn-course-main">
+    <div class="edn-course-section-head"><span class="edn-course-section-kicker">TỔNG QUAN KHÓA HỌC</span><h2>Bạn sẽ học được gì?</h2><p>Nội dung được chia thành từng bước để bạn dễ theo dõi và chủ động thực hành.</p></div>
+    <div class="edn-course-outcomes">${goals.map((g,i)=>'<div class="edn-course-outcome"><span>✓</span><p>'+esc(g)+'</p></div>').join('')}</div>
+    <section id="edn-course-content" class="edn-course-outline">
+      <div class="edn-course-section-head"><span class="edn-course-section-kicker">CHƯƠNG TRÌNH HỌC</span><h2>Nội dung khóa học</h2><p>${c.L.length} bài học <span>·</span> ${c.h} giờ nội dung</p></div>
+      <div class="edn-course-lessons">${c.L.map((l,i)=>'<div class="edn-course-lesson"><span class="edn-course-lesson-number">'+String(i+1).padStart(2,'0')+'</span><span class="edn-course-lesson-play">▷</span><div class="edn-course-lesson-copy"><strong>'+esc(l)+'</strong><small>Bài học video</small></div><span class="edn-course-lesson-duration">Bài '+(i+1)+'</span></div>').join('')}</div>
+    </section>
+  </section>
+  <aside class="edn-course-side">
+    <div class="edn-course-side-card">
+      <span class="edn-course-section-kicker">BẮT ĐẦU NGAY HÔM NAY</span>
+      <div class="edn-course-side-price">${money(c.p)} <del>${money(c.o)}</del></div>
+      <p>${e?'Khóa học đã có trong tài khoản của bạn.':'Thanh toán một lần để mở toàn bộ nội dung khóa học.'}</p>
+      ${e?'<div class="cio-owned">✓ Bạn đã mua khóa học này</div><a class="edn-course-side-cta" href="#/learn/'+id+'/'+nextL(c)+'">Tiếp tục học <span>→</span></a>':'<button class="edn-course-side-cta" type="button" data-a="enroll" data-v="'+id+'">Đăng ký khóa học <span>→</span></button>'}
+      <div class="edn-course-includes"><strong>Khóa học bao gồm</strong><span>✓ ${c.L.length} bài học video</span><span>✓ ${c.h} giờ nội dung</span><span>✓ Theo dõi tiến độ học tập</span><span>✓ Chứng chỉ PDF khi hoàn thành</span></div>
+    </div>
+    <div class="edn-course-support-card"><span>✦</span><div><strong>Cần trợ giúp lựa chọn?</strong><p>Xem hướng dẫn và các câu hỏi thường gặp trước khi bắt đầu.</p><a href="#/faq">Trung tâm hỗ trợ →</a></div></div>
+  </aside>
+</div>
+</div>`};const checkout=id=>{const c=find(id);if(!c)return nf();if(!D.me)return guard('/checkout/'+id);if(EN()[id]){go('/course/'+id);return ''}
 const u=me(),discount=c.o>c.p?c.o-c.p:0,orderId='EDN-'+Date.now().toString().slice(-8);
 return `<div class="wrap page"><div class="bc"><a href="#/courses">Khóa học</a> / Thanh toán</div><div class="checkout-grid"><section><h1>Thanh toán khóa học</h1><p class="muted">Học ngay thông tin trước khi xác nhận đăng ký.</p><div class="box checkout-box"><h2>Thông tin học viên</h2><div class="checkout-user"><div class="av">${ini(u.name)}</div><div><b>${esc(u.name)}</b><span>${esc(u.email)}</span></div></div></div><div class="box checkout-box"><h2>Phương thức thanh toán</h2><label class="pay-option"><input type="radio" name="payment" value="bank" checked><span><b>Chuyển khoản ngân hàng</b><small>Thanh toán qua tài khoản ngân hàng — bản demo.</small></span></label><label class="pay-option"><input type="radio" name="payment" value="wallet"><span><b>Ví điện tử</b><small>Thanh toán nhanh bằng ví điện tử — bản demo.</small></span></label><label class="pay-option"><input type="radio" name="payment" value="card"><span><b>Thẻ ngân hàng</b><small>Visa / Mastercard / ATM — bản demo.</small></span></label><div class="pay-note">Đây là giao diện mô phỏng. Chưa kết nối cổng thanh toán thật.</div></div></section><aside class="box checkout-summary"><h2>Đơn hàng</h2><div class="checkout-course"><div class="thumb ${c.c}"><b>${c.cat}</b></div><div><span class="cat">${c.cat}</span><h3>${c.t}</h3><p class="muted">${c.h} giờ · ${c.L.length} bài · ${c.lvl}</p></div></div><div class="sum-row"><span>Giá niêm yết</span><del>${money(c.o)}</del></div><div class="sum-row"><span>Ưu đãi</span><strong class="discount">-${money(discount)}</strong></div><div class="sum-total"><span>Tổng thanh toán</span><b>${money(c.p)}</b></div><button class="btn btn-p w" data-a="pay" data-v="${id}">Xác nhận thanh toán</button><p class="checkout-safe">Mã đơn hàng: ${orderId}<br>Thanh toán an toàn trong bản demo.</p></aside></div></div>`;
 };
@@ -253,6 +287,7 @@ sc:id=>{$('#nav').classList.remove('open');const s=()=>{const el=document.getEle
 cat:v=>{f=F0();f.cat=v;to('/courses')},
 clear:()=>{f=F0();render(true)},
 enroll:id=>{if(!D.me){next='/checkout/'+id;toast('Đăng nhập để tiếp tục thanh toán');return go('/login')}go('/checkout/'+id)},
+favorite:id=>{const key=D.me||'guest';D.favorites=D.favorites||{};const list=Array.isArray(D.favorites[key])?D.favorites[key]:[],i=list.indexOf(id);if(i>=0){list.splice(i,1);toast('Đã bỏ khóa học khỏi yêu thích')}else{list.push(id);toast('Đã thêm khóa học vào yêu thích')}D.favorites[key]=list;save();render(true)},
 done:v=>{const[id,i]=v.split(','),e=EN()[id],k=+i,x=e.done.indexOf(k);x<0?e.done.push(k):e.done.splice(x,1);save();toast(x<0?'Đã lưu tiến độ':'Đã bỏ đánh dấu');render(true)},
 tab:(v,t)=>{document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('on',b===t));document.querySelectorAll('.pn').forEach(p=>p.classList.toggle('hidden',p.dataset.p!==v))},
 opt:v=>{const[k,id]=v.split(',');qz.a[qz.i]=+k;qr(id)},
