@@ -48,7 +48,6 @@
             <span class="lms-search-icon" aria-hidden="true">⌕</span>
             <input name="q" placeholder="Tìm khóa học..." aria-label="Tìm khóa học">
         </form>
-        <button class="lms-notify" type="button" aria-label="Thông báo">♢</button>
         <div id="auth" class="au lms-auth"></div>
     </div>
 </header>
