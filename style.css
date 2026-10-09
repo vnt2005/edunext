@@ -3516,3 +3516,81 @@ body.edunext-app .lms-admin-mode .lms-top-profile{
     display:none;
   }
 }
+
+/* Header account actions: text-only profile and clear sign-in / sign-out actions */
+body.edunext-app .lms-auth{
+  margin-left:auto;
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:12px;
+  flex:0 0 auto;
+}
+body.edunext-app .lms-top-profile{
+  display:flex;
+  align-items:center;
+  max-width:210px;
+  min-width:0;
+  padding:0;
+  border:0;
+  border-radius:0;
+  background:transparent;
+  box-shadow:none;
+  color:#334155;
+  text-decoration:none;
+}
+body.edunext-app .lms-top-profile:hover{
+  border:0;
+  background:transparent;
+  color:#0369a1;
+}
+body.edunext-app .lms-top-profile-copy strong{
+  display:block;
+  max-width:180px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  color:inherit;
+  font-size:12px;
+  font-weight:700;
+  line-height:1.25;
+}
+body.edunext-app .lms-top-profile-copy small{
+  display:block;
+  margin-top:2px;
+  color:#94a3b8;
+  font-size:10px;
+  line-height:1.2;
+}
+body.edunext-app .lms-top-logout-text{
+  padding:7px 0;
+  border:0;
+  background:transparent;
+  color:#475569;
+  font:inherit;
+  font-size:12px;
+  font-weight:600;
+  white-space:nowrap;
+  cursor:pointer;
+}
+body.edunext-app .lms-top-logout-text:hover{
+  background:transparent;
+  color:#0369a1;
+  text-decoration:underline;
+}
+body.edunext-app .lms-auth .btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:32px;
+  white-space:nowrap;
+}
+body.edunext-app .lms-notify{display:none!important}
+@media (max-width:620px){
+  body.edunext-app .lms-auth{gap:8px}
+  body.edunext-app .lms-top-profile{max-width:115px}
+  body.edunext-app .lms-top-profile-copy strong{max-width:115px;font-size:11px}
+  body.edunext-app .lms-top-profile-copy small{display:none}
+  body.edunext-app .lms-top-logout-text{font-size:11px}
+  body.edunext-app .lms-auth .btn{padding:0 8px;font-size:11px}
+}
