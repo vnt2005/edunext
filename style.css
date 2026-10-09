@@ -5021,3 +5021,7 @@ body.edunext-app .edn-blog-bottom-cta>a span{font-size:15px}
   body.edunext-app .edn-blog-bottom-cta h2{font-size:20px}
   body.edunext-app .edn-blog-bottom-cta>a{margin-top:16px}
 }
+/* Hide empty halves when filtering editorial feature stories */
+body.edunext-app .edn-blog-featured-main[hidden],
+body.edunext-app .edn-blog-featured-side[hidden]{display:none!important}
+body.edunext-app .edn-blog-featured-layout.edn-blog-filtered{grid-template-columns:minmax(0,1fr)}
