@@ -180,9 +180,9 @@ ${completed.length?'<section class="cio-completed-section"><div class="cio-secti
 <div class="cio-admin-summary"><div><span>Students</span><b>${users.length}</b></div><div><span>Paid orders</span><b>${paidOrders.length}</b></div><div><span>Revenue</span><b>${money(revenue)}</b></div></div>
 </div>`};const blogPage=()=>`<div class="wrap page blog-page">
 <div class="blog-page-head"><div><span class="content-kicker">EduNext Blog</span><h1>Học một chút, làm được một chút</h1><p>Các bài viết ngắn về lập trình, dự án và cách tự học. Viết để giải quyết những câu hỏi thật trong lúc học, không phải để nhồi thêm lý thuyết.</p></div><a class="btn btn-p" href="#/courses">Xem khóa học</a></div>
-<div class="blog-topic-row"><button class="topic active">Tất cả</button><button class="topic">Lập trình</button><button class="topic">ASP.NET Core</button><button class="topic">AI</button><button class="topic">Kỹ năng học tập</button></div>
-<section class="blog-page-feature"><a class="blog-page-feature-image" href="#/blog"><img src="${BLOG_ARTICLES[0].image}" alt="${esc(BLOG_ARTICLES[0].title)}"><span>${BLOG_ARTICLES[0].tag}</span></a><div class="blog-page-feature-body"><div class="blog-home-meta"><span>${BLOG_ARTICLES[0].time}</span><span>EduNext</span></div><h2>${BLOG_ARTICLES[0].title}</h2><p>${BLOG_ARTICLES[0].excerpt}</p><p class="blog-page-note">Một bài viết phù hợp nếu bạn đang học C# nhưng cảm giác kiến thức cứ trôi đi sau mỗi buổi học.</p><a class="btn btn-g" href="#/course/${BLOG_ARTICLES[0].course}">Xem khóa học liên quan</a></div></section>
-<div class="blog-page-grid">${BLOG_ARTICLES.slice(1).map(a=>'<article class="blog-page-card"><a class="blog-page-card-image" href="#/blog"><img src="'+a.image+'" alt="'+esc(a.title)+'" loading="lazy"><span>'+a.tag+'</span></a><div class="blog-page-card-body"><div class="blog-home-meta"><span>'+a.time+'</span><span>EduNext</span></div><h2>'+a.title+'</h2><p>'+a.excerpt+'</p><a class="blog-read-link" href="#/course/'+a.course+'">Học phần liên quan →</a></div></article>').join('')}</div>
+<div class="blog-topic-row"><button type="button" class="topic active" data-blog-topic="Tất cả" aria-pressed="true">Tất cả</button><button type="button" class="topic" data-blog-topic="Lập trình" aria-pressed="false">Lập trình</button><button type="button" class="topic" data-blog-topic="ASP.NET Core" aria-pressed="false">ASP.NET Core</button><button type="button" class="topic" data-blog-topic="AI" aria-pressed="false">AI</button><button type="button" class="topic" data-blog-topic="Kỹ năng học tập" aria-pressed="false">Kỹ năng học tập</button></div>
+<section class="blog-page-feature" data-blog-tag="${esc(BLOG_ARTICLES[0].tag)}"><a class="blog-page-feature-image" href="#/blog"><img src="${BLOG_ARTICLES[0].image}" alt="${esc(BLOG_ARTICLES[0].title)}"><span>${BLOG_ARTICLES[0].tag}</span></a><div class="blog-page-feature-body"><div class="blog-home-meta"><span>${BLOG_ARTICLES[0].time}</span><span>EduNext</span></div><h2>${BLOG_ARTICLES[0].title}</h2><p>${BLOG_ARTICLES[0].excerpt}</p><p class="blog-page-note">Một bài viết phù hợp nếu bạn đang học C# nhưng cảm giác kiến thức cứ trôi đi sau mỗi buổi học.</p><a class="btn btn-g" href="#/course/${BLOG_ARTICLES[0].course}">Xem khóa học liên quan</a></div></section>
+<div class="blog-page-grid">${BLOG_ARTICLES.slice(1).map(a=>'<article class="blog-page-card" data-blog-tag="'+esc(a.tag)+'"><a class="blog-page-card-image" href="#/blog"><img src="'+a.image+'" alt="'+esc(a.title)+'" loading="lazy"><span>'+a.tag+'</span></a><div class="blog-page-card-body"><div class="blog-home-meta"><span>'+a.time+'</span><span>EduNext</span></div><h2>'+a.title+'</h2><p>'+a.excerpt+'</p><a class="blog-read-link" href="#/course/'+a.course+'">Học phần liên quan →</a></div></article>').join('')}</div>
 <div class="blog-page-footer"><div><span class="eyebrow">GỢI Ý ĐỂ BẮT ĐẦU</span><h2>Đọc một bài, rồi quay lại làm thử.</h2><p>Bài viết chỉ có ý nghĩa khi nó giúp bạn hiểu thêm một điều và làm được thêm một việc.</p></div><a class="btn btn-p" href="#/courses">Xem khóa học</a></div>
 </div>`;
 
@@ -209,6 +209,25 @@ qretry:id=>{qz={i:0,a:[],res:null};qr(id)},
 logout:()=>{D.me=null;save();toast('Đã đăng xuất');to('/')},
 'teacher-demo':()=>toast('Tính năng giảng viên đang ở chế độ demo'),'adminDemo':()=>toast('Tính năng quản trị đang ở chế độ demo'),print:()=>print(),pay:id=>{const c=find(id);if(!c||!D.me)return;D.orders=D.orders||[];const method=(document.querySelector('input[name="payment"]:checked')||{}).value||'bank';D.orders.push({id:'EDN-'+Date.now().toString().slice(-8),courseId:id,email:D.me,amount:c.p,method,status:'paid',createdAt:new Date().toISOString()});EN()[id]={done:[],q:null,n:{}};save();toast('Thanh toán thành công');go('/learn/'+id+'/0')}};
 document.addEventListener('click',e=>{const t=e.target.closest('[data-a]');if(t&&A[t.dataset.a])A[t.dataset.a](t.dataset.v,t)});
+document.addEventListener('click',e=>{
+const button=e.target.closest('[data-blog-topic]');
+if(!button)return;
+const topic=button.dataset.blogTopic||'Tất cả';
+const matches=tag=>{
+  if(topic==='Tất cả')return true;
+  if(topic==='AI')return tag.toLocaleLowerCase('vi-VN').includes('ai');
+  if(topic==='Lập trình')return tag.toLocaleLowerCase('vi-VN').includes('lập trình')||tag==='Dự án'||tag==='Cơ sở dữ liệu';
+  return tag.toLocaleLowerCase('vi-VN').includes(topic.toLocaleLowerCase('vi-VN'));
+};
+document.querySelectorAll('.blog-page-feature[data-blog-tag],.blog-page-card[data-blog-tag]').forEach(item=>{
+  item.style.display=matches(item.dataset.blogTag||'')?'':'none';
+});
+document.querySelectorAll('.blog-topic-row [data-blog-topic]').forEach(item=>{
+  const active=item.dataset.blogTopic===topic;
+  item.classList.toggle('active',active);
+  item.setAttribute('aria-pressed',String(active));
+});
+});
 const onf=e=>{const t=e.target;if(t.id==='note'){const en=EN()[t.dataset.c];(en.n=en.n||{})[t.dataset.i]=t.value;save();return}if(t.dataset.f&&$('#list')){f[t.dataset.f]=t.value;list()}};
 document.addEventListener('input',onf);document.addEventListener('change',onf);
 document.addEventListener('submit',e=>{const fm=e.target.closest('[data-form]');if(!fm)return;e.preventDefault();const k=fm.dataset.form,v=Object.fromEntries(new FormData(fm));
