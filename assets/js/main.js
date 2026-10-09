@@ -143,7 +143,7 @@ return `<div class="wrap page edn-course-page">
     <div class="edn-course-hero-actions">
       ${e?'<a class="edn-course-buy" href="#/learn/'+id+'/'+nextL(c)+'"><span>TIẾP TỤC HỌC</span><strong>Vào bài học <b>→</b></strong></a>':'<button class="edn-course-buy" type="button" data-a="enroll" data-v="'+id+'"><span>ĐĂNG KÝ KHÓA HỌC</span><strong>'+money(c.p)+' <b>⌄</b></strong></button>'}
       <button class="edn-course-favorite ${isFav?'is-favorite':''}" type="button" data-a="favorite" data-v="${id}" aria-pressed="${isFav}" aria-label="${isFav?'Bỏ khỏi yêu thích':'Thêm vào yêu thích'}" title="${isFav?'Bỏ khỏi yêu thích':'Thêm vào yêu thích'}">${isFav?'♥':'♡'}</button>
-      <a class="edn-course-learn-more" href="#edn-course-content">XEM NỘI DUNG</a>
+      <button class="edn-course-learn-more" type="button" data-a="scrollCourseContent">XEM NỘI DUNG</button>
     </div>
     <div class="edn-course-social-proof"><span class="edn-course-rating-stars">★★★★★</span><strong>${c.r}/5</strong><span>${c.n.toLocaleString("vi-VN")} lượt đăng ký quan tâm</span></div>
   </div>
@@ -287,6 +287,7 @@ sc:id=>{$('#nav').classList.remove('open');const s=()=>{const el=document.getEle
 cat:v=>{f=F0();f.cat=v;to('/courses')},
 clear:()=>{f=F0();render(true)},
 enroll:id=>{if(!D.me){next='/checkout/'+id;toast('Đăng nhập để tiếp tục thanh toán');return go('/login')}go('/checkout/'+id)},
+scrollCourseContent:()=>document.getElementById('edn-course-content')?.scrollIntoView({behavior:'smooth',block:'start'}),
 favorite:id=>{const key=D.me||'guest';D.favorites=D.favorites||{};const list=Array.isArray(D.favorites[key])?D.favorites[key]:[],i=list.indexOf(id);if(i>=0){list.splice(i,1);toast('Đã bỏ khóa học khỏi yêu thích')}else{list.push(id);toast('Đã thêm khóa học vào yêu thích')}D.favorites[key]=list;save();render(true)},
 done:v=>{const[id,i]=v.split(','),e=EN()[id],k=+i,x=e.done.indexOf(k);x<0?e.done.push(k):e.done.splice(x,1);save();toast(x<0?'Đã lưu tiến độ':'Đã bỏ đánh dấu');render(true)},
 tab:(v,t)=>{document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('on',b===t));document.querySelectorAll('.pn').forEach(p=>p.classList.toggle('hidden',p.dataset.p!==v))},
