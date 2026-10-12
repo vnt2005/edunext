@@ -26,7 +26,12 @@ const mapCourse=raw=>{
     h:raw.durationHours,tag:raw.published?'Đã xuất bản':'Đang hoàn thiện nội dung',
     c:'',published:raw.published===true,contentStatus:raw.contentStatus||'outline',
     completionCount:Number(raw.completionRule&&raw.completionRule.requiredCount)||L.length,
-    ready:raw.published===true&&typeof raw.price==='number'&&Number.isFinite(raw.price)&&raw.price>=0&&lessons.length>0&&lessons.every(lesson=>!!(lesson.content||lesson.videoUrl||lesson.resourceUrl))
+    previewVideoUrl:/^https:\/\//i.test(String(raw.previewVideoUrl||''))?String(raw.previewVideoUrl):'',
+    ready:raw.published===true&&typeof raw.price==='number'&&Number.isFinite(raw.price)&&raw.price>=0&&lessons.length>0&&lessons.every(lesson=>{
+      const videoUrl=String(lesson.videoUrl||'').trim(),resourceUrl=String(lesson.resourceUrl||'').trim();
+      const mediaValid=url=>url===''||/^https:\/\//i.test(url);
+      return !!lesson.title&&!!(lesson.content||videoUrl||resourceUrl)&&mediaValid(videoUrl)&&mediaValid(resourceUrl);
+    })
   };
 };
 const BLOG_ARTICLES=[
