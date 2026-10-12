@@ -346,7 +346,8 @@ function edunext_ajax_profile_save(): void {
         'ID' => $user_id,
         'first_name' => $first,
         'last_name' => $last,
-        'display_name' => trim($first . ' ' . $last),
+        // For Vietnamese names, family name and middle names precede the given name.
+        'display_name' => trim($last . ' ' . $first),
     ]);
     if (is_wp_error($updated)) {
         edunext_ajax_error('Không thể cập nhật hồ sơ lúc này.');
