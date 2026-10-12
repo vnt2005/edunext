@@ -244,21 +244,39 @@ const learn=(id,index)=>{
     (lesson.exercise?'<section class="edn-lesson-exercise"><h2>Thực hành</h2><p>'+esc(lesson.exercise)+'</p></section>':'')+
     '<div class="cio-lesson-actions">'+prev+mark+after+final+'</div></div></main></div></div>';
 };
-const quiz=id=>{const c=find(id),e=EN()[id];if(!c||!Q[id])return nf();if(!D.me)return guard('/quiz/'+id);if(!e){go('/course/'+id);return ''}
-if(e.done.length<c.L.length){toast('Hãy học hết các bài trước khi làm kiểm tra');go('/learn/'+id+'/'+nextL(c));return ''}
-qz={i:0,a:[],res:null};hook=()=>qr(id);return `<div class="wrap page narrow"><div class="bc"><a href="#/course/${id}">${c.t}</a> / Bài kiểm tra</div><h1>Bài kiểm tra cuối khóa</h1><div class="box" id="qz"></div></div>`};
-function qr(id){const qs=Q[id],box=$('#qz');if(qz.res!==null){const ok=qz.res>=70;box.innerHTML=`<div class="res"><div class="score">${qz.res}/100</div><h2>${ok?'Bạn đã đạt bài kiểm tra':'Chưa đạt, cần tối thiểu 70 điểm'}</h2>${ok?`<a class="btn btn-p" href="#/cert/${id}">Hoàn thành</a>`:''}<button class="btn btn-g" data-a="qretry" data-v="${id}">Làm lại</button></div>`;return}
-const q=qs[qz.i];box.innerHTML=`<div class="qh"><span>Câu ${qz.i+1}/${qs.length}</span></div><div class="bar"><span style="width:${(qz.i+1)/qs.length*100}%"></span></div><div class="qq">${q.q}</div>${q.o.map((o,k)=>`<button class="opt ${qz.a[qz.i]===k?'sel':''}" data-a="opt" data-v="${k},${id}">${o}</button>`).join('')}<div class="qf"><button class="btn btn-g" data-a="qgo" data-v="-1,${id}" ${qz.i?'':'disabled'}>Câu trước</button><button class="btn btn-p" data-a="qgo" data-v="1,${id}">${qz.i===qs.length-1?'Nộp bài':'Câu tiếp'}</button></div>`}
-
-const certificates=()=>{if(!D.me)return guard('/certificates');const u=me(),earned=C.filter(c=>passed(c));return `<div class="wrap page cio-student-page cio-certificates-page">
-<div class="cio-page-head"><div><span class="cio-eyebrow">CHỨNG CHỈ</span><h1>Chứng chỉ của bạn</h1><p>Các khóa học bạn đã hoàn thành đầy đủ và đủ điều kiện nhận chứng chỉ.</p></div><a class="btn btn-p" href="#/courses">Khám phá khóa học</a></div>
-<div class="cio-stat-grid"><div><span>Đã cấp</span><b>${earned.length}</b></div><div><span>Học viên</span><b>1</b></div><div><span>Tên tài khoản</span><b>${esc(u.name)}</b></div><div><span>Trạng thái</span><b>${earned.length?'Đủ điều kiện':'Đang học'}</b></div></div>
-${earned.length?`<section class="cio-dashboard-grid cio-certificate-grid">${earned.map(c=>{const code='EDU-'+new Date().getFullYear()+'-'+String(Math.abs([...(u.email+c.id)].reduce((h,ch)=>(h*31+ch.charCodeAt(0))|0,7))%1000000).padStart(6,'0');return '<article class="cio-certificate-card"><div class="cio-certificate-mark">E</div><div><span class="cio-card-status">ĐÃ CẤP</span><h3>${esc(c.t)}</h3><p>${esc(u.name)} · Mã ${code}</p><div class="cio-certificate-foot"><span>Hoàn thành 100%</span><a class="btn btn-g btn-s" href="#/cert/${c.id}">Xem chứng chỉ</a></div></div></article>'}).join('')}</section>`:`<div class="cio-empty"><h3>Chưa có chứng chỉ</h3><p>Hoàn thành toàn bộ bài học và quiz cuối khóa để nhận chứng chỉ.</p><a class="btn btn-p" href="#/dashboard">Về trang học tập</a></div>`}
-</div>`;};const cert=id=>{const c=find(id);if(!c)return nf();if(!D.me)return guard('/cert/'+id);if(!EN()[id]){go('/course/'+id);return ''}
-if(!passed(c)){toast('Hoàn thành khóa học và bài kiểm tra để nhận chứng chỉ');go('/learn/'+id+'/'+nextL(c));return ''}
-const u=me(),code='EDU-'+new Date().getFullYear()+'-'+String(Math.abs([...(u.email+id)].reduce((h,ch)=>(h*31+ch.charCodeAt(0))|0,7))%1000000).padStart(6,'0');
-return `<div class="wrap page narrow"><div class="bc"><a href="#/dashboard">Của tôi</a> / Chứng chỉ</div><div class="cert"><div class="mark">E</div><p class="muted">Chứng chỉ hoàn thành khóa học</p><h2>${c.t}</h2><p class="muted">Cấp cho</p><div class="cname">${esc(u.name)}</div><div class="cmeta"><div><small class="muted">Ngày cấp</small><br><b>${new Date().toLocaleDateString('vi-VN')}</b></div><div><small class="muted">Mã chứng chỉ</small><br><b>${code}</b></div></div></div><div class="acts"><button class="btn btn-p" data-a="print">In hoặc lưu PDF</button><a class="btn btn-g" href="#/dashboard">Về trang cá nhân</a></div></div>`};
-
+const certificates=()=>{
+  if(!D.me)return guard('/certificates');
+  const issued=Array.isArray(CFG.certificates)?CFG.certificates:[];
+  return '<div class="wrap page cio-student-page cio-certificates-page"><div class="cio-page-head"><div><span class="cio-eyebrow">CHỨNG CHỈ</span><h1>Chứng chỉ của bạn</h1><p>Chỉ hiển thị chứng chỉ đã được hệ thống ghi nhận sau khi đủ điều kiện hoàn thành khóa học.</p></div><a class="btn btn-p" href="#/courses">Khám phá lĩnh vực</a></div>'+
+    (issued.length?'<section class="cio-dashboard-grid cio-certificate-grid">'+issued.map(cert=>'<article class="cio-certificate-card"><div class="cio-certificate-mark">E</div><div><span class="cio-card-status">ĐÃ CẤP</span><h3>'+esc(cert.courseTitle||find(cert.courseId)?.t||'Khóa học')+'</h3><p>'+esc(me().name)+' · Mã '+esc(cert.code||'')+'</p><div class="cio-certificate-foot"><span>'+ (cert.issuedAt?new Date(Number(cert.issuedAt)*1000).toLocaleDateString('vi-VN'):'')+'</span><a class="btn btn-g btn-s" href="#/cert/'+esc(cert.courseId)+'">Xem chứng chỉ</a></div></div></article>').join('')+'</section>':'<div class="cio-empty"><h3>Chưa có chứng chỉ được cấp</h3><p>Chứng chỉ chỉ xuất hiện khi tài khoản sở hữu khóa học đã xuất bản và hoàn thành toàn bộ điều kiện học tập.</p><a class="btn btn-p" href="#/dashboard">Xem trang học tập</a></div>')+
+    '</div>';
+};
+const cert=id=>{
+  const c=find(id);
+  if(!c)return nf();
+  if(!D.me)return guard('/cert/'+id);
+  if(!EN()[id])return '<div class="wrap page narrow"><div class="cio-empty"><h2>Chưa có quyền truy cập khóa học</h2><p>Chứng chỉ chỉ dành cho người sở hữu khóa học.</p><a class="btn btn-g" href="#/course/'+esc(id)+'">Xem chương trình</a></div></div>';
+  const issued=(Array.isArray(CFG.certificates)?CFG.certificates:[]).find(item=>item.courseId===id);
+  if(!issued){
+    const complete=passed(c);
+    return '<div class="wrap page narrow"><div class="cio-empty"><span class="edn-overline">CHỨNG CHỈ</span><h1>'+esc(c.t)+'</h1><p>'+(complete?'Tiến độ trên trang cho thấy các bài đã đánh dấu hoàn thành. Yêu cầu hệ thống xác minh điều kiện trước khi cấp chứng chỉ.':'Bạn cần hoàn thành '+c.completionCount+' bài học theo điều kiện của khóa học trước khi yêu cầu chứng chỉ.')+'</p>'+
+      (complete?'<button class="btn btn-p" type="button" data-a="issue-cert" data-v="'+esc(id)+'">Xác minh điều kiện nhận chứng chỉ</button>':'<a class="btn btn-p" href="#/learn/'+esc(id)+'/'+nextL(c)+'">Tiếp tục học</a>')+
+      '<a class="btn btn-g" href="#/certificates">Danh sách chứng chỉ</a></div></div>';
+  }
+  return '<div class="wrap page narrow"><div class="edn-certificate-sheet"><div class="edn-certificate-mark">E</div><span class="edn-overline">EDUNEXT · CHỨNG CHỈ HOÀN THÀNH</span><h1>'+esc(c.t)+'</h1><p>Chứng nhận được cấp cho</p><div class="edn-certificate-name">'+esc(me().name)+'</div><div class="edn-certificate-details"><div><small>Ngày cấp</small><b>'+(issued.issuedAt?new Date(Number(issued.issuedAt)*1000).toLocaleDateString('vi-VN'):'—')+'</b></div><div><small>Mã chứng chỉ</small><b>'+esc(issued.code||'—')+'</b></div></div></div><div class="acts"><button class="btn btn-p" type="button" data-a="print">In hoặc lưu PDF</button><a class="btn btn-g" href="#/certificates">Danh sách chứng chỉ</a></div></div>';
+};
+const ordersPage=()=>{
+  if(!D.me)return guard('/orders');
+  const orders=Array.isArray(CFG.orders)?CFG.orders:[];
+  return '<div class="wrap page edn-orders-page"><div class="edn-page-intro"><span class="edn-overline">TÀI KHOẢN</span><h1>Lịch sử mua hàng</h1><p>Chỉ hiển thị đơn hàng được ghi nhận bởi cơ chế thanh toán đã tích hợp.</p></div>'+
+    (orders.length?'<div class="edn-orders-list">'+orders.map(order=>{
+      const c=find(order.courseId);
+      const status=String(order.status||'pending');
+      const statusLabel=({paid:'Đã thanh toán',pending:'Chờ thanh toán',failed:'Thanh toán thất bại',cancelled:'Đã hủy',refunded:'Đã hoàn tiền'})[status]||'Đang xác minh';
+      return '<article class="edn-order-row"><div><strong>'+esc(c?c.t:'Khóa học')+'</strong><small>'+esc(order.id||'')+' · '+(order.createdAt?new Date(order.createdAt).toLocaleString('vi-VN'):'')+'</small></div><div><b>'+(typeof order.amount==='number'?money(order.amount):'—')+'</b><span class="edn-order-status">'+statusLabel+'</span></div></article>';
+    }).join('')+'</div>':'<div class="cio-empty"><h2>Chưa có đơn hàng</h2><p>EduNext chưa có giao dịch được xác nhận cho tài khoản này. Khóa học đang ở trạng thái đề cương sẽ không tạo đơn hàng giả.</p><a class="btn btn-p" href="#/courses">Khám phá khóa học</a></div>')+
+    '</div>';
+};
 const field=(n,l,t)=>`<div class="fg"><label for="f-${n}">${l}</label><input id="f-${n}" name="${n}" type="${t}" autocomplete="${n==='pw'?'current-password':n}"></div>`;
 const auth=m=>{if(D.me){go('/dashboard');return ''}const r=m==='register';return `<div class="auth"><form class="box ac" data-form="${m}" novalidate><h2>${r?'Tạo tài khoản miễn phí':'Đăng nhập'}</h2>${r?field('name','Họ và tên','text'):''}${field('email','Email','email')}${field('pw','Mật khẩu (tối thiểu 6 ký tự)','password')}${r?'<label class="chk"><input type="checkbox" name="ok"> Tôi đồng ý với điều khoản sử dụng</label>':''}<p class="err" id="err" role="alert"></p><button class="btn btn-p w">${r?'Tạo tài khoản':'Đăng nhập'}</button><p class="sw">${r?'Đã có tài khoản? <a href="#/login">Đăng nhập</a>':'Chưa có tài khoản? <a href="#/register">Tạo tài khoản</a>'}</p></form></div>`};
 
