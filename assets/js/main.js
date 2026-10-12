@@ -495,11 +495,13 @@ function nav(){
   const auth=$('#auth');
   if(auth){
     auth.innerHTML=user
-      ? '<a class="edn-account-study-link" href="#/dashboard">Trang học tập</a><a class="edunext-profile-link" href="#/profile" aria-label="Mở trực tiếp hồ sơ học viên"><span class="edunext-profile-avatar">'+esc(ini(user.name))+'</span><span class="edunext-profile-copy"><strong>Hồ sơ học viên</strong><small>'+esc(user.name)+'</small></span></a>'
+      ? '<a class="edunext-profile-link" href="#/profile" aria-label="Mở trực tiếp hồ sơ học viên"><span class="edunext-profile-avatar">'+esc(ini(user.name))+'</span><span class="edunext-profile-copy"><strong>Hồ sơ học viên</strong></span></a>'
       : '<a class="btn btn-g btn-s" href="#/login">Đăng nhập</a><a class="btn btn-p btn-s" href="#/register">Đăng ký</a>';
   }
   renderDomainMegaMenu();
   renderCourseMegaMenu();
+  const dashboardNav=$('#edn-nav-dashboard');
+  if(dashboardNav)dashboardNav.hidden=!user;
   const activePath=path.startsWith('/domain/')?'/categories':(path.startsWith('/course/')||path.startsWith('/checkout/')||path.startsWith('/learn/')?'/courses':(path.startsWith('/blog/')?'/blog':path));
   document.querySelectorAll('#nav a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+activePath));
   const labels={
