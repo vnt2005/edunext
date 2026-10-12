@@ -68,8 +68,13 @@ const courseImageMarkup=(c)=>COURSE_IMAGES[c.id]
   : '<span class="edn-course-placeholder"><b>'+esc(c.cat||'EduNext')+'</b><small>Lộ trình học tập</small></span>';
 const card=c=>{
   const own=!!EN()[c.id];
+  const issued=Array.isArray(CFG.certificates)&&CFG.certificates.some(item=>item.courseId===c.id);
   const action=own
-    ? '<a class="btn btn-p btn-s" href="#/learn/'+esc(c.id)+'/'+nextL(c)+'">Tiếp tục học</a>'
+    ? (issued
+      ? '<a class="btn btn-p btn-s" href="#/cert/'+esc(c.id)+'">Xem chứng chỉ</a>'
+      : (passed(c)
+        ? '<a class="btn btn-p btn-s" href="#/cert/'+esc(c.id)+'">Điều kiện chứng chỉ</a>'
+        : '<a class="btn btn-p btn-s" href="#/learn/'+esc(c.id)+'/'+nextL(c)+'">Tiếp tục học</a>'))
     : '<a class="btn btn-g btn-s" href="#/course/'+esc(c.id)+'">Xem lộ trình</a>';
   const status=c.ready
     ? (typeof c.p==='number' ? money(c.p) : 'Đã xuất bản')
