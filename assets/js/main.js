@@ -289,15 +289,66 @@ return `<div class="wrap page cio-student-page">
 <div class="cio-tabs"><span class="active">Đang học (${active.length})</span><span>Hoàn thành (${completed.length})</span></div>
 ${active.length?'<section class="cio-dashboard-grid">'+active.map(c=>'<article class="cio-learning-card"><a href="#/learn/'+c.id+'/'+nextL(c)+'" class="cio-learning-image">'+courseImageMarkup(c)+'</a><div class="cio-learning-body"><div class="cio-card-status">ĐANG HỌC</div><h3><a href="#/learn/'+c.id+'/'+nextL(c)+'">'+c.t+'</a></h3><p>'+c.cat+' · '+c.L.length+' bài · '+c.h+' giờ</p><div class="cio-progress-line"><span style="width:'+pct(c)+'%"></span></div><div class="cio-learning-foot"><span>'+pct(c)+'% hoàn thành</span><a href="#/learn/'+c.id+'/'+nextL(c)+'">Tiếp tục →</a></div></div></article>').join('')+'</section>':'<div class="cio-empty"><h3>Chưa có khóa học đang học</h3><p>Mua một khóa học để nó xuất hiện trong Trang học tập.</p><a class="btn btn-p" href="#/courses">Khám phá khóa học</a></div>'}
 ${completed.length?'<section class="cio-completed-section"><div class="cio-section-title"><h2>Đã hoàn thành</h2><a href="#/courses">Khám phá thêm →</a></div><div class="grid cio-course-grid">'+completed.map(card).join('')+'</div></section>':''}
-</div>`};const blogPage=()=>`<div class="wrap page blog-page">
-<div class="blog-page-head"><div><span class="content-kicker">EduNext Blog</span><h1>Học một chút, làm được một chút</h1><p>Các bài viết ngắn về lập trình, dự án và cách tự học. Viết để giải quyết những câu hỏi thật trong lúc học, không phải để nhồi thêm lý thuyết.</p></div><a class="btn btn-p" href="#/courses">Xem khóa học</a></div>
-<div class="blog-topic-row"><button type="button" class="topic active" data-blog-topic="Tất cả" aria-pressed="true">Tất cả</button><button type="button" class="topic" data-blog-topic="Lập trình" aria-pressed="false">Lập trình</button><button type="button" class="topic" data-blog-topic="ASP.NET Core" aria-pressed="false">ASP.NET Core</button><button type="button" class="topic" data-blog-topic="AI" aria-pressed="false">AI</button><button type="button" class="topic" data-blog-topic="Kỹ năng học tập" aria-pressed="false">Kỹ năng học tập</button></div>
-<section class="blog-page-feature" data-blog-tag="${esc(BLOG_ARTICLES[0].tag)}"><a class="blog-page-feature-image" href="#/blog"><img src="${BLOG_ARTICLES[0].image}" alt="${esc(BLOG_ARTICLES[0].title)}"><span>${BLOG_ARTICLES[0].tag}</span></a><div class="blog-page-feature-body"><div class="blog-home-meta"><span>${BLOG_ARTICLES[0].time}</span><span>EduNext</span></div><h2>${BLOG_ARTICLES[0].title}</h2><p>${BLOG_ARTICLES[0].excerpt}</p><p class="blog-page-note">Một bài viết phù hợp nếu bạn đang học C# nhưng cảm giác kiến thức cứ trôi đi sau mỗi buổi học.</p><a class="btn btn-g" href="#/course/${BLOG_ARTICLES[0].course}">Xem khóa học liên quan</a></div></section>
-<div class="blog-page-grid">${BLOG_ARTICLES.slice(1).map(a=>'<article class="blog-page-card" data-blog-tag="'+esc(a.tag)+'"><a class="blog-page-card-image" href="#/blog"><img src="'+a.image+'" alt="'+esc(a.title)+'" loading="lazy"><span>'+a.tag+'</span></a><div class="blog-page-card-body"><div class="blog-home-meta"><span>'+a.time+'</span><span>EduNext</span></div><h2>'+a.title+'</h2><p>'+a.excerpt+'</p><a class="blog-read-link" href="#/course/'+a.course+'">Học phần liên quan →</a></div></article>').join('')}</div>
-<div class="blog-page-footer"><div><span class="eyebrow">GỢI Ý ĐỂ BẮT ĐẦU</span><h2>Đọc một bài, rồi quay lại làm thử.</h2><p>Bài viết chỉ có ý nghĩa khi nó giúp bạn hiểu thêm một điều và làm được thêm một việc.</p></div><a class="btn btn-p" href="#/courses">Xem khóa học</a></div>
-</div>`;
-
-const aboutPage=()=>`<div class="wrap page content-page"><div class="content-hero"><span class="content-kicker">Về EduNext</span><h1>Học đúng kiến thức, phát triển đúng tương lai</h1><p class="muted">EduNext là bản demo nền tảng học trực tuyến tập trung vào lộ trình rõ ràng, tiến độ học tập và trải nghiệm học thực tế.</p></div><section class="about-grid"><div class="box about-main"><h2>EduNext hướng đến điều gì?</h2><p>Thay vì đưa quá nhiều nội dung cùng lúc, EduNext tổ chức khóa học theo từng bước để người học dễ bắt đầu, dễ theo dõi và dễ quay lại đúng phần đang học.</p><p>Nền tảng kết hợp khóa học, video, quiz, chứng chỉ, dashboard và các công cụ dành cho giảng viên và quản trị viên trong một trải nghiệm thống nhất.</p></div><div class="box about-values"><h2>Giá trị cốt lõi</h2><div><b>Học có lộ trình</b><span>Mỗi bước đều có mục tiêu rõ ràng.</span></div><div><b>Thực hành</b><span>Ưu tiên kiến thức có thể áp dụng vào dự án.</span></div><div><b>Theo dõi tiến độ</b><span>Biết mình đang ở đâu và nên học gì tiếp.</span></div><div><b>Trải nghiệm đơn giản</b><span>Giao diện dễ dùng trên máy tính và điện thoại.</span></div></div></section><section class="box about-mission"><span class="content-kicker">Tầm nhìn</span><h2>Xây dựng một không gian học tập rõ ràng, thực tế và dễ tiếp cận.</h2><p class="muted">Từ người mới bắt đầu đến người muốn bổ sung kỹ năng, EduNext hướng tới việc biến mục tiêu lớn thành những bước học nhỏ có thể hoàn thành mỗi ngày.</p><a class="btn btn-p" href="#/courses">Xem khóa học</a></section></div>`;
+</div>`};const BLOG_ARTICLE_BODY=[
+[
+'Bắt đầu bằng một chương trình nhỏ thay vì cố ghi nhớ mọi cú pháp. Sau khi học một khái niệm, hãy đóng tài liệu lại và tự viết lại ví dụ bằng cách hiểu của mình.',
+'Chia bài học thành ba bước: đọc khái niệm, tự viết ví dụ, rồi thay đổi yêu cầu để xem mình đã hiểu thật chưa. Khi gặp lỗi, đọc thông báo và kiểm tra giả định thay vì chạy lại một cách ngẫu nhiên.',
+'Giữ một danh sách ngắn những điều thường quên và quay lại giải quyết chúng bằng bài tập mới. Mục tiêu không phải nhớ từng dòng code mà là biết cách tìm ra lời giải.'
+],
+[
+'Một REST API sẽ dễ học hơn nếu xếp kiến thức theo thứ tự. Bắt đầu từ HTTP, route và controller; sau đó tách logic, cấu hình dependency injection rồi mới truy cập dữ liệu.',
+'Khi thêm Entity Framework Core, hãy thử từng thao tác CRUD qua công cụ kiểm thử API. Khi luồng cơ bản đã rõ, hãy thêm xác thực và phân quyền, đồng thời kiểm tra cả trường hợp thiếu token hoặc dữ liệu không hợp lệ.',
+'Đừng nhảy thẳng vào nhiều kiến trúc cùng lúc. Một API nhỏ hoạt động đúng, có kiểm tra dữ liệu và xử lý lỗi rõ ràng là nền tảng tốt để mở rộng.'
+],
+[
+'Một buổi tự học nên bắt đầu bằng kết quả có thể kiểm tra được: giải một bài, hoàn thiện một màn hình, hoặc hiểu và ghi lại một khái niệm.',
+'Thử chia thời gian thành phiên tập trung ngắn. Trong mỗi phiên chỉ chọn một mục tiêu, tắt những thông báo không cần thiết và dành vài phút cuối để ghi lại việc đã làm cùng bước tiếp theo.',
+'Điều quan trọng là tính đều đặn và phản hồi. Nếu mục tiêu quá lớn khiến bạn liên tục bỏ dở, hãy thu nhỏ việc cần làm thay vì kéo dài thời gian ngồi trước máy.'
+],
+[
+'AI có thể giúp diễn giải thông báo lỗi, gợi ý trường hợp biên và so sánh các cách giải quyết. Hãy đặt câu hỏi về lý do và trade-off, không chỉ yêu cầu đưa ra đoạn code hoàn chỉnh.',
+'Sau khi nhận câu trả lời, hãy kiểm tra tài liệu chính thức, chạy thử trong môi trường của mình và viết lại giải pháp bằng cách hiểu của bạn. Mã do AI đề xuất cũng có thể sai hoặc không an toàn.',
+'Một quy tắc hữu ích là tự thử trước, nhờ AI giải thích sau, rồi tự kiểm chứng. Cách làm này biến AI thành công cụ học tập thay vì làm thay quá trình suy nghĩ.'
+],
+[
+'Một dự án đầu tiên không cần thật lớn. Hãy chọn bài toán quen thuộc như quản lý công việc, danh sách chi tiêu hoặc ghi chú, rồi xác định một nhóm chức năng nhỏ nhất có thể hoàn thành.',
+'Viết yêu cầu bằng ngôn ngữ dễ hiểu trước khi chọn framework. Sau đó phác thảo dữ liệu, chia công việc thành từng bước, làm phiên bản đơn giản và kiểm tra bằng các trường hợp sử dụng thực tế.',
+'Khi dự án chạy ổn định, hãy cải thiện cấu trúc, xử lý lỗi và viết README hướng dẫn chạy. Một sản phẩm nhỏ do bạn hiểu rõ thường thể hiện năng lực tốt hơn một project lớn chỉ sao chép theo hướng dẫn.'
+],
+[
+'SQL giúp bạn hiểu dữ liệu được lưu ra sao và ứng dụng lấy dữ liệu như thế nào. Bắt đầu từ SELECT, điều kiện lọc, sắp xếp và phân nhóm trước khi chuyển sang các truy vấn kết hợp bảng.',
+'Tiếp theo hãy học khóa chính, khóa ngoại, quan hệ dữ liệu và cách tránh lưu lặp thông tin. Viết nhiều truy vấn nhỏ trên một bộ dữ liệu thử nghiệm sẽ giúp bạn nhận ra lỗi nhanh hơn.',
+'Với người phát triển backend, SQL không chỉ là cú pháp. Đó là cách hiểu tính nhất quán, hiệu suất và mối quan hệ giữa các phần của ứng dụng.'
+]
+];
+const blogPage=()=>{
+  const cards=BLOG_ARTICLES.map((a,i)=>'<article class="blog-page-card" data-blog-tag="'+esc(a.tag)+'"><a class="blog-page-card-image" href="#/blog/'+slugify(a.title)+'"><img src="'+esc(a.image||'')+'" alt="'+esc(a.title)+'" loading="lazy"><span>'+esc(a.tag)+'</span></a><div class="blog-page-card-body"><div class="blog-home-meta"><span>'+esc(a.time)+'</span><span>EduNext</span></div><h2><a href="#/blog/'+slugify(a.title)+'">'+esc(a.title)+'</a></h2><p>'+esc(a.excerpt)+'</p><a class="blog-read-link" href="#/blog/'+slugify(a.title)+'">Đọc bài viết →</a></div></article>').join('');
+  const topics=['Tất cả','Lập trình','ASP.NET Core','AI','Kỹ năng học tập','Dự án','Cơ sở dữ liệu'];
+  return '<div class="wrap page blog-page"><div class="blog-page-head"><div><span class="content-kicker">EduNext Blog</span><h1>Góc kiến thức</h1><p>Bài viết hướng dẫn, kinh nghiệm tự học và gợi ý thực hành. Mỗi bài có trang đọc riêng để bạn quay lại đúng nội dung cần tham khảo.</p></div><a class="btn btn-p" href="#/courses">Xem chương trình học</a></div>'+
+    '<div class="blog-topic-row">'+topics.map((t,i)=>'<button type="button" class="topic '+(i===0?'active':'')+'" data-blog-topic="'+esc(t)+'" aria-pressed="'+(i===0?'true':'false')+'">'+esc(t)+'</button>').join('')+'</div>'+
+    '<div class="blog-page-grid">'+cards+'</div><div class="blog-page-footer"><div><span class="eyebrow">GỢI Ý ĐỂ BẮT ĐẦU</span><h2>Đọc một bài, rồi tự làm thử.</h2><p>Chọn một ý tưởng từ bài viết và biến nó thành một bài tập nhỏ để củng cố kiến thức.</p></div><a class="btn btn-p" href="#/courses">Khám phá lĩnh vực</a></div></div>';
+};
+const blogDetail=slug=>{
+  const index=BLOG_ARTICLES.findIndex(a=>slugify(a.title)===slug);
+  if(index<0)return nf();
+  const article=BLOG_ARTICLES[index];
+  const paragraphs=BLOG_ARTICLE_BODY[index]||[article.excerpt];
+  return '<article class="wrap page edn-blog-article"><nav class="edn-breadcrumb" aria-label="Đường dẫn"><a href="#/">Trang chủ</a><span>›</span><a href="#/blog">Góc kiến thức</a><span>›</span><span>'+esc(article.tag)+'</span></nav>'+
+    '<header class="edn-blog-article-head"><span class="content-kicker">'+esc(article.tag)+'</span><h1>'+esc(article.title)+'</h1><p>'+esc(article.excerpt)+'</p><span class="edn-blog-meta">'+esc(article.time)+' · EduNext</span></header>'+
+    (article.image?'<figure class="edn-blog-article-image"><img src="'+esc(article.image)+'" alt="'+esc(article.title)+'"></figure>':'')+
+    '<div class="edn-blog-article-body">'+paragraphs.map(p=>'<p>'+esc(p)+'</p>').join('')+'</div>'+
+    '<div class="edn-blog-article-related"><h2>Muốn tìm hiểu sâu hơn?</h2><p>Khám phá lĩnh vực và đề cương học tập phù hợp với chủ đề này.</p><a class="btn btn-p" href="#/courses">Khám phá khóa học</a><a class="btn btn-g" href="#/blog">Quay lại Góc kiến thức</a></div></article>';
+};
+const faqItems=[
+['EduNext hiện có những lĩnh vực nào?','Danh mục khởi đầu có 50 lĩnh vực cùng các chủ đề chuyên môn liên quan. Danh mục có thể mở rộng khi có chương trình mới.'],
+['Tất cả khóa học đã mở bán chưa?','Chưa. Các chương trình đang hiển thị là đề cương học tập. Chỉ khi nội dung, video hoặc học liệu, giá và cơ chế thanh toán được kiểm tra thì khóa học mới được mở bán.'],
+['Tại sao tôi chưa thể thanh toán?','Hiện tại chưa có cổng thanh toán thực tế được kết nối trong theme. EduNext không tạo giao dịch hoặc mở quyền học chỉ vì người dùng bấm nút.'],
+['Tiến độ học có gắn với tài khoản không?','Có. Khi khóa học đã được xuất bản và tài khoản có quyền truy cập, tiến độ được lưu phía WordPress theo người dùng và khóa học.'],
+['Khi nào nhận được chứng chỉ?','Chứng chỉ chỉ được ghi nhận sau khi hệ thống xác nhận quyền học và toàn bộ điều kiện hoàn thành của khóa học.'],
+['Làm thế nào để cập nhật hồ sơ?','Đăng nhập, bấm trực tiếp vào Hồ sơ ở thanh đầu trang, chỉnh sửa thông tin và lưu.']
+];
+const faqPage=()=>'<div class="wrap page edn-faq-page"><div class="edn-page-intro"><span class="edn-overline">HỖ TRỢ</span><h1>Câu hỏi thường gặp</h1><p>Thông tin về danh mục chương trình, tài khoản, quyền học, thanh toán và chứng chỉ trên EduNext.</p></div><div class="edn-faq-list">'+faqItems.map(([q,a])=>'<details><summary>'+esc(q)+'</summary><p>'+esc(a)+'</p></details>').join('')+'</div></div>';
+const aboutPage=()=>'<div class="wrap page content-page edn-about-page"><div class="content-hero"><span class="content-kicker">Về EduNext</span><h1>Khám phá kiến thức theo lộ trình của riêng bạn</h1><p class="muted">EduNext tập trung giúp người học khám phá lĩnh vực, xem chương trình học rõ ràng và theo dõi tiến độ trên tài khoản cá nhân.</p></div><section class="about-grid"><div class="box about-main"><h2>Mục tiêu của EduNext</h2><p>Danh mục được tổ chức theo lĩnh vực chính và các chủ đề chuyên môn liên quan. Mỗi chương trình có thứ tự bài học để người học hiểu phạm vi trước khi bắt đầu.</p><p>Khóa học chỉ được mở khi nội dung giảng dạy và học liệu được chuẩn bị, giá được cấu hình và thanh toán có cơ chế xác nhận thực tế. EduNext không giả lập giao dịch hoặc chứng chỉ.</p></div><div class="box about-values"><h2>Nguyên tắc học tập</h2><div><b>Rõ ràng</b><span>Biết lĩnh vực, chủ đề và các bài học dự kiến.</span></div><div><b>Thực hành</b><span>Ưu tiên học liệu và bài tập phù hợp với khóa học.</span></div><div><b>Theo dõi</b><span>Tiến độ gắn với tài khoản người học.</span></div><div><b>Trung thực</b><span>Không hiển thị nội dung, giá hoặc trạng thái chưa được xác minh như dữ liệu thật.</span></div></div></section><section class="box about-mission"><span class="content-kicker">Khám phá</span><h2>Bắt đầu từ lĩnh vực bạn quan tâm.</h2><p class="muted">Xem danh mục và mở các lĩnh vực hoặc chủ đề liên quan để tìm chương trình phù hợp.</p><a class="btn btn-p" href="#/categories">Xem lĩnh vực</a></section></div>';
 
 const profilePage=section=>{
 if(!D.me)return guard('/profile');
