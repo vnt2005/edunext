@@ -21,16 +21,14 @@
             </a>
 
             <nav id="nav" class="edunext-main-nav" aria-label="Điều hướng chính">
-                <a href="#/courses" class="edunext-nav-link">Khóa học</a>
-                <a href="#/categories" class="edunext-nav-link">Danh mục</a>
-                <a href="#/best-sellers" class="edunext-nav-link">Bán chạy</a>
-                <a href="#/blog" class="edunext-nav-link">Blog</a>
-                <a href="#/about" class="edunext-nav-link">Về EduNext</a>
+                <a href="#/courses" class="edunext-nav-link">Khám phá</a>
+                <a href="#/teacher" class="edunext-nav-link">Giảng dạy trên EduNext</a>
+                <a href="#/dashboard" class="edunext-nav-link">Học tập</a>
             </nav>
 
             <form class="sf lms-search edunext-header-search" data-form="search" role="search">
                 <span class="lms-search-icon" aria-hidden="true"></span>
-                <input name="q" placeholder="Bạn muốn học điều gì?" aria-label="Tìm khóa học">
+                <input name="q" placeholder="Tìm kiếm khóa học, kỹ năng..." aria-label="Tìm khóa học">
                 <button type="submit" aria-label="Tìm kiếm">Tìm</button>
             </form>
 
@@ -39,16 +37,6 @@
         </div>
     </div>
 
-    <div class="edunext-category-rail">
-        <div class="wrap edunext-category-inner">
-            <span class="edunext-category-label">Khám phá theo chủ đề</span>
-            <button type="button" data-a="cat" data-v="Lập trình">Lập trình</button>
-            <button type="button" data-a="cat" data-v="Data / AI">Data &amp; AI</button>
-            <button type="button" data-a="cat" data-v="Thiết kế">Thiết kế</button>
-            <button type="button" data-a="cat" data-v="Ngoại ngữ">Ngoại ngữ</button>
-            <button type="button" data-a="cat" data-v="Marketing">Marketing</button>
-        </div>
-    </div>
 </header>
 
 <span id="lms-breadcrumb-current" class="edunext-route-context" aria-live="polite">Trang chủ</span>
