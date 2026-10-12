@@ -124,6 +124,31 @@ const guard=(p)=>{next=p;toast('Vui lòng đăng nhập để tiếp tục');go(
 const courseImageMarkup=(c)=>COURSE_IMAGES[c.id]
   ? '<img src="'+esc(COURSE_IMAGES[c.id])+'" alt="'+esc(c.t)+'" loading="lazy">'
   : '<span class="edn-course-placeholder"><b>'+esc(c.cat||'EduNext')+'</b><small>Lộ trình học tập</small></span>';
+const lessonMaterialMarkup=value=>{
+  const headings=new Set([
+    'MỤC TIÊU BÀI HỌC',
+    'GIẢI THÍCH VÀ KIẾN THỨC TRỌNG TÂM',
+    'VÍ DỤ MINH HỌA',
+    'QUY TRÌNH THỰC HÀNH',
+    'LỖI THƯỜNG GẶP VÀ CÁCH KIỂM TRA',
+    'KẾT QUẢ CẦN LƯU'
+  ]);
+  const sections=String(value||'').split(/\n\s*\n/).map(item=>item.trim()).filter(Boolean);
+  return '<div class="edn-lesson-material">'+sections.map(section=>{
+    const lines=section.split('\n').map(line=>line.trim()).filter(Boolean);
+    if(!lines.length)return '';
+    const title=lines[0];
+    if(headings.has(title)){
+      const body=lines.slice(1);
+      const isList=body.length>0&&body.every(line=>/^\d+\.\s/.test(line));
+      const rendered=isList
+        ? '<ol>'+body.map(line=>'<li>'+esc(line.replace(/^\d+\.\s*/,''))+'</li>').join('')+'</ol>'
+        : body.map(line=>'<p>'+esc(line)+'</p>').join('');
+      return '<section class="edn-lesson-content-section"><h3>'+esc(title)+'</h3>'+rendered+'</section>';
+    }
+    return '<p>'+lines.map(esc).join('<br>')+'</p>';
+  }).join('')+'</div>';
+};
 const coursePriceMarkup=c=>'<div class="edn-course-pricing"'+(c.demoPrice?' title="Giá demo tham khảo"':'')+'><strong class="edn-course-price-current">'+esc(money(c.p))+'</strong>'+(typeof c.o==='number'&&c.o>c.p?'<del class="edn-course-price-original">'+esc(money(c.o))+'</del>':'')+'</div>';
 const cartIconMarkup='<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="9" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle><path d="M1 1h4l2.7 13.1a2 2 0 0 0 2 1.6h9.8a2 2 0 0 0 2-1.6L23 6H6"></path></svg>';
 const card=c=>{
@@ -392,7 +417,7 @@ const learn=(id,index)=>{
   return '<div class="cio-learn-shell"><div class="cio-learn-top"><a href="#/dashboard">← Trang học tập</a><strong>'+esc(c.t)+'</strong><span>'+pct(c)+'% hoàn thành</span></div>'+
     '<div class="cio-learn-layout"><aside class="cio-lesson-sidebar"><div class="cio-lesson-head"><span>'+esc(c.cat)+'</span><h2>'+esc(c.t)+'</h2><div class="cio-progress-line"><span style="width:'+pct(c)+'%"></span></div></div><div class="cio-lesson-list">'+c.lessons.map((item,k)=>'<a class="'+(k===i?'active ':'')+(e.done.includes(k)?'done':'')+'" href="#/learn/'+esc(id)+'/'+k+'"><span>'+String(k+1).padStart(2,'0')+'</span><b>'+esc(item.title)+'</b><small>'+(e.done.includes(k)?'Đã học':'Bài học')+'</small></a>').join('')+'</div></aside>'+
     '<main class="cio-learn-content"><div class="cio-video-wrap">'+videoMarkup(lesson.videoUrl,lesson.title)+'</div><div class="cio-lesson-content"><div class="cio-lesson-heading"><div><span class="cio-eyebrow">BÀI '+(i+1)+'/'+c.lessons.length+'</span><h1>'+esc(lesson.title)+'</h1></div><span class="cio-lesson-badge">'+(done?'Đã hoàn thành':'Đang học')+'</span></div>'+
-    (lesson.content?'<div class="edn-lesson-material">'+esc(lesson.content).replace(/\n/g,'<br>')+'</div>':'<p class="edn-material-pending">Nội dung hướng dẫn chi tiết chưa được bổ sung cho bài này.</p>')+
+    (lesson.content?lessonMaterialMarkup(lesson.content):'<p class="edn-material-pending">Nội dung hướng dẫn chi tiết chưa được bổ sung cho bài này.</p>')+
     (lesson.resourceUrl?'<p class="edn-lesson-resource"><a class="btn btn-g" href="'+esc(lesson.resourceUrl)+'" target="_blank" rel="noopener noreferrer">Mở học liệu của bài học ↗</a></p>':'')+
     (lesson.exercise?'<section class="edn-lesson-exercise"><h2>Thực hành</h2><p>'+esc(lesson.exercise)+'</p></section>':'')+
     '<div class="cio-lesson-actions">'+prev+mark+after+final+'</div></div></main></div></div>';
