@@ -294,3 +294,60 @@ body.edunext-app .edn-course-menu-item:focus-visible{outline:3px solid #8fb0ff;o
   body.edunext-app .edn-course-mega-menu{padding:10px}
   body.edunext-app .edn-course-menu-item{grid-template-columns:22px minmax(0,1fr)}
 }
+
+
+/* Keep dropdown-backed primary nav labels visually identical to standard nav links. */
+body.edunext-app .edunext-main-nav .edn-course-menu-wrap,
+body.edunext-app .edunext-main-nav .edn-domain-menu-wrap{
+  display:inline-flex;
+  align-items:center;
+  flex:0 0 auto;
+  min-width:max-content;
+}
+body.edunext-app .edunext-main-nav .edn-course-nav-link,
+body.edunext-app .edunext-main-nav .edn-domain-nav-link{
+  display:inline-flex!important;
+  align-items:center;
+  justify-content:center;
+  flex:0 0 auto;
+  margin:0;
+  padding:10px 9px!important;
+  color:#41485a;
+  font-family:inherit;
+  font-size:13px!important;
+  font-weight:600!important;
+  line-height:normal;
+  letter-spacing:normal;
+  white-space:nowrap;
+  text-decoration:none;
+}
+body.edunext-app .edunext-main-nav .edn-course-nav-link:hover,
+body.edunext-app .edunext-main-nav .edn-domain-nav-link:hover,
+body.edunext-app .edunext-main-nav .edn-course-nav-link.active,
+body.edunext-app .edunext-main-nav .edn-domain-nav-link.active{
+  color:var(--store-blue);
+  background:var(--store-lilac);
+}
+@media(max-width:1180px){
+  body.edunext-app .edunext-main-nav .edn-course-nav-link,
+  body.edunext-app .edunext-main-nav .edn-domain-nav-link{
+    padding-inline:7px!important;
+    font-size:12px!important;
+  }
+}
+@media(max-width:980px){
+  body.edunext-app .edunext-main-nav .edn-course-menu-wrap,
+  body.edunext-app .edunext-main-nav .edn-domain-menu-wrap{
+    display:flex;
+    width:100%;
+    min-width:0;
+    flex-wrap:wrap;
+  }
+  body.edunext-app .edunext-main-nav .edn-course-nav-link,
+  body.edunext-app .edunext-main-nav .edn-domain-nav-link{
+    flex:1 1 auto!important;
+    justify-content:flex-start;
+    padding:11px 12px!important;
+    font-size:14px!important;
+  }
+}
