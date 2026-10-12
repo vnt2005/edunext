@@ -103,12 +103,12 @@ const card=c=>{
 const nf=()=>'<div class="wrap page"><div class="empty" role="status"><h2>Không tìm thấy nội dung này</h2><p>Liên kết có thể đã thay đổi hoặc nội dung chưa được xuất bản.</p><a href="#/">Về trang chủ</a></div></div>';
 const slugify=value=>String(value||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/g,'d').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
 const home=()=>{
-  const featured=C.slice(0,6);
-  const hero=find('csharp')||C[0];
+  const featured=[...C].sort((a,b)=>Number(b.ready)-Number(a.ready)).slice(0,6);
+  const hero=C.find(c=>c.ready)||find('csharp')||C[0];
   const domainLinks=DOMAINS.slice(0,8).map((d,i)=>
     '<a class="edn-topic-link" href="#/domain/'+esc(d.slug)+'"><span class="edn-topic-title">'+esc(d.name)+'</span><span class="edn-topic-arrow" aria-hidden="true">↗</span></a>'
   ).join('');
-  const marketCard=c=>'<article class="edn-market-course"><a class="edn-market-course-image" href="#/course/'+esc(c.id)+'">'+courseImageMarkup(c)+'<span class="edn-market-course-tag">Đề cương</span><span class="edn-market-course-view">Xem lộ trình ↗</span></a><div class="edn-market-course-copy"><p class="edn-market-course-category">'+esc(c.cat)+'</p><h3><a href="#/course/'+esc(c.id)+'">'+esc(c.t)+'</a></h3><p class="edn-course-outline-meta">'+c.L.length+' bài học dự kiến</p><div class="edn-course-status-line">Nội dung đang được hoàn thiện</div><a class="edn-course-card-link" href="#/course/'+esc(c.id)+'">Xem chương trình <b aria-hidden="true">↗</b></a></div></article>';
+  const marketCard=c=>'<article class="edn-market-course"><a class="edn-market-course-image" href="#/course/'+esc(c.id)+'">'+courseImageMarkup(c)+'<span class="edn-market-course-tag">'+(c.ready?'Đã mở bán':'Đề cương')+'</span><span class="edn-market-course-view">'+(c.ready?'Xem khóa học':'Xem lộ trình')+' ↗</span></a><div class="edn-market-course-copy"><p class="edn-market-course-category">'+esc(c.cat)+'</p><h3><a href="#/course/'+esc(c.id)+'">'+esc(c.t)+'</a></h3><p class="edn-course-outline-meta">'+(c.ready?money(c.p):c.L.length+' bài học dự kiến')+'</p><div class="edn-course-status-line">'+(c.ready?'Khóa học đã sẵn sàng để đăng ký.':'Đề cương đang được hoàn thiện; chưa mở bán.')+'</div><a class="edn-course-card-link" href="#/course/'+esc(c.id)+'">'+(c.ready?'Xem khóa học':'Xem chương trình')+' <b aria-hidden="true">↗</b></a></div></article>';
   const cards=featured.map(marketCard).join('');
   const articles=BLOG_ARTICLES.slice(0,3).map(a=>'<article class="edn-journal-item"><a class="edn-journal-image" href="#/blog/'+slugify(a.title)+'"><img src="'+esc(a.image||'')+'" alt="'+esc(a.title)+'" loading="lazy"></a><div class="edn-journal-copy"><span>'+esc(a.tag)+'</span><h3><a href="#/blog/'+slugify(a.title)+'">'+esc(a.title)+'</a></h3><p>'+esc(a.excerpt)+'</p><a class="edn-journal-link" href="#/blog/'+slugify(a.title)+'">Đọc bài viết <b aria-hidden="true">↗</b></a></div></article>').join('');
   const qa=[
