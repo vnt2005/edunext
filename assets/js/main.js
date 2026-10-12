@@ -130,8 +130,7 @@ const home=()=>{
     '<section class="edn-faq-section" id="faq"><div class="edn-public-container"><div class="edn-editorial-heading"><div><span class="edn-overline">HỎI ĐÁP</span><h2>Những điều cần biết</h2></div><a href="#/faq" class="edn-editorial-link">Xem tất cả câu hỏi ↗</a></div>'+qa+'</div></section>'+
     '<section class="edn-final-cta"><div class="edn-public-container"><div><span class="edn-overline">BƯỚC TIẾP THEO</span><h2>Bắt đầu bằng lĩnh vực bạn quan tâm.</h2><p>Khám phá đề cương và xem các bài học dự kiến.</p></div><a class="edn-button-primary" href="#/categories">Khám phá lĩnh vực ↗</a></div></section>'+
   '</div>';
-};const grp=(t,k,o)=>`<div><h4>${t}</h4>${o.map(x=>Array.isArray(x)?x:[x,x||'Tất cả']).map(([v,l])=>`<label><input type="radio" name="${k}" data-f="${k}" value="${v}" ${f[k]===v?'checked':''}> ${l}</label>`).join('')}</div>`;
-const list=()=>{
+};const list=()=>{
   const root=$('#list');
   if(!root)return;
   const q=(f.q||'').trim().toLocaleLowerCase('vi-VN');
