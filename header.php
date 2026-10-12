@@ -21,9 +21,10 @@
             </a>
 
             <nav id="nav" class="edunext-main-nav" aria-label="Điều hướng chính">
-                <a href="#/courses" class="edunext-nav-link">Khám phá</a>
-                <a href="#/teacher" class="edunext-nav-link">Giảng dạy trên EduNext</a>
-                <a href="#/dashboard" class="edunext-nav-link">Học tập</a>
+                <a href="#/courses" class="edunext-nav-link">Khóa học</a>
+                <a href="#/categories" class="edunext-nav-link">Lộ trình</a>
+                <a href="#/blog" class="edunext-nav-link">Góc kiến thức</a>
+                <a href="#/teacher" class="edunext-nav-link">Giảng dạy</a>
             </nav>
 
             <form class="sf lms-search edunext-header-search" data-form="search" role="search">
