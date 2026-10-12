@@ -675,6 +675,17 @@ function render(keep){
   if(!keep)window.scrollTo(0,0);
 }
 
+/* Clicking the brand while already on home should scroll to the page top. */
+document.addEventListener('click',event=>{
+  const brand=event.target.closest('.edunext-brand');
+  if(!brand)return;
+  const path=(window.location.hash.slice(1)||'/').replace(/\/$/,'')||'/';
+  if(path==='/'){
+    event.preventDefault();
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+});
+
 /* User-facing interactions only. */
 const A={
   'retry-catalog':()=>initializeEduNext(),
