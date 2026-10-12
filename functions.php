@@ -53,15 +53,47 @@ function edunext_catalog_course(string $course_id): ?array {
 }
 
 function edunext_course_is_ready(array $course): bool {
-    if (empty($course['published']) || !isset($course['price']) || !is_numeric($course['price']) || (float) $course['price'] < 0) {
+    if (empty($course['published']) || ($course['metadataStatus'] ?? 'draft') !== 'verified') {
         return false;
     }
+    if (!isset($course['price']) || !is_numeric($course['price']) || (float) $course['price'] < 0) {
+        return false;
+    }
+
+    foreach (['id', 'title', 'domainId', 'shortDescription', 'description', 'audience', 'prerequisites'] as $required_field) {
+        if (trim((string) ($course[$required_field] ?? '')) === '') {
+            return false;
+        }
+    }
+    $level = trim((string) ($course['level'] ?? ''));
+    $duration = $course['durationHours'] ?? null;
+    $outcomes = isset($course['outcomes']) && is_array($course['outcomes']) ? $course['outcomes'] : [];
+    if ($level === '' || in_array($level, ['Chưa xác định', 'Chưa cấu hình'], true) || !is_numeric($duration) || (float) $duration <= 0 || empty($outcomes)) {
+        return false;
+    }
+
     $lessons = isset($course['lessons']) && is_array($course['lessons']) ? $course['lessons'] : [];
     if (empty($lessons)) {
         return false;
     }
+
+    // A video URL must not be reused for multiple lesson entries across the catalog.
+    $video_counts = [];
+    foreach (edunext_catalog_data()['courses'] as $catalog_course) {
+        if (!is_array($catalog_course) || empty($catalog_course['lessons']) || !is_array($catalog_course['lessons'])) {
+            continue;
+        }
+        foreach ($catalog_course['lessons'] as $catalog_lesson) {
+            $catalog_video = trim((string) ($catalog_lesson['videoUrl'] ?? ''));
+            if ($catalog_video !== '') {
+                $key = strtolower(rtrim($catalog_video, '/'));
+                $video_counts[$key] = ($video_counts[$key] ?? 0) + 1;
+            }
+        }
+    }
+
     foreach ($lessons as $lesson) {
-        if (!is_array($lesson) || empty($lesson['title'])) {
+        if (!is_array($lesson) || trim((string) ($lesson['title'] ?? '')) === '') {
             return false;
         }
         $content = trim((string) ($lesson['content'] ?? ''));
@@ -75,7 +107,16 @@ function edunext_course_is_ready(array $course): bool {
                 return false;
             }
         }
+        if ($video_url !== '' && ($video_counts[strtolower(rtrim($video_url, '/'))] ?? 0) !== 1) {
+            return false;
+        }
     }
+
+    $preview_url = trim((string) ($course['previewVideoUrl'] ?? ''));
+    if ($preview_url !== '' && (!wp_http_validate_url($preview_url) || strtolower((string) wp_parse_url($preview_url, PHP_URL_SCHEME)) !== 'https')) {
+        return false;
+    }
+
     return true;
 }
 
