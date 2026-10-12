@@ -299,6 +299,8 @@ const domainDetail=slug=>{
 const videoMarkup=(url,title)=>{
   if(!url)return '<div class="edn-media-unavailable" role="status"><strong>Video bài học đang được cập nhật</strong><p>Video phù hợp cho bài này chưa được gắn vào danh mục khóa học.</p></div>';
   const raw=String(url).trim();
+  const startMatch=raw.match(/[?&]t=(\d+)s?/i);
+  const startParam=startMatch?'&start='+String(Number(startMatch[1])):'';
   const playlist=raw.match(/(?:youtube(?:-nocookie)?\.com\/(?:playlist|embed\/videoseries)[^#]*[?&]list=)([A-Za-z0-9_-]{10,})/i);
   if(playlist){
     const idx=raw.match(/[?&]index=(\d+)/i);
@@ -306,7 +308,7 @@ const videoMarkup=(url,title)=>{
     return '<iframe src="'+source+'" title="'+esc(title)+'" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
   }
   const yt=raw.match(/(?:youtube-nocookie\.com\/embed\/|youtube\.com\/(?:watch\?[^#]*v=)|youtu\.be\/)([A-Za-z0-9_-]{11})/i);
-  if(yt)return '<iframe src="https://www.youtube-nocookie.com/embed/'+encodeURIComponent(yt[1])+'?rel=0&playsinline=1" title="'+esc(title)+'" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+  if(yt)return '<iframe src="https://www.youtube-nocookie.com/embed/'+encodeURIComponent(yt[1])+'?rel=0&playsinline=1'+startParam+'" title="'+esc(title)+'" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
   if(/^https:\/\/.+\.mp4(?:\?.*)?$/i.test(raw))return '<video controls preload="metadata" src="'+esc(raw)+'" aria-label="'+esc(title)+'"></video>';
   return '<div class="edn-media-unavailable" role="status"><strong>Định dạng học liệu chưa hỗ trợ</strong><p>Học liệu cần được kiểm tra trước khi xuất bản.</p></div>';
 };
@@ -324,6 +326,7 @@ const detail=id=>{
     const mediaLabel=lesson.videoUrl?'Có video bài giảng':hasText?'Có nội dung bài học':'Video đang được cập nhật';
     const lessonPanel=canViewLessons
       ? '<div class="edn-curriculum-panel"><div class="edn-curriculum-video">'+videoMarkup(lesson.videoUrl,lesson.title)+'</div>'+
+        '<div class="edn-curriculum-player-actions"><button class="edn-curriculum-open-player" type="button" data-a="course-player" data-v="'+esc(id)+','+i+'">Mở trình phát có danh sách bài học</button></div>'+
         (hasText?'<section class="edn-curriculum-material"><h3>NỘI DUNG BÀI HỌC</h3>'+lessonMaterialMarkup(lesson.content)+'</section>':'')+
         (String(lesson.exercise||'').trim()?'<section class="edn-curriculum-exercise"><h3>Bài tập thực hành</h3><p>'+esc(lesson.exercise)+'</p></section>':'')+
         (lesson.resourceUrl?'<p class="edn-lesson-resource"><a class="btn btn-g" href="'+esc(lesson.resourceUrl)+'" target="_blank" rel="noopener noreferrer">Mở học liệu bổ sung ↗</a></p>':'')+
@@ -334,21 +337,18 @@ const detail=id=>{
   const visual=COURSE_IMAGES[c.id]
     ? '<img src="'+esc(COURSE_IMAGES[c.id])+'" alt="'+esc(c.t)+'" loading="lazy">'
     : '<div class="edn-course-placeholder edn-course-placeholder-large"><b>'+esc(c.cat)+'</b><small>Chương trình học</small></div>';
-  const buyContent=owned
-    ? '<div class="cio-owned">✓ Tài khoản đã có quyền truy cập khóa học này.</div><a class="btn btn-p w edn-course-buy-button" href="#/learn/'+esc(id)+'/'+nextL(c)+'">Tiếp tục học</a>'
-    : '<div class="edn-course-not-for-sale"><strong>Đang mở học miễn phí</strong><p>Hiện tại bạn có thể xem toàn bộ video và nội dung bài học mà không cần mua khóa học. Phần thanh toán và bắt buộc mua sẽ được hoàn thiện sau.</p></div><a class="btn btn-p w edn-course-buy-button" href="#/learn/'+esc(id)+'/0">Bắt đầu học miễn phí</a>';
+  const buyContent='';
   const outcomes=Array.isArray(c.outcomes)?c.outcomes:[];
   return '<div class="edn-course-detail-page"><section class="edn-course-hero"><div class="wrap edn-course-hero-inner">'+
     '<div class="edn-course-intro"><nav class="edn-course-breadcrumb" aria-label="Đường dẫn"><a href="#/">Trang chủ</a><span>›</span><a href="#/categories">Nhóm lĩnh vực</a><span>›</span>'+(group?'<a href="#/group/'+esc(group.slug)+'">'+esc(group.name)+'</a><span>›</span>':'')+'<a href="#/domain/'+esc(domain?domain.slug:'')+'">'+esc(c.cat)+'</a></nav>'+
     '<div class="edn-course-eyebrow">'+esc(c.cat)+' <span>·</span> Đề cương chương trình</div><h1>'+esc(c.t)+'</h1><p class="edn-course-subtitle">'+esc(c.shortDescription||c.description||'Đề cương chương trình đang được hoàn thiện.')+'</p>'+
     '<div class="edn-course-tag-row"><span class="edn-course-tag">'+(c.ready?'Đã xuất bản':'Đang hoàn thiện nội dung')+'</span><span class="edn-course-language">Ngôn ngữ: chưa cấu hình</span></div>'+
     '<div class="edn-course-date-row"><span>'+c.L.length+' bài học dự kiến</span><span>'+(c.h?esc(c.h)+' giờ':'Thời lượng đang cập nhật')+'</span></div>'+
-    '<div class="edn-course-status-line">Người chưa có quyền học chỉ xem đề cương; video và nội dung chi tiết hiển thị trong khu vực học viên được cấp quyền.</div></div>'+
+    '<div class="edn-course-status-line">Chọn một bài học bên dưới để xem video và nội dung hướng dẫn tương ứng.</div></div>'+
     '<aside class="edn-course-buy-card" aria-label="Trạng thái khóa học"><div class="edn-course-preview edn-course-preview-static">'+visual+'<span class="edn-preview-shade"></span><strong>'+esc(c.cat)+'</strong></div>'+
     (c.previewVideoUrl?'<button class="btn btn-g w edn-preview-course-button" type="button" data-a="preview" data-v="'+esc(id)+'">Xem trước khóa học</button>':'')+
     '<div class="edn-course-buy-content">'+
-    '<div class="edn-course-detail-pricing">'+coursePriceMarkup(c)+'</div><p class="edn-course-purchase-note">'+(owned?'Bạn đã có quyền truy cập khóa học này.':'Khóa học chưa được mở bán.')+'</p>'+buyContent+
-    (owned?'':'<button class="btn btn-p w edn-course-add-to-cart" type="button" data-a="cart-add" data-v="'+esc(id)+'">'+(cartIds.includes(id)?'Xem trong giỏ':'Thêm vào giỏ')+'</button><a class="btn btn-g w edn-course-checkout-link" href="#/checkout/'+esc(id)+'">Mua ngay</a>')+
+    '<button class="btn btn-p w edn-course-player-launch" type="button" data-a="course-player" data-v="'+esc(id)+','+Math.max(c.lessons.findIndex(item=>!!item.videoUrl),0)+'">Xem video và danh sách bài học</button>'+
     '<div class="edn-course-includes"><strong>Thông tin chương trình</strong><span>✓ '+c.L.length+' bài học trong đề cương</span><span>✓ Có thứ tự bài học rõ ràng</span><span>✓ Lĩnh vực và chủ đề liên quan</span></div></div></aside></div></section>'+
     '<div class="wrap edn-course-content-grid"><main class="edn-course-main">'+
     '<section class="edn-course-outcomes" aria-labelledby="edn-outcomes-title"><h2>Mục tiêu dự kiến</h2><p class="edn-course-meta-note">Các mục tiêu dưới đây được phác thảo từ đề cương bài học và cần được xác nhận khi nội dung giảng dạy hoàn chỉnh.</p><div class="edn-course-outcomes-grid">'+outcomes.map(item=>'<div class="edn-course-outcome"><span>✓</span><p>'+esc(item)+'</p></div>').join('')+'</div></section>'+
@@ -749,6 +749,30 @@ document.addEventListener('click',event=>{
 });
 
 /* User-facing interactions only. */
+const openCoursePlayer=(id,index=0)=>{
+  const c=find(id);
+  if(!c){toast('Không tìm thấy khóa học trong danh mục.');return;}
+  const requested=Number(index);
+  const activeIndex=Math.min(Math.max(Number.isInteger(requested)?requested:0,0),Math.max(c.lessons.length-1,0));
+  const lesson=c.lessons[activeIndex];
+  if(!lesson){toast('Khóa học chưa có bài học để phát.');return;}
+  $('#edn-course-player-modal')?.remove();
+  const modal=document.createElement('div');
+  modal.id='edn-course-player-modal';
+  modal.className='edn-preview-modal edn-course-player-modal';
+  modal.setAttribute('role','dialog');
+  modal.setAttribute('aria-modal','true');
+  modal.setAttribute('aria-label','Trình phát bài học');
+  const playlist=c.lessons.map((item,k)=>{
+    const isActive=k===activeIndex;
+    return '<button type="button" class="edn-course-player-item'+(isActive?' is-active':'')+'" data-a="course-player-select" data-v="'+esc(id)+','+k+'"'+(isActive?' aria-current="true"':'')+'><span class="edn-course-player-item-number">'+(isActive?'▶':String(k+1).padStart(2,'0'))+'</span><span class="edn-course-player-item-copy"><strong>'+esc(item.title)+'</strong><small>'+(item.videoUrl?'Video bài học':'Video đang được cập nhật')+'</small></span><span class="edn-course-player-item-arrow" aria-hidden="true">'+(isActive?'●':'›')+'</span></button>';
+  }).join('');
+  modal.innerHTML='<section class="edn-preview-dialog edn-course-player-dialog"><header class="edn-preview-dialog-head"><div><strong>Trình phát bài học</strong><span>'+esc(c.t)+'</span></div><button type="button" data-a="course-player-close" aria-label="Đóng trình phát">×</button></header><div class="edn-course-player-now"><span>BÀI '+String(activeIndex+1).padStart(2,'0')+' / '+c.lessons.length+'</span><h2>'+esc(lesson.title)+'</h2></div><div class="edn-preview-video">'+videoMarkup(lesson.videoUrl,lesson.title)+'</div><section class="edn-course-player-playlist"><div class="edn-course-player-playlist-head"><strong>Danh sách bài học</strong><span>'+c.lessons.length+' bài</span></div><div class="edn-course-player-items">'+playlist+'</div></section></section>';
+  modal.addEventListener('click',event=>{if(event.target===modal)modal.remove();});
+  document.body.appendChild(modal);
+  modal.querySelector('[data-a="course-player-close"]')?.focus();
+};
+
 const A={
   'retry-catalog':()=>initializeEduNext(),
   menu:()=>{
@@ -846,6 +870,9 @@ const A={
     modal.querySelector('[data-a="preview-close"]')?.focus();
   },
   'preview-close':()=>$('#edn-preview-modal')?.remove(),
+  'course-player':value=>{const parts=String(value||'').split(',');openCoursePlayer(parts[0],Number(parts[1])||0);},
+  'course-player-select':value=>{const parts=String(value||'').split(',');openCoursePlayer(parts[0],Number(parts[1])||0);},
+  'course-player-close':()=>$('#edn-course-player-modal')?.remove(),
   logout:async(_value,button)=>{
     if(button){
       button.disabled=true;
@@ -1007,7 +1034,7 @@ document.addEventListener('submit',async event=>{
 });
 
 document.addEventListener('keydown',event=>{
-  if(event.key==='Escape')$('#edn-preview-modal')?.remove();
+  if(event.key==='Escape'){ $('#edn-preview-modal')?.remove(); $('#edn-course-player-modal')?.remove(); }
   if(event.key==='Escape'&&document.body.classList.contains('lms-mobile-open')){
     document.body.classList.remove('lms-mobile-open');
     const menu=$('.lms-mobile-menu');
