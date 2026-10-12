@@ -348,6 +348,7 @@ const detail=id=>{
     '<aside class="edn-course-buy-card" aria-label="Trạng thái khóa học"><div class="edn-course-preview edn-course-preview-static">'+visual+'<span class="edn-preview-shade"></span><strong>'+esc(c.cat)+'</strong></div>'+
     (c.previewVideoUrl?'<button class="btn btn-g w edn-preview-course-button" type="button" data-a="preview" data-v="'+esc(id)+'">Xem trước khóa học</button>':'')+
     '<div class="edn-course-buy-content">'+
+    '<div class="edn-course-detail-pricing">'+coursePriceMarkup(c)+'</div>'+
     '<button class="btn btn-p w edn-course-player-launch" type="button" data-a="course-player" data-v="'+esc(id)+','+Math.max(c.lessons.findIndex(item=>!!item.videoUrl),0)+'">Xem video và danh sách bài học</button>'+
     '<div class="edn-course-includes"><strong>Thông tin chương trình</strong><span>✓ '+c.L.length+' bài học trong đề cương</span><span>✓ Có thứ tự bài học rõ ràng</span><span>✓ Lĩnh vực và chủ đề liên quan</span></div></div></aside></div></section>'+
     '<div class="wrap edn-course-content-grid"><main class="edn-course-main">'+
