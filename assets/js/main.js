@@ -59,7 +59,25 @@ function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('show');cl
 const guard=(p)=>{next=p;toast('Vui lòng đăng nhập để tiếp tục');go('/login');return ''};
 
 /* ---------- Views ---------- */
-const card=c=>'<article class="lms-course-card"><a href="#/course/'+c.id+'" class="lms-course-image"><img src="'+COURSE_IMAGES[c.id]+'" alt="'+esc(c.t)+'" loading="lazy"><span class="lms-course-category">'+esc(c.cat)+'</span><span class="lms-course-badge">'+esc(c.tag||'Khóa học')+'</span></a><div class="lms-course-body"><p class="lms-course-category-text">'+esc(c.cat)+'</p><h3><a href="#/course/'+c.id+'">'+esc(c.t)+'</a></h3><p class="lms-course-instructor">'+esc(c.tc)+'</p><div class="lms-course-rating"><strong>★ '+c.r+'</strong><span>'+c.n.toLocaleString('vi-VN')+' học viên</span></div><div class="lms-course-meta"><span>▣ '+c.L.length+' bài</span><span>'+c.h+' giờ</span><span>'+esc(c.lvl)+'</span></div>'+(EN()[c.id]?'<div class="lms-course-progress"><div><span style="width:'+pct(c)+'%"></span></div><small>'+pct(c)+'% hoàn thành</small></div>':'<div class="lms-course-price-row"><strong>'+money(c.p)+'</strong><del>'+money(c.o)+'</del></div>')+'</div></article>';const nf=()=>'<div class="wrap page"><div class="empty">Không tìm thấy trang này. <a href="#/">Về trang chủ</a></div></div>';
+const courseImageMarkup=(c)=>COURSE_IMAGES[c.id]
+  ? '<img src="'+esc(COURSE_IMAGES[c.id])+'" alt="'+esc(c.t)+'" loading="lazy">'
+  : '<span class="edn-course-placeholder"><b>'+esc(c.cat||'EduNext')+'</b><small>Lộ trình học tập</small></span>';
+const card=c=>{
+  const own=!!EN()[c.id];
+  const action=own
+    ? '<a class="btn btn-p btn-s" href="#/learn/'+esc(c.id)+'/'+nextL(c)+'">Tiếp tục học</a>'
+    : '<a class="btn btn-g btn-s" href="#/course/'+esc(c.id)+'">Xem lộ trình</a>';
+  const status=c.published
+    ? (typeof c.p==='number' ? money(c.p) : 'Đã xuất bản')
+    : 'Đề cương · Chưa mở bán';
+  return '<article class="lms-course-card edn-catalog-course">'+
+    '<a href="#/course/'+esc(c.id)+'" class="lms-course-image">'+courseImageMarkup(c)+'<span class="lms-course-category">'+esc(c.cat)+'</span><span class="lms-course-badge">'+(c.published?'Đã xuất bản':'Đang hoàn thiện')+'</span></a>'+
+    '<div class="lms-course-body"><p class="lms-course-category-text">'+esc(c.cat)+'</p><h3><a href="#/course/'+esc(c.id)+'">'+esc(c.t)+'</a></h3>'+
+    '<p class="edn-course-outline-meta">'+c.L.length+' bài trong đề cương</p><div class="edn-course-status-line">'+esc(status)+'</div>'+
+    (own?'<div class="lms-course-progress"><div><span style="width:'+pct(c)+'%"></span></div><small>'+pct(c)+'% hoàn thành</small></div>':'')+
+    '<div class="edn-course-card-action">'+action+'</div></div></article>';
+};
+const nf=()=>'<div class="wrap page"><div class="empty" role="status"><h2>Không tìm thấy nội dung này</h2><p>Liên kết có thể đã thay đổi hoặc nội dung chưa được xuất bản.</p><a href="#/">Về trang chủ</a></div></div>';
 const OUTCOMES={
 "Lập trình":["Nắm vững kiến thức nền tảng và tư duy lập trình","Thực hành qua các bài học theo từng bước","Xây dựng nền tảng để tiếp tục học chuyên môn","Theo dõi tiến độ và hoàn thành quiz, chứng chỉ"],
 "Data / AI":["Hiểu quy trình làm việc với dữ liệu từ cơ bản","Làm quen công cụ và phương pháp phân tích","Thực hành qua các bài tập và dự án mẫu","Xây dựng nền tảng để học AI nâng cao"],
