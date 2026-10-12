@@ -908,13 +908,8 @@ document.addEventListener('click',event=>{
   const button=event.target.closest('[data-blog-topic]');
   if(!button)return;
   const topic=button.dataset.blogTopic||'Tất cả';
-  const matches=tag=>{
-    const normalized=String(tag||'').toLocaleLowerCase('vi-VN');
-    if(topic==='Tất cả')return true;
-    if(topic==='AI')return normalized.includes('ai');
-    if(topic==='Lập trình')return normalized.includes('lập trình')||tag==='Dự án'||tag==='Cơ sở dữ liệu';
-    return normalized.includes(topic.toLocaleLowerCase('vi-VN'));
-  };
+  const normalizedTopic=topic.toLocaleLowerCase('vi-VN');
+  const matches=tag=>topic==='Tất cả'||String(tag||'').toLocaleLowerCase('vi-VN')===normalizedTopic;
   document.querySelectorAll('.blog-page-card[data-blog-tag]').forEach(item=>{
     item.style.display=matches(item.dataset.blogTag||'')?'':'none';
   });
