@@ -402,3 +402,64 @@ body.edunext-app .edn-course-menu-item{min-height:46px}
     max-height:260px;
   }
 }
+
+
+/* Final compact dropdown polish: remove the extra action links and visible scrollbars. */
+body.edunext-app .edn-domain-mega-menu{
+  width:min(360px,calc(100vw - 24px));
+  padding:10px;
+}
+body.edunext-app .edn-course-mega-menu{
+  width:min(440px,calc(100vw - 24px));
+  padding:10px;
+}
+body.edunext-app .edn-domain-mega-head{
+  padding:0 1px 8px;
+  border-bottom:1px solid #edf0f4;
+}
+body.edunext-app .edn-domain-mega-head>strong{font-size:13px;line-height:1.4}
+body.edunext-app .edn-domain-mega-list,
+body.edunext-app .edn-course-mega-list{
+  gap:1px;
+  padding:6px 0 0;
+  scrollbar-width:none;
+  -ms-overflow-style:none;
+}
+body.edunext-app .edn-domain-mega-list::-webkit-scrollbar,
+body.edunext-app .edn-course-mega-list::-webkit-scrollbar{
+  display:none;
+  width:0;
+  height:0;
+}
+body.edunext-app .edn-domain-mega-list{max-height:min(310px,65vh)}
+body.edunext-app .edn-course-mega-list{max-height:min(330px,65vh)}
+body.edunext-app .edn-domain-menu-item{
+  grid-template-columns:23px minmax(0,1fr) auto;
+  min-height:32px;
+  gap:7px;
+  padding:5px 6px;
+}
+body.edunext-app .edn-domain-menu-name{font-size:11px;line-height:1.35}
+body.edunext-app .edn-domain-menu-item small{font-size:10px}
+body.edunext-app .edn-course-menu-item{
+  grid-template-columns:22px minmax(0,1fr);
+  min-height:38px;
+  gap:7px;
+  padding:5px 6px;
+}
+body.edunext-app .edn-course-menu-copy{gap:2px}
+body.edunext-app .edn-course-menu-copy strong{font-size:11px;line-height:1.35}
+body.edunext-app .edn-course-menu-copy small{font-size:10px;line-height:1.3}
+@media(max-width:1180px){
+  body.edunext-app .edn-domain-mega-menu{width:min(350px,calc(100vw - 24px))}
+  body.edunext-app .edn-course-mega-menu{width:min(420px,calc(100vw - 24px))}
+}
+@media(max-width:980px){
+  body.edunext-app .edn-domain-mega-menu,
+  body.edunext-app .edn-course-mega-menu{
+    width:100%;
+    padding:9px;
+  }
+  body.edunext-app .edn-domain-mega-list{max-height:220px}
+  body.edunext-app .edn-course-mega-list{max-height:240px}
+}
