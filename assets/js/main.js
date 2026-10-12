@@ -19,9 +19,9 @@ const mapCourse=(raw,videoCounts={})=>{
   const level=String(raw.level||'Chưa xác định');
   const duration=Number(raw.durationHours);
   const outcomes=Array.isArray(raw.outcomes)?raw.outcomes:[];
-  const metadataComplete=['title','domainId','shortDescription','description','audience','prerequisites'].every(key=>String(raw[key]||'').trim()!=='');
+  const metadataComplete=['title','domainId','shortDescription','description','audience','prerequisites'].every(key=>String(raw[key]||'').trim()!=='')&&DOMAINS.some(domain=>domain.id===raw.domainId);
   const videoKey=url=>String(url||'').trim().replace(/\/+$/,'').toLowerCase();
-  const mediaValid=url=>!url||/^https:\/\//i.test(String(url).trim());
+  const mediaValid=url=>!url||/^https:\/\/[^\s/?#]+(?:[/?#][^\s]*)?$/i.test(String(url).trim());
   const ready=raw.published===true&&raw.metadataStatus==='verified'&&metadataComplete&&
     typeof raw.price==='number'&&Number.isFinite(raw.price)&&raw.price>=0&&
     level!==''&&!['Chưa xác định','Chưa cấu hình'].includes(level)&&
