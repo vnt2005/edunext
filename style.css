@@ -4260,7 +4260,7 @@ body.edunext-app .blog-page-card-body h2 a{color:#1e2f47;text-decoration:none;te
 body.edunext-app .blog-page-card-body h2 a:hover{color:#2457a7;text-decoration:underline}
 body.edunext-app .blog-page-card-body p{margin:0;color:#667181;font-size:13px;line-height:1.85}
 body.edunext-app .blog-page-card-body .blog-read-link{display:inline-flex;align-items:center;gap:8px;margin-top:22px;padding-top:0;color:#2457a7;font-size:12px;font-weight:800;text-decoration:none}
-body.edunext.app .blog-page-card-body .blog-read-link:hover{text-decoration:underline}
+body.edunext-app .blog-page-card-body .blog-read-link:hover{text-decoration:underline}
 body.edunext-app .blog-page-footer{margin-top:38px;border-radius:14px}
 body.edunext-app .edn-blog-article{max-width:1180px;padding-top:28px;padding-bottom:70px}
 body.edunext-app .edn-blog-article .edn-breadcrumb{margin-bottom:25px;color:#798292}
