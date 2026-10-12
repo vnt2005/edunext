@@ -4,7 +4,7 @@ const esc=s=>String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;'
 const money=n=>Number(n||0).toLocaleString('vi-VN')+'đ',ini=n=>String(n||'E').trim().split(/\s+/).slice(-2).map(x=>x[0]||'').join('').toUpperCase();
 const CFG=window.EDUNEXT_CONFIG||{};
 let CATALOG={domains:[],courses:[]};
-let DOMAINS=[],CATS=[],C=[];
+let DOMAINS=[],C=[];
 const COURSE_IMAGES={
 csharp:'https://images.unsplash.com/photo-1618477247222-acbdb0e159b3?auto=format&fit=crop&q=82&w=1200',
 api:'https://images.unsplash.com/photo-1637044527362-5ac1dc1d7446?auto=format&fit=crop&q=82&w=1200',
@@ -101,14 +101,6 @@ const card=c=>{
     '<div class="edn-course-card-action">'+action+'</div></div></article>';
 };
 const nf=()=>'<div class="wrap page"><div class="empty" role="status"><h2>Không tìm thấy nội dung này</h2><p>Liên kết có thể đã thay đổi hoặc nội dung chưa được xuất bản.</p><a href="#/">Về trang chủ</a></div></div>';
-const OUTCOMES={
-"Lập trình":["Nắm vững kiến thức nền tảng và tư duy lập trình","Thực hành qua các bài học theo từng bước","Xây dựng nền tảng để tiếp tục học chuyên môn","Theo dõi tiến độ và hoàn thành quiz, chứng chỉ"],
-"Data / AI":["Hiểu quy trình làm việc với dữ liệu từ cơ bản","Làm quen công cụ và phương pháp phân tích","Thực hành qua các bài tập và dự án mẫu","Xây dựng nền tảng để học AI nâng cao"],
-"Thiết kế":["Nắm nguyên lý và quy trình thiết kế","Luyện wireframe và prototype từng bước","Áp dụng vào bài tập gần với thực tế","Hoàn thiện nền tảng để xây dựng portfolio"],
-"Ngoại ngữ":["Cải thiện giao tiếp trong môi trường công việc","Luyện các tình huống thực tế thường gặp","Phát triển kỹ năng viết và thuyết trình","Tự tin hơn khi sử dụng tiếng Anh chuyên môn"],
-"Marketing":["Hiểu các khái niệm quan trọng trong lĩnh vực","Học theo ví dụ và tình huống thực tế","Luyện tập theo từng mục tiêu nhỏ","Xây dựng nền tảng để học chuyên sâu"]
-};
-
 const slugify=value=>String(value||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/g,'d').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
 const home=()=>{
   const featured=C.slice(0,6);
@@ -718,7 +710,6 @@ const initializeEduNext=async()=>{
     if(!catalog||!Array.isArray(catalog.domains)||!Array.isArray(catalog.courses))throw new Error('Cấu trúc danh mục chương trình không hợp lệ.');
     CATALOG=catalog;
     DOMAINS=CATALOG.domains;
-    CATS=DOMAINS.map(domain=>domain.name);
     const videoCounts={};
     CATALOG.courses.forEach(course=>{
       (Array.isArray(course.lessons)?course.lessons:[]).forEach(lesson=>{
