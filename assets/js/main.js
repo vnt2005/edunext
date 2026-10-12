@@ -1,15 +1,10 @@
 (()=>{
 const $=s=>document.querySelector(s),app=$('#app');
 const esc=s=>String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
-const money=n=>n.toLocaleString('vi-VN')+'đ',ini=n=>n.split(' ').slice(-2).map(x=>x[0]).join('');
-const CATS=['Lập trình','Data / AI','Thiết kế','Ngoại ngữ','Marketing'];
-const C=[
-{id:'csharp',t:'Lập trình C# từ cơ bản đến nâng cao',cat:'Lập trình',tc:'Nguyễn Văn Minh',r:4.9,n:1245,lvl:'Cơ bản',p:599000,o:799000,h:24,tag:'Bán chạy',c:'',L:['Cài đặt và Hello World','Biến và kiểu dữ liệu','Rẽ nhánh và vòng lặp','Class và OOP','Kế thừa và đa hình'],v:['GhQdlIFylQ8','yquQ9mLtkN8','E4RObAcqvE0','WKmDq62x_rE','t8kkigBSPzc'],s:[0,300,1200,2100,3000]},
-{id:'api',t:'Xây dựng REST API với ASP.NET Core',cat:'Lập trình',tc:'Trần Quốc Huy',r:4.8,n:986,lvl:'Trung cấp',p:699000,o:899000,h:18,tag:'Thực chiến',c:'a',L:['Routing và Controller','Dependency Injection','Entity Framework Core','Xác thực JWT','Triển khai API'],v:['AhAxLiGC7Pc','TNqSTYcVyCY','39rSVOScx9c','8FvN5bhVYxY','OE0_9c-K-Ow'],s:[0,300,1100,1700,2400]},
-{id:'data',t:'Data Analytics & AI cho người mới',cat:'Data / AI',tc:'Lê Hoàng Nam',r:4.9,n:2130,lvl:'Cơ bản',p:799000,o:1099000,h:32,tag:'Mới',c:'g',L:['Tư duy dữ liệu','Excel và SQL cơ bản','Trực quan hóa dữ liệu','Machine Learning nhập môn','Dự án phân tích'],v:['v2oNWja7M2E','7mz73uXD9DA','P9texQKZtG4','OmW9YvxSl1E','-rbJV1_krGE'],s:[0,240,480,720,960]},
-{id:'english',t:'English Communication for Work',cat:'Ngoại ngữ',tc:'Emily Tran',r:4.8,n:1560,lvl:'Trung cấp',p:499000,o:649000,h:16,tag:'Top rated',c:'',L:['Họp và giao tiếp xã giao','Viết email chuyên nghiệp','Thuyết trình','Đàm phán','Phỏng vấn'],v:['iqmOQ4_M3u0','jCYLhRKMk8A','bSTVMAP-UyM','lQJKmRD1gYg','UzFm6AwGHJE'],s:[0,600,1500,2400,3300]},
-{id:'design',t:'UI/UX Design từ Zero đến Portfolio',cat:'Thiết kế',tc:'Phạm Minh Anh',r:4.7,n:870,lvl:'Cơ bản',p:649000,o:849000,h:20,tag:'Portfolio',c:'a',L:['Nguyên lý thiết kế','Nghiên cứu người dùng','Wireframe','Prototype trên Figma','Dựng portfolio'],v:['mmgxspm9JWs','1ucLq6JTxac','BkKCtCGzZiA','FfeuWbZSRj4','MBblN98-5lg'],s:[0,715,3600,7200,10800]},
-{id:'marketing',t:'Digital Marketing thực chiến',cat:'Marketing',tc:'Đỗ Gia Bảo',r:4.9,n:1020,lvl:'Trung cấp',p:549000,o:749000,h:14,tag:'Bán chạy',c:'g',L:['Chiến lược nội dung','SEO cơ bản','Quảng cáo trả phí','Email marketing','Đo lường hiệu quả'],v:['Ea1hFxPx3JA','MD5-HByRxoA','szSiTVQqvGs','2I6JqAHvFAw','gIDE-jfIQtc'],s:[0,300,600,900,1200]}];
+const money=n=>Number(n||0).toLocaleString('vi-VN')+'đ',ini=n=>String(n||'E').trim().split(/\s+/).slice(-2).map(x=>x[0]||'').join('').toUpperCase();
+const CATALOG=window.EDUNEXT_CATALOG||{domains:[],courses:[]};
+const DOMAINS=Array.isArray(CATALOG.domains)?CATALOG.domains:[];
+const CATS=DOMAINS.map(d=>d.name);
 const COURSE_IMAGES={
 csharp:'https://images.unsplash.com/photo-1618477247222-acbdb0e159b3?auto=format&fit=crop&q=82&w=1200',
 api:'https://images.unsplash.com/photo-1637044527362-5ac1dc1d7446?auto=format&fit=crop&q=82&w=1200',
@@ -18,6 +13,21 @@ english:'https://images.unsplash.com/photo-1672248652488-73f8a07e3307?auto=forma
 design:'https://miro.medium.com/v2/resize:fit:1400/1*ezbw1Z06SzRSOhShXfwOTg.png',
 marketing:'https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?auto=format&fit=crop&q=82&w=1200'
 };
+const C=CATALOG.courses.map(raw=>{
+  const lessons=Array.isArray(raw.lessons)?raw.lessons:[];
+  const L=lessons.map(item=>item.title);
+  return {
+    id:raw.id,t:raw.title,slug:raw.slug||raw.id,cat:raw.domain,domainId:raw.domainId,
+    topics:Array.isArray(raw.relatedTopics)?raw.relatedTopics:[],
+    related:Array.isArray(raw.relatedTopics)?raw.relatedTopics:[],
+    description:raw.description||'',prerequisites:raw.prerequisites||'',
+    lessons,L,v:lessons.map(item=>item.videoUrl||''),previewVideoUrl:raw.previewVideoUrl||'',
+    s:[],r:null,n:null,lvl:raw.level||'Chưa cấu hình',p:raw.price,o:raw.originalPrice,
+    h:raw.durationHours,tag:raw.published?'Đã xuất bản':'Đang hoàn thiện nội dung',
+    c:'',published:raw.published===true,contentStatus:raw.contentStatus||'outline',
+    completionCount:Number(raw.completionRule&&raw.completionRule.requiredCount)||L.length
+  };
+});
 const BLOG_ARTICLES=[
 {tag:'Lập trình',title:'Học C# mà cứ quên cú pháp? Thử cách học này trước',excerpt:'Không ít người mới học C# rơi vào cảnh xem xong một bài thì thấy hiểu, nhưng mở Visual Studio lên lại không biết bắt đầu từ đâu. Vấn đề thường không nằm ở trí nhớ mà ở cách mình luyện tập.',time:'6 phút đọc',course:'csharp',image:COURSE_IMAGES.csharp},
 {tag:'ASP.NET Core',title:'REST API không khó, khó là học sai thứ tự',excerpt:'Routing, Controller, DI, EF Core, JWT… nhìn qua rất nhiều thứ. Nhưng khi xếp chúng theo đúng thứ tự, việc làm một API đầu tiên lại dễ hơn bạn nghĩ.',time:'8 phút đọc',course:'api',image:COURSE_IMAGES.api},
@@ -26,20 +36,22 @@ const BLOG_ARTICLES=[
 {tag:'Dự án',title:'Từ bài tập trên lớp đến project đầu tiên: bắt đầu thế nào?',excerpt:'Bạn không cần chờ đến khi biết hết công nghệ mới làm project. Một project nhỏ nhưng tự mình hoàn thành thường có giá trị hơn một danh sách dài những tutorial đã xem.',time:'7 phút đọc',course:'api',image:COURSE_IMAGES.api},
 {tag:'Cơ sở dữ liệu',title:'Biết C# rồi có nên học SQL ngay không?',excerpt:'Nếu bạn đang đi theo backend, câu trả lời gần như là có. SQL giúp bạn hiểu dữ liệu thật sự nằm ở đâu và vì sao code phía trên phải làm như vậy.',time:'6 phút đọc',course:'api',image:COURSE_IMAGES.data}
 ];
-const Q={csharp:[
-{q:'Từ khóa nào dùng để khai báo một class trong C#?',o:['function','class','object','def'],a:1},
-{q:'Kiểu dữ liệu nào lưu số nguyên?',o:['string','int','bool','char'],a:1},
-{q:'Cách viết đúng để class Dog kế thừa class Animal?',o:['class Dog : Animal','class Dog extends Animal','class Dog inherits Animal','class Dog -> Animal'],a:0},
-{q:'Tính chất OOP nào cho phép cùng một phương thức có hành vi khác nhau ở các lớp con?',o:['Đóng gói','Đa hình','Khai báo','Biên dịch'],a:1}]};
-
-let D;try{D=JSON.parse(localStorage.getItem('edn'))}catch(e){}D=D||{users:[],me:null,en:{}};
-const save=()=>{try{localStorage.setItem('edn',JSON.stringify(D))}catch(e){}};
+const CFG=window.EDUNEXT_CONFIG||{};
+const D={users:CFG.user?[CFG.user]:[],me:CFG.user&&CFG.user.email?CFG.user.email:null,en:{},orders:Array.isArray(CFG.orders)?CFG.orders:[]};
+if(D.me){
+  D.en[D.me]={};
+  (Array.isArray(CFG.ownedCourseIds)?CFG.ownedCourseIds:[]).forEach(id=>{
+    const progress=CFG.progress&&CFG.progress[id]?CFG.progress[id]:{};
+    D.en[D.me][id]={done:Array.isArray(progress.done)?progress.done.map(Number).filter(Number.isInteger):[],updatedAt:progress.updatedAt||null,n:{}};
+  });
+}
+const save=()=>{};
 const me=()=>D.users.find(u=>u.email===D.me);
 const EN=()=>D.me?(D.en[D.me]=D.en[D.me]||{}):{};
 const find=id=>C.find(c=>c.id===id);
-const pct=c=>{const e=EN()[c.id];return e?Math.round(e.done.length/c.L.length*100):0};
-const nextL=c=>{const e=EN()[c.id],k=c.L.findIndex((_,i)=>!e.done.includes(i));return k<0?0:k};
-const passed=c=>{const e=EN()[c.id];return e&&e.done.length===c.L.length&&(!Q[c.id]||e.q>=70)};
+const pct=c=>{const e=EN()[c.id];return e?Math.round(Math.min(e.done.length,c.L.length)/Math.max(c.L.length,1)*100):0};
+const nextL=c=>{const e=EN()[c.id]||{done:[]},k=c.L.findIndex((_,i)=>!e.done.includes(i));return k<0?Math.max(c.L.length-1,0):k};
+const passed=c=>{const e=EN()[c.id];return !!e&&e.done.length>=(c.completionCount||c.L.length)&&c.L.length>0};
 const F0=()=>({q:'',cat:'',lvl:'',price:'',sort:'pop'});
 let f=F0(),next='',qz={i:0,a:[],res:null},hook=null;
 const go=p=>{location.hash=p},to=p=>location.hash==='#'+p?render():go(p);
