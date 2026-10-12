@@ -40,8 +40,16 @@
                         <nav class="edn-domain-mega-list" id="edn-domain-mega-list" aria-label="Tất cả lĩnh vực"></nav>
                     </div>
                 </div>
-                <a href="#/blog" class="edunext-nav-link">Góc kiến thức</a>
-                <a href="#/faq" class="edunext-nav-link">Hỏi đáp</a>
+                <div class="edn-contact-menu-wrap" id="edn-contact-menu-wrap">
+                    <button id="edn-contact-nav-trigger" class="edunext-nav-link edn-contact-nav-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="edn-contact-dropdown">
+                        Liên Hệ <span class="edn-contact-chevron" aria-hidden="true">⌄</span>
+                    </button>
+                    <div class="edn-contact-dropdown" id="edn-contact-dropdown" aria-label="Liên Hệ">
+                        <a href="#/about" class="edn-contact-dropdown-link">About</a>
+                        <a href="#/blog" class="edn-contact-dropdown-link">Blog</a>
+                        <a href="#/faq" class="edn-contact-dropdown-link">Hỏi Đáp</a>
+                    </div>
+                </div>
                 <a id="edn-nav-dashboard" href="#/dashboard" class="edunext-nav-link edn-nav-dashboard" hidden>Trang học tập</a>
             </nav>
 
@@ -51,7 +59,17 @@
                 <button type="submit" aria-label="Tìm kiếm">Tìm</button>
             </form>
 
+            <div class="edn-header-tools" role="group" aria-label="Tiện ích học viên">
+            <a id="edn-cart-trigger" class="edn-cart-trigger" href="#/cart" aria-label="Giỏ hàng, 0 khóa học" title="Giỏ hàng">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="9" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle><path d="M1 1h4l2.7 13.1a2 2 0 0 0 2 1.6h9.8a2 2 0 0 0 2-1.6L23 6H6"></path></svg>
+                <span id="edn-cart-count" class="edn-cart-count" hidden>0</span>
+            </a>
+
+            <span class="edn-notification-trigger" role="img" aria-label="Thông báo" title="Thông báo">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"></path><path d="M10 21h4"></path></svg>
+            </span>
             <div id="auth" class="lms-auth edunext-account-actions"></div>
+            </div>
             <button class="mb lms-mobile-menu" data-a="menu" type="button" aria-label="Mở menu" aria-controls="nav" aria-expanded="false">☰</button>
         </div>
     </div>
