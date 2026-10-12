@@ -295,13 +295,16 @@ const detail=id=>{
   const domain=DOMAINS.find(d=>d.id===c.domainId);
   const topics=(c.topics||[]).map(topic=>'<button type="button" class="edn-topic-chip" data-a="topic" data-v="'+esc(topic)+'">'+esc(topic)+'</button>').join('');
   const lessonRows=c.lessons.map((lesson,i)=>{
-    const lessonLabel=owned?'<a href="#/learn/'+esc(id)+'/'+i+'">Mở bài học →</a>':'<span>Nội dung xem trước bên dưới</span>';
     const hasText=String(lesson.content||'').trim().length>0;
-    const mediaLabel=lesson.videoUrl&&hasText?'Bài giảng văn bản + video':hasText?'Có nội dung bài học':lesson.videoUrl?'Có video học liệu':'Đang bổ sung học liệu';
-    const preview=hasText
-      ? '<details class="edn-curriculum-preview"><summary><span>Đọc nội dung bài học</span><span class="edn-curriculum-preview-toggle" aria-hidden="true">＋</span></summary>'+lessonMaterialMarkup(lesson.content)+(String(lesson.exercise||'').trim()?'<section class="edn-curriculum-exercise"><h3>Bài tập thực hành</h3><p>'+esc(lesson.exercise)+'</p></section>':'')+'</details>'
-      : '<p class="edn-curriculum-no-content">Nội dung chi tiết đang được biên soạn.</p>';
-    return '<div class="edn-curriculum-item"><div class="edn-curriculum-row"><span class="edn-curriculum-number">'+String(i+1).padStart(2,'0')+'</span><span class="edn-curriculum-play" aria-hidden="true">'+(lesson.videoUrl?'▶':hasText?'▤':'○')+'</span><div class="edn-curriculum-copy"><b>'+esc(lesson.title)+'</b><small>'+mediaLabel+'</small></div><div class="edn-curriculum-duration">'+lessonLabel+'</div></div>'+preview+'</div>';
+    const mediaLabel=lesson.videoUrl?'Có video bài giảng':hasText?'Có nội dung bài học':'Video đang được cập nhật';
+    const lessonPanel=owned
+      ? '<div class="edn-curriculum-panel"><div class="edn-curriculum-video">'+videoMarkup(lesson.videoUrl,lesson.title)+'</div>'+
+        (hasText?'<section class="edn-curriculum-material"><h3>NỘI DUNG BÀI HỌC</h3>'+lessonMaterialMarkup(lesson.content)+'</section>':'')+
+        (String(lesson.exercise||'').trim()?'<section class="edn-curriculum-exercise"><h3>Bài tập thực hành</h3><p>'+esc(lesson.exercise)+'</p></section>':'')+
+        (lesson.resourceUrl?'<p class="edn-lesson-resource"><a class="btn btn-g" href="'+esc(lesson.resourceUrl)+'" target="_blank" rel="noopener noreferrer">Mở học liệu bổ sung ↗</a></p>':'')+
+        '<p class="edn-curriculum-open-link"><a href="#/learn/'+esc(id)+'/'+i+'">Mở trang học bài này →</a></p></div>'
+      : '<div class="edn-curriculum-panel edn-curriculum-locked"><strong>Nội dung dành cho học viên đã có quyền truy cập</strong><p>Bạn có thể xem tên bài trong đề cương. Video và nội dung chi tiết chỉ hiển thị sau khi tài khoản được cấp quyền học khóa này.</p></div>';
+    return '<details class="edn-curriculum-item"><summary class="edn-curriculum-row"><span class="edn-curriculum-number">'+String(i+1).padStart(2,'0')+'</span><span class="edn-curriculum-play" aria-hidden="true">'+(lesson.videoUrl?'▶':hasText?'▤':'○')+'</span><span class="edn-curriculum-copy"><b>'+esc(lesson.title)+'</b><small>'+mediaLabel+'</small></span><span class="edn-curriculum-duration">'+(owned?'<span>Mở bài học</span>':'<span>Chỉ xem đề cương</span>')+'</span><span class="edn-curriculum-chevron" aria-hidden="true">⌄</span></summary>'+lessonPanel+'</details>';
   }).join('');
   const visual=COURSE_IMAGES[c.id]
     ? '<img src="'+esc(COURSE_IMAGES[c.id])+'" alt="'+esc(c.t)+'" loading="lazy">'
@@ -315,7 +318,7 @@ const detail=id=>{
     '<div class="edn-course-eyebrow">'+esc(c.cat)+' <span>·</span> Đề cương chương trình</div><h1>'+esc(c.t)+'</h1><p class="edn-course-subtitle">'+esc(c.shortDescription||c.description||'Đề cương chương trình đang được hoàn thiện.')+'</p>'+
     '<div class="edn-course-tag-row"><span class="edn-course-tag">'+(c.ready?'Đã xuất bản':'Đang hoàn thiện nội dung')+'</span><span class="edn-course-language">Ngôn ngữ: chưa cấu hình</span></div>'+
     '<div class="edn-course-date-row"><span>'+c.L.length+' bài học dự kiến</span><span>'+(c.h?esc(c.h)+' giờ':'Thời lượng đang cập nhật')+'</span></div>'+
-    '<div class="edn-course-status-line">Đây là khung chương trình; chỉ các bài có học liệu đã xác minh mới được mở học.</div></div>'+
+    '<div class="edn-course-status-line">Người chưa có quyền học chỉ xem đề cương; video và nội dung chi tiết hiển thị trong khu vực học viên được cấp quyền.</div></div>'+
     '<aside class="edn-course-buy-card" aria-label="Trạng thái khóa học"><div class="edn-course-preview edn-course-preview-static">'+visual+'<span class="edn-preview-shade"></span><strong>'+esc(c.cat)+'</strong></div>'+
     (c.previewVideoUrl?'<button class="btn btn-g w edn-preview-course-button" type="button" data-a="preview" data-v="'+esc(id)+'">Xem trước khóa học</button>':'')+
     '<div class="edn-course-buy-content">'+
@@ -324,7 +327,7 @@ const detail=id=>{
     '<div class="edn-course-includes"><strong>Thông tin chương trình</strong><span>✓ '+c.L.length+' bài học trong đề cương</span><span>✓ Có thứ tự bài học rõ ràng</span><span>✓ Lĩnh vực và chủ đề liên quan</span></div></div></aside></div></section>'+
     '<div class="wrap edn-course-content-grid"><main class="edn-course-main">'+
     '<section class="edn-course-outcomes" aria-labelledby="edn-outcomes-title"><h2>Mục tiêu dự kiến</h2><p class="edn-course-meta-note">Các mục tiêu dưới đây được phác thảo từ đề cương bài học và cần được xác nhận khi nội dung giảng dạy hoàn chỉnh.</p><div class="edn-course-outcomes-grid">'+outcomes.map(item=>'<div class="edn-course-outcome"><span>✓</span><p>'+esc(item)+'</p></div>').join('')+'</div></section>'+
-    '<section class="edn-course-curriculum" id="course-curriculum"><div class="edn-course-section-heading"><div><h2>Toàn bộ bài học</h2><p>'+c.L.length+' bài trong khung chương trình hiện tại</p></div><span class="edn-curriculum-total">'+c.L.length+' bài</span></div><div class="edn-curriculum-list">'+lessonRows+'</div><p class="edn-curriculum-footnote">Bạn có thể mở “Đọc nội dung bài học” ở từng mục để xem phần giảng dạy dạng văn bản và bài tập thực hành. Video và học liệu bổ sung sẽ được ghi riêng khi có.</p></section>'+
+    '<section class="edn-course-curriculum" id="course-curriculum"><div class="edn-course-section-heading"><div><h2>Toàn bộ bài học</h2><p>'+c.L.length+' bài trong khung chương trình hiện tại</p></div><span class="edn-curriculum-total">'+c.L.length+' bài</span></div><div class="edn-curriculum-list">'+lessonRows+'</div><p class="edn-curriculum-footnote">Mở từng bài để xem video, nội dung hướng dẫn và bài tập. Nội dung bài học chỉ dành cho tài khoản đã có quyền truy cập; video chưa được gắn sẽ được báo rõ.</p></section>'+
     '<section class="edn-course-about"><h2>Đối tượng và kiến thức đầu vào</h2><div class="edn-course-requirements-grid"><div><small>Đối tượng dự kiến</small><p>'+esc(c.audience||'Đang được xác định.')+'</p></div><div><small>Kiến thức đầu vào</small><p>'+esc(c.prerequisites||'Sẽ được công bố khi khóa học hoàn thiện.')+'</p></div></div><div class="edn-course-facts"><div><small>Lĩnh vực</small><strong>'+esc(c.cat)+'</strong></div><div><small>Số bài dự kiến</small><strong>'+c.L.length+'</strong></div><div><small>Cấp độ</small><strong>'+esc(c.lvl||'Chưa xác định')+'</strong></div></div><p class="edn-course-meta-note">Thông tin đối tượng và đầu vào ở trên là bản dự kiến, chưa phải yêu cầu đã xác nhận.</p></section>'+
     '<section class="edn-related-topics"><div class="edn-section-heading"><div><span class="edn-overline">KHÁM PHÁ THÊM</span><h2>Lĩnh vực và chủ đề liên quan</h2></div><a href="#/domain/'+esc(domain?domain.slug:'')+'">Xem lĩnh vực ↗</a></div><div class="edn-topic-chip-row">'+topics+'</div></section>'+
     '</main><div class="edn-course-right-space" aria-hidden="true"></div></div></div>';
