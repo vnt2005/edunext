@@ -153,6 +153,7 @@ function edunext_frontend_config(): array {
 
     return [
         'ajaxUrl' => admin_url('admin-ajax.php'),
+        'catalogUrl' => esc_url_raw(get_theme_file_uri('assets/data/course-catalog.json')),
         'nonce' => wp_create_nonce('edunext_user_action'),
         'loggedIn' => (bool) $user_id,
         'user' => edunext_frontend_user_payload(),
@@ -202,17 +203,9 @@ function edunext_enqueue_assets(): void {
     );
 
     wp_enqueue_script(
-        'edunext-course-catalog',
-        get_theme_file_uri('assets/js/course-catalog.js'),
-        [],
-        edunext_asset_version('assets/js/course-catalog.js'),
-        true
-    );
-
-    wp_enqueue_script(
         'edunext-app',
         get_theme_file_uri('assets/js/main.js'),
-        ['edunext-course-catalog'],
+        [],
         edunext_asset_version('assets/js/main.js'),
         true
     );
