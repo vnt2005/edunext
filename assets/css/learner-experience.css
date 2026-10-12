@@ -1190,3 +1190,40 @@ body.edunext-app .edn-market-course-footer{
   body.edunext-app .edn-cart-icon-button{flex-basis:38px;width:38px;height:38px}
   body.edunext-app .edn-cart-icon-button svg{width:18px;height:18px}
 }
+
+
+/* Shared pagination for home, domains, and course catalog: 10 items per page. */
+body.edunext-app .edn-pagination{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  width:100%;margin:26px 0 8px;padding:15px 0 4px;border-top:1px solid #e7ebf1;
+}
+body.edunext-app .edn-pagination-summary{flex:0 0 auto;color:#667085;font-size:12px;font-weight:650;white-space:nowrap}
+body.edunext-app .edn-pagination-controls{
+  display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:5px;min-width:0;
+}
+body.edunext-app .edn-page-button{
+  display:inline-flex;align-items:center;justify-content:center;min-width:36px;height:36px;
+  padding:0 10px;border:1px solid #dce2ea;border-radius:7px;background:#fff;color:#344054;
+  font-family:inherit;font-size:12px;font-weight:700;line-height:1;text-decoration:none;
+  cursor:pointer;transition:border-color .15s,background .15s,color .15s;
+}
+body.edunext-app .edn-page-button:hover:not(:disabled):not(.is-current){
+  border-color:#2457d6;background:#f4f7ff;color:#2457d6;
+}
+body.edunext-app .edn-page-button.is-current{
+  border-color:#2457d6;background:#2457d6;color:#fff;cursor:default;
+}
+body.edunext-app .edn-page-button:disabled{opacity:.4;cursor:not-allowed}
+body.edunext-app .edn-page-button:focus-visible{outline:3px solid rgba(36,87,214,.22);outline-offset:2px}
+body.edunext-app .edn-domain-page .edn-pagination{margin-top:30px}
+body.edunext-app .edn-home-page .edn-pagination{border-top:0;padding-top:6px}
+body.edunext-app .edn-course-catalog-page #course-pagination:empty{display:none}
+@media(max-width:760px){
+  body.edunext-app .edn-pagination{align-items:flex-start;flex-direction:column;gap:10px}
+  body.edunext-app .edn-pagination-controls{justify-content:flex-start;width:100%;gap:4px}
+  body.edunext-app .edn-page-button{min-width:32px;height:34px;padding:0 8px}
+}
+@media(max-width:420px){
+  body.edunext-app .edn-pagination-controls{gap:3px}
+  body.edunext-app .edn-page-button{min-width:29px;height:32px;padding:0 6px;font-size:11px}
+}
