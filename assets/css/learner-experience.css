@@ -596,31 +596,3 @@ body.edunext-app .edunext-account-actions .edunext-profile-copy strong{
     font-size:14px;
   }
 }
-
-/* Course curriculum accordions and gated lesson media */
-body.edunext-app .edn-curriculum-item{border-bottom:1px solid #dfe2ea;background:#fff}
-body.edunext-app .edn-curriculum-item:last-child{border-bottom:0}
-body.edunext-app .edn-curriculum-item>.edn-curriculum-row{width:100%;display:grid;grid-template-columns:34px 22px minmax(0,1fr) minmax(90px,auto) 14px;align-items:center;gap:11px;margin:0;padding:16px;border:0;background:#f7f8fa;cursor:pointer;list-style:none;text-align:left}
-body.edunext-app .edn-curriculum-item>.edn-curriculum-row::-webkit-details-marker{display:none}
-body.edunext-app .edn-curriculum-item>.edn-curriculum-row::marker{content:""}
-body.edunext-app .edn-curriculum-item[open]>.edn-curriculum-row{border-bottom:1px solid #dfe2ea;background:#f4f5f8}
-body.edunext-app .edn-curriculum-chevron{color:#4d5262;font-size:17px;text-align:center;transition:transform .18s ease}
-body.edunext-app .edn-curriculum-item[open] .edn-curriculum-chevron{transform:rotate(180deg)}
-body.edunext-app .edn-curriculum-panel{display:grid;gap:18px;padding:18px;background:#fff}
-body.edunext-app .edn-curriculum-video{width:100%;overflow:hidden;border-radius:12px;background:#111;aspect-ratio:16/9}
-body.edunext-app .edn-curriculum-video iframe,body.edunext-app .edn-curriculum-video video{display:block;width:100%;height:100%;min-height:280px;aspect-ratio:16/9;border:0}
-body.edunext-app .edn-curriculum-material{padding:18px;border:1px solid #dfe4ef;border-radius:12px;background:#fff}
-body.edunext-app .edn-curriculum-material h3{margin:0 0 10px;color:#26374d;font-size:13px;font-weight:800}
-body.edunext-app .edn-curriculum-material p{margin:0;color:#536782;font-size:14px;line-height:1.9}
-body.edunext-app .edn-curriculum-open-link{margin:0}
-body.edunext-app .edn-curriculum-open-link a{color:#6540d9;font-weight:700;text-decoration:none}
-body.edunext-app .edn-curriculum-locked{padding:20px;border:1px solid #e5e7ef;border-radius:12px;background:#fafbfe}
-body.edunext-app .edn-curriculum-locked strong{color:#34415a;font-size:14px}
-body.edunext-app .edn-curriculum-locked p{margin:0;color:#647087;font-size:13px;line-height:1.75}
-@media(max-width:640px){
- body.edunext-app .edn-curriculum-item>.edn-curriculum-row{grid-template-columns:24px 16px minmax(0,1fr) 14px;gap:8px;padding:13px}
- body.edunext-app .edn-curriculum-item .edn-curriculum-duration{grid-column:3;font-size:10px;white-space:normal}
- body.edunext-app .edn-curriculum-item .edn-curriculum-chevron{grid-column:4;grid-row:1}
- body.edunext-app .edn-curriculum-panel{padding:12px}
- body.edunext-app .edn-curriculum-video iframe,body.edunext-app .edn-curriculum-video video{min-height:200px}
-}
