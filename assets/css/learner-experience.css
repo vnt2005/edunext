@@ -351,3 +351,54 @@ body.edunext-app .edunext-main-nav .edn-domain-nav-link.active{
     font-size:14px!important;
   }
 }
+
+
+/* Compact single-column dropdowns: remove the unnecessary right-side previews. */
+body.edunext-app .edn-domain-mega-menu{
+  left:-65px;
+  width:min(460px,calc(100vw - 28px));
+  padding:14px;
+}
+body.edunext-app .edn-domain-mega-body{display:block!important;padding-top:12px}
+body.edunext-app .edn-domain-mega-list{
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  align-content:start;
+  gap:3px;
+  max-height:min(390px,calc(100vh - 150px));
+  overflow-y:auto;
+  padding-right:5px;
+}
+body.edunext-app .edn-domain-menu-item{min-height:38px}
+body.edunext-app .edn-course-mega-menu{
+  left:-95px;
+  width:min(520px,calc(100vw - 28px));
+  padding:14px;
+}
+body.edunext-app .edn-course-mega-list{
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  align-content:start;
+  gap:3px;
+  max-height:min(390px,calc(100vh - 150px));
+  overflow-y:auto;
+  padding-right:5px;
+}
+body.edunext-app .edn-course-menu-item{min-height:46px}
+@media(max-width:1180px){
+  body.edunext-app .edn-domain-mega-menu{left:-45px;width:min(440px,calc(100vw - 28px))}
+  body.edunext-app .edn-course-mega-menu{left:-65px;width:min(500px,calc(100vw - 28px))}
+}
+@media(max-width:980px){
+  body.edunext-app .edn-domain-mega-menu,
+  body.edunext-app .edn-course-mega-menu{
+    left:auto;
+    width:100%;
+    max-height:none;
+  }
+  body.edunext-app .edn-domain-mega-list,
+  body.edunext-app .edn-course-mega-list{
+    grid-template-columns:minmax(0,1fr);
+    max-height:260px;
+  }
+}
