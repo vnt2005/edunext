@@ -4360,7 +4360,7 @@ body.edunext-app .edn-about-visual::before{content:"";position:absolute;z-index:
 body.edunext-app .edn-about-visual-orbit{position:absolute;z-index:-1;border:1px solid rgba(237,246,221,.12);border-radius:50%;pointer-events:none}
 body.edunext-app .edn-about-orbit-one{width:340px;height:340px;left:-200px;bottom:-235px}
 body.edunext-app .edn-about-orbit-two{width:240px;height:240px;left:-150px;bottom:-185px}
-body.edunext-app .edn-about-visual-header,.edn-about-visual-foot{display:flex;justify-content:space-between;align-items:center;gap:12px}
+body.edunext-app .edn-about-visual-header,body.edunext-app .edn-about-visual-foot{display:flex;justify-content:space-between;align-items:center;gap:12px}
 body.edunext-app .edn-about-visual-header{position:relative;z-index:1;flex-wrap:wrap;padding:0 1px 19px;border-bottom:1px solid rgba(231,242,227,.15);color:#dce9d9;font-size:9px;font-weight:800;letter-spacing:.11em}
 body.edunext-app .edn-about-visual-live{display:inline-flex;align-items:center;gap:6px;color:#afc7b7;font-size:8px;letter-spacing:.07em}
 body.edunext-app .edn-about-visual-live i{display:block;width:6px;height:6px;border-radius:50%;background:#d9a783}
@@ -4399,7 +4399,7 @@ body.edunext-app .edn-about-mission-card h2{position:relative;max-width:560px;ma
 body.edunext-app .edn-about-vision-card h2{color:#25394a}
 body.edunext-app .edn-about-mission-card p{max-width:590px;margin:0;color:#d0e1d5;font-size:13px;line-height:1.85}
 body.edunext-app .edn-about-vision-card p{color:#667267}
-body.edunext-app .edn-about-goals,.edn-about-values{padding:88px 0 0}
+body.edunext-app .edn-about-goals,body.edunext-app .edn-about-values{padding:88px 0 0}
 body.edunext-app .edn-about-section-head{display:flex;justify-content:space-between;align-items:end;gap:35px;margin-bottom:28px}
 body.edunext-app .edn-about-section-head>div{max-width:690px}
 body.edunext-app .edn-about-section-head h2{margin:12px 0 0;color:#21374b;font-size:clamp(30px,4vw,43px);line-height:1.17;letter-spacing:-.04em}
