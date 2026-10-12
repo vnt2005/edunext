@@ -460,6 +460,33 @@ const request=async(action,values={})=>{
   return payload.data||{};
 };
 
+let activeMegaDomainId='';
+const renderDomainMegaMenu=(domainId)=>{
+  const list=$('#edn-domain-mega-list'),panel=$('#edn-domain-mega-courses');
+  if(!list||!panel||!DOMAINS.length)return;
+  const selected=DOMAINS.find(item=>item.id===domainId)||DOMAINS.find(item=>item.id===activeMegaDomainId)||DOMAINS[0];
+  activeMegaDomainId=selected.id;
+  if(!list.children.length||list.dataset.catalogVersion!==String(DOMAINS.length)){
+    list.innerHTML=DOMAINS.map((domain,index)=>{
+      const count=C.filter(course=>course.domainId===domain.id).length;
+      return '<a class="edn-domain-menu-item" href="#/domain/'+esc(domain.slug)+'" data-domain-menu-id="'+esc(domain.id)+'"><span class="edn-domain-menu-number">'+String(index+1).padStart(2,'0')+'</span><span class="edn-domain-menu-name">'+esc(domain.name)+'</span><small>'+count+' khóa</small></a>';
+    }).join('');
+    list.dataset.catalogVersion=String(DOMAINS.length);
+  }
+  list.querySelectorAll('[data-domain-menu-id]').forEach(item=>{
+    const active=item.dataset.domainMenuId===selected.id;
+    item.classList.toggle('is-active',active);
+    if(active)item.setAttribute('aria-current','true');
+    else item.removeAttribute('aria-current');
+  });
+  const courses=C.filter(course=>course.domainId===selected.id);
+  panel.innerHTML='<div class="edn-domain-mega-course-head"><div><span class="edn-overline">KHÁM PHÁ LĨNH VỰC</span><h3>'+esc(selected.name)+'</h3><p>'+esc(selected.description||'Chọn một chương trình để xem đề cương chi tiết.')+'</p></div><strong>'+courses.length+' chương trình</strong></div>'+
+    (courses.length
+      ? '<div class="edn-domain-mega-course-list">'+courses.map(course=>'<a class="edn-domain-mega-course" href="#/course/'+esc(course.id)+'"><span class="edn-domain-mega-course-title">'+esc(course.t)+'</span><span class="edn-domain-mega-course-status">'+esc(course.ready?(typeof course.p==='number'?money(course.p):'Đã mở bán'):'Đề cương · Chưa mở bán')+'</span><small>'+course.L.length+' bài học dự kiến</small></a>').join('')+'</div>'
+      : '<div class="edn-domain-mega-empty">Lĩnh vực này chưa có chương trình trong danh mục.</div>')+
+    '<a class="edn-domain-mega-all" href="#/domain/'+esc(selected.slug)+'">Xem lĩnh vực và toàn bộ chương trình <span aria-hidden="true">↗</span></a>';
+};
+
 function nav(){
   const user=me(),path=location.hash.slice(1)||'/';
   document.body.classList.add('edunext-ready');
@@ -467,8 +494,15 @@ function nav(){
   const auth=$('#auth');
   if(auth){
     auth.innerHTML=user
-      ? '<a class="edn-account-study-link" href="#/dashboard">Trang học tập</a><a class="edunext-profile-link" href="#/profile" aria-label="Mở trực tiếp hồ sơ cá nhân"><span class="edunext-profile-avatar">'+esc(ini(user.name))+'</span><span class="edunext-profile-copy"><strong>'+esc(user.name)+'</strong><small>Hồ sơ</small></span></a>'
+      ? '<a class="edn-account-study-link" href="#/dashboard">Trang học tập</a><a class="edunext-profile-link" href="#/profile" aria-label="Mở trực tiếp hồ sơ học viên"><span class="edunext-profile-avatar">'+esc(ini(user.name))+'</span><span class="edunext-profile-copy"><strong>Hồ sơ học viên</strong><small>'+esc(user.name)+'</small></span></a>'
       : '<a class="btn btn-g btn-s" href="#/login">Đăng nhập</a><a class="btn btn-p btn-s" href="#/register">Đăng ký</a>';
+  }
+  renderDomainMegaMenu(activeMegaDomainId);
+  const domainMenu=$('#edn-domain-menu-wrap');
+  if(domainMenu){
+    domainMenu.classList.remove('is-open');
+    const toggle=domainMenu.querySelector('[data-a="toggle-domains"]');
+    if(toggle)toggle.setAttribute('aria-expanded','false');
   }
   const activePath=path.startsWith('/domain/')?'/categories':(path.startsWith('/course/')||path.startsWith('/checkout/')||path.startsWith('/learn/')?'/courses':(path.startsWith('/blog/')?'/blog':path));
   document.querySelectorAll('#nav a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+activePath));
@@ -508,6 +542,15 @@ const A={
     document.body.classList.toggle('lms-mobile-open');
     const button=$('.lms-mobile-menu');
     if(button)button.setAttribute('aria-expanded',String(document.body.classList.contains('lms-mobile-open')));
+  },
+  'toggle-domains':()=>{
+    const wrap=$('#edn-domain-menu-wrap');
+    if(!wrap)return;
+    const open=!wrap.classList.contains('is-open');
+    wrap.classList.toggle('is-open',open);
+    const button=wrap.querySelector('[data-a="toggle-domains"]');
+    if(button)button.setAttribute('aria-expanded',String(open));
+    if(open)renderDomainMegaMenu(activeMegaDomainId);
   },
   cat:value=>{f=F0();f.cat=value;to('/courses');},
   domain:value=>{
@@ -577,6 +620,22 @@ document.addEventListener('click',event=>{
   Promise.resolve(A[action](target.dataset.v,target)).catch(error=>toast(error.message||'Thao tác chưa thành công.'));
 });
 
+document.addEventListener('mouseover',event=>{
+  const item=event.target.closest('[data-domain-menu-id]');
+  if(item&&item.closest('#edn-domain-mega-list'))renderDomainMegaMenu(item.dataset.domainMenuId);
+});
+document.addEventListener('focusin',event=>{
+  const item=event.target.closest('[data-domain-menu-id]');
+  if(item&&item.closest('#edn-domain-mega-list'))renderDomainMegaMenu(item.dataset.domainMenuId);
+});
+document.addEventListener('click',event=>{
+  const wrap=$('#edn-domain-menu-wrap');
+  if(wrap&&!wrap.contains(event.target)&&wrap.classList.contains('is-open')){
+    wrap.classList.remove('is-open');
+    const button=wrap.querySelector('[data-a="toggle-domains"]');
+    if(button)button.setAttribute('aria-expanded','false');
+  }
+});
 document.addEventListener('click',event=>{
   const button=event.target.closest('[data-blog-topic]');
   if(!button)return;
@@ -692,6 +751,14 @@ document.addEventListener('submit',async event=>{
 
 document.addEventListener('keydown',event=>{
   if(event.key==='Escape')$('#edn-preview-modal')?.remove();
+  if(event.key==='Escape'){
+    const wrap=$('#edn-domain-menu-wrap');
+    if(wrap){
+      wrap.classList.remove('is-open');
+      const button=wrap.querySelector('[data-a="toggle-domains"]');
+      if(button)button.setAttribute('aria-expanded','false');
+    }
+  }
   if(event.key==='Escape'&&document.body.classList.contains('lms-mobile-open')){
     document.body.classList.remove('lms-mobile-open');
     const menu=$('.lms-mobile-menu');
