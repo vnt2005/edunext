@@ -1,47 +1,4 @@
 <?php
-function edunext_ajax_certificate_issue(): void {
-    edunext_ajax_require_nonce();
-    if (!is_user_logged_in()) {
-        edunext_ajax_error('Vui lòng đăng nhập để xem chứng chỉ.', 401);
-    }
-
-    $user_id = get_current_user_id();
-    $course_id = sanitize_key(wp_unslash($_POST['courseId'] ?? ''));
-    $course = edunext_catalog_course($course_id);
-    $owned_ids = get_user_meta($user_id, 'edunext_owned_course_ids', true);
-    if (!is_array($course) || !edunext_course_is_ready($course) || !is_array($owned_ids) || !in_array($course_id, $owned_ids, true)) {
-        edunext_ajax_error('Khóa học chưa được mở cho tài khoản này.', 403);
-    }
-
-    $all_progress = get_user_meta($user_id, 'edunext_course_progress', true);
-    $entry = is_array($all_progress) && isset($all_progress[$course_id]) && is_array($all_progress[$course_id])
-        ? $all_progress[$course_id] : [];
-    $done = isset($entry['done']) && is_array($entry['done']) ? array_unique(array_map('absint', $entry['done'])) : [];
-    $required = edunext_course_required_lessons($course);
-    if ($required <= 0 || count($done) < $required) {
-        edunext_ajax_error('Bạn cần hoàn thành toàn bộ điều kiện học tập đã công bố trước khi nhận chứng chỉ.', 403);
-    }
-
-    $certificates = get_user_meta($user_id, 'edunext_certificates', true);
-    if (!is_array($certificates)) {
-        $certificates = [];
-    }
-    if (empty($certificates[$course_id]['code'])) {
-        $certificates[$course_id] = [
-            'code' => strtoupper('EDU-' . wp_date('Y') . '-' . substr(str_replace('-', '', wp_generate_uuid4()), 0, 10)),
-            'issuedAt' => time(),
-        ];
-        update_user_meta($user_id, 'edunext_certificates', $certificates);
-    }
-
-    wp_send_json_success([
-        'courseId' => $course_id,
-        'courseTitle' => sanitize_text_field((string) $course['title']),
-        'code' => sanitize_text_field((string) $certificates[$course_id]['code']),
-        'issuedAt' => absint($certificates[$course_id]['issuedAt']),
-    ]);
-}
-add_action('wp_ajax_edunext_certificate_issue', 'edunext_ajax_certificate_issue');
 
 if (!defined('ABSPATH')) {
     exit;
@@ -551,3 +508,47 @@ function edunext_ajax_progress_save(): void {
     wp_send_json_success(['progress' => $all_progress[$course_id]]);
 }
 add_action('wp_ajax_edunext_progress_save', 'edunext_ajax_progress_save');
+
+function edunext_ajax_certificate_issue(): void {
+    edunext_ajax_require_nonce();
+    if (!is_user_logged_in()) {
+        edunext_ajax_error('Vui lòng đăng nhập để xem chứng chỉ.', 401);
+    }
+
+    $user_id = get_current_user_id();
+    $course_id = sanitize_key(wp_unslash($_POST['courseId'] ?? ''));
+    $course = edunext_catalog_course($course_id);
+    $owned_ids = get_user_meta($user_id, 'edunext_owned_course_ids', true);
+    if (!is_array($course) || !edunext_course_is_ready($course) || !is_array($owned_ids) || !in_array($course_id, $owned_ids, true)) {
+        edunext_ajax_error('Khóa học chưa được mở cho tài khoản này.', 403);
+    }
+
+    $all_progress = get_user_meta($user_id, 'edunext_course_progress', true);
+    $entry = is_array($all_progress) && isset($all_progress[$course_id]) && is_array($all_progress[$course_id])
+        ? $all_progress[$course_id] : [];
+    $done = isset($entry['done']) && is_array($entry['done']) ? array_unique(array_map('absint', $entry['done'])) : [];
+    $required = edunext_course_required_lessons($course);
+    if ($required <= 0 || count($done) < $required) {
+        edunext_ajax_error('Bạn cần hoàn thành toàn bộ điều kiện học tập đã công bố trước khi nhận chứng chỉ.', 403);
+    }
+
+    $certificates = get_user_meta($user_id, 'edunext_certificates', true);
+    if (!is_array($certificates)) {
+        $certificates = [];
+    }
+    if (empty($certificates[$course_id]['code'])) {
+        $certificates[$course_id] = [
+            'code' => strtoupper('EDU-' . wp_date('Y') . '-' . substr(str_replace('-', '', wp_generate_uuid4()), 0, 10)),
+            'issuedAt' => time(),
+        ];
+        update_user_meta($user_id, 'edunext_certificates', $certificates);
+    }
+
+    wp_send_json_success([
+        'courseId' => $course_id,
+        'courseTitle' => sanitize_text_field((string) $course['title']),
+        'code' => sanitize_text_field((string) $certificates[$course_id]['code']),
+        'issuedAt' => absint($certificates[$course_id]['issuedAt']),
+    ]);
+}
+add_action('wp_ajax_edunext_certificate_issue', 'edunext_ajax_certificate_issue');
