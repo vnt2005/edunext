@@ -3886,8 +3886,8 @@ body.edunext-app .edunext-skip-link:focus{left:10px}
   body.edunext-app.lms-mobile-open .edunext-main-nav{display:flex}
   body.edunext-app .edunext-main-nav .edunext-nav-link{justify-content:flex-start;padding:11px 12px;font-size:14px}
   body.edunext-app .edunext-header-search{margin-left:auto}
-  body.edunext-app .lms-category-label{display:none}
-  body.edunext-app .lms-category-inner{min-height:40px}
+  body.edunext-app .edunext-category-label{display:none}
+  body.edunext-app .edunext-category-inner{min-height:40px}
   body.edunext-app .lms-welcome{padding:39px}
   body.edunext-app .lms-welcome h1{font-size:38px!important}
   body.edunext-app .lms-category-chips{grid-template-columns:repeat(3,minmax(0,1fr))}
