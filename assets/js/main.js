@@ -396,82 +396,287 @@ const profilePage=section=>{
   }
   return '<div class="edn-profile-page wrap"><aside class="edn-profile-sidebar"><div class="edn-profile-person"><div class="edn-profile-avatar-large">'+avatar+'</div><strong>'+esc(full)+'</strong><span>Tài khoản EduNext</span></div><nav class="edn-profile-settings-nav" aria-label="Hồ sơ">'+nav+'</nav><button class="edn-profile-logout" type="button" data-a="logout">Đăng xuất</button></aside><section class="edn-profile-main"><header class="edn-profile-heading"><h1>'+title+'</h1><p>'+subtitle+'</p></header><div class="edn-profile-content">'+content+'</div></section></div>';
 };
-const R=[[/^\/?$/,home],[/^\/courses$/,courses],[/^\/best-sellers$/,()=>{f=F0();f.sort='pop';return courses()}],[/^\/categories$/,()=>{go('/');setTimeout(()=>document.getElementById('cats')?.scrollIntoView({behavior:'smooth'}),30);return home()}],[/^\/course\/(\w+)$/,detail],[/^\/checkout\/(\w+)$/,checkout],[/^\/learn\/(\w+)\/(\d+)$/,learn],[/^\/quiz\/(\w+)$/,quiz],[/^\/certificates$/,certificates],[/^\/cert\/(\w+)$/,cert],[/^\/profile(?:\/([\w-]+))?$/,section=>profilePage(section||'profile')],[/^\/(login|register)$/,auth],[/^\/dashboard$/,dash],[/^\/teacher$/,teacher],[/^\/admin$/,admin],[/^\/blog$/,blogPage],[/^\/about$/,aboutPage],[/^\/faq$/,()=>{go('/');setTimeout(()=>document.getElementById('faq')?.scrollIntoView({behavior:'smooth'}),30);return home()}]];
-function nav(){const m=me(),p=location.hash.slice(1)||'/';document.body.classList.add('edunext-ready');document.body.classList.toggle('lms-admin-mode',p==='/admin');document.body.classList.toggle('lms-builder-mode',p==='/teacher');$('#auth').innerHTML=m?'<a class="edunext-profile-link" href="#/profile" aria-label="Mở hồ sơ cá nhân"><span class="edunext-profile-avatar">'+esc(ini(m.name))+'</span><span class="edunext-profile-copy"><strong>'+esc(m.name)+'</strong><small>Hồ sơ cá nhân</small></span></a>':'<a class="btn btn-g btn-s" href="#/login">Đăng nhập</a><a class="btn btn-p btn-s" href="#/register">Đăng ký</a>';document.querySelectorAll('#nav a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+p));const labels={'/':'Trang chủ','/courses':'Khóa học','/best-sellers':'Bán chạy','/categories':'Danh mục','/blog':'Blog','/faq':'Hỏi đáp','/dashboard':'Trang học tập','/profile':'Hồ sơ','/profile/profile':'Hồ sơ','/profile/public':'Hồ sơ công khai','/profile/photo':'Ảnh hồ sơ','/profile/security':'Bảo mật tài khoản','/profile/subscriptions':'Thuê bao','/profile/payments':'Phương thức thanh toán','/profile/privacy':'Quyền riêng tư','/profile/notifications':'Tùy chọn thông báo','/profile/api':'Ứng dụng API','/profile/close-account':'Đóng tài khoản','/certificates':'Chứng chỉ','/login':'Đăng nhập','/register':'Đăng ký','/about':'Về EduNext','/teacher':'Course Builder','/admin':'Courses'};const current=$('#lms-breadcrumb-current');if(current)current.textContent=labels[p]||'Khóa học';$('#nav').classList.remove('open');document.body.classList.remove('lms-mobile-open')}
-function render(keep){const p=location.hash.slice(1)||'/';hook=null;let h;for(const[re,fn]of R){const m=p.match(re);if(m){h=fn(...m.slice(1));break}}
-app.innerHTML=h===undefined?nf():h;if(hook)hook();nav();if(!keep)scrollTo(0,0)}
+const R=[
+  [/^\/?$/,home],
+  [/^\/courses$/,courses],
+  [/^\/best-sellers$/,courses],
+  [/^\/categories$/,domainsPage],
+  [/^\/domain\/([a-z0-9-]+)$/i,domainDetail],
+  [/^\/course\/([a-z0-9-]+)$/i,detail],
+  [/^\/checkout\/([a-z0-9-]+)$/i,checkout],
+  [/^\/learn\/([a-z0-9-]+)\/([0-9]+)$/i,learn],
+  [/^\/certificates$/,certificates],
+  [/^\/cert\/([a-z0-9-]+)$/i,cert],
+  [/^\/orders$/,ordersPage],
+  [/^\/profile(?:\/(profile|public|photo|security))?$/i,section=>profilePage(section||'profile')],
+  [/^\/(login|register)$/i,auth],
+  [/^\/dashboard$/,dash],
+  [/^\/blog\/([a-z0-9-]+)$/i,blogDetail],
+  [/^\/blog$/,blogPage],
+  [/^\/about$/,aboutPage],
+  [/^\/faq$/,faqPage]
+];
 
-/* ---------- Actions ---------- */
-const A={
-preview:id=>{const c=find(id);if(!c)return;const v=Array.isArray(c.v)?c.v[0]:c.v;if(!v){toast('Video xem trước chưa có sẵn');return}$('#edn-preview-modal')?.remove();const modal=document.createElement('div');modal.id='edn-preview-modal';modal.className='edn-preview-modal';modal.dataset.a='preview-close';modal.setAttribute('role','dialog');modal.setAttribute('aria-modal','true');modal.setAttribute('aria-label','Xem trước khóa học');modal.innerHTML='<div class="edn-preview-dialog"><div class="edn-preview-dialog-head"><div><strong>Xem trước khóa học</strong><span>'+esc(c.t)+'</span></div><button type="button" data-a="preview-close" aria-label="Đóng video">×</button></div><div class="edn-preview-video"><iframe src="https://www.youtube-nocookie.com/embed/'+encodeURIComponent(v)+'?autoplay=1&rel=0&playsinline=1" title="Xem trước '+esc(c.t)+'" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div></div>';document.body.appendChild(modal);modal.querySelector('[data-a="preview-close"]').focus()},
-'preview-close':()=>$('#edn-preview-modal')?.remove(),
-'bio-bold':()=>{const t=$('#edn-bio');if(!t)return;const s=t.selectionStart,e=t.selectionEnd,v=t.value;t.setRangeText('**'+v.slice(s,e)+'**',s,e,'select');t.focus()},
-'bio-italic':()=>{const t=$('#edn-bio');if(!t)return;const s=t.selectionStart,e=t.selectionEnd,v=t.value;t.setRangeText('*'+v.slice(s,e)+'*',s,e,'select');t.focus()},
-menu:()=>document.body.classList.toggle('lms-mobile-open'),
-sc:id=>{$('#nav').classList.remove('open');const s=()=>{const el=document.getElementById(id);el&&el.scrollIntoView({behavior:'smooth'})};const p=location.hash.slice(1);if(!p||p==='/')s();else{go('/');setTimeout(s,80)}},
-cat:v=>{f=F0();f.cat=v;to('/courses')},
-clear:()=>{f=F0();render(true)},
-enroll:id=>{if(!D.me){next='/checkout/'+id;toast('Đăng nhập để tiếp tục thanh toán');return go('/login')}go('/checkout/'+id)},
-done:v=>{const[id,i]=v.split(','),e=EN()[id],k=+i,x=e.done.indexOf(k);x<0?e.done.push(k):e.done.splice(x,1);save();toast(x<0?'Đã lưu tiến độ':'Đã bỏ đánh dấu');render(true)},
-tab:(v,t)=>{document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('on',b===t));document.querySelectorAll('.pn').forEach(p=>p.classList.toggle('hidden',p.dataset.p!==v))},
-opt:v=>{const[k,id]=v.split(',');qz.a[qz.i]=+k;qr(id)},
-qgo:v=>{const[d,id]=v.split(','),n=Q[id].length;if(+d>0&&qz.a[qz.i]==null)return toast('Hãy chọn một đáp án');
-if(+d>0&&qz.i===n-1){qz.res=Math.round(Q[id].filter((q,i)=>qz.a[i]===q.a).length/n*100);const e=EN()[id];e.q=Math.max(e.q||0,qz.res);save()}else qz.i+=+d;qr(id)},
-qretry:id=>{qz={i:0,a:[],res:null};qr(id)},
-logout:()=>{D.me=null;save();toast('Đã đăng xuất');to('/')},
-'teacher-demo':()=>toast('Tính năng giảng viên đang ở chế độ demo'),'adminDemo':()=>toast('Tính năng quản trị đang ở chế độ demo'),print:()=>print(),pay:id=>{const c=find(id);if(!c||!D.me)return;D.orders=D.orders||[];const method=(document.querySelector('input[name="payment"]:checked')||{}).value||'bank';D.orders.push({id:'EDN-'+Date.now().toString().slice(-8),courseId:id,email:D.me,amount:c.p,method,status:'paid',createdAt:new Date().toISOString()});EN()[id]={done:[],q:null,n:{}};save();toast('Thanh toán thành công');go('/learn/'+id+'/0')}};
-document.addEventListener('click',e=>{const t=e.target.closest('[data-a]');if(t&&A[t.dataset.a])A[t.dataset.a](t.dataset.v,t)});
-document.addEventListener('click',e=>{
-const button=e.target.closest('[data-blog-topic]');
-if(!button)return;
-const topic=button.dataset.blogTopic||'Tất cả';
-const matches=tag=>{
-  const normalized=tag.toLocaleLowerCase('vi-VN');
-  if(topic==='Tất cả')return true;
-  if(topic==='AI')return normalized.includes('ai');
-  if(topic==='Lập trình')return normalized.includes('lập trình')||tag==='Dự án'||tag==='Cơ sở dữ liệu';
-  return normalized.includes(topic.toLocaleLowerCase('vi-VN'));
+const request=async(action,values={})=>{
+  if(!CFG.ajaxUrl||!CFG.nonce)throw new Error('Chưa cấu hình kết nối tài khoản WordPress.');
+  const form=values instanceof FormData?values:new FormData();
+  if(!(values instanceof FormData)){
+    Object.entries(values||{}).forEach(([key,value])=>{
+      if(value!==undefined&&value!==null)form.append(key,String(value));
+    });
+  }
+  form.set('action',action);
+  form.set('nonce',CFG.nonce);
+  let response;
+  try{
+    response=await fetch(CFG.ajaxUrl,{method:'POST',credentials:'same-origin',body:form});
+  }catch(error){
+    throw new Error('Không thể kết nối máy chủ. Vui lòng thử lại.');
+  }
+  let payload;
+  try{payload=await response.json()}catch(error){throw new Error('Máy chủ trả về phản hồi không hợp lệ.');}
+  if(!response.ok||!payload||payload.success!==true){
+    const message=payload&&payload.data&&payload.data.message?payload.data.message:'Thao tác chưa thành công. Vui lòng thử lại.';
+    throw new Error(message);
+  }
+  return payload.data||{};
 };
-document.querySelectorAll('.blog-page-feature[data-blog-tag],.blog-page-card[data-blog-tag]').forEach(item=>{
-  item.style.display=matches(item.dataset.blogTag||'')?'':'none';
-});
-document.querySelectorAll('.blog-topic-row [data-blog-topic]').forEach(item=>{
-  const active=item.dataset.blogTopic===topic;
-  item.classList.toggle('active',active);
-  item.setAttribute('aria-pressed',String(active));
-});
+
+function nav(){
+  const user=me(),path=location.hash.slice(1)||'/';
+  document.body.classList.add('edunext-ready');
+  document.body.classList.remove('lms-admin-mode','lms-builder-mode','lms-mobile-open');
+  const auth=$('#auth');
+  if(auth){
+    auth.innerHTML=user
+      ? '<a class="edn-account-study-link" href="#/dashboard">Trang học tập</a><a class="edunext-profile-link" href="#/profile" aria-label="Mở trực tiếp hồ sơ cá nhân"><span class="edunext-profile-avatar">'+esc(ini(user.name))+'</span><span class="edunext-profile-copy"><strong>'+esc(user.name)+'</strong><small>Hồ sơ</small></span></a>'
+      : '<a class="btn btn-g btn-s" href="#/login">Đăng nhập</a><a class="btn btn-p btn-s" href="#/register">Đăng ký</a>';
+  }
+  const activePath=path.startsWith('/domain/')?'/categories':(path.startsWith('/course/')||path.startsWith('/checkout/')||path.startsWith('/learn/')?'/courses':(path.startsWith('/blog/')?'/blog':path));
+  document.querySelectorAll('#nav a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+activePath));
+  const labels={
+    '/':'Trang chủ','/courses':'Khóa học','/best-sellers':'Khóa học','/categories':'Lĩnh vực','/blog':'Góc kiến thức','/faq':'Hỏi đáp',
+    '/dashboard':'Trang học tập','/orders':'Lịch sử mua hàng','/profile':'Hồ sơ','/profile/profile':'Hồ sơ','/profile/public':'Hồ sơ',
+    '/profile/photo':'Ảnh đại diện','/profile/security':'Mật khẩu','/certificates':'Chứng chỉ','/login':'Đăng nhập','/register':'Đăng ký','/about':'Về EduNext'
+  };
+  const current=$('#lms-breadcrumb-current');
+  if(current)current.textContent=labels[path]||(path.startsWith('/domain/')?'Lĩnh vực':path.startsWith('/course/')?'Chi tiết khóa học':path.startsWith('/learn/')?'Bài học':path.startsWith('/blog/')?'Góc kiến thức':'EduNext');
+  const menu=$('.lms-mobile-menu');
+  if(menu)menu.setAttribute('aria-expanded',String(document.body.classList.contains('lms-mobile-open')));
+}
+
+function render(keep){
+  const path=location.hash.slice(1)||'/';
+  hook=null;
+  let html;
+  try{
+    for(const [pattern,handler] of R){
+      const match=path.match(pattern);
+      if(match){html=handler(...match.slice(1));break;}
+    }
+    app.innerHTML=html===undefined?nf():html;
+    if(hook)hook();
+  }catch(error){
+    app.innerHTML='<div class="wrap page"><div class="empty" role="alert"><h2>Trang này chưa thể hiển thị</h2><p>Đã xảy ra lỗi khi tải nội dung. Hãy quay lại trang chủ hoặc thử lại.</p><a class="btn btn-g" href="#/">Về trang chủ</a></div></div>';
+  }
+  nav();
+  if(!keep)window.scrollTo(0,0);
+}
+
+/* User-facing interactions only. */
+const A={
+  menu:()=>{
+    document.body.classList.toggle('lms-mobile-open');
+    const button=$('.lms-mobile-menu');
+    if(button)button.setAttribute('aria-expanded',String(document.body.classList.contains('lms-mobile-open')));
+  },
+  cat:value=>{f=F0();f.cat=value;to('/courses');},
+  domain:value=>{
+    const domain=DOMAINS.find(item=>item.id===value||item.slug===value||item.name===value);
+    f=F0();
+    if(domain){f.domainId=domain.id;f.cat=domain.name;}
+    to('/courses');
+  },
+  topic:value=>{f=F0();f.topic=value;to('/courses');},
+  clear:()=>{f=F0();render(true);},
+  'load-more':()=>{f.visible+=12;list();},
+  enroll:id=>{
+    const c=find(id);
+    if(!D.me){toast('Vui lòng đăng nhập để tiếp tục.');go('/login');return;}
+    if(!c||!c.published||CFG.paymentReady!==true){toast('Khóa học chưa mở bán hoặc chưa có cổng thanh toán được xác minh.');go('/course/'+id);return;}
+    toast('Thanh toán chưa được cấu hình cho website này.');
+  },
+  done:async value=>{
+    const parts=String(value||'').split(',');
+    const id=parts[0],index=Number(parts[1]),entry=EN()[id];
+    if(!entry||!Number.isInteger(index)){toast('Tài khoản chưa có quyền truy cập bài học này.');return;}
+    const completed=!entry.done.includes(index);
+    try{
+      const data=await request('edunext_progress_save',{courseId:id,lessonIndex:index,completed:completed?'1':'0'});
+      const done=data.progress&&Array.isArray(data.progress.done)?data.progress.done.map(Number):[];
+      entry.done=done;
+      if(CFG.progress){CFG.progress[id]=data.progress;}
+      toast(completed?'Đã lưu tiến độ học tập.':'Đã cập nhật tiến độ.');
+      render(true);
+    }catch(error){toast(error.message);}
+  },
+  'issue-cert':async id=>{
+    try{
+      await request('edunext_certificate_issue',{courseId:id});
+      toast('Chứng chỉ đã được hệ thống ghi nhận.');
+      window.location.reload();
+    }catch(error){toast(error.message);}
+  },
+  preview:id=>{
+    const c=find(id);
+    if(!c||!c.previewVideoUrl){toast('Chưa có video xem trước đã được xác minh.');return;}
+    $('#edn-preview-modal')?.remove();
+    const modal=document.createElement('div');
+    modal.id='edn-preview-modal';modal.className='edn-preview-modal';
+    modal.setAttribute('role','dialog');modal.setAttribute('aria-modal','true');modal.setAttribute('aria-label','Xem trước khóa học');
+    modal.innerHTML='<div class="edn-preview-dialog"><div class="edn-preview-dialog-head"><div><strong>Xem trước khóa học</strong><span>'+esc(c.t)+'</span></div><button type="button" data-a="preview-close" aria-label="Đóng video">×</button></div><div class="edn-preview-video">'+videoMarkup(c.previewVideoUrl,c.t)+'</div></div>';
+    document.body.appendChild(modal);
+    modal.querySelector('[data-a="preview-close"]')?.focus();
+  },
+  'preview-close':()=>$('#edn-preview-modal')?.remove(),
+  logout:async()=>{
+    try{
+      await request('edunext_logout',{});
+      window.location.hash='#/';
+      window.location.reload();
+    }catch(error){toast(error.message);}
+  },
+  print:()=>window.print()
+};
+
+document.addEventListener('click',event=>{
+  const target=event.target.closest('[data-a]');
+  if(!target)return;
+  const action=target.dataset.a;
+  if(!A[action])return;
+  if(target.tagName==='A')event.preventDefault();
+  Promise.resolve(A[action](target.dataset.v,target)).catch(error=>toast(error.message||'Thao tác chưa thành công.'));
 });
 
-const onf=e=>{const t=e.target;if(t.id==='edn-headline'){const n=$('#edn-headline-count');if(n)n.textContent=(t.value||'').length+'/60';return}if(t.id==='edn-profile-avatar-file'&&e.type==='change'&&t.files&&t.files[0]){const file=t.files[0];if(!/^image\/(png|jpeg|webp)$/.test(file.type)){toast('Vui lòng chọn ảnh JPG, PNG hoặc WebP');return}const reader=new FileReader();reader.onload=()=>{const img=new Image();img.onload=()=>{try{const canvas=document.createElement('canvas'),max=320,scale=Math.min(1,max/Math.max(img.width,img.height));canvas.width=Math.round(img.width*scale);canvas.height=Math.round(img.height*scale);canvas.getContext('2d').drawImage(img,0,0,canvas.width,canvas.height);const u=me();if(!u)return;u.profile=u.profile||{};u.profile.avatar=canvas.toDataURL('image/jpeg',0.78);save();toast('Đã cập nhật ảnh hồ sơ');render(true)}catch(err){toast('Không thể xử lý ảnh này')}};img.onerror=()=>toast('Không thể mở ảnh đã chọn');img.src=reader.result};reader.readAsDataURL(file);return}if(t.id==='note'){const en=EN()[t.dataset.c];(en.n=en.n||{})[t.dataset.i]=t.value;save();return}if(t.dataset.f&&$('#list')){f[t.dataset.f]=t.value;list()}};
-document.addEventListener('input',onf);document.addEventListener('change',onf);
-document.addEventListener('submit',e=>{const fm=e.target.closest('[data-form]');if(!fm)return;e.preventDefault();const k=fm.dataset.form,v=Object.fromEntries(new FormData(fm));
-if(k==='search'){f=F0();f.q=(v.q||'').trim();fm.reset();$('#nav').classList.remove('open');return to('/courses')}
-if(k==='profile-save'){
-const u=me();if(!u)return go('/login');
-const first=(v.firstName||'').trim(),last=(v.lastName||'').trim();
-const error=$('#edn-profile-error');
-if(!first||!last){if(error)error.textContent='Vui lòng nhập cả tên và họ.';return}
-for(const field of ['website','linkedin','facebook']){if(v[field]&&!/^https?:\/\/\S+/i.test(v[field])){if(error)error.textContent='Các liên kết cần bắt đầu bằng http:// hoặc https://.';return}}
-u.profile=u.profile||{};Object.assign(u.profile,{firstName:first,lastName:last,headline:(v.headline||'').trim(),bio:(v.bio||'').trim(),language:v.language||'vi',website:(v.website||'').trim(),linkedin:(v.linkedin||'').trim(),facebook:(v.facebook||'').trim()});
-u.name=[first,last].join(' ');save();toast('Đã lưu hồ sơ cá nhân');render(true);return}
-if(k==='profile-password'){
-const u=me();if(!u)return go('/login');const error=$('#edn-profile-error');
-if(v.currentPassword!==u.pw){if(error)error.textContent='Mật khẩu hiện tại chưa đúng.';return}
-if((v.newPassword||'').length<6){if(error)error.textContent='Mật khẩu mới cần tối thiểu 6 ký tự.';return}
-if(v.newPassword!==v.confirmPassword){if(error)error.textContent='Hai mật khẩu mới chưa trùng khớp.';return}
-u.pw=v.newPassword;save();fm.reset();toast('Đã cập nhật mật khẩu trong bản demo');return}
-if(k==='profile-prefs'){
-const u=me();if(!u)return go('/login');u.profile=u.profile||{};
-if(fm.querySelector('[name="publicProfile"]'))u.profile.privacy={publicProfile:!!v.publicProfile,showLinks:!!v.showLinks};
-else u.profile.notifications={newCourses:!!v.newCourses,learningTips:!!v.learningTips,offers:!!v.offers};
-save();toast('Đã lưu tùy chọn');return}
-const err=m=>{$('#err').textContent=m},email=(v.email||'').trim().toLowerCase();
-if(!/^\S+@\S+\.\S+$/.test(email))return err('Email chưa đúng định dạng.');
-if((v.pw||'').length<6)return err('Mật khẩu cần tối thiểu 6 ký tự.');
-if(k==='register'){if(!(v.name||'').trim())return err('Vui lòng nhập họ và tên.');if(!v.ok)return err('Bạn cần đồng ý với điều khoản sử dụng.');if(D.users.some(u=>u.email===email))return err('Email này đã đăng ký. Hãy đăng nhập.');D.users.push({name:v.name.trim(),email,pw:v.pw})}
-else if(!D.users.some(u=>u.email===email&&u.pw===v.pw))return err('Sai email hoặc mật khẩu.');
-D.me=email;save();toast('Xin chào '+me().name);const n=next||'/dashboard';next='';go(n)});
-document.addEventListener('keydown',e=>{if(e.key==='Escape')$('#edn-preview-modal')?.remove()});
-addEventListener('hashchange',()=>render());
+document.addEventListener('click',event=>{
+  const button=event.target.closest('[data-blog-topic]');
+  if(!button)return;
+  const topic=button.dataset.blogTopic||'Tất cả';
+  const matches=tag=>{
+    const normalized=String(tag||'').toLocaleLowerCase('vi-VN');
+    if(topic==='Tất cả')return true;
+    if(topic==='AI')return normalized.includes('ai');
+    if(topic==='Lập trình')return normalized.includes('lập trình')||tag==='Dự án'||tag==='Cơ sở dữ liệu';
+    return normalized.includes(topic.toLocaleLowerCase('vi-VN'));
+  };
+  document.querySelectorAll('.blog-page-card[data-blog-tag]').forEach(item=>{
+    item.style.display=matches(item.dataset.blogTag||'')?'':'none';
+  });
+  document.querySelectorAll('.blog-topic-row [data-blog-topic]').forEach(item=>{
+    const active=item.dataset.blogTopic===topic;
+    item.classList.toggle('active',active);
+    item.setAttribute('aria-pressed',String(active));
+  });
+});
+
+const onf=event=>{
+  const target=event.target;
+  if(target.id==='edn-headline'){
+    const count=$('#edn-headline-count');
+    if(count)count.textContent=(target.value||'').length+'/60';
+    return;
+  }
+  if(target.id==='edn-profile-avatar-file'&&event.type==='change'&&target.files&&target.files[0]){
+    const file=target.files[0];
+    const error=$('#edn-profile-error');
+    if(!/^image\/(png|jpeg|webp)$/.test(file.type)){if(error)error.textContent='Chỉ chấp nhận ảnh JPG, PNG hoặc WebP.';return;}
+    if(file.size>2*1024*1024){if(error)error.textContent='Ảnh cần có dung lượng không quá 2 MB.';return;}
+    const form=new FormData();form.append('avatar',file);
+    request('edunext_profile_avatar',form).then(data=>{
+      toast(data.message||'Đã cập nhật ảnh hồ sơ.');
+      window.location.reload();
+    }).catch(error=>{if(error)error.textContent=error.message;});
+    return;
+  }
+  if(target.dataset.f&&$('#list')){
+    f[target.dataset.f]=target.value;
+    f.visible=12;
+    list();
+  }
+};
+document.addEventListener('input',onf);
+document.addEventListener('change',onf);
+
+document.addEventListener('submit',async event=>{
+  const form=event.target.closest('[data-form]');
+  if(!form)return;
+  event.preventDefault();
+  const kind=form.dataset.form;
+  const values=Object.fromEntries(new FormData(form));
+  const error=form.querySelector('[role="alert"]');
+
+  if(kind==='search'){
+    f=F0();f.q=String(values.q||'').trim();
+    const headerSearch=form.querySelector('input[name="q"]');
+    if(headerSearch)headerSearch.blur();
+    to('/courses');
+    return;
+  }
+
+  if(kind==='login'||kind==='register'){
+    const email=String(values.email||'').trim().toLowerCase();
+    const password=String(values.pw||'');
+    const message=text=>{if(error)error.textContent=text;};
+    if(!/^\S+@\S+\.\S+$/.test(email)){message('Email chưa đúng định dạng.');return;}
+    if(password.length<8){message('Mật khẩu cần tối thiểu 8 ký tự.');return;}
+    if(kind==='register'&&!String(values.name||'').trim()){message('Vui lòng nhập họ và tên.');return;}
+    if(kind==='register'&&!values.ok){message('Bạn cần đồng ý với điều khoản sử dụng.');return;}
+    const submit=form.querySelector('button[type="submit"]');
+    if(submit)submit.disabled=true;
+    try{
+      const action=kind==='register'?'edunext_register':'edunext_login';
+      const result=await request(action,{email,password,name:String(values.name||'').trim(),accepted:values.ok?'1':'0'});
+      toast(result.message||'Thành công.');
+      window.location.hash=result.redirect||'#/dashboard';
+      window.location.reload();
+    }catch(err){
+      message(err.message);
+      if(submit)submit.disabled=false;
+    }
+    return;
+  }
+
+  if(kind==='profile-save'){
+    if(!String(values.firstName||'').trim()||!String(values.lastName||'').trim()){
+      if(error)error.textContent='Vui lòng nhập cả tên và họ.';
+      return;
+    }
+    try{
+      const result=await request('edunext_profile_save',values);
+      toast(result.message||'Đã lưu hồ sơ.');
+      window.location.reload();
+    }catch(err){if(error)error.textContent=err.message;}
+    return;
+  }
+
+  if(kind==='profile-password'){
+    if(String(values.newPassword||'').length<8){if(error)error.textContent='Mật khẩu mới cần tối thiểu 8 ký tự.';return;}
+    if(values.newPassword!==values.confirmPassword){if(error)error.textContent='Hai mật khẩu mới chưa trùng khớp.';return;}
+    try{
+      const result=await request('edunext_profile_password',values);
+      form.reset();toast(result.message||'Đã cập nhật mật khẩu.');
+    }catch(err){if(error)error.textContent=err.message;}
+  }
+});
+
+document.addEventListener('keydown',event=>{
+  if(event.key==='Escape')$('#edn-preview-modal')?.remove();
+  if(event.key==='Escape'&&document.body.classList.contains('lms-mobile-open')){
+    document.body.classList.remove('lms-mobile-open');
+    const menu=$('.lms-mobile-menu');
+    if(menu)menu.setAttribute('aria-expanded','false');
+  }
+});
+window.addEventListener('hashchange',()=>render());
 render();
 })();
