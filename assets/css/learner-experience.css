@@ -896,3 +896,167 @@ body.edunext-app .edn-avatar-editor .edn-profile-error{min-height:18px;margin:8p
 @media(max-width:640px){
   body.edunext-app .edn-profile-dropdown{right:-6px;width:min(252px,calc(100vw - 24px))}
 }
+
+
+/* Checkout page: course details, verified price, and order total. */
+body.edunext-app .edn-checkout-page{
+  width:min(1220px,calc(100% - 48px))!important;max-width:1220px!important;
+  margin:28px auto 64px!important;padding:0!important;color:#222c3c;
+}
+body.edunext-app .edn-checkout-heading{
+  display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin:4px 0 26px;
+}
+body.edunext-app .edn-checkout-heading h1{
+  margin:7px 0 8px;font-size:clamp(30px,3.2vw,38px);line-height:1.18;
+  letter-spacing:-.04em;color:#202a3b;
+}
+body.edunext-app .edn-checkout-heading p{margin:0;color:#667085;font-size:14px;line-height:1.7}
+body.edunext-app .edn-checkout-back{
+  flex:0 0 auto;color:#315d4d;font-size:13px;font-weight:700;text-decoration:none;
+}
+body.edunext-app .edn-checkout-back:hover{text-decoration:underline;text-underline-offset:3px}
+body.edunext-app .edn-checkout-layout{
+  display:grid;grid-template-columns:minmax(0,1.55fr) minmax(310px,.9fr);
+  align-items:start;gap:30px;
+}
+body.edunext-app .edn-checkout-main{display:grid;gap:18px;min-width:0}
+body.edunext-app .edn-checkout-section{
+  min-width:0;padding:22px 24px;border:1px solid #dce2e8;
+  border-radius:12px;background:#fff;
+}
+body.edunext-app .edn-checkout-section-heading{
+  display:flex;align-items:center;gap:12px;min-width:0;margin-bottom:18px;
+}
+body.edunext-app .edn-checkout-section-heading>div{min-width:0;flex:1}
+body.edunext-app .edn-checkout-step{
+  display:grid;place-items:center;flex:0 0 30px;width:30px;height:30px;
+  border-radius:50%;background:#eaf0e7;color:#315d4d;font-size:13px;font-weight:800;
+}
+body.edunext-app .edn-checkout-section-heading h2{
+  margin:0 0 4px;color:#202a3b;font-size:17px;font-weight:800;letter-spacing:-.02em;
+}
+body.edunext-app .edn-checkout-section-heading p{margin:0;color:#667085;font-size:12px;line-height:1.55}
+body.edunext-app .edn-checkout-status{
+  flex:0 0 auto;padding:6px 9px;border:1px solid #e7d9b1;border-radius:999px;
+  background:#fff9e9;color:#8b6b23;font-size:10px;font-weight:750;white-space:nowrap;
+}
+body.edunext-app .edn-checkout-learner{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+body.edunext-app .edn-checkout-learner>div{
+  display:grid;gap:6px;min-width:0;padding:13px 14px;border:1px solid #e5e8ee;
+  border-radius:8px;background:#fbfcfd;
+}
+body.edunext-app .edn-checkout-learner span,
+body.edunext-app .edn-checkout-course-price small{color:#667085;font-size:11px}
+body.edunext-app .edn-checkout-learner strong{overflow-wrap:anywhere;color:#253044;font-size:13px;line-height:1.5}
+body.edunext-app .edn-checkout-payment-notice{
+  display:flex;align-items:flex-start;gap:14px;padding:17px;
+  border:1px solid #dbe4ef;border-radius:9px;background:#f7f9fc;
+}
+body.edunext-app .edn-checkout-lock{
+  display:grid;place-items:center;flex:0 0 38px;width:38px;height:38px;
+  border-radius:10px;background:#eaf0ff;color:#2457d6;
+}
+body.edunext-app .edn-checkout-lock svg{
+  display:block;width:21px;height:21px;fill:none;stroke:currentColor;
+  stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;
+}
+body.edunext-app .edn-checkout-payment-notice>div{min-width:0}
+body.edunext-app .edn-checkout-payment-notice strong{display:block;margin:1px 0 5px;color:#273247;font-size:13px}
+body.edunext-app .edn-checkout-payment-notice p{margin:0;color:#657187;font-size:12px;line-height:1.7}
+body.edunext-app .edn-checkout-course{
+  display:grid;grid-template-columns:100px minmax(0,1fr) auto;align-items:center;gap:16px;min-width:0;
+}
+body.edunext-app .edn-checkout-course-image{
+  display:flex;align-items:stretch;justify-content:center;overflow:hidden;
+  width:100%;height:88px;border-radius:8px;background:#edf1e8;
+}
+body.edunext-app .edn-checkout-course-image>img{display:block;width:100%;height:100%;object-fit:cover}
+body.edunext-app .edn-checkout-course-image .edn-course-placeholder{
+  display:flex;justify-content:flex-end;min-height:88px;height:100%;width:100%;
+  padding:9px;border-radius:8px;
+}
+body.edunext-app .edn-checkout-course-image .edn-course-placeholder b{font-size:12px;line-height:1.3}
+body.edunext-app .edn-checkout-course-details{min-width:0}
+body.edunext-app .edn-checkout-course-domain{
+  display:block;margin-bottom:5px;color:#315d4d;font-size:10px;font-weight:800;
+  letter-spacing:.05em;line-height:1.4;text-transform:uppercase;
+}
+body.edunext-app .edn-checkout-course-details h3{
+  margin:0;color:#222c3c;font-size:14px;font-weight:800;line-height:1.5;
+}
+body.edunext-app .edn-checkout-course-details p{margin:6px 0;color:#667085;font-size:11px;line-height:1.55}
+body.edunext-app .edn-checkout-course-state{
+  display:inline-flex;align-items:center;padding:4px 7px;border-radius:999px;
+  font-size:10px;font-weight:750;line-height:1.4;
+}
+body.edunext-app .edn-checkout-course-state.is-ready{background:#e8f5ec;color:#236b40}
+body.edunext-app .edn-checkout-course-state.is-pending{background:#fff5df;color:#8b6b23}
+body.edunext-app .edn-checkout-course-price{display:grid;gap:5px;justify-items:end;min-width:0}
+body.edunext-app .edn-checkout-course-price strong{color:#202a3b;font-size:14px;line-height:1.4;text-align:right}
+body.edunext-app .edn-checkout-summary{
+  position:sticky;top:104px;min-width:0;padding:24px;
+  border:1px solid #e0e4eb;border-radius:12px;background:#f7f8fa;
+}
+body.edunext-app .edn-checkout-summary-title{padding-bottom:17px;border-bottom:1px solid #dfe3e9}
+body.edunext-app .edn-checkout-summary-title h2{
+  margin:6px 0 0;color:#222c3c;font-size:22px;line-height:1.3;letter-spacing:-.03em;
+}
+body.edunext-app .edn-checkout-summary-course{
+  display:grid;grid-template-columns:76px minmax(0,1fr);align-items:center;gap:12px;
+  padding:18px 0;border-bottom:1px solid #dfe3e9;
+}
+body.edunext-app .edn-checkout-summary-course .edn-checkout-course-image{height:64px}
+body.edunext-app .edn-checkout-summary-course .edn-checkout-course-image .edn-course-placeholder{min-height:64px;padding:7px}
+body.edunext-app .edn-checkout-summary-course .edn-checkout-course-image .edn-course-placeholder b{font-size:10px}
+body.edunext-app .edn-checkout-summary-course>div:last-child{display:grid;gap:5px;min-width:0}
+body.edunext-app .edn-checkout-summary-course>div:last-child strong{
+  display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:3;
+  color:#293246;font-size:12px;line-height:1.5;
+}
+body.edunext-app .edn-checkout-summary-course>div:last-child small{color:#687386;font-size:10px}
+body.edunext-app .edn-checkout-price-line{
+  display:flex;align-items:flex-start;justify-content:space-between;gap:16px;
+  padding:14px 0;border-bottom:1px solid #dfe3e9;color:#5c6678;font-size:12px;line-height:1.5;
+}
+body.edunext-app .edn-checkout-price-line strong{color:#293246;font-size:12px;font-weight:650;text-align:right}
+body.edunext-app .edn-checkout-grand-total{
+  display:flex;align-items:flex-start;justify-content:space-between;gap:15px;padding:20px 0;
+  color:#202a3b;font-size:14px;font-weight:800;
+}
+body.edunext-app .edn-checkout-grand-total strong{
+  max-width:58%;color:#202a3b;font-size:22px;font-weight:800;line-height:1.25;
+  text-align:right;overflow-wrap:anywhere;
+}
+body.edunext-app .edn-checkout-pay-button{display:flex;align-items:center;justify-content:center;gap:8px;min-height:48px;margin-top:2px}
+body.edunext-app .edn-checkout-pay-button:disabled{
+  border-color:#d4d9e1!important;background:#e2e5ea!important;color:#737d8c!important;
+  box-shadow:none!important;cursor:not-allowed;
+}
+body.edunext-app .edn-checkout-terms{margin:12px 0 0;color:#727c8e;font-size:10px;line-height:1.7}
+body.edunext-app .edn-checkout-secure-note{
+  display:flex;align-items:flex-start;gap:8px;margin-top:17px;padding-top:15px;border-top:1px solid #dfe3e9;
+}
+body.edunext-app .edn-checkout-secure-note>span{
+  display:grid;place-items:center;flex:0 0 19px;width:19px;height:19px;border-radius:50%;
+  background:#e5f3e9;color:#286b45;font-size:11px;font-weight:800;
+}
+body.edunext-app .edn-checkout-secure-note p{margin:0;color:#687386;font-size:10px;line-height:1.65}
+body.edunext-app .edn-checkout-page a:focus-visible,
+body.edunext-app .edn-checkout-page button:focus-visible{outline:3px solid #8fb0ff;outline-offset:3px}
+@media(max-width:900px){
+  body.edunext-app .edn-checkout-layout{grid-template-columns:minmax(0,1fr);gap:18px}
+  body.edunext-app .edn-checkout-summary{position:static;order:-1}
+}
+@media(max-width:640px){
+  body.edunext-app .edn-checkout-page{width:calc(100% - 28px)!important;margin-top:18px!important}
+  body.edunext-app .edn-checkout-heading{align-items:flex-start;flex-direction:column;gap:12px;margin-bottom:18px}
+  body.edunext-app .edn-checkout-section{padding:17px 15px}
+  body.edunext-app .edn-checkout-section-heading{align-items:flex-start;flex-wrap:wrap;gap:10px;margin-bottom:14px}
+  body.edunext-app .edn-checkout-status{margin-left:40px}
+  body.edunext-app .edn-checkout-learner{grid-template-columns:minmax(0,1fr)}
+  body.edunext-app .edn-checkout-course{grid-template-columns:76px minmax(0,1fr);gap:11px}
+  body.edunext-app .edn-checkout-course-image{height:76px}
+  body.edunext-app .edn-checkout-course-price{grid-column:2;justify-items:start}
+  body.edunext-app .edn-checkout-course-price strong{text-align:left}
+  body.edunext-app .edn-checkout-summary{padding:18px}
+}
