@@ -282,10 +282,17 @@ const domainDetail=slug=>{
     '<section class="edn-domain-programs"><div class="edn-section-heading"><div><span class="edn-overline">CHƯƠNG TRÌNH HỌC</span><h2>Đề cương trong lĩnh vực</h2></div><a href="#/courses" data-a="domain" data-v="'+esc(d.id)+'">Xem trong danh mục ↗</a></div><div class="grid cio-course-grid">'+coursesInDomain.map(card).join('')+'</div></section></div>';
 };
 const videoMarkup=(url,title)=>{
-  if(!url)return '<div class="edn-media-unavailable" role="status"><strong>Học liệu video chưa được cung cấp</strong><p>Bài này chưa thể mở học cho đến khi có video hoặc nội dung giảng dạy đã xác minh.</p></div>';
-  const yt=String(url).match(/(?:youtube-nocookie\.com\/embed\/|youtube\.com\/watch\?v=|youtu\.be\/)([A-Za-z0-9_-]{11})/);
+  if(!url)return '<div class="edn-media-unavailable" role="status"><strong>Video bài học đang được cập nhật</strong><p>Video phù hợp cho bài này chưa được gắn vào danh mục khóa học.</p></div>';
+  const raw=String(url).trim();
+  const playlist=raw.match(/(?:youtube(?:-nocookie)?\.com\/(?:playlist|embed\/videoseries)[^#]*[?&]list=)([A-Za-z0-9_-]{10,})/i);
+  if(playlist){
+    const idx=raw.match(/[?&]index=(\d+)/i);
+    const source='https://www.youtube-nocookie.com/embed/videoseries?list='+encodeURIComponent(playlist[1])+(idx?'&index='+encodeURIComponent(idx[1]):'')+'&rel=0&playsinline=1';
+    return '<iframe src="'+source+'" title="'+esc(title)+'" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+  }
+  const yt=raw.match(/(?:youtube-nocookie\.com\/embed\/|youtube\.com\/(?:watch\?[^#]*v=)|youtu\.be\/)([A-Za-z0-9_-]{11})/i);
   if(yt)return '<iframe src="https://www.youtube-nocookie.com/embed/'+encodeURIComponent(yt[1])+'?rel=0&playsinline=1" title="'+esc(title)+'" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
-  if(/^https:\/\/.+\.mp4(?:\?.*)?$/i.test(url))return '<video controls preload="metadata" src="'+esc(url)+'" aria-label="'+esc(title)+'"></video>';
+  if(/^https:\/\/.+\.mp4(?:\?.*)?$/i.test(raw))return '<video controls preload="metadata" src="'+esc(raw)+'" aria-label="'+esc(title)+'"></video>';
   return '<div class="edn-media-unavailable" role="status"><strong>Định dạng học liệu chưa hỗ trợ</strong><p>Học liệu cần được kiểm tra trước khi xuất bản.</p></div>';
 };
 const detail=id=>{
