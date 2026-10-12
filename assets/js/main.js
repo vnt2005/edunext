@@ -551,7 +551,7 @@ function nav(){
   const auth=$('#auth');
   if(auth){
     auth.innerHTML=user
-      ? '<a class="edunext-profile-link" href="#/profile" aria-label="Mở trực tiếp hồ sơ học viên"><span class="edunext-profile-avatar">'+esc(ini(user.name))+'</span><span class="edunext-profile-copy"><strong>Hồ sơ học viên</strong></span></a>'
+      ? '<a class="edunext-profile-link" href="#/profile" aria-label="Mở trực tiếp hồ sơ học viên" title="Hồ sơ học viên"><span class="edunext-profile-avatar" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><circle cx="12" cy="8" r="3.5"></circle><path d="M5 20c.5-3.3 3.2-5 7-5s6.5 1.7 7 5"></path></svg><span class="edn-profile-alert-dot"></span></span><span class="edunext-profile-copy"><strong>Hồ sơ học viên</strong></span></a>'
       : '<a class="btn btn-g btn-s" href="#/login">Đăng nhập</a><a class="btn btn-p btn-s" href="#/register">Đăng ký</a>';
   }
   renderDomainMegaMenu();
