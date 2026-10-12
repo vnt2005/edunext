@@ -671,12 +671,25 @@ const A={
     modal.querySelector('[data-a="preview-close"]')?.focus();
   },
   'preview-close':()=>$('#edn-preview-modal')?.remove(),
-  logout:async()=>{
+  logout:async(_value,button)=>{
+    if(button){
+      button.disabled=true;
+      button.setAttribute('aria-busy','true');
+      button.textContent='Đang đăng xuất…';
+    }
     try{
-      await request('edunext_logout',{});
-      window.location.hash='#/';
+      const result=await request('edunext_logout',{});
+      const target=result.redirect||'#/';
+      window.location.hash=target.startsWith('#')?target:'#'+target;
       window.location.reload();
-    }catch(error){toast(error.message);}
+    }catch(error){
+      if(button){
+        button.disabled=false;
+        button.removeAttribute('aria-busy');
+        button.textContent='Đăng xuất';
+      }
+      toast(error.message||'Chưa thể đăng xuất. Vui lòng thử lại.');
+    }
   },
   print:()=>window.print()
 };
