@@ -175,114 +175,76 @@ const domainDetail=slug=>{
     '<section class="edn-related-topics"><div class="edn-section-heading"><div><span class="edn-overline">CHỦ ĐỀ CHUYÊN MÔN</span><h2>Các hướng học liên quan</h2></div><p>Bấm vào một chủ đề để xem những chương trình được liên kết với chủ đề đó.</p></div><div class="edn-topic-chip-row">'+related+'</div></section>'+
     '<section class="edn-domain-programs"><div class="edn-section-heading"><div><span class="edn-overline">CHƯƠNG TRÌNH HỌC</span><h2>Đề cương trong lĩnh vực</h2></div><a href="#/courses" data-a="domain" data-v="'+esc(d.id)+'">Xem trong danh mục ↗</a></div><div class="grid cio-course-grid">'+coursesInDomain.map(card).join('')+'</div></section></div>';
 };
-const detail=id=>{
-const c=find(id);if(!c)return nf();
-const e=EN()[id],outcomes=OUTCOMES[c.cat]||OUTCOMES['Lập trình'];
-const lessonRows=c.L.map((lesson,i)=>'<div class="edn-curriculum-row"><span class="edn-curriculum-number">'+String(i+1).padStart(2,'0')+'</span><span class="edn-curriculum-play" aria-hidden="true">▶</span><div class="edn-curriculum-copy"><b>'+esc(lesson)+'</b><small>Video bài học</small></div><span class="edn-curriculum-duration">'+(c.s&&c.s[i+1]!==undefined?Math.max(4,Math.round((c.s[i+1]-(c.s[i]||0))/60))+' phút':'Bài học')+'</span></div>').join('');
-const oldPrice=c.o>c.p?'<del>'+money(c.o)+'</del>':'';
-const discount=c.o>c.p?Math.round((1-c.p/c.o)*100):0;
-return `<div class="edn-course-detail-page">
-<section class="edn-course-hero">
-<div class="wrap edn-course-hero-inner">
-<div class="edn-course-intro">
-<nav class="edn-course-breadcrumb" aria-label="Đường dẫn"><a href="#/">Trang chủ</a><span>›</span><a href="#/courses">Khóa học</a><span>›</span><a href="#/categories">${esc(c.cat)}</a></nav>
-<div class="edn-course-eyebrow">${esc(c.cat)} <span>·</span> ${esc(c.lvl)}</div>
-<h1>${esc(c.t)}</h1>
-<p class="edn-course-subtitle">${esc(c.t)} — học theo từng bước, thực hành với nội dung bài học và theo dõi tiến độ ngay trong EduNext.</p>
-<div class="edn-course-tag-row"><span class="edn-course-tag">${esc(c.tag||'Khóa học nổi bật')}</span><span class="edn-course-language">◉ Tiếng Việt</span></div>
-<p class="edn-course-instructor-line">Được tạo bởi <a href="#/about">${esc(c.tc)}</a></p>
-<div class="edn-course-date-row"><span>↻ Cập nhật gần đây</span><span>◷ ${c.h} giờ nội dung</span></div>
-<div class="edn-course-rating-row"><strong>${c.r.toFixed(1)}</strong><span class="edn-course-stars" aria-label="${c.r} trên 5 sao">★★★★★</span><a href="#course-curriculum">${c.n.toLocaleString('vi-VN')} lượt quan tâm</a><span>·</span><span>${c.L.length} bài học</span></div>
-</div>
-<aside class="edn-course-buy-card" aria-label="Thông tin mua khóa học">
-<button type="button" class="edn-course-preview" data-a="preview" data-v="${id}" aria-label="Xem trước khóa học ${esc(c.t)}">
-<img src="${COURSE_IMAGES[c.id]}" alt="Ảnh xem trước khóa học ${esc(c.t)}">
-<span class="edn-preview-shade"></span><span class="edn-preview-play" aria-hidden="true">▶</span><strong>Xem trước khóa học này</strong>
-</button>
-<div class="edn-course-buy-content">
-<div class="edn-course-price-line"><strong>${money(c.p)}</strong>${oldPrice}</div>
-${discount?'<div class="edn-course-discount">Tiết kiệm '+discount+'%</div>':''}
-<p class="edn-course-purchase-note">${e?'Bạn đã có quyền truy cập khóa học này.':'Mua một lần, học theo tiến độ của bạn.'}</p>
-${e?'<div class="cio-owned">✓ Bạn đã mua khóa học này</div><a class="btn btn-p w edn-course-buy-button" href="#/learn/'+id+'/'+nextL(c)+'">Tiếp tục học</a>':'<button type="button" class="btn btn-p w edn-course-buy-button" data-a="enroll" data-v="'+id+'">Mua khóa học</button>'}
-<div class="edn-course-money-note">Thanh toán một lần · Không tự động gia hạn</div>
-<div class="edn-course-includes"><strong>Khóa học bao gồm:</strong><span>✓ Truy cập toàn bộ ${c.L.length} bài học</span><span>✓ Lưu tiến độ học tập</span><span>✓ Quiz và chứng chỉ khi đủ điều kiện</span></div>
-</div>
-</aside>
-</div>
-</section>
-<div class="wrap edn-course-content-grid">
-<main class="edn-course-main">
-<section class="edn-course-outcomes" aria-labelledby="edn-outcomes-title">
-<h2 id="edn-outcomes-title">Bạn sẽ học được gì</h2>
-<div class="edn-course-outcomes-grid">${outcomes.map(item=>'<div class="edn-course-outcome"><span>✓</span><p>'+esc(item)+'</p></div>').join('')}</div>
-</section>
-<section class="edn-course-curriculum" id="course-curriculum">
-<div class="edn-course-section-heading"><div><h2>Nội dung bài học</h2><p>${c.L.length} bài học · Khoảng ${c.h} giờ nội dung</p></div><span class="edn-curriculum-total">${c.L.length} bài</span></div>
-<div class="edn-curriculum-list">${lessonRows}</div>
-<p class="edn-curriculum-footnote">Bạn có thể xem trước nội dung khóa học trước khi mua. Bài học đầy đủ sẽ mở sau khi đăng ký.</p>
-</section>
-<section class="edn-course-about">
-<h2>Về khóa học này</h2>
-<p>Khóa học <strong>${esc(c.t)}</strong> được chia thành từng bài nhỏ để bạn dễ theo dõi. Xem chương trình học, chọn khóa học phù hợp với mục tiêu và tiếp tục học theo thời gian của bạn.</p>
-<div class="edn-course-facts"><div><small>Lĩnh vực</small><strong>${esc(c.cat)}</strong></div><div><small>Cấp độ</small><strong>${esc(c.lvl)}</strong></div><div><small>Thời lượng</small><strong>${c.h} giờ</strong></div></div>
-</section>
-<section class="edn-course-instructor-card">
-<div class="edn-course-instructor-avatar">${esc(ini(c.tc))}</div><div><span class="edn-course-instructor-kicker">GIẢNG VIÊN</span><h3>${esc(c.tc)}</h3><p>Giảng viên khóa học ${esc(c.cat)} trên EduNext.</p></div>
-</section>
-<section class="edn-related-courses"><div class="edn-course-section-heading"><div><h2>Khóa học có thể bạn quan tâm</h2><p>Khám phá thêm các chủ đề khác trên EduNext.</p></div><a href="#/courses">Tất cả khóa học →</a></div><div class="grid cio-course-grid">${C.filter(x=>x.id!==c.id).slice(0,3).map(card).join('')}</div></section>
-</main>
-<div class="edn-course-right-space" aria-hidden="true"></div>
-</div>
-</div>`;
-};const checkout=id=>{const c=find(id);if(!c)return nf();if(!D.me)return guard('/checkout/'+id);if(EN()[id]){go('/course/'+id);return ''}
-const u=me(),discount=c.o>c.p?c.o-c.p:0,orderId='EDN-'+Date.now().toString().slice(-8);
-return `<div class="wrap page"><div class="bc"><a href="#/courses">Khóa học</a> / Thanh toán</div><div class="checkout-grid"><section><h1>Thanh toán khóa học</h1><p class="muted">Học ngay thông tin trước khi xác nhận đăng ký.</p><div class="box checkout-box"><h2>Thông tin học viên</h2><div class="checkout-user"><div class="av">${ini(u.name)}</div><div><b>${esc(u.name)}</b><span>${esc(u.email)}</span></div></div></div><div class="box checkout-box"><h2>Phương thức thanh toán</h2><label class="pay-option"><input type="radio" name="payment" value="bank" checked><span><b>Chuyển khoản ngân hàng</b><small>Thanh toán qua tài khoản ngân hàng — bản demo.</small></span></label><label class="pay-option"><input type="radio" name="payment" value="wallet"><span><b>Ví điện tử</b><small>Thanh toán nhanh bằng ví điện tử — bản demo.</small></span></label><label class="pay-option"><input type="radio" name="payment" value="card"><span><b>Thẻ ngân hàng</b><small>Visa / Mastercard / ATM — bản demo.</small></span></label><div class="pay-note">Đây là giao diện mô phỏng. Chưa kết nối cổng thanh toán thật.</div></div></section><aside class="box checkout-summary"><h2>Đơn hàng</h2><div class="checkout-course"><div class="thumb ${c.c}"><b>${c.cat}</b></div><div><span class="cat">${c.cat}</span><h3>${c.t}</h3><p class="muted">${c.h} giờ · ${c.L.length} bài · ${c.lvl}</p></div></div><div class="sum-row"><span>Giá niêm yết</span><del>${money(c.o)}</del></div><div class="sum-row"><span>Ưu đãi</span><strong class="discount">-${money(discount)}</strong></div><div class="sum-total"><span>Tổng thanh toán</span><b>${money(c.p)}</b></div><button class="btn btn-p w" data-a="pay" data-v="${id}">Xác nhận thanh toán</button><p class="checkout-safe">Mã đơn hàng: ${orderId}<br>Thanh toán an toàn trong bản demo.</p></aside></div></div>`;
+const videoMarkup=(url,title)=>{
+  if(!url)return '<div class="edn-media-unavailable" role="status"><strong>Học liệu video chưa được cung cấp</strong><p>Bài này chưa thể mở học cho đến khi có video hoặc nội dung giảng dạy đã xác minh.</p></div>';
+  const yt=String(url).match(/(?:youtube-nocookie\.com\/embed\/|youtube\.com\/watch\?v=|youtu\.be\/)([A-Za-z0-9_-]{11})/);
+  if(yt)return '<iframe src="https://www.youtube-nocookie.com/embed/'+encodeURIComponent(yt[1])+'?rel=0&playsinline=1" title="'+esc(title)+'" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+  if(/^https:\/\/.+\.mp4(?:\?.*)?$/i.test(url))return '<video controls preload="metadata" src="'+esc(url)+'" aria-label="'+esc(title)+'"></video>';
+  return '<div class="edn-media-unavailable" role="status"><strong>Định dạng học liệu chưa hỗ trợ</strong><p>Học liệu cần được kiểm tra trước khi xuất bản.</p></div>';
 };
-
-const learn=(id,i)=>{
-  const c=find(id),e=EN()[id];
+const detail=id=>{
+  const c=find(id);
   if(!c)return nf();
-  if(!D.me)return guard('/learn/'+id+'/'+i);
-  if(!e){toast('Hãy mua khóa học trước');go('/course/'+id);return ''}
-  i=Math.min(Math.max(+i,0),c.L.length-1);
-  const d=e.done.includes(i),all=e.done.length===c.L.length;
-  const videoId=Array.isArray(c.v)?c.v[i]:c.v;
-  const video=videoId
-    ? '<iframe src="https://www.youtube-nocookie.com/embed/'+videoId+'?rel=0&modestbranding=1&playsinline=1" title="'+esc(c.L[i])+'" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>'
-    : '<div>Video bài '+(i+1)+': '+esc(c.L[i])+'</div>';
-
-  const prev=i>0?'<a class="btn btn-g" href="#/learn/'+id+'/'+(i-1)+'">← Bài trước</a>':'';
-  const doneBtn='<button class="btn '+(d?'btn-g':'btn-p')+'" data-a="done" data-v="'+id+','+i+'">'+(d?'Bỏ đánh dấu':'Đánh dấu đã học')+'</button>';
-  const next=i<c.L.length-1?'<a class="btn btn-g" href="#/learn/'+id+'/'+(i+1)+'">Bài tiếp →</a>':'';
-  const final=all?'<a class="btn btn-p" href="#/'+(Q[id]&&!(e.q>=70)?'quiz':'cert')+'/'+id+'">'+(Q[id]&&!(e.q>=70)?'Làm quiz':'Xem chứng chỉ')+'</a>':'';
-
-  return `<div class="cio-learn-shell">
-<div class="cio-learn-top"><a href="#/dashboard">← Trang học tập</a><strong>${esc(c.t)}</strong><span>${pct(c)}% hoàn thành</span></div>
-<div class="cio-learn-layout">
-<aside class="cio-lesson-sidebar">
-  <div class="cio-lesson-head">
-    <span>${esc(c.cat)}</span>
-    <h2>${esc(c.t)}</h2>
-    <div class="cio-progress-line"><span style="width:${pct(c)}%"></span></div>
-  </div>
-  <div class="cio-lesson-list">
-    ${c.L.map((l,k)=>'<a class="'+(k===i?'active ':'')+(e.done.includes(k)?'done':'')+'" href="#/learn/'+id+'/'+k+'"><span>'+String(k+1).padStart(2,'0')+'</span><b>'+esc(l)+'</b><small>'+(e.done.includes(k)?'Đã học':'Bài học')+'</small></a>').join('')}
-  </div>
-</aside>
-<main class="cio-learn-content">
-  <div class="cio-video-wrap">${video}</div>
-  <div class="cio-lesson-content">
-    <div class="cio-lesson-heading">
-      <div><span class="cio-eyebrow">BÀI ${i+1}/${c.L.length}</span><h1>${esc(c.L[i])}</h1></div>
-      <span class="cio-lesson-badge">${d?'Đã hoàn thành':'Đang học'}</span>
-    </div>
-    <p>Nội dung bài học tập trung vào <strong>${esc(c.L[i])}</strong>. Xem video và đánh dấu hoàn thành để cập nhật tiến độ.</p>
-    <div class="cio-lesson-actions">${prev}${doneBtn}${next}${final}</div>
-  </div>
-</main>
-</div>
-</div>`;
-};const quiz=id=>{const c=find(id),e=EN()[id];if(!c||!Q[id])return nf();if(!D.me)return guard('/quiz/'+id);if(!e){go('/course/'+id);return ''}
+  const owned=!!EN()[id];
+  const domain=DOMAINS.find(d=>d.id===c.domainId);
+  const topics=(c.topics||[]).map(topic=>'<button type="button" class="edn-topic-chip" data-a="topic" data-v="'+esc(topic)+'">'+esc(topic)+'</button>').join('');
+  const lessonRows=c.lessons.map((lesson,i)=>{
+    const lessonLabel=owned?'<a href="#/learn/'+esc(id)+'/'+i+'">Mở bài học →</a>':'<span>Chỉ xem đề cương</span>';
+    const mediaLabel=lesson.videoUrl?'Có học liệu':'Đang bổ sung học liệu';
+    return '<div class="edn-curriculum-row"><span class="edn-curriculum-number">'+String(i+1).padStart(2,'0')+'</span><span class="edn-curriculum-play" aria-hidden="true">'+(lesson.videoUrl?'▶':'○')+'</span><div class="edn-curriculum-copy"><b>'+esc(lesson.title)+'</b><small>'+mediaLabel+'</small></div><div class="edn-curriculum-duration">'+lessonLabel+'</div></div>';
+  }).join('');
+  const visual=COURSE_IMAGES[c.id]
+    ? '<img src="'+esc(COURSE_IMAGES[c.id])+'" alt="'+esc(c.t)+'" loading="lazy">'
+    : '<div class="edn-course-placeholder edn-course-placeholder-large"><b>'+esc(c.cat)+'</b><small>Chương trình học</small></div>';
+  const buyContent=owned
+    ? '<div class="cio-owned">✓ Tài khoản đã có quyền truy cập khóa học này.</div><a class="btn btn-p w edn-course-buy-button" href="#/learn/'+esc(id)+'/'+nextL(c)+'">Tiếp tục học</a>'
+    : '<div class="edn-course-not-for-sale"><strong>Chưa mở bán</strong><p>Đề cương đang được xây dựng. Khóa học chỉ mở đăng ký khi nội dung giảng dạy, học liệu, giá và thanh toán được cấu hình và kiểm tra.</p></div>';
+  const outcomes=['Xem trước đầy đủ các chủ đề trong đề cương','Nắm trình tự học từ nền tảng đến thực hành','Theo dõi trạng thái học liệu và điều kiện hoàn thành'];
+  return '<div class="edn-course-detail-page"><section class="edn-course-hero"><div class="wrap edn-course-hero-inner">'+
+    '<div class="edn-course-intro"><nav class="edn-course-breadcrumb" aria-label="Đường dẫn"><a href="#/">Trang chủ</a><span>›</span><a href="#/categories">Lĩnh vực</a><span>›</span><a href="#/domain/'+esc(domain?domain.slug:'')+'">'+esc(c.cat)+'</a></nav>'+
+    '<div class="edn-course-eyebrow">'+esc(c.cat)+' <span>·</span> Đề cương chương trình</div><h1>'+esc(c.t)+'</h1><p class="edn-course-subtitle">'+esc(c.description||'Chương trình học được tổ chức theo các bước từ kiến thức nền tảng đến thực hành.')+'</p>'+
+    '<div class="edn-course-tag-row"><span class="edn-course-tag">'+(c.published?'Đã xuất bản':'Đang hoàn thiện nội dung')+'</span><span class="edn-course-language">Ngôn ngữ: chưa cấu hình</span></div>'+
+    '<div class="edn-course-date-row"><span>'+c.L.length+' bài học dự kiến</span><span>'+(c.h?esc(c.h)+' giờ':'Thời lượng đang cập nhật')+'</span></div>'+
+    '<div class="edn-course-status-line">Đây là khung chương trình; chỉ các bài có học liệu đã xác minh mới được mở học.</div></div>'+
+    '<aside class="edn-course-buy-card" aria-label="Trạng thái khóa học"><div class="edn-course-preview edn-course-preview-static">'+visual+'<span class="edn-preview-shade"></span><strong>'+esc(c.cat)+'</strong></div><div class="edn-course-buy-content">'+
+    '<div class="edn-course-price-line"><strong>'+(typeof c.p==='number'?money(c.p):'Chưa có giá')+'</strong></div><p class="edn-course-purchase-note">'+(owned?'Bạn đã có quyền truy cập khóa học này.':'Khóa học chưa được mở bán.')+'</p>'+buyContent+
+    '<div class="edn-course-includes"><strong>Thông tin chương trình</strong><span>✓ '+c.L.length+' bài học trong đề cương</span><span>✓ Có thứ tự bài học rõ ràng</span><span>✓ Lĩnh vực và chủ đề liên quan</span></div></div></aside></div></section>'+
+    '<div class="wrap edn-course-content-grid"><main class="edn-course-main">'+
+    '<section class="edn-course-outcomes" aria-labelledby="edn-outcomes-title"><h2>Mục tiêu của đề cương</h2><div class="edn-course-outcomes-grid">'+outcomes.map(item=>'<div class="edn-course-outcome"><span>✓</span><p>'+esc(item)+'</p></div>').join('')+'</div></section>'+
+    '<section class="edn-course-curriculum" id="course-curriculum"><div class="edn-course-section-heading"><div><h2>Toàn bộ bài học</h2><p>'+c.L.length+' bài trong khung chương trình hiện tại</p></div><span class="edn-curriculum-total">'+c.L.length+' bài</span></div><div class="edn-curriculum-list">'+lessonRows+'</div><p class="edn-curriculum-footnote">Tên bài học là đề cương. Video, tài liệu, bài tập và hướng dẫn cần được bổ sung, kiểm tra trước khi khóa học mở bán.</p></section>'+
+    '<section class="edn-course-about"><h2>Điều kiện và thông tin</h2><p>'+esc(c.description||'Nội dung chi tiết đang được chuẩn bị.')+'</p><div class="edn-course-facts"><div><small>Lĩnh vực</small><strong>'+esc(c.cat)+'</strong></div><div><small>Số bài dự kiến</small><strong>'+c.L.length+'</strong></div><div><small>Cấp độ</small><strong>'+esc(c.lvl||'Chưa cấu hình')+'</strong></div></div></section>'+
+    '<section class="edn-related-topics"><div class="edn-section-heading"><div><span class="edn-overline">KHÁM PHÁ THÊM</span><h2>Lĩnh vực và chủ đề liên quan</h2></div><a href="#/domain/'+esc(domain?domain.slug:'')+'">Xem lĩnh vực ↗</a></div><div class="edn-topic-chip-row">'+topics+'</div></section>'+
+    '</main><div class="edn-course-right-space" aria-hidden="true"></div></div></div>';
+};
+const checkout=id=>{
+  const c=find(id);
+  if(!c)return nf();
+  if(!D.me)return guard('/checkout/'+id);
+  if(EN()[id]){go('/learn/'+id+'/'+nextL(c));return '';}
+  return '<div class="wrap page narrow edn-checkout-unavailable"><nav class="edn-breadcrumb"><a href="#/courses">Khóa học</a><span>›</span><span>Đăng ký</span></nav><div class="cio-empty"><span class="edn-overline">CHƯA MỞ BÁN</span><h1>'+esc(c.t)+'</h1><p>Khóa học này vẫn đang ở giai đoạn đề cương. EduNext chưa ghi nhận thanh toán hoặc cấp quyền học cho khóa học này. Khi nội dung, giá và cổng thanh toán thực tế được cấu hình, trạng thái sẽ được cập nhật.</p><a class="btn btn-g" href="#/course/'+esc(c.id)+'">Quay lại chi tiết khóa học</a><a class="btn btn-p" href="#/courses">Khám phá chương trình khác</a></div></div>';
+};
+const learn=(id,index)=>{
+  const c=find(id);
+  if(!c)return nf();
+  if(!D.me)return guard('/learn/'+id+'/'+index);
+  const e=EN()[id];
+  if(!e){toast('Tài khoản chưa có quyền truy cập khóa học này.');go('/course/'+id);return '';}
+  const i=Math.min(Math.max(Number(index)||0,0),Math.max(c.lessons.length-1,0));
+  const lesson=c.lessons[i];
+  if(!lesson)return nf();
+  const done=e.done.includes(i),all=e.done.length>=c.completionCount;
+  const prev=i>0?'<a class="btn btn-g" href="#/learn/'+esc(id)+'/'+(i-1)+'">← Bài trước</a>':'';
+  const mark='<button class="btn '+(done?'btn-g':'btn-p')+'" type="button" data-a="done" data-v="'+esc(id)+','+i+'">'+(done?'Bỏ đánh dấu hoàn thành':'Đánh dấu đã học')+'</button>';
+  const after=i<c.lessons.length-1?'<a class="btn btn-g" href="#/learn/'+esc(id)+'/'+(i+1)+'">Bài tiếp →</a>':'';
+  const final=all?'<a class="btn btn-p" href="#/cert/'+esc(id)+'">Kiểm tra điều kiện chứng chỉ</a>':'';
+  return '<div class="cio-learn-shell"><div class="cio-learn-top"><a href="#/dashboard">← Trang học tập</a><strong>'+esc(c.t)+'</strong><span>'+pct(c)+'% hoàn thành</span></div>'+
+    '<div class="cio-learn-layout"><aside class="cio-lesson-sidebar"><div class="cio-lesson-head"><span>'+esc(c.cat)+'</span><h2>'+esc(c.t)+'</h2><div class="cio-progress-line"><span style="width:'+pct(c)+'%"></span></div></div><div class="cio-lesson-list">'+c.lessons.map((item,k)=>'<a class="'+(k===i?'active ':'')+(e.done.includes(k)?'done':'')+'" href="#/learn/'+esc(id)+'/'+k+'"><span>'+String(k+1).padStart(2,'0')+'</span><b>'+esc(item.title)+'</b><small>'+(e.done.includes(k)?'Đã học':'Bài học')+'</small></a>').join('')+'</div></aside>'+
+    '<main class="cio-learn-content"><div class="cio-video-wrap">'+videoMarkup(lesson.videoUrl,lesson.title)+'</div><div class="cio-lesson-content"><div class="cio-lesson-heading"><div><span class="cio-eyebrow">BÀI '+(i+1)+'/'+c.lessons.length+'</span><h1>'+esc(lesson.title)+'</h1></div><span class="cio-lesson-badge">'+(done?'Đã hoàn thành':'Đang học')+'</span></div>'+
+    (lesson.content?'<div class="edn-lesson-material">'+esc(lesson.content).replace(/\n/g,'<br>')+'</div>':'<p class="edn-material-pending">Nội dung hướng dẫn chi tiết chưa được bổ sung cho bài này.</p>')+
+    (lesson.exercise?'<section class="edn-lesson-exercise"><h2>Thực hành</h2><p>'+esc(lesson.exercise)+'</p></section>':'')+
+    '<div class="cio-lesson-actions">'+prev+mark+after+final+'</div></div></main></div></div>';
+};
+const quiz=id=>{const c=find(id),e=EN()[id];if(!c||!Q[id])return nf();if(!D.me)return guard('/quiz/'+id);if(!e){go('/course/'+id);return ''}
 if(e.done.length<c.L.length){toast('Hãy học hết các bài trước khi làm kiểm tra');go('/learn/'+id+'/'+nextL(c));return ''}
 qz={i:0,a:[],res:null};hook=()=>qr(id);return `<div class="wrap page narrow"><div class="bc"><a href="#/course/${id}">${c.t}</a> / Bài kiểm tra</div><h1>Bài kiểm tra cuối khóa</h1><div class="box" id="qz"></div></div>`};
 function qr(id){const qs=Q[id],box=$('#qz');if(qz.res!==null){const ok=qz.res>=70;box.innerHTML=`<div class="res"><div class="score">${qz.res}/100</div><h2>${ok?'Bạn đã đạt bài kiểm tra':'Chưa đạt, cần tối thiểu 70 điểm'}</h2>${ok?`<a class="btn btn-p" href="#/cert/${id}">Hoàn thành</a>`:''}<button class="btn btn-g" data-a="qretry" data-v="${id}">Làm lại</button></div>`;return}
