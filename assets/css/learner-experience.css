@@ -1341,3 +1341,26 @@ body.edunext-app .edn-course-curriculum .edn-curriculum-locked p{margin:6px 0 0;
  body.edunext-app .edn-course-curriculum .edn-curriculum-panel{padding:12px}
  body.edunext-app .edn-course-curriculum .edn-curriculum-video iframe,body.edunext-app .edn-course-curriculum .edn-curriculum-video video{min-height:200px}
 }
+
+
+/* Hierarchical field directory: parent groups first, specialties inside each group. */
+body.edunext-app .edn-domain-group-card{min-height:258px;padding:23px}
+body.edunext-app .edn-domain-group-label{display:inline-flex;align-items:center;width:max-content;max-width:100%;margin:11px 0 0;color:#6b7f72;font-size:9px;font-weight:850;letter-spacing:.1em;line-height:1.4}
+body.edunext-app .edn-domain-group-card h2,
+body.edunext-app .edn-domain-specialty-card h2{margin-top:8px}
+body.edunext-app .edn-domain-group-card .edn-domain-card-foot span,
+body.edunext-app .edn-domain-specialty-card .edn-domain-card-foot span{line-height:1.55}
+body.edunext-app .edn-domain-group-detail .edn-domain-hero{background:#f1f5ed;border-color:#dce6d7}
+body.edunext-app .edn-domain-specialty-grid{align-items:stretch}
+body.edunext-app .edn-domain-menu-group{min-height:40px}
+body.edunext-app .edn-domain-menu-group .edn-domain-menu-name{line-height:1.45}
+@media(max-width:900px){
+  body.edunext-app .edn-domain-page .edn-domain-grid,
+  body.edunext-app .edn-domain-group-detail .edn-domain-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:640px){
+  body.edunext-app .edn-domain-page .edn-domain-grid,
+  body.edunext-app .edn-domain-group-detail .edn-domain-grid{grid-template-columns:minmax(0,1fr)}
+  body.edunext-app .edn-domain-group-card{min-height:0;padding:19px}
+  body.edunext-app .edn-domain-group-card .edn-domain-card-foot{padding-top:15px}
+}
