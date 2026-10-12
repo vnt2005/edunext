@@ -776,3 +776,36 @@ body.edunext-app .edn-header-tools .edunext-profile-copy{display:none!important}
     order:5;flex:0 0 100%;width:100%;max-width:none;height:43px;margin:0
   }
 }
+
+
+/* Profile utility: Udemy-inspired purple icon without any surrounding tile. */
+body.edunext-app .edn-header-tools .edunext-profile-link,
+body.edunext-app .edn-header-tools .edunext-profile-link:hover,
+body.edunext-app .edn-header-tools .edunext-profile-link:focus,
+body.edunext-app .edn-header-tools .edunext-profile-link:active{
+  display:inline-flex!important;align-items:center!important;justify-content:center!important;
+  flex:0 0 40px!important;width:40px!important;min-width:40px!important;height:40px!important;
+  margin:0!important;padding:0!important;border:0!important;border-radius:0!important;
+  background:transparent!important;box-shadow:none!important;outline-offset:3px;
+}
+body.edunext-app .edn-header-tools .edunext-profile-link::before,
+body.edunext-app .edn-header-tools .edunext-profile-link::after{
+  content:none!important;display:none!important;
+}
+body.edunext-app .edn-header-tools .edunext-profile-avatar{
+  position:relative!important;display:grid!important;place-items:center!important;
+  flex:0 0 32px!important;width:32px!important;height:32px!important;
+  min-width:32px!important;min-height:32px!important;margin:0!important;padding:0!important;
+  border:0!important;border-radius:50%!important;background:transparent!important;
+  color:#a435f0!important;box-shadow:none!important;font-size:0!important;
+}
+body.edunext-app .edn-header-tools .edunext-profile-avatar svg{
+  display:block!important;width:25px!important;height:25px!important;
+  fill:none!important;stroke:#a435f0!important;stroke-width:1.8!important;
+  stroke-linecap:round!important;stroke-linejoin:round!important;
+}
+body.edunext-app .edn-header-tools .edn-profile-alert-dot{
+  top:0!important;right:0!important;width:11px!important;height:11px!important;
+  border:2px solid #fff!important;border-radius:50%!important;
+  background:#a435f0!important;box-shadow:none!important;
+}
