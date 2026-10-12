@@ -4,19 +4,11 @@
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#ffffff">
-    <meta name="description" content="EduNext — khám phá khóa học thực tế, xem nội dung rõ ràng và học theo tiến độ của bạn.">
+    <meta name="description" content="EduNext — khám phá lĩnh vực, chọn khóa học và học theo lộ trình của bạn.">
     <?php wp_head(); ?>
 </head>
-<body <?php body_class('edunext-app'); ?> data-admin-url="<?php echo esc_url(admin_url()); ?>">
+<body <?php body_class('edunext-app'); ?>>
 <?php wp_body_open(); ?>
-
-<script>
-(function () {
-    if (window.location.hash === '#/admin') {
-        window.location.replace(<?php echo wp_json_encode(admin_url()); ?>);
-    }
-})();
-</script>
 
 <a class="edunext-skip-link" href="#app">Bỏ qua điều hướng</a>
 
@@ -29,23 +21,23 @@
             </a>
 
             <nav id="nav" class="edunext-main-nav" aria-label="Điều hướng chính">
+                <a href="#/" class="edunext-nav-link">Trang chủ</a>
                 <a href="#/courses" class="edunext-nav-link">Khóa học</a>
-                <a href="#/categories" class="edunext-nav-link">Lộ trình</a>
+                <a href="#/categories" class="edunext-nav-link">Lĩnh vực</a>
                 <a href="#/blog" class="edunext-nav-link">Góc kiến thức</a>
+                <a href="#/faq" class="edunext-nav-link">Hỏi đáp</a>
             </nav>
 
             <form class="sf lms-search edunext-header-search" data-form="search" role="search">
                 <span class="lms-search-icon" aria-hidden="true"></span>
-                <input name="q" placeholder="Tìm kiếm khóa học, kỹ năng..." aria-label="Tìm khóa học">
+                <input name="q" placeholder="Tìm khóa học hoặc lĩnh vực..." aria-label="Tìm khóa học hoặc lĩnh vực">
                 <button type="submit" aria-label="Tìm kiếm">Tìm</button>
             </form>
 
             <div id="auth" class="lms-auth edunext-account-actions"></div>
-            <button class="mb lms-mobile-menu" data-a="menu" type="button" aria-label="Mở menu" aria-controls="nav">☰</button>
+            <button class="mb lms-mobile-menu" data-a="menu" type="button" aria-label="Mở menu" aria-controls="nav" aria-expanded="false">☰</button>
         </div>
     </div>
-
 </header>
 
 <span id="lms-breadcrumb-current" class="edunext-route-context" aria-live="polite">Trang chủ</span>
-
