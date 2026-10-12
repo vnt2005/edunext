@@ -720,7 +720,19 @@ const A={
     if(area==='home')homeCoursePage=page;
     else if(area==='domains')domainListPage=page;
     else if(area==='courses')f.page=page;
-    render(false);
+    render(true);
+    const targetSelector=area==='home'
+      ? '.edn-popular-section .edn-editorial-heading'
+      : area==='domains'
+        ? '.edn-domain-page .edn-page-intro'
+        : '.edn-course-catalog-page .cio-page-head';
+    const target=document.querySelector(targetSelector);
+    if(target){
+      const header=document.querySelector('.edunext-site-header');
+      const headerHeight=header?header.getBoundingClientRect().height:0;
+      const top=window.scrollY+target.getBoundingClientRect().top-headerHeight-12;
+      window.scrollTo({top:Math.max(0,top),behavior:'smooth'});
+    }
   },
   enroll:id=>{
     const c=find(id);
