@@ -440,13 +440,13 @@ const profilePage=section=>{
   const first=meta.firstName!==undefined?meta.firstName:defaultFirst;
   const last=meta.lastName!==undefined?meta.lastName:defaultLast;
   const full=[first,last].filter(Boolean).join(' ')||u.name||'Học viên EduNext';
-  const avatar=meta.avatar?'<img src="'+esc(meta.avatar)+'" alt="Ảnh hồ sơ">':'<span>'+esc(ini(full))+'</span>';
+  const avatar=meta.avatar?'<img src="'+esc(meta.avatar)+'" alt="Ảnh hồ sơ">':'<svg class="edn-profile-avatar-placeholder" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"></circle><path d="M5 20c.5-3.3 3.2-5 7-5s6.5 1.7 7 5"></path></svg>';
   const navItems=[['profile','Thông tin cá nhân'],['photo','Ảnh đại diện'],['security','Mật khẩu']];
   const nav=navItems.map(([id,label])=>'<a class="edn-profile-menu-item '+(section===id?'is-active':'')+'" '+(section===id?'aria-current="page"':'')+' href="#/profile/'+id+'">'+label+'</a>').join('');
   let title='Thông tin cá nhân',subtitle='Cập nhật thông tin cơ bản cho tài khoản EduNext.',content='';
   if(section==='photo'){
     title='Ảnh đại diện';subtitle='Tải ảnh lên để cập nhật ảnh hồ sơ tài khoản.';
-    content='<div class="edn-setting-card"><div class="edn-avatar-editor"><div class="edn-profile-avatar-large">'+avatar+'</div><div><h3>Ảnh đại diện</h3><p>Hỗ trợ JPG, PNG hoặc WebP, tối đa 2 MB. Ảnh sẽ được tải lên máy chủ WordPress.</p><label class="btn btn-g" for="edn-profile-avatar-file">Chọn ảnh</label><input id="edn-profile-avatar-file" type="file" accept="image/jpeg,image/png,image/webp" class="edn-visually-hidden"><p class="edn-profile-error" id="edn-profile-error" role="alert"></p></div></div></div>';
+    content='<div class="edn-setting-card"><div class="edn-avatar-editor"><div class="edn-profile-avatar-large">'+avatar+'</div><div class="edn-avatar-editor-actions"><h3>Ảnh đại diện</h3><p>Hỗ trợ JPG, PNG hoặc WebP, tối đa 2 MB. Ảnh sẽ được hiển thị trong thanh điều hướng của bạn.</p><div class="edn-avatar-button-row"><label class="btn btn-g" for="edn-profile-avatar-file">Chọn ảnh</label>'+(meta.avatar?'<button class="btn btn-g edn-remove-avatar" type="button" data-a="profile-avatar-remove">Xóa ảnh đại diện</button>':'')+'</div><input id="edn-profile-avatar-file" type="file" accept="image/jpeg,image/png,image/webp" class="edn-visually-hidden"><p class="edn-profile-error" id="edn-profile-error" role="alert"></p></div></div></div>';
   }else if(section==='security'){
     title='Mật khẩu';subtitle='Đổi mật khẩu đăng nhập của tài khoản WordPress.';
     content='<form class="edn-profile-form edn-setting-card" data-form="profile-password" novalidate><div class="edn-field"><label for="edn-current-password">Mật khẩu hiện tại</label><input id="edn-current-password" name="currentPassword" type="password" autocomplete="current-password" required></div><div class="edn-field"><label for="edn-new-password">Mật khẩu mới</label><input id="edn-new-password" name="newPassword" type="password" minlength="8" autocomplete="new-password" required></div><div class="edn-field"><label for="edn-confirm-password">Nhập lại mật khẩu mới</label><input id="edn-confirm-password" name="confirmPassword" type="password" minlength="8" autocomplete="new-password" required></div><p class="edn-profile-error" id="edn-profile-error" role="alert"></p><div class="edn-profile-save-row"><span>Mật khẩu được cập nhật thông qua WordPress.</span><button type="submit" class="btn btn-p">Cập nhật mật khẩu</button></div></form>';
@@ -548,10 +548,13 @@ function nav(){
   const user=me(),path=location.hash.slice(1)||'/';
   document.body.classList.add('edunext-ready');
   document.body.classList.remove('lms-mobile-open');
+  const profileAvatarMarkup=user&&user.profile&&user.profile.avatar
+    ? '<img class="edn-header-avatar-image" src="'+esc(user.profile.avatar)+'" alt="">'
+    : '<svg viewBox="0 0 24 24" focusable="false" aria-hidden="true"><circle cx="12" cy="8" r="3.5"></circle><path d="M5 20c.5-3.3 3.2-5 7-5s6.5 1.7 7 5"></path></svg>';
   const auth=$('#auth');
   if(auth){
     auth.innerHTML=user
-      ? '<a class="edunext-profile-link" href="#/profile" aria-label="Mở trực tiếp hồ sơ học viên" title="Hồ sơ học viên"><span class="edunext-profile-avatar" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><circle cx="12" cy="8" r="3.5"></circle><path d="M5 20c.5-3.3 3.2-5 7-5s6.5 1.7 7 5"></path></svg><span class="edn-profile-alert-dot"></span></span><span class="edunext-profile-copy"><strong>Hồ sơ học viên</strong></span></a>'
+      ? '<div class="edn-profile-menu-wrap"><a class="edunext-profile-link" href="#/profile" aria-label="Mở hồ sơ học viên" aria-haspopup="true" title="Hồ sơ học viên"><span class="edunext-profile-avatar" aria-hidden="true">'+profileAvatarMarkup+'<span class="edn-profile-alert-dot"></span></span><span class="edunext-profile-copy"><strong>Hồ sơ học viên</strong></span></a><div class="edn-profile-dropdown" aria-label="Menu hồ sơ học viên"><div class="edn-profile-dropdown-head"><strong>'+esc(user.name||'Học viên')+'</strong><small>Tài khoản EduNext</small></div><a class="edn-profile-dropdown-item" href="#/dashboard">Trang học tập</a><a class="edn-profile-dropdown-item" href="#/profile">Hồ sơ cá nhân</a><a class="edn-profile-dropdown-item" href="#/profile/photo">Ảnh đại diện</a><a class="edn-profile-dropdown-item" href="#/profile/security">Mật khẩu</a><a class="edn-profile-dropdown-item" href="#/orders">Lịch sử mua hàng</a><div class="edn-profile-dropdown-divider"></div><button class="edn-profile-dropdown-logout" type="button" data-a="logout">Đăng xuất</button></div></div>'
       : '<a class="btn btn-g btn-s" href="#/login">Đăng nhập</a><a class="btn btn-p btn-s" href="#/register">Đăng ký</a>';
   }
   renderDomainMegaMenu();
@@ -691,6 +694,19 @@ const A={
       toast(error.message||'Chưa thể đăng xuất. Vui lòng thử lại.');
     }
   },
+  'profile-avatar-remove':async(_value,button)=>{
+    const errorMessage=$('#edn-profile-error');
+    if(button){button.disabled=true;button.setAttribute('aria-busy','true');button.textContent='Đang xóa…';}
+    try{
+      const result=await request('edunext_profile_avatar_remove',{});
+      toast(result.message||'Đã xóa ảnh đại diện.');
+      window.location.reload();
+    }catch(error){
+      if(button){button.disabled=false;button.removeAttribute('aria-busy');button.textContent='Xóa ảnh đại diện';}
+      if(errorMessage)errorMessage.textContent=error.message||'Không thể xóa ảnh đại diện. Vui lòng thử lại.';
+      else toast(error.message||'Không thể xóa ảnh đại diện. Vui lòng thử lại.');
+    }
+  },
   print:()=>window.print()
 };
 
@@ -734,13 +750,15 @@ const onf=event=>{
   if(target.id==='edn-profile-avatar-file'&&event.type==='change'&&target.files&&target.files[0]){
     const file=target.files[0];
     const error=$('#edn-profile-error');
-    if(!/^image\/(png|jpeg|webp)$/.test(file.type)){if(error)error.textContent='Chỉ chấp nhận ảnh JPG, PNG hoặc WebP.';return;}
-    if(file.size>2*1024*1024){if(error)error.textContent='Ảnh cần có dung lượng không quá 2 MB.';return;}
+    if(error)error.textContent='';
+    if(!/^image\/(png|jpeg|webp)$/.test(file.type)){if(error)error.textContent='Chỉ chấp nhận ảnh JPG, PNG hoặc WebP.';target.value='';return;}
+    if(file.size>2*1024*1024){if(error)error.textContent='Ảnh cần có dung lượng không quá 2 MB.';target.value='';return;}
     const form=new FormData();form.append('avatar',file);
+    target.disabled=true;
     request('edunext_profile_avatar',form).then(data=>{
       toast(data.message||'Đã cập nhật ảnh hồ sơ.');
       window.location.reload();
-    }).catch(err=>{const message=$('#edn-profile-error');if(message)message.textContent=err.message;});
+    }).catch(err=>{target.disabled=false;target.value='';const message=$('#edn-profile-error');if(message)message.textContent=err.message;});
     return;
   }
   if(target.dataset.f&&$('#list')){
