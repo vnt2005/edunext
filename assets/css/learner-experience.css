@@ -1060,3 +1060,9 @@ body.edunext-app .edn-checkout-page button:focus-visible{outline:3px solid #8fb0
   body.edunext-app .edn-checkout-course-price strong{text-align:left}
   body.edunext-app .edn-checkout-summary{padding:18px}
 }
+
+
+body.edunext-app .edn-course-checkout-link{
+  display:flex;align-items:center;justify-content:center;min-height:42px;margin-top:8px;
+  text-align:center;text-decoration:none;
+}
