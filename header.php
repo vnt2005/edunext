@@ -42,6 +42,7 @@
                 </div>
                 <a href="#/blog" class="edunext-nav-link">Góc kiến thức</a>
                 <a href="#/faq" class="edunext-nav-link">Hỏi đáp</a>
+                <a id="edn-nav-dashboard" href="#/dashboard" class="edunext-nav-link edn-nav-dashboard" hidden>Trang học tập</a>
             </nav>
 
             <form class="sf lms-search edunext-header-search" data-form="search" role="search">
