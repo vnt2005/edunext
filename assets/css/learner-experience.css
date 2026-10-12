@@ -518,3 +518,81 @@ body.edunext-app .edunext-account-actions a:focus-visible{
   outline:3px solid #2457d6;
   outline-offset:3px;
 }
+
+
+/* Keep the learner dashboard link in the primary navigation row and align the profile neatly. */
+body.edunext-app .edn-nav-dashboard[hidden]{display:none!important}
+body.edunext-app .edunext-main-nav .edn-nav-dashboard{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  flex:0 0 auto;
+  padding:10px 9px;
+  color:#204db5;
+  font-size:13px;
+  font-weight:700;
+  white-space:nowrap;
+}
+body.edunext-app .edunext-main-nav .edn-nav-dashboard:hover,
+body.edunext-app .edunext-main-nav .edn-nav-dashboard.active{
+  color:var(--store-blue);
+  background:var(--store-lilac);
+}
+body.edunext-app .edunext-account-actions .edunext-profile-link{
+  display:inline-flex!important;
+  flex-direction:row!important;
+  align-items:center!important;
+  justify-content:center;
+  align-self:center;
+  gap:9px;
+  width:auto;
+  max-width:none;
+  min-width:0;
+  height:auto;
+  white-space:nowrap;
+  vertical-align:middle;
+  line-height:1!important;
+}
+body.edunext-app .edunext-account-actions .edunext-profile-avatar{
+  display:flex!important;
+  flex:0 0 42px!important;
+  align-items:center!important;
+  justify-content:center!important;
+  box-sizing:border-box!important;
+  padding:0!important;
+  margin:0!important;
+  text-align:center!important;
+  line-height:1!important;
+}
+body.edunext-app .edunext-account-actions .edunext-profile-copy{
+  display:flex!important;
+  flex:0 0 auto;
+  flex-direction:column!important;
+  align-items:flex-start!important;
+  justify-content:center!important;
+  gap:0!important;
+  margin:0!important;
+  padding:0!important;
+  text-align:left!important;
+  line-height:1.35!important;
+}
+body.edunext-app .edunext-account-actions .edunext-profile-copy strong{
+  display:block;
+  margin:0!important;
+  padding:0!important;
+  color:#172b4d!important;
+  font-size:12px!important;
+  font-weight:800!important;
+  line-height:1.35!important;
+  white-space:nowrap;
+}
+@media(max-width:1180px){
+  body.edunext-app .edunext-main-nav .edn-nav-dashboard{padding-inline:7px;font-size:12px}
+}
+@media(max-width:980px){
+  body.edunext-app .edunext-main-nav .edn-nav-dashboard{
+    justify-content:flex-start;
+    padding:11px 12px;
+    font-size:14px;
+  }
+}
