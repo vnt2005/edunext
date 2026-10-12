@@ -22,10 +22,21 @@
 
             <nav id="nav" class="edunext-main-nav" aria-label="Điều hướng chính">
                 <a href="#/" class="edunext-nav-link">Trang chủ</a>
-                <a href="#/courses" class="edunext-nav-link">Khóa học</a>
+                <div class="edn-course-menu-wrap" id="edn-course-menu-wrap">
+                    <a href="#/courses" class="edunext-nav-link edn-course-nav-link">Khóa học</a>
+                    <div class="edn-course-mega-menu" id="edn-course-mega-menu">
+                        <div class="edn-domain-mega-head">
+                            <strong>Khám phá các chương trình học</strong>
+                            <a href="#/courses">Xem tất cả <span aria-hidden="true">↗</span></a>
+                        </div>
+                        <div class="edn-domain-mega-body">
+                            <nav class="edn-course-mega-list" id="edn-course-mega-list" aria-label="Tất cả khóa học"></nav>
+                            <section class="edn-domain-mega-courses" id="edn-course-mega-preview" aria-live="polite" aria-label="Thông tin khóa học được chọn"></section>
+                        </div>
+                    </div>
+                </div>
                 <div class="edn-domain-menu-wrap" id="edn-domain-menu-wrap">
                     <a href="#/categories" class="edunext-nav-link edn-domain-nav-link">Lĩnh vực</a>
-                    <button class="edn-domain-menu-toggle" data-a="toggle-domains" type="button" aria-label="Mở danh sách lĩnh vực" aria-controls="edn-domain-mega-menu" aria-expanded="false">⌄</button>
                     <div class="edn-domain-mega-menu" id="edn-domain-mega-menu">
                         <div class="edn-domain-mega-head">
                             <strong>Khám phá 50 lĩnh vực</strong>
