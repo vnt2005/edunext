@@ -4488,3 +4488,74 @@ body.edunext-app .edn-about-final-actions .btn{white-space:nowrap}
  body.edunext-app .edn-about-final-actions{display:grid;grid-template-columns:minmax(0,1fr)}
  body.edunext-app .edn-about-final-actions .btn{text-align:center;white-space:normal}
 }
+
+
+/* Contact dropdown: About, Blog, and FAQ. */
+body.edunext-app .edn-contact-menu-wrap{
+  position:relative;display:flex;align-items:center;flex:0 0 auto;min-width:0;
+}
+body.edunext-app .edunext-main-nav .edn-contact-nav-trigger{
+  gap:7px;border:0;background:transparent;font-family:inherit;cursor:pointer;
+}
+body.edunext-app .edn-contact-chevron{
+  display:inline-block;margin-left:1px;color:inherit;font-size:11px;line-height:1;
+  transition:transform .16s ease;
+}
+body.edunext-app .edn-contact-dropdown{
+  position:absolute;top:100%;right:0;z-index:1205;
+  display:grid;gap:3px;width:max-content;min-width:184px;max-width:min(280px,90vw);
+  padding:8px;border:1px solid #e2e5ed;border-radius:13px;
+  background:#fff;box-shadow:0 16px 38px rgba(27,37,58,.15);
+  opacity:0;visibility:hidden;pointer-events:none;transform:translateY(6px);
+  transition:opacity .16s ease,transform .16s ease,visibility .16s ease;
+}
+body.edunext-app .edn-contact-menu-wrap:hover .edn-contact-dropdown,
+body.edunext-app .edn-contact-menu-wrap:focus-within .edn-contact-dropdown,
+body.edunext-app .edn-contact-menu-wrap.is-open .edn-contact-dropdown{
+  opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0);
+}
+body.edunext-app .edn-contact-menu-wrap:hover .edn-contact-chevron,
+body.edunext-app .edn-contact-menu-wrap:focus-within .edn-contact-chevron,
+body.edunext-app .edn-contact-menu-wrap.is-open .edn-contact-chevron{
+  transform:rotate(180deg);
+}
+body.edunext-app .edn-contact-dropdown-link{
+  display:flex;align-items:center;justify-content:space-between;gap:18px;
+  min-height:42px;padding:10px 13px;border-radius:8px;
+  color:#354158;font-size:13px;font-weight:650;line-height:1.4;text-decoration:none;
+  transition:background .14s ease,color .14s ease;
+}
+body.edunext-app .edn-contact-dropdown-link::after{
+  content:"↗";color:#8c94a3;font-size:12px;opacity:0;transform:translateX(-3px);
+  transition:opacity .14s ease,transform .14s ease;
+}
+body.edunext-app .edn-contact-dropdown-link:hover,
+body.edunext-app .edn-contact-dropdown-link:focus-visible{
+  outline:none;background:#f2f4fa;color:var(--store-blue);
+}
+body.edunext-app .edn-contact-dropdown-link:hover::after,
+body.edunext-app .edn-contact-dropdown-link:focus-visible::after{
+  opacity:1;transform:translateX(0);
+}
+body.edunext-app .edn-contact-nav-trigger:focus-visible{
+  outline:2px solid #a8b5ff;outline-offset:2px;
+}
+@media(max-width:980px){
+  body.edunext-app .edn-contact-menu-wrap{
+    display:flex;flex-direction:column;align-items:stretch;width:100%;
+  }
+  body.edunext-app .edunext-main-nav .edn-contact-nav-trigger{
+    width:100%;justify-content:space-between!important;text-align:left;
+  }
+  body.edunext-app .edn-contact-dropdown{
+    position:static;display:none;width:100%;min-width:0;max-width:none;
+    margin-top:4px;padding:6px;border:1px solid #e5e8ef;border-radius:10px;
+    background:#f8f9fc;box-shadow:none;opacity:1;visibility:visible;
+    pointer-events:auto;transform:none;transition:none;
+  }
+  body.edunext-app .edn-contact-menu-wrap.is-open .edn-contact-dropdown{
+    display:grid;opacity:1;visibility:visible;pointer-events:auto;transform:none;
+  }
+  body.edunext-app .edn-contact-dropdown-link{min-height:40px;padding:10px 12px}
+  body.edunext-app .edn-contact-dropdown-link::after{opacity:1;transform:none}
+}
