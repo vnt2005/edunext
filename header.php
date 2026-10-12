@@ -10,6 +10,14 @@
 <body <?php body_class('edunext-app'); ?> data-admin-url="<?php echo esc_url(admin_url()); ?>">
 <?php wp_body_open(); ?>
 
+<script>
+(function () {
+    if (window.location.hash === '#/admin') {
+        window.location.replace(<?php echo wp_json_encode(admin_url()); ?>);
+    }
+})();
+</script>
+
 <a class="edunext-skip-link" href="#app">Bỏ qua điều hướng</a>
 
 <header class="edunext-site-header">
