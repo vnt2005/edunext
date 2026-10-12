@@ -7,7 +7,7 @@
     <meta name="description" content="EduNext — khám phá khóa học thực tế, xem nội dung rõ ràng và học theo tiến độ của bạn.">
     <?php wp_head(); ?>
 </head>
-<body <?php body_class('edunext-app'); ?>>
+<body <?php body_class('edunext-app'); ?> data-admin-url="<?php echo esc_url(admin_url()); ?>">
 <?php wp_body_open(); ?>
 
 <a class="edunext-skip-link" href="#app">Bỏ qua điều hướng</a>
