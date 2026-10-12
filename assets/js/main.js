@@ -90,7 +90,7 @@ const paginationMarkup=(area,current,total,label='mục')=>{
   if(total<=1)return '';
   const pageButton=(page,text,active=false,disabled=false)=>'<button type="button" class="edn-page-button'+(active?' is-current':'')+'" data-a="page-change" data-v="'+esc(area)+','+page+'" aria-label="Trang '+page+'"'+(active?' aria-current="page"':'')+(disabled?' disabled':'')+'>'+text+'</button>';
   const numbered=Array.from({length:total},(_,index)=>index+1).map(page=>pageButton(page,String(page),page===current,false)).join('');
-  return '<nav class="edn-pagination" aria-label="Phân trang '+esc(label)+'"><span class="edn-pagination-summary">Trang '+current+' / '+total+'</span><div class="edn-pagination-controls">'+pageButton(Math.max(1,current-1),'‹ Trước',false,current<=1)+numbered+pageButton(Math.min(total,current+1),'Sau ›',false,current>=total)+'</div></nav>';
+  return '<nav class="edn-pagination" aria-label="Phân trang '+esc(label)+'"><div class="edn-pagination-controls">'+pageButton(Math.max(1,current-1),'‹ Trước',false,current<=1)+numbered+pageButton(Math.min(total,current+1),'Sau ›',false,current>=total)+'</div></nav>';
 };
 const CART_STORAGE_KEY='edunext-cart-v1';
 let cartIds=(()=>{
