@@ -398,3 +398,38 @@ body.admin-bar.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edunext-
 @media(max-width:782px){
  body.admin-bar.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edunext-site-header{top:46px}
 }
+
+/* Public-facing teaching page: introduction only, never a fake course-builder dashboard. */
+body.edunext-app .edn-teacher-landing{background:#fff;color:var(--edn-ink)}
+body.edunext-app .edn-teacher-hero{background:var(--edn-paper);border-bottom:1px solid #e1ddcf}
+body.edunext-app .edn-teacher-hero-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(300px,.9fr);gap:68px;align-items:center;min-height:530px;padding-top:55px;padding-bottom:58px}
+body.edunext-app .edn-teacher-hero-copy{max-width:680px}
+body.edunext-app .edn-teacher-crumb{display:flex;gap:10px;margin-bottom:25px;color:#6c756d;font-size:11px}
+body.edunext-app .edn-teacher-crumb a{color:var(--edn-forest);text-decoration:underline;text-underline-offset:3px}
+body.edunext-app .edn-teacher-hero-copy h1{margin:17px 0 19px;color:var(--edn-ink);font-family:"Space Grotesk","Be Vietnam Pro",sans-serif;font-size:clamp(39px,4.2vw,58px)!important;line-height:1.04;letter-spacing:-.06em;font-weight:700}
+body.edunext-app .edn-teacher-hero-copy h1 em{color:var(--edn-orange);font-style:normal}
+body.edunext-app .edn-teacher-hero-copy>p{max-width:630px;color:#536157;font-size:14px;line-height:1.9}
+body.edunext-app .edn-teacher-hero-actions{display:flex;align-items:center;gap:20px;flex-wrap:wrap;margin-top:25px}
+body.edunext-app .edn-teacher-note{margin-top:19px!important;padding-top:13px;border-top:1px solid #dbd7cb;color:#76786f!important;font-size:10px!important;line-height:1.75!important}
+body.edunext-app .edn-teacher-hero-art{position:relative;display:flex;flex-direction:column;justify-content:space-between;min-height:365px;padding:24px;background:var(--edn-forest);color:#fff;overflow:hidden}
+body.edunext-app .edn-teacher-art-number{position:relative;z-index:1;color:var(--edn-lime);font-size:10px;font-weight:800;letter-spacing:.15em}
+body.edunext-app .edn-teacher-art-title{position:relative;z-index:1;margin:27px 0;font-family:"Space Grotesk",sans-serif;color:#fff;font-size:clamp(45px,5vw,69px);line-height:.91;font-weight:700;letter-spacing:-.07em}
+body.edunext-app .edn-teacher-art-title em{color:var(--edn-lime);font-style:normal}
+body.edunext-app .edn-teacher-art-bottom{position:relative;z-index:1;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;padding-top:14px;border-top:1px solid rgba(255,255,255,.28);color:#d6e1d8;font-size:8px;font-weight:700;letter-spacing:.1em}
+body.edunext-app .edn-teacher-art-ring{position:absolute;right:-65px;top:55px;width:220px;height:220px;border:1px solid var(--edn-orange);border-radius:50%;box-shadow:0 0 0 20px rgba(231,101,69,.04),0 0 0 43px rgba(231,101,69,.04)}
+body.edunext-app .edn-teacher-approach{padding:72px 0;background:#fff}
+body.edunext-app .edn-teacher-section-heading{max-width:730px;margin-bottom:30px}
+body.edunext-app .edn-teacher-section-heading h2{margin:12px 0 0;color:var(--edn-ink);font-family:"Space Grotesk",sans-serif;font-size:clamp(30px,3.3vw,42px)!important;line-height:1.12;letter-spacing:-.05em}
+body.edunext-app .edn-teacher-steps{border-top:1px solid var(--edn-hairline);border-bottom:1px solid var(--edn-hairline)}
+body.edunext-app .edn-teacher-steps article{display:grid;grid-template-columns:65px minmax(0,1fr);gap:22px;padding:23px 0;border-bottom:1px solid var(--edn-hairline)}
+body.edunext-app .edn-teacher-steps article:last-child{border-bottom:0}
+body.edunext-app .edn-teacher-steps article>span{color:var(--edn-orange);font-family:"Space Grotesk",sans-serif;font-size:12px;font-weight:800}
+body.edunext-app .edn-teacher-steps h3{margin:0 0 6px;color:var(--edn-ink);font-family:"Space Grotesk",sans-serif;font-size:19px!important;letter-spacing:-.025em}
+body.edunext-app .edn-teacher-steps p{margin:0;color:#657067;font-size:12px;line-height:1.85}
+body.edunext-app .edn-teacher-bottom{padding:35px 0;background:var(--edn-orange);color:#fff}
+body.edunext-app .edn-teacher-bottom-inner{display:flex;align-items:center;justify-content:space-between;gap:25px}
+body.edunext-app .edn-teacher-bottom .edn-overline{color:#ffe6d8}
+body.edunext-app .edn-teacher-bottom h2{margin:8px 0;color:#fff;font-family:"Space Grotesk",sans-serif;font-size:29px!important;letter-spacing:-.04em}
+body.edunext-app .edn-teacher-bottom p{margin:0;color:#fff0e8;font-size:12px}
+@media(max-width:850px){body.edunext-app .edn-teacher-hero-grid{grid-template-columns:minmax(0,1fr) minmax(250px,.75fr);gap:30px}body.edunext-app .edn-teacher-hero-art{min-height:320px}}
+@media(max-width:680px){body.edunext-app .edn-teacher-hero-grid{grid-template-columns:1fr;gap:27px;padding-top:33px;padding-bottom:32px}body.edunext-app .edn-teacher-hero-copy h1{font-size:37px!important}body.edunext-app .edn-teacher-hero-art{min-height:265px;padding:20px}body.edunext-app .edn-teacher-art-title{font-size:53px}body.edunext-app .edn-teacher-approach{padding:48px 0}body.edunext-app .edn-teacher-steps article{grid-template-columns:32px minmax(0,1fr);gap:13px;padding:18px 0}body.edunext-app .edn-teacher-bottom-inner{align-items:flex-start;flex-direction:column;gap:18px}body.edunext-app .edn-teacher-bottom h2{font-size:25px!important}}
