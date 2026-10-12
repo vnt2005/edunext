@@ -45,7 +45,6 @@ if(D.me){
     D.en[D.me][id]={done:Array.isArray(progress.done)?progress.done.map(Number).filter(Number.isInteger):[],updatedAt:progress.updatedAt||null,n:{}};
   });
 }
-const save=()=>{};
 const me=()=>D.users.find(u=>u.email===D.me);
 const EN=()=>D.me?(D.en[D.me]=D.en[D.me]||{}):{};
 const find=id=>C.find(c=>c.id===id);
@@ -599,7 +598,7 @@ const onf=event=>{
     request('edunext_profile_avatar',form).then(data=>{
       toast(data.message||'Đã cập nhật ảnh hồ sơ.');
       window.location.reload();
-    }).catch(error=>{if(error)error.textContent=error.message;});
+    }).catch(err=>{const message=$('#edn-profile-error');if(message)message.textContent=err.message;});
     return;
   }
   if(target.dataset.f&&$('#list')){
@@ -641,7 +640,9 @@ document.addEventListener('submit',async event=>{
       const action=kind==='register'?'edunext_register':'edunext_login';
       const result=await request(action,{email,password,name:String(values.name||'').trim(),accepted:values.ok?'1':'0'});
       toast(result.message||'Thành công.');
-      window.location.hash=result.redirect||'#/dashboard';
+      const target=next||(result.redirect||'#/dashboard');
+      next='';
+      window.location.hash=target.startsWith('#')?target:'#'+target;
       window.location.reload();
     }catch(err){
       message(err.message);
