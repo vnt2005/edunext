@@ -472,6 +472,17 @@ function edunext_ajax_profile_avatar(): void {
 }
 add_action('wp_ajax_edunext_profile_avatar', 'edunext_ajax_profile_avatar');
 
+function edunext_ajax_profile_avatar_remove(): void {
+    edunext_ajax_require_nonce();
+    if (!is_user_logged_in()) {
+        edunext_ajax_error('Vui lòng đăng nhập để xóa ảnh đại diện.', 401);
+    }
+
+    delete_user_meta(get_current_user_id(), 'edunext_avatar_url');
+    wp_send_json_success(['message' => 'Đã xóa ảnh đại diện.']);
+}
+add_action('wp_ajax_edunext_profile_avatar_remove', 'edunext_ajax_profile_avatar_remove');
+
 function edunext_user_certificates(int $user_id, array $owned_ids): array {
     if ($user_id <= 0 || empty($owned_ids)) {
         return [];
