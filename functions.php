@@ -65,6 +65,17 @@ function edunext_course_is_ready(array $course): bool {
             return false;
         }
     }
+    $domain_exists = false;
+    foreach (edunext_catalog_data()['domains'] as $domain) {
+        if (is_array($domain) && isset($domain['id']) && hash_equals((string) $domain['id'], (string) $course['domainId'])) {
+            $domain_exists = true;
+            break;
+        }
+    }
+    if (!$domain_exists) {
+        return false;
+    }
+
     $level = trim((string) ($course['level'] ?? ''));
     $duration = $course['durationHours'] ?? null;
     $outcomes = isset($course['outcomes']) && is_array($course['outcomes']) ? $course['outcomes'] : [];
