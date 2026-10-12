@@ -206,7 +206,7 @@ const home=()=>{
     '<section class="edn-popular-section"><div class="edn-public-container"><div class="edn-editorial-heading"><div><span class="edn-overline">CHƯƠNG TRÌNH HỌC</span><h2>Các lộ trình đề xuất<span class="edn-heading-period">.</span></h2><p>Các thẻ dưới đây là đề cương chương trình, không phải cam kết rằng video hoặc khóa học đã mở bán. Giá ưu đãi hiển thị là mức giá demo tham khảo, chưa phải giá bán chính thức.</p></div><a href="#/courses" class="edn-editorial-link">Xem toàn bộ danh mục <b aria-hidden="true">↗</b></a></div><div class="edn-market-course-grid">'+cards+'</div>'+paginationMarkup('home',homeCoursePage,featuredPageCount,'khóa học')+'</div></section>'+
     '<section class="edn-purpose-section"><div class="edn-public-container edn-purpose-layout"><div class="edn-purpose-intro"><span class="edn-overline">KHÁM PHÁ THEO CHUYÊN MÔN</span><h2>Mỗi nhóm có nhiều <em>chuyên ngành.</em></h2><p>EduNext gom các chuyên ngành có liên quan vào nhóm lớn. Chọn một nhóm để xem các chuyên ngành và đề cương học tập bên trong.</p><a href="#/categories">Duyệt tất cả nhóm lĩnh vực <b aria-hidden="true">↗</b></a></div><div class="edn-purpose-list">'+domainGroups().slice(0,8).map((group,i)=>'<a href="#/group/'+esc(group.slug)+'" class="edn-purpose-row"><span class="edn-purpose-index">'+String(i+1).padStart(2,'0')+'</span><span class="edn-purpose-name">'+esc(group.name)+'</span><span class="edn-purpose-count">'+group.domains.length+' chuyên ngành</span><b aria-hidden="true">↗</b></a>').join('')+'</div></div></section>'+
     '<section class="edn-method-section"><div class="edn-public-container"><div class="edn-method-heading"><span class="edn-overline">TRẢI NGHIỆM HỌC TẬP</span><h2>Lộ trình rõ ràng. Từng bước tiến bộ.</h2></div><div class="edn-method-columns"><article><span class="edn-method-number">01</span><h3>Khám phá</h3><p>Tìm theo lĩnh vực, chủ đề chuyên môn hoặc từ khóa.</p></article><article><span class="edn-method-number">02</span><h3>Xem trước</h3><p>Đọc mục tiêu và chương trình học trước khi chọn khóa học.</p></article><article><span class="edn-method-number">03</span><h3>Theo dõi tiến độ</h3><p>Khi khóa học đã được mở và bạn có quyền truy cập, tiếp tục học từ bài chưa hoàn thành.</p></article></div></div></section>'+
-    '<section class="edn-journal-section"><div class="edn-public-container"><div class="edn-editorial-heading"><div><span class="edn-overline">GÓC KIẾN THỨC</span><h2>Ý tưởng cho bước tiếp theo<span class="edn-heading-period">.</span></h2><p>Bài viết hướng dẫn và chia sẻ kinh nghiệm học tập.</p></div><a href="#/blog" class="edn-editorial-link">Đến góc kiến thức <b aria-hidden="true">↗</b></a></div><div class="edn-journal-grid">'+articles+'</div></div></section>'+
+    '<section class="edn-journal-section"><div class="edn-public-container"><div class="edn-editorial-heading"><div><span class="edn-overline">BLOG</span><h2>Ý tưởng cho bước tiếp theo<span class="edn-heading-period">.</span></h2><p>Bài viết hướng dẫn và chia sẻ kinh nghiệm học tập.</p></div><a href="#/blog" class="edn-editorial-link">Đến Blog <b aria-hidden="true">↗</b></a></div><div class="edn-journal-grid">'+articles+'</div></div></section>'+
     '<section class="edn-faq-section" id="faq"><div class="edn-public-container"><div class="edn-editorial-heading"><div><span class="edn-overline">HỎI ĐÁP</span><h2>Những điều cần biết</h2></div><a href="#/faq" class="edn-editorial-link">Xem tất cả câu hỏi ↗</a></div>'+qa+'</div></section>'+
     '<section class="edn-final-cta"><div class="edn-public-container"><div><span class="edn-overline">BƯỚC TIẾP THEO</span><h2>Bắt đầu bằng lĩnh vực bạn quan tâm.</h2><p>Khám phá đề cương và xem các bài học dự kiến.</p></div><a class="edn-button-primary" href="#/categories">Khám phá lĩnh vực ↗</a></div></section>'+
   '</div>';
@@ -511,12 +511,12 @@ const blogPage=()=>{
     const reverse=index%2===1?' blog-page-card-reverse':'';
     return '<article class="blog-page-card'+reverse+'" data-blog-tag="'+esc(article.tag)+'">'+
       '<a class="blog-page-card-image" href="#/blog/'+slugify(article.title)+'" aria-label="Đọc bài: '+esc(article.title)+'"><img src="'+esc(article.image||'')+'" alt="'+esc(article.title)+'" loading="lazy"><span>'+esc(article.tag)+'</span></a>'+
-      '<div class="blog-page-card-body"><div class="blog-home-meta"><span>'+esc(article.time)+'</span><span>EduNext · Góc kiến thức</span></div>'+
+      '<div class="blog-page-card-body"><div class="blog-home-meta"><span>'+esc(article.time)+'</span><span>EduNext · Blog</span></div>'+
       '<h2><a href="#/blog/'+slugify(article.title)+'">'+esc(article.title)+'</a></h2><p>'+esc(article.excerpt)+'</p>'+
       '<a class="blog-read-link" href="#/blog/'+slugify(article.title)+'">Đọc bài viết <span aria-hidden="true">↗</span></a></div></article>';
   }).join('');
   const topics=['Tất cả',...new Set(BLOG_ARTICLES.map(article=>article.tag))];
-  return '<div class="wrap page blog-page"><div class="blog-page-head"><div><span class="content-kicker">EDUNEXT · GÓC KIẾN THỨC</span><h1>Kiến thức dễ hiểu, áp dụng được</h1><p>Ghi chú thực hành về lập trình, dữ liệu, thiết kế, marketing và những kỹ năng cần trong công việc. Mỗi bài tập trung vào một vấn đề cụ thể, có ví dụ và bước tiếp theo để bạn tự thử.</p></div><a class="btn btn-p" href="#/courses">Khám phá chương trình học</a></div>'+
+  return '<div class="wrap page blog-page"><div class="blog-page-head"><div><span class="content-kicker">EDUNEXT · BLOG</span><h1>Kiến thức dễ hiểu, áp dụng được</h1><p>Ghi chú thực hành về lập trình, dữ liệu, thiết kế, marketing và những kỹ năng cần trong công việc. Mỗi bài tập trung vào một vấn đề cụ thể, có ví dụ và bước tiếp theo để bạn tự thử.</p></div><a class="btn btn-p" href="#/courses">Khám phá chương trình học</a></div>'+
     '<div class="blog-topic-row" aria-label="Lọc bài viết">'+topics.map((topic,index)=>'<button type="button" class="topic '+(index===0?'active':'')+'" data-blog-topic="'+esc(topic)+'" aria-pressed="'+(index===0?'true':'false')+'">'+esc(topic)+'</button>').join('')+'</div>'+
     '<div class="blog-page-grid">'+cards+'</div>'+
     '<div class="blog-page-footer"><div><span class="eyebrow">GỢI Ý ĐỂ BẮT ĐẦU</span><h2>Đọc xong, hãy thử một việc nhỏ.</h2><p>Chọn một bước trong bài viết, tự làm thử trên ví dụ của bạn và ghi lại điều đã học được.</p></div><a class="btn btn-p" href="#/courses">Tìm lộ trình phù hợp</a></div></div>';
@@ -539,9 +539,9 @@ const blogDetail=slug=>{
     :'<a class="btn btn-p" href="#/courses">Khám phá chương trình</a>';
   const previous=BLOG_ARTICLES[(index-1+BLOG_ARTICLES.length)%BLOG_ARTICLES.length];
   const next=BLOG_ARTICLES[(index+1)%BLOG_ARTICLES.length];
-  return '<article class="wrap page edn-blog-article"><nav class="edn-breadcrumb" aria-label="Đường dẫn"><a href="#/">Trang chủ</a><span>›</span><a href="#/blog">Góc kiến thức</a><span>›</span><span>'+esc(article.tag)+'</span></nav>'+
+  return '<article class="wrap page edn-blog-article"><nav class="edn-breadcrumb" aria-label="Đường dẫn"><a href="#/">Trang chủ</a><span>›</span><a href="#/blog">Blog</a><span>›</span><span>'+esc(article.tag)+'</span></nav>'+
     '<header class="edn-blog-article-head"><span class="content-kicker">'+esc(article.tag)+'</span><h1>'+esc(article.title)+'</h1><p class="edn-blog-article-lead">'+esc(article.excerpt)+'</p><div class="edn-blog-meta"><span>'+esc(article.time)+'</span><span>Biên tập EduNext</span></div></header>'+
-    (article.image?'<figure class="edn-blog-article-image"><img src="'+esc(article.image)+'" alt="'+esc(article.title)+'" loading="eager"><figcaption>'+esc(article.tag)+' · Góc kiến thức EduNext</figcaption></figure>':'')+
+    (article.image?'<figure class="edn-blog-article-image"><img src="'+esc(article.image)+'" alt="'+esc(article.title)+'" loading="eager"><figcaption>'+esc(article.tag)+' · Blog EduNext</figcaption></figure>':'')+
     '<div class="edn-blog-article-layout"><div class="edn-blog-article-body">'+body+'<p class="edn-blog-editor-note">Gợi ý thực hành: hãy thử áp dụng một bước trong bài vào ví dụ nhỏ của chính bạn và kiểm tra kết quả trước khi mở rộng.</p></div>'+
     '<aside class="edn-blog-article-aside"><span class="edn-overline">ĐỌC TIẾP</span><h2>'+esc(article.tag)+'</h2><p>'+esc(article.excerpt)+'</p>'+relatedCourse+'<a class="btn btn-g" href="#/blog">Tất cả bài viết</a></aside></div>'+
     '<nav class="edn-blog-post-navigation" aria-label="Bài viết khác"><a href="#/blog/'+slugify(previous.title)+'"><small>← BÀI TRƯỚC</small><strong>'+esc(previous.title)+'</strong></a><a href="#/blog/'+slugify(next.title)+'"><small>BÀI TIẾP THEO →</small><strong>'+esc(next.title)+'</strong></a></nav></article>';
@@ -558,7 +558,7 @@ const faqPage=()=>'<div class="wrap page edn-faq-page"><div class="edn-page-intr
 const aboutPage=()=>{
   return '<main class="wrap page edn-about-page">'+
     '<nav class="edn-breadcrumb" aria-label="Đường dẫn"><a href="#/">Trang chủ</a><span>›</span><span>Về EduNext</span></nav>'+
-    '<section class="edn-about-hero"><div class="edn-about-hero-copy"><span class="edn-about-eyebrow"><span class="edn-about-eyebrow-dot"></span> VỀ EDUNEXT</span><h1>Học có định hướng.<br><em>Tiến bộ từng bước.</em></h1><p>Không phải lúc nào chúng ta cũng biết nên học gì tiếp theo. EduNext được xây dựng để giúp bạn khám phá lĩnh vực phù hợp, hiểu rõ lộ trình học và chủ động biến kiến thức thành kỹ năng qua thực hành.</p><div class="edn-about-hero-actions"><a class="btn btn-p" href="#/categories">Khám phá lĩnh vực <span aria-hidden="true">↗</span></a><a class="edn-about-text-link" href="#/blog">Đọc Góc kiến thức <span aria-hidden="true">→</span></a></div><div class="edn-about-hero-note"><span aria-hidden="true">✳</span><span>Không cần biết tất cả ngay từ đầu. Hãy bắt đầu từ bước kế tiếp.</span></div></div>'+
+    '<section class="edn-about-hero"><div class="edn-about-hero-copy"><span class="edn-about-eyebrow"><span class="edn-about-eyebrow-dot"></span> VỀ EDUNEXT</span><h1>Học có định hướng.<br><em>Tiến bộ từng bước.</em></h1><p>Không phải lúc nào chúng ta cũng biết nên học gì tiếp theo. EduNext được xây dựng để giúp bạn khám phá lĩnh vực phù hợp, hiểu rõ lộ trình học và chủ động biến kiến thức thành kỹ năng qua thực hành.</p><div class="edn-about-hero-actions"><a class="btn btn-p" href="#/categories">Khám phá lĩnh vực <span aria-hidden="true">↗</span></a><a class="edn-about-text-link" href="#/blog">Đọc Blog <span aria-hidden="true">→</span></a></div><div class="edn-about-hero-note"><span aria-hidden="true">✳</span><span>Không cần biết tất cả ngay từ đầu. Hãy bắt đầu từ bước kế tiếp.</span></div></div>'+
     '<div class="edn-about-visual" aria-label="Ba bước trong hành trình học tập"><div class="edn-about-visual-orbit edn-about-orbit-one"></div><div class="edn-about-visual-orbit edn-about-orbit-two"></div><div class="edn-about-visual-header"><span>EDUNEXT LEARNING PATH</span><span class="edn-about-visual-live"><i></i> HÀNH TRÌNH CỦA BẠN</span></div><div class="edn-about-visual-steps"><div class="edn-about-visual-step"><span class="edn-about-step-num">01</span><span class="edn-about-step-icon" aria-hidden="true">⌕</span><div><small>BƯỚC MỘT</small><strong>Khám phá</strong><p>Tìm lĩnh vực bạn muốn hiểu sâu hơn.</p></div><span class="edn-about-step-check" aria-hidden="true">↗</span></div><div class="edn-about-visual-step is-highlighted"><span class="edn-about-step-num">02</span><span class="edn-about-step-icon" aria-hidden="true">▤</span><div><small>BƯỚC HAI</small><strong>Học theo lộ trình</strong><p>Đi từ nền tảng đến từng chủ đề cụ thể.</p></div><span class="edn-about-step-check" aria-hidden="true">↗</span></div><div class="edn-about-visual-step"><span class="edn-about-step-num">03</span><span class="edn-about-step-icon" aria-hidden="true">↗</span><div><small>BƯỚC BA</small><strong>Thực hành và nhìn lại</strong><p>Thử áp dụng, kiểm tra và tiếp tục tiến bộ.</p></div><span class="edn-about-step-check" aria-hidden="true">✓</span></div></div><div class="edn-about-visual-foot"><span>HỌC HÔM NAY</span><span>TIẾN BỘ NGÀY MAI <b aria-hidden="true">↗</b></span></div></div></section>'+
     '<section class="edn-about-intro"><div class="edn-about-section-label"><span>01</span><span>VÌ SAO CÓ EDUNEXT?</span></div><div class="edn-about-intro-copy"><h2>Kiến thức chỉ thật sự có ích khi bạn biết <em>đưa nó vào việc mình làm.</em></h2><p>Học trực tuyến có thể bắt đầu bằng một video hay một bài viết. Nhưng để đi xa hơn, người học cần biết mình đang học chủ đề gì, kiến thức đó liên quan đến đâu và có thể thử áp dụng bằng cách nào. EduNext hướng tới việc làm cho hành trình ấy mạch lạc hơn — từ lúc khám phá, đến lúc thực hành và tự đánh giá điều mình đã hiểu.</p></div></section>'+
     '<section class="edn-about-mission-grid"><article class="edn-about-mission-card edn-about-mission-main"><span class="edn-about-card-overline">SỨ MỆNH</span><div class="edn-about-card-symbol" aria-hidden="true">↗</div><h2>Giúp việc học trở nên rõ ràng và chủ động hơn.</h2><p>Chúng tôi muốn người học dễ tìm thấy lĩnh vực mình quan tâm, biết phạm vi của từng chương trình và có định hướng cụ thể cho bước học tiếp theo.</p></article><article class="edn-about-mission-card edn-about-vision-card"><span class="edn-about-card-overline">TẦM NHÌN</span><div class="edn-about-card-symbol" aria-hidden="true">✳</div><h2>Một điểm bắt đầu đáng tin cậy cho việc học suốt đời.</h2><p>EduNext hướng tới một không gian học tập có cấu trúc, gần với nhu cầu thực tế và không ngừng được cải thiện dựa trên phản hồi của người học.</p></article></section>'+
@@ -566,7 +566,7 @@ const aboutPage=()=>{
     '<section class="edn-about-direction"><div class="edn-about-direction-heading"><span class="edn-about-eyebrow">ĐỊNH HƯỚNG PHÁT TRIỂN</span><h2>Rõ ràng trước.<br><em>Hoàn thiện dần.</em></h2><p>EduNext được phát triển theo từng lớp nền tảng, ưu tiên sự dễ hiểu và hữu ích thay vì thêm tính năng chỉ để làm giao diện trông phức tạp hơn.</p><a class="edn-about-text-link" href="#/blog">Khám phá các góc nhìn học tập <span aria-hidden="true">→</span></a></div><div class="edn-about-roadmap"><article><span class="edn-about-roadmap-index">01</span><div><h3>Danh mục có cấu trúc</h3><p>Sắp xếp lĩnh vực lớn và chuyên ngành hợp lý để người học tìm đúng hướng.</p></div><span class="edn-about-roadmap-mark" aria-hidden="true">✓</span></article><article><span class="edn-about-roadmap-index">02</span><div><h3>Nội dung có ích</h3><p>Phát triển bài viết, ví dụ và học liệu với giải thích rõ ràng, phù hợp từng chủ đề.</p></div><span class="edn-about-roadmap-mark" aria-hidden="true">↗</span></article><article><span class="edn-about-roadmap-index">03</span><div><h3>Công cụ hỗ trợ học tập</h3><p>Từng bước hoàn thiện trải nghiệm xem bài, quản lý tiến độ và các chức năng cho người học.</p></div><span class="edn-about-roadmap-mark" aria-hidden="true">↗</span></article><article><span class="edn-about-roadmap-index">04</span><div><h3>Cải thiện từ phản hồi</h3><p>Tiếp tục điều chỉnh nội dung và giao diện dựa trên vấn đề người học thực sự gặp.</p></div><span class="edn-about-roadmap-mark" aria-hidden="true">↗</span></article></div></section>'+
     '<section class="edn-about-values"><header class="edn-about-section-head"><div><span class="edn-about-eyebrow">GIÁ TRỊ CỐT LÕI</span><h2>Những nguyên tắc <em>chúng tôi theo đuổi.</em></h2></div><p>Đây là tiêu chuẩn để định hướng cách EduNext trình bày kiến thức và xây dựng trải nghiệm học tập.</p></header><div class="edn-about-value-grid"><article><span class="edn-about-value-symbol" aria-hidden="true">◎</span><h3>Rõ ràng</h3><p>Giải thích dễ hiểu, trình bày có thứ tự và cho biết điều gì đã hoàn thiện, điều gì còn đang phát triển.</p></article><article><span class="edn-about-value-symbol" aria-hidden="true">✳</span><h3>Thực tế</h3><p>Ưu tiên tình huống, ví dụ và kỹ năng có thể liên hệ với học tập, dự án hoặc công việc.</p></article><article><span class="edn-about-value-symbol" aria-hidden="true">↗</span><h3>Chủ động</h3><p>Khuyến khích đặt câu hỏi, tự thực hành, kiểm tra kết quả và tìm thêm tài liệu khi cần.</p></article><article><span class="edn-about-value-symbol" aria-hidden="true">◇</span><h3>Trung thực</h3><p>Không hứa hẹn kết quả học tập, chứng chỉ hay trạng thái khóa học khi chưa có cơ sở xác nhận.</p></article></div></section>'+
     '<section class="edn-about-promise"><div class="edn-about-promise-mark" aria-hidden="true">“</div><div><span class="edn-about-eyebrow">CAM KẾT VỚI NGƯỜI HỌC</span><h2>Học tốt hơn không phải học nhiều hơn bằng mọi giá.</h2><p>Mỗi bước nên giúp bạn hiểu rõ hơn một vấn đề, thực hành được một kỹ năng hoặc biết mình cần học gì tiếp theo. Đó là trải nghiệm mà EduNext đang hướng tới và sẽ tiếp tục hoàn thiện.</p></div></section>'+
-    '<section class="edn-about-final-cta"><div><span class="edn-about-eyebrow">BƯỚC TIẾP THEO CỦA BẠN</span><h2>Bạn muốn khám phá điều gì hôm nay?</h2><p>Bắt đầu từ một lĩnh vực quan tâm hoặc đọc một bài viết để tìm hướng thực hành phù hợp.</p></div><div class="edn-about-final-actions"><a class="btn btn-p" href="#/categories">Xem nhóm lĩnh vực <span aria-hidden="true">↗</span></a><a class="btn btn-g" href="#/blog">Đọc Góc kiến thức</a></div></section>'+
+    '<section class="edn-about-final-cta"><div><span class="edn-about-eyebrow">BƯỚC TIẾP THEO CỦA BẠN</span><h2>Bạn muốn khám phá điều gì hôm nay?</h2><p>Bắt đầu từ một lĩnh vực quan tâm hoặc đọc một bài viết để tìm hướng thực hành phù hợp.</p></div><div class="edn-about-final-actions"><a class="btn btn-p" href="#/categories">Xem nhóm lĩnh vực <span aria-hidden="true">↗</span></a><a class="btn btn-g" href="#/blog">Đọc Blog</a></div></section>'+
     '</main>';
 };
 const profilePage=section=>{
@@ -707,12 +707,12 @@ function nav(){
   if(cartLink)cartLink.classList.toggle('is-active',path==='/cart');
   updateCartBadge();
   const labels={
-    '/':'Trang chủ','/courses':'Khóa học','/cart':'Giỏ hàng','/best-sellers':'Khóa học','/categories':'Lĩnh vực','/blog':'Góc kiến thức','/faq':'Hỏi đáp',
+    '/':'Trang chủ','/courses':'Khóa học','/cart':'Giỏ hàng','/best-sellers':'Khóa học','/categories':'Lĩnh vực','/blog':'Blog','/faq':'Hỏi đáp',
     '/dashboard':'Trang học tập','/orders':'Lịch sử mua hàng','/profile':'Hồ sơ','/profile/profile':'Hồ sơ','/profile/public':'Hồ sơ',
     '/profile/photo':'Ảnh đại diện','/profile/security':'Mật khẩu','/certificates':'Chứng chỉ','/login':'Đăng nhập','/register':'Đăng ký','/about':'Về EduNext'
   };
   const current=$('#lms-breadcrumb-current');
-  if(current)current.textContent=labels[path]||(path.startsWith('/domain/')?'Lĩnh vực':path.startsWith('/course/')?'Chi tiết khóa học':path.startsWith('/learn/')?'Bài học':path.startsWith('/blog/')?'Góc kiến thức':'EduNext');
+  if(current)current.textContent=labels[path]||(path.startsWith('/domain/')?'Lĩnh vực':path.startsWith('/course/')?'Chi tiết khóa học':path.startsWith('/learn/')?'Bài học':path.startsWith('/blog/')?'Blog':'EduNext');
   const menu=$('.lms-mobile-menu');
   if(menu)menu.setAttribute('aria-expanded',String(document.body.classList.contains('lms-mobile-open')));
 }
@@ -914,6 +914,56 @@ document.addEventListener('click',event=>{
   if(!A[action])return;
   if(target.tagName==='A')event.preventDefault();
   Promise.resolve(A[action](target.dataset.v,target)).catch(error=>toast(error.message||'Thao tác chưa thành công.'));
+});
+
+const contactMenu=$('#edn-contact-menu-wrap');
+const contactTrigger=$('#edn-contact-nav-trigger');
+if(contactMenu&&contactTrigger&&!contactMenu.dataset.bound){
+  contactMenu.dataset.bound='true';
+  const setContactExpanded=value=>contactTrigger.setAttribute('aria-expanded',String(value));
+  contactMenu.addEventListener('mouseenter',()=>setContactExpanded(true));
+  contactMenu.addEventListener('mouseleave',()=>{
+    if(!contactMenu.classList.contains('is-open')&&!contactMenu.contains(document.activeElement))setContactExpanded(false);
+  });
+  contactMenu.addEventListener('focusin',()=>setContactExpanded(true));
+  contactMenu.addEventListener('focusout',event=>{
+    if(!contactMenu.contains(event.relatedTarget)&&!contactMenu.classList.contains('is-open'))setContactExpanded(false);
+  });
+}
+document.addEventListener('click',event=>{
+  const trigger=event.target.closest('#edn-contact-nav-trigger');
+  if(trigger){
+    const wrap=trigger.closest('.edn-contact-menu-wrap');
+    const open=!wrap.classList.contains('is-open');
+    document.querySelectorAll('.edn-contact-menu-wrap.is-open').forEach(item=>{
+      item.classList.remove('is-open');
+      item.querySelector('.edn-contact-nav-trigger')?.setAttribute('aria-expanded','false');
+    });
+    if(open){wrap.classList.add('is-open');trigger.setAttribute('aria-expanded','true');}
+    return;
+  }
+  const link=event.target.closest('.edn-contact-dropdown-link');
+  if(link){
+    const wrap=link.closest('.edn-contact-menu-wrap');
+    wrap?.classList.remove('is-open');
+    wrap?.querySelector('.edn-contact-nav-trigger')?.setAttribute('aria-expanded','false');
+    return;
+  }
+  document.querySelectorAll('.edn-contact-menu-wrap.is-open').forEach(item=>{
+    if(!item.contains(event.target)){
+      item.classList.remove('is-open');
+      item.querySelector('.edn-contact-nav-trigger')?.setAttribute('aria-expanded','false');
+    }
+  });
+});
+document.addEventListener('keydown',event=>{
+  if(event.key!=='Escape')return;
+  document.querySelectorAll('.edn-contact-menu-wrap.is-open').forEach(item=>{
+    item.classList.remove('is-open');
+    const trigger=item.querySelector('.edn-contact-nav-trigger');
+    trigger?.setAttribute('aria-expanded','false');
+    trigger?.blur();
+  });
 });
 
 document.addEventListener('click',event=>{
