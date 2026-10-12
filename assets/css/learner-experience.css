@@ -809,3 +809,32 @@ body.edunext-app .edn-header-tools .edn-profile-alert-dot{
   border:2px solid #fff!important;border-radius:50%!important;
   background:#2457d6!important;box-shadow:none!important;
 }
+
+
+/* Learner profile logout control */
+body.edunext-app .edn-profile-sidebar>.edn-profile-logout{
+  display:flex;align-items:center;justify-content:center;
+  width:calc(100% - 30px);min-height:42px;margin:8px 15px 18px;padding:10px 14px;
+  border:1px solid #cfd3df!important;border-radius:5px!important;
+  background:#fff!important;color:#25283a!important;
+  box-shadow:none!important;font-family:inherit;font-size:13px;font-weight:650;
+  line-height:1.4;text-align:center;cursor:pointer;
+  transition:background-color .15s,border-color .15s,color .15s,opacity .15s;
+}
+body.edunext-app .edn-profile-sidebar>.edn-profile-logout:hover:not(:disabled){
+  border-color:#2457d6!important;background:#f4f7ff!important;color:#2457d6!important;
+}
+body.edunext-app .edn-profile-sidebar>.edn-profile-logout:focus-visible{
+  outline:3px solid rgba(36,87,214,.24);outline-offset:2px;
+}
+body.edunext-app .edn-profile-sidebar>.edn-profile-logout:disabled{
+  opacity:.65;cursor:wait;
+}
+body.edunext-app .edn-profile-sidebar>.edn-profile-logout[aria-busy="true"]{
+  pointer-events:none;
+}
+@media(max-width:620px){
+  body.edunext-app .edn-profile-sidebar>.edn-profile-logout{
+    width:auto;min-width:128px;margin:12px 14px 16px;
+  }
+}
