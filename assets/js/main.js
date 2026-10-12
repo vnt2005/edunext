@@ -487,6 +487,36 @@ const renderDomainMegaMenu=(domainId)=>{
     '<a class="edn-domain-mega-all" href="#/domain/'+esc(selected.slug)+'">Xem lĩnh vực và toàn bộ chương trình <span aria-hidden="true">↗</span></a>';
 };
 
+let activeMegaCourseId='';
+const renderCourseMegaMenu=(courseId)=>{
+  const list=$('#edn-course-mega-list'),panel=$('#edn-course-mega-preview');
+  if(!list||!panel||!C.length)return;
+  const selected=C.find(item=>item.id===courseId)||C.find(item=>item.id===activeMegaCourseId)||C[0];
+  if(!selected)return;
+  activeMegaCourseId=selected.id;
+  if(!list.children.length||list.dataset.catalogVersion!==String(C.length)){
+    list.innerHTML=C.map((course,index)=>{
+      const domain=DOMAINS.find(item=>item.id===course.domainId);
+      return '<a class="edn-course-menu-item" href="#/course/'+esc(course.id)+'" data-course-menu-id="'+esc(course.id)+'"><span class="edn-course-menu-number">'+String(index+1).padStart(2,'0')+'</span><span class="edn-course-menu-copy"><strong>'+esc(course.t)+'</strong><small>'+esc(domain?domain.name:course.cat)+'</small></span></a>';
+    }).join('');
+    list.dataset.catalogVersion=String(C.length);
+  }
+  list.querySelectorAll('[data-course-menu-id]').forEach(item=>{
+    const active=item.dataset.courseMenuId===selected.id;
+    item.classList.toggle('is-active',active);
+    if(active)item.setAttribute('aria-current','true');
+    else item.removeAttribute('aria-current');
+  });
+  const domain=DOMAINS.find(item=>item.id===selected.domainId);
+  const courseStatus=selected.ready?(typeof selected.p==='number'?money(selected.p):'Đã mở bán'):'Đề cương · Chưa mở bán';
+  const lessonPreview=selected.L.slice(0,3);
+  panel.innerHTML='<div class="edn-domain-mega-course-head"><div><span class="edn-overline">'+esc(domain?domain.name:'CHƯƠNG TRÌNH HỌC')+'</span><h3>'+esc(selected.t)+'</h3><p>'+esc(selected.shortDescription||selected.description||'Xem lộ trình dự kiến của chương trình học.')+'</p></div><strong>'+esc(courseStatus)+'</strong></div>'+
+    '<div class="edn-course-preview-meta"><span>'+selected.L.length+' bài trong đề cương</span><span>'+esc(selected.lvl||'Trình độ đang cập nhật')+'</span></div>'+
+    '<div class="edn-course-preview-lessons"><strong>Các nội dung dự kiến</strong><ol>'+lessonPreview.map(title=>'<li>'+esc(title)+'</li>').join('')+'</ol>'+(selected.L.length>lessonPreview.length?'<small>Còn '+(selected.L.length-lessonPreview.length)+' đề mục trong chương trình</small>':'')+'</div>'+
+    '<p class="edn-course-preview-note">'+(selected.ready?'Khóa học đã được kiểm tra và mở đăng ký.':'Đây là đề cương đang hoàn thiện, chưa phải khóa học đã mở bán.')+'</p>'+
+    '<a class="edn-domain-mega-all" href="#/course/'+esc(selected.id)+'">Xem chi tiết chương trình <span aria-hidden="true">↗</span></a>';
+};
+
 function nav(){
   const user=me(),path=location.hash.slice(1)||'/';
   document.body.classList.add('edunext-ready');
@@ -498,12 +528,7 @@ function nav(){
       : '<a class="btn btn-g btn-s" href="#/login">Đăng nhập</a><a class="btn btn-p btn-s" href="#/register">Đăng ký</a>';
   }
   renderDomainMegaMenu(activeMegaDomainId);
-  const domainMenu=$('#edn-domain-menu-wrap');
-  if(domainMenu){
-    domainMenu.classList.remove('is-open');
-    const toggle=domainMenu.querySelector('[data-a="toggle-domains"]');
-    if(toggle)toggle.setAttribute('aria-expanded','false');
-  }
+  renderCourseMegaMenu(activeMegaCourseId);
   const activePath=path.startsWith('/domain/')?'/categories':(path.startsWith('/course/')||path.startsWith('/checkout/')||path.startsWith('/learn/')?'/courses':(path.startsWith('/blog/')?'/blog':path));
   document.querySelectorAll('#nav a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+activePath));
   const labels={
@@ -542,15 +567,6 @@ const A={
     document.body.classList.toggle('lms-mobile-open');
     const button=$('.lms-mobile-menu');
     if(button)button.setAttribute('aria-expanded',String(document.body.classList.contains('lms-mobile-open')));
-  },
-  'toggle-domains':()=>{
-    const wrap=$('#edn-domain-menu-wrap');
-    if(!wrap)return;
-    const open=!wrap.classList.contains('is-open');
-    wrap.classList.toggle('is-open',open);
-    const button=wrap.querySelector('[data-a="toggle-domains"]');
-    if(button)button.setAttribute('aria-expanded',String(open));
-    if(open)renderDomainMegaMenu(activeMegaDomainId);
   },
   cat:value=>{f=F0();f.cat=value;to('/courses');},
   domain:value=>{
@@ -621,20 +637,16 @@ document.addEventListener('click',event=>{
 });
 
 document.addEventListener('mouseover',event=>{
-  const item=event.target.closest('[data-domain-menu-id]');
-  if(item&&item.closest('#edn-domain-mega-list'))renderDomainMegaMenu(item.dataset.domainMenuId);
+  const domainItem=event.target.closest('[data-domain-menu-id]');
+  if(domainItem&&domainItem.closest('#edn-domain-mega-list'))renderDomainMegaMenu(domainItem.dataset.domainMenuId);
+  const courseItem=event.target.closest('[data-course-menu-id]');
+  if(courseItem&&courseItem.closest('#edn-course-mega-list'))renderCourseMegaMenu(courseItem.dataset.courseMenuId);
 });
 document.addEventListener('focusin',event=>{
-  const item=event.target.closest('[data-domain-menu-id]');
-  if(item&&item.closest('#edn-domain-mega-list'))renderDomainMegaMenu(item.dataset.domainMenuId);
-});
-document.addEventListener('click',event=>{
-  const wrap=$('#edn-domain-menu-wrap');
-  if(wrap&&!wrap.contains(event.target)&&wrap.classList.contains('is-open')){
-    wrap.classList.remove('is-open');
-    const button=wrap.querySelector('[data-a="toggle-domains"]');
-    if(button)button.setAttribute('aria-expanded','false');
-  }
+  const domainItem=event.target.closest('[data-domain-menu-id]');
+  if(domainItem&&domainItem.closest('#edn-domain-mega-list'))renderDomainMegaMenu(domainItem.dataset.domainMenuId);
+  const courseItem=event.target.closest('[data-course-menu-id]');
+  if(courseItem&&courseItem.closest('#edn-course-mega-list'))renderCourseMegaMenu(courseItem.dataset.courseMenuId);
 });
 document.addEventListener('click',event=>{
   const button=event.target.closest('[data-blog-topic]');
@@ -751,14 +763,6 @@ document.addEventListener('submit',async event=>{
 
 document.addEventListener('keydown',event=>{
   if(event.key==='Escape')$('#edn-preview-modal')?.remove();
-  if(event.key==='Escape'){
-    const wrap=$('#edn-domain-menu-wrap');
-    if(wrap){
-      wrap.classList.remove('is-open');
-      const button=wrap.querySelector('[data-a="toggle-domains"]');
-      if(button)button.setAttribute('aria-expanded','false');
-    }
-  }
   if(event.key==='Escape'&&document.body.classList.contains('lms-mobile-open')){
     document.body.classList.remove('lms-mobile-open');
     const menu=$('.lms-mobile-menu');
