@@ -271,7 +271,7 @@ const detail=id=>{
     (c.previewVideoUrl?'<button class="btn btn-g w edn-preview-course-button" type="button" data-a="preview" data-v="'+esc(id)+'">Xem trước khóa học</button>':'')+
     '<div class="edn-course-buy-content">'+
     '<div class="edn-course-detail-pricing">'+coursePriceMarkup(c)+'</div><p class="edn-course-purchase-note">'+(owned?'Bạn đã có quyền truy cập khóa học này.':'Khóa học chưa được mở bán.')+'</p>'+buyContent+
-    (owned?'':'<button class="btn btn-p w edn-course-add-to-cart" type="button" data-a="cart-add" data-v="'+esc(id)+'">'+(cartIds.includes(id)?'Xem trong giỏ':'Thêm vào giỏ')+'</button><a class="btn btn-g w edn-course-checkout-link" href="#/checkout/'+esc(id)+'">Xem thông tin thanh toán</a>')+
+    (owned?'':'<button class="btn btn-p w edn-course-add-to-cart" type="button" data-a="cart-add" data-v="'+esc(id)+'">'+(cartIds.includes(id)?'Xem trong giỏ':'Thêm vào giỏ')+'</button><a class="btn btn-g w edn-course-checkout-link" href="#/checkout/'+esc(id)+'">Mua ngay</a>')+
     '<div class="edn-course-includes"><strong>Thông tin chương trình</strong><span>✓ '+c.L.length+' bài học trong đề cương</span><span>✓ Có thứ tự bài học rõ ràng</span><span>✓ Lĩnh vực và chủ đề liên quan</span></div></div></aside></div></section>'+
     '<div class="wrap edn-course-content-grid"><main class="edn-course-main">'+
     '<section class="edn-course-outcomes" aria-labelledby="edn-outcomes-title"><h2>Mục tiêu dự kiến</h2><p class="edn-course-meta-note">Các mục tiêu dưới đây được phác thảo từ đề cương bài học và cần được xác nhận khi nội dung giảng dạy hoàn chỉnh.</p><div class="edn-course-outcomes-grid">'+outcomes.map(item=>'<div class="edn-course-outcome"><span>✓</span><p>'+esc(item)+'</p></div>').join('')+'</div></section>'+
