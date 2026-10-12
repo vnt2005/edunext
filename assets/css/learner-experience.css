@@ -173,3 +173,20 @@ body.edunext-app .floating-contact a{display:grid;place-items:center;text-decora
   body.edunext-app .edn-auth-page .ac{padding:22px}
   body.edunext-app .cio-video-wrap iframe,body.edunext-app .cio-video-wrap video{min-height:220px}
 }
+
+/* Loading/error and learner progress states */
+body.edunext-app .edn-app-loading{display:flex;min-height:55vh;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+body.edunext-app .edn-loading-mark{display:grid;place-items:center;width:54px;height:54px;margin-bottom:15px;border-radius:16px;background:#173f35;color:#fff;font-size:25px;font-weight:800}
+body.edunext-app .edn-app-loading h1{margin:0 0 9px;font-size:24px}
+body.edunext-app .edn-app-loading p{margin:0;color:#69746d;font-size:14px}
+body.edunext-app .edn-app-loading[role="status"]{outline:none}
+body.edunext-app .edn-dashboard-section-heading{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin:26px 0 16px}
+body.edunext-app .edn-dashboard-section-heading h2{margin:0;font-size:22px}
+body.edunext-app .edn-dashboard-section-heading span{color:#69746d;font-size:12px}
+body.edunext-app .edn-lesson-resource{margin:16px 0}
+body.edunext-app .edn-lesson-resource a{white-space:normal}
+body.edunext-app .edn-preview-course-button{margin:12px 0 0}
+body.edunext-app .edn-blog-article a:focus-visible,body.edunext-app .edn-order-row a:focus-visible{outline:3px solid #8fb0ff;outline-offset:3px}
+@media(max-width:760px){
+  body.edunext-app .edn-dashboard-section-heading{align-items:flex-start;flex-direction:column}
+}
