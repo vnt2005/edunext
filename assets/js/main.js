@@ -720,7 +720,7 @@ const A={
     if(area==='home')homeCoursePage=page;
     else if(area==='domains')domainListPage=page;
     else if(area==='courses')f.page=page;
-    render(true);
+    render(false);
   },
   enroll:id=>{
     const c=find(id);
