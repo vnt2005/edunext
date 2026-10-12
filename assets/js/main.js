@@ -2,9 +2,9 @@
 const $=s=>document.querySelector(s),app=$('#app');
 const esc=s=>String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 const money=n=>Number(n||0).toLocaleString('vi-VN')+'đ',ini=n=>String(n||'E').trim().split(/\s+/).slice(-2).map(x=>x[0]||'').join('').toUpperCase();
-const CATALOG=window.EDUNEXT_CATALOG||{domains:[],courses:[]};
-const DOMAINS=Array.isArray(CATALOG.domains)?CATALOG.domains:[];
-const CATS=DOMAINS.map(d=>d.name);
+const CFG=window.EDUNEXT_CONFIG||{};
+let CATALOG={domains:[],courses:[]};
+let DOMAINS=[],CATS=[],C=[];
 const COURSE_IMAGES={
 csharp:'https://images.unsplash.com/photo-1618477247222-acbdb0e159b3?auto=format&fit=crop&q=82&w=1200',
 api:'https://images.unsplash.com/photo-1637044527362-5ac1dc1d7446?auto=format&fit=crop&q=82&w=1200',
@@ -13,7 +13,7 @@ english:'https://images.unsplash.com/photo-1672248652488-73f8a07e3307?auto=forma
 design:'https://miro.medium.com/v2/resize:fit:1400/1*ezbw1Z06SzRSOhShXfwOTg.png',
 marketing:'https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?auto=format&fit=crop&q=82&w=1200'
 };
-const C=CATALOG.courses.map(raw=>{
+const mapCourse=raw=>{
   const lessons=Array.isArray(raw.lessons)?raw.lessons:[];
   const L=lessons.map(item=>item.title);
   return {
@@ -28,7 +28,7 @@ const C=CATALOG.courses.map(raw=>{
     completionCount:Number(raw.completionRule&&raw.completionRule.requiredCount)||L.length,
     ready:raw.published===true&&typeof raw.price==='number'&&Number.isFinite(raw.price)&&raw.price>=0&&lessons.length>0&&lessons.every(lesson=>!!(lesson.content||lesson.videoUrl||lesson.resourceUrl))
   };
-});
+};
 const BLOG_ARTICLES=[
 {tag:'Lập trình',title:'Học C# mà cứ quên cú pháp? Thử cách học này trước',excerpt:'Không ít người mới học C# rơi vào cảnh xem xong một bài thì thấy hiểu, nhưng mở Visual Studio lên lại không biết bắt đầu từ đâu. Vấn đề thường không nằm ở trí nhớ mà ở cách mình luyện tập.',time:'6 phút đọc',course:'csharp',image:COURSE_IMAGES.csharp},
 {tag:'ASP.NET Core',title:'REST API không khó, khó là học sai thứ tự',excerpt:'Routing, Controller, DI, EF Core, JWT… nhìn qua rất nhiều thứ. Nhưng khi xếp chúng theo đúng thứ tự, việc làm một API đầu tiên lại dễ hơn bạn nghĩ.',time:'8 phút đọc',course:'api',image:COURSE_IMAGES.api},
@@ -37,7 +37,6 @@ const BLOG_ARTICLES=[
 {tag:'Dự án',title:'Từ bài tập trên lớp đến project đầu tiên: bắt đầu thế nào?',excerpt:'Bạn không cần chờ đến khi biết hết công nghệ mới làm project. Một project nhỏ nhưng tự mình hoàn thành thường có giá trị hơn một danh sách dài những tutorial đã xem.',time:'7 phút đọc',course:'api',image:COURSE_IMAGES.api},
 {tag:'Cơ sở dữ liệu',title:'Biết C# rồi có nên học SQL ngay không?',excerpt:'Nếu bạn đang đi theo backend, câu trả lời gần như là có. SQL giúp bạn hiểu dữ liệu thật sự nằm ở đâu và vì sao code phía trên phải làm như vậy.',time:'6 phút đọc',course:'api',image:COURSE_IMAGES.data}
 ];
-const CFG=window.EDUNEXT_CONFIG||{};
 const D={users:CFG.user?[CFG.user]:[],me:CFG.user&&CFG.user.email?CFG.user.email:null,en:{},orders:Array.isArray(CFG.orders)?CFG.orders:[]};
 if(D.me){
   D.en[D.me]={};
@@ -489,6 +488,7 @@ function render(keep){
 
 /* User-facing interactions only. */
 const A={
+  'retry-catalog':()=>initializeEduNext(),
   menu:()=>{
     document.body.classList.toggle('lms-mobile-open');
     const button=$('.lms-mobile-menu');
@@ -681,6 +681,26 @@ document.addEventListener('keydown',event=>{
     if(menu)menu.setAttribute('aria-expanded','false');
   }
 });
-window.addEventListener('hashchange',()=>render());
-render();
+let catalogLoaded=false;
+window.addEventListener('hashchange',()=>{if(catalogLoaded)render();});
+const initializeEduNext=async()=>{
+  app.innerHTML='<div class="wrap page edn-app-loading" role="status"><span class="edn-loading-mark">E</span><h1>Đang tải EduNext</h1><p>Đang chuẩn bị danh mục lĩnh vực và chương trình học.</p></div>';
+  try{
+    if(!CFG.catalogUrl)throw new Error('Chưa cấu hình địa chỉ danh mục chương trình.');
+    const response=await fetch(CFG.catalogUrl,{credentials:'same-origin',cache:'no-cache'});
+    if(!response.ok)throw new Error('Không tải được danh mục chương trình.');
+    const catalog=await response.json();
+    if(!catalog||!Array.isArray(catalog.domains)||!Array.isArray(catalog.courses))throw new Error('Cấu trúc danh mục chương trình không hợp lệ.');
+    CATALOG=catalog;
+    DOMAINS=CATALOG.domains;
+    CATS=DOMAINS.map(domain=>domain.name);
+    C=CATALOG.courses.map(mapCourse);
+    catalogLoaded=true;
+    render();
+  }catch(error){
+    app.innerHTML='<div class="wrap page"><div class="empty" role="alert"><h1>Chưa thể tải danh mục EduNext</h1><p>Hãy tải lại trang. Nếu lỗi tiếp tục xảy ra, quản trị viên cần kiểm tra tệp danh mục chương trình.</p><button class="btn btn-g" type="button" data-a="retry-catalog">Thử lại</button></div></div>';
+    nav();
+  }
+};
+initializeEduNext();
 })();
