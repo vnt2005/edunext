@@ -778,7 +778,7 @@ body.edunext-app .edn-header-tools .edunext-profile-copy{display:none!important}
 }
 
 
-/* Profile utility: Udemy-inspired purple icon without any surrounding tile. */
+/* Profile utility: blue-toned profile icon without any surrounding tile. */
 body.edunext-app .edn-header-tools .edunext-profile-link,
 body.edunext-app .edn-header-tools .edunext-profile-link:hover,
 body.edunext-app .edn-header-tools .edunext-profile-link:focus,
@@ -797,15 +797,15 @@ body.edunext-app .edn-header-tools .edunext-profile-avatar{
   flex:0 0 32px!important;width:32px!important;height:32px!important;
   min-width:32px!important;min-height:32px!important;margin:0!important;padding:0!important;
   border:0!important;border-radius:50%!important;background:transparent!important;
-  color:#a435f0!important;box-shadow:none!important;font-size:0!important;
+  color:#2457d6!important;box-shadow:none!important;font-size:0!important;
 }
 body.edunext-app .edn-header-tools .edunext-profile-avatar svg{
   display:block!important;width:25px!important;height:25px!important;
-  fill:none!important;stroke:#a435f0!important;stroke-width:1.8!important;
+  fill:none!important;stroke:#2457d6!important;stroke-width:1.8!important;
   stroke-linecap:round!important;stroke-linejoin:round!important;
 }
 body.edunext-app .edn-header-tools .edn-profile-alert-dot{
   top:0!important;right:0!important;width:11px!important;height:11px!important;
   border:2px solid #fff!important;border-radius:50%!important;
-  background:#a435f0!important;box-shadow:none!important;
+  background:#2457d6!important;box-shadow:none!important;
 }
