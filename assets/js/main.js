@@ -265,7 +265,43 @@ const checkout=id=>{
   if(!c)return nf();
   if(!D.me)return guard('/checkout/'+id);
   if(EN()[id]){go('/learn/'+id+'/'+nextL(c));return '';}
-  return '<div class="wrap page narrow edn-checkout-unavailable"><nav class="edn-breadcrumb"><a href="#/courses">Khóa học</a><span>›</span><span>Đăng ký</span></nav><div class="cio-empty"><span class="edn-overline">CHƯA MỞ BÁN</span><h1>'+esc(c.t)+'</h1><p>Khóa học này vẫn đang ở giai đoạn đề cương. EduNext chưa ghi nhận thanh toán hoặc cấp quyền học cho khóa học này. Khi nội dung, giá và cổng thanh toán thực tế được cấu hình, trạng thái sẽ được cập nhật.</p><a class="btn btn-g" href="#/course/'+esc(c.id)+'">Quay lại chi tiết khóa học</a><a class="btn btn-p" href="#/courses">Khám phá chương trình khác</a></div></div>';
+
+  const user=me()||{};
+  const priceVerified=c.ready&&typeof c.p==='number'&&Number.isFinite(c.p)&&c.p>=0;
+  const price=priceVerified?money(c.p):'Chưa xác định';
+  const originalPrice=priceVerified&&typeof c.o==='number'&&Number.isFinite(c.o)&&c.o>c.p?money(c.o):'';
+  const originalLine=originalPrice
+    ? '<div class="edn-checkout-price-line"><span>Giá gốc</span><strong>'+esc(originalPrice)+'</strong></div>'
+    : '';
+  const paymentMessage=c.ready
+    ? 'EduNext hiện chưa kết nối cổng thanh toán. Bạn chưa cần nhập thông tin thẻ hay tài khoản thanh toán.'
+    : 'Chương trình vẫn đang được hoàn thiện hoặc chưa có giá đã xác minh. Thanh toán và cấp quyền học hiện chưa khả dụng.';
+  const courseStatus=c.ready?'Nội dung và giá đã được xác minh':'Chương trình chưa mở bán';
+  const courseImage='<div class="edn-checkout-course-image">'+courseImageMarkup(c)+'</div>';
+  const orderPrice=priceVerified?money(c.p):'Chưa xác định';
+  return '<main class="wrap page edn-checkout-page">'+
+    '<nav class="edn-breadcrumb" aria-label="Đường dẫn"><a href="#/">Trang chủ</a><span>›</span><a href="#/courses">Khóa học</a><span>›</span><span>Thanh toán</span></nav>'+
+    '<header class="edn-checkout-heading"><div><span class="edn-overline">EDUNEXT · ĐĂNG KÝ CHƯƠNG TRÌNH</span><h1>Thanh toán</h1><p>Kiểm tra lại khóa học và thông tin đơn hàng trước khi hoàn tất đăng ký.</p></div><a class="edn-checkout-back" href="#/course/'+esc(c.id)+'">← Quay lại khóa học</a></header>'+
+    '<div class="edn-checkout-layout"><div class="edn-checkout-main">'+
+      '<section class="edn-checkout-section"><div class="edn-checkout-section-heading"><span class="edn-checkout-step">1</span><div><h2>Thông tin người học</h2><p>Thông tin tài khoản dùng để ghi nhận quyền học.</p></div></div>'+
+        '<div class="edn-checkout-learner"><div><span>Họ và tên</span><strong>'+esc(user.name||'Chưa cập nhật')+'</strong></div><div><span>Email tài khoản</span><strong>'+esc(user.email||'Chưa cập nhật')+'</strong></div></div>'+
+      '</section>'+
+      '<section class="edn-checkout-section"><div class="edn-checkout-section-heading"><span class="edn-checkout-step">2</span><div><h2>Phương thức thanh toán</h2><p>Thanh toán sẽ được mở khi cổng thanh toán chính thức sẵn sàng.</p></div><span class="edn-checkout-status">Chưa khả dụng</span></div>'+
+        '<div class="edn-checkout-payment-notice"><span class="edn-checkout-lock" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3"></path><path d="M12 14v3"></path></svg></span><div><strong>Cổng thanh toán chưa được cấu hình</strong><p>'+paymentMessage+'</p></div></div>'+
+      '</section>'+
+      '<section class="edn-checkout-section"><div class="edn-checkout-section-heading"><span class="edn-checkout-step">3</span><div><h2>Thông tin khóa học</h2><p>Khóa học bạn đang xem xét đăng ký.</p></div></div>'+
+        '<article class="edn-checkout-course">'+courseImage+'<div class="edn-checkout-course-details"><span class="edn-checkout-course-domain">'+esc(c.cat)+'</span><h3>'+esc(c.t)+'</h3><p>'+c.L.length+' bài học trong đề cương'+(c.h?' · '+esc(c.h)+' giờ dự kiến':'')+'</p><span class="edn-checkout-course-state '+(c.ready?'is-ready':'is-pending')+'">'+courseStatus+'</span></div><div class="edn-checkout-course-price"><small>Giá khóa học</small><strong>'+esc(price)+'</strong></div></article>'+
+      '</section>'+
+    '</div>'+
+    '<aside class="edn-checkout-summary"><div class="edn-checkout-summary-title"><span class="edn-overline">ĐƠN HÀNG CỦA BẠN</span><h2>Tóm tắt đơn hàng</h2></div>'+
+      '<div class="edn-checkout-summary-course">'+courseImage+'<div><strong>'+esc(c.t)+'</strong><small>'+esc(c.cat)+'</small></div></div>'+
+      '<div class="edn-checkout-price-line"><span>Giá khóa học</span><strong>'+esc(orderPrice)+'</strong></div>'+originalLine+
+      '<div class="edn-checkout-price-line"><span>Ưu đãi</span><strong>—</strong></div>'+
+      '<div class="edn-checkout-grand-total"><span>Tổng thanh toán</span><strong>'+esc(orderPrice)+'</strong></div>'+
+      '<button type="button" class="btn btn-p w edn-checkout-pay-button" disabled aria-disabled="true"><span aria-hidden="true">⌑</span> Thanh toán chưa khả dụng</button>'+
+      '<p class="edn-checkout-terms">Bằng việc tiếp tục, bạn sẽ đồng ý với điều khoản sử dụng của EduNext. Hiện tại chưa có giao dịch nào được tạo hoặc ghi nhận.</p>'+
+      '<div class="edn-checkout-secure-note"><span aria-hidden="true">✓</span><p>Chúng tôi sẽ chỉ mở thanh toán khi giá và cổng thanh toán được xác minh. Không nhập thông tin thẻ trên trang này.</p></div>'+
+    '</aside></div></main>';
 };
 const cartPage=()=>{
   const items=cartIds.map(find).filter(Boolean);
