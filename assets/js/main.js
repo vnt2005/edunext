@@ -13,9 +13,24 @@ english:'https://images.unsplash.com/photo-1672248652488-73f8a07e3307?auto=forma
 design:'https://miro.medium.com/v2/resize:fit:1400/1*ezbw1Z06SzRSOhShXfwOTg.png',
 marketing:'https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?auto=format&fit=crop&q=82&w=1200'
 };
-const mapCourse=raw=>{
+const mapCourse=(raw,videoCounts={})=>{
   const lessons=Array.isArray(raw.lessons)?raw.lessons:[];
   const L=lessons.map(item=>item.title);
+  const level=String(raw.level||'Chưa xác định');
+  const duration=Number(raw.durationHours);
+  const outcomes=Array.isArray(raw.outcomes)?raw.outcomes:[];
+  const metadataComplete=['title','domainId','shortDescription','description','audience','prerequisites'].every(key=>String(raw[key]||'').trim()!=='');
+  const videoKey=url=>String(url||'').trim().replace(/\/+$/,'').toLowerCase();
+  const mediaValid=url=>!url||/^https:\/\//i.test(String(url).trim());
+  const ready=raw.published===true&&raw.metadataStatus==='verified'&&metadataComplete&&
+    typeof raw.price==='number'&&Number.isFinite(raw.price)&&raw.price>=0&&
+    level!==''&&!['Chưa xác định','Chưa cấu hình'].includes(level)&&
+    Number.isFinite(duration)&&duration>0&&outcomes.length>0&&lessons.length>0&&
+    lessons.every(lesson=>{
+      const videoUrl=String(lesson.videoUrl||'').trim(),resourceUrl=String(lesson.resourceUrl||'').trim();
+      return !!String(lesson.title||'').trim()&&!!(String(lesson.content||'').trim()||videoUrl||resourceUrl)&&
+        mediaValid(videoUrl)&&mediaValid(resourceUrl)&&(!videoUrl||videoCounts[videoKey(videoUrl)]===1);
+    })&&mediaValid(raw.previewVideoUrl||'');
   return {
     id:raw.id,t:raw.title,slug:raw.slug||raw.id,cat:raw.domain,domainId:raw.domainId,
     topics:Array.isArray(raw.relatedTopics)?raw.relatedTopics:[],
@@ -23,19 +38,14 @@ const mapCourse=raw=>{
     description:raw.description||'',shortDescription:raw.shortDescription||raw.description||'',
     audience:raw.audience||'Đối tượng phù hợp đang được xác định.',
     prerequisites:raw.prerequisites||'Điều kiện đầu vào đang được xác định.',
-    outcomes:Array.isArray(raw.outcomes)?raw.outcomes:[],
-    metadataStatus:raw.metadataStatus||'draft',
-    lessons,L,v:lessons.map(item=>item.videoUrl||''),previewVideoUrl:/^https:\/\//i.test(String(raw.previewVideoUrl||''))?String(raw.previewVideoUrl):'',
-    s:[],r:null,n:null,lvl:raw.level||'Chưa cấu hình',p:raw.price,o:raw.originalPrice,
-    h:raw.durationHours,tag:raw.published?'Đã xuất bản':'Đang hoàn thiện nội dung',
+    outcomes,metadataStatus:raw.metadataStatus||'draft',
+    lessons,L,v:lessons.map(item=>item.videoUrl||''),
+    previewVideoUrl:mediaValid(raw.previewVideoUrl||'')?String(raw.previewVideoUrl||''):'',
+    s:[],r:null,n:null,lvl:level,p:raw.price,o:raw.originalPrice,
+    h:raw.durationHours,tag:ready?'Đã xuất bản':'Đang hoàn thiện nội dung',
     c:'',published:raw.published===true,contentStatus:raw.contentStatus||'outline',
     completionCount:Number(raw.completionRule&&raw.completionRule.requiredCount)||L.length,
-    previewVideoUrl:/^https:\/\//i.test(String(raw.previewVideoUrl||''))?String(raw.previewVideoUrl):'',
-    ready:raw.published===true&&typeof raw.price==='number'&&Number.isFinite(raw.price)&&raw.price>=0&&lessons.length>0&&lessons.every(lesson=>{
-      const videoUrl=String(lesson.videoUrl||'').trim(),resourceUrl=String(lesson.resourceUrl||'').trim();
-      const mediaValid=url=>url===''||/^https:\/\//i.test(url);
-      return !!lesson.title&&!!(lesson.content||videoUrl||resourceUrl)&&mediaValid(videoUrl)&&mediaValid(resourceUrl);
-    })
+    ready
   };
 };
 const BLOG_ARTICLES=[
@@ -709,7 +719,17 @@ const initializeEduNext=async()=>{
     CATALOG=catalog;
     DOMAINS=CATALOG.domains;
     CATS=DOMAINS.map(domain=>domain.name);
-    C=CATALOG.courses.map(mapCourse);
+    const videoCounts={};
+    CATALOG.courses.forEach(course=>{
+      (Array.isArray(course.lessons)?course.lessons:[]).forEach(lesson=>{
+        const url=String(lesson.videoUrl||'').trim();
+        if(url){
+          const key=url.replace(/\/+$/,'').toLowerCase();
+          videoCounts[key]=(videoCounts[key]||0)+1;
+        }
+      });
+    });
+    C=CATALOG.courses.map(course=>mapCourse(course,videoCounts));
     catalogLoaded=true;
     render();
   }catch(error){
