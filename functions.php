@@ -18,11 +18,11 @@ function edunext_setup(): void {
 add_action('after_setup_theme', 'edunext_setup');
 
 function edunext_enqueue_assets(): void {
-    $version = '4.2';
+    $version = '4.3';
 
     wp_enqueue_style(
         'edunext-fonts',
-        'https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap',
+        'https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap',
         [],
         null
     );
@@ -31,6 +31,20 @@ function edunext_enqueue_assets(): void {
         'edunext-style',
         get_stylesheet_uri(),
         ['edunext-fonts'],
+        $version
+    );
+
+    wp_enqueue_style(
+        'edunext-storefront',
+        get_theme_file_uri('assets/css/storefront.css'),
+        ['edunext-style'],
+        $version
+    );
+
+    wp_enqueue_style(
+        'edunext-console',
+        get_theme_file_uri('assets/css/console.css'),
+        ['edunext-storefront'],
         $version
     );
 
