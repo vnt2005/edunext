@@ -25,7 +25,8 @@ const C=CATALOG.courses.map(raw=>{
     s:[],r:null,n:null,lvl:raw.level||'Chưa cấu hình',p:raw.price,o:raw.originalPrice,
     h:raw.durationHours,tag:raw.published?'Đã xuất bản':'Đang hoàn thiện nội dung',
     c:'',published:raw.published===true,contentStatus:raw.contentStatus||'outline',
-    completionCount:Number(raw.completionRule&&raw.completionRule.requiredCount)||L.length
+    completionCount:Number(raw.completionRule&&raw.completionRule.requiredCount)||L.length,
+    ready:raw.published===true&&typeof raw.price==='number'&&Number.isFinite(raw.price)&&raw.price>=0&&lessons.length>0&&lessons.every(lesson=>!!(lesson.content||lesson.videoUrl||lesson.resourceUrl))
   };
 });
 const BLOG_ARTICLES=[
@@ -206,7 +207,9 @@ const detail=id=>{
     '<div class="edn-course-tag-row"><span class="edn-course-tag">'+(c.published?'Đã xuất bản':'Đang hoàn thiện nội dung')+'</span><span class="edn-course-language">Ngôn ngữ: chưa cấu hình</span></div>'+
     '<div class="edn-course-date-row"><span>'+c.L.length+' bài học dự kiến</span><span>'+(c.h?esc(c.h)+' giờ':'Thời lượng đang cập nhật')+'</span></div>'+
     '<div class="edn-course-status-line">Đây là khung chương trình; chỉ các bài có học liệu đã xác minh mới được mở học.</div></div>'+
-    '<aside class="edn-course-buy-card" aria-label="Trạng thái khóa học"><div class="edn-course-preview edn-course-preview-static">'+visual+'<span class="edn-preview-shade"></span><strong>'+esc(c.cat)+'</strong></div><div class="edn-course-buy-content">'+
+    '<aside class="edn-course-buy-card" aria-label="Trạng thái khóa học"><div class="edn-course-preview edn-course-preview-static">'+visual+'<span class="edn-preview-shade"></span><strong>'+esc(c.cat)+'</strong></div>'+
+    (c.previewVideoUrl?'<button class="btn btn-g w edn-preview-course-button" type="button" data-a="preview" data-v="'+esc(id)+'">Xem trước khóa học</button>':'')+
+    '<div class="edn-course-buy-content">'+
     '<div class="edn-course-price-line"><strong>'+(typeof c.p==='number'?money(c.p):'Chưa có giá')+'</strong></div><p class="edn-course-purchase-note">'+(owned?'Bạn đã có quyền truy cập khóa học này.':'Khóa học chưa được mở bán.')+'</p>'+buyContent+
     '<div class="edn-course-includes"><strong>Thông tin chương trình</strong><span>✓ '+c.L.length+' bài học trong đề cương</span><span>✓ Có thứ tự bài học rõ ràng</span><span>✓ Lĩnh vực và chủ đề liên quan</span></div></div></aside></div></section>'+
     '<div class="wrap edn-course-content-grid"><main class="edn-course-main">'+
@@ -241,6 +244,7 @@ const learn=(id,index)=>{
     '<div class="cio-learn-layout"><aside class="cio-lesson-sidebar"><div class="cio-lesson-head"><span>'+esc(c.cat)+'</span><h2>'+esc(c.t)+'</h2><div class="cio-progress-line"><span style="width:'+pct(c)+'%"></span></div></div><div class="cio-lesson-list">'+c.lessons.map((item,k)=>'<a class="'+(k===i?'active ':'')+(e.done.includes(k)?'done':'')+'" href="#/learn/'+esc(id)+'/'+k+'"><span>'+String(k+1).padStart(2,'0')+'</span><b>'+esc(item.title)+'</b><small>'+(e.done.includes(k)?'Đã học':'Bài học')+'</small></a>').join('')+'</div></aside>'+
     '<main class="cio-learn-content"><div class="cio-video-wrap">'+videoMarkup(lesson.videoUrl,lesson.title)+'</div><div class="cio-lesson-content"><div class="cio-lesson-heading"><div><span class="cio-eyebrow">BÀI '+(i+1)+'/'+c.lessons.length+'</span><h1>'+esc(lesson.title)+'</h1></div><span class="cio-lesson-badge">'+(done?'Đã hoàn thành':'Đang học')+'</span></div>'+
     (lesson.content?'<div class="edn-lesson-material">'+esc(lesson.content).replace(/\n/g,'<br>')+'</div>':'<p class="edn-material-pending">Nội dung hướng dẫn chi tiết chưa được bổ sung cho bài này.</p>')+
+    (lesson.resourceUrl?'<p class="edn-lesson-resource"><a class="btn btn-g" href="'+esc(lesson.resourceUrl)+'" target="_blank" rel="noopener noreferrer">Mở học liệu của bài học ↗</a></p>':'')+
     (lesson.exercise?'<section class="edn-lesson-exercise"><h2>Thực hành</h2><p>'+esc(lesson.exercise)+'</p></section>':'')+
     '<div class="cio-lesson-actions">'+prev+mark+after+final+'</div></div></main></div></div>';
 };
@@ -294,7 +298,7 @@ const dash=()=>{if(!D.me)return guard('/dashboard');const u=me(),mine=C.filter(c
 return `<div class="wrap page cio-student-page">
 <div class="cio-page-head"><div><span class="cio-eyebrow">TRANG HỌC TẬP</span><h1>Xin chào, ${esc(u.name)}</h1><p>Theo dõi các khóa học bạn đã mua và tiếp tục bài học đang dang dở.</p></div><a class="btn btn-p" href="#/courses">Khám phá khóa học</a></div>
 <div class="cio-stat-grid"><div><span>Đang học</span><b>${active.length}</b></div><div><span>Hoàn thành</span><b>${completed.length}</b></div><div><span>Bài đã học</span><b>${mine.reduce((s,c)=>s+EN()[c.id].done.length,0)}</b></div><div><span>Đơn hàng</span><b>${(D.orders||[]).length}</b></div></div>
-<div class="cio-tabs"><span class="active">Đang học (${active.length})</span><span>Hoàn thành (${completed.length})</span></div>
+<div class="edn-dashboard-section-heading"><h2>Khóa học của bạn</h2><span>${active.length} đang học · ${completed.length} hoàn thành</span></div>
 ${active.length?'<section class="cio-dashboard-grid">'+active.map(c=>'<article class="cio-learning-card"><a href="#/learn/'+c.id+'/'+nextL(c)+'" class="cio-learning-image">'+courseImageMarkup(c)+'</a><div class="cio-learning-body"><div class="cio-card-status">ĐANG HỌC</div><h3><a href="#/learn/'+c.id+'/'+nextL(c)+'">'+c.t+'</a></h3><p>'+c.cat+' · '+c.L.length+' bài · '+c.h+' giờ</p><div class="cio-progress-line"><span style="width:'+pct(c)+'%"></span></div><div class="cio-learning-foot"><span>'+pct(c)+'% hoàn thành</span><a href="#/learn/'+c.id+'/'+nextL(c)+'">Tiếp tục →</a></div></div></article>').join('')+'</section>':'<div class="cio-empty"><h3>Chưa có khóa học đang học</h3><p>Khi tài khoản có quyền truy cập một khóa học đã xuất bản, khóa học đó sẽ xuất hiện tại đây.</p><a class="btn btn-p" href="#/courses">Khám phá khóa học</a></div>'}
 ${completed.length?'<section class="cio-completed-section"><div class="cio-section-title"><h2>Đã hoàn thành</h2><a href="#/courses">Khám phá thêm →</a></div><div class="grid cio-course-grid">'+completed.map(card).join('')+'</div></section>':''}
 </div>`};const BLOG_ARTICLE_BODY=[
