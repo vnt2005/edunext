@@ -475,7 +475,7 @@ function edunext_ajax_progress_save(): void {
     }
     $owned_ids = get_user_meta($user_id, 'edunext_owned_course_ids', true);
     $course = edunext_catalog_course($course_id);
-    if (!is_array($course) || empty($course['published']) || !is_array($owned_ids) || !in_array($course_id, $owned_ids, true)) {
+    if (!is_array($course) || !edunext_course_is_ready($course) || !is_array($owned_ids) || !in_array($course_id, $owned_ids, true)) {
         edunext_ajax_error('Tài khoản chưa có quyền truy cập khóa học này.', 403);
     }
     $lesson_count = isset($course['lessons']) && is_array($course['lessons']) ? count($course['lessons']) : 0;
