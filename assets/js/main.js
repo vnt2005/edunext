@@ -460,61 +460,32 @@ const request=async(action,values={})=>{
   return payload.data||{};
 };
 
-let activeMegaDomainId='';
-const renderDomainMegaMenu=(domainId)=>{
-  const list=$('#edn-domain-mega-list'),panel=$('#edn-domain-mega-courses');
-  if(!list||!panel||!DOMAINS.length)return;
-  const selected=DOMAINS.find(item=>item.id===domainId)||DOMAINS.find(item=>item.id===activeMegaDomainId)||DOMAINS[0];
-  activeMegaDomainId=selected.id;
+const renderDomainMegaMenu=()=>{
+  const list=$('#edn-domain-mega-list');
+  if(!list||!DOMAINS.length)return;
   if(!list.children.length||list.dataset.catalogVersion!==String(DOMAINS.length)){
     list.innerHTML=DOMAINS.map((domain,index)=>{
       const count=C.filter(course=>course.domainId===domain.id).length;
-      return '<a class="edn-domain-menu-item" href="#/domain/'+esc(domain.slug)+'" data-domain-menu-id="'+esc(domain.id)+'"><span class="edn-domain-menu-number">'+String(index+1).padStart(2,'0')+'</span><span class="edn-domain-menu-name">'+esc(domain.name)+'</span><small>'+count+' khóa</small></a>';
+      return '<a class="edn-domain-menu-item" href="#/domain/'+esc(domain.slug)+'"><span class="edn-domain-menu-number">'+String(index+1).padStart(2,'0')+'</span><span class="edn-domain-menu-name">'+esc(domain.name)+'</span><small>'+count+' khóa</small></a>';
     }).join('');
     list.dataset.catalogVersion=String(DOMAINS.length);
   }
-  list.querySelectorAll('[data-domain-menu-id]').forEach(item=>{
-    const active=item.dataset.domainMenuId===selected.id;
-    item.classList.toggle('is-active',active);
-    if(active)item.setAttribute('aria-current','true');
-    else item.removeAttribute('aria-current');
-  });
-  const courses=C.filter(course=>course.domainId===selected.id);
-  panel.innerHTML='<div class="edn-domain-mega-course-head"><div><span class="edn-overline">KHÁM PHÁ LĨNH VỰC</span><h3>'+esc(selected.name)+'</h3><p>'+esc(selected.description||'Chọn một chương trình để xem đề cương chi tiết.')+'</p></div><strong>'+courses.length+' chương trình</strong></div>'+
-    (courses.length
-      ? '<div class="edn-domain-mega-course-list">'+courses.map(course=>'<a class="edn-domain-mega-course" href="#/course/'+esc(course.id)+'"><span class="edn-domain-mega-course-title">'+esc(course.t)+'</span><span class="edn-domain-mega-course-status">'+esc(course.ready?(typeof course.p==='number'?money(course.p):'Đã mở bán'):'Đề cương · Chưa mở bán')+'</span><small>'+course.L.length+' bài học dự kiến</small></a>').join('')+'</div>'
-      : '<div class="edn-domain-mega-empty">Lĩnh vực này chưa có chương trình trong danh mục.</div>')+
-    '<a class="edn-domain-mega-all" href="#/domain/'+esc(selected.slug)+'">Xem lĩnh vực và toàn bộ chương trình <span aria-hidden="true">↗</span></a>';
+  const heading=$('#edn-domain-mega-menu .edn-domain-mega-head strong');
+  if(heading)heading.textContent='Khám phá '+DOMAINS.length+' lĩnh vực';
 };
 
-let activeMegaCourseId='';
-const renderCourseMegaMenu=(courseId)=>{
-  const list=$('#edn-course-mega-list'),panel=$('#edn-course-mega-preview');
-  if(!list||!panel||!C.length)return;
-  const selected=C.find(item=>item.id===courseId)||C.find(item=>item.id===activeMegaCourseId)||C[0];
-  if(!selected)return;
-  activeMegaCourseId=selected.id;
+const renderCourseMegaMenu=()=>{
+  const list=$('#edn-course-mega-list');
+  if(!list||!C.length)return;
   if(!list.children.length||list.dataset.catalogVersion!==String(C.length)){
     list.innerHTML=C.map((course,index)=>{
       const domain=DOMAINS.find(item=>item.id===course.domainId);
-      return '<a class="edn-course-menu-item" href="#/course/'+esc(course.id)+'" data-course-menu-id="'+esc(course.id)+'"><span class="edn-course-menu-number">'+String(index+1).padStart(2,'0')+'</span><span class="edn-course-menu-copy"><strong>'+esc(course.t)+'</strong><small>'+esc(domain?domain.name:course.cat)+'</small></span></a>';
+      return '<a class="edn-course-menu-item" href="#/course/'+esc(course.id)+'"><span class="edn-course-menu-number">'+String(index+1).padStart(2,'0')+'</span><span class="edn-course-menu-copy"><strong>'+esc(course.t)+'</strong><small>'+esc(domain?domain.name:course.cat)+'</small></span></a>';
     }).join('');
     list.dataset.catalogVersion=String(C.length);
   }
-  list.querySelectorAll('[data-course-menu-id]').forEach(item=>{
-    const active=item.dataset.courseMenuId===selected.id;
-    item.classList.toggle('is-active',active);
-    if(active)item.setAttribute('aria-current','true');
-    else item.removeAttribute('aria-current');
-  });
-  const domain=DOMAINS.find(item=>item.id===selected.domainId);
-  const courseStatus=selected.ready?(typeof selected.p==='number'?money(selected.p):'Đã mở bán'):'Đề cương · Chưa mở bán';
-  const lessonPreview=selected.L.slice(0,3);
-  panel.innerHTML='<div class="edn-domain-mega-course-head"><div><span class="edn-overline">'+esc(domain?domain.name:'CHƯƠNG TRÌNH HỌC')+'</span><h3>'+esc(selected.t)+'</h3><p>'+esc(selected.shortDescription||selected.description||'Xem lộ trình dự kiến của chương trình học.')+'</p></div><strong>'+esc(courseStatus)+'</strong></div>'+
-    '<div class="edn-course-preview-meta"><span>'+selected.L.length+' bài trong đề cương</span><span>'+esc(selected.lvl||'Trình độ đang cập nhật')+'</span></div>'+
-    '<div class="edn-course-preview-lessons"><strong>Các nội dung dự kiến</strong><ol>'+lessonPreview.map(title=>'<li>'+esc(title)+'</li>').join('')+'</ol>'+(selected.L.length>lessonPreview.length?'<small>Còn '+(selected.L.length-lessonPreview.length)+' đề mục trong chương trình</small>':'')+'</div>'+
-    '<p class="edn-course-preview-note">'+(selected.ready?'Khóa học đã được kiểm tra và mở đăng ký.':'Đây là đề cương đang hoàn thiện, chưa phải khóa học đã mở bán.')+'</p>'+
-    '<a class="edn-domain-mega-all" href="#/course/'+esc(selected.id)+'">Xem chi tiết chương trình <span aria-hidden="true">↗</span></a>';
+  const heading=$('#edn-course-mega-menu .edn-domain-mega-head strong');
+  if(heading)heading.textContent='Khám phá '+C.length+' chương trình học';
 };
 
 function nav(){
@@ -527,8 +498,8 @@ function nav(){
       ? '<a class="edn-account-study-link" href="#/dashboard">Trang học tập</a><a class="edunext-profile-link" href="#/profile" aria-label="Mở trực tiếp hồ sơ học viên"><span class="edunext-profile-avatar">'+esc(ini(user.name))+'</span><span class="edunext-profile-copy"><strong>Hồ sơ học viên</strong><small>'+esc(user.name)+'</small></span></a>'
       : '<a class="btn btn-g btn-s" href="#/login">Đăng nhập</a><a class="btn btn-p btn-s" href="#/register">Đăng ký</a>';
   }
-  renderDomainMegaMenu(activeMegaDomainId);
-  renderCourseMegaMenu(activeMegaCourseId);
+  renderDomainMegaMenu();
+  renderCourseMegaMenu();
   const activePath=path.startsWith('/domain/')?'/categories':(path.startsWith('/course/')||path.startsWith('/checkout/')||path.startsWith('/learn/')?'/courses':(path.startsWith('/blog/')?'/blog':path));
   document.querySelectorAll('#nav a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+activePath));
   const labels={
@@ -636,18 +607,6 @@ document.addEventListener('click',event=>{
   Promise.resolve(A[action](target.dataset.v,target)).catch(error=>toast(error.message||'Thao tác chưa thành công.'));
 });
 
-document.addEventListener('mouseover',event=>{
-  const domainItem=event.target.closest('[data-domain-menu-id]');
-  if(domainItem&&domainItem.closest('#edn-domain-mega-list'))renderDomainMegaMenu(domainItem.dataset.domainMenuId);
-  const courseItem=event.target.closest('[data-course-menu-id]');
-  if(courseItem&&courseItem.closest('#edn-course-mega-list'))renderCourseMegaMenu(courseItem.dataset.courseMenuId);
-});
-document.addEventListener('focusin',event=>{
-  const domainItem=event.target.closest('[data-domain-menu-id]');
-  if(domainItem&&domainItem.closest('#edn-domain-mega-list'))renderDomainMegaMenu(domainItem.dataset.domainMenuId);
-  const courseItem=event.target.closest('[data-course-menu-id]');
-  if(courseItem&&courseItem.closest('#edn-course-mega-list'))renderCourseMegaMenu(courseItem.dataset.courseMenuId);
-});
 document.addEventListener('click',event=>{
   const button=event.target.closest('[data-blog-topic]');
   if(!button)return;
