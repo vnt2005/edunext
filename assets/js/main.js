@@ -707,7 +707,7 @@ function nav(){
   if(cartLink)cartLink.classList.toggle('is-active',path==='/cart');
   updateCartBadge();
   const labels={
-    '/':'Trang chủ','/courses':'Khóa học','/cart':'Giỏ hàng','/best-sellers':'Khóa học','/categories':'Lĩnh vực','/blog':'Blog','/faq':'Hỏi đáp',
+    '/':'Trang chủ','/courses':'Khóa học','/cart':'Giỏ hàng','/best-sellers':'Khóa học','/categories':'Lĩnh vực','/blog':'Blog','/faq':'Hỏi Đáp',
     '/dashboard':'Trang học tập','/orders':'Lịch sử mua hàng','/profile':'Hồ sơ','/profile/profile':'Hồ sơ','/profile/public':'Hồ sơ',
     '/profile/photo':'Ảnh đại diện','/profile/security':'Mật khẩu','/certificates':'Chứng chỉ','/login':'Đăng nhập','/register':'Đăng ký','/about':'Về EduNext'
   };
