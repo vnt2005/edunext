@@ -68,11 +68,11 @@ const card=c=>{
   const action=own
     ? '<a class="btn btn-p btn-s" href="#/learn/'+esc(c.id)+'/'+nextL(c)+'">Tiếp tục học</a>'
     : '<a class="btn btn-g btn-s" href="#/course/'+esc(c.id)+'">Xem lộ trình</a>';
-  const status=c.published
+  const status=c.ready
     ? (typeof c.p==='number' ? money(c.p) : 'Đã xuất bản')
     : 'Đề cương · Chưa mở bán';
   return '<article class="lms-course-card edn-catalog-course">'+
-    '<a href="#/course/'+esc(c.id)+'" class="lms-course-image">'+courseImageMarkup(c)+'<span class="lms-course-category">'+esc(c.cat)+'</span><span class="lms-course-badge">'+(c.published?'Đã xuất bản':'Đang hoàn thiện')+'</span></a>'+
+    '<a href="#/course/'+esc(c.id)+'" class="lms-course-image">'+courseImageMarkup(c)+'<span class="lms-course-category">'+esc(c.cat)+'</span><span class="lms-course-badge">'+(c.ready?'Đã xuất bản':'Đang hoàn thiện nội dung')+'</span></a>'+
     '<div class="lms-course-body"><p class="lms-course-category-text">'+esc(c.cat)+'</p><h3><a href="#/course/'+esc(c.id)+'">'+esc(c.t)+'</a></h3>'+
     '<p class="edn-course-outline-meta">'+c.L.length+' bài trong đề cương</p><div class="edn-course-status-line">'+esc(status)+'</div>'+
     (own?'<div class="lms-course-progress"><div><span style="width:'+pct(c)+'%"></span></div><small>'+pct(c)+'% hoàn thành</small></div>':'')+
@@ -204,7 +204,7 @@ const detail=id=>{
   return '<div class="edn-course-detail-page"><section class="edn-course-hero"><div class="wrap edn-course-hero-inner">'+
     '<div class="edn-course-intro"><nav class="edn-course-breadcrumb" aria-label="Đường dẫn"><a href="#/">Trang chủ</a><span>›</span><a href="#/categories">Lĩnh vực</a><span>›</span><a href="#/domain/'+esc(domain?domain.slug:'')+'">'+esc(c.cat)+'</a></nav>'+
     '<div class="edn-course-eyebrow">'+esc(c.cat)+' <span>·</span> Đề cương chương trình</div><h1>'+esc(c.t)+'</h1><p class="edn-course-subtitle">'+esc(c.description||'Chương trình học được tổ chức theo các bước từ kiến thức nền tảng đến thực hành.')+'</p>'+
-    '<div class="edn-course-tag-row"><span class="edn-course-tag">'+(c.published?'Đã xuất bản':'Đang hoàn thiện nội dung')+'</span><span class="edn-course-language">Ngôn ngữ: chưa cấu hình</span></div>'+
+    '<div class="edn-course-tag-row"><span class="edn-course-tag">'+(c.ready?'Đã xuất bản':'Đang hoàn thiện nội dung')+'</span><span class="edn-course-language">Ngôn ngữ: chưa cấu hình</span></div>'+
     '<div class="edn-course-date-row"><span>'+c.L.length+' bài học dự kiến</span><span>'+(c.h?esc(c.h)+' giờ':'Thời lượng đang cập nhật')+'</span></div>'+
     '<div class="edn-course-status-line">Đây là khung chương trình; chỉ các bài có học liệu đã xác minh mới được mở học.</div></div>'+
     '<aside class="edn-course-buy-card" aria-label="Trạng thái khóa học"><div class="edn-course-preview edn-course-preview-static">'+visual+'<span class="edn-preview-shade"></span><strong>'+esc(c.cat)+'</strong></div>'+
@@ -449,7 +449,7 @@ const request=async(action,values={})=>{
 function nav(){
   const user=me(),path=location.hash.slice(1)||'/';
   document.body.classList.add('edunext-ready');
-  document.body.classList.remove('lms-admin-mode','lms-builder-mode','lms-mobile-open');
+  document.body.classList.remove('lms-mobile-open');
   const auth=$('#auth');
   if(auth){
     auth.innerHTML=user
@@ -507,7 +507,7 @@ const A={
   enroll:id=>{
     const c=find(id);
     if(!D.me){toast('Vui lòng đăng nhập để tiếp tục.');go('/login');return;}
-    if(!c||!c.published||CFG.paymentReady!==true){toast('Khóa học chưa mở bán hoặc chưa có cổng thanh toán được xác minh.');go('/course/'+id);return;}
+    if(!c||!c.ready||CFG.paymentReady!==true){toast('Khóa học chưa mở bán hoặc chưa có cổng thanh toán được xác minh.');go('/course/'+id);return;}
     toast('Thanh toán chưa được cấu hình cho website này.');
   },
   done:async value=>{
