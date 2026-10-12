@@ -1066,3 +1066,127 @@ body.edunext-app .edn-course-checkout-link{
   display:flex;align-items:center;justify-content:center;min-height:42px;margin-top:8px;
   text-align:center;text-decoration:none;
 }
+
+
+/* Compact catalog cards inspired by the supplied Udemy reference. */
+body.edunext-app .edn-catalog-course{
+  display:flex;flex-direction:column;min-width:0;overflow:hidden;
+  border:1px solid #e0e4eb;border-radius:14px;background:#fff;
+  box-shadow:0 2px 8px rgba(20,31,51,.04);transition:transform .18s,box-shadow .18s,border-color .18s;
+}
+body.edunext-app .edn-catalog-course:hover{
+  transform:translateY(-2px);border-color:#cbd5e1;box-shadow:0 10px 26px rgba(20,31,51,.10);
+}
+body.edunext-app .edn-course-card-main{
+  display:flex;flex:1;flex-direction:column;min-width:0;color:inherit;text-decoration:none;
+}
+body.edunext-app .edn-course-card-main:focus-visible{outline:3px solid #8fb0ff;outline-offset:-3px}
+body.edunext-app .edn-catalog-course .lms-course-image{
+  position:relative;display:block;overflow:hidden;width:100%;height:auto;min-height:0;
+  aspect-ratio:16/9;background:#eef2f7;border-radius:0;
+}
+body.edunext-app .edn-catalog-course .lms-course-image>img{
+  display:block;width:100%;height:100%;min-height:0;object-fit:cover;transition:transform .22s;
+}
+body.edunext-app .edn-catalog-course:hover .lms-course-image>img{transform:scale(1.025)}
+body.edunext-app .edn-catalog-course .lms-course-category{display:none!important}
+body.edunext-app .edn-catalog-course .lms-course-badge{
+  position:absolute;left:12px;right:auto;top:12px;bottom:auto;
+  display:inline-flex;align-items:center;padding:5px 8px;border:0;border-radius:4px;
+  background:#fff;color:#344054;font-size:10px;font-weight:750;line-height:1.3;
+  box-shadow:0 1px 3px rgba(16,24,40,.10);
+}
+body.edunext-app .edn-catalog-course .edn-course-placeholder{min-height:0;height:100%;width:100%}
+body.edunext-app .edn-catalog-course .lms-course-body{
+  display:flex;flex:1;flex-direction:column;min-width:0;padding:13px 14px 9px;background:#fff;
+}
+body.edunext-app .edn-catalog-course .lms-course-category-text{
+  margin:0 0 5px;color:#667085;font-size:10px;font-weight:800;letter-spacing:.045em;
+  line-height:1.4;text-transform:uppercase;
+}
+body.edunext-app .edn-catalog-course .lms-course-body h3{
+  display:-webkit-box;overflow:hidden;margin:0;color:#202a3b;font-size:16px;font-weight:800;
+  line-height:1.4;letter-spacing:-.015em;-webkit-box-orient:vertical;-webkit-line-clamp:3;
+}
+body.edunext-app .edn-catalog-course .edn-course-outline-meta{
+  margin:8px 0 0;color:#667085;font-size:11px;line-height:1.5;
+}
+body.edunext-app .edn-catalog-course .edn-course-card-state{
+  margin-top:5px;color:#737d8c;font-size:10px;line-height:1.4;
+}
+body.edunext-app .edn-course-card-footer{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  margin:0 14px;padding:10px 0 13px;border-top:1px solid #edf0f4;
+}
+body.edunext-app .edn-course-pricing{display:grid;align-content:center;justify-items:start;gap:2px;min-width:0}
+body.edunext-app .edn-course-price-current{color:#202a3b;font-size:18px;font-weight:850;line-height:1.25;white-space:nowrap}
+body.edunext-app .edn-course-price-original{color:#788294;font-size:12px;line-height:1.3;text-decoration:line-through}
+body.edunext-app .edn-course-demo-label{display:none!important}
+body.edunext-app .edn-cart-icon-button{
+  display:grid;place-items:center;flex:0 0 40px;width:40px;height:40px;padding:0;
+  border:1px solid #2457d6;border-radius:50%;background:#fff;color:#2457d6;
+  box-shadow:none;cursor:pointer;transition:background .15s,color .15s,transform .15s;
+}
+body.edunext-app .edn-cart-icon-button svg{
+  display:block;width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;
+  stroke-linecap:round;stroke-linejoin:round;
+}
+body.edunext-app .edn-cart-icon-button:hover{transform:translateY(-1px);background:#2457d6;color:#fff}
+body.edunext-app .edn-cart-icon-button:focus-visible{outline:3px solid rgba(36,87,214,.24);outline-offset:2px}
+body.edunext-app .edn-course-continue-button{
+  display:inline-flex;align-items:center;justify-content:center;min-height:36px;padding:8px 11px;
+  border:1px solid #d5dbe6;border-radius:7px;background:#fff;color:#2457d6;
+  font-size:11px;font-weight:750;text-align:center;text-decoration:none;
+}
+body.edunext-app .edn-course-continue-button:hover{background:#f4f7ff;border-color:#2457d6}
+body.edunext-app .edn-price-demo-notice{
+  margin:8px 0 0;color:#7a8495;font-size:11px;line-height:1.55;
+}
+body.edunext-app .edn-course-detail-pricing{margin:0 0 5px}
+body.edunext-app .edn-course-detail-pricing .edn-course-pricing{gap:4px}
+body.edunext-app .edn-course-detail-pricing .edn-course-price-current{font-size:24px}
+body.edunext-app .edn-course-detail-pricing .edn-course-price-original{font-size:14px}
+
+/* Homepage featured cards use the same compact price and cart treatment. */
+body.edunext-app .edn-market-course{
+  display:flex;flex-direction:column;min-width:0;overflow:hidden;
+  border:1px solid #e0e4eb;border-radius:14px;background:#fff;
+  box-shadow:0 2px 8px rgba(20,31,51,.04);transition:transform .18s,box-shadow .18s,border-color .18s;
+}
+body.edunext-app .edn-market-course:hover{
+  transform:translateY(-2px);border-color:#cbd5e1;box-shadow:0 10px 26px rgba(20,31,51,.10);
+}
+body.edunext-app .edn-market-course-main{display:flex;flex:1;flex-direction:column;min-width:0;color:inherit;text-decoration:none}
+body.edunext-app .edn-market-course-image{
+  position:relative;display:block;overflow:hidden;width:100%;height:auto;min-height:0;aspect-ratio:16/9;background:#eef2f7;
+}
+body.edunext-app .edn-market-course-image>img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .22s}
+body.edunext-app .edn-market-course:hover .edn-market-course-image>img{transform:scale(1.025)}
+body.edunext-app .edn-market-course-tag{
+  position:absolute;left:12px;top:12px;bottom:auto;padding:5px 8px;border-radius:4px;
+  background:#fff;color:#344054;font-size:10px;font-weight:750;box-shadow:0 1px 3px rgba(16,24,40,.1);
+}
+body.edunext-app .edn-market-course-view{display:none!important}
+body.edunext-app .edn-market-course-copy{display:flex;flex:1;flex-direction:column;gap:0;min-width:0;padding:13px 14px 8px}
+body.edunext-app .edn-market-course-category{margin:0 0 5px;color:#667085;font-size:10px;font-weight:800;letter-spacing:.045em;line-height:1.4;text-transform:uppercase}
+body.edunext-app .edn-market-course-copy h3{
+  display:-webkit-box;overflow:hidden;margin:0;color:#202a3b;font-size:16px;font-weight:800;
+  line-height:1.4;letter-spacing:-.015em;-webkit-box-orient:vertical;-webkit-line-clamp:3;
+}
+body.edunext-app .edn-market-course-copy .edn-course-outline-meta{margin:8px 0 0;color:#667085;font-size:11px}
+body.edunext-app .edn-market-course-copy .edn-course-status-line{margin-top:5px;color:#737d8c;font-size:10px}
+body.edunext-app .edn-market-course-footer{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 14px;
+  padding:10px 0 13px;border-top:1px solid #edf0f4;
+}
+@media(max-width:640px){
+  body.edunext-app .edn-catalog-course .lms-course-body,
+  body.edunext-app .edn-market-course-copy{padding:11px 12px 7px}
+  body.edunext-app .edn-course-card-footer,
+  body.edunext-app .edn-market-course-footer{margin:0 12px;padding:9px 0 11px}
+  body.edunext-app .edn-catalog-course .lms-course-body h3,
+  body.edunext-app .edn-market-course-copy h3{font-size:15px}
+  body.edunext-app .edn-course-price-current{font-size:17px}
+  body.edunext-app .edn-cart-icon-button{flex-basis:38px;width:38px;height:38px}
+  body.edunext-app .edn-cart-icon-button svg{width:18px;height:18px}
+}
