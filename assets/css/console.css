@@ -1,0 +1,92 @@
+/*
+ * EduNext Console Design System
+ * Compact and neutral workspace for course management and authoring only.
+ */
+body.edunext-app.lms-admin-mode,
+body.edunext-app.lms-builder-mode{background:#f3f4f6!important;color:#20232a!important;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important;font-size:13px!important;line-height:1.5!important}
+body.edunext-app.lms-admin-mode .edunext-site-header,
+body.edunext-app.lms-builder-mode .edunext-site-header,
+body.edunext-app.lms-admin-mode .footer-reference,
+body.edunext-app.lms-builder-mode .footer-reference,
+body.edunext-app.lms-admin-mode .floating-contact,
+body.edunext-app.lms-builder-mode .floating-contact{display:none!important}
+body.edunext-app.lms-admin-mode #app,
+body.edunext-app.lms-builder-mode #app{width:100%!important;max-width:none!important;min-height:100vh!important;margin:0!important;padding:0!important}
+body.edunext-app.lms-admin-mode .edn-console-layout,
+body.edunext-app.lms-builder-mode .edn-console-layout{display:grid;grid-template-columns:238px minmax(0,1fr);min-height:100vh;background:#f3f4f6}
+body.edunext-app .edn-console-sidebar{position:sticky;top:0;display:flex;flex-direction:column;min-width:0;height:100vh;padding:22px 13px 16px;background:#fff;border-right:1px solid #e2e4e9}
+body.admin-bar.edunext-app .edn-console-sidebar{top:32px;height:calc(100vh - 32px)}
+body.edunext-app .edn-console-brand{display:flex;align-items:center;gap:10px;padding:0 9px 24px;color:#1f2937;text-decoration:none}
+body.edunext-app .edn-console-brand>span{display:grid;place-items:center;width:34px;height:34px;flex:0 0 34px;border-radius:5px;background:#27364b;color:#fff;font-size:18px;font-weight:800}
+body.edunext-app .edn-console-brand>strong{display:grid;gap:2px;font-size:15px;letter-spacing:-.03em}
+body.edunext-app .edn-console-brand small{font-size:8px;color:#7c8492;letter-spacing:.13em}
+body.edunext-app .edn-console-label{padding:12px 9px;color:#8a909b;font-size:9px;font-weight:800;letter-spacing:.1em}
+body.edunext-app .edn-console-sidebar nav{display:grid;gap:4px}
+body.edunext-app .edn-console-sidebar nav a,
+body.edunext-app .edn-console-sidebar-bottom a,
+body.edunext-app .edn-console-sidebar-bottom button{display:flex;align-items:center;gap:10px;min-height:38px;padding:10px 11px;border:0;border-radius:4px;background:transparent;color:#515967;text-align:left;text-decoration:none;font-size:12px;font-weight:600;cursor:pointer}
+body.edunext-app .edn-console-sidebar nav a>span,
+body.edunext-app .edn-console-sidebar-bottom a>span,
+body.edunext-app .edn-console-sidebar-bottom button>span{width:17px;text-align:center;color:#767e8c;font-size:15px}
+body.edunext-app .edn-console-sidebar nav a:hover,
+body.edunext-app .edn-console-sidebar-bottom a:hover,
+body.edunext-app .edn-console-sidebar-bottom button:hover{background:#f3f4f6;color:#242a34}
+body.edunext-app .edn-console-sidebar nav a.is-active{background:#e9edf3;color:#26384c;font-weight:800}
+body.edunext-app .edn-console-sidebar nav a.is-active>span{color:#26384c}
+body.edunext-app .edn-console-sidebar-bottom{display:grid;gap:4px;margin-top:auto;padding-top:18px;border-top:1px solid #e5e7eb}
+body.edunext-app .edn-console-main{min-width:0;padding:34px clamp(22px,3vw,48px) 35px}
+body.edunext-app .edn-console-top{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;margin-bottom:25px}
+body.edunext-app .edn-console-breadcrumb{color:#7b8491;font-size:9px;font-weight:800;letter-spacing:.1em}
+body.edunext-app .edn-console-top h1{margin:9px 0 5px;color:#202632;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:25px!important;font-weight:750;letter-spacing:-.035em}
+body.edunext-app .edn-console-top p{margin:0;color:#68717e;font-size:12px}
+body.edunext-app .edn-console-primary{flex:0 0 auto;margin-top:14px;padding:10px 14px;border:1px solid #26384d;border-radius:4px;background:#26384d;color:#fff;font-size:11px;font-weight:750;cursor:pointer}
+body.edunext-app .edn-console-primary:hover{background:#17283b}
+body.edunext-app .edn-console-metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin-bottom:22px}
+body.edunext-app .edn-console-metrics>div{display:grid;gap:7px;padding:17px;border:1px solid #e0e3e9;border-radius:5px;background:#fff}
+body.edunext-app .edn-console-metrics span{color:#68717e;font-size:10px;font-weight:650}
+body.edunext-app .edn-console-metrics strong{color:#202632;font-size:24px;letter-spacing:-.04em;line-height:1.1}
+body.edunext-app .edn-console-metrics small{color:#8b929e;font-size:9px}
+body.edunext-app .edn-console-panel{overflow:hidden;border:1px solid #e0e3e9;border-radius:5px;background:#fff}
+body.edunext-app .edn-console-panel-head{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:19px 20px;border-bottom:1px solid #e5e7eb}
+body.edunext-app .edn-console-panel-head h2{margin:0 0 5px;color:#252b36;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:15px!important;font-weight:750}
+body.edunext-app .edn-console-panel-head p{margin:0;color:#858c98;font-size:10px}
+body.edunext-app .edn-console-filter{display:flex;gap:8px}
+body.edunext-app .edn-console-filter input,
+body.edunext-app .edn-console-filter select{height:35px;min-width:130px;padding:0 10px;border:1px solid #d8dce4;border-radius:4px;background:#fff;color:#424a58;font-size:10px}
+body.edunext-app .edn-console-table-wrap{width:100%;overflow:auto}
+body.edunext-app .edn-console-table{width:100%;border-collapse:collapse;text-align:left;white-space:nowrap}
+body.edunext-app .edn-console-table th{padding:12px 14px;border-bottom:1px solid #e4e7ed;background:#f9fafb;color:#737c89;font-size:9px;font-weight:800;letter-spacing:.04em;text-transform:uppercase}
+body.edunext-app .edn-console-table td{padding:13px 14px;border-bottom:1px solid #edf0f3;color:#525a67;font-size:10px}
+body.edunext-app .edn-console-table tbody tr:hover{background:#fafbfd}
+body.edunext-app .edn-console-table tbody tr:last-child td{border-bottom:0}
+body.edunext-app .edn-console-course-cell{display:flex;align-items:center;gap:10px;min-width:220px;max-width:310px}
+body.edunext-app .edn-console-course-cell img{display:block;width:56px;height:40px;flex:0 0 56px;object-fit:cover;border-radius:3px;background:#eef0f2}
+body.edunext-app .edn-console-course-cell>div{display:grid;gap:3px;min-width:0}
+body.edunext-app .edn-console-course-cell strong{overflow:hidden;color:#272e39;font-size:10px;font-weight:750;text-overflow:ellipsis;white-space:normal;line-height:1.45}
+body.edunext-app .edn-console-course-cell small{color:#868d99;font-size:9px}
+body.edunext-app .edn-console-status{display:inline-flex;align-items:center;padding:4px 7px;border-radius:3px;background:#ecf7ef;color:#247447;font-size:9px;font-weight:750}
+body.edunext-app .edn-console-row-link{color:#455e7b;font-size:10px;font-weight:750;text-decoration:underline;text-underline-offset:3px}
+body.edunext-app .edn-console-disclaimer{margin:13px 0 0;color:#858c98;font-size:10px}
+body.edunext-app .lms-admin-mode .cio-admin,
+body.edunext-app .lms-builder-mode .cio-builder{width:100%!important;max-width:none!important;margin:0!important;padding:0!important}
+body.edunext-app .lms-builder-mode .cio-builder-head{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid #dfe3e8}
+body.edunext-app .lms-builder-mode .cio-builder-head h1{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:24px!important;color:#202632;letter-spacing:-.035em}
+body.edunext-app .lms-builder-mode .cio-builder-head .cio-eyebrow{color:#7b8491}
+body.edunext-app .lms-builder-mode .cio-builder-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin-bottom:22px}
+body.edunext-app .lms-builder-mode .cio-builder-stats>div{padding:16px;border:1px solid #e0e3e9;border-radius:5px;background:#fff}
+body.edunext-app .lms-builder-mode .cio-builder-stats span{font-size:10px;color:#68717e}
+body.edunext-app .lms-builder-mode .cio-builder-stats b{display:block;margin-top:7px;font-size:23px;color:#202632}
+body.edunext-app .lms-builder-mode .cio-builder-grid{display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:20px}
+body.edunext-app .lms-builder-mode .cio-builder-main,
+body.edunext-app .lms-builder-mode .cio-builder-side-card{border:1px solid #e0e3e9;border-radius:5px;background:#fff}
+body.edunext-app .lms-builder-mode .cio-builder-main{padding:19px}
+body.edunext-app .lms-builder-mode .cio-builder-side{display:grid;align-content:start;gap:14px}
+body.edunext-app .lms-builder-mode .cio-builder-side-card{padding:17px}
+body.edunext-app .lms-builder-mode .cio-builder-section{border:1px solid #e4e7ed;border-radius:4px}
+body.edunext-app .lms-builder-mode .cio-section-bar{padding:12px;background:#f7f8fa;border-bottom:1px solid #e4e7ed;color:#414a58;font-size:11px}
+body.edunext-app .lms-builder-mode .cio-builder-item{padding:13px;border-bottom:1px solid #edf0f3}
+body.edunext-app .lms-builder-mode .cio-builder-item:last-child{border-bottom:0}
+body.edunext-app .lms-builder-mode .cio-builder-item b{font-size:11px;color:#2b313d}
+body.edunext-app .lms-builder-mode .cio-builder-item small{font-size:9px;color:#858c98}
+@media(max-width:1080px){body.edunext-app .edn-console-layout{grid-template-columns:205px minmax(0,1fr)}body.edunext-app .edn-console-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}body.edunext-app .edn-console-sidebar{padding-inline:9px}}
+@media(max-width:760px){body.edunext-app .edn-console-layout{grid-template-columns:1fr}body.edunext-app .edn-console-sidebar{position:relative;width:100%;height:auto;padding:12px;border-right:0;border-bottom:1px solid #e2e4e9}body.edunext-app .edn-console-brand{padding-bottom:10px}body.edunext-app .edn-console-label{display:none}body.edunext-app .edn-console-sidebar nav{grid-template-columns:repeat(3,minmax(0,1fr))}body.edunext-app .edn-console-sidebar nav a{justify-content:center;padding:9px 3px;font-size:10px}body.edunext-app .edn-console-sidebar-bottom{display:flex;justify-content:space-between;margin-top:9px;padding-top:9px}body.edunext-app .edn-console-main{padding:22px 14px}body.edunext-app .edn-console-top{align-items:flex-start;flex-direction:column}body.edunext-app .edn-console-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}body.edunext-app .edn-console-panel-head{align-items:flex-start;flex-direction:column}body.edunext-app .edn-console-filter{width:100%;flex-wrap:wrap}body.edunext-app .edn-console-filter input,body.edunext-app .edn-console-filter select{flex:1;min-width:120px}body.edunext-app .lms-builder-mode .cio-builder-grid{grid-template-columns:1fr}body.edunext-app .lms-builder-mode .cio-builder-stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
