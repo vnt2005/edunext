@@ -4,51 +4,57 @@
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#ffffff">
-    <meta name="description" content="EduNext - khóa học trực tuyến, mua một lần và học theo tiến độ của bạn.">
+    <meta name="description" content="EduNext — khám phá khóa học thực tế, xem nội dung rõ ràng và học theo tiến độ của bạn.">
     <?php wp_head(); ?>
 </head>
 <body <?php body_class('edunext-app'); ?>>
 <?php wp_body_open(); ?>
 
-<aside class="lms-sidebar" aria-label="Điều hướng EduNext">
-    <div class="lms-brand-wrap">
-        <a class="lms-brand" href="<?php echo esc_url(home_url('/#/' )); ?>">
-            <span class="lms-brand-mark">E</span>
-            <span><strong>EduNext</strong><small>Course store</small></span>
-        </a>
+<a class="edunext-skip-link" href="#app">Bỏ qua điều hướng</a>
+
+<header class="edunext-site-header">
+    <div class="edunext-header-main">
+        <div class="wrap edunext-header-inner">
+            <a class="edunext-brand" href="#/" aria-label="EduNext - Trang chủ">
+                <span class="edunext-brand-mark">E</span>
+                <span class="edunext-brand-copy"><strong>EduNext</strong><small>Học điều bạn cần</small></span>
+            </a>
+
+            <nav id="nav" class="edunext-main-nav" aria-label="Điều hướng chính">
+                <a href="#/courses" class="edunext-nav-link">Khóa học</a>
+                <a href="#/categories" class="edunext-nav-link">Danh mục</a>
+                <a href="#/best-sellers" class="edunext-nav-link">Bán chạy</a>
+                <a href="#/blog" class="edunext-nav-link">Blog</a>
+                <a href="#/about" class="edunext-nav-link">Về EduNext</a>
+            </nav>
+
+            <form class="sf lms-search edunext-header-search" data-form="search" role="search">
+                <span class="lms-search-icon" aria-hidden="true"></span>
+                <input name="q" placeholder="Bạn muốn học điều gì?" aria-label="Tìm khóa học">
+                <button type="submit" aria-label="Tìm kiếm">Tìm</button>
+            </form>
+
+            <div id="auth" class="lms-auth edunext-account-actions"></div>
+            <button class="mb lms-mobile-menu" data-a="menu" type="button" aria-label="Mở menu" aria-controls="nav">☰</button>
+        </div>
     </div>
 
-    <nav id="nav" class="lms-nav" aria-label="Điều hướng chính">
-        <div class="lms-nav-group-label">HỌC TẬP</div>
-        <a href="#/" class="lms-nav-item"><span class="lms-nav-icon">⌂</span><span>Trang chủ</span></a>
-        <a href="#/dashboard" class="lms-nav-item"><span class="lms-nav-icon">▣</span><span>Trang học tập</span></a>
-        <a href="#/certificates" class="lms-nav-item"><span class="lms-nav-icon">◇</span><span>Chứng chỉ</span></a>
-
-        <div class="lms-nav-group-label">KHÁM PHÁ</div>
-        <a href="#/courses" class="lms-nav-item"><span class="lms-nav-icon">⌘</span><span>Khám phá</span></a>
-        <a href="#/best-sellers" class="lms-nav-item"><span class="lms-nav-icon">↗</span><span>Bán chạy</span></a>
-        <a href="#/categories" class="lms-nav-item"><span class="lms-nav-icon">◫</span><span>Danh mục</span></a>
-        <a href="#/blog" class="lms-nav-item"><span class="lms-nav-icon">▤</span><span>Blog</span></a>
-
-        <div class="lms-nav-group-label">HỖ TRỢ</div>
-        <a href="#/faq" class="lms-nav-item"><span class="lms-nav-icon">?</span><span>Hỏi đáp</span></a>
-    </nav>
-
-    <div class="lms-sidebar-bottom" id="lms-sidebar-profile">
-        <a href="#/register" class="lms-nav-item"><span class="lms-nav-icon">＋</span><span>Tạo tài khoản</span></a>
-    </div>
-</aside>
-
-<header class="topbar-reference">
-    <div class="topbar-inner-reference">
-        <button class="mb lms-mobile-menu" data-a="menu" aria-label="Mở menu">☰</button>
-        <div class="lms-breadcrumb"><a href="#/">EduNext</a><span>/</span><strong id="lms-breadcrumb-current">Trang chủ</strong></div>
-        <span class="lms-topbar-spacer"></span>
-        <form class="sf lms-search" data-form="search">
-            <span class="lms-search-icon" aria-hidden="true">⌕</span>
-            <input name="q" placeholder="Tìm khóa học..." aria-label="Tìm khóa học">
-        </form>
-        <button class="lms-notify" type="button" aria-label="Thông báo">♢</button>
-        <div id="auth" class="au lms-auth"></div>
+    <div class="edunext-category-rail">
+        <div class="wrap edunext-category-inner">
+            <span class="edunext-category-label">Khám phá theo chủ đề</span>
+            <button type="button" data-a="cat" data-v="Lập trình">Lập trình</button>
+            <button type="button" data-a="cat" data-v="Data / AI">Data &amp; AI</button>
+            <button type="button" data-a="cat" data-v="Thiết kế">Thiết kế</button>
+            <button type="button" data-a="cat" data-v="Ngoại ngữ">Ngoại ngữ</button>
+            <button type="button" data-a="cat" data-v="Marketing">Marketing</button>
+        </div>
     </div>
 </header>
+
+<span id="lms-breadcrumb-current" class="edunext-route-context" aria-live="polite">Trang chủ</span>
+
+<main id="app">
+    <noscript>
+        <div class="wrap page">Trang cần bật JavaScript để hoạt động.</div>
+    </noscript>
+</main>
