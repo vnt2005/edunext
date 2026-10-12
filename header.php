@@ -23,7 +23,20 @@
             <nav id="nav" class="edunext-main-nav" aria-label="Điều hướng chính">
                 <a href="#/" class="edunext-nav-link">Trang chủ</a>
                 <a href="#/courses" class="edunext-nav-link">Khóa học</a>
-                <a href="#/categories" class="edunext-nav-link">Lĩnh vực</a>
+                <div class="edn-domain-menu-wrap" id="edn-domain-menu-wrap">
+                    <a href="#/categories" class="edunext-nav-link edn-domain-nav-link">Lĩnh vực</a>
+                    <button class="edn-domain-menu-toggle" data-a="toggle-domains" type="button" aria-label="Mở danh sách lĩnh vực" aria-controls="edn-domain-mega-menu" aria-expanded="false">⌄</button>
+                    <div class="edn-domain-mega-menu" id="edn-domain-mega-menu">
+                        <div class="edn-domain-mega-head">
+                            <strong>Khám phá 50 lĩnh vực</strong>
+                            <a href="#/categories">Xem tất cả <span aria-hidden="true">↗</span></a>
+                        </div>
+                        <div class="edn-domain-mega-body">
+                            <nav class="edn-domain-mega-list" id="edn-domain-mega-list" aria-label="Tất cả lĩnh vực"></nav>
+                            <section class="edn-domain-mega-courses" id="edn-domain-mega-courses" aria-live="polite" aria-label="Chương trình thuộc lĩnh vực"></section>
+                        </div>
+                    </div>
+                </div>
                 <a href="#/blog" class="edunext-nav-link">Góc kiến thức</a>
                 <a href="#/faq" class="edunext-nav-link">Hỏi đáp</a>
             </nav>
