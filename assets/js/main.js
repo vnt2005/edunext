@@ -19,6 +19,7 @@ const mapCourse=(raw,videoCounts={})=>{
   const level=String(raw.level||'Chưa xác định');
   const duration=Number(raw.durationHours);
   const outcomes=Array.isArray(raw.outcomes)?raw.outcomes:[];
+  const domain=DOMAINS.find(item=>item.id===raw.domainId);
   const metadataComplete=['title','domainId','shortDescription','description','audience','prerequisites'].every(key=>String(raw[key]||'').trim()!=='')&&DOMAINS.some(domain=>domain.id===raw.domainId);
   const videoKey=url=>String(url||'').trim().replace(/\/+$/,'').toLowerCase();
   const mediaValid=url=>!url||/^https:\/\/[^\s/?#]+(?:[/?#][^\s]*)?$/i.test(String(url).trim());
@@ -32,7 +33,7 @@ const mapCourse=(raw,videoCounts={})=>{
         mediaValid(videoUrl)&&mediaValid(resourceUrl)&&(!videoUrl||videoCounts[videoKey(videoUrl)]===1);
     })&&mediaValid(raw.previewVideoUrl||'');
   return {
-    id:raw.id,t:raw.title,slug:raw.slug||raw.id,cat:raw.domain,domainId:raw.domainId,
+    id:raw.id,t:raw.title,slug:raw.slug||raw.id,cat:domain?domain.name:(raw.domain||'Lĩnh vực chưa xác định'),domainId:raw.domainId,
     topics:Array.isArray(raw.relatedTopics)?raw.relatedTopics:[],
     related:Array.isArray(raw.relatedTopics)?raw.relatedTopics:[],
     description:raw.description||'',shortDescription:raw.shortDescription||raw.description||'',
