@@ -237,6 +237,13 @@ function edunext_enqueue_assets(): void {
         edunext_asset_version('assets/css/storefront.css')
     );
 
+    wp_enqueue_style(
+        'edunext-learner-experience',
+        get_theme_file_uri('assets/css/learner-experience.css'),
+        ['edunext-storefront'],
+        edunext_asset_version('assets/css/learner-experience.css')
+    );
+
     wp_enqueue_script(
         'edunext-course-catalog',
         get_theme_file_uri('assets/js/course-catalog.js'),
