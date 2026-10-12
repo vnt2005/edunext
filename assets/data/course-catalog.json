@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "sourceDocument": "docs/EDUNEXT-FUNCTIONAL-SPEC-AND-CURRICULUM.md",
   "domains": [
     {
@@ -4863,7 +4863,7 @@
         "Git",
         "C# từ cơ bản đến xây dựng ứng dụng"
       ],
-      "description": "Khung chương trình đề xuất về c# từ cơ bản đến xây dựng ứng dụng, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Làm quen .NET, Visual Studio và cấu trúc chương trình C#\" đến \"Dự án cuối khóa: ứng dụng quản lý công việc có lưu dữ liệu\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "csharp-lesson-1",
@@ -4942,13 +4942,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về C# từ cơ bản đến xây dựng ứng dụng, thuộc lĩnh vực Lập trình và phát triển phần mềm.",
+      "audience": "Người học quan tâm đến lập trình và phát triển phần mềm và muốn tìm hiểu chủ đề \"C# từ cơ bản đến xây dựng ứng dụng\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Làm quen .NET, Visual Studio và cấu trúc chương trình C#.",
+        "Khám phá chủ đề chuyên môn: Phương thức, tham số, giá trị trả về và phạm vi biến.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: ứng dụng quản lý công việc có lưu dữ liệu."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "cau-truc-du-lieu-thuat-toan-va-tu-duy-giai-quyet-van-de",
@@ -4970,7 +4979,7 @@
         "trúc",
         "toán"
       ],
-      "description": "Khung chương trình đề xuất về cấu trúc dữ liệu, thuật toán và tư duy giải quyết vấn đề, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Phân tích bài toán và viết thuật toán bằng pseudocode\" đến \"Dự án cuối khóa: giải bộ bài toán và phân tích độ phức tạp\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "cau-truc-du-lieu-thuat-toan-va-tu-duy-giai-quyet-van-de-lesson-1",
@@ -5049,13 +5058,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Cấu trúc dữ liệu, thuật toán và tư duy giải quyết vấn đề, thuộc lĩnh vực Lập trình và phát triển phần mềm.",
+      "audience": "Người học quan tâm đến lập trình và phát triển phần mềm và muốn tìm hiểu chủ đề \"Cấu trúc dữ liệu, thuật toán và tư duy giải quyết vấn đề\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Phân tích bài toán và viết thuật toán bằng pseudocode.",
+        "Khám phá chủ đề chuyên môn: Sắp xếp cơ bản và cách chọn thuật toán.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: giải bộ bài toán và phân tích độ phức tạp."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "frontend-web-tu-html-den-javascript",
@@ -5078,7 +5096,7 @@
         "html",
         "javascript"
       ],
-      "description": "Khung chương trình đề xuất về frontend web từ html đến javascript, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Cách trình duyệt hoạt động và cấu trúc trang HTML\" đến \"Dự án cuối khóa: website responsive có tìm kiếm và dữ liệu API\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "frontend-web-tu-html-den-javascript-lesson-1",
@@ -5157,13 +5175,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Frontend Web từ HTML đến JavaScript, thuộc lĩnh vực Phát triển Web.",
+      "audience": "Người học quan tâm đến phát triển web và muốn tìm hiểu chủ đề \"Frontend Web từ HTML đến JavaScript\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Cách trình duyệt hoạt động và cấu trúc trang HTML.",
+        "Khám phá chủ đề chuyên môn: Flexbox, Grid và bố cục responsive.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: website responsive có tìm kiếm và dữ liệu API."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "api",
@@ -5184,7 +5211,7 @@
         "REST API",
         "Xây dựng ứng dụng Web Full-stack"
       ],
-      "description": "Khung chương trình đề xuất về xây dựng ứng dụng web full-stack, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Kiến trúc client-server và thiết kế chức năng\" đến \"Dự án cuối khóa: ứng dụng quản lý có đăng nhập và triển khai thử nghiệm\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "api-lesson-1",
@@ -5263,13 +5290,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Xây dựng ứng dụng Web Full-stack, thuộc lĩnh vực Phát triển Web.",
+      "audience": "Người học quan tâm đến phát triển web và muốn tìm hiểu chủ đề \"Xây dựng ứng dụng Web Full-stack\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Kiến trúc client-server và thiết kế chức năng.",
+        "Khám phá chủ đề chuyên môn: Xây dựng backend REST API với Node.js.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: ứng dụng quản lý có đăng nhập và triển khai thử nghiệm."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "lap-trinh-flutter-tu-dau",
@@ -5289,7 +5325,7 @@
         "Lập trình Flutter từ đầu",
         "flutter"
       ],
-      "description": "Khung chương trình đề xuất về lập trình flutter từ đầu, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Cài đặt Flutter, Dart và chạy ứng dụng đầu tiên\" đến \"Dự án cuối khóa: ứng dụng quản lý chi tiêu có nhiều màn hình\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "lap-trinh-flutter-tu-dau-lesson-1",
@@ -5368,13 +5404,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Lập trình Flutter từ đầu, thuộc lĩnh vực Phát triển ứng dụng di động.",
+      "audience": "Người học quan tâm đến phát triển ứng dụng di động và muốn tìm hiểu chủ đề \"Lập trình Flutter từ đầu\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Cài đặt Flutter, Dart và chạy ứng dụng đầu tiên.",
+        "Khám phá chủ đề chuyên môn: StatefulWidget, state và điều hướng màn hình.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: ứng dụng quản lý chi tiêu có nhiều màn hình."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "phat-trien-ung-dung-android-voi-kotlin",
@@ -5395,7 +5440,7 @@
         "android",
         "kotlin"
       ],
-      "description": "Khung chương trình đề xuất về phát triển ứng dụng android với kotlin, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Android Studio, cấu trúc project và Activity\" đến \"Dự án cuối khóa: ứng dụng ghi chú có tìm kiếm và lưu cục bộ\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "phat-trien-ung-dung-android-voi-kotlin-lesson-1",
@@ -5474,13 +5519,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Phát triển ứng dụng Android với Kotlin, thuộc lĩnh vực Phát triển ứng dụng di động.",
+      "audience": "Người học quan tâm đến phát triển ứng dụng di động và muốn tìm hiểu chủ đề \"Phát triển ứng dụng Android với Kotlin\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Android Studio, cấu trúc project và Activity.",
+        "Khám phá chủ đề chuyên môn: Navigation, truyền dữ liệu và quản lý vòng đời.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: ứng dụng ghi chú có tìm kiếm và lưu cục bộ."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "sql-server-va-sql-tu-co-ban-den-thuc-hanh",
@@ -5499,7 +5553,7 @@
         "SQL Server và SQL từ cơ bản đến thực hành",
         "server"
       ],
-      "description": "Khung chương trình đề xuất về sql server và sql từ cơ bản đến thực hành, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Khái niệm cơ sở dữ liệu quan hệ và cài đặt SQL Server\" đến \"Dự án cuối khóa: thiết kế database và báo cáo cho cửa hàng trực tuyến\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "sql-server-va-sql-tu-co-ban-den-thuc-hanh-lesson-1",
@@ -5578,13 +5632,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về SQL Server và SQL từ cơ bản đến thực hành, thuộc lĩnh vực Cơ sở dữ liệu.",
+      "audience": "Người học quan tâm đến cơ sở dữ liệu và muốn tìm hiểu chủ đề \"SQL Server và SQL từ cơ bản đến thực hành\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Khái niệm cơ sở dữ liệu quan hệ và cài đặt SQL Server.",
+        "Khám phá chủ đề chuyên môn: JOIN, GROUP BY, HAVING và hàm tổng hợp.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: thiết kế database và báo cáo cho cửa hàng trực tuyến."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "thiet-ke-va-toi-uu-co-so-du-lieu",
@@ -5602,7 +5665,7 @@
         "tối ưu truy vấn",
         "Thiết kế và tối ưu cơ sở dữ liệu"
       ],
-      "description": "Khung chương trình đề xuất về thiết kế và tối ưu cơ sở dữ liệu, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Thu thập yêu cầu và chuyển thành mô hình dữ liệu\" đến \"Dự án cuối khóa: tối ưu database trên bộ truy vấn mẫu\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "thiet-ke-va-toi-uu-co-so-du-lieu-lesson-1",
@@ -5681,13 +5744,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Thiết kế và tối ưu cơ sở dữ liệu, thuộc lĩnh vực Cơ sở dữ liệu.",
+      "audience": "Người học quan tâm đến cơ sở dữ liệu và muốn tìm hiểu chủ đề \"Thiết kế và tối ưu cơ sở dữ liệu\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Thu thập yêu cầu và chuyển thành mô hình dữ liệu.",
+        "Khám phá chủ đề chuyên môn: Phân tích execution plan và truy vấn chậm.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: tối ưu database trên bộ truy vấn mẫu."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "machine-learning-thuc-hanh-voi-python",
@@ -5707,7 +5779,7 @@
         "machine",
         "learning"
       ],
-      "description": "Khung chương trình đề xuất về machine learning thực hành với python, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Tổng quan AI, ML và quy trình một dự án dữ liệu\" đến \"Dự án cuối khóa: xây dựng mô hình dự đoán và trình bày kết quả\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "machine-learning-thuc-hanh-voi-python-lesson-1",
@@ -5786,13 +5858,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Machine Learning thực hành với Python, thuộc lĩnh vực AI và Machine Learning.",
+      "audience": "Người học quan tâm đến ai và machine learning và muốn tìm hiểu chủ đề \"Machine Learning thực hành với Python\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Tổng quan AI, ML và quy trình một dự án dữ liệu.",
+        "Khám phá chủ đề chuyên môn: Thống kê mô tả và khám phá dữ liệu.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: xây dựng mô hình dự đoán và trình bày kết quả."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "xay-dung-ung-dung-voi-generative-ai-va-llm",
@@ -5811,7 +5892,7 @@
         "Xây dựng ứng dụng với Generative AI và LLM",
         "generative"
       ],
-      "description": "Khung chương trình đề xuất về xây dựng ứng dụng với generative ai và llm, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"LLM hoạt động thế nào, giới hạn và rủi ro thường gặp\" đến \"Dự án cuối khóa: trợ lý AI có nguồn trích dẫn và bộ kiểm thử\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "xay-dung-ung-dung-voi-generative-ai-va-llm-lesson-1",
@@ -5890,13 +5971,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Xây dựng ứng dụng với Generative AI và LLM, thuộc lĩnh vực AI và Machine Learning.",
+      "audience": "Người học quan tâm đến ai và machine learning và muốn tìm hiểu chủ đề \"Xây dựng ứng dụng với Generative AI và LLM\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: LLM hoạt động thế nào, giới hạn và rủi ro thường gặp.",
+        "Khám phá chủ đề chuyên môn: Structured output, function calling và công cụ.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: trợ lý AI có nguồn trích dẫn và bộ kiểm thử."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "data",
@@ -5917,7 +6007,7 @@
         "excel",
         "power"
       ],
-      "description": "Khung chương trình đề xuất về phân tích dữ liệu với excel và power bi, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Xác định câu hỏi kinh doanh và hiểu cấu trúc dữ liệu\" đến \"Dự án cuối khóa: dashboard doanh số có bộ lọc và khuyến nghị\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "data-lesson-1",
@@ -5996,13 +6086,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Phân tích dữ liệu với Excel và Power BI, thuộc lĩnh vực Khoa học dữ liệu và phân tích dữ liệu.",
+      "audience": "Người học quan tâm đến khoa học dữ liệu và phân tích dữ liệu và muốn tìm hiểu chủ đề \"Phân tích dữ liệu với Excel và Power BI\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Xác định câu hỏi kinh doanh và hiểu cấu trúc dữ liệu.",
+        "Khám phá chủ đề chuyên môn: Power Query: kết nối, biến đổi và kết hợp dữ liệu.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: dashboard doanh số có bộ lọc và khuyến nghị."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "phan-tich-du-lieu-voi-python-va-sql",
@@ -6022,7 +6121,7 @@
         "Phân tích dữ liệu với Python và SQL",
         "python"
       ],
-      "description": "Khung chương trình đề xuất về phân tích dữ liệu với python và sql, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Python, notebook và quy trình phân tích có thể lặp lại\" đến \"Dự án cuối khóa: phân tích dữ liệu khách hàng từ câu hỏi đến báo cáo\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "phan-tich-du-lieu-voi-python-va-sql-lesson-1",
@@ -6101,13 +6200,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Phân tích dữ liệu với Python và SQL, thuộc lĩnh vực Khoa học dữ liệu và phân tích dữ liệu.",
+      "audience": "Người học quan tâm đến khoa học dữ liệu và phân tích dữ liệu và muốn tìm hiểu chủ đề \"Phân tích dữ liệu với Python và SQL\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Python, notebook và quy trình phân tích có thể lặp lại.",
+        "Khám phá chủ đề chuyên môn: Thăm dò dữ liệu và phát hiện bất thường.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: phân tích dữ liệu khách hàng từ câu hỏi đến báo cáo."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "nen-tang-an-ninh-mang-va-phong-thu-ca-nhan",
@@ -6124,7 +6232,7 @@
         "bảo vệ tài khoản",
         "Nền tảng an ninh mạng và phòng thủ cá nhân"
       ],
-      "description": "Khung chương trình đề xuất về nền tảng an ninh mạng và phòng thủ cá nhân, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Mục tiêu bảo mật: bí mật, toàn vẹn và sẵn sàng\" đến \"Bài tập cuối khóa: xây dựng checklist bảo mật cho tổ chức nhỏ\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "nen-tang-an-ninh-mang-va-phong-thu-ca-nhan-lesson-1",
@@ -6203,13 +6311,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Nền tảng an ninh mạng và phòng thủ cá nhân, thuộc lĩnh vực An ninh mạng.",
+      "audience": "Người học quan tâm đến an ninh mạng và muốn tìm hiểu chủ đề \"Nền tảng an ninh mạng và phòng thủ cá nhân\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Mục tiêu bảo mật: bí mật, toàn vẹn và sẵn sàng.",
+        "Khám phá chủ đề chuyên môn: TCP/IP, DNS, HTTPS và các điểm rủi ro.",
+        "Tổng hợp lộ trình qua đề mục cuối: Bài tập cuối khóa: xây dựng checklist bảo mật cho tổ chức nhỏ."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "kiem-thu-bao-mat-web-trong-moi-truong-duoc-phep",
@@ -6226,7 +6343,7 @@
         "bảo vệ tài khoản",
         "Kiểm thử bảo mật Web trong môi trường được phép"
       ],
-      "description": "Khung chương trình đề xuất về kiểm thử bảo mật web trong môi trường được phép, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Phạm vi, quy tắc pháp lý và môi trường lab an toàn\" đến \"Dự án cuối khóa: báo cáo kiểm thử bảo mật trên ứng dụng mẫu được cấp phép\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "kiem-thu-bao-mat-web-trong-moi-truong-duoc-phep-lesson-1",
@@ -6305,13 +6422,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Kiểm thử bảo mật Web trong môi trường được phép, thuộc lĩnh vực An ninh mạng.",
+      "audience": "Người học quan tâm đến an ninh mạng và muốn tìm hiểu chủ đề \"Kiểm thử bảo mật Web trong môi trường được phép\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Phạm vi, quy tắc pháp lý và môi trường lab an toàn.",
+        "Khám phá chủ đề chuyên môn: Kiểm tra đầu vào, quyền truy cập và cấu hình sai.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: báo cáo kiểm thử bảo mật trên ứng dụng mẫu được cấp phép."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "mang-may-tinh-tu-nen-tang-den-cau-hinh",
@@ -6330,7 +6456,7 @@
         "DHCP",
         "Mạng máy tính từ nền tảng đến cấu hình"
       ],
-      "description": "Khung chương trình đề xuất về mạng máy tính từ nền tảng đến cấu hình, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Mô hình OSI, TCP/IP và thiết bị mạng\" đến \"Bài tập cuối khóa: thiết kế và kiểm tra mạng cho văn phòng nhỏ\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "mang-may-tinh-tu-nen-tang-den-cau-hinh-lesson-1",
@@ -6409,13 +6535,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Mạng máy tính từ nền tảng đến cấu hình, thuộc lĩnh vực Mạng máy tính và hệ thống.",
+      "audience": "Người học quan tâm đến mạng máy tính và hệ thống và muốn tìm hiểu chủ đề \"Mạng máy tính từ nền tảng đến cấu hình\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Mô hình OSI, TCP/IP và thiết bị mạng.",
+        "Khám phá chủ đề chuyên môn: Routing tĩnh, default gateway và khái niệm routing động.",
+        "Tổng hợp lộ trình qua đề mục cuối: Bài tập cuối khóa: thiết kế và kiểm tra mạng cho văn phòng nhỏ."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "quan-tri-linux-server-co-ban",
@@ -6436,7 +6571,7 @@
         "linux",
         "server"
       ],
-      "description": "Khung chương trình đề xuất về quản trị linux server cơ bản, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Cài Linux, shell, terminal và cấu trúc hệ thống tệp\" đến \"Dự án cuối khóa: cấu hình máy chủ Linux chạy dịch vụ mẫu\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "quan-tri-linux-server-co-ban-lesson-1",
@@ -6515,13 +6650,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Quản trị Linux Server cơ bản, thuộc lĩnh vực Mạng máy tính và hệ thống.",
+      "audience": "Người học quan tâm đến mạng máy tính và hệ thống và muốn tìm hiểu chủ đề \"Quản trị Linux Server cơ bản\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Cài Linux, shell, terminal và cấu trúc hệ thống tệp.",
+        "Khám phá chủ đề chuyên môn: Mạng Linux, SSH và cấu hình firewall cơ bản.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: cấu hình máy chủ Linux chạy dịch vụ mẫu."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "trien-khai-ung-dung-len-cloud",
@@ -6541,7 +6685,7 @@
         "Triển khai ứng dụng lên Cloud",
         "cloud"
       ],
-      "description": "Khung chương trình đề xuất về triển khai ứng dụng lên cloud, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Cloud computing, IaaS, PaaS, SaaS và mô hình chi phí\" đến \"Dự án cuối khóa: triển khai ứng dụng mẫu có HTTPS và giám sát\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "trien-khai-ung-dung-len-cloud-lesson-1",
@@ -6620,13 +6764,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Triển khai ứng dụng lên Cloud, thuộc lĩnh vực Cloud Computing và DevOps.",
+      "audience": "Người học quan tâm đến cloud computing và devops và muốn tìm hiểu chủ đề \"Triển khai ứng dụng lên Cloud\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Cloud computing, IaaS, PaaS, SaaS và mô hình chi phí.",
+        "Khám phá chủ đề chuyên môn: Triển khai ứng dụng web và cấu hình biến môi trường.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: triển khai ứng dụng mẫu có HTTPS và giám sát."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "docker-va-ci-cd-cho-nguoi-moi",
@@ -6646,7 +6799,7 @@
         "Docker và CI/CD cho người mới",
         "docker"
       ],
-      "description": "Khung chương trình đề xuất về docker và ci/cd cho người mới, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Container, image, registry và Dockerfile\" đến \"Dự án cuối khóa: pipeline tự động kiểm thử và triển khai ứng dụng mẫu\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "docker-va-ci-cd-cho-nguoi-moi-lesson-1",
@@ -6725,13 +6878,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Docker và CI/CD cho người mới, thuộc lĩnh vực Cloud Computing và DevOps.",
+      "audience": "Người học quan tâm đến cloud computing và devops và muốn tìm hiểu chủ đề \"Docker và CI/CD cho người mới\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Container, image, registry và Dockerfile.",
+        "Khám phá chủ đề chuyên môn: Environment variables, secrets và network.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: pipeline tự động kiểm thử và triển khai ứng dụng mẫu."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "kiem-thu-phan-mem-thu-cong-tu-a-den-z",
@@ -6750,7 +6912,7 @@
         "QA/QC",
         "Kiểm thử phần mềm thủ công từ A đến Z"
       ],
-      "description": "Khung chương trình đề xuất về kiểm thử phần mềm thủ công từ a đến z, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Vai trò QA, QC, SDLC, STLC và thuật ngữ kiểm thử\" đến \"Dự án cuối khóa: bộ test case và báo cáo kiểm thử một website mẫu\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "kiem-thu-phan-mem-thu-cong-tu-a-den-z-lesson-1",
@@ -6829,13 +6991,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Kiểm thử phần mềm thủ công từ A đến Z, thuộc lĩnh vực Kiểm thử phần mềm.",
+      "audience": "Người học quan tâm đến kiểm thử phần mềm và muốn tìm hiểu chủ đề \"Kiểm thử phần mềm thủ công từ A đến Z\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Vai trò QA, QC, SDLC, STLC và thuật ngữ kiểm thử.",
+        "Khám phá chủ đề chuyên môn: Equivalence partitioning, boundary value và decision table.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: bộ test case và báo cáo kiểm thử một website mẫu."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "tu-dong-hoa-kiem-thu-web-voi-playwright",
@@ -6855,7 +7026,7 @@
         "Tự động hóa kiểm thử Web với Playwright",
         "playwright"
       ],
-      "description": "Khung chương trình đề xuất về tự động hóa kiểm thử web với playwright, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Thiết lập Node.js, Playwright và cấu trúc test\" đến \"Dự án cuối khóa: bộ kiểm thử E2E cho luồng đăng nhập và mua hàng mẫu\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "tu-dong-hoa-kiem-thu-web-voi-playwright-lesson-1",
@@ -6934,13 +7105,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Tự động hóa kiểm thử Web với Playwright, thuộc lĩnh vực Kiểm thử phần mềm.",
+      "audience": "Người học quan tâm đến kiểm thử phần mềm và muốn tìm hiểu chủ đề \"Tự động hóa kiểm thử Web với Playwright\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Thiết lập Node.js, Playwright và cấu trúc test.",
+        "Khám phá chủ đề chuyên môn: Test data, fixture và tái sử dụng hàm hỗ trợ.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: bộ kiểm thử E2E cho luồng đăng nhập và mua hàng mẫu."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "solid-va-design-patterns-qua-vi-du",
@@ -6960,7 +7140,7 @@
         "design",
         "patterns"
       ],
-      "description": "Khung chương trình đề xuất về solid và design patterns qua ví dụ, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Tách trách nhiệm, phụ thuộc và nguyên tắc SOLID\" đến \"Dự án cuối khóa: tái cấu trúc ứng dụng mẫu theo nguyên tắc thiết kế\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "solid-va-design-patterns-qua-vi-du-lesson-1",
@@ -7039,13 +7219,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về SOLID và Design Patterns qua ví dụ, thuộc lĩnh vực Kiến trúc và thiết kế phần mềm.",
+      "audience": "Người học quan tâm đến kiến trúc và thiết kế phần mềm và muốn tìm hiểu chủ đề \"SOLID và Design Patterns qua ví dụ\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Tách trách nhiệm, phụ thuộc và nguyên tắc SOLID.",
+        "Khám phá chủ đề chuyên môn: Decorator, Observer và xử lý sự kiện.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: tái cấu trúc ứng dụng mẫu theo nguyên tắc thiết kế."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "clean-architecture-va-kien-truc-ung-dung-net",
@@ -7064,7 +7253,7 @@
         "clean",
         "architecture"
       ],
-      "description": "Khung chương trình đề xuất về clean architecture và kiến trúc ứng dụng .net, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Phân lớp Domain, Application, Infrastructure và API\" đến \"Dự án cuối khóa: API quản lý nghiệp vụ theo Clean Architecture\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "clean-architecture-va-kien-truc-ung-dung-net-lesson-1",
@@ -7143,13 +7332,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Clean Architecture và kiến trúc ứng dụng .NET, thuộc lĩnh vực Kiến trúc và thiết kế phần mềm.",
+      "audience": "Người học quan tâm đến kiến trúc và thiết kế phần mềm và muốn tìm hiểu chủ đề \"Clean Architecture và kiến trúc ứng dụng .NET\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Phân lớp Domain, Application, Infrastructure và API.",
+        "Khám phá chủ đề chuyên môn: Repository, EF Core và biên giới persistence.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: API quản lý nghiệp vụ theo Clean Architecture."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "lam-game-2d-dau-tien-voi-unity",
@@ -7169,7 +7367,7 @@
         "game",
         "unity"
       ],
-      "description": "Khung chương trình đề xuất về làm game 2d đầu tiên với unity, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Cài Unity, cấu trúc scene và GameObject\" đến \"Dự án cuối khóa: game 2D có menu, nhiều màn và điều kiện thắng thua\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "lam-game-2d-dau-tien-voi-unity-lesson-1",
@@ -7248,13 +7446,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Làm game 2D đầu tiên với Unity, thuộc lĩnh vực Phát triển game.",
+      "audience": "Người học quan tâm đến phát triển game và muốn tìm hiểu chủ đề \"Làm game 2D đầu tiên với Unity\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Cài Unity, cấu trúc scene và GameObject.",
+        "Khám phá chủ đề chuyên môn: Va chạm, physics và điều khiển nhân vật.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: game 2D có menu, nhiều màn và điều kiện thắng thua."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "phat-trien-game-3d-voi-unreal-engine",
@@ -7275,7 +7482,7 @@
         "unreal",
         "engine"
       ],
-      "description": "Khung chương trình đề xuất về phát triển game 3d với unreal engine, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Giao diện Unreal, level và actor\" đến \"Dự án cuối khóa: prototype game 3D có mục tiêu và màn kết thúc\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "phat-trien-game-3d-voi-unreal-engine-lesson-1",
@@ -7354,13 +7561,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Phát triển game 3D với Unreal Engine, thuộc lĩnh vực Phát triển game.",
+      "audience": "Người học quan tâm đến phát triển game và muốn tìm hiểu chủ đề \"Phát triển game 3D với Unreal Engine\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Giao diện Unreal, level và actor.",
+        "Khám phá chủ đề chuyên môn: Materials, ánh sáng và môi trường 3D.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: prototype game 3D có mục tiêu và màn kết thúc."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "solidity-va-smart-contract-co-ban",
@@ -7381,7 +7597,7 @@
         "smart",
         "contract"
       ],
-      "description": "Khung chương trình đề xuất về solidity và smart contract cơ bản, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Blockchain, block, transaction, wallet và gas\" đến \"Dự án cuối khóa: hợp đồng lưu hồ sơ mẫu có kiểm thử\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "solidity-va-smart-contract-co-ban-lesson-1",
@@ -7460,13 +7676,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Solidity và Smart Contract cơ bản, thuộc lĩnh vực Blockchain và Web3.",
+      "audience": "Người học quan tâm đến blockchain và web3 và muốn tìm hiểu chủ đề \"Solidity và Smart Contract cơ bản\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Blockchain, block, transaction, wallet và gas.",
+        "Khám phá chủ đề chuyên môn: Mapping, struct, event và error handling.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: hợp đồng lưu hồ sơ mẫu có kiểm thử."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "xay-dung-ung-dung-web3",
@@ -7485,7 +7710,7 @@
         "Xây dựng ứng dụng Web3",
         "web3"
       ],
-      "description": "Khung chương trình đề xuất về xây dựng ứng dụng web3, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Kiến trúc dApp: frontend, wallet và smart contract\" đến \"Dự án cuối khóa: dApp đơn giản tương tác với hợp đồng thử nghiệm\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "xay-dung-ung-dung-web3-lesson-1",
@@ -7564,13 +7789,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Xây dựng ứng dụng Web3, thuộc lĩnh vực Blockchain và Web3.",
+      "audience": "Người học quan tâm đến blockchain và web3 và muốn tìm hiểu chủ đề \"Xây dựng ứng dụng Web3\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Kiến trúc dApp: frontend, wallet và smart contract.",
+        "Khám phá chủ đề chuyên môn: Gọi contract bằng thư viện Web3.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: dApp đơn giản tương tác với hợp đồng thử nghiệm."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "iot-thuc-hanh-voi-esp32",
@@ -7590,7 +7824,7 @@
         "IoT thực hành với ESP32",
         "esp32"
       ],
-      "description": "Khung chương trình đề xuất về iot thực hành với esp32, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Tổng quan IoT, điện cơ bản và an toàn phần cứng\" đến \"Dự án cuối khóa: thiết bị giám sát môi trường có cảnh báo\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "iot-thuc-hanh-voi-esp32-lesson-1",
@@ -7669,13 +7903,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về IoT thực hành với ESP32, thuộc lĩnh vực IoT và hệ thống nhúng.",
+      "audience": "Người học quan tâm đến iot và hệ thống nhúng và muốn tìm hiểu chủ đề \"IoT thực hành với ESP32\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Tổng quan IoT, điện cơ bản và an toàn phần cứng.",
+        "Khám phá chủ đề chuyên môn: Đọc tín hiệu analog, lọc nhiễu và hiệu chỉnh.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: thiết bị giám sát môi trường có cảnh báo."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "lap-trinh-c-cho-he-thong-nhung",
@@ -7694,7 +7937,7 @@
         "robotics",
         "Lập trình C cho hệ thống nhúng"
       ],
-      "description": "Khung chương trình đề xuất về lập trình c cho hệ thống nhúng, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Vi kiến trúc MCU, bộ nhớ và toolchain\" đến \"Dự án cuối khóa: bộ điều khiển cảm biến có nhiều chế độ hoạt động\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "lap-trinh-c-cho-he-thong-nhung-lesson-1",
@@ -7773,13 +8016,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Lập trình C cho hệ thống nhúng, thuộc lĩnh vực IoT và hệ thống nhúng.",
+      "audience": "Người học quan tâm đến iot và hệ thống nhúng và muốn tìm hiểu chủ đề \"Lập trình C cho hệ thống nhúng\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Vi kiến trúc MCU, bộ nhớ và toolchain.",
+        "Khám phá chủ đề chuyên môn: UART, SPI, I2C và giao tiếp ngoại vi.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: bộ điều khiển cảm biến có nhiều chế độ hoạt động."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "design",
@@ -7798,7 +8050,7 @@
         "Figma từ wireframe đến prototype",
         "figma"
       ],
-      "description": "Khung chương trình đề xuất về figma từ wireframe đến prototype, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Nguyên tắc thiết kế giao diện và đọc brief\" đến \"Dự án cuối khóa: prototype ứng dụng có bộ component và tài liệu bàn giao\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "design-lesson-1",
@@ -7877,13 +8129,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Figma từ wireframe đến prototype, thuộc lĩnh vực UI/UX và thiết kế sản phẩm số.",
+      "audience": "Người học quan tâm đến ui/ux và thiết kế sản phẩm số và muốn tìm hiểu chủ đề \"Figma từ wireframe đến prototype\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Nguyên tắc thiết kế giao diện và đọc brief.",
+        "Khám phá chủ đề chuyên môn: Thiết kế luồng người dùng và wireframe.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: prototype ứng dụng có bộ component và tài liệu bàn giao."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "ux-research-va-thiet-ke-lay-nguoi-dung-lam-trung-tam",
@@ -7902,7 +8163,7 @@
         "UX Research và thiết kế lấy người dùng làm trung tâm",
         "research"
       ],
-      "description": "Khung chương trình đề xuất về ux research và thiết kế lấy người dùng làm trung tâm, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Xác định vấn đề, mục tiêu nghiên cứu và giả định\" đến \"Dự án cuối khóa: case study UX từ nghiên cứu đến thiết kế đã kiểm thử\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "ux-research-va-thiet-ke-lay-nguoi-dung-lam-trung-tam-lesson-1",
@@ -7981,13 +8242,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về UX Research và thiết kế lấy người dùng làm trung tâm, thuộc lĩnh vực UI/UX và thiết kế sản phẩm số.",
+      "audience": "Người học quan tâm đến ui/ux và thiết kế sản phẩm số và muốn tìm hiểu chủ đề \"UX Research và thiết kế lấy người dùng làm trung tâm\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Xác định vấn đề, mục tiêu nghiên cứu và giả định.",
+        "Khám phá chủ đề chuyên môn: Phân tích đối thủ và heuristic evaluation.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: case study UX từ nghiên cứu đến thiết kế đã kiểm thử."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "photoshop-cho-thiet-ke-truyen-thong",
@@ -8006,7 +8276,7 @@
         "Photoshop cho thiết kế truyền thông",
         "photoshop"
       ],
-      "description": "Khung chương trình đề xuất về photoshop cho thiết kế truyền thông, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Không gian làm việc, layer và quản lý file\" đến \"Dự án cuối khóa: bộ ấn phẩm truyền thông đa kích thước\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "photoshop-cho-thiet-ke-truyen-thong-lesson-1",
@@ -8085,13 +8355,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Photoshop cho thiết kế truyền thông, thuộc lĩnh vực Thiết kế đồ họa.",
+      "audience": "Người học quan tâm đến thiết kế đồ họa và muốn tìm hiểu chủ đề \"Photoshop cho thiết kế truyền thông\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Không gian làm việc, layer và quản lý file.",
+        "Khám phá chủ đề chuyên môn: Typography và kết hợp hình với chữ.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: bộ ấn phẩm truyền thông đa kích thước."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "illustrator-va-thiet-ke-nhan-dien-thuong-hieu",
@@ -8110,7 +8389,7 @@
         "Illustrator và thiết kế nhận diện thương hiệu",
         "illustrator"
       ],
-      "description": "Khung chương trình đề xuất về illustrator và thiết kế nhận diện thương hiệu, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Vector, path, shape và pen tool\" đến \"Dự án cuối khóa: bộ nhận diện thương hiệu mini có brand guideline\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "illustrator-va-thiet-ke-nhan-dien-thuong-hieu-lesson-1",
@@ -8189,13 +8468,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Illustrator và thiết kế nhận diện thương hiệu, thuộc lĩnh vực Thiết kế đồ họa.",
+      "audience": "Người học quan tâm đến thiết kế đồ họa và muốn tìm hiểu chủ đề \"Illustrator và thiết kế nhận diện thương hiệu\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Vector, path, shape và pen tool.",
+        "Khám phá chủ đề chuyên môn: Tạo pattern, illustration và tài nguyên vector.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: bộ nhận diện thương hiệu mini có brand guideline."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "sketchup-va-dung-mo-hinh-kien-truc",
@@ -8216,7 +8504,7 @@
         "hình",
         "trúc"
       ],
-      "description": "Khung chương trình đề xuất về sketchup và dựng mô hình kiến trúc, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Giao diện, trục tọa độ và thao tác điều hướng\" đến \"Dự án cuối khóa: mô hình căn hộ kèm bộ phối cảnh\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "sketchup-va-dung-mo-hinh-kien-truc-lesson-1",
@@ -8295,13 +8583,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về SketchUp và dựng mô hình kiến trúc, thuộc lĩnh vực Thiết kế 3D và kiến trúc.",
+      "audience": "Người học quan tâm đến thiết kế 3d và kiến trúc và muốn tìm hiểu chủ đề \"SketchUp và dựng mô hình kiến trúc\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Giao diện, trục tọa độ và thao tác điều hướng.",
+        "Khám phá chủ đề chuyên môn: Dựng mặt bằng và mô hình công trình đơn giản.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: mô hình căn hộ kèm bộ phối cảnh."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "blender-3d-tu-modeling-den-rendering",
@@ -8320,7 +8617,7 @@
         "Blender 3D từ modeling đến rendering",
         "blender"
       ],
-      "description": "Khung chương trình đề xuất về blender 3d từ modeling đến rendering, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Giao diện Blender, mesh và transform\" đến \"Dự án cuối khóa: sản phẩm 3D hoàn chỉnh có render trình bày\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "blender-3d-tu-modeling-den-rendering-lesson-1",
@@ -8399,13 +8696,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Blender 3D từ modeling đến rendering, thuộc lĩnh vực Thiết kế 3D và kiến trúc.",
+      "audience": "Người học quan tâm đến thiết kế 3d và kiến trúc và muốn tìm hiểu chủ đề \"Blender 3D từ modeling đến rendering\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Giao diện Blender, mesh và transform.",
+        "Khám phá chủ đề chuyên môn: Shader, vật liệu và hệ thống node.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: sản phẩm 3D hoàn chỉnh có render trình bày."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "nhiep-anh-can-ban-voi-may-anh",
@@ -8423,7 +8729,7 @@
         "chỉnh sửa ảnh",
         "Nhiếp ảnh căn bản với máy ảnh"
       ],
-      "description": "Khung chương trình đề xuất về nhiếp ảnh căn bản với máy ảnh, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Hiểu cảm biến, tiêu cự và các chế độ chụp\" đến \"Dự án cuối khóa: bộ ảnh 8–12 tấm theo một chủ đề\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "nhiep-anh-can-ban-voi-may-anh-lesson-1",
@@ -8502,13 +8808,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Nhiếp ảnh căn bản với máy ảnh, thuộc lĩnh vực Nhiếp ảnh.",
+      "audience": "Người học quan tâm đến nhiếp ảnh và muốn tìm hiểu chủ đề \"Nhiếp ảnh căn bản với máy ảnh\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Hiểu cảm biến, tiêu cự và các chế độ chụp.",
+        "Khám phá chủ đề chuyên môn: Bố cục, đường dẫn mắt và kể chuyện bằng ảnh.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: bộ ảnh 8–12 tấm theo một chủ đề."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "chup-anh-san-pham-va-anh-sang-studio",
@@ -8527,7 +8842,7 @@
         "Chụp ảnh sản phẩm và ánh sáng studio",
         "sáng"
       ],
-      "description": "Khung chương trình đề xuất về chụp ảnh sản phẩm và ánh sáng studio, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Xác định mục tiêu ảnh và chuẩn bị sản phẩm\" đến \"Dự án cuối khóa: bộ ảnh sản phẩm cho một trang bán hàng\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "chup-anh-san-pham-va-anh-sang-studio-lesson-1",
@@ -8606,13 +8921,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Chụp ảnh sản phẩm và ánh sáng studio, thuộc lĩnh vực Nhiếp ảnh.",
+      "audience": "Người học quan tâm đến nhiếp ảnh và muốn tìm hiểu chủ đề \"Chụp ảnh sản phẩm và ánh sáng studio\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Xác định mục tiêu ảnh và chuẩn bị sản phẩm.",
+        "Khám phá chủ đề chuyên môn: Chụp vật liệu bóng, trong suốt và phản chiếu.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: bộ ảnh sản phẩm cho một trang bán hàng."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "dung-video-voi-premiere-pro",
@@ -8631,7 +8955,7 @@
         "Dựng video với Premiere Pro",
         "premiere"
       ],
-      "description": "Khung chương trình đề xuất về dựng video với premiere pro, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Chuẩn bị footage, project và thiết lập sequence\" đến \"Dự án cuối khóa: video 3–5 phút có âm thanh, tiêu đề và phụ đề\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "dung-video-voi-premiere-pro-lesson-1",
@@ -8710,13 +9034,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Dựng video với Premiere Pro, thuộc lĩnh vực Video và sản xuất nội dung.",
+      "audience": "Người học quan tâm đến video và sản xuất nội dung và muốn tìm hiểu chủ đề \"Dựng video với Premiere Pro\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Chuẩn bị footage, project và thiết lập sequence.",
+        "Khám phá chủ đề chuyên môn: Chỉnh màu cơ bản và đồng bộ hình ảnh.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: video 3–5 phút có âm thanh, tiêu đề và phụ đề."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "motion-graphics-nhap-mon-voi-after-effects",
@@ -8738,7 +9071,7 @@
         "after",
         "effects"
       ],
-      "description": "Khung chương trình đề xuất về motion graphics nhập môn với after effects, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Composition, layer, keyframe và timeline\" đến \"Dự án cuối khóa: đoạn motion graphic 20–30 giây cho thương hiệu\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "motion-graphics-nhap-mon-voi-after-effects-lesson-1",
@@ -8817,13 +9150,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Motion Graphics nhập môn với After Effects, thuộc lĩnh vực Video và sản xuất nội dung.",
+      "audience": "Người học quan tâm đến video và sản xuất nội dung và muốn tìm hiểu chủ đề \"Motion Graphics nhập môn với After Effects\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Composition, layer, keyframe và timeline.",
+        "Khám phá chủ đề chuyên môn: Tracking, chroma key và ghép lớp cơ bản.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: đoạn motion graphic 20–30 giây cho thương hiệu."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "xay-dung-kenh-noi-dung-tu-con-so-0",
@@ -8843,7 +9185,7 @@
         "kênh",
         "dung"
       ],
-      "description": "Khung chương trình đề xuất về xây dựng kênh nội dung từ con số 0, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Xác định mục tiêu, chủ đề và đối tượng người xem\" đến \"Dự án cuối khóa: kế hoạch nội dung 30 ngày cùng 3 sản phẩm mẫu\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "xay-dung-kenh-noi-dung-tu-con-so-0-lesson-1",
@@ -8922,13 +9264,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Xây dựng kênh nội dung từ con số 0, thuộc lĩnh vực Sáng tạo nội dung số.",
+      "audience": "Người học quan tâm đến sáng tạo nội dung số và muốn tìm hiểu chủ đề \"Xây dựng kênh nội dung từ con số 0\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Xác định mục tiêu, chủ đề và đối tượng người xem.",
+        "Khám phá chủ đề chuyên môn: Viết hook, dàn ý và kịch bản ngắn.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: kế hoạch nội dung 30 ngày cùng 3 sản phẩm mẫu."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "san-xuat-video-ngan-cho-tiktok-va-reels",
@@ -8947,7 +9298,7 @@
         "Sản xuất video ngắn cho TikTok và Reels",
         "tiktok"
       ],
-      "description": "Khung chương trình đề xuất về sản xuất video ngắn cho tiktok và reels, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Hiểu định dạng dọc, thời lượng và mục tiêu video\" đến \"Dự án cuối khóa: sản xuất một series 5 video có kế hoạch đo lường\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "san-xuat-video-ngan-cho-tiktok-va-reels-lesson-1",
@@ -9026,13 +9377,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Sản xuất video ngắn cho TikTok và Reels, thuộc lĩnh vực Sáng tạo nội dung số.",
+      "audience": "Người học quan tâm đến sáng tạo nội dung số và muốn tìm hiểu chủ đề \"Sản xuất video ngắn cho TikTok và Reels\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Hiểu định dạng dọc, thời lượng và mục tiêu video.",
+        "Khám phá chủ đề chuyên môn: Quay bằng điện thoại, bố cục và ánh sáng.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: sản xuất một series 5 video có kế hoạch đo lường."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "marketing",
@@ -9050,7 +9410,7 @@
         "analytics",
         "Digital Marketing nền tảng"
       ],
-      "description": "Khung chương trình đề xuất về digital marketing nền tảng, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Phễu marketing, chân dung khách hàng và hành trình mua\" đến \"Dự án cuối khóa: kế hoạch digital marketing cho sản phẩm mẫu\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "marketing-lesson-1",
@@ -9129,13 +9489,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Digital Marketing nền tảng, thuộc lĩnh vực Digital Marketing.",
+      "audience": "Người học quan tâm đến digital marketing và muốn tìm hiểu chủ đề \"Digital Marketing nền tảng\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Phễu marketing, chân dung khách hàng và hành trình mua.",
+        "Khám phá chủ đề chuyên môn: SEO cơ bản và nội dung tìm kiếm.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: kế hoạch digital marketing cho sản phẩm mẫu."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "quang-cao-hieu-suat-va-toi-uu-chien-dich",
@@ -9153,7 +9522,7 @@
         "analytics",
         "Quảng cáo hiệu suất và tối ưu chiến dịch"
       ],
-      "description": "Khung chương trình đề xuất về quảng cáo hiệu suất và tối ưu chiến dịch, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Mục tiêu chiến dịch, ngân sách và chỉ số đo lường\" đến \"Dự án cuối khóa: kế hoạch thử nghiệm quảng cáo với dữ liệu mô phỏng\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "quang-cao-hieu-suat-va-toi-uu-chien-dich-lesson-1",
@@ -9232,13 +9601,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Quảng cáo hiệu suất và tối ưu chiến dịch, thuộc lĩnh vực Digital Marketing.",
+      "audience": "Người học quan tâm đến digital marketing và muốn tìm hiểu chủ đề \"Quảng cáo hiệu suất và tối ưu chiến dịch\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Mục tiêu chiến dịch, ngân sách và chỉ số đo lường.",
+        "Khám phá chủ đề chuyên môn: Thiết lập tracking chuyển đổi và kiểm tra dữ liệu.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: kế hoạch thử nghiệm quảng cáo với dữ liệu mô phỏng."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "viet-noi-dung-seo-tu-nghien-cuu-den-xuat-ban",
@@ -9257,7 +9635,7 @@
         "Viết nội dung SEO từ nghiên cứu đến xuất bản",
         "dung"
       ],
-      "description": "Khung chương trình đề xuất về viết nội dung seo từ nghiên cứu đến xuất bản, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Ý định tìm kiếm và nghiên cứu câu hỏi người đọc\" đến \"Dự án cuối khóa: xuất bản cụm 3 bài viết có liên kết chủ đề\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "viet-noi-dung-seo-tu-nghien-cuu-den-xuat-ban-lesson-1",
@@ -9336,13 +9714,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Viết nội dung SEO từ nghiên cứu đến xuất bản, thuộc lĩnh vực Content Marketing và Copywriting.",
+      "audience": "Người học quan tâm đến content marketing và copywriting và muốn tìm hiểu chủ đề \"Viết nội dung SEO từ nghiên cứu đến xuất bản\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Ý định tìm kiếm và nghiên cứu câu hỏi người đọc.",
+        "Khám phá chủ đề chuyên môn: Viết mở bài, nội dung chính và ví dụ minh họa.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: xuất bản cụm 3 bài viết có liên kết chủ đề."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "copywriting-cho-landing-page-va-email",
@@ -9363,7 +9750,7 @@
         "landing",
         "page"
       ],
-      "description": "Khung chương trình đề xuất về copywriting cho landing page và email, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Tìm hiểu sản phẩm, khách hàng và rào cản mua\" đến \"Dự án cuối khóa: landing page và chuỗi 3 email cho một sản phẩm\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "copywriting-cho-landing-page-va-email-lesson-1",
@@ -9442,13 +9829,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Copywriting cho landing page và email, thuộc lĩnh vực Content Marketing và Copywriting.",
+      "audience": "Người học quan tâm đến content marketing và copywriting và muốn tìm hiểu chủ đề \"Copywriting cho landing page và email\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Tìm hiểu sản phẩm, khách hàng và rào cản mua.",
+        "Khám phá chủ đề chuyên môn: Viết hero, lợi ích, FAQ và lời kêu gọi hành động.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: landing page và chuỗi 3 email cho một sản phẩm."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "ky-nang-ban-hang-tu-van",
@@ -9467,7 +9863,7 @@
         "Kỹ năng bán hàng tư vấn",
         "hàng"
       ],
-      "description": "Khung chương trình đề xuất về kỹ năng bán hàng tư vấn, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Quy trình bán hàng và đạo đức nghề bán hàng\" đến \"Bài tập cuối khóa: mô phỏng cuộc tư vấn từ mở đầu đến follow-up\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "ky-nang-ban-hang-tu-van-lesson-1",
@@ -9546,13 +9942,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Kỹ năng bán hàng tư vấn, thuộc lĩnh vực Kinh doanh và bán hàng.",
+      "audience": "Người học quan tâm đến kinh doanh và bán hàng và muốn tìm hiểu chủ đề \"Kỹ năng bán hàng tư vấn\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Quy trình bán hàng và đạo đức nghề bán hàng.",
+        "Khám phá chủ đề chuyên môn: Trình bày giá trị thay vì chỉ nêu tính năng.",
+        "Tổng hợp lộ trình qua đề mục cuối: Bài tập cuối khóa: mô phỏng cuộc tư vấn từ mở đầu đến follow-up."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "ban-hang-b2b-va-quan-ly-co-hoi",
@@ -9571,7 +9976,7 @@
         "Bán hàng B2B và quản lý cơ hội",
         "hàng"
       ],
-      "description": "Khung chương trình đề xuất về bán hàng b2b và quản lý cơ hội, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Mô hình B2B, hội đồng mua và quy trình ra quyết định\" đến \"Dự án cuối khóa: pipeline mẫu với kế hoạch tiếp cận 10 tài khoản\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "ban-hang-b2b-va-quan-ly-co-hoi-lesson-1",
@@ -9650,13 +10055,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Bán hàng B2B và quản lý cơ hội, thuộc lĩnh vực Kinh doanh và bán hàng.",
+      "audience": "Người học quan tâm đến kinh doanh và bán hàng và muốn tìm hiểu chủ đề \"Bán hàng B2B và quản lý cơ hội\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Mô hình B2B, hội đồng mua và quy trình ra quyết định.",
+        "Khám phá chủ đề chuyên môn: Đánh giá nhu cầu, ngân sách, quyền quyết định và thời gian.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: pipeline mẫu với kế hoạch tiếp cận 10 tài khoản."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "khoi-tao-cua-hang-truc-tuyen",
@@ -9674,7 +10088,7 @@
         "Khởi tạo cửa hàng trực tuyến",
         "hàng"
       ],
-      "description": "Khung chương trình đề xuất về khởi tạo cửa hàng trực tuyến, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Mô hình e-commerce, chọn ngách và nghiên cứu đối thủ\" đến \"Dự án cuối khóa: dựng cửa hàng demo từ danh mục đến quy trình đơn\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "khoi-tao-cua-hang-truc-tuyen-lesson-1",
@@ -9753,13 +10167,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Khởi tạo cửa hàng trực tuyến, thuộc lĩnh vực Thương mại điện tử.",
+      "audience": "Người học quan tâm đến thương mại điện tử và muốn tìm hiểu chủ đề \"Khởi tạo cửa hàng trực tuyến\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Mô hình e-commerce, chọn ngách và nghiên cứu đối thủ.",
+        "Khám phá chủ đề chuyên môn: Ảnh sản phẩm, trang chi tiết và chính sách mua hàng.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: dựng cửa hàng demo từ danh mục đến quy trình đơn."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "toi-uu-chuyen-doi-cho-website-ban-hang",
@@ -9777,7 +10200,7 @@
         "Tối ưu chuyển đổi cho website bán hàng",
         "hàng"
       ],
-      "description": "Khung chương trình đề xuất về tối ưu chuyển đổi cho website bán hàng, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Đọc funnel và xác định điểm rơi chuyển đổi\" đến \"Dự án cuối khóa: kế hoạch CRO dựa trên bộ dữ liệu giả lập\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "toi-uu-chuyen-doi-cho-website-ban-hang-lesson-1",
@@ -9856,13 +10279,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Tối ưu chuyển đổi cho website bán hàng, thuộc lĩnh vực Thương mại điện tử.",
+      "audience": "Người học quan tâm đến thương mại điện tử và muốn tìm hiểu chủ đề \"Tối ưu chuyển đổi cho website bán hàng\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Đọc funnel và xác định điểm rơi chuyển đổi.",
+        "Khám phá chủ đề chuyên môn: Giảm ma sát trong giỏ hàng và checkout.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: kế hoạch CRO dựa trên bộ dữ liệu giả lập."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "quan-tri-doanh-nghiep-cho-nguoi-moi",
@@ -9879,7 +10311,7 @@
         "quản lý hiệu suất",
         "Quản trị doanh nghiệp cho người mới"
       ],
-      "description": "Khung chương trình đề xuất về quản trị doanh nghiệp cho người mới, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Vai trò quản trị và các chức năng lập kế hoạch–tổ chức–điều hành\" đến \"Dự án cuối khóa: kế hoạch vận hành 90 ngày cho nhóm nhỏ\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "quan-tri-doanh-nghiep-cho-nguoi-moi-lesson-1",
@@ -9958,13 +10390,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Quản trị doanh nghiệp cho người mới, thuộc lĩnh vực Quản trị doanh nghiệp.",
+      "audience": "Người học quan tâm đến quản trị doanh nghiệp và muốn tìm hiểu chủ đề \"Quản trị doanh nghiệp cho người mới\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Vai trò quản trị và các chức năng lập kế hoạch–tổ chức–điều hành.",
+        "Khám phá chủ đề chuyên môn: Lập ngân sách và phân bổ nguồn lực.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: kế hoạch vận hành 90 ngày cho nhóm nhỏ."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "quan-ly-van-hanh-va-cai-tien-quy-trinh",
@@ -9983,7 +10424,7 @@
         "hành",
         "trình"
       ],
-      "description": "Khung chương trình đề xuất về quản lý vận hành và cải tiến quy trình, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Vẽ quy trình hiện tại và xác định điểm nghẽn\" đến \"Dự án cuối khóa: cải tiến một quy trình với baseline và KPI\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "quan-ly-van-hanh-va-cai-tien-quy-trinh-lesson-1",
@@ -10062,13 +10503,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Quản lý vận hành và cải tiến quy trình, thuộc lĩnh vực Quản trị doanh nghiệp.",
+      "audience": "Người học quan tâm đến quản trị doanh nghiệp và muốn tìm hiểu chủ đề \"Quản lý vận hành và cải tiến quy trình\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Vẽ quy trình hiện tại và xác định điểm nghẽn.",
+        "Khám phá chủ đề chuyên môn: Chuẩn hóa SOP và trách nhiệm thực hiện.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: cải tiến một quy trình với baseline và KPI."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "quan-ly-du-an-theo-agile-va-scrum",
@@ -10089,7 +10539,7 @@
         "agile",
         "scrum"
       ],
-      "description": "Khung chương trình đề xuất về quản lý dự án theo agile và scrum, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Dự án, sản phẩm, phạm vi và giá trị cần bàn giao\" đến \"Dự án cuối khóa: mô phỏng ba sprint cho sản phẩm nhỏ\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "quan-ly-du-an-theo-agile-va-scrum-lesson-1",
@@ -10168,13 +10618,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Quản lý dự án theo Agile và Scrum, thuộc lĩnh vực Quản lý dự án.",
+      "audience": "Người học quan tâm đến quản lý dự án và muốn tìm hiểu chủ đề \"Quản lý dự án theo Agile và Scrum\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Dự án, sản phẩm, phạm vi và giá trị cần bàn giao.",
+        "Khám phá chủ đề chuyên môn: Ước lượng, ưu tiên và lập kế hoạch sprint.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: mô phỏng ba sprint cho sản phẩm nhỏ."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "quan-ly-du-an-tu-khoi-dong-den-ban-giao",
@@ -10193,7 +10652,7 @@
         "stakeholder",
         "Quản lý dự án từ khởi động đến bàn giao"
       ],
-      "description": "Khung chương trình đề xuất về quản lý dự án từ khởi động đến bàn giao, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Business case, mục tiêu và tiêu chí thành công\" đến \"Dự án cuối khóa: bộ kế hoạch dự án có lịch, ngân sách và risk register\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "quan-ly-du-an-tu-khoi-dong-den-ban-giao-lesson-1",
@@ -10272,13 +10731,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Quản lý dự án từ khởi động đến bàn giao, thuộc lĩnh vực Quản lý dự án.",
+      "audience": "Người học quan tâm đến quản lý dự án và muốn tìm hiểu chủ đề \"Quản lý dự án từ khởi động đến bàn giao\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Business case, mục tiêu và tiêu chí thành công.",
+        "Khám phá chủ đề chuyên môn: Lập lịch và phân công trách nhiệm.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: bộ kế hoạch dự án có lịch, ngân sách và risk register."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "quan-ly-tai-chinh-ca-nhan",
@@ -10297,7 +10765,7 @@
         "chính",
         "nhân"
       ],
-      "description": "Khung chương trình đề xuất về quản lý tài chính cá nhân, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Thu nhập, chi phí, tài sản, nợ và dòng tiền\" đến \"Bài tập cuối khóa: lập kế hoạch ngân sách cá nhân 12 tháng\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "quan-ly-tai-chinh-ca-nhan-lesson-1",
@@ -10376,13 +10844,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Quản lý tài chính cá nhân, thuộc lĩnh vực Tài chính và đầu tư.",
+      "audience": "Người học quan tâm đến tài chính và đầu tư và muốn tìm hiểu chủ đề \"Quản lý tài chính cá nhân\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Thu nhập, chi phí, tài sản, nợ và dòng tiền.",
+        "Khám phá chủ đề chuyên môn: Lãi đơn, lãi kép, lạm phát và giá trị thời gian của tiền.",
+        "Tổng hợp lộ trình qua đề mục cuối: Bài tập cuối khóa: lập kế hoạch ngân sách cá nhân 12 tháng."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "doc-hieu-bao-cao-tai-chinh-va-dinh-gia-co-ban",
@@ -10400,7 +10877,7 @@
         "Đọc hiểu báo cáo tài chính và định giá cơ bản",
         "chính"
       ],
-      "description": "Khung chương trình đề xuất về đọc hiểu báo cáo tài chính và định giá cơ bản, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Mục tiêu phân tích và các báo cáo tài chính chính\" đến \"Dự án cuối khóa: bản phân tích công ty từ bộ báo cáo mẫu\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "doc-hieu-bao-cao-tai-chinh-va-dinh-gia-co-ban-lesson-1",
@@ -10479,13 +10956,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Đọc hiểu báo cáo tài chính và định giá cơ bản, thuộc lĩnh vực Tài chính và đầu tư.",
+      "audience": "Người học quan tâm đến tài chính và đầu tư và muốn tìm hiểu chủ đề \"Đọc hiểu báo cáo tài chính và định giá cơ bản\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Mục tiêu phân tích và các báo cáo tài chính chính.",
+        "Khám phá chủ đề chuyên môn: Chất lượng lợi nhuận và các dấu hiệu cần kiểm tra.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: bản phân tích công ty từ bộ báo cáo mẫu."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "nguyen-ly-ke-toan-doanh-nghiep",
@@ -10503,7 +10989,7 @@
         "Nguyên lý kế toán doanh nghiệp",
         "toán"
       ],
-      "description": "Khung chương trình đề xuất về nguyên lý kế toán doanh nghiệp, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Mục đích kế toán và phương trình kế toán\" đến \"Bài tập cuối khóa: ghi sổ một kỳ kế toán cho doanh nghiệp giả lập\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "nguyen-ly-ke-toan-doanh-nghiep-lesson-1",
@@ -10582,13 +11068,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Nguyên lý kế toán doanh nghiệp, thuộc lĩnh vực Kế toán và kiểm toán.",
+      "audience": "Người học quan tâm đến kế toán và kiểm toán và muốn tìm hiểu chủ đề \"Nguyên lý kế toán doanh nghiệp\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Mục đích kế toán và phương trình kế toán.",
+        "Khám phá chủ đề chuyên môn: Ghi nhận doanh thu, chi phí, tài sản và công nợ.",
+        "Tổng hợp lộ trình qua đề mục cuối: Bài tập cuối khóa: ghi sổ một kỳ kế toán cho doanh nghiệp giả lập."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "doc-bao-cao-tai-chinh-va-kiem-soat-chung-tu",
@@ -10607,7 +11102,7 @@
         "chính",
         "soát"
       ],
-      "description": "Khung chương trình đề xuất về đọc báo cáo tài chính và kiểm soát chứng từ, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Cấu trúc và mối liên hệ giữa các báo cáo\" đến \"Dự án cuối khóa: rà soát bộ chứng từ và lập báo cáo phát hiện\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "doc-bao-cao-tai-chinh-va-kiem-soat-chung-tu-lesson-1",
@@ -10686,13 +11181,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Đọc báo cáo tài chính và kiểm soát chứng từ, thuộc lĩnh vực Kế toán và kiểm toán.",
+      "audience": "Người học quan tâm đến kế toán và kiểm toán và muốn tìm hiểu chủ đề \"Đọc báo cáo tài chính và kiểm soát chứng từ\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Cấu trúc và mối liên hệ giữa các báo cáo.",
+        "Khám phá chủ đề chuyên môn: Phân tích biến động và các khoản bất thường.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: rà soát bộ chứng từ và lập báo cáo phát hiện."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "tuyen-dung-tu-mo-ta-cong-viec-den-nhan-viec",
@@ -10710,7 +11214,7 @@
         "văn hóa doanh nghiệp",
         "Tuyển dụng từ mô tả công việc đến nhận việc"
       ],
-      "description": "Khung chương trình đề xuất về tuyển dụng từ mô tả công việc đến nhận việc, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Vai trò tuyển dụng và kế hoạch nhân lực\" đến \"Dự án cuối khóa: quy trình tuyển dụng cho một vị trí mẫu\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "tuyen-dung-tu-mo-ta-cong-viec-den-nhan-viec-lesson-1",
@@ -10789,13 +11293,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Tuyển dụng từ mô tả công việc đến nhận việc, thuộc lĩnh vực Nhân sự.",
+      "audience": "Người học quan tâm đến nhân sự và muốn tìm hiểu chủ đề \"Tuyển dụng từ mô tả công việc đến nhận việc\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Vai trò tuyển dụng và kế hoạch nhân lực.",
+        "Khám phá chủ đề chuyên môn: Sàng lọc CV và phỏng vấn có cấu trúc.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: quy trình tuyển dụng cho một vị trí mẫu."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "van-hanh-nhan-su-va-quan-ly-hieu-suat",
@@ -10813,7 +11326,7 @@
         "văn hóa doanh nghiệp",
         "Vận hành nhân sự và quản lý hiệu suất"
       ],
-      "description": "Khung chương trình đề xuất về vận hành nhân sự và quản lý hiệu suất, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Vòng đời nhân viên và hồ sơ nhân sự\" đến \"Dự án cuối khóa: thiết kế bộ quy trình HR cho doanh nghiệp nhỏ\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "van-hanh-nhan-su-va-quan-ly-hieu-suat-lesson-1",
@@ -10892,13 +11405,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Vận hành nhân sự và quản lý hiệu suất, thuộc lĩnh vực Nhân sự.",
+      "audience": "Người học quan tâm đến nhân sự và muốn tìm hiểu chủ đề \"Vận hành nhân sự và quản lý hiệu suất\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Vòng đời nhân viên và hồ sơ nhân sự.",
+        "Khám phá chủ đề chuyên môn: Đào tạo, phân tích nhu cầu và kế hoạch phát triển.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: thiết kế bộ quy trình HR cho doanh nghiệp nhỏ."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "nen-tang-logistics-va-chuoi-cung-ung",
@@ -10916,7 +11438,7 @@
         "hoạch định nhu cầu",
         "Nền tảng Logistics và chuỗi cung ứng"
       ],
-      "description": "Khung chương trình đề xuất về nền tảng logistics và chuỗi cung ứng, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Dòng hàng, dòng thông tin và dòng tiền trong chuỗi cung ứng\" đến \"Dự án cuối khóa: lập kế hoạch chuỗi cung ứng cho sản phẩm mẫu\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "nen-tang-logistics-va-chuoi-cung-ung-lesson-1",
@@ -10995,13 +11517,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Nền tảng Logistics và chuỗi cung ứng, thuộc lĩnh vực Logistics và chuỗi cung ứng.",
+      "audience": "Người học quan tâm đến logistics và chuỗi cung ứng và muốn tìm hiểu chủ đề \"Nền tảng Logistics và chuỗi cung ứng\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Dòng hàng, dòng thông tin và dòng tiền trong chuỗi cung ứng.",
+        "Khám phá chủ đề chuyên môn: Quản lý nhà cung cấp và quy trình mua hàng.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: lập kế hoạch chuỗi cung ứng cho sản phẩm mẫu."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "quan-ly-kho-va-nghiep-vu-xuat-nhap-khau",
@@ -11019,7 +11550,7 @@
         "hoạch định nhu cầu",
         "Quản lý kho và nghiệp vụ xuất nhập khẩu"
       ],
-      "description": "Khung chương trình đề xuất về quản lý kho và nghiệp vụ xuất nhập khẩu, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Bố trí kho, luồng nhập–lưu–soạn–xuất\" đến \"Dự án cuối khóa: mô phỏng quy trình đơn nhập khẩu đến giao kho\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "quan-ly-kho-va-nghiep-vu-xuat-nhap-khau-lesson-1",
@@ -11098,13 +11629,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Quản lý kho và nghiệp vụ xuất nhập khẩu, thuộc lĩnh vực Logistics và chuỗi cung ứng.",
+      "audience": "Người học quan tâm đến logistics và chuỗi cung ứng và muốn tìm hiểu chủ đề \"Quản lý kho và nghiệp vụ xuất nhập khẩu\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Bố trí kho, luồng nhập–lưu–soạn–xuất.",
+        "Khám phá chủ đề chuyên môn: Chứng từ thương mại và bộ hồ sơ cơ bản.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: mô phỏng quy trình đơn nhập khẩu đến giao kho."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "tieng-anh-nen-tang-a1-a2",
@@ -11121,7 +11661,7 @@
         "tiếng Anh IT",
         "Tiếng Anh nền tảng A1–A2"
       ],
-      "description": "Khung chương trình đề xuất về tiếng anh nền tảng a1–a2, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Phát âm, bảng chữ cái, số và cách đánh vần\" đến \"Bài tổng kết: hội thoại thực tế và hồ sơ tự học cá nhân\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "tieng-anh-nen-tang-a1-a2-lesson-1",
@@ -11200,13 +11740,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Tiếng Anh nền tảng A1–A2, thuộc lĩnh vực Tiếng Anh.",
+      "audience": "Người học quan tâm đến tiếng anh và muốn tìm hiểu chủ đề \"Tiếng Anh nền tảng A1–A2\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Phát âm, bảng chữ cái, số và cách đánh vần.",
+        "Khám phá chủ đề chuyên môn: Từ vựng hằng ngày, thời gian, lịch và thói quen.",
+        "Tổng hợp lộ trình qua đề mục cuối: Bài tổng kết: hội thoại thực tế và hồ sơ tự học cá nhân."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "english",
@@ -11224,7 +11773,7 @@
         "Tiếng Anh giao tiếp trong môi trường công việc",
         "giao"
       ],
-      "description": "Khung chương trình đề xuất về tiếng anh giao tiếp trong môi trường công việc, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Giới thiệu bản thân và mô tả vai trò công việc\" đến \"Dự án cuối khóa: mô phỏng một tuần giao tiếp tại nơi làm việc\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "english-lesson-1",
@@ -11303,13 +11852,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Tiếng Anh giao tiếp trong môi trường công việc, thuộc lĩnh vực Tiếng Anh.",
+      "audience": "Người học quan tâm đến tiếng anh và muốn tìm hiểu chủ đề \"Tiếng Anh giao tiếp trong môi trường công việc\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Giới thiệu bản thân và mô tả vai trò công việc.",
+        "Khám phá chủ đề chuyên môn: Tham gia họp, xin làm rõ và tóm tắt ý kiến.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: mô phỏng một tuần giao tiếp tại nơi làm việc."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "tieng-nhat-nhap-mon-huong-den-jlpt-n5",
@@ -11326,7 +11884,7 @@
         "Đức và giao tiếp đa ngôn ngữ",
         "Tiếng Nhật nhập môn hướng đến JLPT N5"
       ],
-      "description": "Khung chương trình đề xuất về tiếng nhật nhập môn hướng đến jlpt n5, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Hiragana, phát âm và quy tắc viết cơ bản\" đến \"Bài tổng kết: hội thoại và bài ôn tập theo dạng N5\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "tieng-nhat-nhap-mon-huong-den-jlpt-n5-lesson-1",
@@ -11405,13 +11963,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Tiếng Nhật nhập môn hướng đến JLPT N5, thuộc lĩnh vực Ngoại ngữ khác.",
+      "audience": "Người học quan tâm đến ngoại ngữ khác và muốn tìm hiểu chủ đề \"Tiếng Nhật nhập môn hướng đến JLPT N5\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Hiragana, phát âm và quy tắc viết cơ bản.",
+        "Khám phá chủ đề chuyên môn: Trật tự câu, trợ từ は・の・を・に.",
+        "Tổng hợp lộ trình qua đề mục cuối: Bài tổng kết: hội thoại và bài ôn tập theo dạng N5."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "tieng-han-so-cap-danh-cho-nguoi-moi",
@@ -11428,7 +11995,7 @@
         "Đức và giao tiếp đa ngôn ngữ",
         "Tiếng Hàn sơ cấp dành cho người mới"
       ],
-      "description": "Khung chương trình đề xuất về tiếng hàn sơ cấp dành cho người mới, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Hangeul, nguyên âm, phụ âm và quy tắc phát âm\" đến \"Bài tổng kết: hội thoại đời sống theo chủ đề\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "tieng-han-so-cap-danh-cho-nguoi-moi-lesson-1",
@@ -11507,13 +12074,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Tiếng Hàn sơ cấp dành cho người mới, thuộc lĩnh vực Ngoại ngữ khác.",
+      "audience": "Người học quan tâm đến ngoại ngữ khác và muốn tìm hiểu chủ đề \"Tiếng Hàn sơ cấp dành cho người mới\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Hangeul, nguyên âm, phụ âm và quy tắc phát âm.",
+        "Khám phá chủ đề chuyên môn: Số thuần Hàn, số Hán Hàn, giờ và ngày tháng.",
+        "Tổng hợp lộ trình qua đề mục cuối: Bài tổng kết: hội thoại đời sống theo chủ đề."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "thiet-ke-khoa-hoc-va-chuong-trinh-hoc",
@@ -11529,7 +12105,7 @@
         "đánh giá học tập",
         "Thiết kế khóa học và chương trình học"
       ],
-      "description": "Khung chương trình đề xuất về thiết kế khóa học và chương trình học, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Xác định người học, bối cảnh và nhu cầu\" đến \"Dự án cuối khóa: bản thiết kế khóa học có mục tiêu, bài học và đánh giá\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "thiet-ke-khoa-hoc-va-chuong-trinh-hoc-lesson-1",
@@ -11608,13 +12184,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Thiết kế khóa học và chương trình học, thuộc lĩnh vực Giáo dục và đào tạo.",
+      "audience": "Người học quan tâm đến giáo dục và đào tạo và muốn tìm hiểu chủ đề \"Thiết kế khóa học và chương trình học\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Xác định người học, bối cảnh và nhu cầu.",
+        "Khám phá chủ đề chuyên môn: Chọn hoạt động học và phương pháp giảng dạy.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: bản thiết kế khóa học có mục tiêu, bài học và đánh giá."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "giang-day-truc-tuyen-hieu-qua",
@@ -11630,7 +12215,7 @@
         "đánh giá học tập",
         "Giảng dạy trực tuyến hiệu quả"
       ],
-      "description": "Khung chương trình đề xuất về giảng dạy trực tuyến hiệu quả, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Đặc điểm học trực tuyến và duy trì sự chú ý\" đến \"Dự án cuối khóa: xây dựng một module học online hoàn chỉnh\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "giang-day-truc-tuyen-hieu-qua-lesson-1",
@@ -11709,13 +12294,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Giảng dạy trực tuyến hiệu quả, thuộc lĩnh vực Giáo dục và đào tạo.",
+      "audience": "Người học quan tâm đến giáo dục và đào tạo và muốn tìm hiểu chủ đề \"Giảng dạy trực tuyến hiệu quả\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Đặc điểm học trực tuyến và duy trì sự chú ý.",
+        "Khám phá chủ đề chuyên môn: Tổ chức tương tác, thảo luận và hoạt động nhóm.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: xây dựng một module học online hoàn chỉnh."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "giao-tiep-va-hop-tac-trong-cong-viec",
@@ -11733,7 +12327,7 @@
         "Giao tiếp và hợp tác trong công việc",
         "giao"
       ],
-      "description": "Khung chương trình đề xuất về giao tiếp và hợp tác trong công việc, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Lắng nghe chủ động và đặt câu hỏi làm rõ\" đến \"Bài tập cuối khóa: xử lý bộ tình huống giao tiếp tại nơi làm việc\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "giao-tiep-va-hop-tac-trong-cong-viec-lesson-1",
@@ -11812,13 +12406,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Giao tiếp và hợp tác trong công việc, thuộc lĩnh vực Kỹ năng mềm.",
+      "audience": "Người học quan tâm đến kỹ năng mềm và muốn tìm hiểu chủ đề \"Giao tiếp và hợp tác trong công việc\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Lắng nghe chủ động và đặt câu hỏi làm rõ.",
+        "Khám phá chủ đề chuyên môn: Giao tiếp bằng văn bản và chọn kênh phù hợp.",
+        "Tổng hợp lộ trình qua đề mục cuối: Bài tập cuối khóa: xử lý bộ tình huống giao tiếp tại nơi làm việc."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "thuyet-trinh-va-ke-chuyen-bang-du-lieu",
@@ -11837,7 +12440,7 @@
         "thuy",
         "trình"
       ],
-      "description": "Khung chương trình đề xuất về thuyết trình và kể chuyện bằng dữ liệu, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Xác định thông điệp chính và nhu cầu khán giả\" đến \"Dự án cuối khóa: bài thuyết trình 5–7 phút kèm bộ slide\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "thuyet-trinh-va-ke-chuyen-bang-du-lieu-lesson-1",
@@ -11916,13 +12519,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Thuyết trình và kể chuyện bằng dữ liệu, thuộc lĩnh vực Kỹ năng mềm.",
+      "audience": "Người học quan tâm đến kỹ năng mềm và muốn tìm hiểu chủ đề \"Thuyết trình và kể chuyện bằng dữ liệu\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Xác định thông điệp chính và nhu cầu khán giả.",
+        "Khám phá chủ đề chuyên môn: Thiết kế slide có phân cấp thị giác.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: bài thuyết trình 5–7 phút kèm bộ slide."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "quan-ly-thoi-gian-va-muc-tieu-ca-nhan",
@@ -11942,7 +12554,7 @@
         "tiêu",
         "nhân"
       ],
-      "description": "Khung chương trình đề xuất về quản lý thời gian và mục tiêu cá nhân, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Đánh giá cách sử dụng thời gian hiện tại\" đến \"Dự án cuối khóa: kế hoạch hành động 30 ngày có thước đo\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "quan-ly-thoi-gian-va-muc-tieu-ca-nhan-lesson-1",
@@ -12021,13 +12633,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Quản lý thời gian và mục tiêu cá nhân, thuộc lĩnh vực Năng suất và phát triển cá nhân.",
+      "audience": "Người học quan tâm đến năng suất và phát triển cá nhân và muốn tìm hiểu chủ đề \"Quản lý thời gian và mục tiêu cá nhân\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Đánh giá cách sử dụng thời gian hiện tại.",
+        "Khám phá chủ đề chuyên môn: Ưu tiên công việc và xử lý việc khẩn cấp.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: kế hoạch hành động 30 ngày có thước đo."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "he-thong-ghi-chu-va-quan-ly-tri-thuc-ca-nhan",
@@ -12045,7 +12666,7 @@
         "Hệ thống ghi chú và quản lý tri thức cá nhân",
         "nhân"
       ],
-      "description": "Khung chương trình đề xuất về hệ thống ghi chú và quản lý tri thức cá nhân, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Xác định mục đích của hệ thống ghi chú\" đến \"Dự án cuối khóa: xây dựng kho tri thức cá nhân có cấu trúc\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "he-thong-ghi-chu-va-quan-ly-tri-thuc-ca-nhan-lesson-1",
@@ -12124,13 +12745,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Hệ thống ghi chú và quản lý tri thức cá nhân, thuộc lĩnh vực Năng suất và phát triển cá nhân.",
+      "audience": "Người học quan tâm đến năng suất và phát triển cá nhân và muốn tìm hiểu chủ đề \"Hệ thống ghi chú và quản lý tri thức cá nhân\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Xác định mục đích của hệ thống ghi chú.",
+        "Khám phá chủ đề chuyên môn: Liên kết ghi chú và tạo kiến thức có thể tái sử dụng.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: xây dựng kho tri thức cá nhân có cấu trúc."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "excel-tu-co-ban-den-bao-cao",
@@ -12148,7 +12778,7 @@
         "Excel từ cơ bản đến báo cáo",
         "excel"
       ],
-      "description": "Khung chương trình đề xuất về excel từ cơ bản đến báo cáo, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Giao diện, định dạng dữ liệu và quản lý workbook\" đến \"Dự án cuối khóa: báo cáo quản lý bán hàng từ dữ liệu thô\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "excel-tu-co-ban-den-bao-cao-lesson-1",
@@ -12227,13 +12857,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Excel từ cơ bản đến báo cáo, thuộc lĩnh vực Tin học văn phòng.",
+      "audience": "Người học quan tâm đến tin học văn phòng và muốn tìm hiểu chủ đề \"Excel từ cơ bản đến báo cáo\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Giao diện, định dạng dữ liệu và quản lý workbook.",
+        "Khám phá chủ đề chuyên môn: Sắp xếp, lọc, validation và định dạng có điều kiện.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: báo cáo quản lý bán hàng từ dữ liệu thô."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "word-va-powerpoint-cho-tai-lieu-chuyen-nghiep",
@@ -12252,7 +12891,7 @@
         "word",
         "powerpoint"
       ],
-      "description": "Khung chương trình đề xuất về word và powerpoint cho tài liệu chuyên nghiệp, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Thiết lập tài liệu, style và cấu trúc heading\" đến \"Dự án cuối khóa: bộ báo cáo Word và slide thuyết trình đồng nhất\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "word-va-powerpoint-cho-tai-lieu-chuyen-nghiep-lesson-1",
@@ -12331,13 +12970,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Word và PowerPoint cho tài liệu chuyên nghiệp, thuộc lĩnh vực Tin học văn phòng.",
+      "audience": "Người học quan tâm đến tin học văn phòng và muốn tìm hiểu chủ đề \"Word và PowerPoint cho tài liệu chuyên nghiệp\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Thiết lập tài liệu, style và cấu trúc heading.",
+        "Khám phá chủ đề chuyên môn: Bố cục slide, lưới, typography và tương phản.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: bộ báo cáo Word và slide thuyết trình đồng nhất."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "business-analysis-tu-yeu-cau-den-dac-ta",
@@ -12357,7 +13005,7 @@
         "business",
         "analysis"
       ],
-      "description": "Khung chương trình đề xuất về business analysis từ yêu cầu đến đặc tả, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Vai trò BA, vòng đời sản phẩm và stakeholder\" đến \"Dự án cuối khóa: bộ yêu cầu cho một chức năng đặt hàng mẫu\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "business-analysis-tu-yeu-cau-den-dac-ta-lesson-1",
@@ -12436,13 +13084,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Business Analysis từ yêu cầu đến đặc tả, thuộc lĩnh vực Phân tích nghiệp vụ.",
+      "audience": "Người học quan tâm đến phân tích nghiệp vụ và muốn tìm hiểu chủ đề \"Business Analysis từ yêu cầu đến đặc tả\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Vai trò BA, vòng đời sản phẩm và stakeholder.",
+        "Khám phá chủ đề chuyên môn: Viết user story, acceptance criteria và use case.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: bộ yêu cầu cho một chức năng đặt hàng mẫu."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "mo-hinh-hoa-quy-trinh-voi-bpmn-va-uml",
@@ -12461,7 +13118,7 @@
         "Mô hình hóa quy trình với BPMN và UML",
         "bpmn"
       ],
-      "description": "Khung chương trình đề xuất về mô hình hóa quy trình với bpmn và uml, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Đọc quy trình hiện tại và đặt ranh giới mô hình\" đến \"Dự án cuối khóa: bộ sơ đồ quy trình và đặc tả giải pháp\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "mo-hinh-hoa-quy-trinh-voi-bpmn-va-uml-lesson-1",
@@ -12540,13 +13197,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Mô hình hóa quy trình với BPMN và UML, thuộc lĩnh vực Phân tích nghiệp vụ.",
+      "audience": "Người học quan tâm đến phân tích nghiệp vụ và muốn tìm hiểu chủ đề \"Mô hình hóa quy trình với BPMN và UML\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Đọc quy trình hiện tại và đặt ranh giới mô hình.",
+        "Khám phá chủ đề chuyên môn: Use case diagram và activity diagram.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: bộ sơ đồ quy trình và đặc tả giải pháp."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "toan-nen-tang-va-tu-duy-giai-bai-toan",
@@ -12565,7 +13231,7 @@
         "Toán nền tảng và tư duy giải bài toán",
         "toán"
       ],
-      "description": "Khung chương trình đề xuất về toán nền tảng và tư duy giải bài toán, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Số học, tỷ lệ, phần trăm và đơn vị\" đến \"Dự án cuối khóa: mô hình hóa và giải các bài toán thực tiễn\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "toan-nen-tang-va-tu-duy-giai-bai-toan-lesson-1",
@@ -12644,13 +13310,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Toán nền tảng và tư duy giải bài toán, thuộc lĩnh vực Khoa học và Toán học.",
+      "audience": "Người học quan tâm đến khoa học và toán học và muốn tìm hiểu chủ đề \"Toán nền tảng và tư duy giải bài toán\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Số học, tỷ lệ, phần trăm và đơn vị.",
+        "Khám phá chủ đề chuyên môn: Hình học, đo lường và tư duy không gian.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: mô hình hóa và giải các bài toán thực tiễn."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "xac-suat-va-thong-ke-ung-dung",
@@ -12668,7 +13343,7 @@
         "mô hình hóa",
         "Xác suất và thống kê ứng dụng"
       ],
-      "description": "Khung chương trình đề xuất về xác suất và thống kê ứng dụng, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Dữ liệu định tính, định lượng và cách lấy mẫu\" đến \"Dự án cuối khóa: phân tích bộ dữ liệu và trình bày kết quả có giới hạn\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "xac-suat-va-thong-ke-ung-dung-lesson-1",
@@ -12747,13 +13422,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Xác suất và thống kê ứng dụng, thuộc lĩnh vực Khoa học và Toán học.",
+      "audience": "Người học quan tâm đến khoa học và toán học và muốn tìm hiểu chủ đề \"Xác suất và thống kê ứng dụng\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Dữ liệu định tính, định lượng và cách lấy mẫu.",
+        "Khám phá chủ đề chuyên môn: Quy tắc xác suất và biến ngẫu nhiên.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: phân tích bộ dữ liệu và trình bày kết quả có giới hạn."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "autocad-2d-cho-ban-ve-ky-thuat",
@@ -12771,7 +13455,7 @@
         "đo lường",
         "AutoCAD 2D cho bản vẽ kỹ thuật"
       ],
-      "description": "Khung chương trình đề xuất về autocad 2d cho bản vẽ kỹ thuật, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Giao diện, đơn vị và thiết lập bản vẽ\" đến \"Dự án cuối khóa: bộ bản vẽ 2D có lớp, kích thước và khung tên\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "autocad-2d-cho-ban-ve-ky-thuat-lesson-1",
@@ -12850,13 +13534,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về AutoCAD 2D cho bản vẽ kỹ thuật, thuộc lĩnh vực Kỹ thuật và công nghệ.",
+      "audience": "Người học quan tâm đến kỹ thuật và công nghệ và muốn tìm hiểu chủ đề \"AutoCAD 2D cho bản vẽ kỹ thuật\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Giao diện, đơn vị và thiết lập bản vẽ.",
+        "Khám phá chủ đề chuyên môn: Dimension, text, leader và annotation.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: bộ bản vẽ 2D có lớp, kích thước và khung tên."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "tu-dong-hoa-cong-nghiep-voi-plc-nhap-mon",
@@ -12874,7 +13567,7 @@
         "đo lường",
         "Tự động hóa công nghiệp với PLC nhập môn"
       ],
-      "description": "Khung chương trình đề xuất về tự động hóa công nghiệp với plc nhập môn, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"An toàn điện, cảm biến, cơ cấu chấp hành và sơ đồ I/O\" đến \"Dự án cuối khóa: mô phỏng dây chuyền điều khiển có chế độ tự động/thủ công\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "tu-dong-hoa-cong-nghiep-voi-plc-nhap-mon-lesson-1",
@@ -12953,13 +13646,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Tự động hóa công nghiệp với PLC nhập môn, thuộc lĩnh vực Kỹ thuật và công nghệ.",
+      "audience": "Người học quan tâm đến kỹ thuật và công nghệ và muốn tìm hiểu chủ đề \"Tự động hóa công nghiệp với PLC nhập môn\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: An toàn điện, cảm biến, cơ cấu chấp hành và sơ đồ I/O.",
+        "Khám phá chủ đề chuyên môn: Counter, interlock và chuỗi điều khiển.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: mô phỏng dây chuyền điều khiển có chế độ tự động/thủ công."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "tu-y-tuong-den-mo-hinh-kinh-doanh",
@@ -12979,7 +13681,7 @@
         "kinh",
         "doanh"
       ],
-      "description": "Khung chương trình đề xuất về từ ý tưởng đến mô hình kinh doanh, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Xác định vấn đề và nhóm khách hàng gặp vấn đề\" đến \"Dự án cuối khóa: pitch deck và kế hoạch thử nghiệm 90 ngày\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "tu-y-tuong-den-mo-hinh-kinh-doanh-lesson-1",
@@ -13058,13 +13760,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Từ ý tưởng đến mô hình kinh doanh, thuộc lĩnh vực Khởi nghiệp.",
+      "audience": "Người học quan tâm đến khởi nghiệp và muốn tìm hiểu chủ đề \"Từ ý tưởng đến mô hình kinh doanh\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Xác định vấn đề và nhóm khách hàng gặp vấn đề.",
+        "Khám phá chủ đề chuyên môn: Value proposition và Business Model Canvas.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: pitch deck và kế hoạch thử nghiệm 90 ngày."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "xay-dung-va-phat-trien-kinh-doanh-so",
@@ -13083,7 +13794,7 @@
         "kinh",
         "doanh"
       ],
-      "description": "Khung chương trình đề xuất về xây dựng và phát triển kinh doanh số, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Chọn mô hình kinh doanh số và phân khúc khách hàng\" đến \"Dự án cuối khóa: kế hoạch ra mắt sản phẩm số có ngân sách và KPI\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "xay-dung-va-phat-trien-kinh-doanh-so-lesson-1",
@@ -13162,13 +13873,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Xây dựng và phát triển kinh doanh số, thuộc lĩnh vực Khởi nghiệp.",
+      "audience": "Người học quan tâm đến khởi nghiệp và muốn tìm hiểu chủ đề \"Xây dựng và phát triển kinh doanh số\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Chọn mô hình kinh doanh số và phân khúc khách hàng.",
+        "Khám phá chủ đề chuyên môn: Xây dựng hệ thống thu hút và chăm sóc khách hàng.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: kế hoạch ra mắt sản phẩm số có ngân sách và KPI."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "guitar-can-ban-cho-nguoi-moi",
@@ -13186,7 +13906,7 @@
         "sản xuất âm nhạc",
         "Guitar căn bản cho người mới"
       ],
-      "description": "Khung chương trình đề xuất về guitar căn bản cho người mới, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Tư thế, cách cầm đàn và bảo dưỡng cơ bản\" đến \"Bài tổng kết: biểu diễn một bài có intro, verse và chorus\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "guitar-can-ban-cho-nguoi-moi-lesson-1",
@@ -13265,13 +13985,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Guitar căn bản cho người mới, thuộc lĩnh vực Âm nhạc.",
+      "audience": "Người học quan tâm đến âm nhạc và muốn tìm hiểu chủ đề \"Guitar căn bản cho người mới\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Tư thế, cách cầm đàn và bảo dưỡng cơ bản.",
+        "Khám phá chủ đề chuyên môn: Hợp âm mở và chuyển hợp âm mượt.",
+        "Tổng hợp lộ trình qua đề mục cuối: Bài tổng kết: biểu diễn một bài có intro, verse và chorus."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "san-xuat-am-nhac-tai-nha",
@@ -13289,7 +14018,7 @@
         "sản xuất âm nhạc",
         "Sản xuất âm nhạc tại nhà"
       ],
-      "description": "Khung chương trình đề xuất về sản xuất âm nhạc tại nhà, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Tín hiệu âm thanh, thiết bị và setup tối thiểu\" đến \"Dự án cuối khóa: sản xuất một bản nhạc ngắn hoàn chỉnh\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "san-xuat-am-nhac-tai-nha-lesson-1",
@@ -13368,13 +14097,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Sản xuất âm nhạc tại nhà, thuộc lĩnh vực Âm nhạc.",
+      "audience": "Người học quan tâm đến âm nhạc và muốn tìm hiểu chủ đề \"Sản xuất âm nhạc tại nhà\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Tín hiệu âm thanh, thiết bị và setup tối thiểu.",
+        "Khám phá chủ đề chuyên môn: Drum, bass, harmony và arrangement.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: sản xuất một bản nhạc ngắn hoàn chỉnh."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "ve-can-ban-hinh-khoi-anh-sang-va-phoi-canh",
@@ -13391,7 +14129,7 @@
         "minh họa sách",
         "Vẽ căn bản: hình khối, ánh sáng và phối cảnh"
       ],
-      "description": "Khung chương trình đề xuất về vẽ căn bản: hình khối, ánh sáng và phối cảnh, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Quan sát hình khối và luyện nét\" đến \"Dự án cuối khóa: bộ 3 tranh nghiên cứu hình khối và một tranh hoàn chỉnh\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "ve-can-ban-hinh-khoi-anh-sang-va-phoi-canh-lesson-1",
@@ -13470,13 +14208,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Vẽ căn bản: hình khối, ánh sáng và phối cảnh, thuộc lĩnh vực Mỹ thuật và minh họa.",
+      "audience": "Người học quan tâm đến mỹ thuật và minh họa và muốn tìm hiểu chủ đề \"Vẽ căn bản: hình khối, ánh sáng và phối cảnh\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Quan sát hình khối và luyện nét.",
+        "Khám phá chủ đề chuyên môn: Phối cảnh một điểm và hai điểm tụ.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: bộ 3 tranh nghiên cứu hình khối và một tranh hoàn chỉnh."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "minh-hoa-so-va-xay-dung-phong-cach",
@@ -13494,7 +14241,7 @@
         "Minh họa số và xây dựng phong cách",
         "minh"
       ],
-      "description": "Khung chương trình đề xuất về minh họa số và xây dựng phong cách, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Chọn phần mềm, canvas, brush và layer\" đến \"Dự án cuối khóa: một bộ minh họa đồng nhất 3–5 tác phẩm\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "minh-hoa-so-va-xay-dung-phong-cach-lesson-1",
@@ -13573,13 +14320,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Minh họa số và xây dựng phong cách, thuộc lĩnh vực Mỹ thuật và minh họa.",
+      "audience": "Người học quan tâm đến mỹ thuật và minh họa và muốn tìm hiểu chủ đề \"Minh họa số và xây dựng phong cách\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Chọn phần mềm, canvas, brush và layer.",
+        "Khám phá chủ đề chuyên môn: Lý thuyết màu và bảng màu giới hạn.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: một bộ minh họa đồng nhất 3–5 tác phẩm."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "thiet-ke-thoi-trang-can-ban",
@@ -13598,7 +14354,7 @@
         "Thiết kế thời trang căn bản",
         "trang"
       ],
-      "description": "Khung chương trình đề xuất về thiết kế thời trang căn bản, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Nguồn cảm hứng, moodboard và xác định đối tượng\" đến \"Dự án cuối khóa: bộ sưu tập 3 mẫu kèm moodboard và bản vẽ kỹ thuật\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "thiet-ke-thoi-trang-can-ban-lesson-1",
@@ -13677,13 +14433,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Thiết kế thời trang căn bản, thuộc lĩnh vực Thời trang.",
+      "audience": "Người học quan tâm đến thời trang và muốn tìm hiểu chủ đề \"Thiết kế thời trang căn bản\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Nguồn cảm hứng, moodboard và xác định đối tượng.",
+        "Khám phá chủ đề chuyên môn: Màu sắc, họa tiết và phối bộ sưu tập.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: bộ sưu tập 3 mẫu kèm moodboard và bản vẽ kỹ thuật."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "may-co-ban-va-hoan-thien-san-pham",
@@ -13701,7 +14466,7 @@
         "thương hiệu thời trang",
         "May cơ bản và hoàn thiện sản phẩm"
       ],
-      "description": "Khung chương trình đề xuất về may cơ bản và hoàn thiện sản phẩm, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Dụng cụ, máy may và an toàn thao tác\" đến \"Dự án cuối khóa: may một sản phẩm đơn giản có quy trình và thông số\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "may-co-ban-va-hoan-thien-san-pham-lesson-1",
@@ -13780,13 +14545,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về May cơ bản và hoàn thiện sản phẩm, thuộc lĩnh vực Thời trang.",
+      "audience": "Người học quan tâm đến thời trang và muốn tìm hiểu chủ đề \"May cơ bản và hoàn thiện sản phẩm\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Dụng cụ, máy may và an toàn thao tác.",
+        "Khám phá chủ đề chuyên môn: Cắt vải, canh sợi và bố trí rập.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: may một sản phẩm đơn giản có quy trình và thông số."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "ky-thuat-nau-an-can-ban",
@@ -13803,7 +14577,7 @@
         "vệ sinh thực phẩm",
         "Kỹ thuật nấu ăn căn bản"
       ],
-      "description": "Khung chương trình đề xuất về kỹ thuật nấu ăn căn bản, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"An toàn dao, vệ sinh và tổ chức khu bếp\" đến \"Dự án cuối khóa: hoàn thiện thực đơn 3 món có quy trình và định lượng\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "ky-thuat-nau-an-can-ban-lesson-1",
@@ -13882,13 +14656,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Kỹ thuật nấu ăn căn bản, thuộc lĩnh vực Nấu ăn và ẩm thực.",
+      "audience": "Người học quan tâm đến nấu ăn và ẩm thực và muốn tìm hiểu chủ đề \"Kỹ thuật nấu ăn căn bản\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: An toàn dao, vệ sinh và tổ chức khu bếp.",
+        "Khám phá chủ đề chuyên môn: Nền vị, nước dùng, gia vị và cân bằng vị.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: hoàn thiện thực đơn 3 món có quy trình và định lượng."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "lam-banh-nhap-mon",
@@ -13906,7 +14689,7 @@
         "Làm bánh nhập môn",
         "bánh"
       ],
-      "description": "Khung chương trình đề xuất về làm bánh nhập môn, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Dụng cụ, nguyên liệu, cân đo và nhiệt độ lò\" đến \"Dự án cuối khóa: làm một set bánh có công thức chuẩn và trình bày thành phẩm\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "lam-banh-nhap-mon-lesson-1",
@@ -13985,13 +14768,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Làm bánh nhập môn, thuộc lĩnh vực Nấu ăn và ẩm thực.",
+      "audience": "Người học quan tâm đến nấu ăn và ẩm thực và muốn tìm hiểu chủ đề \"Làm bánh nhập môn\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Dụng cụ, nguyên liệu, cân đo và nhiệt độ lò.",
+        "Khám phá chủ đề chuyên môn: Bánh quy và các lỗi kết cấu thường gặp.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: làm một set bánh có công thức chuẩn và trình bày thành phẩm."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "tap-luyen-the-luc-can-ban-an-toan",
@@ -14008,7 +14800,7 @@
         "thói quen lành mạnh",
         "Tập luyện thể lực căn bản an toàn"
       ],
-      "description": "Khung chương trình đề xuất về tập luyện thể lực căn bản an toàn, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Đặt mục tiêu thực tế và đánh giá mức vận động ban đầu\" đến \"Bài tổng kết: kế hoạch tập luyện cá nhân 4 tuần; không thay thế tư vấn y tế\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "tap-luyen-the-luc-can-ban-an-toan-lesson-1",
@@ -14087,13 +14879,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Tập luyện thể lực căn bản an toàn, thuộc lĩnh vực Sức khỏe và thể chất.",
+      "audience": "Người học quan tâm đến sức khỏe và thể chất và muốn tìm hiểu chủ đề \"Tập luyện thể lực căn bản an toàn\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Đặt mục tiêu thực tế và đánh giá mức vận động ban đầu.",
+        "Khám phá chủ đề chuyên môn: Thiết kế buổi tập toàn thân cho người mới.",
+        "Tổng hợp lộ trình qua đề mục cuối: Bài tổng kết: kế hoạch tập luyện cá nhân 4 tuần; không thay thế tư vấn y tế."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "yoga-va-van-dong-linh-hoat-nhap-mon",
@@ -14110,7 +14911,7 @@
         "thói quen lành mạnh",
         "Yoga và vận động linh hoạt nhập môn"
       ],
-      "description": "Khung chương trình đề xuất về yoga và vận động linh hoạt nhập môn, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Nguyên tắc thở, căn chỉnh và giới hạn cá nhân\" đến \"Bài tổng kết: chuỗi vận động 20 phút phù hợp thể trạng; dừng khi đau bất thường\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "yoga-va-van-dong-linh-hoat-nhap-mon-lesson-1",
@@ -14189,13 +14990,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Yoga và vận động linh hoạt nhập môn, thuộc lĩnh vực Sức khỏe và thể chất.",
+      "audience": "Người học quan tâm đến sức khỏe và thể chất và muốn tìm hiểu chủ đề \"Yoga và vận động linh hoạt nhập môn\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Nguyên tắc thở, căn chỉnh và giới hạn cá nhân.",
+        "Khám phá chủ đề chuyên môn: Chuỗi chào mặt trời biến thể phù hợp người mới.",
+        "Tổng hợp lộ trình qua đề mục cuối: Bài tổng kết: chuỗi vận động 20 phút phù hợp thể trạng; dừng khi đau bất thường."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "cham-soc-da-va-xay-dung-routine-co-ban",
@@ -14213,7 +15023,7 @@
         "Chăm sóc da và xây dựng routine cơ bản",
         "chăm"
       ],
-      "description": "Khung chương trình đề xuất về chăm sóc da và xây dựng routine cơ bản, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Cấu trúc da cơ bản và nhận biết loại da ở mức phổ thông\" đến \"Bài tổng kết: xây dựng routine tối giản có theo dõi phản ứng da\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "cham-soc-da-va-xay-dung-routine-co-ban-lesson-1",
@@ -14292,13 +15102,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Chăm sóc da và xây dựng routine cơ bản, thuộc lĩnh vực Làm đẹp.",
+      "audience": "Người học quan tâm đến làm đẹp và muốn tìm hiểu chủ đề \"Chăm sóc da và xây dựng routine cơ bản\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Cấu trúc da cơ bản và nhận biết loại da ở mức phổ thông.",
+        "Khám phá chủ đề chuyên môn: Thử sản phẩm an toàn và tránh phối hợp gây kích ứng.",
+        "Tổng hợp lộ trình qua đề mục cuối: Bài tổng kết: xây dựng routine tối giản có theo dõi phản ứng da."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "trang-diem-ca-nhan-tu-co-ban-den-hoan-thien",
@@ -14316,7 +15135,7 @@
         "Trang điểm cá nhân từ cơ bản đến hoàn thiện",
         "trang"
       ],
-      "description": "Khung chương trình đề xuất về trang điểm cá nhân từ cơ bản đến hoàn thiện, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Vệ sinh, dụng cụ và chuẩn bị da\" đến \"Dự án cuối khóa: hoàn thiện hai phong cách trang điểm và ghi lại quy trình\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "trang-diem-ca-nhan-tu-co-ban-den-hoan-thien-lesson-1",
@@ -14395,13 +15214,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Trang điểm cá nhân từ cơ bản đến hoàn thiện, thuộc lĩnh vực Làm đẹp.",
+      "audience": "Người học quan tâm đến làm đẹp và muốn tìm hiểu chủ đề \"Trang điểm cá nhân từ cơ bản đến hoàn thiện\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Vệ sinh, dụng cụ và chuẩn bị da.",
+        "Khám phá chủ đề chuyên môn: Tạo chân mày, mắt và chọn màu phù hợp.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: hoàn thiện hai phong cách trang điểm và ghi lại quy trình."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "kien-thuc-nen-tang-ve-bat-dong-san",
@@ -14418,7 +15246,7 @@
         "quản lý tài sản",
         "Kiến thức nền tảng về bất động sản"
       ],
-      "description": "Khung chương trình đề xuất về kiến thức nền tảng về bất động sản, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Các loại hình bất động sản và bên tham gia thị trường\" đến \"Bài tổng kết: lập hồ sơ phân tích một tài sản giả định; không thay thế tư vấn pháp lý/tài chính\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "kien-thuc-nen-tang-ve-bat-dong-san-lesson-1",
@@ -14497,13 +15325,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Kiến thức nền tảng về bất động sản, thuộc lĩnh vực Bất động sản.",
+      "audience": "Người học quan tâm đến bất động sản và muốn tìm hiểu chủ đề \"Kiến thức nền tảng về bất động sản\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Các loại hình bất động sản và bên tham gia thị trường.",
+        "Khám phá chủ đề chuyên môn: Giá chào bán, giao dịch tham chiếu và yếu tố ảnh hưởng giá.",
+        "Tổng hợp lộ trình qua đề mục cuối: Bài tổng kết: lập hồ sơ phân tích một tài sản giả định; không thay thế tư vấn pháp lý/tài chính."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "marketing-va-tu-van-khach-hang-bat-dong-san",
@@ -14521,7 +15358,7 @@
         "Marketing và tư vấn khách hàng bất động sản",
         "marketing"
       ],
-      "description": "Khung chương trình đề xuất về marketing và tư vấn khách hàng bất động sản, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Phân loại khách hàng và nhu cầu tìm mua/thuê\" đến \"Dự án cuối khóa: kế hoạch marketing và quy trình chăm sóc khách hàng cho một listing mẫu\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "marketing-va-tu-van-khach-hang-bat-dong-san-lesson-1",
@@ -14600,13 +15437,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Marketing và tư vấn khách hàng bất động sản, thuộc lĩnh vực Bất động sản.",
+      "audience": "Người học quan tâm đến bất động sản và muốn tìm hiểu chủ đề \"Marketing và tư vấn khách hàng bất động sản\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Phân loại khách hàng và nhu cầu tìm mua/thuê.",
+        "Khám phá chủ đề chuyên môn: Tiếp nhận lead, sàng lọc và đặt lịch xem.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: kế hoạch marketing và quy trình chăm sóc khách hàng cho một listing mẫu."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "phap-luat-kinh-doanh-can-ban-cho-nguoi-di-lam",
@@ -14626,7 +15472,7 @@
         "kinh",
         "doanh"
       ],
-      "description": "Khung chương trình đề xuất về pháp luật kinh doanh căn bản cho người đi làm, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Hệ thống văn bản pháp luật và cách tra cứu nguồn chính thống\" đến \"Bài tổng kết: checklist rà soát hợp đồng mẫu; nội dung mang tính giáo dục, không phải tư vấn pháp lý\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "phap-luat-kinh-doanh-can-ban-cho-nguoi-di-lam-lesson-1",
@@ -14705,13 +15551,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Pháp luật kinh doanh căn bản cho người đi làm, thuộc lĩnh vực Pháp luật và tuân thủ.",
+      "audience": "Người học quan tâm đến pháp luật và tuân thủ và muốn tìm hiểu chủ đề \"Pháp luật kinh doanh căn bản cho người đi làm\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Hệ thống văn bản pháp luật và cách tra cứu nguồn chính thống.",
+        "Khám phá chủ đề chuyên môn: Thực hiện, sửa đổi, chấm dứt và lưu trữ hợp đồng.",
+        "Tổng hợp lộ trình qua đề mục cuối: Bài tổng kết: checklist rà soát hợp đồng mẫu; nội dung mang tính giáo dục, không phải tư vấn pháp lý."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "quyen-rieng-tu-va-bao-ve-du-lieu-trong-to-chuc",
@@ -14729,7 +15584,7 @@
         "Quyền riêng tư và bảo vệ dữ liệu trong tổ chức",
         "riêng"
       ],
-      "description": "Khung chương trình đề xuất về quyền riêng tư và bảo vệ dữ liệu trong tổ chức, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Khái niệm dữ liệu cá nhân và vòng đời dữ liệu\" đến \"Dự án cuối khóa: checklist quản trị dữ liệu cho một quy trình giả lập; cần đối chiếu luật hiện hành\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "quyen-rieng-tu-va-bao-ve-du-lieu-trong-to-chuc-lesson-1",
@@ -14808,13 +15663,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Quyền riêng tư và bảo vệ dữ liệu trong tổ chức, thuộc lĩnh vực Pháp luật và tuân thủ.",
+      "audience": "Người học quan tâm đến pháp luật và tuân thủ và muốn tìm hiểu chủ đề \"Quyền riêng tư và bảo vệ dữ liệu trong tổ chức\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Khái niệm dữ liệu cá nhân và vòng đời dữ liệu.",
+        "Khám phá chủ đề chuyên môn: Quyền truy cập, lưu trữ, chia sẻ và thời hạn lưu.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: checklist quản trị dữ liệu cho một quy trình giả lập; cần đối chiếu luật hiện hành."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "trong-rau-tai-nha-va-cham-soc-cay-co-ban",
@@ -14832,7 +15696,7 @@
         "bền vững",
         "Trồng rau tại nhà và chăm sóc cây cơ bản"
       ],
-      "description": "Khung chương trình đề xuất về trồng rau tại nhà và chăm sóc cây cơ bản, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Đánh giá không gian, ánh sáng và mục tiêu trồng\" đến \"Dự án cuối khóa: thiết kế vườn rau nhỏ có kế hoạch chăm sóc 4 tuần\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "trong-rau-tai-nha-va-cham-soc-cay-co-ban-lesson-1",
@@ -14911,13 +15775,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Trồng rau tại nhà và chăm sóc cây cơ bản, thuộc lĩnh vực Nông nghiệp và môi trường.",
+      "audience": "Người học quan tâm đến nông nghiệp và môi trường và muốn tìm hiểu chủ đề \"Trồng rau tại nhà và chăm sóc cây cơ bản\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Đánh giá không gian, ánh sáng và mục tiêu trồng.",
+        "Khám phá chủ đề chuyên môn: Tưới nước, dinh dưỡng và dấu hiệu thiếu/thừa.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: thiết kế vườn rau nhỏ có kế hoạch chăm sóc 4 tuần."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "thuy-canh-nhap-mon",
@@ -14936,7 +15809,7 @@
         "Thủy canh nhập môn",
         "canh"
       ],
-      "description": "Khung chương trình đề xuất về thủy canh nhập môn, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Nguyên tắc thủy canh và lựa chọn mô hình phù hợp\" đến \"Dự án cuối khóa: lập kế hoạch một hệ thủy canh quy mô nhỏ có nhật ký theo dõi\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "thuy-canh-nhap-mon-lesson-1",
@@ -15015,13 +15888,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Thủy canh nhập môn, thuộc lĩnh vực Nông nghiệp và môi trường.",
+      "audience": "Người học quan tâm đến nông nghiệp và môi trường và muốn tìm hiểu chủ đề \"Thủy canh nhập môn\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Nguyên tắc thủy canh và lựa chọn mô hình phù hợp.",
+        "Khám phá chủ đề chuyên môn: Gieo hạt, chuyển cây và quản lý rễ.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: lập kế hoạch một hệ thủy canh quy mô nhỏ có nhật ký theo dõi."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "nghiep-vu-le-tan-khach-san",
@@ -15039,7 +15921,7 @@
         "Nghiệp vụ lễ tân khách sạn",
         "khách"
       ],
-      "description": "Khung chương trình đề xuất về nghiệp vụ lễ tân khách sạn, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Vai trò lễ tân và hành trình khách lưu trú\" đến \"Bài tổng kết: mô phỏng hành trình khách từ đặt phòng đến trả phòng\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "nghiep-vu-le-tan-khach-san-lesson-1",
@@ -15118,13 +16000,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Nghiệp vụ lễ tân khách sạn, thuộc lĩnh vực Du lịch và dịch vụ.",
+      "audience": "Người học quan tâm đến du lịch và dịch vụ và muốn tìm hiểu chủ đề \"Nghiệp vụ lễ tân khách sạn\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Vai trò lễ tân và hành trình khách lưu trú.",
+        "Khám phá chủ đề chuyên môn: Tư vấn dịch vụ, giải đáp và phối hợp bộ phận.",
+        "Tổng hợp lộ trình qua đề mục cuối: Bài tổng kết: mô phỏng hành trình khách từ đặt phòng đến trả phòng."
+      ],
+      "metadataStatus": "draft"
     },
     {
       "id": "thiet-ke-tour-va-dieu-hanh-trai-nghiem-du-lich",
@@ -15143,7 +16034,7 @@
         "tour",
         "hành"
       ],
-      "description": "Khung chương trình đề xuất về thiết kế tour và điều hành trải nghiệm du lịch, được tổ chức từ kiến thức nền tảng đến thực hành và dự án cuối khóa.",
+      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Nghiên cứu khách mục tiêu và mục đích chuyến đi\" đến \"Dự án cuối khóa: hồ sơ tour 2 ngày 1 đêm kèm ngân sách và phương án dự phòng\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
       "lessons": [
         {
           "id": "thiet-ke-tour-va-dieu-hanh-trai-nghiem-du-lich-lesson-1",
@@ -15222,13 +16113,22 @@
       "contentStatus": "outline",
       "price": null,
       "originalPrice": null,
-      "level": "Chưa cấu hình",
+      "level": "Chưa xác định",
       "durationHours": null,
       "previewVideoUrl": "",
       "completionRule": {
         "type": "all_lessons",
         "requiredCount": 8
-      }
+      },
+      "shortDescription": "Đề cương ban đầu về Thiết kế tour và điều hành trải nghiệm du lịch, thuộc lĩnh vực Du lịch và dịch vụ.",
+      "audience": "Người học quan tâm đến du lịch và dịch vụ và muốn tìm hiểu chủ đề \"Thiết kế tour và điều hành trải nghiệm du lịch\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
+      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "outcomes": [
+        "Hiểu đề mục nền tảng: Nghiên cứu khách mục tiêu và mục đích chuyến đi.",
+        "Khám phá chủ đề chuyên môn: Tính giá tour, chi phí và điều kiện dịch vụ.",
+        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: hồ sơ tour 2 ngày 1 đêm kèm ngân sách và phương án dự phòng."
+      ],
+      "metadataStatus": "draft"
     }
   ]
 }
