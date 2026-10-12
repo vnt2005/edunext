@@ -27,7 +27,6 @@
                     <div class="edn-course-mega-menu" id="edn-course-mega-menu">
                         <div class="edn-domain-mega-head">
                             <strong>Khám phá các chương trình học</strong>
-                            <a href="#/courses">Xem tất cả <span aria-hidden="true">↗</span></a>
                         </div>
                         <nav class="edn-course-mega-list" id="edn-course-mega-list" aria-label="Tất cả khóa học"></nav>
                     </div>
@@ -37,7 +36,6 @@
                     <div class="edn-domain-mega-menu" id="edn-domain-mega-menu">
                         <div class="edn-domain-mega-head">
                             <strong>Khám phá 50 lĩnh vực</strong>
-                            <a href="#/categories">Xem tất cả <span aria-hidden="true">↗</span></a>
                         </div>
                         <nav class="edn-domain-mega-list" id="edn-domain-mega-list" aria-label="Tất cả lĩnh vực"></nav>
                     </div>
