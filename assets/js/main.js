@@ -20,8 +20,12 @@ const mapCourse=raw=>{
     id:raw.id,t:raw.title,slug:raw.slug||raw.id,cat:raw.domain,domainId:raw.domainId,
     topics:Array.isArray(raw.relatedTopics)?raw.relatedTopics:[],
     related:Array.isArray(raw.relatedTopics)?raw.relatedTopics:[],
-    description:raw.description||'',prerequisites:raw.prerequisites||'',
-    lessons,L,v:lessons.map(item=>item.videoUrl||''),previewVideoUrl:raw.previewVideoUrl||'',
+    description:raw.description||'',shortDescription:raw.shortDescription||raw.description||'',
+    audience:raw.audience||'Đối tượng phù hợp đang được xác định.',
+    prerequisites:raw.prerequisites||'Điều kiện đầu vào đang được xác định.',
+    outcomes:Array.isArray(raw.outcomes)?raw.outcomes:[],
+    metadataStatus:raw.metadataStatus||'draft',
+    lessons,L,v:lessons.map(item=>item.videoUrl||''),previewVideoUrl:/^https:\/\//i.test(String(raw.previewVideoUrl||''))?String(raw.previewVideoUrl):'',
     s:[],r:null,n:null,lvl:raw.level||'Chưa cấu hình',p:raw.price,o:raw.originalPrice,
     h:raw.durationHours,tag:raw.published?'Đã xuất bản':'Đang hoàn thiện nội dung',
     c:'',published:raw.published===true,contentStatus:raw.contentStatus||'outline',
@@ -208,10 +212,10 @@ const detail=id=>{
   const buyContent=owned
     ? '<div class="cio-owned">✓ Tài khoản đã có quyền truy cập khóa học này.</div><a class="btn btn-p w edn-course-buy-button" href="#/learn/'+esc(id)+'/'+nextL(c)+'">Tiếp tục học</a>'
     : '<div class="edn-course-not-for-sale"><strong>Chưa mở bán</strong><p>Đề cương đang được xây dựng. Khóa học chỉ mở đăng ký khi nội dung giảng dạy, học liệu, giá và thanh toán được cấu hình và kiểm tra.</p></div>';
-  const outcomes=['Xem trước đầy đủ các chủ đề trong đề cương','Nắm trình tự học từ nền tảng đến thực hành','Theo dõi trạng thái học liệu và điều kiện hoàn thành'];
+  const outcomes=Array.isArray(c.outcomes)?c.outcomes:[];
   return '<div class="edn-course-detail-page"><section class="edn-course-hero"><div class="wrap edn-course-hero-inner">'+
     '<div class="edn-course-intro"><nav class="edn-course-breadcrumb" aria-label="Đường dẫn"><a href="#/">Trang chủ</a><span>›</span><a href="#/categories">Lĩnh vực</a><span>›</span><a href="#/domain/'+esc(domain?domain.slug:'')+'">'+esc(c.cat)+'</a></nav>'+
-    '<div class="edn-course-eyebrow">'+esc(c.cat)+' <span>·</span> Đề cương chương trình</div><h1>'+esc(c.t)+'</h1><p class="edn-course-subtitle">'+esc(c.description||'Chương trình học được tổ chức theo các bước từ kiến thức nền tảng đến thực hành.')+'</p>'+
+    '<div class="edn-course-eyebrow">'+esc(c.cat)+' <span>·</span> Đề cương chương trình</div><h1>'+esc(c.t)+'</h1><p class="edn-course-subtitle">'+esc(c.shortDescription||c.description||'Đề cương chương trình đang được hoàn thiện.')+'</p>'+
     '<div class="edn-course-tag-row"><span class="edn-course-tag">'+(c.ready?'Đã xuất bản':'Đang hoàn thiện nội dung')+'</span><span class="edn-course-language">Ngôn ngữ: chưa cấu hình</span></div>'+
     '<div class="edn-course-date-row"><span>'+c.L.length+' bài học dự kiến</span><span>'+(c.h?esc(c.h)+' giờ':'Thời lượng đang cập nhật')+'</span></div>'+
     '<div class="edn-course-status-line">Đây là khung chương trình; chỉ các bài có học liệu đã xác minh mới được mở học.</div></div>'+
@@ -221,9 +225,9 @@ const detail=id=>{
     '<div class="edn-course-price-line"><strong>'+(typeof c.p==='number'?money(c.p):'Chưa có giá')+'</strong></div><p class="edn-course-purchase-note">'+(owned?'Bạn đã có quyền truy cập khóa học này.':'Khóa học chưa được mở bán.')+'</p>'+buyContent+
     '<div class="edn-course-includes"><strong>Thông tin chương trình</strong><span>✓ '+c.L.length+' bài học trong đề cương</span><span>✓ Có thứ tự bài học rõ ràng</span><span>✓ Lĩnh vực và chủ đề liên quan</span></div></div></aside></div></section>'+
     '<div class="wrap edn-course-content-grid"><main class="edn-course-main">'+
-    '<section class="edn-course-outcomes" aria-labelledby="edn-outcomes-title"><h2>Mục tiêu của đề cương</h2><div class="edn-course-outcomes-grid">'+outcomes.map(item=>'<div class="edn-course-outcome"><span>✓</span><p>'+esc(item)+'</p></div>').join('')+'</div></section>'+
+    '<section class="edn-course-outcomes" aria-labelledby="edn-outcomes-title"><h2>Mục tiêu dự kiến</h2><p class="edn-course-meta-note">Các mục tiêu dưới đây được phác thảo từ đề cương bài học và cần được xác nhận khi nội dung giảng dạy hoàn chỉnh.</p><div class="edn-course-outcomes-grid">'+outcomes.map(item=>'<div class="edn-course-outcome"><span>✓</span><p>'+esc(item)+'</p></div>').join('')+'</div></section>'+
     '<section class="edn-course-curriculum" id="course-curriculum"><div class="edn-course-section-heading"><div><h2>Toàn bộ bài học</h2><p>'+c.L.length+' bài trong khung chương trình hiện tại</p></div><span class="edn-curriculum-total">'+c.L.length+' bài</span></div><div class="edn-curriculum-list">'+lessonRows+'</div><p class="edn-curriculum-footnote">Tên bài học là đề cương. Video, tài liệu, bài tập và hướng dẫn cần được bổ sung, kiểm tra trước khi khóa học mở bán.</p></section>'+
-    '<section class="edn-course-about"><h2>Điều kiện và thông tin</h2><p>'+esc(c.description||'Nội dung chi tiết đang được chuẩn bị.')+'</p><div class="edn-course-facts"><div><small>Lĩnh vực</small><strong>'+esc(c.cat)+'</strong></div><div><small>Số bài dự kiến</small><strong>'+c.L.length+'</strong></div><div><small>Cấp độ</small><strong>'+esc(c.lvl||'Chưa cấu hình')+'</strong></div></div></section>'+
+    '<section class="edn-course-about"><h2>Đối tượng và kiến thức đầu vào</h2><div class="edn-course-requirements-grid"><div><small>Đối tượng dự kiến</small><p>'+esc(c.audience||'Đang được xác định.')+'</p></div><div><small>Kiến thức đầu vào</small><p>'+esc(c.prerequisites||'Sẽ được công bố khi khóa học hoàn thiện.')+'</p></div></div><div class="edn-course-facts"><div><small>Lĩnh vực</small><strong>'+esc(c.cat)+'</strong></div><div><small>Số bài dự kiến</small><strong>'+c.L.length+'</strong></div><div><small>Cấp độ</small><strong>'+esc(c.lvl||'Chưa xác định')+'</strong></div></div><p class="edn-course-meta-note">Thông tin đối tượng và đầu vào ở trên là bản dự kiến, chưa phải yêu cầu đã xác nhận.</p></section>'+
     '<section class="edn-related-topics"><div class="edn-section-heading"><div><span class="edn-overline">KHÁM PHÁ THÊM</span><h2>Lĩnh vực và chủ đề liên quan</h2></div><a href="#/domain/'+esc(domain?domain.slug:'')+'">Xem lĩnh vực ↗</a></div><div class="edn-topic-chip-row">'+topics+'</div></section>'+
     '</main><div class="edn-course-right-space" aria-hidden="true"></div></div></div>';
 };
