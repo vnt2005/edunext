@@ -9,7 +9,7 @@
         </div>
         <div class="edn-public-footer-column"><h3>Khám phá</h3><a href="#/courses">Tất cả khóa học</a><a href="#/best-sellers">Khóa học nổi bật</a><a href="#/categories">Danh mục</a></div>
         <div class="edn-public-footer-column"><h3>Dành cho người học</h3><a href="#/dashboard">Trang học tập</a><a href="#/certificates">Chứng chỉ</a><a href="#/faq">Câu hỏi thường gặp</a></div>
-        <div class="edn-public-footer-column"><h3>Về EduNext</h3><a href="#/about">Giới thiệu</a><a href="#/blog">Góc học tập</a><a href="#/teacher">Giảng dạy trên EduNext</a></div>
+        <div class="edn-public-footer-column"><h3>Về EduNext</h3><a href="#/about">Giới thiệu</a><a href="#/blog">Góc học tập</a></div>
     </div>
     <div class="wrap edn-public-footer-bottom"><span>© <span id="edn-footer-year">2026</span> EduNext. Học hôm nay, tiến xa ngày mai.</span><span>Thiết kế cho trải nghiệm học tập dễ dàng hơn.</span></div>
 </footer>
