@@ -392,3 +392,9 @@ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .lms-profile-menu{b
  body.edunext-app .edn-hero-copy h1{font-size:33px!important}
  body.edunext-app .edn-hero-visual{min-height:280px}
 }
+
+/* WordPress toolbar offset for authenticated front-end preview. */
+body.admin-bar.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edunext-site-header{top:32px}
+@media(max-width:782px){
+ body.admin-bar.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edunext-site-header{top:46px}
+}
