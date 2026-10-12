@@ -183,6 +183,8 @@ function edunext_frontend_config(): array {
             'facebookUrl' => esc_url_raw((string) get_theme_mod('edunext_facebook_url', '')),
             'phone' => sanitize_text_field((string) get_theme_mod('edunext_phone_number', '')),
         ],
+        'lostPasswordUrl' => esc_url_raw(wp_lostpassword_url()),
+        'paymentReady' => false,
     ];
 }
 
@@ -369,6 +371,36 @@ function edunext_ajax_profile_save(): void {
     wp_send_json_success(['message' => 'Đã lưu hồ sơ.']);
 }
 add_action('wp_ajax_edunext_profile_save', 'edunext_ajax_profile_save');
+
+function edunext_ajax_profile_password(): void {
+    edunext_ajax_require_nonce();
+    if (!is_user_logged_in()) {
+        edunext_ajax_error('Vui lòng đăng nhập để đổi mật khẩu.', 401);
+    }
+
+    $user = wp_get_current_user();
+    $current = (string) wp_unslash($_POST['currentPassword'] ?? '');
+    $new = (string) wp_unslash($_POST['newPassword'] ?? '');
+    $confirm = (string) wp_unslash($_POST['confirmPassword'] ?? '');
+
+    if ($current === '' || !wp_check_password($current, $user->user_pass, $user->ID)) {
+        edunext_ajax_error('Mật khẩu hiện tại chưa chính xác.');
+    }
+    if (strlen($new) < 8) {
+        edunext_ajax_error('Mật khẩu mới cần tối thiểu 8 ký tự.');
+    }
+    if (!hash_equals($new, $confirm)) {
+        edunext_ajax_error('Hai mật khẩu mới chưa trùng khớp.');
+    }
+
+    $updated = wp_update_user(['ID' => $user->ID, 'user_pass' => $new]);
+    if (is_wp_error($updated)) {
+        edunext_ajax_error('Không thể đổi mật khẩu lúc này.');
+    }
+    wp_set_auth_cookie($user->ID, true, is_ssl());
+    wp_send_json_success(['message' => 'Đã cập nhật mật khẩu.']);
+}
+add_action('wp_ajax_edunext_profile_password', 'edunext_ajax_profile_password');
 
 function edunext_ajax_profile_avatar(): void {
     edunext_ajax_require_nonce();
