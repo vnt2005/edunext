@@ -366,8 +366,8 @@ const profilePage=section=>{
   if(!D.me)return guard('/profile');
   const u=me(),meta=u.profile||{};
   const parts=String(u.name||'').trim().split(/\s+/);
-  const defaultFirst=parts.length>1?parts.slice(0,-1).join(' '):(parts[0]||'');
-  const defaultLast=parts.length>1?parts[parts.length-1]:'';
+  const defaultFirst=parts.length>1?parts[parts.length-1]:(parts[0]||'');
+  const defaultLast=parts.length>1?parts.slice(0,-1).join(' '):'';
   const first=meta.firstName!==undefined?meta.firstName:defaultFirst;
   const last=meta.lastName!==undefined?meta.lastName:defaultLast;
   const full=[first,last].filter(Boolean).join(' ')||u.name||'Học viên EduNext';
