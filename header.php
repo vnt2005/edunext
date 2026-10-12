@@ -29,10 +29,7 @@
                             <strong>Khám phá các chương trình học</strong>
                             <a href="#/courses">Xem tất cả <span aria-hidden="true">↗</span></a>
                         </div>
-                        <div class="edn-domain-mega-body">
-                            <nav class="edn-course-mega-list" id="edn-course-mega-list" aria-label="Tất cả khóa học"></nav>
-                            <section class="edn-domain-mega-courses" id="edn-course-mega-preview" aria-live="polite" aria-label="Thông tin khóa học được chọn"></section>
-                        </div>
+                        <nav class="edn-course-mega-list" id="edn-course-mega-list" aria-label="Tất cả khóa học"></nav>
                     </div>
                 </div>
                 <div class="edn-domain-menu-wrap" id="edn-domain-menu-wrap">
@@ -42,10 +39,7 @@
                             <strong>Khám phá 50 lĩnh vực</strong>
                             <a href="#/categories">Xem tất cả <span aria-hidden="true">↗</span></a>
                         </div>
-                        <div class="edn-domain-mega-body">
-                            <nav class="edn-domain-mega-list" id="edn-domain-mega-list" aria-label="Tất cả lĩnh vực"></nav>
-                            <section class="edn-domain-mega-courses" id="edn-domain-mega-courses" aria-live="polite" aria-label="Chương trình thuộc lĩnh vực"></section>
-                        </div>
+                        <nav class="edn-domain-mega-list" id="edn-domain-mega-list" aria-label="Tất cả lĩnh vực"></nav>
                     </div>
                 </div>
                 <a href="#/blog" class="edunext-nav-link">Góc kiến thức</a>
