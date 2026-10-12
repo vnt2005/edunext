@@ -1451,3 +1451,26 @@ body.edunext-app .edn-curriculum-open-player::before{content:"▶";margin-right:
   body.edunext-app .edn-curriculum-player-actions{justify-content:stretch}
   body.edunext-app .edn-curriculum-open-player{width:100%}
 }
+
+
+/* Remove chevron column from all lesson accordions. */
+body.edunext-app .edn-course-curriculum .edn-curriculum-row{
+  grid-template-columns:34px 22px minmax(0,1fr) minmax(100px,auto);
+}
+body.edunext-app .edn-course-curriculum .edn-curriculum-duration{
+  justify-self:end;
+}
+@media(max-width:640px){
+  body.edunext-app .edn-course-curriculum .edn-curriculum-row{
+    grid-template-columns:26px 16px minmax(0,1fr);
+    gap:8px;
+    padding:13px;
+  }
+  body.edunext-app .edn-course-curriculum .edn-curriculum-duration{
+    grid-column:3;
+    justify-self:start;
+    text-align:left;
+    font-size:10px;
+    white-space:normal;
+  }
+}
