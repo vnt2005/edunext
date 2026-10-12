@@ -1,4 +1,48 @@
 <?php
+function edunext_ajax_certificate_issue(): void {
+    edunext_ajax_require_nonce();
+    if (!is_user_logged_in()) {
+        edunext_ajax_error('Vui lòng đăng nhập để xem chứng chỉ.', 401);
+    }
+
+    $user_id = get_current_user_id();
+    $course_id = sanitize_key(wp_unslash($_POST['courseId'] ?? ''));
+    $course = edunext_catalog_course($course_id);
+    $owned_ids = get_user_meta($user_id, 'edunext_owned_course_ids', true);
+    if (!is_array($course) || empty($course['published']) || !is_array($owned_ids) || !in_array($course_id, $owned_ids, true)) {
+        edunext_ajax_error('Khóa học chưa được mở cho tài khoản này.', 403);
+    }
+
+    $all_progress = get_user_meta($user_id, 'edunext_course_progress', true);
+    $entry = is_array($all_progress) && isset($all_progress[$course_id]) && is_array($all_progress[$course_id])
+        ? $all_progress[$course_id] : [];
+    $done = isset($entry['done']) && is_array($entry['done']) ? array_unique(array_map('absint', $entry['done'])) : [];
+    $required = edunext_course_required_lessons($course);
+    if ($required <= 0 || count($done) < $required) {
+        edunext_ajax_error('Bạn cần hoàn thành toàn bộ điều kiện học tập đã công bố trước khi nhận chứng chỉ.', 403);
+    }
+
+    $certificates = get_user_meta($user_id, 'edunext_certificates', true);
+    if (!is_array($certificates)) {
+        $certificates = [];
+    }
+    if (empty($certificates[$course_id]['code'])) {
+        $certificates[$course_id] = [
+            'code' => strtoupper('EDU-' . wp_date('Y') . '-' . substr(str_replace('-', '', wp_generate_uuid4()), 0, 10)),
+            'issuedAt' => time(),
+        ];
+        update_user_meta($user_id, 'edunext_certificates', $certificates);
+    }
+
+    wp_send_json_success([
+        'courseId' => $course_id,
+        'courseTitle' => sanitize_text_field((string) $course['title']),
+        'code' => sanitize_text_field((string) $certificates[$course_id]['code']),
+        'issuedAt' => absint($certificates[$course_id]['issuedAt']),
+    ]);
+}
+add_action('wp_ajax_edunext_certificate_issue', 'edunext_ajax_certificate_issue');
+
 if (!defined('ABSPATH')) {
     exit;
 }
@@ -15,6 +59,46 @@ add_action('after_setup_theme', 'edunext_setup');
 function edunext_asset_version(string $relative_path, string $fallback = '5.0.0'): string {
     $path = get_theme_file_path($relative_path);
     return is_file($path) ? (string) filemtime($path) : $fallback;
+}
+
+function edunext_catalog_data(): array {
+    static $catalog = null;
+    if (is_array($catalog)) {
+        return $catalog;
+    }
+
+    $path = get_theme_file_path('assets/data/course-catalog.json');
+    if (!is_readable($path)) {
+        $catalog = ['domains' => [], 'courses' => []];
+        return $catalog;
+    }
+
+    $decoded = json_decode((string) file_get_contents($path), true);
+    if (!is_array($decoded)) {
+        $catalog = ['domains' => [], 'courses' => []];
+        return $catalog;
+    }
+
+    $catalog = [
+        'domains' => isset($decoded['domains']) && is_array($decoded['domains']) ? $decoded['domains'] : [],
+        'courses' => isset($decoded['courses']) && is_array($decoded['courses']) ? $decoded['courses'] : [],
+    ];
+    return $catalog;
+}
+
+function edunext_catalog_course(string $course_id): ?array {
+    foreach (edunext_catalog_data()['courses'] as $course) {
+        if (is_array($course) && isset($course['id']) && hash_equals((string) $course['id'], $course_id)) {
+            return $course;
+        }
+    }
+    return null;
+}
+
+function edunext_course_required_lessons(array $course): int {
+    $lesson_count = isset($course['lessons']) && is_array($course['lessons']) ? count($course['lessons']) : 0;
+    $required = $course['completionRule']['requiredCount'] ?? $lesson_count;
+    return max(0, min($lesson_count, absint($required)));
 }
 
 function edunext_frontend_user_payload(): ?array {
@@ -58,10 +142,18 @@ function edunext_frontend_config(): array {
         $orders = [];
     }
 
+    $catalog_courses = edunext_catalog_data()['courses'];
+    $valid_published_ids = [];
+    foreach ($catalog_courses as $catalog_course) {
+        if (is_array($catalog_course) && !empty($catalog_course['published']) && !empty($catalog_course['id'])) {
+            $valid_published_ids[] = sanitize_key((string) $catalog_course['id']);
+        }
+    }
     $owned_ids = array_values(array_unique(array_filter(array_map(
         static fn($id) => sanitize_key((string) $id),
         $owned_ids
     ))));
+    $owned_ids = array_values(array_intersect($owned_ids, $valid_published_ids));
     $progress = [];
     foreach ($owned_ids as $course_id) {
         $entry = $all_progress[$course_id] ?? [];
@@ -82,6 +174,8 @@ function edunext_frontend_config(): array {
         'user' => edunext_frontend_user_payload(),
         'ownedCourseIds' => $owned_ids,
         'progress' => $progress,
+        // Only certificate records stored by the server for completed, published courses are exposed.
+        'certificates' => edunext_user_certificates($user_id, $owned_ids),
         // Only order records written by a trusted purchase integration are exposed here.
         'orders' => array_values(array_filter($orders, 'is_array')),
         'contact' => [
@@ -309,6 +403,39 @@ function edunext_ajax_profile_avatar(): void {
 }
 add_action('wp_ajax_edunext_profile_avatar', 'edunext_ajax_profile_avatar');
 
+function edunext_user_certificates(int $user_id, array $owned_ids): array {
+    if ($user_id <= 0 || empty($owned_ids)) {
+        return [];
+    }
+    $records = get_user_meta($user_id, 'edunext_certificates', true);
+    if (!is_array($records)) {
+        return [];
+    }
+
+    $valid = [];
+    foreach ($records as $course_id => $certificate) {
+        $course_id = sanitize_key((string) $course_id);
+        $course = edunext_catalog_course($course_id);
+        if (!is_array($certificate) || !is_array($course) || empty($course['published']) || !in_array($course_id, $owned_ids, true)) {
+            continue;
+        }
+        $progress = get_user_meta($user_id, 'edunext_course_progress', true);
+        $done = is_array($progress) && isset($progress[$course_id]['done']) && is_array($progress[$course_id]['done'])
+            ? array_unique(array_map('absint', $progress[$course_id]['done']))
+            : [];
+        if (count($done) < edunext_course_required_lessons($course)) {
+            continue;
+        }
+        $valid[] = [
+            'courseId' => $course_id,
+            'courseTitle' => sanitize_text_field((string) $course['title']),
+            'code' => sanitize_text_field((string) ($certificate['code'] ?? '')),
+            'issuedAt' => absint($certificate['issuedAt'] ?? 0),
+        ];
+    }
+    return $valid;
+}
+
 function edunext_ajax_progress_save(): void {
     edunext_ajax_require_nonce();
     if (!is_user_logged_in()) {
@@ -324,8 +451,13 @@ function edunext_ajax_progress_save(): void {
         edunext_ajax_error('Dữ liệu tiến độ không hợp lệ.');
     }
     $owned_ids = get_user_meta($user_id, 'edunext_owned_course_ids', true);
-    if (!is_array($owned_ids) || !in_array($course_id, $owned_ids, true)) {
+    $course = edunext_catalog_course($course_id);
+    if (!is_array($course) || empty($course['published']) || !is_array($owned_ids) || !in_array($course_id, $owned_ids, true)) {
         edunext_ajax_error('Tài khoản chưa có quyền truy cập khóa học này.', 403);
+    }
+    $lesson_count = isset($course['lessons']) && is_array($course['lessons']) ? count($course['lessons']) : 0;
+    if ($lesson_count <= 0 || $index >= $lesson_count) {
+        edunext_ajax_error('Bài học không tồn tại trong khóa học này.');
     }
 
     $all_progress = get_user_meta($user_id, 'edunext_course_progress', true);
