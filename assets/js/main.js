@@ -291,8 +291,7 @@ const courses=()=>{
 };
 const domainsPage=()=>{
   const groups=domainGroups();
-  const totalSpecialties=groups.reduce((total,group)=>total+group.domains.length,0);
-  return '<div class="wrap page edn-domain-page"><div class="edn-page-intro"><span class="edn-overline">DANH MỤC EDUNEXT</span><h1>Khám phá theo nhóm lĩnh vực</h1><p>Các lĩnh vực lớn được chia thành những chuyên ngành cụ thể. Ví dụ, <strong>Công nghệ thông tin</strong> bao gồm lập trình, phát triển Web, ứng dụng di động, cơ sở dữ liệu, AI, an ninh mạng, cloud và nhiều hướng chuyên sâu khác.</p><div class="edn-domain-count">'+groups.length+' nhóm lĩnh vực · '+totalSpecialties+' chuyên ngành</div></div>'+
+  return '<div class="wrap page edn-domain-page">'+
   '<div class="edn-domain-grid edn-domain-group-grid">'+groups.map((group,index)=>{
     const groupIds=new Set(group.domains.map(domain=>domain.id));
     const courseCount=C.filter(course=>groupIds.has(course.domainId)).length;
