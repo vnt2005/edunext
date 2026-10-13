@@ -40,9 +40,10 @@
                         <nav class="edn-domain-mega-list" id="edn-domain-mega-list" aria-label="Tất cả lĩnh vực"></nav>
                     </div>
                 </div>
+                <a id="edn-nav-dashboard" href="#/dashboard" class="edunext-nav-link edn-nav-dashboard" hidden>Trang học tập</a>
                 <div class="edn-contact-menu-wrap" id="edn-contact-menu-wrap">
                     <button id="edn-contact-nav-trigger" class="edunext-nav-link edn-contact-nav-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="edn-contact-dropdown">
-                        Liên Hệ <span class="edn-contact-chevron" aria-hidden="true">⌄</span>
+                        Liên Hệ
                     </button>
                     <div class="edn-contact-dropdown" id="edn-contact-dropdown" aria-label="Liên Hệ">
                         <a href="#/about" class="edn-contact-dropdown-link">About</a>
@@ -50,7 +51,6 @@
                         <a href="#/faq" class="edn-contact-dropdown-link">Hỏi Đáp</a>
                     </div>
                 </div>
-                <a id="edn-nav-dashboard" href="#/dashboard" class="edunext-nav-link edn-nav-dashboard" hidden>Trang học tập</a>
             </nav>
 
             <form class="sf lms-search edunext-header-search" data-form="search" role="search">
