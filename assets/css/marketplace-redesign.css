@@ -814,3 +814,17 @@ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-editorial-home
   body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-editorial-cta-actions{width:100%;flex-basis:auto}
   body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-editorial-cta-mark{right:-6px;bottom:20px;font-size:100px}
 }
+
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-editorial-hero-actions{display:flex;align-items:center;flex-wrap:wrap;gap:11px;margin-top:26px}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-editorial-hero-primary,
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-editorial-hero-secondary{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:47px;padding:12px 16px;border-radius:8px;font-size:12px;font-weight:850}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-editorial-hero-primary{background:#C2410C;color:#fff}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-editorial-hero-primary:hover{background:#9A3412}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-editorial-hero-primary b{font-size:16px}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-editorial-hero-secondary{border:1px solid #D1DED3;background:rgba(255,255,255,.65);color:#143E38}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-editorial-hero-secondary:hover{border-color:#0F766E;background:#fff;color:#0F766E}
+@media (max-width:640px){
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-editorial-hero-actions{gap:8px;margin-top:20px}
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-editorial-hero-primary,
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-editorial-hero-secondary{min-height:43px;padding:10px 11px;font-size:10px}
+}
