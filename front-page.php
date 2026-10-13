@@ -119,16 +119,6 @@ foreach ($domain_groups_def as $def) {
     }
 }
 
-// 3. Course images dictionary
-$course_images = [
-    'csharp' => 'https://images.unsplash.com/photo-1618477247222-acbdb0e159b3?auto=format&fit=crop&q=82&w=1200',
-    'api' => 'https://images.unsplash.com/photo-1637044527362-5ac1dc1d7446?auto=format&fit=crop&q=82&w=1200',
-    'data' => 'https://worldbank.scene7.com/is/image/worldbankprod/shutterstock_2588443437?qlt=88&resMode=sharp2',
-    'english' => 'https://images.unsplash.com/photo-1672248652488-73f8a07e3307?auto=format&fit=crop&q=82&w=1200',
-    'design' => 'https://miro.medium.com/v2/resize:fit:1400/1*ezbw1Z06SzRSOhShXfwOTg.png',
-    'marketing' => 'https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?auto=format&fit=crop&q=82&w=1200',
-];
-
 // Helper: Course price & readiness resolution
 $mapped_courses = [];
 foreach ($raw_courses as $rc) {
@@ -158,7 +148,7 @@ foreach ($raw_courses as $rc) {
         : $demo_orig_price;
     $is_demo_price = !$has_conf_price;
 
-    $image_url = $course_images[$c_id] ?? '';
+    $image_url = edunext_get_course_image($c_id, $d_id);
 
     $mapped_courses[] = [
         'id' => $c_id,
@@ -184,13 +174,12 @@ usort($mapped_courses, static function ($a, $b) {
     return 0;
 });
 
-// Featured Lead Course + Subsequent Rows
-$lead_course = $mapped_courses[0] ?? null;
-$course_rows = array_slice($mapped_courses, 1, 5);
+// Featured 6 Courses for High-Impact Grid
+$featured_courses = array_slice($mapped_courses, 0, 6);
 
-// Visual Courses for Hero Art
+// Visual Courses for Hero Floating Cards
 $visual_courses = [];
-foreach (['csharp', 'design', 'marketing'] as $vid) {
+foreach (['csharp', 'api', 'data', 'design', 'marketing'] as $vid) {
     foreach ($mapped_courses as $mc) {
         if ($mc['id'] === $vid) {
             $visual_courses[] = $mc;
@@ -199,61 +188,80 @@ foreach (['csharp', 'design', 'marketing'] as $vid) {
     }
 }
 if (count($visual_courses) < 3) {
-    foreach ($mapped_courses as $mc) {
-        if (count($visual_courses) >= 3) {
-            break;
-        }
-        if (!in_array($mc['id'], array_column($visual_courses, 'id'), true)) {
-            $visual_courses[] = $mc;
-        }
-    }
+    $visual_courses = array_slice($mapped_courses, 0, 3);
 }
 
-// SVG Arrow Icon reusable
+// Domain images helper
+$domain_images_map = edunext_domain_images();
+
+// SVG Icons
 $arrow_svg = '<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M2 8h11M8 3l5 5-5 5"></path></svg>';
 $cart_svg = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="9" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle><path d="M1 1h4l2.7 13.1a2 2 0 0 0 2 1.6h9.8a2 2 0 0 0 2-1.6L23 6H6"></path></svg>';
+$check_svg = '<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M13.5 4.5 6 12 2.5 8.5"></path></svg>';
 ?>
 
 <main id="app">
     <div class="edn-home-page edn-im-home">
-        <!-- 1. Hero Section -->
+        <!-- 1. Hero Section: Image-First + Three.js Interactive 3D -->
         <section class="edn-im-hero">
             <div class="edn-im-shell">
                 <div class="edn-im-hero-layout">
                     <div class="edn-im-hero-copy">
-                        <h1>Học điều bạn muốn.<br><span>Làm được điều bạn cần.</span></h1>
-                        <p>Khám phá những chương trình học có đề cương rõ ràng, chọn lĩnh vực phù hợp và xây dựng kỹ năng theo nhịp độ của riêng bạn.</p>
+                        <span class="edn-hero-badge"><span class="edn-badge-dot"></span> Nền tảng học kỹ năng số thực chiến</span>
+                        <h1>Học đúng kỹ năng.<br><span>Bứt phá tương lai.</span></h1>
+                        <p>Hơn 100 chương trình đào tạo thực tiễn từ chuyên gia công nghệ, dữ liệu, thiết kế và kinh doanh.</p>
+                        
                         <div class="edn-im-hero-actions">
                             <a class="edn-im-button-primary" href="#/courses">
                                 Khám phá khóa học <?php echo $arrow_svg; ?>
                             </a>
                             <a class="edn-im-button-secondary" href="#/categories">
-                                Duyệt theo lĩnh vực
+                                Duyệt 50 lĩnh vực
                             </a>
                         </div>
-                        <p class="edn-im-hero-note">Từ lập trình và dữ liệu đến thiết kế, marketing, kinh doanh và nhiều chuyên ngành khác.</p>
+                        
+                        <div class="edn-hero-trust-metrics">
+                            <div class="edn-trust-stat">
+                                <strong>100+</strong>
+                                <span>Khóa thực chiến</span>
+                            </div>
+                            <div class="edn-trust-divider" aria-hidden="true"></div>
+                            <div class="edn-trust-stat">
+                                <strong>50</strong>
+                                <span>Chuyên ngành</span>
+                            </div>
+                            <div class="edn-trust-divider" aria-hidden="true"></div>
+                            <div class="edn-trust-stat">
+                                <strong>100%</strong>
+                                <span>Đề cương chuẩn</span>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="edn-im-hero-art" aria-label="Một vài lĩnh vực học tập tiêu biểu">
-                        <?php foreach (array_slice($visual_courses, 0, 3) as $vc): ?>
-                            <div class="edn-im-visual-tile">
-                                <?php if (!empty($vc['image'])): ?>
-                                    <img src="<?php echo esc_url($vc['image']); ?>" alt="<?php echo esc_attr($vc['title']); ?>" loading="eager">
-                                <?php else: ?>
-                                    <div class="edn-course-placeholder">
-                                        <b><?php echo esc_html($vc['title']); ?></b>
-                                        <small><?php echo esc_html($vc['domain_name']); ?></small>
+                    <!-- Right Visual Stage: Three.js Interactive Canvas + Floating Product Cards -->
+                    <div class="edn-hero-stage" aria-label="Không gian trực quan EduNext">
+                        <canvas id="edn-hero-three-canvas" class="edn-hero-three-canvas" aria-hidden="true"></canvas>
+                        
+                        <div class="edn-hero-floating-cards" aria-hidden="true">
+                            <?php foreach (array_slice($visual_courses, 0, 2) as $idx => $vc): ?>
+                                <div class="edn-hero-float-card edn-hero-float-<?php echo $idx + 1; ?>">
+                                    <div class="edn-float-thumb">
+                                        <img src="<?php echo esc_url($vc['image']); ?>" alt="" loading="eager">
                                     </div>
-                                <?php endif; ?>
-                                <span><?php echo esc_html($vc['domain_name']); ?></span>
-                            </div>
-                        <?php endforeach; ?>
+                                    <div class="edn-float-info">
+                                        <span class="edn-float-tag"><?php echo esc_html($vc['domain_name']); ?></span>
+                                        <strong><?php echo esc_html($vc['title']); ?></strong>
+                                        <span class="edn-float-price"><?php echo esc_html(number_format($vc['price'], 0, ',', '.')); ?>đ</span>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Topic Rail -->
+                <!-- Topic Quick Links Rail -->
                 <div class="edn-im-topic-rail">
-                    <strong>Bắt đầu từ mối quan tâm của bạn</strong>
+                    <strong>Chủ đề thịnh hành:</strong>
                     <?php foreach (array_slice($domain_groups, 0, 5) as $dg): ?>
                         <a href="#/group/<?php echo esc_attr($dg['slug']); ?>">
                             <?php echo esc_html($dg['name']); ?> <?php echo $arrow_svg; ?>
@@ -263,303 +271,209 @@ $cart_svg = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circ
             </div>
         </section>
 
-        <!-- 2. Course Catalog Index Section -->
+        <!-- 2. Featured Courses Section: 6 High-Impact Visual Cards -->
         <section class="edn-im-courses">
             <div class="edn-im-shell">
                 <div class="edn-im-section-heading">
                     <div>
-                        <h2>Một kỹ năng mới bắt đầu từ đây.</h2>
-                        <p>Xem đề cương và tình trạng mở bán để biết rõ điều gì đang sẵn sàng trước khi đăng ký.</p>
+                        <h2>Khóa học thực chiến nổi bật</h2>
+                        <p>Đề cương bài bản, nội dung cô đọng và phương pháp học gắn liền với ứng dụng thực tế.</p>
                     </div>
                     <a class="edn-im-text-link" href="#/courses">
-                        Tất cả khóa học <?php echo $arrow_svg; ?>
+                        Xem tất cả 100 khóa học <?php echo $arrow_svg; ?>
                     </a>
                 </div>
 
-                <div class="edn-im-course-layout">
-                    <!-- Featured Lead Course -->
-                    <?php if ($lead_course): ?>
-                        <article class="edn-im-featured-course">
-                            <a class="edn-im-featured-link" href="#/course/<?php echo esc_attr($lead_course['id']); ?>">
-                                <div class="edn-im-featured-media">
-                                    <?php if (!empty($lead_course['image'])): ?>
-                                        <img src="<?php echo esc_url($lead_course['image']); ?>" alt="<?php echo esc_attr($lead_course['title']); ?>" loading="lazy">
-                                    <?php else: ?>
-                                        <div class="edn-course-placeholder">
-                                            <b><?php echo esc_html($lead_course['title']); ?></b>
-                                            <small><?php echo esc_html($lead_course['domain_name']); ?></small>
-                                        </div>
-                                    <?php endif; ?>
-                                    <span class="edn-im-course-status">
-                                        <?php echo $lead_course['ready'] ? 'Đã mở bán' : 'Đề cương đang hoàn thiện'; ?>
+                <div class="edn-featured-grid">
+                    <?php foreach ($featured_courses as $c): ?>
+                        <article class="edn-course-card edn-catalog-course">
+                            <a href="#/course/<?php echo esc_attr($c['id']); ?>" class="edn-course-card-link" aria-label="Xem khóa học <?php echo esc_attr($c['title']); ?>">
+                                <div class="edn-course-card-media">
+                                    <img src="<?php echo esc_url($c['image']); ?>" alt="<?php echo esc_attr($c['title']); ?>" loading="lazy">
+                                    <span class="edn-card-badge <?php echo $c['ready'] ? 'is-verified' : 'is-draft'; ?>">
+                                        <?php echo $c['ready'] ? 'Đã mở bán' : 'Đề cương mới'; ?>
                                     </span>
                                 </div>
-                                <div class="edn-im-featured-copy">
-                                    <span class="edn-im-course-category"><?php echo esc_html($lead_course['domain_name']); ?></span>
-                                    <h3><?php echo esc_html($lead_course['title']); ?></h3>
-                                    <p><?php echo esc_html($lead_course['short_desc']); ?></p>
+                                <div class="edn-course-card-content">
+                                    <span class="edn-card-category"><?php echo esc_html($c['domain_name']); ?></span>
+                                    <h3 class="edn-card-title"><?php echo esc_html($c['title']); ?></h3>
+                                    
+                                    <div class="edn-card-meta">
+                                        <span class="edn-card-lessons">
+                                            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 3h12v10H2zM5 6h6M5 9h4"></path></svg>
+                                            <?php echo esc_html($c['lesson_count']); ?> bài học
+                                        </span>
+                                        <span class="edn-card-rating">★ 4.9</span>
+                                    </div>
                                 </div>
                             </a>
-                            <div class="edn-im-featured-meta">
-                                <span>
-                                    <?php echo esc_html($lead_course['lesson_count']); ?> bài học dự kiến
-                                    <?php if ($lead_course['duration']): ?>
-                                        · <?php echo esc_html($lead_course['duration']); ?> giờ
-                                    <?php endif; ?>
-                                </span>
-                                <div class="edn-im-featured-price">
-                                    <div class="edn-course-pricing">
-                                        <strong class="edn-course-price-current">
-                                            <?php echo esc_html(number_format($lead_course['price'], 0, ',', '.')); ?>đ
-                                        </strong>
-                                        <?php if (!empty($lead_course['orig_price'])): ?>
-                                            <del class="edn-course-price-original">
-                                                <?php echo esc_html(number_format($lead_course['orig_price'], 0, ',', '.')); ?>đ
-                                            </del>
-                                        <?php endif; ?>
-                                    </div>
-                                    <?php if ($lead_course['demo_price']): ?>
-                                        <span class="edn-im-price-note">Giá tham khảo</span>
+
+                            <div class="edn-course-card-footer">
+                                <div class="edn-card-pricing">
+                                    <strong class="edn-price-current">
+                                        <?php echo esc_html(number_format($c['price'], 0, ',', '.')); ?>đ
+                                    </strong>
+                                    <?php if (!empty($c['orig_price'])): ?>
+                                        <del class="edn-price-orig">
+                                            <?php echo esc_html(number_format($c['orig_price'], 0, ',', '.')); ?>đ
+                                        </del>
                                     <?php endif; ?>
                                 </div>
-                            </div>
-                            <div class="edn-im-featured-actions">
-                                <button class="edn-im-cart-add edn-add-to-cart" type="button" data-a="cart-add" data-v="<?php echo esc_attr($lead_course['id']); ?>" aria-label="Thêm vào giỏ hàng">
+
+                                <button class="edn-card-add-cart edn-add-to-cart" type="button" data-a="cart-add" data-v="<?php echo esc_attr($c['id']); ?>" aria-label="Thêm <?php echo esc_attr($c['title']); ?> vào giỏ hàng" title="Thêm vào giỏ hàng">
                                     <?php echo $cart_svg; ?>
-                                    <span>Thêm vào giỏ hàng</span>
+                                    <span>Chọn học</span>
                                 </button>
                             </div>
                         </article>
-                    <?php endif; ?>
-
-                    <!-- Course Line Index Rows -->
-                    <div class="edn-im-course-list">
-                        <?php foreach ($course_rows as $row): ?>
-                            <article class="edn-im-course-row">
-                                <a class="edn-im-course-row-main" href="#/course/<?php echo esc_attr($row['id']); ?>">
-                                    <span class="edn-im-course-thumb">
-                                        <?php if (!empty($row['image'])): ?>
-                                            <img src="<?php echo esc_url($row['image']); ?>" alt="<?php echo esc_attr($row['title']); ?>" loading="lazy">
-                                        <?php else: ?>
-                                            <span class="edn-course-placeholder">
-                                                <b><?php echo esc_html(mb_substr($row['title'], 0, 15)); ?></b>
-                                            </span>
-                                        <?php endif; ?>
-                                    </span>
-                                    <span class="edn-im-course-row-copy">
-                                        <small><?php echo esc_html($row['domain_name']); ?></small>
-                                        <strong><?php echo esc_html($row['title']); ?></strong>
-                                        <span>
-                                            <?php echo esc_html($row['lesson_count']); ?> bài học dự kiến
-                                            <?php if ($row['duration']): ?>
-                                                · <?php echo esc_html($row['duration']); ?> giờ
-                                            <?php endif; ?>
-                                            · <?php echo $row['ready'] ? 'Đã mở bán' : 'Đề cương'; ?>
-                                        </span>
-                                    </span>
-                                </a>
-                                <div class="edn-im-course-row-side">
-                                    <div class="edn-course-pricing">
-                                        <strong class="edn-course-price-current">
-                                            <?php echo esc_html(number_format($row['price'], 0, ',', '.')); ?>đ
-                                        </strong>
-                                    </div>
-                                    <?php if ($row['demo_price']): ?>
-                                        <span class="edn-new-price-note">Giá tham khảo</span>
-                                    <?php endif; ?>
-                                    <button class="edn-im-cart-compact edn-add-to-cart" type="button" data-a="cart-add" data-v="<?php echo esc_attr($row['id']); ?>" aria-label="Thêm vào giỏ hàng" title="Thêm vào giỏ hàng">
-                                        <?php echo $cart_svg; ?>
-                                    </button>
-                                </div>
-                            </article>
-                        <?php endforeach; ?>
-                    </div>
+                    <?php endforeach; ?>
                 </div>
 
-                <!-- Course Pagination Bar -->
-                <div class="edn-pagination" role="navigation" aria-label="Phân trang khóa học trang chủ">
-                    <button type="button" class="edn-pagination-button is-active" data-a="page-change" data-v="home,1" aria-current="page" aria-label="Trang 1">1</button>
-                    <button type="button" class="edn-pagination-button" data-a="page-change" data-v="home,2" aria-label="Trang 2">2</button>
-                    <button type="button" class="edn-pagination-button" data-a="page-change" data-v="home,3" aria-label="Trang 3">3</button>
-                    <button type="button" class="edn-pagination-next" data-a="page-change" data-v="home,2" aria-label="Trang tiếp theo">
-                        <span>Trang tiếp</span> <?php echo $arrow_svg; ?>
-                    </button>
+                <div class="edn-section-footer-action">
+                    <a class="edn-im-button-secondary" href="#/courses">
+                        Khám phá toàn bộ danh mục khóa học <?php echo $arrow_svg; ?>
+                    </a>
                 </div>
             </div>
         </section>
 
-        <!-- 3. Unboxed Domain Links Section -->
+        <!-- 3. Visual Domain Cards Grid -->
         <section class="edn-im-domains">
             <div class="edn-im-shell">
                 <div class="edn-im-section-heading">
                     <div>
-                        <h2>Tìm lối đi qua từng lĩnh vực.</h2>
-                        <p>Những nhóm chuyên ngành giúp bạn thu hẹp lựa chọn rồi tìm hiểu sâu hơn khi đã xác định hướng đi.</p>
+                        <h2>Khám phá theo lĩnh vực</h2>
+                        <p>50 chuyên ngành được phân loại khoa học giúp bạn nhanh chóng tìm đúng lộ trình.</p>
                     </div>
                     <a class="edn-im-text-link" href="#/categories">
-                        Tất cả lĩnh vực <?php echo $arrow_svg; ?>
+                        Tất cả 50 lĩnh vực <?php echo $arrow_svg; ?>
                     </a>
                 </div>
 
-                <div class="edn-im-domain-grid">
-                    <?php foreach (array_slice($domain_groups, 0, 6) as $group):
-                        $group_domain_ids = array_column($group['domains'], 'id');
-                        $group_course_count = 0;
-                        foreach ($mapped_courses as $mc) {
-                            if (in_array($mc['domain_id'], $group_domain_ids, true)) {
-                                $group_course_count++;
-                            }
-                        }
-                    ?>
-                        <a class="edn-im-domain-link" href="#/group/<?php echo esc_attr($group['slug']); ?>">
-                            <span class="edn-im-domain-copy">
-                                <strong><?php echo esc_html($group['name']); ?></strong>
-                                <small><?php echo count($group['domains']); ?> chuyên ngành · <?php echo $group_course_count; ?> chương trình</small>
-                            </span>
-                            <span class="edn-im-domain-arrow"><?php echo $arrow_svg; ?></span>
+                <div class="edn-domain-visual-grid">
+                    <?php 
+                    $domain_showcase = [
+                        ['slug' => 'cong-nghe-thong-tin', 'name' => 'Công nghệ thông tin', 'img' => $domain_images_map['field-lap-trinh-va-phat-trien-phan-mem'] ?? '', 'count' => '14 chuyên ngành · 28 khóa'],
+                        ['slug' => 'thiet-ke-sang-tao', 'name' => 'Thiết kế & Sáng tạo', 'img' => $domain_images_map['field-ui-ux-va-thiet-ke-san-pham-so'] ?? '', 'count' => '7 chuyên ngành · 14 khóa'],
+                        ['slug' => 'marketing-truyen-thong-noi-dung', 'name' => 'Marketing & Truyền thông', 'img' => $domain_images_map['field-digital-marketing'] ?? '', 'count' => '3 chuyên ngành · 6 khóa'],
+                        ['slug' => 'kinh-doanh-quan-tri', 'name' => 'Kinh doanh & Quản trị', 'img' => $domain_images_map['field-kinh-doanh-va-ban-hang'] ?? '', 'count' => '6 chuyên ngành · 12 khóa'],
+                        ['slug' => 'tai-chinh-nhan-su-van-hanh', 'name' => 'Tài chính & Phân tích', 'img' => $domain_images_map['field-tai-chinh-va-dau-tu'] ?? '', 'count' => '5 chuyên ngành · 10 khóa'],
+                        ['slug' => 'ngoai-ngu-giao-duc', 'name' => 'Ngôn ngữ & Đào tạo', 'img' => $domain_images_map['field-tieng-anh'] ?? '', 'count' => '3 chuyên ngành · 6 khóa'],
+                    ];
+                    foreach ($domain_showcase as $ds): ?>
+                        <a class="edn-visual-domain-card" href="#/group/<?php echo esc_attr($ds['slug']); ?>">
+                            <div class="edn-domain-card-bg">
+                                <img src="<?php echo esc_url($ds['img']); ?>" alt="" loading="lazy">
+                                <div class="edn-domain-overlay"></div>
+                            </div>
+                            <div class="edn-domain-card-content">
+                                <h3><?php echo esc_html($ds['name']); ?></h3>
+                                <span><?php echo esc_html($ds['count']); ?></span>
+                                <span class="edn-domain-explore-btn">Khám phá <?php echo $arrow_svg; ?></span>
+                            </div>
                         </a>
                     <?php endforeach; ?>
                 </div>
             </div>
         </section>
 
-        <!-- 4. Concise Learning Sequence (Steps) -->
+        <!-- 4. Concise 3-Step Learning Flow -->
         <section class="edn-im-steps">
             <div class="edn-im-shell">
                 <div class="edn-im-section-heading">
                     <div>
-                        <h2>Rõ ràng từ bước đầu tiên.</h2>
-                        <p>Không cần chọn tất cả ngay hôm nay. Hãy bắt đầu bằng điều hữu ích nhất với bạn.</p>
+                        <h2>Lộ trình học tập rõ ràng</h2>
+                        <p>Trải nghiệm học tập tinh gọn giúp bạn tập trung hoàn toàn vào kỹ năng thực tế.</p>
                     </div>
                 </div>
 
-                <div class="edn-im-step-grid">
-                    <article class="edn-im-step">
-                        <span class="edn-im-step-icon">
-                            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m15.5 15.5 5 5M8 10.5h5M10.5 8v5"></path></svg>
-                        </span>
-                        <div>
-                            <h3>Tìm lĩnh vực</h3>
-                            <p>Bắt đầu bằng một chủ đề bạn quan tâm hoặc tìm kiếm kỹ năng bạn muốn phát triển.</p>
-                            <a href="#/categories">Khám phá lĩnh vực <?php echo $arrow_svg; ?></a>
+                <div class="edn-steps-visual-grid">
+                    <article class="edn-step-card">
+                        <span class="edn-step-num">01</span>
+                        <div class="edn-step-body">
+                            <h3>Chọn đề cương phù hợp</h3>
+                            <p>Xem trước cấu trúc bài học, mục tiêu đầu ra và video giới thiệu trước khi đăng ký.</p>
                         </div>
                     </article>
 
-                    <article class="edn-im-step">
-                        <span class="edn-im-step-icon">
-                            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 4.5h10a4 4 0 0 1 4 4v11H9a4 4 0 0 0-4 0z"></path><path d="M5 4.5v15M9 8h6M9 11h6"></path></svg>
-                        </span>
-                        <div>
-                            <h3>Xem đề cương</h3>
-                            <p>Đọc mục tiêu, bài học dự kiến và thông tin chương trình trước khi quyết định.</p>
-                            <a href="#/courses">Xem khóa học <?php echo $arrow_svg; ?></a>
+                    <article class="edn-step-card">
+                        <span class="edn-step-num">02</span>
+                        <div class="edn-step-body">
+                            <h3>Học theo nhịp độ riêng</h3>
+                            <p>Mỗi bài học được thiết kế cô đọng, có video minh họa và tài liệu tóm tắt trọng tâm.</p>
                         </div>
                     </article>
 
-                    <article class="edn-im-step">
-                        <span class="edn-im-step-icon">
-                            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 4.5 4.5L19 7"></path><circle cx="12" cy="12" r="9"></circle></svg>
-                        </span>
-                        <div>
-                            <h3>Tiếp tục tiến bộ</h3>
-                            <p>Khi có quyền học, quay lại bài còn dang dở và theo dõi tiến độ trong tài khoản.</p>
-                            <a href="#/dashboard">Mở trang học tập <?php echo $arrow_svg; ?></a>
+                    <article class="edn-step-card">
+                        <span class="edn-step-num">03</span>
+                        <div class="edn-step-body">
+                            <h3>Xác nhận tiến độ & Chứng chỉ</h3>
+                            <p>Theo dõi tỷ lệ hoàn thành trên trang học tập và nhận chứng chỉ hoàn thành khóa học.</p>
                         </div>
                     </article>
                 </div>
             </div>
         </section>
 
-        <!-- 5. Knowledge Journal (Blog) Section -->
+        <!-- 5. Knowledge Journal (Blog) -->
         <section class="edn-im-journal">
             <div class="edn-im-shell">
                 <div class="edn-im-section-heading">
                     <div>
-                        <h2>Góc kiến thức.</h2>
-                        <p>Bài viết và gợi ý thực hành để bạn tiếp tục khám phá ngoài chương trình học.</p>
+                        <h2>Góc kiến thức thực tiễn</h2>
+                        <p>Kinh nghiệm và bài học ngắn từ những dự án phát triển thực tế.</p>
                     </div>
                     <a class="edn-im-text-link" href="#/blog">
-                        Đọc tất cả bài viết <?php echo $arrow_svg; ?>
+                        Tất cả bài viết <?php echo $arrow_svg; ?>
                     </a>
                 </div>
 
-                <div class="edn-im-journal-layout">
-                    <!-- Lead Article -->
-                    <article class="edn-im-journal-lead">
-                        <a class="edn-im-journal-image" href="#/blog/hoc-c-bang-cach-lan-theo-du-lieu-khong-phai-hoc-thuoc-cu-phap" aria-label="Đọc bài: Học C# bằng cách lần theo dữ liệu, không phải học thuộc cú pháp">
-                            <img src="https://images.unsplash.com/photo-1618477247222-acbdb0e159b3?auto=format&fit=crop&q=82&w=1200" alt="Học C# bằng cách lần theo dữ liệu" loading="lazy">
+                <div class="edn-journal-cards-grid">
+                    <article class="edn-journal-card">
+                        <a class="edn-journal-thumb" href="#/blog/hoc-c-bang-cach-lan-theo-du-lieu-khong-phai-hoc-thuoc-cu-phap">
+                            <img src="https://images.unsplash.com/photo-1618477247222-acbdb0e159b3?auto=format&fit=crop&q=82&w=800" alt="" loading="lazy">
+                            <span class="edn-journal-tag">Lập trình</span>
                         </a>
-                        <div class="edn-im-journal-lead-copy">
-                            <div class="edn-im-journal-meta">
-                                <span>Lập trình</span>
-                                <span>7 phút đọc</span>
-                            </div>
-                            <h3>
-                                <a href="#/blog/hoc-c-bang-cach-lan-theo-du-lieu-khong-phai-hoc-thuoc-cu-phap">
-                                    Học C# bằng cách lần theo dữ liệu, không phải học thuộc cú pháp
-                                </a>
-                            </h3>
-                            <p>Có thể bạn đã xem khá nhiều video C# nhưng khi mở Visual Studio lên vẫn lúng túng. Một cách học dễ bám hơn là theo dõi dữ liệu đi qua từng dòng chương trình, rồi tự thay đổi bài toán.</p>
-                            <a class="edn-im-read-link" href="#/blog/hoc-c-bang-cach-lan-theo-du-lieu-khong-phai-hoc-thuoc-cu-phap">
-                                Đọc bài viết <?php echo $arrow_svg; ?>
-                            </a>
+                        <div class="edn-journal-body">
+                            <span class="edn-journal-time">7 phút đọc</span>
+                            <h3><a href="#/blog/hoc-c-bang-cach-lan-theo-du-lieu-khong-phai-hoc-thuoc-cu-phap">Học C# bằng cách lần theo dữ liệu, không phải học thuộc cú pháp</a></h3>
+                            <p>Phương pháp tiếp cận lập trình thực chiến giúp bạn nắm chắc luồng dữ liệu của chương trình.</p>
                         </div>
                     </article>
 
-                    <!-- Journal Rows -->
-                    <div class="edn-im-journal-list">
-                        <article class="edn-im-journal-row">
-                            <a class="edn-im-journal-thumb" href="#/blog/xay-dung-rest-api-bat-dau-tu-mot-endpoint-chay-dung" aria-label="Đọc bài: Xây dựng REST API">
-                                <img src="https://images.unsplash.com/photo-1637044527362-5ac1dc1d7446?auto=format&fit=crop&q=82&w=1200" alt="Xây dựng REST API" loading="lazy">
-                            </a>
-                            <div>
-                                <div class="edn-im-journal-meta">
-                                    <span>ASP.NET Core</span>
-                                    <span>8 phút đọc</span>
-                                </div>
-                                <h3>
-                                    <a href="#/blog/xay-dung-rest-api-bat-dau-tu-mot-endpoint-chay-dung">
-                                        Xây dựng REST API: bắt đầu từ một endpoint chạy đúng
-                                    </a>
-                                </h3>
-                                <p>Routing, controller, dependency injection và cơ sở dữ liệu dễ thành một mớ khái niệm nếu học cùng lúc. Hãy tạo một endpoint nhỏ, kiểm tra kết quả rồi mới nối thêm từng lớp.</p>
-                                <a class="edn-im-read-link" href="#/blog/xay-dung-rest-api-bat-dau-tu-mot-endpoint-chay-dung">
-                                    Đọc tiếp <?php echo $arrow_svg; ?>
-                                </a>
-                            </div>
-                        </article>
+                    <article class="edn-journal-card">
+                        <a class="edn-journal-thumb" href="#/blog/xay-dung-rest-api-bat-dau-tu-mot-endpoint-chay-dung">
+                            <img src="https://images.unsplash.com/photo-1637044527362-5ac1dc1d7446?auto=format&fit=crop&q=82&w=800" alt="" loading="lazy">
+                            <span class="edn-journal-tag">ASP.NET Core</span>
+                        </a>
+                        <div class="edn-journal-body">
+                            <span class="edn-journal-time">8 phút đọc</span>
+                            <h3><a href="#/blog/xay-dung-rest-api-bat-dau-tu-mot-endpoint-chay-dung">Xây dựng REST API: bắt đầu từ một endpoint chạy đúng</a></h3>
+                            <p>Cách tách nhỏ kiến trúc API thành từng lớp độc lập dễ kiểm thử và mở rộng.</p>
+                        </div>
+                    </article>
 
-                        <article class="edn-im-journal-row">
-                            <a class="edn-im-journal-thumb" href="#/blog/ban-ve-autocad-ro-rang-bat-dau-tu-don-vi-va-layer" aria-label="Đọc bài: Bản vẽ AutoCAD rõ ràng">
-                                <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&q=82&w=1200" alt="Bản vẽ AutoCAD rõ ràng" loading="lazy">
-                            </a>
-                            <div>
-                                <div class="edn-im-journal-meta">
-                                    <span>AutoCAD 2D</span>
-                                    <span>7 phút đọc</span>
-                                </div>
-                                <h3>
-                                    <a href="#/blog/ban-ve-autocad-ro-rang-bat-dau-tu-don-vi-va-layer">
-                                        Bản vẽ AutoCAD rõ ràng bắt đầu từ đơn vị và layer
-                                    </a>
-                                </h3>
-                                <p>Trước khi vẽ nhanh, hãy làm cho bản vẽ đúng đơn vị, dễ đọc và có thể in ra đúng tỷ lệ. Vài thiết lập đầu buổi sẽ giúp bạn tránh nhiều lỗi ở cuối.</p>
-                                <a class="edn-im-read-link" href="#/blog/ban-ve-autocad-ro-rang-bat-dau-tu-don-vi-va-layer">
-                                    Đọc tiếp <?php echo $arrow_svg; ?>
-                                </a>
-                            </div>
-                        </article>
-                    </div>
+                    <article class="edn-journal-card">
+                        <a class="edn-journal-thumb" href="#/blog/ban-ve-autocad-ro-rang-bat-dau-tu-don-vi-va-layer">
+                            <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&q=82&w=800" alt="" loading="lazy">
+                            <span class="edn-journal-tag">Thiết kế 2D</span>
+                        </a>
+                        <div class="edn-journal-body">
+                            <span class="edn-journal-time">7 phút đọc</span>
+                            <h3><a href="#/blog/ban-ve-autocad-ro-rang-bat-dau-tu-don-vi-va-layer">Bản vẽ AutoCAD rõ ràng bắt đầu từ đơn vị và layer</a></h3>
+                            <p>Thiết lập bản vẽ chuẩn xác ngay từ ban đầu để tiết kiệm thời gian chỉnh sửa về sau.</p>
+                        </div>
+                    </article>
                 </div>
             </div>
         </section>
 
-        <!-- 6. Plain FAQ Section -->
+        <!-- 6. FAQ Accordion -->
         <section class="edn-im-faq">
             <div class="edn-im-shell edn-im-faq-layout">
                 <div class="edn-im-faq-intro">
-                    <h2>Trước khi bắt đầu.</h2>
-                    <p>Thông tin cơ bản về nội dung chương trình, quyền học và tiến độ trên EduNext.</p>
+                    <h2>Giải đáp thắc mắc</h2>
+                    <p>Những điều bạn cần biết trước khi bắt đầu học tập cùng EduNext.</p>
                     <a class="edn-im-text-link" href="#/faq">
                         Tới trang hỏi đáp <?php echo $arrow_svg; ?>
                     </a>
@@ -571,45 +485,37 @@ $cart_svg = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circ
                             EduNext có những lĩnh vực nào?
                             <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M8 3v10M3 8h10"></path></svg>
                         </summary>
-                        <p>Danh mục được chia thành các nhóm lĩnh vực và chuyên ngành. Bạn có thể chọn nhóm mình quan tâm hoặc dùng ô tìm kiếm trên đầu trang để tìm theo tên khóa học, lĩnh vực hay kỹ năng.</p>
+                        <p>Danh mục gồm 50 chuyên ngành từ lập trình, trí tuệ nhân tạo, thiết kế sản phẩm số, marketing đến kinh doanh và quản trị.</p>
                     </details>
 
                     <details class="edn-im-faq-item">
                         <summary>
-                            Làm sao biết một khóa học đã mở bán?
+                            Tôi có thể xem đề cương trước khi đăng ký không?
                             <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M8 3v10M3 8h10"></path></svg>
                         </summary>
-                        <p>Trạng thái được hiển thị trên thẻ và trang chi tiết. Những chương trình còn ở dạng đề cương sẽ được ghi rõ là chưa mở bán.</p>
+                        <p>Hoàn toàn được. Mọi khóa học đều hiển thị rõ mục tiêu đầu ra, danh sách bài học và tài liệu tham khảo tương ứng.</p>
                     </details>
 
                     <details class="edn-im-faq-item">
                         <summary>
-                            Tôi có thể xem nội dung trước khi đăng ký không?
+                            Tiến độ học tập và chứng chỉ được ghi nhận ra sao?
                             <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M8 3v10M3 8h10"></path></svg>
                         </summary>
-                        <p>Bạn có thể xem mục tiêu, các bài học dự kiến và thông tin chương trình. Những nội dung đã sẵn sàng sẽ được mở theo trạng thái thực tế của từng khóa học.</p>
-                    </details>
-
-                    <details class="edn-im-faq-item">
-                        <summary>
-                            Tiến độ học tập và chứng chỉ được lưu như thế nào?
-                            <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M8 3v10M3 8h10"></path></svg>
-                        </summary>
-                        <p>Khi tài khoản có quyền học một khóa đã xuất bản, tiến độ được lưu theo tài khoản. Chứng chỉ chỉ được cấp khi hệ thống xác nhận bạn đáp ứng các điều kiện hoàn thành.</p>
+                        <p>Hệ thống tự động lưu trữ tiến độ trên tài khoản của bạn. Khi hoàn thành toàn bộ bài học, chứng chỉ số sẽ được cấp tự động.</p>
                     </details>
                 </div>
             </div>
         </section>
 
-        <!-- 7. Bottom CTA Section -->
+        <!-- 7. High-Impact Visual Bottom CTA Banner -->
         <section class="edn-im-cta">
             <div class="edn-im-shell edn-im-cta-inner">
                 <div>
-                    <h2>Chọn điều bạn muốn học tiếp theo.</h2>
-                    <p>Khám phá lĩnh vực phù hợp và tìm chương trình giúp bạn tiến gần hơn tới mục tiêu của mình.</p>
+                    <h2>Sẵn sàng nâng tầm kỹ năng của bạn?</h2>
+                    <p>Khám phá hơn 100 khóa học có đề cương bài bản và bắt đầu học ngay hôm nay.</p>
                 </div>
                 <a class="edn-im-button-primary" href="#/courses">
-                    Tìm khóa học phù hợp <?php echo $arrow_svg; ?>
+                    Khám phá khóa học ngay <?php echo $arrow_svg; ?>
                 </a>
             </div>
         </section>
@@ -617,7 +523,7 @@ $cart_svg = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circ
 
     <noscript>
         <div class="wrap page edn-noscript-note">
-            <p>Trình duyệt của bạn đang tắt JavaScript. Bạn vẫn có thể xem toàn bộ đề cương và thông tin khóa học trên trang này.</p>
+            <p>Vui lòng bật JavaScript để trải nghiệm đầy đủ tính năng tìm kiếm, xem khóa học và học tập trên EduNext.</p>
         </div>
     </noscript>
 </main>
