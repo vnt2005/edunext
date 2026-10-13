@@ -268,10 +268,27 @@ function edunext_enqueue_assets(): void {
         edunext_asset_version('assets/css/impeccable-public.css')
     );
 
+    // GSAP Core & ScrollTrigger for modern interactive animations
+    wp_enqueue_script(
+        'gsap',
+        'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js',
+        [],
+        '3.12.5',
+        true
+    );
+
+    wp_enqueue_script(
+        'gsap-scroll-trigger',
+        'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js',
+        ['gsap'],
+        '3.12.5',
+        true
+    );
+
     wp_enqueue_script(
         'edunext-app',
         get_theme_file_uri('assets/js/main.js'),
-        [],
+        ['gsap', 'gsap-scroll-trigger'],
         edunext_asset_version('assets/js/main.js'),
         true
     );

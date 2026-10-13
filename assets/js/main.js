@@ -867,7 +867,7 @@ const A={
     else if(area==='courses')f.page=page;
     render(true);
     const targetSelector=area==='home'
-      ? '.edn-popular-section .edn-editorial-heading'
+      ? '.edn-im-courses .edn-im-section-heading, .edn-popular-section .edn-editorial-heading'
       : area==='domains'
         ? '.edn-domain-page .edn-page-intro'
         : '.edn-course-catalog-page .cio-page-head';
@@ -1133,7 +1133,11 @@ document.addEventListener('keydown',event=>{
 let catalogLoaded=false;
 window.addEventListener('hashchange',()=>{if(catalogLoaded)render();});
 const initializeEduNext=async()=>{
-  app.innerHTML='<div class="wrap page edn-app-loading" role="status"><span class="edn-loading-mark">E</span><h1>Đang tải EduNext</h1><p>Đang chuẩn bị danh mục lĩnh vực và chương trình học.</p></div>';
+  const currentPath=location.hash.slice(1)||'/';
+  const hasExistingHome=!!app.querySelector('.edn-home-page');
+  if(!hasExistingHome && currentPath!=='/'){
+    app.innerHTML='<div class="wrap page edn-app-loading" role="status"><span class="edn-loading-mark">E</span><h1>Đang tải EduNext</h1><p>Đang chuẩn bị danh mục lĩnh vực và chương trình học.</p></div>';
+  }
   try{
     if(!CFG.catalogUrl)throw new Error('Chưa cấu hình địa chỉ danh mục chương trình.');
     const response=await fetch(CFG.catalogUrl,{credentials:'same-origin',cache:'no-cache'});
