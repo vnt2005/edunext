@@ -176,10 +176,11 @@ const nf=()=>'<div class="wrap page"><div class="empty" role="status"><h2>Không
 const slugify=value=>String(value||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/g,'d').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
 const home=()=>{
   const featured=[...C].sort((a,b)=>Number(b.ready)-Number(a.ready));
-  const featuredPageCount=Math.max(1,Math.ceil(featured.length/PAGE_SIZE));
+  const homePageSize=6;
+  const featuredPageCount=Math.max(1,Math.ceil(featured.length/homePageSize));
   homeCoursePage=Math.min(Math.max(1,homeCoursePage),featuredPageCount);
-  const featuredStart=(homeCoursePage-1)*PAGE_SIZE;
-  const visibleFeatured=featured.slice(featuredStart,featuredStart+PAGE_SIZE);
+  const featuredStart=(homeCoursePage-1)*homePageSize;
+  const visibleFeatured=featured.slice(featuredStart,featuredStart+homePageSize);
   const hero=C.find(c=>c.ready)||find('csharp')||C[0];
   const sideCourse=featured.find(c=>hero&&c.id!==hero.id)||hero;
   const groups=domainGroups();
