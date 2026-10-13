@@ -477,3 +477,12 @@ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog
  body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page .cio-course-toolbar{grid-template-columns:1fr}
  body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page .cio-toolbar-right select:last-child{grid-column:auto}
 }
+
+
+/* Match the course catalogue: start at the category grid, without the intro block. */
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-domain-page {
+  padding-top: 24px !important;
+}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-domain-page > .edn-domain-grid {
+  margin-top: 0;
+}
