@@ -544,7 +544,7 @@ const dash=()=>{
       '<div class="edn-my-course-progress" role="progressbar" aria-valuenow="'+progress+'" aria-valuemin="0" aria-valuemax="100" aria-label="Tiến độ '+esc(c.t)+'"><span style="width:'+progress+'%"></span></div>'+
       '<div class="edn-my-course-footer"><span>'+EN()[c.id].done.length+' / '+c.L.length+' bài học</span><a href="#/learn/'+esc(c.id)+'/'+nextL(c)+'">'+(done?'Học lại':'Tiếp tục học')+' <span aria-hidden="true">→</span></a></div></div></article>';
   }).join('');
-  const empty='<section class="edn-my-learning-empty" aria-label="Chưa có khóa học"><div class="edn-my-learning-empty-illustration" aria-hidden="true"><span class="edn-my-learning-empty-book"></span><i aria-hidden="true">✳</i></div></section>';
+  const empty='';
   const tabs='<div class="edn-my-learning-tabs" role="group" aria-label="Lọc khóa học">'+
     '<button type="button" class="edn-my-learning-tab is-active" data-study-filter="all" aria-pressed="true">Tất cả khóa học <span>'+mine.length+'</span></button>'+
     '<button type="button" class="edn-my-learning-tab" data-study-filter="learning" aria-pressed="false">Đang học <span>'+active.length+'</span></button>'+
