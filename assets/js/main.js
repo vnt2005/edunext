@@ -181,43 +181,66 @@ const home=()=>{
   homeCoursePage=Math.min(Math.max(1,homeCoursePage),featuredPageCount);
   const featuredStart=(homeCoursePage-1)*homePageSize;
   const visibleFeatured=featured.slice(featuredStart,featuredStart+homePageSize);
-  const hero=C.find(c=>c.ready)||find('csharp')||C[0];
-  const sideCourse=featured.find(c=>hero&&c.id!==hero.id)||hero;
   const groups=domainGroups();
-  const domainLinks=groups.slice(0,6).map((group,i)=>{
-    const count=C.filter(course=>group.domains.some(domain=>domain.id===course.domainId)).length;
-    return '<a class="edn-path-card" href="#/group/'+esc(group.slug)+'"><span class="edn-path-card-number">'+String(i+1).padStart(2,'0')+'</span><span class="edn-path-card-copy"><strong>'+esc(group.name)+'</strong><small>'+group.domains.length+' chuyên ngành · '+count+' đề cương</small></span><span class="edn-path-card-arrow" aria-hidden="true">↗</span></a>';
+  const arrowIcon='<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M8 3l5 5-5 5"></path></svg>';
+  const visualCourses=[
+    C.find(c=>c.id==='csharp'),
+    C.find(c=>c.id==='design'),
+    C.find(c=>c.id==='marketing')
+  ].filter(Boolean);
+  C.forEach(course=>{if(visualCourses.length<3&&!visualCourses.some(item=>item.id===course.id))visualCourses.push(course);});
+  const visualTiles=visualCourses.slice(0,3).map(course=>
+    '<div class="edn-im-visual-tile">'+courseImageMarkup(course)+'<span>'+esc(course.cat||course.t)+'</span></div>'
+  ).join('');
+  const heroArt=visualTiles
+    ? '<div class="edn-im-hero-art" aria-label="Một vài lĩnh vực học tập">'+visualTiles+'</div>'
+    : '<div class="edn-im-hero-art edn-im-hero-art-empty" aria-hidden="true"><div></div><div></div><div></div></div>';
+  const topicLinks=groups.slice(0,5).map(group=>
+    '<a href="#/group/'+esc(group.slug)+'">'+esc(group.name)+' '+arrowIcon+'</a>'
+  ).join('');
+  const domainLinks=groups.slice(0,6).map(group=>{
+    const courseCount=C.filter(course=>group.domains.some(domain=>domain.id===course.domainId)).length;
+    return '<a class="edn-im-domain-link" href="#/group/'+esc(group.slug)+'"><span class="edn-im-domain-copy"><strong>'+esc(group.name)+'</strong><small>'+group.domains.length+' chuyên ngành · '+courseCount+' chương trình</small></span><span class="edn-im-domain-arrow">'+arrowIcon+'</span></a>';
   }).join('');
-  const marketCard=c=>{
-    const inCart=cartIds.includes(c.id),owned=!!EN()[c.id];
-    const cartAction=!owned
-      ? '<button class="edn-cart-icon-button edn-add-to-cart" type="button" data-a="cart-add" data-v="'+esc(c.id)+'" aria-label="'+(inCart?'Xem trong giỏ hàng':'Thêm vào giỏ hàng')+'" title="'+(inCart?'Xem trong giỏ hàng':'Thêm vào giỏ hàng')+'"'+(inCart?' aria-pressed="true"':'')+'>'+cartIconMarkup+'</button>'
-      : '<a class="edn-new-course-owned" href="#/learn/'+esc(c.id)+'/'+nextL(c)+'">Tiếp tục học ↗</a>';
-    return '<article class="edn-new-course-card"><a class="edn-new-course-main" href="#/course/'+esc(c.id)+'" aria-label="Xem chương trình '+esc(c.t)+'"><div class="edn-new-course-media">'+courseImageMarkup(c)+'<span class="edn-new-course-status '+(c.ready?'is-ready':'is-outline')+'">'+(c.ready?'Đã mở bán':'Đề cương')+'</span><span class="edn-new-course-open">Xem chương trình <b aria-hidden="true">↗</b></span></div><div class="edn-new-course-copy"><span class="edn-new-course-category">'+esc(c.cat)+'</span><h3>'+esc(c.t)+'</h3><p>'+esc(c.shortDescription||'Xem mục tiêu, chủ đề và nội dung dự kiến của chương trình.')+'</p><span class="edn-new-course-lessons"><span aria-hidden="true">▤</span>'+c.L.length+' bài học dự kiến'+(c.h?' · '+esc(c.h)+' giờ':'')+'</span><span class="edn-new-course-state">'+(c.ready?'Nội dung đã được xác minh':'Chưa mở bán · đang hoàn thiện nội dung')+'</span></div></a><div class="edn-new-course-footer">'+coursePriceMarkup(c)+'<span class="edn-new-price-note">'+(c.demoPrice?'Giá tham khảo':'')+'</span>'+cartAction+'</div></article>';
+  const cartAction=(course,compact=false)=>{
+    const inCart=cartIds.includes(course.id),owned=!!EN()[course.id];
+    if(owned)return '<a class="edn-im-text-link" href="#/learn/'+esc(course.id)+'/'+nextL(course)+'">Tiếp tục học '+arrowIcon+'</a>';
+    return '<button class="'+(compact?'edn-im-cart-compact':'edn-im-cart-add')+' edn-add-to-cart" type="button" data-a="cart-add" data-v="'+esc(course.id)+'" aria-label="'+(inCart?'Xem trong giỏ hàng':'Thêm vào giỏ hàng')+'" title="'+(inCart?'Xem trong giỏ hàng':'Thêm vào giỏ hàng')+'"'+(inCart?' aria-pressed="true"':'')+'>'+cartIconMarkup+(compact?'':'<span>'+(inCart?'Trong giỏ hàng':'Thêm vào giỏ hàng')+'</span>')+'</button>';
   };
-  const cards=visibleFeatured.map(marketCard).join('');
-  const articles=BLOG_ARTICLES.slice(0,3).map((a,i)=>'<article class="edn-new-article"><a class="edn-new-article-image" href="#/blog/'+slugify(a.title)+'"><img src="'+esc(a.image||'')+'" alt="'+esc(a.title)+'" loading="lazy"><span>'+esc(a.tag)+'</span></a><div class="edn-new-article-body"><div class="edn-new-article-meta"><span>'+esc(a.time)+'</span><span>Bài '+String(i+1).padStart(2,'0')+'</span></div><h3><a href="#/blog/'+slugify(a.title)+'">'+esc(a.title)+'</a></h3><p>'+esc(a.excerpt)+'</p><a class="edn-new-text-link" href="#/blog/'+slugify(a.title)+'">Đọc bài viết <b aria-hidden="true">↗</b></a></div></article>').join('');
+  const lead=visibleFeatured[0]||null;
+  const featuredMarkup=lead
+    ? '<article class="edn-im-featured-course"><a class="edn-im-featured-link" href="#/course/'+esc(lead.id)+'"><div class="edn-im-featured-media">'+courseImageMarkup(lead)+'<span class="edn-im-course-status">'+(lead.ready?'Đã mở bán':'Đề cương đang hoàn thiện')+'</span></div><div class="edn-im-featured-copy"><span class="edn-im-course-category">'+esc(lead.cat)+'</span><h3>'+esc(lead.t)+'</h3><p>'+esc(lead.shortDescription||lead.description||'Xem mục tiêu và nội dung dự kiến của chương trình.')+'</p></div></a><div class="edn-im-featured-meta"><span>'+lead.L.length+' bài học dự kiến'+(lead.h?' · '+esc(lead.h)+' giờ':'')+'</span><div class="edn-im-featured-price">'+coursePriceMarkup(lead)+(lead.demoPrice?'<span class="edn-im-price-note">Giá tham khảo</span>':'')+'</div></div><div class="edn-im-featured-actions">'+cartAction(lead)+'</div></article>'
+    : '<div class="empty edn-course-empty"><h3>Danh mục đang được cập nhật</h3><p>Các chương trình sẽ xuất hiện tại đây khi dữ liệu sẵn sàng.</p></div>';
+  const courseRows=visibleFeatured.slice(1).map(course=>
+    '<article class="edn-im-course-row"><a class="edn-im-course-row-main" href="#/course/'+esc(course.id)+'"><span class="edn-im-course-thumb">'+courseImageMarkup(course)+'</span><span class="edn-im-course-row-copy"><small>'+esc(course.cat)+'</small><strong>'+esc(course.t)+'</strong><span>'+course.L.length+' bài học dự kiến'+(course.h?' · '+esc(course.h)+' giờ':'')+' · '+(course.ready?'Đã mở bán':'Đề cương')+'</span></span></a><div class="edn-im-course-row-side"><div>'+coursePriceMarkup(course)+(course.demoPrice?'<span class="edn-new-price-note">Giá tham khảo</span>':'')+'</div>'+cartAction(course,true)+'</div></article>'
+  ).join('');
+  const articles=BLOG_ARTICLES.slice(0,3);
+  const leadArticle=articles[0];
+  const journalLead=leadArticle
+    ? '<article class="edn-im-journal-lead"><a class="edn-im-journal-image" href="#/blog/'+slugify(leadArticle.title)+'"><img src="'+esc(leadArticle.image||'')+'" alt="'+esc(leadArticle.title)+'" loading="lazy"></a><div class="edn-im-journal-lead-copy"><div class="edn-im-journal-meta"><span>'+esc(leadArticle.tag)+'</span><span>'+esc(leadArticle.time)+'</span></div><h3><a href="#/blog/'+slugify(leadArticle.title)+'">'+esc(leadArticle.title)+'</a></h3><p>'+esc(leadArticle.excerpt)+'</p><a class="edn-im-read-link" href="#/blog/'+slugify(leadArticle.title)+'">Đọc bài viết '+arrowIcon+'</a></div></article>'
+    : '';
+  const journalRows=articles.slice(1).map(article=>
+    '<article class="edn-im-journal-row"><a class="edn-im-journal-thumb" href="#/blog/'+slugify(article.title)+'"><img src="'+esc(article.image||'')+'" alt="'+esc(article.title)+'" loading="lazy"></a><div><div class="edn-im-journal-meta"><span>'+esc(article.tag)+'</span><span>'+esc(article.time)+'</span></div><h3><a href="#/blog/'+slugify(article.title)+'">'+esc(article.title)+'</a></h3><p>'+esc(article.excerpt)+'</p><a class="edn-im-read-link" href="#/blog/'+slugify(article.title)+'">Đọc tiếp '+arrowIcon+'</a></div></article>'
+  ).join('');
   const qa=[
     ['EduNext có những lĩnh vực nào?','Danh mục được chia thành các nhóm lĩnh vực và chuyên ngành. Bạn có thể chọn nhóm mình quan tâm hoặc dùng ô tìm kiếm trên đầu trang để tìm theo tên khóa học, lĩnh vực hay kỹ năng.'],
     ['Làm sao biết một khóa học đã mở bán?','Trạng thái được hiển thị trên thẻ và trang chi tiết. Những chương trình còn ở dạng đề cương sẽ được ghi rõ là chưa mở bán.'],
     ['Tôi có thể xem nội dung trước khi đăng ký không?','Bạn có thể xem mục tiêu, các bài học dự kiến và thông tin chương trình. Những nội dung đã sẵn sàng sẽ được mở theo trạng thái thực tế của từng khóa học.'],
     ['Tiến độ học tập và chứng chỉ được lưu như thế nào?','Khi tài khoản có quyền học một khóa đã xuất bản, tiến độ được lưu theo tài khoản. Chứng chỉ chỉ được cấp khi hệ thống xác nhận bạn đáp ứng các điều kiện hoàn thành.']
-  ].map(item=>'<details class="edn-new-faq-item"><summary>'+esc(item[0])+'<span aria-hidden="true">+</span></summary><p>'+esc(item[1])+'</p></details>').join('');
-  const heroVisual=hero
-    ? '<a class="edn-new-hero-image" href="#/course/'+esc(hero.id)+'" aria-label="Khám phá '+esc(hero.t)+'">'+courseImageMarkup(hero)+'<span class="edn-new-hero-image-shade"></span><span class="edn-new-hero-image-label">LỘ TRÌNH NỔI BẬT</span><span class="edn-new-hero-image-title">'+esc(hero.t)+'</span><span class="edn-new-hero-image-link">Khám phá chương trình <b aria-hidden="true">↗</b></span></a>'
-    : '<div class="edn-new-hero-image edn-new-hero-image-empty"><strong>EduNext</strong><span>Danh mục đang được cập nhật</span></div>';
-  const heroSide=sideCourse
-    ? '<a class="edn-new-hero-mini" href="#/course/'+esc(sideCourse.id)+'"><span class="edn-new-hero-mini-image">'+courseImageMarkup(sideCourse)+'</span><span class="edn-new-hero-mini-copy"><small>GỢI Ý ĐỂ KHÁM PHÁ</small><strong>'+esc(sideCourse.t)+'</strong><span>'+sideCourse.L.length+' bài học dự kiến <b aria-hidden="true">↗</b></span></span></a>'
-    : '';
-  return '<div class="edn-home-page edn-market-home">'+
-    '<section class="edn-new-hero"><div class="edn-public-container"><div class="edn-new-hero-panel"><div class="edn-new-hero-copy"><span class="edn-new-eyebrow"><i></i> KHÁM PHÁ · HỌC TẬP · PHÁT TRIỂN</span><h1>Học điều bạn cần.<br><em>Tiến xa theo cách của bạn.</em></h1><p>Chọn lĩnh vực bạn quan tâm, xem rõ từng chương trình và xây dựng kỹ năng theo nhịp độ phù hợp với mình.</p><div class="edn-new-hero-actions"><a class="edn-new-button-primary" href="#/courses">Khám phá khóa học <span aria-hidden="true">↗</span></a><a class="edn-new-button-quiet" href="#/categories">Tìm theo lĩnh vực <span aria-hidden="true">→</span></a></div><div class="edn-new-hero-points"><span><b aria-hidden="true">✓</b> Đề cương rõ ràng</span><span><b aria-hidden="true">✓</b> Học theo từng bước</span><span><b aria-hidden="true">✓</b> Theo dõi tiến độ</span></div></div><div class="edn-new-hero-art"><div class="edn-new-hero-art-orbit edn-new-orbit-one"></div><div class="edn-new-hero-art-orbit edn-new-orbit-two"></div>'+heroVisual+heroSide+'<span class="edn-new-hero-count"><strong>'+DOMAINS.length+'</strong><small>lĩnh vực<br>để khám phá</small></span></div><span class="edn-new-hero-deco" aria-hidden="true">E.</span></div></div></section>'+
-    '<section class="edn-new-discovery"><div class="edn-public-container edn-new-discovery-inner"><div><span class="edn-new-section-label">BẮT ĐẦU TỪ ĐÂU CŨNG ĐƯỢC</span><h2>Một chủ đề nhỏ,<br><em>một bước tiến mới.</em></h2></div><p>Không cần chọn tất cả ngay lúc đầu. Bắt đầu từ lĩnh vực bạn đang tò mò, rồi mở rộng dần khi đã sẵn sàng.</p><a class="edn-new-outline-button" href="#/categories">Duyệt '+groups.length+' nhóm lĩnh vực <b aria-hidden="true">↗</b></a></div></section>'+
-    '<section class="edn-new-courses-section"><div class="edn-public-container"><div class="edn-new-section-heading"><div><span class="edn-new-section-label">CHỌN LỘ TRÌNH TIẾP THEO</span><h2>Chương trình đáng khám phá<span>.</span></h2><p>Xem nội dung, số bài học và tình trạng mở bán trước khi quyết định.</p></div><a class="edn-new-heading-link" href="#/courses">Tất cả khóa học <b aria-hidden="true">↗</b></a></div><div class="edn-new-course-grid">'+cards+'</div>'+paginationMarkup('home',homeCoursePage,featuredPageCount,'khóa học')+'</div></section>'+
-    '<section class="edn-new-path-section"><div class="edn-public-container edn-new-path-layout"><div class="edn-new-path-intro"><span class="edn-new-section-label">KHÁM PHÁ THEO LĨNH VỰC</span><h2>Từ điều bạn thích đến điều bạn <em>làm được.</em></h2><p>Mỗi nhóm kết nối các chuyên ngành gần nhau để bạn dễ bắt đầu, tìm hiểu sâu hơn và chọn được hướng phù hợp.</p><a class="edn-new-path-all" href="#/categories">Xem toàn bộ lĩnh vực <b aria-hidden="true">↗</b></a><div class="edn-new-path-bubble" aria-hidden="true"><span>HỌC</span><b>→</b><span>THỰC HÀNH</span></div></div><div class="edn-new-path-list">'+domainLinks+'</div></div></section>'+
-    '<section class="edn-new-steps-section"><div class="edn-public-container"><div class="edn-new-section-heading"><div><span class="edn-new-section-label">CÁCH BẮT ĐẦU</span><h2>Rõ ràng từ bước đầu tiên.</h2></div><p>Hành trình học không cần phức tạp. Hãy đi từng bước và tự chọn nhịp độ của mình.</p></div><div class="edn-new-step-grid"><article class="edn-new-step-card"><span class="edn-new-step-number">01</span><span class="edn-new-step-symbol" aria-hidden="true">⌕</span><h3>Khám phá</h3><p>Tìm theo từ khóa hoặc duyệt các nhóm chuyên ngành để xác định điều bạn muốn học.</p><a href="#/categories">Chọn lĩnh vực <b aria-hidden="true">↗</b></a></article><article class="edn-new-step-card is-featured"><span class="edn-new-step-number">02</span><span class="edn-new-step-symbol" aria-hidden="true">▤</span><h3>Xem đề cương</h3><p>Đọc mục tiêu, nội dung và bài học dự kiến để hiểu chương trình trước khi bắt đầu.</p><a href="#/courses">Xem chương trình <b aria-hidden="true">↗</b></a></article><article class="edn-new-step-card"><span class="edn-new-step-number">03</span><span class="edn-new-step-symbol" aria-hidden="true">↗</span><h3>Tiếp tục tiến bộ</h3><p>Khi có quyền học, quay lại bài chưa hoàn thành và theo dõi tiến độ từ tài khoản của bạn.</p><a href="#/dashboard">Mở trang học tập <b aria-hidden="true">↗</b></a></article></div></div></section>'+
-    '<section class="edn-new-journal-section"><div class="edn-public-container"><div class="edn-new-section-heading"><div><span class="edn-new-section-label">GÓC KIẾN THỨC</span><h2>Những ý tưởng giúp bạn đi xa hơn.</h2><p>Bài viết thực hành ngắn gọn để bạn hiểu một vấn đề và biết bước tiếp theo nên thử.</p></div><a class="edn-new-heading-link" href="#/blog">Đọc tất cả bài viết <b aria-hidden="true">↗</b></a></div><div class="edn-new-article-grid">'+articles+'</div></div></section>'+
-    '<section class="edn-new-faq-section"><div class="edn-public-container edn-new-faq-layout"><div><span class="edn-new-section-label">CẦN BIẾT TRƯỚC KHI BẮT ĐẦU</span><h2>Vài điều thường được hỏi.</h2><p>Tìm hiểu cách khám phá chương trình, quyền học và tiến độ trên EduNext.</p><a class="edn-new-heading-link" href="#/faq">Xem trang hỏi đáp <b aria-hidden="true">↗</b></a></div><div class="edn-new-faq-list">'+qa+'</div></div></section>'+
-    '<section class="edn-new-final-cta"><div class="edn-public-container"><div><span class="edn-new-section-label">BƯỚC TIẾP THEO CỦA BẠN</span><h2>Bạn muốn khám phá điều gì hôm nay?</h2><p>Chọn một lĩnh vực quan tâm và bắt đầu từ chương trình phù hợp nhất.</p></div><a class="edn-new-button-primary" href="#/courses">Tìm khóa học phù hợp <span aria-hidden="true">↗</span></a></div></section>'+
+  ].map(item=>'<details class="edn-im-faq-item"><summary>'+esc(item[0])+'<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10"></path></svg></summary><p>'+esc(item[1])+'</p></details>').join('');
+  const steps=[
+    {title:'Tìm lĩnh vực',copy:'Bắt đầu bằng một chủ đề bạn quan tâm hoặc tìm kiếm kỹ năng bạn muốn phát triển.',link:'#/categories',label:'Khám phá lĩnh vực',icon:'<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m15.5 15.5 5 5M8 10.5h5M10.5 8v5"></path></svg>'},
+    {title:'Xem đề cương',copy:'Đọc mục tiêu, bài học dự kiến và thông tin chương trình trước khi quyết định.',link:'#/courses',label:'Xem khóa học',icon:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4.5h10a4 4 0 0 1 4 4v11H9a4 4 0 0 0-4 0z"></path><path d="M5 4.5v15M9 8h6M9 11h6"></path></svg>'},
+    {title:'Tiếp tục tiến bộ',copy:'Khi có quyền học, quay lại bài còn dang dở và theo dõi tiến độ trong tài khoản.',link:'#/dashboard',label:'Mở trang học tập',icon:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"></path><circle cx="12" cy="12" r="9"></circle></svg>'}
+  ].map(step=>'<article class="edn-im-step"><span class="edn-im-step-icon">'+step.icon+'</span><div><h3>'+step.title+'</h3><p>'+step.copy+'</p><a href="'+step.link+'">'+step.label+' '+arrowIcon+'</a></div></article>').join('');
+  return '<div class="edn-home-page edn-im-home">'+
+    '<section class="edn-im-hero"><div class="edn-im-shell"><div class="edn-im-hero-layout"><div class="edn-im-hero-copy"><h1>Học điều bạn muốn.<br><span>Làm được điều bạn cần.</span></h1><p>Khám phá những chương trình học có đề cương rõ ràng, chọn lĩnh vực phù hợp và xây dựng kỹ năng theo nhịp độ của riêng bạn.</p><div class="edn-im-hero-actions"><a class="edn-im-button-primary" href="#/courses">Khám phá khóa học '+arrowIcon+'</a><a class="edn-im-button-secondary" href="#/categories">Duyệt theo lĩnh vực</a></div><p class="edn-im-hero-note">Từ lập trình và dữ liệu đến thiết kế, marketing, kinh doanh và nhiều chuyên ngành khác.</p></div>'+heroArt+'</div><div class="edn-im-topic-rail"><strong>Bắt đầu từ mối quan tâm của bạn</strong>'+topicLinks+'</div></div></section>'+
+    '<section class="edn-im-courses"><div class="edn-im-shell"><div class="edn-im-section-heading"><div><h2>Một kỹ năng mới bắt đầu từ đây.</h2><p>Xem đề cương và tình trạng mở bán để biết rõ điều gì đang sẵn sàng trước khi đăng ký.</p></div><a class="edn-im-text-link" href="#/courses">Tất cả khóa học '+arrowIcon+'</a></div><div class="edn-im-course-layout">'+featuredMarkup+'<div class="edn-im-course-list">'+courseRows+'</div></div>'+paginationMarkup('home',homeCoursePage,featuredPageCount,'khóa học')+'</div></section>'+
+    '<section class="edn-im-domains"><div class="edn-im-shell"><div class="edn-im-section-heading"><div><h2>Tìm lối đi qua từng lĩnh vực.</h2><p>Những nhóm chuyên ngành giúp bạn thu hẹp lựa chọn rồi tìm hiểu sâu hơn khi đã xác định hướng đi.</p></div><a class="edn-im-text-link" href="#/categories">Tất cả lĩnh vực '+arrowIcon+'</a></div><div class="edn-im-domain-grid">'+domainLinks+'</div></div></section>'+
+    '<section class="edn-im-steps"><div class="edn-im-shell"><div class="edn-im-section-heading"><div><h2>Rõ ràng từ bước đầu tiên.</h2><p>Không cần chọn tất cả ngay hôm nay. Hãy bắt đầu bằng điều hữu ích nhất với bạn.</p></div></div><div class="edn-im-step-grid">'+steps+'</div></div></section>'+
+    '<section class="edn-im-journal"><div class="edn-im-shell"><div class="edn-im-section-heading"><div><h2>Góc kiến thức.</h2><p>Bài viết và gợi ý thực hành để bạn tiếp tục khám phá ngoài chương trình học.</p></div><a class="edn-im-text-link" href="#/blog">Đọc tất cả bài viết '+arrowIcon+'</a></div><div class="edn-im-journal-layout">'+journalLead+'<div class="edn-im-journal-list">'+journalRows+'</div></div></div></section>'+
+    '<section class="edn-im-faq"><div class="edn-im-shell edn-im-faq-layout"><div class="edn-im-faq-intro"><h2>Trước khi bắt đầu.</h2><p>Thông tin cơ bản về nội dung chương trình, quyền học và tiến độ trên EduNext.</p><a class="edn-im-text-link" href="#/faq">Tới trang hỏi đáp '+arrowIcon+'</a></div><div class="edn-im-faq-list">'+qa+'</div></div></section>'+
+    '<section class="edn-im-cta"><div class="edn-im-shell edn-im-cta-inner"><div><h2>Chọn điều bạn muốn học tiếp theo.</h2><p>Khám phá lĩnh vực phù hợp và tìm chương trình giúp bạn tiến gần hơn tới mục tiêu của mình.</p></div><a class="edn-im-button-primary" href="#/courses">Tìm khóa học phù hợp '+arrowIcon+'</a></div></section>'+
   '</div>';
 };
 const list=()=>{
@@ -948,56 +971,6 @@ document.addEventListener('click',event=>{
   if(!A[action])return;
   if(target.tagName==='A')event.preventDefault();
   Promise.resolve(A[action](target.dataset.v,target)).catch(error=>toast(error.message||'Thao tác chưa thành công.'));
-});
-
-const contactMenu=$('#edn-contact-menu-wrap');
-const contactTrigger=$('#edn-contact-nav-trigger');
-if(contactMenu&&contactTrigger&&!contactMenu.dataset.bound){
-  contactMenu.dataset.bound='true';
-  const setContactExpanded=value=>contactTrigger.setAttribute('aria-expanded',String(value));
-  contactMenu.addEventListener('mouseenter',()=>setContactExpanded(true));
-  contactMenu.addEventListener('mouseleave',()=>{
-    if(!contactMenu.classList.contains('is-open')&&!contactMenu.contains(document.activeElement))setContactExpanded(false);
-  });
-  contactMenu.addEventListener('focusin',()=>setContactExpanded(true));
-  contactMenu.addEventListener('focusout',event=>{
-    if(!contactMenu.contains(event.relatedTarget)&&!contactMenu.classList.contains('is-open'))setContactExpanded(false);
-  });
-}
-document.addEventListener('click',event=>{
-  const trigger=event.target.closest('#edn-contact-nav-trigger');
-  if(trigger){
-    const wrap=trigger.closest('.edn-contact-menu-wrap');
-    const open=!wrap.classList.contains('is-open');
-    document.querySelectorAll('.edn-contact-menu-wrap.is-open').forEach(item=>{
-      item.classList.remove('is-open');
-      item.querySelector('.edn-contact-nav-trigger')?.setAttribute('aria-expanded','false');
-    });
-    if(open){wrap.classList.add('is-open');trigger.setAttribute('aria-expanded','true');}
-    return;
-  }
-  const link=event.target.closest('.edn-contact-dropdown-link');
-  if(link){
-    const wrap=link.closest('.edn-contact-menu-wrap');
-    wrap?.classList.remove('is-open');
-    wrap?.querySelector('.edn-contact-nav-trigger')?.setAttribute('aria-expanded','false');
-    return;
-  }
-  document.querySelectorAll('.edn-contact-menu-wrap.is-open').forEach(item=>{
-    if(!item.contains(event.target)){
-      item.classList.remove('is-open');
-      item.querySelector('.edn-contact-nav-trigger')?.setAttribute('aria-expanded','false');
-    }
-  });
-});
-document.addEventListener('keydown',event=>{
-  if(event.key!=='Escape')return;
-  document.querySelectorAll('.edn-contact-menu-wrap.is-open').forEach(item=>{
-    item.classList.remove('is-open');
-    const trigger=item.querySelector('.edn-contact-nav-trigger');
-    trigger?.setAttribute('aria-expanded','false');
-    trigger?.blur();
-  });
 });
 
 document.addEventListener('click',event=>{
