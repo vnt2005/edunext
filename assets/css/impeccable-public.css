@@ -1,0 +1,514 @@
+/*
+ * EduNext — Impeccable-inspired public design layer.
+ * Direction: a learning field guide / editorial course catalogue.
+ * Public + learner surfaces only. No wp-admin or builder styling.
+ */
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode){
+  --im-ink:#123C38;--im-forest:#134E4A;--im-teal:#0F766E;--im-accent:#C2410C;--im-accent-hover:#9A3412;
+  --im-paper:#FBFAF5;--im-paper-deep:#F0F5EF;--im-mint:#CCFBF1;--im-line:#D7E2D8;
+  --im-muted:#40584F;--im-soft-muted:#536A5F;
+  color:var(--im-ink)!important;background:var(--im-paper)!important;
+  font-family:"Be Vietnam Pro",sans-serif!important;font-size:15px;line-height:1.7;accent-color:var(--im-teal);
+  scrollbar-color:#71958A #EAF0E9;
+}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) ::selection{background:var(--im-mint);color:var(--im-ink)}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) :focus-visible{outline:3px solid #0F766E!important;outline-offset:3px!important}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .wrap,
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .page{width:min(1260px,calc(100% - 56px))!important;max-width:1260px!important;margin-inline:auto!important}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) a{text-underline-offset:4px}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) button,
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) input,
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) select,
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) textarea{font-family:"Be Vietnam Pro",sans-serif}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) h1,
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) h2,
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) h3{
+ color:var(--im-ink);font-family:"Space Grotesk","Be Vietnam Pro",sans-serif;font-weight:700;letter-spacing:-.025em
+}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .btn{min-height:43px;padding:11px 16px;border-radius:8px!important;font-size:12px;font-weight:750}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .btn.btn-p{border-color:var(--im-accent)!important;background:var(--im-accent)!important;color:#fff!important}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .btn.btn-p:hover{border-color:var(--im-accent-hover)!important;background:var(--im-accent-hover)!important}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .btn.btn-g{border:1px solid #BCD0C3!important;background:#fff!important;color:var(--im-forest)!important}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .btn.btn-g:hover{border-color:var(--im-teal)!important;background:#EFF8F1!important}
+
+/* One compact consumer header, never an admin-style toolbar. */
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edunext-site-header.edn-im-header{
+ position:sticky;top:0;z-index:1000;border-bottom:1px solid var(--im-line)!important;background:#fff!important;box-shadow:none!important;backdrop-filter:none!important
+}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header .edunext-header-main{background:#fff!important}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edunext-header-inner.edn-im-header-inner{
+ display:grid!important;grid-template-columns:156px minmax(315px,1fr) minmax(205px,285px) auto;
+ grid-template-areas:"brand nav search tools";align-items:center;gap:22px;min-height:78px;padding-block:10px
+}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner>.edunext-brand{grid-area:brand;display:flex;gap:10px;min-width:0;color:var(--im-ink)}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .edunext-brand-mark{
+ width:40px;height:40px;flex-basis:40px;border-radius:9px;background:var(--im-forest)!important;color:#fff!important;box-shadow:none!important;
+ font-family:"Space Grotesk",sans-serif;font-size:22px
+}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .edunext-brand-copy strong{
+ color:var(--im-ink)!important;font-family:"Space Grotesk","Be Vietnam Pro",sans-serif;font-size:21px;font-weight:700;letter-spacing:-.025em
+}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .edunext-brand-copy small{margin-top:4px;color:#496057!important;font-size:10px}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .edunext-main-nav{
+ grid-area:nav;display:flex;align-items:center;justify-content:flex-start;gap:15px;min-width:0
+}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .edunext-main-nav .edunext-nav-link{
+ display:inline-flex;align-items:center;min-height:39px;padding:7px 0;border:0;border-radius:0;background:transparent!important;
+ color:#29463C!important;font-size:12px!important;font-weight:700;white-space:nowrap
+}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .edunext-main-nav .edunext-nav-link:hover,
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .edunext-main-nav .edunext-nav-link.active{
+ color:var(--im-accent)!important;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:7px
+}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .edunext-header-search{
+ grid-area:search;display:flex;align-items:center;gap:8px;width:100%;min-width:0;max-width:none;height:42px;margin:0;padding:0 5px 0 12px;
+ border:1px solid #D3E0D5!important;border-radius:8px!important;background:#F8FAF6!important;box-shadow:none!important
+}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .edunext-header-search:focus-within{
+ border-color:var(--im-teal)!important;box-shadow:0 0 0 3px rgba(15,118,110,.12)!important
+}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .edunext-header-search input{
+ min-width:0;height:38px;padding:0;border:0!important;outline:0!important;background:transparent!important;box-shadow:none!important;color:var(--im-ink)!important;font-size:11px!important
+}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .edunext-header-search button{
+ display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;min-height:32px;padding:6px 10px;border:0!important;border-radius:6px!important;
+ background:var(--im-teal)!important;color:#fff!important;font-size:11px!important;font-weight:750;white-space:nowrap
+}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .edn-header-tools{
+ grid-area:tools;display:flex;align-items:center;justify-content:flex-end;gap:12px;min-width:max-content
+}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .edn-cart-trigger{
+ position:relative;display:grid;place-items:center;width:40px;height:40px;border:1px solid #D3E0D5;border-radius:8px;background:#fff;color:var(--im-forest)
+}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .edn-cart-trigger svg{
+ width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round
+}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .edn-cart-trigger:hover{border-color:var(--im-teal);background:#F0F8F2}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .edn-cart-count{top:-5px;right:-5px}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .lms-mobile-menu{display:none!important}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .edn-notification-trigger{display:none!important}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .edunext-profile-link{
+ display:inline-flex;align-items:center;gap:7px;padding:0!important;border:0!important;border-radius:0!important;background:transparent!important;color:var(--im-ink)!important;box-shadow:none!important
+}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .edunext-profile-avatar{
+ width:34px;height:34px;flex-basis:34px;border:1px solid #BBD8C9;background:#EAF6EE;color:var(--im-forest)
+}
+
+/* Homepage: learning field guide; content leads, containers recede. */
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-home{overflow:hidden;background:var(--im-paper);color:var(--im-ink)}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-shell{width:min(1260px,calc(100% - 56px));margin-inline:auto}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-hero{padding:58px 0 0;background:var(--im-paper)}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-hero-layout{
+ display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);align-items:center;gap:clamp(36px,6vw,82px);min-height:475px;padding-bottom:47px
+}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-hero-copy{max-width:610px}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-hero h1{
+ max-width:640px;margin:0 0 20px;color:var(--im-ink);font-family:"Space Grotesk","Be Vietnam Pro",sans-serif;font-size:clamp(42px,4.5vw,65px)!important;font-weight:700;line-height:1.02;letter-spacing:-.03em
+}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-hero h1 span{color:var(--im-teal)}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-hero-copy>p{max-width:52ch;margin:0;color:var(--im-muted);font-size:15px;line-height:1.85}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-hero-actions{display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin-top:27px}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-button-primary,
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-button-secondary{
+ display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:47px;padding:12px 16px;border-radius:8px;font-size:12px;font-weight:800;text-decoration:none
+}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-button-primary{background:var(--im-accent);color:#fff}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-button-primary:hover{background:var(--im-accent-hover)}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-button-primary svg,
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-button-secondary svg,
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-text-link svg,
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-topic-rail svg,
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-read-link svg{
+ width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round
+}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-button-secondary{border:1px solid #BCD0C3;background:#fff;color:var(--im-forest)}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-button-secondary:hover{border-color:var(--im-teal);background:#EFF8F1}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-hero-note{margin-top:19px;color:var(--im-soft-muted);font-size:11px}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-hero-art{
+ display:grid;grid-template-columns:1.12fr .88fr;grid-template-rows:1fr 1fr;gap:11px;min-width:0;min-height:385px;max-height:470px;aspect-ratio:1.12
+}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-visual-tile{position:relative;min-width:0;min-height:0;overflow:hidden;background:#DCEADF}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-visual-tile:first-child{grid-row:1 / span 2;border-radius:12px 3px 3px 12px}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-visual-tile:nth-child(2){border-radius:3px 12px 3px 3px}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-visual-tile:nth-child(3){border-radius:3px 3px 12px 3px}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-visual-tile>img{display:block;width:100%;height:100%;min-height:0;object-fit:cover}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-visual-tile>.edn-course-placeholder{
+ display:flex;width:100%;height:100%;min-height:0;padding:18px;align-items:flex-end;border-radius:0;background:#DCEADF;color:var(--im-forest)
+}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-visual-tile>span:last-child{
+ position:absolute;left:13px;bottom:13px;max-width:calc(100% - 26px);overflow:hidden;padding:7px 9px;border-radius:5px;background:#fff;color:var(--im-forest);font-size:10px;font-weight:800;text-overflow:ellipsis;white-space:nowrap
+}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-visual-tile .edn-course-placeholder b{display:none}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-visual-tile .edn-course-placeholder small{font-size:11px}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-topic-rail{display:flex;align-items:center;flex-wrap:wrap;gap:9px 20px;padding:17px 0 21px;border-top:1px solid var(--im-line)}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-topic-rail>strong{color:var(--im-forest);font-size:11px;font-weight:800}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-topic-rail a{display:inline-flex;align-items:center;gap:4px;color:var(--im-muted);font-size:11px;font-weight:650}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-topic-rail a:hover{color:var(--im-accent)}
+
+/* One featured course and five readable catalogue rows, six programs per page. */
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-courses{padding:76px 0 83px;background:#fff}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-section-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:28px;margin-bottom:30px}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-section-heading h2{max-width:780px;margin:0 0 10px;color:var(--im-ink);font-size:clamp(31px,3.4vw,43px)!important;line-height:1.08;letter-spacing:-.03em}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-section-heading p{max-width:65ch;margin:0;color:var(--im-muted);font-size:13px;line-height:1.8}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-text-link{display:inline-flex;align-items:center;gap:9px;flex:0 0 auto;margin-bottom:4px;color:var(--im-teal);font-size:12px;font-weight:800;white-space:nowrap}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-text-link:hover,
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-read-link:hover{color:var(--im-accent)}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-course-layout{display:grid;grid-template-columns:minmax(0,.88fr) minmax(0,1.12fr);align-items:stretch;gap:48px}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-featured-course{display:flex;flex-direction:column;min-width:0;color:var(--im-ink)}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-featured-link{display:flex;flex-direction:column;min-width:0;color:inherit}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-featured-media{position:relative;display:block;overflow:hidden;aspect-ratio:1.55;background:#E2EEE4}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-featured-media>img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .3s cubic-bezier(.16,1,.3,1)}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-featured-link:hover .edn-im-featured-media>img{transform:scale(1.025)}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-featured-media .edn-course-placeholder{display:flex;width:100%;height:100%;min-height:0;padding:18px;border-radius:0;background:#E2EEE4}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-course-status{position:absolute;top:13px;left:13px;padding:6px 8px;border-radius:5px;background:#fff;color:var(--im-forest);font-size:10px;font-weight:800}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-featured-copy{padding:19px 0 15px}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-course-category{display:block;margin-bottom:6px;color:var(--im-teal);font-size:11px;font-weight:800}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-featured-copy h3{margin:0 0 8px;color:var(--im-ink);font-size:clamp(21px,2vw,26px)!important;line-height:1.25}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-featured-copy>p{margin:0;color:var(--im-muted);font-size:12px;line-height:1.8}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-featured-meta{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-top:15px;padding-top:13px;border-top:1px solid var(--im-line);color:var(--im-muted);font-size:11px}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-featured-price{display:flex;align-items:baseline;flex-wrap:wrap;gap:7px;color:var(--im-ink)}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-featured-price .edn-course-pricing{display:flex;align-items:baseline;gap:7px}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-featured-price .edn-course-price-current{color:var(--im-ink);font-family:"Space Grotesk",sans-serif;font-size:17px;font-weight:700}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-featured-price .edn-course-price-original{color:#566B60;font-size:10px}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-price-note{color:var(--im-muted);font-size:10px}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-featured-actions{display:flex;align-items:center;gap:9px;margin-top:14px}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-cart-add{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:39px;padding:9px 11px;border:1px solid #BBD5C5;border-radius:7px;background:#fff;color:var(--im-forest);font-size:11px;font-weight:800}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-cart-add svg,
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-cart-compact svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-cart-add:hover,
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-cart-compact:hover{background:#EAF6EE;border-color:var(--im-teal)}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-course-list{min-width:0;border-top:1px solid var(--im-line)}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-course-row{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:16px;min-width:0;padding:17px 0;border-bottom:1px solid var(--im-line)}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-course-row-main{display:grid;grid-template-columns:82px minmax(0,1fr);align-items:center;gap:15px;min-width:0;color:inherit}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-course-thumb{display:block;width:82px;height:76px;overflow:hidden;background:#E2EEE4}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-course-thumb>img{display:block;width:100%;height:100%;object-fit:cover}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-course-thumb .edn-course-placeholder{display:flex;width:100%;height:100%;min-height:0;padding:7px;border-radius:0;background:#E2EEE4}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-course-thumb .edn-course-placeholder b{font-size:10px}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-course-thumb .edn-course-placeholder small{display:none}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-course-row-main:hover strong{color:var(--im-teal)}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-course-row-copy{display:block;min-width:0}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-course-row-copy small{display:block;margin-bottom:4px;color:var(--im-teal);font-size:10px;font-weight:800}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-course-row-copy strong{display:block;margin:0 0 5px;color:var(--im-ink);font-size:13px;line-height:1.4}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-course-row-copy>span{display:block;color:var(--im-soft-muted);font-size:10px;line-height:1.5}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-course-row-side{display:flex;flex-direction:column;align-items:flex-end;justify-content:center;gap:7px;flex:0 0 auto}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-course-row-side .edn-course-pricing{display:flex;align-items:baseline;gap:5px}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-course-row-side .edn-course-price-current{color:var(--im-ink);font-family:"Space Grotesk",sans-serif;font-size:13px;font-weight:700;white-space:nowrap}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-course-row-side .edn-course-price-original{display:none}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-course-row-side .edn-new-price-note{color:var(--im-soft-muted);font-size:9px;text-align:right}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-cart-compact{display:grid;place-items:center;width:33px;height:33px;border:1px solid #BBD5C5;border-radius:7px;background:#fff;color:var(--im-teal);cursor:pointer}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-domain-page .edn-domain-index{display:none!important}
+
+/* Domain index, reading sequence, journal and FAQ use open rows instead of repeating cards. */
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-domains{padding:78px 0 82px;background:var(--im-paper-deep)}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-domain-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:32px;border-top:1px solid #D2DFD3}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-domain-link{display:grid;grid-template-columns:minmax(0,1fr) 17px;align-items:center;gap:15px;min-width:0;min-height:88px;padding:16px 0;border-bottom:1px solid #D2DFD3;color:var(--im-ink);transition:color .18s ease-out,padding .18s ease-out}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-domain-link:hover{padding-left:5px;color:var(--im-teal)}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-domain-copy{display:grid;gap:5px;min-width:0}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-domain-copy strong{color:inherit;font-size:12px;line-height:1.5}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-domain-copy small{color:#40594D;font-size:10px;line-height:1.5}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-domain-arrow{display:inline-flex;justify-content:center;color:var(--im-accent)}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-domain-arrow svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-steps{padding:77px 0 83px;background:#fff}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-step-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--im-line)}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-step{display:grid;grid-template-columns:38px minmax(0,1fr);align-content:start;gap:15px;min-width:0;padding:25px 24px 4px 0}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-step:not(:last-child){margin-right:24px;border-right:1px solid var(--im-line)}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-step-icon{display:grid;place-items:center;width:34px;height:34px;border-radius:8px;background:#E4F2E8;color:var(--im-teal)}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-step-icon svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-step h3{margin:3px 0 8px;font-size:18px!important;line-height:1.35}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-step p{margin:0 0 12px;color:var(--im-muted);font-size:12px;line-height:1.8}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-step a{color:var(--im-teal);font-size:11px;font-weight:800}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-step a:hover{color:var(--im-accent)}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-journal{padding:78px 0 85px;background:var(--im-paper)}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-journal-layout{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr);align-items:start;gap:40px}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-journal-lead{display:flex;flex-direction:column;min-width:0;color:var(--im-ink)}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-journal-image{display:block;overflow:hidden;aspect-ratio:1.65;background:#E2EEE4}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-journal-image img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .3s cubic-bezier(.16,1,.3,1)}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-journal-image:hover img{transform:scale(1.025)}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-journal-lead-copy{padding-top:19px}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-journal-meta{display:flex;align-items:center;flex-wrap:wrap;gap:7px 14px;color:#40594D;font-size:10px}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-journal-lead h3{margin:10px 0;font-size:clamp(23px,2.4vw,31px)!important;line-height:1.2}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-journal-lead h3 a,
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-journal-row h3 a{color:inherit}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-journal-lead p{max-width:65ch;margin:0;color:var(--im-muted);font-size:12px;line-height:1.85}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-read-link{display:inline-flex;align-items:center;gap:8px;margin-top:15px;color:var(--im-teal);font-size:11px;font-weight:800}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-journal-list{border-top:1px solid var(--im-line)}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-journal-row{display:grid;grid-template-columns:108px minmax(0,1fr);align-items:start;gap:15px;padding:17px 0;border-bottom:1px solid var(--im-line)}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-journal-thumb{display:block;overflow:hidden;aspect-ratio:1;background:#E2EEE4}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-journal-thumb img{display:block;width:100%;height:100%;object-fit:cover}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-journal-row h3{margin:6px 0;font-size:14px!important;line-height:1.4}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-journal-row p{display:-webkit-box;overflow:hidden;margin:0;color:var(--im-muted);font-size:11px;line-height:1.7;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-journal-row .edn-im-read-link{margin-top:8px}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-faq{padding:76px 0;background:#fff}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-faq-layout{display:grid;grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr);gap:65px;align-items:start}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-faq h2{max-width:370px;margin:0 0 12px;font-size:clamp(31px,3.3vw,43px)!important;line-height:1.08}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-faq-intro p{max-width:42ch;margin:0;color:var(--im-muted);font-size:13px;line-height:1.85}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-faq-list{border-top:1px solid var(--im-line)}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-faq-item{border-bottom:1px solid var(--im-line)}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-faq-item summary{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:18px 0;color:var(--im-ink);font-size:13px;font-weight:750;cursor:pointer;list-style:none}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-faq-item summary::-webkit-details-marker{display:none}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-faq-item summary svg{width:15px;height:15px;flex:0 0 15px;fill:none;stroke:var(--im-teal);stroke-width:1.8;stroke-linecap:round}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-faq-item[open] summary svg{transform:rotate(45deg)}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-faq-item>p{max-width:68ch;margin:0;padding:0 35px 18px 0;color:var(--im-muted);font-size:12px;line-height:1.85}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-cta{padding:45px 0;background:var(--im-forest);color:#fff}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-cta-inner{display:flex;align-items:center;justify-content:space-between;gap:30px}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-cta h2{max-width:750px;margin:0 0 10px;color:#fff;font-size:clamp(26px,3vw,38px)!important;line-height:1.12;letter-spacing:-.025em}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-cta p{max-width:62ch;margin:0;color:#E2F1E7;font-size:13px;line-height:1.8}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-cta .edn-im-button-primary{flex:0 0 auto}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-home .edn-pagination{margin-top:22px}
+
+/* Other user-facing routes inherit the same type, space and surface vocabulary. */
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .cio-page-head,
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-page-intro,
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-cart-heading,
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-checkout-heading,
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-about-hero,
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .blog-page-head{
+ text-align:left!important;margin-top:0;margin-bottom:30px
+}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .cio-page-head h1,
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-page-intro h1,
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-cart-heading h1,
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-checkout-heading h1,
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-about-hero h1,
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .blog-page-head h1{
+ max-width:18ch;margin:0 0 13px!important;font-size:clamp(32px,4vw,48px)!important;line-height:1.08;letter-spacing:-.03em
+}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .cio-page-head p,
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-page-intro p,
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-cart-heading p,
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-checkout-heading p,
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .blog-page-head p{
+ max-width:68ch;margin:0;color:var(--im-muted);font-size:14px;line-height:1.85
+}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .cio-eyebrow,
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-page-intro>.edn-overline,
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .cio-page-head .content-kicker{display:none!important}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page,
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-domain-page,
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-domain-detail,
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-cart-page,
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-checkout-page,
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-orders-page,
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-certificates-page{padding-top:39px!important;padding-bottom:75px!important}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-domain-page .edn-page-intro{max-width:none;margin-inline:0}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-domain-page .edn-domain-count{margin-top:10px;color:var(--im-teal);font-size:12px;font-weight:750}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-domain-page .edn-domain-grid{gap:0 30px;border-top:1px solid var(--im-line)}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-domain-page .edn-domain-card{
+ min-height:0;padding:23px 0;border:0;border-bottom:1px solid var(--im-line);border-radius:0;background:transparent;box-shadow:none;color:var(--im-ink)
+}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-domain-page .edn-domain-card:hover{transform:none;border-color:var(--im-line);box-shadow:none;color:var(--im-teal)}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-domain-page .edn-domain-index{display:none!important}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-domain-page .edn-domain-card h2{margin:0 0 7px;font-size:17px!important}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-domain-page .edn-domain-card p{margin:0;color:var(--im-muted);font-size:12px;line-height:1.8}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-domain-page .edn-domain-card-foot{padding-top:12px;color:var(--im-teal);font-size:11px;font-weight:750}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page .cio-course-toolbar{
+ display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1.8fr);gap:12px;padding:0 0 16px;border:0;border-bottom:1px solid var(--im-line);border-radius:0;background:transparent
+}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page .cio-search-local{display:flex;align-items:center;min-height:44px;padding:0 12px;border:1px solid #D4E0D6;border-radius:8px;background:#fff}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page .cio-search-local input{font-size:12px!important}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page .cio-toolbar-right{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page .cio-toolbar-right select{min-width:0;min-height:44px;padding-inline:10px;border:1px solid #D4E0D6;border-radius:8px;background:#fff;color:var(--im-ink);font-size:11px}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page .cio-course-grid{gap:19px;margin-top:13px}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page .edn-catalog-course{overflow:hidden;border:1px solid var(--im-line);border-radius:10px;background:#fff;box-shadow:none}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page .edn-catalog-course:hover{border-color:#A9CCB7;box-shadow:0 9px 20px rgba(19,78,74,.08);transform:translateY(-2px)}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page .lms-course-image{aspect-ratio:1.58}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page .lms-course-body{padding:15px}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page .lms-course-body h3{font-size:16px!important;line-height:1.35}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page .edn-course-card-footer{padding:12px 15px;border-top:1px solid #E4ECE5;background:#fff}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-cart-page,
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-checkout-page{color:var(--im-ink)}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-cart-item,
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-checkout-section{border-color:var(--im-line)!important;border-radius:9px!important;background:#fff!important;box-shadow:none!important}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-my-learning-page h1,
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-profile-page h1,
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-orders-page h1,
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-certificates-page h1{font-size:clamp(32px,4vw,46px)!important;letter-spacing:-.03em}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-profile-page .edn-profile-sidebar,
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-profile-page .edn-profile-main{border-color:var(--im-line);box-shadow:none}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-profile-page .edn-profile-logout{color:#A32E28}
+
+/* Footer: quiet, useful, and consistent with the storefront. */
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-public-footer{border-top:0;background:#103F39!important;color:#E7F3E8!important}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-public-footer a{text-decoration:none}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-public-footer a:hover{color:#9DE8D4!important}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-public-footer h3{color:#fff!important}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-public-footer p,
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-public-footer small{color:#D6E9DE!important}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-public-footer-bottom{border-color:#426D60!important}
+
+/* Responsive composition: retain hierarchy and real control sizes. */
+@media(max-width:1120px){
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edunext-header-inner.edn-im-header-inner{grid-template-columns:145px minmax(285px,1fr) minmax(175px,230px) auto;gap:13px}
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .edunext-main-nav{gap:11px}
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-course-layout{gap:30px}
+}
+@media(max-width:980px){
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edunext-header-inner.edn-im-header-inner{
+  grid-template-columns:minmax(0,1fr) auto auto;grid-template-areas:"brand tools menu" "search search search" "nav nav nav";gap:12px 15px;min-height:auto;padding-block:12px
+ }
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .edunext-main-nav{display:none;grid-area:nav;align-items:stretch;flex-direction:column;gap:2px;width:100%;padding:8px 0 2px}
+ body.edunext-app.lms-mobile-open:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .edunext-main-nav{display:flex}
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .edunext-main-nav .edunext-nav-link{justify-content:space-between;width:100%;min-height:41px;padding:10px 2px;border-bottom:1px solid #E3EAE3;font-size:13px!important;text-decoration:none!important}
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .lms-mobile-menu{grid-area:menu;display:grid!important;place-items:center;width:40px;height:40px;margin:0;border:1px solid #D3E0D5;border-radius:8px;background:#fff;color:var(--im-forest)}
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .lms-mobile-menu svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round}
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .edunext-header-search{max-width:none}
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-hero-layout{grid-template-columns:minmax(0,1fr) minmax(0,.9fr);gap:30px}
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-hero h1{font-size:clamp(38px,5vw,53px)!important}
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-course-layout{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr)}
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-faq-layout{gap:35px}
+}
+@media(max-width:760px){
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-shell,
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner.wrap,
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-public-footer .wrap{width:calc(100% - 36px)!important}
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-hero{padding-top:36px}
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-hero-layout{grid-template-columns:1fr;gap:24px;min-height:0;padding-bottom:26px}
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-hero-copy{max-width:680px}
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-hero h1{font-size:clamp(35px,9vw,48px)!important}
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-hero-copy>p{font-size:13px}
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-hero-art{min-height:280px;max-height:370px;aspect-ratio:1.1}
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-topic-rail{gap:10px 15px;padding-block:15px 18px}
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-topic-rail>strong{flex-basis:100%}
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-courses,
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-domains,
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-steps,
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-journal,
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-faq{padding:55px 0}
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-section-heading{display:block;margin-bottom:22px}
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-section-heading h2{font-size:31px!important}
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-section-heading .edn-im-text-link{margin-top:12px}
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-course-layout{grid-template-columns:1fr;gap:27px}
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-featured-media{aspect-ratio:1.7}
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-course-row{grid-template-columns:minmax(0,1fr) auto;gap:10px;padding:14px 0}
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-course-row-main{grid-template-columns:68px minmax(0,1fr);gap:10px}
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-course-thumb{width:68px;height:67px}
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-course-row-copy strong{font-size:12px}
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-domain-grid{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:18px}
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-step-grid{grid-template-columns:1fr}
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-step{padding:19px 0}
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-step:not(:last-child){margin-right:0;border-right:0;border-bottom:1px solid var(--im-line)}
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-journal-layout{grid-template-columns:1fr;gap:24px}
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-journal-row{grid-template-columns:93px minmax(0,1fr);gap:12px}
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-faq-layout{grid-template-columns:1fr;gap:24px}
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-faq h2{max-width:none}
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-cta-inner{align-items:flex-start;flex-direction:column;gap:20px}
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-domain-page .edn-domain-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page .cio-course-toolbar{grid-template-columns:1fr}
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page .cio-toolbar-right{grid-template-columns:1fr}
+}
+@media(max-width:480px){
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner.wrap{width:calc(100% - 26px)!important}
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .edunext-brand-mark{width:36px;height:36px;flex-basis:36px}
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .edunext-brand-copy strong{font-size:18px}
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .edunext-brand-copy small{font-size:9px}
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .edn-cart-trigger{width:36px;height:36px}
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .edunext-header-search{height:40px}
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .edunext-header-search input{font-size:10px!important}
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .edunext-header-search button{min-height:30px;padding-inline:9px}
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-hero{padding-top:29px}
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-hero h1{font-size:34px!important}
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-hero-art{min-height:240px}
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-button-primary,
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-button-secondary{min-height:42px;padding:10px 12px;font-size:10px}
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-featured-meta{align-items:flex-start;flex-direction:column}
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-domain-grid,
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-domain-page .edn-domain-grid{grid-template-columns:1fr}
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-journal-row{grid-template-columns:82px minmax(0,1fr)}
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-faq-item summary{font-size:12px}
+}
+@media(prefers-reduced-motion:reduce){
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) *,
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) *::before,
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) *::after{
+  scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important
+ }
+}
+
+
+/* Course catalogue refinements: remove noisy copy and improve rhythm. */
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page{padding-top:24px!important;padding-bottom:68px!important}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page .cio-page-head{
+ display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:16px 36px;margin-bottom:27px;padding-bottom:24px;border-bottom:1px solid var(--im-line)
+}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page .cio-page-head h1{max-width:none;margin-bottom:12px!important;font-size:clamp(34px,3.6vw,46px)!important}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page .cio-page-head p{max-width:62ch;font-size:14px;line-height:1.8}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page .cio-page-head>.btn{margin-bottom:1px;white-space:nowrap}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page .cio-course-toolbar{align-items:center;gap:10px;margin:0;padding-bottom:16px}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page .cio-search-local,
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page .cio-toolbar-right select{min-height:44px;border-color:#CDDCCF;border-radius:8px;background:#fff}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page .cio-search-local span{color:var(--im-teal);font-size:17px}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page .cio-search-local input{color:var(--im-ink);font-size:12px!important}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page .cio-toolbar-right{gap:10px}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page .cio-toolbar-right select{min-width:0;padding-inline:12px;color:var(--im-ink);font-size:12px}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page .edn-course-filter-meta{margin:13px 0 12px;color:var(--im-muted)}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page .edn-clear-filters{border:1px solid #D5E1D6;border-radius:7px;padding:8px 11px;background:#fff;color:var(--im-forest)}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page .cio-count-row{margin:10px 0 15px;color:var(--im-muted);font-size:12px}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page .cio-course-grid{align-items:stretch;gap:20px}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page .edn-catalog-course{display:flex;flex-direction:column;overflow:hidden;border-color:#D7E2D8;border-radius:9px;background:#fff;box-shadow:none;transform:none}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page .edn-catalog-course:hover{border-color:#A9C7B1;box-shadow:0 8px 18px rgba(19,78,74,.07);transform:translateY(-2px)}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page .lms-course-image{position:relative;height:205px;min-height:0;aspect-ratio:auto;background:#E8EFE6}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page .lms-course-image>img{display:block;width:100%;height:100%;min-height:0;object-fit:cover}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page .lms-course-image>.edn-course-placeholder{display:flex;justify-content:center;align-items:flex-start;gap:9px;width:100%;height:100%;min-height:0;padding:30px 24px;background:#E8EFE6;color:var(--im-forest)}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page .lms-course-image>.edn-course-placeholder b{max-width:13ch;color:var(--im-forest);font-family:"Space Grotesk","Be Vietnam Pro",sans-serif;font-size:clamp(20px,1.8vw,25px);font-weight:700;line-height:1.2;letter-spacing:-.025em;overflow-wrap:anywhere}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page .lms-course-image>.edn-course-placeholder small{color:#40594D;font-size:11px;line-height:1.5}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page .lms-course-badge{top:11px;left:12px;padding:5px 8px;border:1px solid rgba(255,255,255,.85);border-radius:4px;background:#fff;color:var(--im-forest);box-shadow:none;font-size:10px}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page .lms-course-body{flex:1;padding:17px 17px 12px!important}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page .lms-course-body h3{margin-top:1px;font-size:17px!important;line-height:1.4}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page .edn-course-outline-meta{color:#40594D;font-size:11px}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page .edn-course-card-footer{align-items:center;padding:12px 17px 15px;border-top:1px solid #E5ECE4}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page .edn-course-price-current{color:var(--im-ink);font-family:"Space Grotesk",sans-serif;font-size:18px}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page .edn-cart-icon-button{width:38px;height:38px;flex-basis:38px;border-radius:7px;background:#fff}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page .edn-course-card-state,
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page .edn-course-demo-label{display:none!important}
+@media(max-width:980px){
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page .cio-page-head{grid-template-columns:minmax(0,1fr);align-items:start;gap:16px}
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page .cio-page-head>.btn{justify-self:start}
+}
+@media(max-width:760px){
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page{padding-top:26px!important}
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page .cio-page-head h1{font-size:clamp(31px,8vw,38px)!important}
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page .cio-course-toolbar{grid-template-columns:1fr}
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page .cio-toolbar-right{grid-template-columns:repeat(2,minmax(0,1fr))}
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page .cio-toolbar-right select:last-child{grid-column:1/-1}
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page .lms-course-image{height:175px}
+}
+@media(max-width:480px){
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page .cio-toolbar-right{grid-template-columns:1fr}
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page .cio-course-toolbar{grid-template-columns:1fr}
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page .cio-toolbar-right select:last-child{grid-column:auto}
+}
+
+
+/* Match the course catalogue: start at the category grid, without the intro block. */
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-domain-page {
+  padding-top: 24px !important;
+}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-domain-page > .edn-domain-grid {
+  margin-top: 0;
+}
+
+
+/* Detail pages: remove the oversized intro panel and align content with catalogue pages. */
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-domain-detail {
+  padding-top: 20px !important;
+  padding-bottom: 64px !important;
+}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-domain-detail > .edn-breadcrumb {
+  margin-top: 0;
+  margin-bottom: 22px;
+}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-domain-detail > .edn-domain-programs,
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-domain-detail > .edn-related-topics {
+  margin-top: 18px;
+}
+
+
+
+/* Dashboard cleanup: compact spacing after removal of intro and empty-state illustration. */
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-my-learning-page {
+  padding-top: 28px !important;
+  padding-bottom: 64px !important;
+}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-my-learning-page .edn-my-learning-tabs {
+  margin-top: 0 !important;
+}

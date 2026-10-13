@@ -254,6 +254,20 @@ function edunext_enqueue_assets(): void {
         edunext_asset_version('assets/css/learner-experience.css')
     );
 
+    wp_enqueue_style(
+        'edunext-marketplace-redesign',
+        get_theme_file_uri('assets/css/marketplace-redesign.css'),
+        ['edunext-learner-experience'],
+        edunext_asset_version('assets/css/marketplace-redesign.css')
+    );
+
+    wp_enqueue_style(
+        'edunext-impeccable-public',
+        get_theme_file_uri('assets/css/impeccable-public.css'),
+        ['edunext-marketplace-redesign'],
+        edunext_asset_version('assets/css/impeccable-public.css')
+    );
+
     wp_enqueue_script(
         'edunext-app',
         get_theme_file_uri('assets/js/main.js'),
