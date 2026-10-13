@@ -426,7 +426,7 @@ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-public-footer-
 
 
 /* Course catalogue refinements: remove noisy copy and improve rhythm. */
-body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page{padding-top:34px!important;padding-bottom:68px!important}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page{padding-top:24px!important;padding-bottom:68px!important}
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page .cio-page-head{
  display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:16px 36px;margin-bottom:27px;padding-bottom:24px;border-bottom:1px solid var(--im-line)
 }
