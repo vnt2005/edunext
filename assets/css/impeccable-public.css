@@ -486,3 +486,18 @@ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-domain-page {
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-domain-page > .edn-domain-grid {
   margin-top: 0;
 }
+
+
+/* Detail pages: remove the oversized intro panel and align content with catalogue pages. */
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-domain-detail {
+  padding-top: 20px !important;
+  padding-bottom: 64px !important;
+}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-domain-detail > .edn-breadcrumb {
+  margin-top: 0;
+  margin-bottom: 22px;
+}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-domain-detail > .edn-domain-programs,
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-domain-detail > .edn-related-topics {
+  margin-top: 18px;
+}
