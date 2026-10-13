@@ -161,15 +161,13 @@ const card=c=>{
   const cartAction=!own
     ? '<button class="edn-cart-icon-button edn-add-to-cart" type="button" data-a="cart-add" data-v="'+esc(c.id)+'" aria-label="'+(cartInCart?'Xem trong giỏ hàng':'Thêm vào giỏ hàng')+'" title="'+(cartInCart?'Xem trong giỏ hàng':'Thêm vào giỏ hàng')+'"'+(cartInCart?' aria-pressed="true"':'')+'>'+cartIconMarkup+'</button>'
     : '';
-  const priceNote=c.demoPrice?'Giá demo tham khảo':'';
   return '<article class="lms-course-card edn-catalog-course">'+
     '<a href="#/course/'+esc(c.id)+'" class="edn-course-card-main" aria-label="Mở khóa học '+esc(c.t)+'">'+
       '<div class="lms-course-image">'+courseImageMarkup(c)+'<span class="lms-course-badge">'+(c.ready?'Đã mở bán':'Đề cương')+'</span></div>'+
       '<div class="lms-course-body"><p class="lms-course-category-text">'+esc(c.cat)+'</p><h3>'+esc(c.t)+'</h3>'+
       '<p class="edn-course-outline-meta">'+c.L.length+' bài học dự kiến</p>'+
-      '<span class="edn-course-card-state">'+(c.ready?'Đã mở bán':'Đề cương đang hoàn thiện · chưa mở bán')+'</span>'+
       '</div></a>'+
-    '<div class="edn-course-card-footer">'+coursePriceMarkup(c)+(priceNote?'<span class="edn-course-demo-label">Giá demo</span>':'')+(ownedAction||cartAction)+'</div>'+
+    '<div class="edn-course-card-footer">'+coursePriceMarkup(c)+(ownedAction||cartAction)+'</div>'+
   '</article>';
 };
 const nf=()=>'<div class="wrap page"><div class="empty" role="status"><h2>Không tìm thấy nội dung này</h2><p>Liên kết có thể đã thay đổi hoặc nội dung chưa được xuất bản.</p><a href="#/">Về trang chủ</a></div></div>';
@@ -281,7 +279,7 @@ const courses=()=>{
   const selectedTopics=[...new Set(DOMAINS.flatMap(d=>d.topics||[]))].sort((a,b)=>a.localeCompare(b,'vi'));
   const domainOptions=domainGroups().map(group=>'<optgroup label="'+esc(group.name)+'">'+group.domains.map(d=>'<option value="'+esc(d.name)+'" '+(f.cat===d.name?'selected':'')+'>'+esc(d.name)+'</option>').join('')+'</optgroup>').join('');
   return '<div class="wrap page cio-courses-page edn-course-catalog-page">'+
-    '<div class="cio-page-head"><div><span class="cio-eyebrow">EDUNEXT · KHÁM PHÁ</span><h1>Khóa học và lộ trình</h1><p>Khám phá toàn bộ đề cương theo lĩnh vực và chủ đề chuyên môn. Giá ưu đãi/giá gốc hiện là mức demo tham khảo; khóa học vẫn chưa mở bán cho đến khi nội dung và thanh toán được xác minh.</p></div><a class="btn btn-g" href="#/categories">Tất cả lĩnh vực</a></div>'+
+    '<div class="cio-page-head"><div><span class="cio-eyebrow">EDUNEXT · KHÁM PHÁ</span><h1>Khóa học và lộ trình</h1><p>Tìm khóa học theo lĩnh vực, chuyên ngành hoặc kỹ năng bạn muốn phát triển.</p></div><a class="btn btn-g" href="#/categories">Tất cả lĩnh vực</a></div>'+
     '<div class="cio-course-toolbar"><div class="cio-search-local"><span aria-hidden="true">⌕</span><input data-f="q" value="'+esc(f.q)+'" placeholder="Tìm tên khóa học, lĩnh vực hoặc kỹ năng" aria-label="Tìm trong danh mục"></div>'+
     '<div class="cio-toolbar-right"><select data-f="cat" aria-label="Lọc chuyên ngành"><option value="">Tất cả chuyên ngành</option>'+domainOptions+'</select>'+
     '<select data-f="topic" aria-label="Lọc chủ đề"><option value="">Tất cả chủ đề</option>'+selectedTopics.map(t=>'<option value="'+esc(t)+'" '+(f.topic===t?'selected':'')+'>'+esc(t)+'</option>').join('')+'</select>'+
