@@ -226,6 +226,87 @@ const home=()=>{
     '<section class="edn-editorial-cta"><div class="wrap edn-editorial-cta-inner"><div><span class="edn-editorial-kicker">SẴN SÀNG CHO ĐIỀU MỚI?</span><h2>Một bước nhỏ cũng có thể mở ra hướng đi mới.</h2><p>Chọn lĩnh vực bạn quan tâm và xem chương trình phù hợp nhất với mình.</p></div><div class="edn-editorial-cta-actions"><a class="edn-editorial-cta-primary" href="#/courses">Khám phá khóa học <b aria-hidden="true">↗</b></a><a class="edn-editorial-cta-secondary" href="#/categories">Duyệt lĩnh vực</a></div><span class="edn-editorial-cta-mark" aria-hidden="true">E.</span></div></section>'+
   '</div>';
 };
+
+const list=()=>{
+  const root=$('#list');
+  if(!root)return;
+  const q=(f.q||'').trim().toLocaleLowerCase('vi-VN');
+  currentCourseResults=C.filter(c=>{
+    const fields=[c.t,c.cat,c.description].concat(c.topics||[]);
+    const textMatch=!q||fields.some(v=>String(v||'').toLocaleLowerCase('vi-VN').includes(q));
+    const domainMatch=!f.domainId||c.domainId===f.domainId;
+    const catMatch=!f.cat||c.cat===f.cat;
+    const topicMatch=!f.topic||(c.topics||[]).some(t=>t.toLocaleLowerCase('vi-VN')===String(f.topic).toLocaleLowerCase('vi-VN'));
+    return textMatch&&domainMatch&&catMatch&&topicMatch;
+  });
+  if(f.sort==='name-desc')currentCourseResults.sort((a,b)=>b.t.localeCompare(a.t,'vi'));
+  else if(f.sort==='domain')currentCourseResults.sort((a,b)=>a.cat.localeCompare(b.cat,'vi')||a.t.localeCompare(b.t,'vi'));
+  else currentCourseResults.sort((a,b)=>a.t.localeCompare(b.t,'vi'));
+  const pageCount=Math.max(1,Math.ceil(currentCourseResults.length/PAGE_SIZE));
+  f.page=Math.min(Math.max(1,Number(f.page)||1),pageCount);
+  const start=(f.page-1)*PAGE_SIZE;
+  const shown=currentCourseResults.slice(start,start+PAGE_SIZE);
+  root.innerHTML=shown.length?shown.map(card).join(''):'<div class="empty edn-course-empty"><h3>Chưa tìm thấy đề cương phù hợp</h3><p>Thử thay đổi từ khóa hoặc xóa bộ lọc để xem toàn bộ danh mục.</p><button class="btn btn-g" type="button" data-a="clear">Xóa bộ lọc</button></div>';
+  const count=$('#cnt');
+  if(count)count.textContent=currentCourseResults.length?(start+1)+'–'+(start+shown.length)+' / '+currentCourseResults.length:'0 / 0';
+  const pagination=$('#course-pagination');
+  if(pagination)pagination.innerHTML=paginationMarkup('courses',f.page,pageCount,'khóa học');
+  const summary=$('#course-filter-summary');
+  if(summary){
+    const terms=[];
+    if(f.cat)terms.push(f.cat);
+    if(f.topic)terms.push(f.topic);
+    if(q)terms.push('Từ khóa: '+q);
+    summary.textContent=terms.length?'Đang lọc: '+terms.join(' · '):'Tất cả chuyên ngành và chủ đề';
+  }
+};
+const courses=()=>{
+  hook=list;
+  const selectedTopics=[...new Set(DOMAINS.flatMap(d=>d.topics||[]))].sort((a,b)=>a.localeCompare(b,'vi'));
+  const domainOptions=domainGroups().map(group=>'<optgroup label="'+esc(group.name)+'">'+group.domains.map(d=>'<option value="'+esc(d.name)+'" '+(f.cat===d.name?'selected':'')+'>'+esc(d.name)+'</option>').join('')+'</optgroup>').join('');
+  return '<div class="wrap page cio-courses-page edn-course-catalog-page">'+
+    '<div class="cio-page-head"><div><span class="cio-eyebrow">EDUNEXT · KHÁM PHÁ</span><h1>Khóa học và lộ trình</h1><p>Khám phá toàn bộ đề cương theo lĩnh vực và chủ đề chuyên môn. Giá ưu đãi/giá gốc hiện là mức demo tham khảo; khóa học vẫn chưa mở bán cho đến khi nội dung và thanh toán được xác minh.</p></div><a class="btn btn-g" href="#/categories">Tất cả lĩnh vực</a></div>'+
+    '<div class="cio-course-toolbar"><div class="cio-search-local"><span aria-hidden="true">⌕</span><input data-f="q" value="'+esc(f.q)+'" placeholder="Tìm tên khóa học, lĩnh vực hoặc kỹ năng" aria-label="Tìm trong danh mục"></div>'+
+    '<div class="cio-toolbar-right"><select data-f="cat" aria-label="Lọc chuyên ngành"><option value="">Tất cả chuyên ngành</option>'+domainOptions+'</select>'+
+    '<select data-f="topic" aria-label="Lọc chủ đề"><option value="">Tất cả chủ đề</option>'+selectedTopics.map(t=>'<option value="'+esc(t)+'" '+(f.topic===t?'selected':'')+'>'+esc(t)+'</option>').join('')+'</select>'+
+    '<select data-f="sort" aria-label="Sắp xếp"><option value="name" '+(f.sort==='name'?'selected':'')+'>Tên A–Z</option><option value="name-desc" '+(f.sort==='name-desc'?'selected':'')+'>Tên Z–A</option><option value="domain" '+(f.sort==='domain'?'selected':'')+'>Theo lĩnh vực</option></select></div></div>'+
+    '<div class="edn-course-filter-meta"><span id="course-filter-summary">Tất cả chuyên ngành và chủ đề</span><button type="button" class="edn-clear-filters" data-a="clear">Xóa bộ lọc</button></div>'+
+    '<div class="cio-count-row"><span id="cnt"></span><span>đề cương trong danh mục</span></div>'+
+    '<div class="grid cio-course-grid" id="list" aria-live="polite"></div>'+
+    '<div id="course-pagination"></div>'+
+  '</div>';
+};
+const domainsPage=()=>{
+  const groups=domainGroups();
+  const totalSpecialties=groups.reduce((total,group)=>total+group.domains.length,0);
+  return '<div class="wrap page edn-domain-page"><div class="edn-page-intro"><span class="edn-overline">DANH MỤC EDUNEXT</span><h1>Khám phá theo nhóm lĩnh vực</h1><p>Các lĩnh vực lớn được chia thành những chuyên ngành cụ thể. Ví dụ, <strong>Công nghệ thông tin</strong> bao gồm lập trình, phát triển Web, ứng dụng di động, cơ sở dữ liệu, AI, an ninh mạng, cloud và nhiều hướng chuyên sâu khác.</p><div class="edn-domain-count">'+groups.length+' nhóm lĩnh vực · '+totalSpecialties+' chuyên ngành</div></div>'+
+  '<div class="edn-domain-grid edn-domain-group-grid">'+groups.map((group,index)=>{
+    const groupIds=new Set(group.domains.map(domain=>domain.id));
+    const courseCount=C.filter(course=>groupIds.has(course.domainId)).length;
+    return '<a class="edn-domain-card edn-domain-group-card" href="#/group/'+esc(group.slug)+'"><span class="edn-domain-index">'+String(index+1).padStart(2,'0')+'</span><span class="edn-domain-group-label">NHÓM LĨNH VỰC</span><h2>'+esc(group.name)+'</h2><p>'+esc(group.description)+'</p><div class="edn-domain-card-foot"><span>'+group.domains.length+' chuyên ngành · '+courseCount+' đề cương</span><b aria-hidden="true">↗</b></div></a>';
+  }).join('')+'</div></div>';
+};
+const groupDetail=slug=>{
+  const group=domainGroups().find(item=>item.slug===slug);
+  if(!group)return nf();
+  const domainIds=new Set(group.domains.map(domain=>domain.id));
+  const courseCount=C.filter(course=>domainIds.has(course.domainId)).length;
+  return '<div class="wrap page edn-domain-detail edn-domain-group-detail"><nav class="edn-breadcrumb" aria-label="Đường dẫn"><a href="#/">Trang chủ</a><span>›</span><a href="#/categories">Nhóm lĩnh vực</a><span>›</span><span>'+esc(group.name)+'</span></nav>'+
+    '<header class="edn-domain-hero"><span class="edn-overline">NHÓM LĨNH VỰC</span><h1>'+esc(group.name)+'</h1><p>'+esc(group.description)+'</p><div class="edn-domain-hero-meta">'+group.domains.length+' chuyên ngành · '+courseCount+' đề cương chương trình trong nhóm này</div></header>'+
+    '<section class="edn-domain-programs"><div class="edn-section-heading"><div><span class="edn-overline">DANH MỤC CHUYÊN MÔN</span><h2>Các chuyên ngành trong nhóm</h2></div><a href="#/categories">Xem các nhóm khác ↗</a></div><div class="edn-domain-grid edn-domain-specialty-grid">'+group.domains.map(domain=>'<a class="edn-domain-card edn-domain-specialty-card" href="#/domain/'+esc(domain.slug)+'"><span class="edn-domain-index">'+String(domain.number).padStart(2,'0')+'</span><span class="edn-domain-group-label">CHUYÊN NGÀNH</span><h2>'+esc(domain.name)+'</h2><p>'+esc(domain.description||'Khám phá các chủ đề chuyên môn trong lĩnh vực này.')+'</p><div class="edn-domain-card-foot"><span>'+C.filter(course=>course.domainId===domain.id).length+' đề cương chương trình</span><b aria-hidden="true">↗</b></div></a>').join('')+'</div></section></div>';
+};
+const domainDetail=slug=>{
+  const d=DOMAINS.find(item=>item.slug===slug);
+  if(!d)return nf();
+  const group=findDomainGroup(d);
+  const related=(d.topics||[]).map(topic=>'<button type="button" class="edn-topic-chip" data-a="topic" data-v="'+esc(topic)+'">'+esc(topic)+'</button>').join('');
+  const coursesInDomain=C.filter(c=>c.domainId===d.id);
+  return '<div class="wrap page edn-domain-detail"><nav class="edn-breadcrumb" aria-label="Đường dẫn"><a href="#/">Trang chủ</a><span>›</span><a href="#/categories">Nhóm lĩnh vực</a><span>›</span>'+(group?'<a href="#/group/'+esc(group.slug)+'">'+esc(group.name)+'</a><span>›</span>':'')+'<span>'+esc(d.name)+'</span></nav>'+
+    '<header class="edn-domain-hero"><span class="edn-overline">CHUYÊN NGÀNH '+String(d.number).padStart(2,'0')+'</span><h1>'+esc(d.name)+'</h1><p>'+esc(d.description||'Khám phá các chủ đề chuyên môn trong lĩnh vực này.')+'</p><div class="edn-domain-hero-meta">'+(group?'Nhóm lĩnh vực: '+esc(group.name)+' · ':'')+coursesInDomain.length+' đề cương chương trình đang được phát triển</div></header>'+
+    '<section class="edn-related-topics"><div class="edn-section-heading"><div><span class="edn-overline">CHỦ ĐỀ CHUYÊN MÔN</span><h2>Các hướng học liên quan</h2></div><p>Bấm vào một chủ đề để xem những chương trình được liên kết với chủ đề đó.</p></div><div class="edn-topic-chip-row">'+related+'</div></section>'+
+    '<section class="edn-domain-programs"><div class="edn-section-heading"><div><span class="edn-overline">CHƯƠNG TRÌNH HỌC</span><h2>Đề cương trong chuyên ngành</h2></div><a href="#/courses" data-a="domain" data-v="'+esc(d.id)+'">Xem trong danh mục ↗</a></div><div class="grid cio-course-grid">'+coursesInDomain.map(card).join('')+'</div></section></div>';
+};
+
 const videoMarkup=(url,title)=>{
   if(!url)return '<div class="edn-media-unavailable" role="status"><strong>Video bài học đang được cập nhật</strong><p>Video phù hợp cho bài này chưa được gắn vào danh mục khóa học.</p></div>';
   const raw=String(url).trim();
