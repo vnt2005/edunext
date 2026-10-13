@@ -503,52 +503,12 @@ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-domain-detail 
 }
 
 
-/* Dashboard copy cleanup: keep essential filters, remove promotional copy blocks. */
+
+/* Dashboard cleanup: compact spacing after removal of intro and empty-state illustration. */
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-my-learning-page {
   padding-top: 28px !important;
   padding-bottom: 64px !important;
 }
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-my-learning-page .edn-my-learning-tabs {
   margin-top: 0 !important;
-}
-body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-my-learning-page .edn-my-learning-empty {
-  display: flex !important;
-  align-items: center;
-  justify-content: center;
-  min-height: 250px;
-  margin: 22px 0 0;
-  padding: 30px 0;
-  border: 0 !important;
-  border-radius: 0 !important;
-  background: transparent !important;
-  box-shadow: none !important;
-}
-body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-my-learning-page .edn-my-learning-empty-illustration {
-  position: relative;
-  display: grid;
-  place-items: center;
-  width: min(280px, 100%);
-  min-height: 205px;
-  margin: 0 auto;
-  background: #F0FDFA;
-}
-body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-my-learning-page .edn-my-learning-empty-book {
-  display: block;
-  width: 74px;
-  height: 94px;
-  border: 0;
-  border-radius: 2px;
-  background: #0F766E;
-  box-shadow: 10px 10px 0 #99F6E4;
-}
-body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-my-learning-page .edn-my-learning-empty-illustration i {
-  position: absolute;
-  top: 37px;
-  right: 30px;
-  color: #0F766E;
-  font-size: 18px;
-  font-style: normal;
-}
-body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-my-learning-page .edn-my-learning-bottom {
-  display: none !important;
 }
