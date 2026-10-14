@@ -461,25 +461,15 @@ const home=()=>{
       '</div>'+
     '</section>'+
 
-    // Stats and Metrics 01 Luma (Synchronized Dark Palette)
+    // Stats and Metrics (Luma Dark Card Style with Original Metrics)
     '<section class="edn-luma-stats">'+
       '<div class="wrap edn-luma-wrap">'+
-        '<div class="edn-luma-header">'+
-          '<div class="edn-luma-badge">'+
-            '<span class="edn-luma-badge-dot" aria-hidden="true"></span>'+
-            '<span>Our statistics</span>'+
-          '</div>'+
-          '<h2 class="edn-luma-headline">'+
-            'Proven results you can <span class="edn-luma-highlight">measure</span>'+
-          '</h2>'+
-        '</div>'+
         '<div class="edn-luma-grid">'+
           '<div class="edn-luma-card group">'+
             '<div class="edn-luma-glow" aria-hidden="true"></div>'+
-            '<div class="edn-luma-num edn-luma-grad-1">+200%</div>'+
+            '<div class="edn-luma-num edn-luma-grad-1">100+</div>'+
             '<div class="edn-luma-card-body">'+
-              '<h4>Lead Conversion Rate</h4>'+
-              '<p>Clients experience over double in just two months.</p>'+
+              '<h4>Khóa thực chiến</h4>'+
             '</div>'+
             '<div class="edn-luma-dot-wrap" aria-hidden="true">'+
               '<div class="edn-luma-dot-anim">'+
@@ -489,10 +479,9 @@ const home=()=>{
           '</div>'+
           '<div class="edn-luma-card group">'+
             '<div class="edn-luma-glow" aria-hidden="true"></div>'+
-            '<div class="edn-luma-num edn-luma-grad-2">95%</div>'+
+            '<div class="edn-luma-num edn-luma-grad-2">50</div>'+
             '<div class="edn-luma-card-body">'+
-              '<h4>Faster Response Times</h4>'+
-              '<p>Automations cut lead follow-up times by over 90%.</p>'+
+              '<h4>Chuyên ngành đào tạo</h4>'+
             '</div>'+
             '<div class="edn-luma-dot-wrap" aria-hidden="true">'+
               '<div class="edn-luma-dot-anim">'+
@@ -502,10 +491,9 @@ const home=()=>{
           '</div>'+
           '<div class="edn-luma-card group">'+
             '<div class="edn-luma-glow" aria-hidden="true"></div>'+
-            '<div class="edn-luma-num edn-luma-grad-3">3X</div>'+
+            '<div class="edn-luma-num edn-luma-grad-3">15,000+</div>'+
             '<div class="edn-luma-card-body">'+
-              '<h4>More Revenue per Client</h4>'+
-              '<p>Better nurturing means customers spend more.</p>'+
+              '<h4>Học viên theo học</h4>'+
             '</div>'+
             '<div class="edn-luma-dot-wrap" aria-hidden="true">'+
               '<div class="edn-luma-dot-anim">'+
@@ -515,10 +503,9 @@ const home=()=>{
           '</div>'+
           '<div class="edn-luma-card group">'+
             '<div class="edn-luma-glow" aria-hidden="true"></div>'+
-            '<div class="edn-luma-num edn-luma-grad-4">500%</div>'+
+            '<div class="edn-luma-num edn-luma-grad-4">98%</div>'+
             '<div class="edn-luma-card-body">'+
-              '<h4>Businesses Trust Us</h4>'+
-              '<p>Our platform fuels growth for businesses of all sizes.</p>'+
+              '<h4>Hài lòng & Có việc</h4>'+
             '</div>'+
             '<div class="edn-luma-dot-wrap" aria-hidden="true">'+
               '<div class="edn-luma-dot-anim">'+

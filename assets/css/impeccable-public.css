@@ -4175,7 +4175,7 @@ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-luma-stats,
   width: 100% !important;
   background-color: #000000 !important;
   color: #FFFFFF !important;
-  padding: 96px 0 !important;
+  padding: 48px 0 64px !important;
   font-family: inherit !important;
   overflow: hidden !important;
   position: relative !important;
@@ -4287,8 +4287,8 @@ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-luma-stats,
   background-color: #0A0B0B !important;
   border: 1px solid #1B1B1A !important;
   border-radius: 20px !important;
-  height: 320px !important;
-  padding: 32px !important;
+  height: 200px !important;
+  padding: 28px 24px !important;
   display: flex !important;
   flex-direction: column !important;
   justify-content: space-between !important;
@@ -4353,9 +4353,9 @@ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-luma-stats,
 
 .edn-luma-card-body h4 {
   color: #FFFFFF !important;
-  font-size: 18px !important;
-  font-weight: 700 !important;
-  margin: 0 0 12px !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  margin: 0 !important;
   letter-spacing: -0.015em !important;
   transition: color 0.3s ease !important;
 }
