@@ -110,21 +110,23 @@ export default function ZiroBuildHero({
         <main className="flex-1 flex flex-col items-center justify-center pr-4 pl-[17px] max-w-5xl mx-auto text-center w-full mt-12 mb-[-80px] h-[680px]">
           {/* Eyebrow pill */}
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 bg-white/5 backdrop-blur-md text-xs font-medium text-gray-200 mb-6">
-            <span className="w-2 h-2 rounded-full bg-white animate-pulse"></span>
-            <span>Trusted by 500+ Innovation Teams</span>
+            <span className="w-2 h-2 rounded-full bg-teal-400 shadow-[0_0_8px_rgba(45,212,191,0.8)] animate-pulse"></span>
+            <span>Nền tảng học kỹ năng số thực chiến</span>
           </div>
 
           {/* Headline */}
-          <h1 className="text-[80px] leading-[88.6px] font-display font-medium tracking-tight mb-[20px]">
-            Build The Future With
+          <h1 className="text-[52px] md:text-[80px] leading-[1.1] font-display font-medium tracking-tight mb-[20px]">
+            Khám phá lộ trình chuẩn.
             <br />
-            AI-Native Products
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-teal-200 to-teal-400">
+              Nâng tầm sự nghiệp số.
+            </span>
           </h1>
 
           {/* Paragraph */}
           <p className="text-[18px] leading-[26px] text-gray-300 mb-8 max-w-2xl font-light">
-            Design, build, and scale intelligent products, with powerful AI tools
-            built for modern teams.
+            Hơn 100 chương trình thực hành từ chuyên gia công nghệ, dữ liệu, thiết kế và kinh doanh.
+            Học theo dự án thực tế, tích lũy portfolio chuyên nghiệp.
           </p>
 
           {/* CTA button row */}
@@ -133,13 +135,13 @@ export default function ZiroBuildHero({
               href="#/courses"
               className="group px-8 py-4 bg-white text-black font-semibold rounded-lg hover:bg-gray-100 transition-colors inline-flex items-center justify-center"
             >
-              <AnimatedText text="Explore More" />
+              <AnimatedText text="Khám phá khóa học" />
             </a>
             <a
               href="#/categories"
               className="group px-8 py-4 bg-white/10 border border-white/30 backdrop-blur-md text-white font-medium rounded-lg hover:bg-white/20 transition-colors flex items-center justify-center gap-2"
             >
-              <AnimatedText text="Get Started" />
+              <AnimatedText text="Bắt đầu ngay" />
               <ArrowRight className="w-4 h-4" />
             </a>
           </div>

@@ -431,21 +431,21 @@ const home=()=>{
         '<div class="edn-ziro-content">'+
           '<div class="edn-ziro-pill">'+
             '<span class="edn-ziro-pill-dot" aria-hidden="true"></span>'+
-            '<span>Trusted by 500+ Innovation Teams</span>'+
+            '<span>Nền tảng học kỹ năng số thực chiến</span>'+
           '</div>'+
           '<h1 class="edn-ziro-headline">'+
-            'Build The Future With<br>'+
-            '<span class="edn-ziro-gradient-text">AI-Native Products</span>'+
+            'Khám phá lộ trình chuẩn.<br>'+
+            '<span class="edn-ziro-gradient-text">Nâng tầm sự nghiệp số.</span>'+
           '</h1>'+
           '<p class="edn-ziro-paragraph">'+
-            'Design, build, and scale intelligent products, with powerful AI tools built for modern teams.'+
+            'Hơn 100 chương trình thực hành từ chuyên gia công nghệ, dữ liệu, thiết kế và kinh doanh. Học theo dự án thực tế, tích lũy portfolio chuyên nghiệp.'+
           '</p>'+
           '<div class="edn-ziro-cta-row">'+
             '<a href="#/courses" class="edn-ziro-btn-primary group">'+
-              animatedText('Explore More')+
+              animatedText('Khám phá khóa học')+
             '</a>'+
             '<a href="#/categories" class="edn-ziro-btn-secondary group">'+
-              animatedText('Get Started')+
+              animatedText('Bắt đầu ngay')+
               '<svg class="w-4 h-4 ml-1 inline-block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>'+
             '</a>'+
           '</div>'+
