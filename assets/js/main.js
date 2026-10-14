@@ -461,16 +461,74 @@ const home=()=>{
       '</div>'+
     '</section>'+
 
-    // Trust Metrics Bar
-    '<section class="edn-trust-bar"><div class="wrap edn-trust-bar-inner">'+
-      '<div class="edn-trust-item"><span class="edn-trust-num">100+</span><span class="edn-trust-label">Khóa thực chiến</span></div>'+
-      '<div class="edn-trust-separator" aria-hidden="true"></div>'+
-      '<div class="edn-trust-item"><span class="edn-trust-num">50</span><span class="edn-trust-label">Chuyên ngành đào tạo</span></div>'+
-      '<div class="edn-trust-separator" aria-hidden="true"></div>'+
-      '<div class="edn-trust-item"><span class="edn-trust-num">15,000+</span><span class="edn-trust-label">Học viên theo học</span></div>'+
-      '<div class="edn-trust-separator" aria-hidden="true"></div>'+
-      '<div class="edn-trust-item"><span class="edn-trust-num">98%</span><span class="edn-trust-label">Hài lòng & Có việc</span></div>'+
-    '</div></section>'+
+    // Stats and Metrics 01 Luma (Synchronized Dark Palette)
+    '<section class="edn-luma-stats">'+
+      '<div class="wrap edn-luma-wrap">'+
+        '<div class="edn-luma-header">'+
+          '<div class="edn-luma-badge">'+
+            '<span class="edn-luma-badge-dot" aria-hidden="true"></span>'+
+            '<span>Our statistics</span>'+
+          '</div>'+
+          '<h2 class="edn-luma-headline">'+
+            'Proven results you can <span class="edn-luma-highlight">measure</span>'+
+          '</h2>'+
+        '</div>'+
+        '<div class="edn-luma-grid">'+
+          '<div class="edn-luma-card group">'+
+            '<div class="edn-luma-glow" aria-hidden="true"></div>'+
+            '<div class="edn-luma-num edn-luma-grad-1">+200%</div>'+
+            '<div class="edn-luma-card-body">'+
+              '<h4>Lead Conversion Rate</h4>'+
+              '<p>Clients experience over double in just two months.</p>'+
+            '</div>'+
+            '<div class="edn-luma-dot-wrap" aria-hidden="true">'+
+              '<div class="edn-luma-dot-anim">'+
+                '<svg class="edn-luma-svg-dots" viewBox="0 0 100 100"><defs><pattern id="lumaDotGrid1" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="#2DD4BF"/></pattern></defs><rect width="100" height="100" fill="url(#lumaDotGrid1)"/></svg>'+
+              '</div>'+
+            '</div>'+
+          '</div>'+
+          '<div class="edn-luma-card group">'+
+            '<div class="edn-luma-glow" aria-hidden="true"></div>'+
+            '<div class="edn-luma-num edn-luma-grad-2">95%</div>'+
+            '<div class="edn-luma-card-body">'+
+              '<h4>Faster Response Times</h4>'+
+              '<p>Automations cut lead follow-up times by over 90%.</p>'+
+            '</div>'+
+            '<div class="edn-luma-dot-wrap" aria-hidden="true">'+
+              '<div class="edn-luma-dot-anim">'+
+                '<svg class="edn-luma-svg-dots" viewBox="0 0 100 100"><defs><pattern id="lumaDotGrid2" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="#2DD4BF"/></pattern></defs><rect width="100" height="100" fill="url(#lumaDotGrid2)"/></svg>'+
+              '</div>'+
+            '</div>'+
+          '</div>'+
+          '<div class="edn-luma-card group">'+
+            '<div class="edn-luma-glow" aria-hidden="true"></div>'+
+            '<div class="edn-luma-num edn-luma-grad-3">3X</div>'+
+            '<div class="edn-luma-card-body">'+
+              '<h4>More Revenue per Client</h4>'+
+              '<p>Better nurturing means customers spend more.</p>'+
+            '</div>'+
+            '<div class="edn-luma-dot-wrap" aria-hidden="true">'+
+              '<div class="edn-luma-dot-anim">'+
+                '<svg class="edn-luma-svg-dots" viewBox="0 0 100 100"><defs><pattern id="lumaDotGrid3" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="#2DD4BF"/></pattern></defs><rect width="100" height="100" fill="url(#lumaDotGrid3)"/></svg>'+
+              '</div>'+
+            '</div>'+
+          '</div>'+
+          '<div class="edn-luma-card group">'+
+            '<div class="edn-luma-glow" aria-hidden="true"></div>'+
+            '<div class="edn-luma-num edn-luma-grad-4">500%</div>'+
+            '<div class="edn-luma-card-body">'+
+              '<h4>Businesses Trust Us</h4>'+
+              '<p>Our platform fuels growth for businesses of all sizes.</p>'+
+            '</div>'+
+            '<div class="edn-luma-dot-wrap" aria-hidden="true">'+
+              '<div class="edn-luma-dot-anim">'+
+                '<svg class="edn-luma-svg-dots" viewBox="0 0 100 100"><defs><pattern id="lumaDotGrid4" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="#2DD4BF"/></pattern></defs><rect width="100" height="100" fill="url(#lumaDotGrid4)"/></svg>'+
+              '</div>'+
+            '</div>'+
+          '</div>'+
+        '</div>'+
+      '</div>'+
+    '</section>'+
 
     // Top Categories Grid
     '<section class="edn-categories-section"><div class="wrap">'+

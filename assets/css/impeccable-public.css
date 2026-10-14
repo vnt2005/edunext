@@ -4165,3 +4165,247 @@ body.edn-home-active .edunext-header-auth .btn-g:hover {
   color: #FFFFFF !important;
   border-color: #2DD4BF !important;
 }
+
+/* ========================================================
+ * STATS AND METRICS 01 LUMA (Dark Minimal Results Section)
+ * Synchronized with ZiroBuild Dark Palette & Cyan/Teal Accents
+ * ======================================================== */
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-luma-stats,
+.edn-luma-stats {
+  width: 100% !important;
+  background-color: #000000 !important;
+  color: #FFFFFF !important;
+  padding: 96px 0 !important;
+  font-family: inherit !important;
+  overflow: hidden !important;
+  position: relative !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.edn-luma-wrap {
+  max-width: 1280px !important;
+  margin: 0 auto !important;
+  padding: 0 24px !important;
+}
+
+@media (min-width: 768px) {
+  .edn-luma-wrap {
+    padding: 0 48px !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .edn-luma-wrap {
+    padding: 0 80px !important;
+  }
+}
+
+/* Header */
+.edn-luma-header {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center !important;
+  margin-bottom: 64px !important;
+}
+
+/* Eyebrow Badge */
+.edn-luma-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  background: #1E1F1F !important;
+  border: 1px solid #333333 !important;
+  border-radius: 9999px !important;
+  padding: 6px 16px !important;
+  margin-bottom: 24px !important;
+  transition: border-color 0.3s ease !important;
+}
+
+.edn-luma-badge:hover {
+  border-color: rgba(45, 212, 191, 0.3) !important;
+}
+
+.edn-luma-badge-dot {
+  width: 6px !important;
+  height: 6px !important;
+  border-radius: 50% !important;
+  background-color: #2DD4BF !important;
+  box-shadow: 0 0 8px rgba(45, 212, 191, 0.8) !important;
+  display: inline-block !important;
+  animation: ednPulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite !important;
+}
+
+.edn-luma-badge span:last-child {
+  color: #FFFFFF !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.025em !important;
+}
+
+/* Headline */
+.edn-luma-headline {
+  color: #FFFFFF !important;
+  font-size: clamp(32px, 4.5vw, 56px) !important;
+  font-weight: 700 !important;
+  line-height: 1.15 !important;
+  letter-spacing: -0.03em !important;
+  margin: 0 !important;
+  max-width: 760px !important;
+  font-family: "Space Grotesk", sans-serif !important;
+}
+
+.edn-luma-highlight {
+  background: linear-gradient(135deg, #FFFFFF 0%, #2DD4BF 60%, #38BDF8 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  display: inline-block !important;
+}
+
+/* Grid */
+.edn-luma-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 16px !important;
+}
+
+@media (max-width: 1024px) {
+  .edn-luma-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .edn-luma-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Card */
+.edn-luma-card {
+  position: relative !important;
+  background-color: #0A0B0B !important;
+  border: 1px solid #1B1B1A !important;
+  border-radius: 20px !important;
+  height: 320px !important;
+  padding: 32px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  overflow: hidden !important;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.edn-luma-card:hover {
+  transform: translateY(-8px) scale(1.02) !important;
+  border-color: rgba(45, 212, 191, 0.35) !important;
+  box-shadow: 0 16px 40px rgba(45, 212, 191, 0.08) !important;
+}
+
+/* Card Glow */
+.edn-luma-glow {
+  position: absolute !important;
+  top: -60px !important;
+  right: -60px !important;
+  width: 140px !important;
+  height: 140px !important;
+  border-radius: 50% !important;
+  background: rgba(45, 212, 191, 0.04) !important;
+  filter: blur(40px) !important;
+  pointer-events: none !important;
+  transition: background 0.5s ease !important;
+}
+
+.edn-luma-card:hover .edn-luma-glow {
+  background: rgba(45, 212, 191, 0.12) !important;
+}
+
+/* Big Number */
+.edn-luma-num {
+  font-size: 38px !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+  letter-spacing: -0.03em !important;
+  font-family: "Space Grotesk", sans-serif !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+.edn-luma-grad-1,
+.edn-luma-grad-3 {
+  background: linear-gradient(90deg, #FFFFFF 0%, rgba(255, 255, 255, 0.85) 50%, rgba(45, 212, 191, 0.75) 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+.edn-luma-grad-2,
+.edn-luma-grad-4 {
+  background: linear-gradient(90deg, #FFFFFF 0%, rgba(255, 255, 255, 0.85) 50%, rgba(56, 189, 248, 0.75) 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+/* Card Body */
+.edn-luma-card-body {
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+.edn-luma-card-body h4 {
+  color: #FFFFFF !important;
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  margin: 0 0 12px !important;
+  letter-spacing: -0.015em !important;
+  transition: color 0.3s ease !important;
+}
+
+.edn-luma-card:hover .edn-luma-card-body h4 {
+  color: #99F6E4 !important;
+}
+
+.edn-luma-card-body p {
+  color: #94A3B8 !important;
+  font-size: 14px !important;
+  line-height: 1.6 !important;
+  margin: 0 !important;
+  font-weight: 300 !important;
+}
+
+/* Drifting Dot Grid */
+.edn-luma-dot-wrap {
+  position: absolute !important;
+  bottom: 0 !important;
+  right: 0 !important;
+  width: 50% !important;
+  height: 50% !important;
+  overflow: hidden !important;
+  pointer-events: none !important;
+}
+
+.edn-luma-dot-anim {
+  width: 100% !important;
+  height: 100% !important;
+  position: relative !important;
+  animation: lumaDrift 10s linear infinite !important;
+}
+
+@keyframes lumaDrift {
+  0%, 100% {
+    transform: translate(0px, 0px);
+  }
+  50% {
+    transform: translate(5px, 5px);
+  }
+}
+
+.edn-luma-svg-dots {
+  position: absolute !important;
+  bottom: 0 !important;
+  right: 0 !important;
+  width: 100px !important;
+  height: 100px !important;
+  opacity: 0.25 !important;
+  pointer-events: none !important;
+}
+
