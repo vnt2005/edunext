@@ -36,7 +36,7 @@ export default function BottomCtaBanner({
   trustPoints = DEFAULT_TRUST_POINTS,
 }: BottomCtaBannerProps) {
   return (
-    <section className={`w-full bg-[#050608] text-white py-20 px-6 md:px-12 lg:px-24 font-sans border-t border-white/[0.06] ${className}`}>
+    <section className={`w-full bg-transparent text-white py-20 px-6 md:px-12 lg:px-24 font-sans ${className}`}>
       <div className="max-w-5xl mx-auto">
         <div className="relative rounded-3xl bg-gradient-to-b from-[#0D0F17] to-[#06070A] border border-white/[0.12] p-12 md:p-16 text-center overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.6),0_0_60px_rgba(45,212,191,0.1)] flex flex-col items-center">
           {/* Ambient Spotlight */}
@@ -103,3 +103,4 @@ export default function BottomCtaBanner({
     </section>
   );
 }
+

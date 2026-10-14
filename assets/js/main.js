@@ -425,10 +425,13 @@ const home=()=>{
   ].map(item=>'<details class="edn-im-faq-item"><summary><span>'+esc(item[0])+'</span><svg class="edn-faq-plus" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10"></path></svg></summary><div class="edn-faq-body"><p>'+esc(item[1])+'</p></div></details>').join('');
 
   return '<div class="edn-home-page edn-marketplace-home">'+
-    // ZiroBuild Dark Video Hero Section
+    '<!-- Full Homepage Ambient Background Video -->'+
+    '<div class="edn-home-video-bg-wrap" aria-hidden="true">'+
+      '<video autoplay loop muted playsinline class="edn-home-video-bg" src="https://cdn.jiro.build/BG%20effect%20for%20Tanvir/bg-video.mp4"></video>'+
+      '<div class="edn-home-video-overlay"></div>'+
+    '</div>'+
+    // ZiroBuild Dark Hero Section
     '<section class="edn-ziro-hero">'+
-      '<video autoplay loop muted playsinline class="edn-ziro-video" src="https://cdn.jiro.build/BG%20effect%20for%20Tanvir/bg-video.mp4"></video>'+
-      '<div class="edn-ziro-overlay"></div>'+
       '<div class="wrap edn-ziro-wrapper">'+
         '<div class="edn-ziro-content">'+
           '<div class="edn-ziro-pill">'+

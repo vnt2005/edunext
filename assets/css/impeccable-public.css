@@ -3873,31 +3873,46 @@ body.edn-home-active .edunext-header-auth .btn-g:hover {
   background: rgba(255, 255, 255, 0.2) !important;
 }
 
+/* Full Homepage Ambient Background Video */
+.edn-home-video-bg-wrap {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 0 !important;
+  overflow: hidden !important;
+  pointer-events: none !important;
+}
+
+.edn-home-video-bg {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center 30% !important;
+  opacity: 0.88 !important;
+}
+
+.edn-home-video-overlay {
+  position: absolute !important;
+  inset: 0 !important;
+  background: radial-gradient(circle at 50% 25%, rgba(0, 0, 0, 0.3) 0%, rgba(7, 8, 11, 0.75) 60%, rgba(5, 6, 8, 0.92) 100%) !important;
+  pointer-events: none !important;
+}
+
 .edn-ziro-hero {
   position: relative !important;
   min-height: 100vh !important;
   width: 100% !important;
   display: flex !important;
   flex-direction: column !important;
-  overflow: hidden !important;
-  background-color: #000000 !important;
+  background-color: transparent !important;
   color: #FFFFFF !important;
-}
-.edn-ziro-video {
-  position: absolute !important;
-  inset: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: cover !important;
-  z-index: 0 !important;
-  opacity: 0.82 !important;
-}
-.edn-ziro-overlay {
-  position: absolute !important;
-  inset: 0 !important;
-  background: radial-gradient(circle at center, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.85) 100%) !important;
   z-index: 1 !important;
-  pointer-events: none !important;
 }
 .edn-ziro-wrapper {
   position: relative !important;
@@ -4185,13 +4200,15 @@ body.edn-home-active .edunext-header-auth .btn-g:hover {
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-luma-stats,
 .edn-luma-stats {
   width: 100% !important;
-  background-color: #000000 !important;
+  background-color: transparent !important;
   color: #FFFFFF !important;
   padding: 48px 0 64px !important;
   font-family: inherit !important;
   overflow: hidden !important;
   position: relative !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+  z-index: 1 !important;
+  border-top: none !important;
+  border-bottom: none !important;
 }
 
 .edn-luma-wrap {
@@ -4539,8 +4556,11 @@ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-header-link,
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-categories-section,
 .edn-categories-section {
   padding: 80px 0 !important;
-  background-color: #07080B !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
+  background-color: transparent !important;
+  border-top: none !important;
+  border-bottom: none !important;
+  position: relative !important;
+  z-index: 1 !important;
 }
 
 .edn-top-categories-grid {
@@ -4663,8 +4683,11 @@ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-categories-sec
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-courses-section,
 .edn-courses-section {
   padding: 80px 0 !important;
-  background-color: #0B0C10 !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
+  background-color: transparent !important;
+  border-top: none !important;
+  border-bottom: none !important;
+  position: relative !important;
+  z-index: 1 !important;
 }
 
 /* Jiro Build Capsule Tab Filter Bar */
@@ -5048,8 +5071,11 @@ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-card,
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-workflow-section,
 .edn-workflow-section {
   padding: 96px 0 !important;
-  background-color: #07080B !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
+  background-color: transparent !important;
+  border-top: none !important;
+  border-bottom: none !important;
+  position: relative !important;
+  z-index: 1 !important;
 }
 
 .edn-workflow-layout {
@@ -5245,8 +5271,11 @@ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-workflow-secti
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-mentors-section,
 .edn-mentors-section {
   padding: 80px 0 !important;
-  background-color: #0B0C10 !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
+  background-color: transparent !important;
+  border-top: none !important;
+  border-bottom: none !important;
+  position: relative !important;
+  z-index: 1 !important;
 }
 
 .edn-mentors-grid {
@@ -5369,8 +5398,11 @@ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-mentors-sectio
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-testimonials-section,
 .edn-testimonials-section {
   padding: 88px 0 !important;
-  background-color: #07080B !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
+  background-color: transparent !important;
+  border-top: none !important;
+  border-bottom: none !important;
+  position: relative !important;
+  z-index: 1 !important;
 }
 
 .edn-testimonials-grid {
@@ -5472,8 +5504,11 @@ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-testimonials-s
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-journal-section,
 .edn-journal-section {
   padding: 80px 0 !important;
-  background-color: #0B0C10 !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
+  background-color: transparent !important;
+  border-top: none !important;
+  border-bottom: none !important;
+  position: relative !important;
+  z-index: 1 !important;
 }
 
 .edn-journal-cards-grid {
@@ -5620,8 +5655,11 @@ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-journal-sectio
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-faq-section,
 .edn-faq-section {
   padding: 96px 0 !important;
-  background-color: #07080B !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
+  background-color: transparent !important;
+  border-top: none !important;
+  border-bottom: none !important;
+  position: relative !important;
+  z-index: 1 !important;
 }
 
 .edn-faq-layout {
@@ -5684,11 +5722,14 @@ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-faq-section,
   gap: 14px !important;
 }
 
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-faq-accordion details.edn-im-faq-item,
 .edn-im-faq-item {
   background: #0D0F17 !important;
   border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
   border-radius: 16px !important;
   overflow: hidden !important;
+  padding: 0 !important;
   transition: all 0.3s ease !important;
 }
 
@@ -5755,8 +5796,11 @@ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-faq-section,
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-final-cta,
 .edn-final-cta {
   padding: 80px 0 100px !important;
-  background-color: #050608 !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
+  background-color: transparent !important;
+  border-top: none !important;
+  border-bottom: none !important;
+  position: relative !important;
+  z-index: 1 !important;
 }
 
 .edn-cta-box {
@@ -5831,4 +5875,47 @@ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-final-cta,
 .edn-cta-trust-sep {
   opacity: 0.3 !important;
 }
+
+/* ========================================================
+ * MASTER OVERRIDE: REMOVE ALL HORIZONTAL DIVIDERS IN HOMEPAGE
+ * Full continuous ambient video canvas without any line cuts
+ * ======================================================== */
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-marketplace-home,
+.edn-marketplace-home {
+  position: relative !important;
+  background-color: #07080B !important;
+  color: #FFFFFF !important;
+  overflow-x: clip !important;
+  min-height: 100vh !important;
+}
+
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-marketplace-home section,
+.edn-marketplace-home section,
+.edn-marketplace-home .edn-ziro-hero,
+.edn-marketplace-home .edn-luma-stats,
+.edn-marketplace-home .edn-categories-section,
+.edn-marketplace-home .edn-courses-section,
+.edn-marketplace-home .edn-workflow-section,
+.edn-marketplace-home .edn-mentors-section,
+.edn-marketplace-home .edn-testimonials-section,
+.edn-marketplace-home .edn-journal-section,
+.edn-marketplace-home .edn-faq-section,
+.edn-marketplace-home .edn-final-cta,
+.edn-marketplace-home hr,
+.edn-marketplace-home .edn-divider,
+.edn-marketplace-home div[class*="divider"],
+.edn-marketplace-home div[class*="border-t"],
+.edn-marketplace-home div[class*="border-b"] {
+  border-top: none !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+/* Also eliminate border on course filter tabs bar so it floats seamlessly */
+.edn-marketplace-home .edn-home-tabs-bar {
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
 
