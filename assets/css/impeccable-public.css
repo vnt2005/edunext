@@ -326,14 +326,14 @@ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-profile-page .
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-profile-page .edn-profile-main{border-color:var(--im-line);box-shadow:none}
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-profile-page .edn-profile-logout{color:#A32E28}
 
-/* Footer: quiet, useful, and consistent with the storefront. */
-body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-public-footer{border-top:0;background:#103F39!important;color:#E7F3E8!important}
-body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-public-footer a{text-decoration:none}
-body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-public-footer a:hover{color:#9DE8D4!important}
-body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-public-footer h3{color:#fff!important}
+/* Footer: Modern Jiro Build dark aesthetic */
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-public-footer{border-top:1px solid rgba(255,255,255,0.08)!important;background:#030406!important;color:#FFFFFF!important}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-public-footer a{text-decoration:none;color:#94A3B8!important}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-public-footer a:hover{color:#2DD4BF!important}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-public-footer h3{color:#FFFFFF!important}
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-public-footer p,
-body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-public-footer small{color:#D6E9DE!important}
-body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-public-footer-bottom{border-color:#426D60!important}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-public-footer small{color:#94A3B8!important}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-public-footer-bottom{border-color:rgba(255,255,255,0.08)!important}
 
 /* Responsive composition: retain hierarchy and real control sizes. */
 @media(max-width:1120px){
@@ -5917,5 +5917,199 @@ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-marketplace-ho
 .edn-marketplace-home .edn-home-tabs-bar {
   border: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
+
+/* ========================================================
+ * MODERN JIRO BUILD DARK FOOTER (Full Dark Mode & High Contrast)
+ * ======================================================== */
+body.edunext-app .site-footer.edn-public-footer,
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .site-footer.edn-public-footer,
+.site-footer.edn-public-footer {
+  position: relative !important;
+  z-index: 10 !important;
+  background: #030406 !important;
+  background-color: #030406 !important;
+  color: #FFFFFF !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+  margin: 0 !important;
+  padding: 80px 0 40px !important;
+  box-shadow: 0 -25px 60px rgba(0, 0, 0, 0.95) !important;
+}
+
+body.edunext-app .site-footer.edn-public-footer .wrap,
+.site-footer.edn-public-footer .wrap {
+  max-width: 1280px !important;
+  margin: 0 auto !important;
+  padding: 0 24px !important;
+}
+
+body.edunext-app .edn-public-footer-main,
+.edn-public-footer-main {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1.6fr) repeat(3, minmax(0, 1fr)) !important;
+  gap: 48px !important;
+  padding: 0 !important;
+  margin-bottom: 56px !important;
+}
+
+@media (max-width: 900px) {
+  body.edunext-app .edn-public-footer-main,
+  .edn-public-footer-main {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 36px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  body.edunext-app .edn-public-footer-main,
+  .edn-public-footer-main {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+}
+
+/* Brand block */
+.edn-public-footer-brand .footer-reference-brand {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  text-decoration: none !important;
+  margin-bottom: 16px !important;
+}
+
+.edn-public-footer-brand .lms-brand-mark {
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 12px !important;
+  background: #0F766E !important;
+  color: #FFFFFF !important;
+  font-weight: 800 !important;
+  font-size: 18px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 4px 14px rgba(15, 118, 110, 0.4) !important;
+  flex-shrink: 0 !important;
+}
+
+.edn-public-footer-brand .footer-reference-brand strong {
+  display: block !important;
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  color: #FFFFFF !important;
+  font-family: "Space Grotesk", sans-serif !important;
+  letter-spacing: -0.02em !important;
+  line-height: 1.2 !important;
+}
+
+.edn-public-footer-brand .footer-reference-brand small {
+  display: block !important;
+  font-size: 12px !important;
+  color: #2DD4BF !important;
+  font-weight: 500 !important;
+  margin-top: 2px !important;
+}
+
+.edn-public-footer-brand p {
+  font-size: 14px !important;
+  line-height: 1.7 !important;
+  color: #94A3B8 !important;
+  max-width: 320px !important;
+  margin: 0 0 20px !important;
+  font-weight: 400 !important;
+}
+
+/* Socials & Contact */
+.edn-public-footer-contact span {
+  display: block !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  color: #CBD5E1 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.06em !important;
+  margin-bottom: 12px !important;
+}
+
+.edn-public-socials {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+}
+
+.edn-public-socials a {
+  width: 38px !important;
+  height: 38px !important;
+  border-radius: 50% !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  color: #2DD4BF !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-decoration: none !important;
+  font-weight: 700 !important;
+  font-size: 14px !important;
+  transition: all 0.25s ease !important;
+}
+
+.edn-public-socials a:hover {
+  background: #0F766E !important;
+  color: #FFFFFF !important;
+  border-color: #2DD4BF !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Nav Columns */
+.edn-public-footer-column {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 0 !important;
+}
+
+.edn-public-footer-column h3 {
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  color: #FFFFFF !important;
+  font-family: "Space Grotesk", sans-serif !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+  margin: 0 0 18px !important;
+}
+
+.edn-public-footer-column a {
+  font-size: 14px !important;
+  color: #94A3B8 !important;
+  text-decoration: none !important;
+  display: inline-block !important;
+  margin-bottom: 12px !important;
+  font-weight: 400 !important;
+  transition: all 0.25s ease !important;
+}
+
+.edn-public-footer-column a:hover {
+  color: #2DD4BF !important;
+  transform: translateX(4px) !important;
+}
+
+/* Bottom Bar */
+body.edunext-app .edn-public-footer-bottom,
+.edn-public-footer-bottom {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 20px !important;
+  flex-wrap: wrap !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+  padding-top: 28px !important;
+  padding-bottom: 10px !important;
+  font-size: 13px !important;
+  color: #64748B !important;
+}
+
+.edn-public-footer-bottom span {
+  font-size: 13px !important;
+  color: #94A3B8 !important;
+}
+
 
 
