@@ -4,9 +4,9 @@
  * Intentionally excludes WordPress wp-admin and console/builder modes.
  */
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode){
-  --market-ink:#123C38;--market-muted:#52645E;--market-line:#DDE7E5;
-  --market-paper:#F5FAF7;--market-mint:#CCFBF1;--market-teal:#0F766E;
-  --market-deep:#134E4A;--market-orange:#C2410C;
+  --market-ink:#0F172A;--market-muted:#64748B;--market-line:#E2E8F0;
+  --market-paper:#FFFFFF;--market-mint:#CCFBF1;--market-teal:#0F766E;
+  --market-deep:#0F766E;--market-orange:#EA580C;
   color:var(--market-ink);background:var(--market-paper)!important;
 }
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) #app{min-height:58vh}

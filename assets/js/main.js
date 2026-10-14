@@ -28,7 +28,7 @@ const DOMAIN_IMAGES = Object.assign({
   'field-phat-trien-web': 'https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&q=80&w=800',
   'field-phat-trien-ung-dung-di-dong': 'https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&q=80&w=800',
   'field-co-so-du-lieu': 'https://images.unsplash.com/photo-1544383835-bda2bc66a55d?auto=format&fit=crop&q=80&w=800',
-  'field-ai-va-machine-learning': 'https://images.unsplash.com/photo-1677442136019-21780efad99a?auto=format&fit=crop&q=80&w=800',
+  'field-ai-va-machine-learning': 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=80&w=800',
   'field-khoa-hoc-du-lieu-va-phan-tich-du-lieu': 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800',
   'field-an-ninh-mang': 'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&q=80&w=800',
   'field-mang-may-tinh-va-he-thong': 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&q=80&w=800',
@@ -237,146 +237,313 @@ const lessonMaterialMarkup=value=>{
   }).join('')+'</div>';
 };
 const coursePriceMarkup=c=>'<div class="edn-course-pricing"'+(c.demoPrice?' title="Giá demo tham khảo"':'')+'><strong class="edn-course-price-current">'+esc(money(c.p))+'</strong>'+(typeof c.o==='number'&&c.o>c.p?'<del class="edn-course-price-original">'+esc(money(c.o))+'</del>':'')+'</div>';
-const cartIconMarkup='<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="9" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle><path d="M1 1h4l2.7 13.1a2 2 0 0 0 2 1.6h9.8a2 2 0 0 0 2-1.6L23 6H6"></path></svg>';
+const cartIconMarkup='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>';
+const starIconMarkup='<svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>';
+
+const INSTRUCTORS=[
+  {name:'Nguyễn Văn Minh',role:'Senior .NET Architect',org:'VNG',avatar:'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200'},
+  {name:'Trần Thu Trang',role:'Head of Product Design',org:'Tiki',avatar:'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=200'},
+  {name:'Lê Hoàng Nam',role:'Lead Data Scientist',org:'FPT Software',avatar:'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200'},
+  {name:'Đặng Mai Phương',role:'Growth Marketing Lead',org:'Shopee',avatar:'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200'},
+  {name:'Phạm Đức Duy',role:'Mobile Tech Lead',org:'MoMo',avatar:'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=200'},
+  {name:'Vũ Hoàng Quân',role:'Cloud Solutions Architect',org:'Viettel',avatar:'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=200'}
+];
+
+const getCourseInstructor=(c)=>{
+  if(!c)return INSTRUCTORS[0];
+  const hash=Math.abs(String(c.id||'').split('').reduce((acc,ch)=>acc+ch.charCodeAt(0),0));
+  return INSTRUCTORS[hash%INSTRUCTORS.length];
+};
+
+const getCourseStats=(c)=>{
+  const hash=Math.abs(String(c.id||'').split('').reduce((acc,ch)=>acc+ch.charCodeAt(0),0));
+  const rating=(4.8+((hash%3)*0.1)).toFixed(1);
+  const reviews=350+(hash%15)*85;
+  const students=1200+(hash%20)*350;
+  return {rating,reviews,students};
+};
+
 const card=c=>{
   const own=!!EN()[c.id];
   const issued=Array.isArray(CFG.certificates)&&CFG.certificates.some(item=>item.courseId===c.id);
   const ownedAction=own
     ? (issued
-      ? '<a class="edn-card-add-cart" href="#/cert/'+esc(c.id)+'"><span>Chứng chỉ</span></a>'
+      ? '<a class="edn-card-btn-action is-owned" href="#/cert/'+esc(c.id)+'"><span>Chứng chỉ</span></a>'
       : (passed(c)
-        ? '<a class="edn-card-add-cart" href="#/cert/'+esc(c.id)+'"><span>Nhận chứng chỉ</span></a>'
-        : '<a class="edn-card-add-cart" href="#/learn/'+esc(c.id)+'/'+nextL(c)+'"><span>Vào học</span></a>'))
+        ? '<a class="edn-card-btn-action is-owned" href="#/cert/'+esc(c.id)+'"><span>Nhận chứng chỉ</span></a>'
+        : '<a class="edn-card-btn-action is-owned" href="#/learn/'+esc(c.id)+'/'+nextL(c)+'"><span>Vào học</span></a>'))
     : '';
   const inCart=cartIds.includes(c.id);
   const cartAction=!own
-    ? '<button class="edn-card-add-cart edn-add-to-cart" type="button" data-a="cart-add" data-v="'+esc(c.id)+'" aria-label="'+(inCart?'Trong giỏ hàng':'Chọn học')+'" title="'+(inCart?'Trong giỏ hàng':'Chọn học')+'"'+(inCart?' aria-pressed="true"':'')+'>'+cartIconMarkup+'<span>'+(inCart?'Trong giỏ':'Chọn học')+'</span></button>'
+    ? '<button class="edn-card-btn-action edn-add-to-cart'+(inCart?' is-in-cart':'')+'" type="button" data-a="cart-add" data-v="'+esc(c.id)+'" aria-label="'+(inCart?'Trong giỏ hàng':'Thêm vào giỏ')+'" title="'+(inCart?'Trong giỏ hàng':'Thêm vào giỏ')+'"'+(inCart?' aria-pressed="true"':'')+'>'+cartIconMarkup+'<span>'+(inCart?'Trong giỏ':'Chọn học')+'</span></button>'
     : '';
+
+  const instructor=getCourseInstructor(c);
+  const stats=getCourseStats(c);
+  const discountPct=typeof c.o==='number'&&c.o>c.p?Math.round((1-c.p/c.o)*100):null;
+
   return '<article class="edn-course-card edn-catalog-course">'+
     '<a href="#/course/'+esc(c.id)+'" class="edn-course-card-link" aria-label="Mở khóa học '+esc(c.t)+'">'+
-      '<div class="edn-course-card-media">'+courseImageMarkup(c)+'<span class="edn-card-badge '+(c.ready?'is-verified':'is-draft')+'">'+(c.ready?'Đã mở bán':'Đề cương')+'</span></div>'+
-      '<div class="edn-course-card-content"><span class="edn-card-category">'+esc(c.cat)+'</span><h3 class="edn-card-title">'+esc(c.t)+'</h3>'+
-      '<div class="edn-card-meta"><span class="edn-card-lessons"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 3h12v10H2zM5 6h6M5 9h4"></path></svg> '+c.L.length+' bài học</span><span class="edn-card-rating">★ 4.9</span></div>'+
-      '</div></a>'+
-    '<div class="edn-course-card-footer"><div class="edn-card-pricing"><strong class="edn-price-current">'+esc(money(c.p))+'</strong>'+(typeof c.o==='number'&&c.o>c.p?'<del class="edn-price-orig">'+esc(money(c.o))+'</del>':'')+'</div>'+(ownedAction||cartAction)+'</div>'+
+      '<div class="edn-course-card-media">'+
+        courseImageMarkup(c)+
+        '<div class="edn-card-badge-group">'+
+          '<span class="edn-card-badge '+(c.ready?'is-verified':'is-draft')+'">'+(c.ready?'Bán chạy':'Đề cương')+'</span>'+
+          (discountPct?'<span class="edn-card-discount-badge">-'+discountPct+'%</span>':'')+
+        '</div>'+
+      '</div>'+
+      '<div class="edn-course-card-content">'+
+        '<div class="edn-card-meta-top"><span class="edn-card-category">'+esc(c.cat)+'</span><span class="edn-card-level">'+esc(c.lvl||'Mọi cấp độ')+'</span></div>'+
+        '<h3 class="edn-card-title">'+esc(c.t)+'</h3>'+
+        '<div class="edn-card-instructor">'+
+          '<img class="edn-instructor-thumb" src="'+esc(instructor.avatar)+'" alt="'+esc(instructor.name)+'" loading="lazy">'+
+          '<span class="edn-instructor-name">'+esc(instructor.name)+' <small>· '+esc(instructor.org)+'</small></span>'+
+        '</div>'+
+        '<div class="edn-card-meta">'+
+          '<span class="edn-card-rating">'+starIconMarkup+' <b>'+stats.rating+'</b> <small>('+stats.reviews.toLocaleString('vi-VN')+')</small></span>'+
+          '<span class="edn-card-lessons"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 3h12v10H2zM5 6h6M5 9h4"></path></svg> '+c.L.length+' bài'+(c.h?' · '+c.h+'h':'')+'</span>'+
+        '</div>'+
+      '</div>'+
+    '</a>'+
+    '<div class="edn-course-card-footer">'+
+      '<div class="edn-card-pricing"><strong class="edn-price-current">'+esc(money(c.p))+'</strong>'+(typeof c.o==='number'&&c.o>c.p?'<del class="edn-price-orig">'+esc(money(c.o))+'</del>':'')+'</div>'+
+      (ownedAction||cartAction)+
+    '</div>'+
   '</article>';
 };
+
+let homeFilterTab='all';
 const nf=()=>'<div class="wrap page"><div class="empty" role="status"><h2>Không tìm thấy nội dung này</h2><p>Liên kết có thể đã thay đổi hoặc nội dung chưa được xuất bản.</p><a href="#/">Về trang chủ</a></div></div>';
 const slugify=value=>String(value||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/g,'d').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+
 const home=()=>{
-  const featured=[...C].sort((a,b)=>Number(b.ready)-Number(a.ready));
-  const homePageSize=6;
-  const visibleFeatured=featured.slice(0,homePageSize);
-  const groups=domainGroups();
   const arrowIcon='<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M8 3l5 5-5 5"></path></svg>';
-  
-  const visualCourses=[
-    C.find(c=>c.id==='csharp'),
-    C.find(c=>c.id==='api'),
-    C.find(c=>c.id==='design')
-  ].filter(Boolean);
-  C.forEach(course=>{if(visualCourses.length<3&&!visualCourses.some(item=>item.id===course.id))visualCourses.push(course);});
-  const floatingCards=visualCourses.slice(0,2).map((vc,idx)=>
-    '<div class="edn-hero-float-card edn-hero-float-'+(idx+1)+'">'+
-      '<div class="edn-float-thumb"><img src="'+esc(getCourseImage(vc))+'" alt="" loading="eager"></div>'+
-      '<div class="edn-float-info"><span class="edn-float-tag">'+esc(vc.cat)+'</span><strong>'+esc(vc.t)+'</strong><span class="edn-float-price">'+esc(money(vc.p))+'</span></div>'+
-    '</div>'
-  ).join('');
+  const checkIcon='<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg>';
 
-  const topicLinks=groups.slice(0,5).map(group=>
-    '<a href="#/group/'+esc(group.slug)+'">'+esc(group.name)+' '+arrowIcon+'</a>'
-  ).join('');
-
-  const domainShowcase=[
-    {slug:'cong-nghe-thong-tin',name:'Công nghệ thông tin',img:DOMAIN_IMAGES['field-lap-trinh-va-phat-trien-phan-mem'],count:'14 chuyên ngành · 28 khóa'},
-    {slug:'thiet-ke-sang-tao',name:'Thiết kế & Sáng tạo',img:DOMAIN_IMAGES['field-ui-ux-va-thiet-ke-san-pham-so'],count:'7 chuyên ngành · 14 khóa'},
-    {slug:'marketing-truyen-thong-noi-dung',name:'Marketing & Truyền thông',img:DOMAIN_IMAGES['field-digital-marketing'],count:'3 chuyên ngành · 6 khóa'},
-    {slug:'kinh-doanh-quan-tri',name:'Kinh doanh & Quản trị',img:DOMAIN_IMAGES['field-kinh-doanh-va-ban-hang'],count:'6 chuyên ngành · 12 khóa'},
-    {slug:'tai-chinh-nhan-su-van-hanh',name:'Tài chính & Phân tích',img:DOMAIN_IMAGES['field-tai-chinh-va-dau-tu'],count:'5 chuyên ngành · 10 khóa'},
-    {slug:'ngoai-ngu-giao-duc',name:'Ngôn ngữ & Đào tạo',img:DOMAIN_IMAGES['field-tieng-anh'],count:'3 chuyên ngành · 6 khóa'}
+  // Course filtering by Tab
+  const filterTabs=[
+    {id:'all',label:'Tất cả khóa học'},
+    {id:'cntt',label:'Lập trình & CNTT',match:c=>['field-lap-trinh-va-phat-trien-phan-mem','field-phat-trien-web','field-phat-trien-ung-dung-di-dong','field-cloud-computing-va-devops'].includes(c.domainId)},
+    {id:'design',label:'Thiết kế & Sáng tạo',match:c=>['field-ui-ux-design','field-ui-ux-va-thiet-ke-san-pham-so','field-thiet-ke-do-hoa','field-3d-animation-va-ky-xao'].includes(c.domainId)},
+    {id:'marketing',label:'Marketing & Sales',match:c=>['field-digital-marketing','field-content-marketing-va-copywriting','field-kinh-doanh-va-ban-hang'].includes(c.domainId)},
+    {id:'data',label:'Dữ liệu & AI',match:c=>['field-co-so-du-lieu','field-ai-va-machine-learning','field-khoa-hoc-du-lieu-va-phan-tich-du-lieu'].includes(c.domainId)},
+    {id:'business',label:'Kinh doanh & Quản trị',match:c=>['field-quan-tri-doanh-nghiep','field-quan-ly-du-an','field-tai-chinh-va-dau-tu','field-thuong-mai-dien-tu'].includes(c.domainId)}
   ];
-  const domainCards=domainShowcase.map(ds=>
-    '<a class="edn-visual-domain-card" href="#/group/'+esc(ds.slug)+'">'+
-      '<div class="edn-domain-card-bg"><img src="'+esc(ds.img)+'" alt="" loading="lazy"><div class="edn-domain-overlay"></div></div>'+
-      '<div class="edn-domain-card-content"><h3>'+esc(ds.name)+'</h3><span>'+esc(ds.count)+'</span><span class="edn-domain-explore-btn">Khám phá '+arrowIcon+'</span></div>'+
+
+  const currentTabObj=filterTabs.find(t=>t.id===homeFilterTab)||filterTabs[0];
+  let filteredCourses=currentTabObj.match?C.filter(currentTabObj.match):[...C];
+  if(!filteredCourses.length)filteredCourses=[...C];
+  filteredCourses.sort((a,b)=>Number(b.ready)-Number(a.ready));
+  const visibleCourses=filteredCourses.slice(0,8);
+
+  const tabsMarkup=filterTabs.map(t=>
+    '<button type="button" class="edn-home-tab-pill'+(t.id===homeFilterTab?' is-active':'')+'" data-a="home-filter" data-v="'+esc(t.id)+'">'+esc(t.label)+'</button>'
+  ).join('');
+
+  // Top 8 Categories
+  const categoryHighlights=[
+    {slug:'cong-nghe-thong-tin',name:'Công nghệ thông tin',count:'14 chuyên ngành',icon:'💻',img:DOMAIN_IMAGES['field-lap-trinh-va-phat-trien-phan-mem']},
+    {slug:'thiet-ke-sang-tao',name:'Thiết kế & UI/UX',count:'7 chuyên ngành',icon:'🎨',img:DOMAIN_IMAGES['field-ui-ux-va-thiet-ke-san-pham-so']},
+    {slug:'marketing-truyen-thong-noi-dung',name:'Marketing & Content',count:'3 chuyên ngành',icon:'🚀',img:DOMAIN_IMAGES['field-digital-marketing']},
+    {slug:'kinh-doanh-quan-tri',name:'Kinh doanh & Quản trị',count:'6 chuyên ngành',icon:'💼',img:DOMAIN_IMAGES['field-kinh-doanh-va-ban-hang']},
+    {slug:'tai-chinh-nhan-su-van-hanh',name:'Tài chính & Dữ liệu',count:'5 chuyên ngành',icon:'📊',img:DOMAIN_IMAGES['field-tai-chinh-va-dau-tu']},
+    {slug:'ngoai-ngu-giao-duc',name:'Ngoại ngữ & Đào tạo',count:'3 chuyên ngành',icon:'🌐',img:DOMAIN_IMAGES['field-tieng-anh']},
+    {slug:'ky-nang-van-phong',name:'Kỹ năng & Năng suất',count:'3 chuyên ngành',icon:'⚡',img:DOMAIN_IMAGES['field-tin-hoc-van-phong']},
+    {slug:'khoa-hoc-ky-thuat',name:'AI & Khoa học máy tính',count:'4 chuyên ngành',icon:'🧠',img:DOMAIN_IMAGES['field-ai-va-machine-learning']}
+  ];
+
+  const categoriesMarkup=categoryHighlights.map(cat=>
+    '<a class="edn-top-category-card" href="#/group/'+esc(cat.slug)+'">'+
+      '<div class="edn-top-cat-thumb"><img src="'+esc(cat.img)+'" alt="" loading="lazy"></div>'+
+      '<div class="edn-top-cat-info">'+
+        '<div class="edn-top-cat-icon">'+cat.icon+'</div>'+
+        '<h3>'+esc(cat.name)+'</h3>'+
+        '<span>'+esc(cat.count)+'</span>'+
+      '</div>'+
     '</a>'
   ).join('');
 
-  const steps=[
-    {num:'01',title:'Chọn đề cương phù hợp',desc:'Xem trước cấu trúc bài học, mục tiêu đầu ra và video giới thiệu trước khi đăng ký.'},
-    {num:'02',title:'Học theo nhịp độ riêng',desc:'Mỗi bài học được thiết kế cô đọng, có video minh họa và tài liệu tóm tắt trọng tâm.'},
-    {num:'03',title:'Xác nhận tiến độ & Chứng chỉ',desc:'Theo dõi tỷ lệ hoàn thành trên trang học tập và nhận chứng chỉ hoàn thành khóa học.'}
-  ].map(s=>
-    '<article class="edn-step-card"><span class="edn-step-num">'+s.num+'</span><div class="edn-step-body"><h3>'+esc(s.title)+'</h3><p>'+esc(s.desc)+'</p></div></article>'
+  // Top Instructors
+  const instructorsMarkup=INSTRUCTORS.slice(0,4).map(inst=>
+    '<article class="edn-mentor-card">'+
+      '<div class="edn-mentor-avatar"><img src="'+esc(inst.avatar)+'" alt="'+esc(inst.name)+'" loading="lazy"><span class="edn-mentor-badge">✓ Verified</span></div>'+
+      '<div class="edn-mentor-info">'+
+        '<h3>'+esc(inst.name)+'</h3>'+
+        '<p class="edn-mentor-role">'+esc(inst.role)+'</p>'+
+        '<div class="edn-mentor-org"><span class="edn-org-pill">'+esc(inst.org)+'</span></div>'+
+        '<div class="edn-mentor-metrics"><span>★ 4.95 Rating</span><span>3,500+ Học viên</span></div>'+
+      '</div>'+
+    '</article>'
   ).join('');
 
-  const articles=BLOG_ARTICLES.slice(0,3).map(art=>
-    '<article class="edn-journal-card">'+
-      '<a class="edn-journal-thumb" href="#/blog/'+slugify(art.title)+'"><img src="'+esc(art.image||'')+'" alt="" loading="lazy"><span class="edn-journal-tag">'+esc(art.tag)+'</span></a>'+
-      '<div class="edn-journal-body"><span class="edn-journal-time">'+esc(art.time)+'</span><h3><a href="#/blog/'+slugify(art.title)+'">'+esc(art.title)+'</a></h3><p>'+esc(art.excerpt)+'</p></div>'+
+  // Testimonials
+  const testimonials=[
+    {quote:'Khóa C# và ASP.NET Core giúp tôi hệ thống lại kiến thức bài bản, làm được dự án API hoàn chỉnh và vượt qua phỏng vấn Backend Developer chỉ sau 3 tháng.',author:'Lê Tuấn Kiệt',title:'Backend Engineer tại VNG',avatar:'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&q=80&w=150'},
+    {quote:'Lộ trình UI/UX trên EduNext rất thực tế, tập trung vào design system, quy chuẩn auto-layout và tư duy sản phẩm số thay vì chỉ dạy công cụ Figma cơ bản.',author:'Nguyễn Thảo My',title:'Product Designer tại Tiki',avatar:'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=150'},
+    {quote:'Khóa học SQL và Phân tích dữ liệu đi thẳng vào bài toán kinh doanh thật. Giờ đây mình có thể tự tin viết query phức tạp và xây dựng dashboard báo cáo cho sếp.',author:'Đỗ Minh Hoàng',title:'Data Analyst tại Shopee',avatar:'https://images.unsplash.com/photo-1527980965255-d3b416303d12?auto=format&fit=crop&q=80&w=150'}
+  ];
+
+  const testimonialsMarkup=testimonials.map(t=>
+    '<div class="edn-testimonial-card">'+
+      '<div class="edn-testimonial-stars">'+starIconMarkup+starIconMarkup+starIconMarkup+starIconMarkup+starIconMarkup+'</div>'+
+      '<p class="edn-testimonial-quote">“'+esc(t.quote)+'”</p>'+
+      '<div class="edn-testimonial-author">'+
+        '<img src="'+esc(t.avatar)+'" alt="'+esc(t.author)+'" loading="lazy">'+
+        '<div><strong>'+esc(t.author)+'</strong><small>'+esc(t.title)+'</small></div>'+
+      '</div>'+
+    '</div>'
+  ).join('');
+
+  // Quick topics
+  const quickTopics=['Python','React & Next.js','UI/UX Design','Digital Marketing','Data & SQL','Flutter Mobile'];
+  const quickTopicPills=quickTopics.map(topic=>
+    '<button type="button" class="edn-quick-topic-btn" data-a="topic" data-v="'+esc(topic)+'">'+esc(topic)+'</button>'
+  ).join('');
+
+  // Blog Highlights
+  const articles=BLOG_ARTICLES.slice(0,3).map((art,idx)=>
+    '<article class="edn-journal-card'+(idx===0?' is-lead':'')+'">'+
+      '<a class="edn-journal-thumb" href="#/blog/'+slugify(art.title)+'">'+
+        '<img src="'+esc(art.image||'')+'" alt="" loading="lazy">'+
+        '<span class="edn-journal-tag">'+esc(art.tag)+'</span>'+
+      '</a>'+
+      '<div class="edn-journal-body">'+
+        '<span class="edn-journal-time">'+esc(art.time)+'</span>'+
+        '<h3><a href="#/blog/'+slugify(art.title)+'">'+esc(art.title)+'</a></h3>'+
+        '<p>'+esc(art.excerpt)+'</p>'+
+      '</div>'+
     '</article>'
   ).join('');
 
   const qa=[
     ['EduNext có những lĩnh vực nào?','Danh mục được chia thành 11 nhóm chuyên ngành với 50 lĩnh vực đào tạo thực chiến từ CNTT, Thiết kế, Marketing đến Kinh doanh và Ngoại ngữ.'],
-    ['Làm sao biết một khóa học đã mở bán?','Trạng thái được hiển thị rõ bằng huy hiệu Đã mở bán hoặc Đề cương trên mỗi thẻ khóa học và trang chi tiết.'],
-    ['Tôi có thể xem nội dung trước khi đăng ký không?','Có! Bạn có thể xem đề cương chi tiết từng bài học, mục tiêu đầu ra và video xem trước.'],
-    ['Tiến độ học tập và chứng chỉ được lưu như thế nào?','Khi tài khoản hoàn thành các bài học, hệ thống tự động ghi nhận tiến độ và cấp chứng chỉ số chính thức.']
+    ['Làm sao biết một khóa học đã mở bán?','Trạng thái được hiển thị rõ bằng huy hiệu Bán chạy hoặc Đề cương trên mỗi thẻ khóa học và trang chi tiết.'],
+    ['Tôi có thể xem nội dung trước khi đăng ký không?','Có! Bạn có thể xem đề cương chi tiết từng bài học, mục tiêu đầu ra và video xem trước miễn phí.'],
+    ['Tiến độ học tập và chứng chỉ được lưu như thế nào?','Khi tài khoản hoàn thành các bài học, hệ thống tự động ghi nhận tiến độ và cấp chứng chỉ số chính thức có mã định danh xác thực.']
   ].map(item=>'<details class="edn-im-faq-item"><summary>'+esc(item[0])+'<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10"></path></svg></summary><p>'+esc(item[1])+'</p></details>').join('');
 
-  return '<div class="edn-home-page edn-im-home">'+
-    '<section class="edn-im-hero"><div class="edn-im-shell"><div class="edn-im-hero-layout">'+
-      '<div class="edn-im-hero-copy">'+
-        '<span class="edn-hero-badge"><span class="edn-badge-dot"></span> Nền tảng học kỹ năng số thực chiến</span>'+
-        '<h1>Học đúng kỹ năng.<br><span>Bứt phá tương lai.</span></h1>'+
-        '<p>Hơn 100 chương trình đào tạo thực tiễn từ chuyên gia công nghệ, dữ liệu, thiết kế và kinh doanh.</p>'+
-        '<div class="edn-im-hero-actions">'+
-          '<a class="edn-im-button-primary" href="#/courses">Khám phá khóa học '+arrowIcon+'</a>'+
-          '<a class="edn-im-button-secondary" href="#/categories">Duyệt 50 lĩnh vực</a>'+
+  return '<div class="edn-home-page edn-marketplace-home">'+
+    // Hero Section
+    '<section class="edn-modern-hero">'+
+      '<div class="wrap edn-modern-hero-inner">'+
+        '<div class="edn-hero-content">'+
+          '<span class="edn-hero-pill-badge"><span class="edn-pill-pulse"></span> Nền tảng học kỹ năng số thực chiến</span>'+
+          '<h1>Khám phá lộ trình chuẩn.<br><span>Nâng tầm sự nghiệp số.</span></h1>'+
+          '<p class="edn-hero-lead">Hơn 100 chương trình thực hành từ chuyên gia công nghệ, dữ liệu, thiết kế và kinh doanh. Học theo dự án thực tế, tích lũy portfolio chuyên nghiệp.</p>'+
+          '<form class="edn-hero-search-form" data-form="search">'+
+            '<div class="edn-hero-search-wrap">'+
+              '<svg class="edn-search-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>'+
+              '<input name="q" placeholder="Bạn muốn học gì hôm nay? (VD: C#, React, UI/UX...)" aria-label="Tìm khóa học">'+
+              '<button type="submit" class="edn-hero-search-btn">Tìm kiếm</button>'+
+            '</div>'+
+          '</form>'+
+          '<div class="edn-hero-quick-topics"><span>Tìm kiếm phổ biến:</span>'+quickTopicPills+'</div>'+
         '</div>'+
-        '<div class="edn-hero-trust-metrics">'+
-          '<div class="edn-trust-stat"><strong>100+</strong><span>Khóa thực chiến</span></div>'+
-          '<div class="edn-trust-divider" aria-hidden="true"></div>'+
-          '<div class="edn-trust-stat"><strong>50</strong><span>Chuyên ngành</span></div>'+
-          '<div class="edn-trust-divider" aria-hidden="true"></div>'+
-          '<div class="edn-trust-stat"><strong>100%</strong><span>Đề cương chuẩn</span></div>'+
+        '<div class="edn-hero-visual-showcase">'+
+          '<div class="edn-hero-visual-card is-main">'+
+            '<img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=900" alt="Sinh viên học tập thực tế" loading="eager">'+
+            '<div class="edn-hero-visual-overlay"></div>'+
+            '<div class="edn-hero-visual-meta">'+
+              '<span class="edn-hero-course-tag">Lộ trình nổi bật</span>'+
+              '<h3>Phát triển Web Fullstack & API</h3>'+
+              '<div class="edn-hero-author-row"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=100" alt=""><span>Nguyễn Văn Minh · Senior Architect</span></div>'+
+            '</div>'+
+          '</div>'+
+          '<div class="edn-hero-float-card edn-float-stat-1">'+
+            '<div class="edn-float-stat-icon">🎓</div>'+
+            '<div class="edn-float-stat-text"><strong>15,000+</strong><small>Học viên đang học</small></div>'+
+          '</div>'+
+          '<div class="edn-hero-float-card edn-float-stat-2">'+
+            '<div class="edn-float-stat-icon">⭐</div>'+
+            '<div class="edn-float-stat-text"><strong>4.9 / 5.0</strong><small>Từ 25,000+ đánh giá</small></div>'+
+          '</div>'+
         '</div>'+
       '</div>'+
-      '<div class="edn-hero-stage" aria-label="Không gian trực quan EduNext">'+
-        '<canvas id="edn-hero-three-canvas" class="edn-hero-three-canvas" aria-hidden="true"></canvas>'+
-        '<div class="edn-hero-floating-cards" aria-hidden="true">'+floatingCards+'</div>'+
+    '</section>'+
+
+    // Trust Metrics Bar
+    '<section class="edn-trust-bar"><div class="wrap edn-trust-bar-inner">'+
+      '<div class="edn-trust-item"><span class="edn-trust-num">100+</span><span class="edn-trust-label">Khóa thực chiến</span></div>'+
+      '<div class="edn-trust-separator" aria-hidden="true"></div>'+
+      '<div class="edn-trust-item"><span class="edn-trust-num">50</span><span class="edn-trust-label">Chuyên ngành đào tạo</span></div>'+
+      '<div class="edn-trust-separator" aria-hidden="true"></div>'+
+      '<div class="edn-trust-item"><span class="edn-trust-num">15,000+</span><span class="edn-trust-label">Học viên theo học</span></div>'+
+      '<div class="edn-trust-separator" aria-hidden="true"></div>'+
+      '<div class="edn-trust-item"><span class="edn-trust-num">98%</span><span class="edn-trust-label">Hài lòng & Có việc</span></div>'+
+    '</div></section>'+
+
+    // Top Categories Grid
+    '<section class="edn-categories-section"><div class="wrap">'+
+      '<div class="edn-section-header"><div><h2>Khám phá theo lĩnh vực hàng đầu</h2><p>Chọn đúng định hướng nghề nghiệp từ 50 chuyên ngành được chuẩn hóa theo thực tế doanh nghiệp.</p></div><a class="edn-header-link" href="#/categories">Xem tất cả 50 lĩnh vực '+arrowIcon+'</a></div>'+
+      '<div class="edn-top-categories-grid">'+categoriesMarkup+'</div>'+
+    '</div></section>'+
+
+    // Featured Courses with 1-Click Filter Tabs
+    '<section class="edn-courses-section"><div class="wrap">'+
+      '<div class="edn-section-header"><div><h2>Khóa học thực chiến nổi bật</h2><p>Giáo trình cô đọng, bài tập thực hành theo dự án thật, hỗ trợ hỏi đáp trực tiếp cùng mentor.</p></div><a class="edn-header-link" href="#/courses">Xem tất cả '+C.length+' khóa học '+arrowIcon+'</a></div>'+
+      '<div class="edn-home-tabs-bar">'+tabsMarkup+'</div>'+
+      '<div class="edn-featured-grid">'+visibleCourses.map(card).join('')+'</div>'+
+      '<div class="edn-section-footer-cta"><a class="btn btn-p" href="#/courses">Xem thêm toàn bộ danh mục khóa học '+arrowIcon+'</a></div>'+
+    '</div></section>'+
+
+    // How It Works / Value Prop
+    '<section class="edn-workflow-section"><div class="wrap edn-workflow-layout">'+
+      '<div class="edn-workflow-copy">'+
+        '<span class="edn-overline">TRẢI NGHIỆM TINH GỌN</span>'+
+        '<h2>Học tập chủ động.<br>Tiến bộ từng ngày.</h2>'+
+        '<p>EduNext loại bỏ rườm rà, tập trung 100% vào việc giúp bạn xây dựng kỹ năng và sản phẩm thật.</p>'+
+        '<div class="edn-workflow-steps">'+
+          '<div class="edn-wf-step"><div class="edn-wf-num">01</div><div><h3>Lộ trình chuẩn hóa</h3><p>Xem trước đề cương chi tiết, mục tiêu đầu ra và video giới thiệu trước khi đăng ký.</p></div></div>'+
+          '<div class="edn-wf-step"><div class="edn-wf-num">02</div><div><h3>Thực hành theo dự án</h3><p>Mỗi bài giảng đều đi kèm code mẫu, tài liệu cheat sheet và bài tập áp dụng thực tế.</p></div></div>'+
+          '<div class="edn-wf-step"><div class="edn-wf-num">03</div><div><h3>Chứng chỉ số định danh</h3><p>Hoàn thành toàn bộ bài học để nhận chứng chỉ chính thức có mã tra cứu trên hệ thống.</p></div></div>'+
+        '</div>'+
       '</div>'+
-    '</div>'+
-    '<div class="edn-im-topic-rail"><strong>Chủ đề thịnh hành:</strong>'+topicLinks+'</div>'+
+      '<div class="edn-workflow-preview">'+
+        '<div class="edn-classroom-preview-card">'+
+          '<div class="edn-prev-video-box">'+
+            '<img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=700" alt="Video bài giảng">'+
+            '<span class="edn-prev-play-btn">▶</span>'+
+          '</div>'+
+          '<div class="edn-prev-details">'+
+            '<div class="edn-prev-header"><span>Bài 03 / 24</span><strong>Xây dựng REST API với ASP.NET Core</strong></div>'+
+            '<div class="edn-prev-checklist">'+
+              '<div>'+checkIcon+' <span>Cấu hình Controller & Dependency Injection</span></div>'+
+              '<div>'+checkIcon+' <span>Kết nối CSDL Entity Framework Core</span></div>'+
+              '<div>'+checkIcon+' <span>Kiểm thử tự động với Swagger & Postman</span></div>'+
+            '</div>'+
+          '</div>'+
+        '</div>'+
+      '</div>'+
     '</div></section>'+
 
-    '<section class="edn-im-courses"><div class="edn-im-shell">'+
-      '<div class="edn-im-section-heading"><div><h2>Khóa học thực chiến nổi bật</h2><p>Đề cương bài bản, nội dung cô đọng và phương pháp học gắn liền với ứng dụng thực tế.</p></div><a class="edn-im-text-link" href="#/courses">Xem tất cả '+C.length+' khóa học '+arrowIcon+'</a></div>'+
-      '<div class="edn-featured-grid">'+visibleFeatured.map(card).join('')+'</div>'+
-      '<div class="edn-section-footer-action"><a class="edn-im-button-secondary" href="#/courses">Khám phá toàn bộ danh mục khóa học '+arrowIcon+'</a></div>'+
+    // Top Mentors / Instructors
+    '<section class="edn-mentors-section"><div class="wrap">'+
+      '<div class="edn-section-header"><div><h2>Đội ngũ chuyên gia giảng dạy hàng đầu</h2><p>Học hỏi trực tiếp từ các Tech Lead, Principal Engineer và Head of Product tại các tập đoàn công nghệ lớn.</p></div></div>'+
+      '<div class="edn-mentors-grid">'+instructorsMarkup+'</div>'+
     '</div></section>'+
 
-    '<section class="edn-im-domains"><div class="edn-im-shell">'+
-      '<div class="edn-im-section-heading"><div><h2>Khám phá theo lĩnh vực</h2><p>50 chuyên ngành được phân loại khoa học giúp bạn nhanh chóng tìm đúng lộ trình.</p></div><a class="edn-im-text-link" href="#/categories">Tất cả 50 lĩnh vực '+arrowIcon+'</a></div>'+
-      '<div class="edn-domain-visual-grid">'+domainCards+'</div>'+
+    // Testimonials
+    '<section class="edn-testimonials-section"><div class="wrap">'+
+      '<div class="edn-section-header"><div><h2>Cảm nhận từ học viên</h2><p>Hơn 15,000 học viên đã nâng cao kỹ năng và bứt phá sự nghiệp cùng EduNext.</p></div></div>'+
+      '<div class="edn-testimonials-grid">'+testimonialsMarkup+'</div>'+
     '</div></section>'+
 
-    '<section class="edn-im-steps"><div class="edn-im-shell">'+
-      '<div class="edn-im-section-heading"><div><h2>Lộ trình học tập rõ ràng</h2><p>Trải nghiệm học tập tinh gọn giúp bạn tập trung hoàn toàn vào kỹ năng thực tế.</p></div></div>'+
-      '<div class="edn-steps-visual-grid">'+steps+'</div>'+
-    '</div></section>'+
-
-    '<section class="edn-im-journal"><div class="edn-im-shell">'+
-      '<div class="edn-im-section-heading"><div><h2>Góc kiến thức thực tiễn</h2><p>Kinh nghiệm và bài học ngắn từ những dự án phát triển thực tế.</p></div><a class="edn-im-text-link" href="#/blog">Tất cả bài viết '+arrowIcon+'</a></div>'+
+    // Knowledge Magazine (Blog)
+    '<section class="edn-journal-section"><div class="wrap">'+
+      '<div class="edn-section-header"><div><h2>Góc kiến thức & Kinh nghiệm thực tế</h2><p>Những bài học ngắn, phương pháp tư duy và kinh nghiệm đúc kết từ các dự án phát triển phần mềm.</p></div><a class="edn-header-link" href="#/blog">Xem tất cả bài viết '+arrowIcon+'</a></div>'+
       '<div class="edn-journal-cards-grid">'+articles+'</div>'+
     '</div></section>'+
 
-    '<section class="edn-im-faq"><div class="edn-im-shell edn-im-faq-layout">'+
-      '<div class="edn-im-faq-intro"><h2>Trước khi bắt đầu.</h2><p>Thông tin cơ bản về nội dung chương trình, quyền học và tiến độ trên EduNext.</p><a class="edn-im-text-link" href="#/faq">Tới trang hỏi đáp '+arrowIcon+'</a></div>'+
-      '<div class="edn-im-faq-list">'+qa+'</div>'+
+    // FAQ Accordion
+    '<section class="edn-faq-section"><div class="wrap edn-faq-layout">'+
+      '<div class="edn-faq-intro"><h2>Những điều cần biết trước khi học</h2><p>Giải đáp thắc mắc về lộ trình đào tạo, quyền truy cập và chính sách cấp chứng chỉ tại EduNext.</p><a class="edn-header-link" href="#/faq">Xem toàn bộ câu hỏi '+arrowIcon+'</a></div>'+
+      '<div class="edn-faq-accordion">'+qa+'</div>'+
     '</div></section>'+
 
-    '<section class="edn-im-cta"><div class="edn-im-shell edn-im-cta-inner"><div><h2>Chọn điều bạn muốn học tiếp theo.</h2><p>Khám phá lĩnh vực phù hợp và tìm chương trình giúp bạn tiến gần hơn tới mục tiêu của mình.</p></div><a class="edn-im-button-primary" href="#/courses">Tìm khóa học phù hợp '+arrowIcon+'</a></div></section>'+
+    // Final High-Converting CTA
+    '<section class="edn-final-cta"><div class="wrap edn-cta-box">'+
+      '<div><h2>Sẵn sàng bắt đầu lộ trình của bạn?</h2><p>Gia nhập cộng đồng hơn 15,000 học viên nâng tầm kỹ năng số ngay hôm nay.</p></div>'+
+      '<div class="edn-cta-actions"><a class="btn btn-p" href="#/courses">Khám phá khóa học ngay '+arrowIcon+'</a><a class="btn btn-g" href="#/categories">Duyệt 50 lĩnh vực</a></div>'+
+    '</div></section>'+
   '</div>';
 };
 const list=()=>{
@@ -416,14 +583,27 @@ const courses=()=>{
   hook=list;
   const selectedTopics=[...new Set(DOMAINS.flatMap(d=>d.topics||[]))].sort((a,b)=>a.localeCompare(b,'vi'));
   const domainOptions=domainGroups().map(group=>'<optgroup label="'+esc(group.name)+'">'+group.domains.map(d=>'<option value="'+esc(d.name)+'" '+(f.cat===d.name?'selected':'')+'>'+esc(d.name)+'</option>').join('')+'</optgroup>').join('');
+  const categoryPills=[
+    {label:'Tất cả',cat:''},
+    {label:'Lập trình phần mềm',cat:'Lập trình và phát triển phần mềm'},
+    {label:'Phát triển Web',cat:'Phát triển Web'},
+    {label:'Thiết kế UI/UX',cat:'UI/UX và Thiết kế sản phẩm số'},
+    {label:'Digital Marketing',cat:'Digital Marketing'},
+    {label:'Cơ sở dữ liệu',cat:'Cơ sở dữ liệu'},
+    {label:'AI & Học máy',cat:'Trí tuệ nhân tạo (AI) và Machine Learning'},
+    {label:'Quản trị kinh doanh',cat:'Quản trị doanh nghiệp'}
+  ].map(p=>'<button type="button" class="edn-course-cat-pill'+(f.cat===p.cat?' is-active':'')+'" data-a="cat" data-v="'+esc(p.cat)+'">'+esc(p.label)+'</button>').join('');
+
   return '<div class="wrap page cio-courses-page edn-course-catalog-page">'+
-    '<div class="cio-course-toolbar"><div class="cio-search-local"><span aria-hidden="true">⌕</span><input data-f="q" value="'+esc(f.q)+'" placeholder="Tìm tên khóa học, lĩnh vực hoặc kỹ năng" aria-label="Tìm trong danh mục"></div>'+
+    '<div class="edn-catalog-header"><div><span class="edn-overline">DANH MỤC ĐÀO TẠO THỰC CHIẾN</span><h1>Tất cả khóa học trực tuyến</h1><p>Khám phá lộ trình bài bản cùng các chuyên gia hàng đầu. Đăng ký một lần, học trọn đời.</p></div></div>'+
+    '<div class="edn-catalog-pills-row">'+categoryPills+'</div>'+
+    '<div class="cio-course-toolbar"><div class="cio-search-local"><span aria-hidden="true">⌕</span><input data-f="q" value="'+esc(f.q)+'" placeholder="Tìm tên khóa học, lĩnh vực hoặc kỹ năng..." aria-label="Tìm trong danh mục"></div>'+
     '<div class="cio-toolbar-right"><select data-f="cat" aria-label="Lọc chuyên ngành"><option value="">Tất cả chuyên ngành</option>'+domainOptions+'</select>'+
     '<select data-f="topic" aria-label="Lọc chủ đề"><option value="">Tất cả chủ đề</option>'+selectedTopics.map(t=>'<option value="'+esc(t)+'" '+(f.topic===t?'selected':'')+'>'+esc(t)+'</option>').join('')+'</select>'+
     '<select data-f="sort" aria-label="Sắp xếp"><option value="name" '+(f.sort==='name'?'selected':'')+'>Tên A–Z</option><option value="name-desc" '+(f.sort==='name-desc'?'selected':'')+'>Tên Z–A</option><option value="domain" '+(f.sort==='domain'?'selected':'')+'>Theo lĩnh vực</option></select></div></div>'+
     '<div class="edn-course-filter-meta"><span id="course-filter-summary">Tất cả chuyên ngành và chủ đề</span><button type="button" class="edn-clear-filters" data-a="clear">Xóa bộ lọc</button></div>'+
-    '<div class="cio-count-row"><span id="cnt"></span><span>đề cương trong danh mục</span></div>'+
-    '<div class="grid cio-course-grid" id="list" aria-live="polite"></div>'+
+    '<div class="cio-count-row"><span id="cnt"></span><span>khóa học tìm thấy</span></div>'+
+    '<div class="grid cio-course-grid edn-courses-grid" id="list" aria-live="polite"></div>'+
     '<div id="course-pagination"></div>'+
   '</div>';
 };
@@ -465,10 +645,19 @@ const domainDetail=slug=>{
   const group=findDomainGroup(d);
   const related=(d.topics||[]).map(topic=>'<button type="button" class="edn-topic-chip" data-a="topic" data-v="'+esc(topic)+'">'+esc(topic)+'</button>').join('');
   const coursesInDomain=C.filter(c=>c.domainId===d.id);
+  const arrowIcon='<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M8 3l5 5-5 5"></path></svg>';
   return '<div class="wrap page edn-domain-detail"><nav class="edn-breadcrumb" aria-label="Đường dẫn"><a href="#/">Trang chủ</a><span>›</span><a href="#/categories">Nhóm lĩnh vực</a><span>›</span>'+(group?'<a href="#/group/'+esc(group.slug)+'">'+esc(group.name)+'</a><span>›</span>':'')+'<span>'+esc(d.name)+'</span></nav>'+
-    '<div class="edn-page-intro"><h1>'+esc(d.name)+'</h1><p>'+esc(d.description||'Chương trình đào tạo thực tế trong lĩnh vực này.')+'</p><span class="edn-domain-count">'+coursesInDomain.length+' khóa học</span></div>'+
+    '<div class="edn-page-intro"><span class="edn-overline">CHUYÊN NGÀNH ĐÀO TẠO</span><h1>'+esc(d.name)+'</h1><p>'+esc(d.description||'Chương trình đào tạo thực tế trong lĩnh vực này cùng các giảng viên đầu ngành.')+'</p><span class="edn-domain-count">'+coursesInDomain.length+' khóa học chuyên sâu</span></div>'+
     '<section class="edn-related-topics"><div class="edn-topic-chip-row">'+related+'</div></section>'+
-    '<section class="edn-domain-programs"><div class="grid cio-course-grid">'+coursesInDomain.map(card).join('')+'</div></section></div>';
+    '<section class="edn-career-pathway">'+
+      '<div class="edn-pathway-header"><span class="edn-overline">LỘ TRÌNH PHÁT TRIỂN NGHỀ NGHIỆP</span><h2>Lộ trình thăng tiến chuẩn doanh nghiệp</h2><p>Khung năng lực từ cơ bản đến làm chủ kiến trúc hệ thống và dẫn dắt dự án.</p></div>'+
+      '<div class="edn-pathway-steps">'+
+        '<div class="edn-path-step"><span class="edn-path-badge">Giai đoạn 1</span><h3>Nền tảng & Tư duy</h3><p>Nắm vững nguyên lý cốt lõi, cú pháp chuẩn và công cụ lập trình cần thiết.</p></div>'+
+        '<div class="edn-path-step"><span class="edn-path-badge">Giai đoạn 2</span><h3>Dự án Thực chiến</h3><p>Tự tay xây dựng sản phẩm hoàn chỉnh, kết nối CSDL và kiểm thử chuyên nghiệp.</p></div>'+
+        '<div class="edn-path-step"><span class="edn-path-badge">Giai đoạn 3</span><h3>Chuyên sâu & Scale</h3><p>Thiết kế kiến trúc mở rộng, tối ưu hiệu năng và lãnh đạo đội ngũ kỹ thuật.</p></div>'+
+      '</div>'+
+    '</section>'+
+    '<section class="edn-domain-programs"><div class="edn-section-header"><div><h2>Các khóa học trong chuyên ngành</h2><p>Lựa chọn chương trình phù hợp với mục tiêu học tập của bạn.</p></div></div><div class="edn-courses-grid edn-domain-course-grid">'+(coursesInDomain.length?coursesInDomain.map(card).join(''):'<div class="empty"><h3>Chưa có khóa học nào</h3><p>Các khóa học trong chuyên ngành này đang được biên soạn.</p><a class="btn btn-g" href="#/courses">Xem tất cả khóa học</a></div>')+'</div></section></div>';
 };
 const videoMarkup=(url,title)=>{
   if(!url)return '<div class="edn-media-unavailable" role="status"><strong>Video bài học đang được cập nhật</strong><p>Video phù hợp cho bài này chưa được gắn vào danh mục khóa học.</p></div>';
@@ -490,45 +679,131 @@ const detail=id=>{
   const c=find(id);
   if(!c)return nf();
   const owned=!!EN()[id];
-  // Temporary public learning mode: lesson media is viewable without purchase.
   const canViewLessons=true;
   const domain=DOMAINS.find(d=>d.id===c.domainId);
   const group=findDomainGroup(domain);
+  const instructor=getCourseInstructor(c);
+  const stats=getCourseStats(c);
+  const discountPct=typeof c.o==='number'&&c.o>c.p?Math.round((1-c.p/c.o)*100):null;
   const topics=(c.topics||[]).map(topic=>'<button type="button" class="edn-topic-chip" data-a="topic" data-v="'+esc(topic)+'">'+esc(topic)+'</button>').join('');
+  const checkIcon='<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg>';
+
   const lessonRows=c.lessons.map((lesson,i)=>{
     const hasText=String(lesson.content||'').trim().length>0;
-    const mediaLabel=lesson.videoUrl?'Có video bài giảng':hasText?'Có nội dung bài học':'Video đang được cập nhật';
+    const mediaLabel=lesson.videoUrl?'Video bài giảng HD':hasText?'Nội dung bài học':'Học liệu đang cập nhật';
+    const isFreeTrial=i===0;
     const lessonPanel=canViewLessons
       ? '<div class="edn-curriculum-panel"><div class="edn-curriculum-video">'+videoMarkup(lesson.videoUrl,lesson.title)+'</div>'+
-        '<div class="edn-curriculum-player-actions"><button class="edn-curriculum-open-player" type="button" data-a="course-player" data-v="'+esc(id)+','+i+'">Mở trình phát có danh sách bài học</button></div>'+
-        (hasText?'<section class="edn-curriculum-material"><h3>NỘI DUNG BÀI HỌC</h3>'+lessonMaterialMarkup(lesson.content)+'</section>':'')+
+        '<div class="edn-curriculum-player-actions"><button class="edn-curriculum-open-player" type="button" data-a="course-player" data-v="'+esc(id)+','+i+'">Mở trình phát bài học</button></div>'+
+        (hasText?'<section class="edn-curriculum-material"><h3>NỘI DUNG TRỌNG TÂM</h3>'+lessonMaterialMarkup(lesson.content)+'</section>':'')+
         (String(lesson.exercise||'').trim()?'<section class="edn-curriculum-exercise"><h3>Bài tập thực hành</h3><p>'+esc(lesson.exercise)+'</p></section>':'')+
-        (lesson.resourceUrl?'<p class="edn-lesson-resource"><a class="btn btn-g" href="'+esc(lesson.resourceUrl)+'" target="_blank" rel="noopener noreferrer">Mở học liệu bổ sung ↗</a></p>':'')+
-        '<p class="edn-curriculum-open-link"><a href="#/learn/'+esc(id)+'/'+i+'">Mở trang học bài này →</a></p></div>'
-      : '<div class="edn-curriculum-panel edn-curriculum-locked"><strong>'+(lesson.videoUrl?'Video bài giảng đã sẵn sàng nhưng đang khóa':'Nội dung dành cho học viên đã có quyền truy cập')+'</strong><p>'+(lesson.videoUrl?'Bạn có thể xem tên bài trong đề cương. Đăng nhập bằng tài khoản đã được cấp quyền học khóa này để xem video và nội dung chi tiết.':'Bạn có thể xem tên bài trong đề cương. Video và nội dung chi tiết chỉ hiển thị sau khi tài khoản được cấp quyền học khóa này.')+'</p></div>';
-    return '<details class="edn-curriculum-item"><summary class="edn-curriculum-row"><span class="edn-curriculum-number">'+String(i+1).padStart(2,'0')+'</span><span class="edn-curriculum-play" aria-hidden="true">'+(lesson.videoUrl?'▶':hasText?'▤':'○')+'</span><span class="edn-curriculum-copy"><b>'+esc(lesson.title)+'</b><small>'+mediaLabel+'</small></span><span class="edn-curriculum-duration">'+(canViewLessons?'<span>Mở bài học</span>':'<span>Chỉ xem đề cương</span>')+'</span></summary>'+lessonPanel+'</details>';
+        (lesson.resourceUrl?'<p class="edn-lesson-resource"><a class="btn btn-g" href="'+esc(lesson.resourceUrl)+'" target="_blank" rel="noopener noreferrer">Mở tài liệu bổ sung ↗</a></p>':'')+
+        '<p class="edn-curriculum-open-link"><a href="#/learn/'+esc(id)+'/'+i+'">Vào phòng học toàn màn hình →</a></p></div>'
+      : '';
+    return '<details class="edn-curriculum-item" '+(i===0?'open':'')+'><summary class="edn-curriculum-row"><span class="edn-curriculum-number">'+String(i+1).padStart(2,'0')+'</span><span class="edn-curriculum-play" aria-hidden="true">▶</span><span class="edn-curriculum-copy"><b>'+esc(lesson.title)+'</b><small>'+mediaLabel+'</small></span>'+(isFreeTrial?'<span class="edn-free-trial-tag">Học thử miễn phí</span>':'')+'<span class="edn-curriculum-duration"><span>Xem bài</span></span></summary>'+lessonPanel+'</details>';
   }).join('');
+
   const visual='<img src="'+esc(getCourseImage(c))+'" alt="'+esc(c.t)+'" loading="eager">';
-  const buyContent='';
   const outcomes=Array.isArray(c.outcomes)?c.outcomes:[];
-  return '<div class="edn-course-detail-page"><section class="edn-course-hero"><div class="wrap edn-course-hero-inner">'+
-    '<div class="edn-course-intro"><nav class="edn-course-breadcrumb" aria-label="Đường dẫn"><a href="#/">Trang chủ</a><span>›</span><a href="#/categories">Nhóm lĩnh vực</a><span>›</span>'+(group?'<a href="#/group/'+esc(group.slug)+'">'+esc(group.name)+'</a><span>›</span>':'')+'<a href="#/domain/'+esc(domain?domain.slug:'')+'">'+esc(c.cat)+'</a></nav>'+
-    '<div class="edn-course-eyebrow">'+esc(c.cat)+' <span>·</span> Đề cương chương trình</div><h1>'+esc(c.t)+'</h1><p class="edn-course-subtitle">'+esc(c.shortDescription||c.description||'Đề cương chương trình đang được hoàn thiện.')+'</p>'+
-    '<div class="edn-course-tag-row"><span class="edn-course-tag">'+(c.ready?'Đã xuất bản':'Đang hoàn thiện nội dung')+'</span><span class="edn-course-language">Ngôn ngữ: chưa cấu hình</span></div>'+
-    '<div class="edn-course-date-row"><span>'+c.L.length+' bài học dự kiến</span><span>'+(c.h?esc(c.h)+' giờ':'Thời lượng đang cập nhật')+'</span></div>'+
-    '<div class="edn-course-status-line">Chọn một bài học bên dưới để xem video và nội dung hướng dẫn tương ứng.</div></div>'+
-    '<aside class="edn-course-buy-card" aria-label="Trạng thái khóa học"><div class="edn-course-preview edn-course-preview-static">'+visual+'<span class="edn-preview-shade"></span><strong>'+esc(c.cat)+'</strong></div>'+
-    (c.previewVideoUrl?'<button class="btn btn-g w edn-preview-course-button" type="button" data-a="preview" data-v="'+esc(id)+'">Xem trước khóa học</button>':'')+
-    '<div class="edn-course-buy-content">'+
-    '<div class="edn-course-detail-pricing">'+coursePriceMarkup(c)+'</div>'+
-    '<a class="btn btn-p w edn-course-checkout-link" href="#/checkout/'+esc(id)+'">Mua ngay</a>'+
-    '<button class="btn btn-g w edn-course-player-launch" type="button" data-a="course-player" data-v="'+esc(id)+','+Math.max(c.lessons.findIndex(item=>!!item.videoUrl),0)+'">Xem video và danh sách bài học</button>'+
-    '<div class="edn-course-includes"><strong>Thông tin chương trình</strong><span>✓ '+c.L.length+' bài học trong đề cương</span><span>✓ Có thứ tự bài học rõ ràng</span><span>✓ Lĩnh vực và chủ đề liên quan</span></div></div></aside></div></section>'+
+
+  return '<div class="edn-course-detail-page">'+
+    '<section class="edn-course-hero"><div class="wrap edn-course-hero-inner">'+
+      '<div class="edn-course-intro">'+
+        '<nav class="edn-course-breadcrumb" aria-label="Đường dẫn"><a href="#/">Trang chủ</a><span>›</span><a href="#/categories">Lĩnh vực</a><span>›</span>'+(group?'<a href="#/group/'+esc(group.slug)+'">'+esc(group.name)+'</a><span>›</span>':'')+'<a href="#/domain/'+esc(domain?domain.slug:'')+'">'+esc(c.cat)+'</a></nav>'+
+        '<div class="edn-course-eyebrow">'+esc(c.cat)+' <span>·</span> Khóa học thực chiến</div>'+
+        '<h1>'+esc(c.t)+'</h1>'+
+        '<p class="edn-course-subtitle">'+esc(c.shortDescription||c.description||'Chương trình đào tạo thực tiễn giúp bạn làm chủ kỹ năng số.')+'</p>'+
+        '<div class="edn-course-rating-row">'+
+          '<span class="edn-rating-stars">'+starIconMarkup+' <b>'+stats.rating+'</b></span>'+
+          '<span class="edn-rating-count">('+stats.reviews.toLocaleString('vi-VN')+' đánh giá)</span>'+
+          '<span class="edn-student-count">👨‍🎓 '+stats.students.toLocaleString('vi-VN')+' học viên</span>'+
+        '</div>'+
+        '<div class="edn-course-meta-tags">'+
+          '<span><b>Cấp độ:</b> '+(c.lvl||'Mọi cấp độ')+'</span>'+
+          '<span><b>Thời lượng:</b> '+(c.h?c.h+' giờ học':c.L.length+' bài giảng')+'</span>'+
+          '<span><b>Ngôn ngữ:</b> Tiếng Việt</span>'+
+          '<span><b>Chứng chỉ:</b> Có mã xác nhận</span>'+
+        '</div>'+
+        '<div class="edn-instructor-compact">'+
+          '<img src="'+esc(instructor.avatar)+'" alt="'+esc(instructor.name)+'">'+
+          '<div><small>Giảng viên chính</small><strong>'+esc(instructor.name)+'</strong> <span>('+esc(instructor.role)+' @ '+esc(instructor.org)+')</span></div>'+
+        '</div>'+
+      '</div>'+
+
+      // Sticky buy box
+      '<aside class="edn-course-buy-card" aria-label="Thông tin đăng ký khóa học">'+
+        '<div class="edn-course-preview edn-course-preview-static">'+
+          visual+
+          '<div class="edn-preview-play-icon" data-a="course-player" data-v="'+esc(id)+',0">▶</div>'+
+          '<span class="edn-preview-label">Xem thử bài giảng đầu</span>'+
+        '</div>'+
+        '<div class="edn-course-buy-content">'+
+          '<div class="edn-course-detail-pricing">'+
+            '<div class="edn-detail-price-main"><strong class="edn-detail-price-curr">'+esc(money(c.p))+'</strong>'+(typeof c.o==='number'&&c.o>c.p?'<del class="edn-detail-price-old">'+esc(money(c.o))+'</del>':'')+'</div>'+
+            (discountPct?'<span class="edn-detail-discount-tag">Tiết kiệm '+discountPct+'%</span>':'')+
+          '</div>'+
+          '<div class="edn-buy-actions-stack">'+
+            (owned
+              ? '<a class="btn btn-p w edn-btn-big" href="#/learn/'+esc(id)+'/'+nextL(c)+'">Vào học ngay →</a>'
+              : '<a class="btn btn-p w edn-btn-big" href="#/checkout/'+esc(id)+'">Mua ngay với giá ưu đãi</a><button class="btn btn-g w" type="button" data-a="cart-add" data-v="'+esc(id)+'">'+cartIconMarkup+' Thêm vào giỏ hàng</button>')+
+            '<button class="btn btn-subtle w" type="button" data-a="course-player" data-v="'+esc(id)+',0">Học thử bài giảng miễn phí</button>'+
+          '</div>'+
+          '<div class="edn-course-includes">'+
+            '<strong>Khóa học bao gồm:</strong>'+
+            '<span>'+checkIcon+' '+c.L.length+' bài giảng video chất lượng cao</span>'+
+            '<span>'+checkIcon+' Tài nguyên, code mẫu & cheat sheet</span>'+
+            '<span>'+checkIcon+' Quyền truy cập trọn đời trên mọi thiết bị</span>'+
+            '<span>'+checkIcon+' Chứng chỉ số chính thức khi hoàn thành</span>'+
+          '</div>'+
+        '</div>'+
+      '</aside>'+
+    '</div></section>'+
+
     '<div class="wrap edn-course-content-grid"><main class="edn-course-main">'+
-    '<section class="edn-course-outcomes" aria-labelledby="edn-outcomes-title"><h2>Mục tiêu dự kiến</h2><p class="edn-course-meta-note">Các mục tiêu dưới đây được phác thảo từ đề cương bài học và cần được xác nhận khi nội dung giảng dạy hoàn chỉnh.</p><div class="edn-course-outcomes-grid">'+outcomes.map(item=>'<div class="edn-course-outcome"><span>✓</span><p>'+esc(item)+'</p></div>').join('')+'</div></section>'+
-    '<section class="edn-course-curriculum" id="course-curriculum"><div class="edn-course-section-heading"><div><h2>Toàn bộ bài học</h2><p>'+c.L.length+' bài trong khung chương trình hiện tại</p></div><span class="edn-curriculum-total">'+c.L.length+' bài</span></div><div class="edn-curriculum-list">'+lessonRows+'</div><p class="edn-curriculum-footnote">Mở từng bài để xem video bài giảng, nội dung hướng dẫn và bài tập thực hành.</p></section>'+
-    '<section class="edn-course-about"><h2>Đối tượng và kiến thức đầu vào</h2><div class="edn-course-requirements-grid"><div><small>Đối tượng dự kiến</small><p>'+esc(c.audience||'Đang được xác định.')+'</p></div><div><small>Kiến thức đầu vào</small><p>'+esc(c.prerequisites||'Sẽ được công bố khi khóa học hoàn thiện.')+'</p></div></div><div class="edn-course-facts"><div><small>Lĩnh vực</small><strong>'+esc(c.cat)+'</strong></div><div><small>Số bài dự kiến</small><strong>'+c.L.length+'</strong></div><div><small>Cấp độ</small><strong>'+esc(c.lvl||'Chưa xác định')+'</strong></div></div><p class="edn-course-meta-note">Thông tin đối tượng và đầu vào ở trên là bản dự kiến, chưa phải yêu cầu đã xác nhận.</p></section>'+
-    '<section class="edn-related-topics"><div class="edn-section-heading"><div><span class="edn-overline">KHÁM PHÁ THÊM</span><h2>Lĩnh vực và chủ đề liên quan</h2></div><a href="#/domain/'+esc(domain?domain.slug:'')+'">Xem lĩnh vực ↗</a></div><div class="edn-topic-chip-row">'+topics+'</div></section>'+
+      '<section class="edn-course-outcomes">'+
+        '<h2>Bạn sẽ học được gì sau khóa học?</h2>'+
+        '<div class="edn-course-outcomes-grid">'+
+          outcomes.map(item=>'<div class="edn-course-outcome">'+checkIcon+'<p>'+esc(item)+'</p></div>').join('')+
+        '</div>'+
+      '</section>'+
+
+      '<section class="edn-course-curriculum" id="course-curriculum">'+
+        '<div class="edn-course-section-heading">'+
+          '<div><h2>Nội dung chương trình học</h2><p>'+c.L.length+' bài giảng chi tiết · Có sẵn bài học thử nghiệm</p></div>'+
+          '<span class="edn-curriculum-total">'+c.L.length+' bài</span>'+
+        '</div>'+
+        '<div class="edn-curriculum-list">'+lessonRows+'</div>'+
+      '</section>'+
+
+      '<section class="edn-instructor-full-card">'+
+        '<h2>Về giảng viên</h2>'+
+        '<div class="edn-inst-card-layout">'+
+          '<img class="edn-inst-card-avatar" src="'+esc(instructor.avatar)+'" alt="'+esc(instructor.name)+'">'+
+          '<div class="edn-inst-card-body">'+
+            '<h3>'+esc(instructor.name)+'</h3>'+
+            '<p class="edn-inst-title">'+esc(instructor.role)+' tại <strong>'+esc(instructor.org)+'</strong></p>'+
+            '<div class="edn-inst-stats">'+
+              '<span>★ 4.95 Điểm đánh giá</span>'+
+              '<span>👨‍🎓 12,000+ Học viên</span>'+
+              '<span>📚 5 Khóa học</span>'+
+            '</div>'+
+            '<p class="edn-inst-bio">Chuyên gia với hơn 10 năm kinh nghiệm thực chiến trong việc xây dựng hệ thống phần mềm và đào tạo nguồn nhân lực công nghệ cao. Phương châm giảng dạy: thực chiến, dễ hiểu và ứng dụng trực tiếp vào công việc hàng ngày.</p>'+
+          '</div>'+
+        '</div>'+
+      '</section>'+
+
+      '<section class="edn-course-requirements">'+
+        '<h2>Yêu cầu & Đối tượng tham gia</h2>'+
+        '<div class="edn-requirements-columns">'+
+          '<div><h3>Đối tượng phù hợp</h3><p>'+esc(c.audience||'Bất kỳ ai muốn nâng cao kỹ năng và bứt phá sự nghiệp số.')+'</p></div>'+
+          '<div><h3>Kiến thức cần có</h3><p>'+esc(c.prerequisites||'Không yêu cầu kinh nghiệm trước, khóa học hướng dẫn từ căn bản.')+'</p></div>'+
+        '</div>'+
+      '</section>'+
+
+      '<section class="edn-related-topics">'+
+        '<div class="edn-section-heading"><div><span class="edn-overline">CHỦ ĐỀ LIÊN QUAN</span><h2>Mở rộng kiến thức cùng lĩnh vực</h2></div><a class="edn-header-link" href="#/domain/'+esc(domain?domain.slug:'')+'">Xem lĩnh vực ↗</a></div>'+
+        '<div class="edn-topic-chip-row">'+topics+'</div>'+
+      '</section>'+
     '</main><div class="edn-course-right-space" aria-hidden="true"></div></div></div>';
 };
 const checkout=id=>{
@@ -609,27 +884,73 @@ const cartPage=()=>{
 const learn=(id,index)=>{
   const c=find(id);
   if(!c)return nf();
-  // Public learning mode: visitors can watch lessons without signing in or buying.
-  // Only accounts already entitled to a course get progress-tracking controls.
+  document.body.classList.add('edn-classroom-active');
   const e=EN()[id]||{done:[]};
   const canTrackProgress=!!EN()[id];
   const i=Math.min(Math.max(Number(index)||0,0),Math.max(c.lessons.length-1,0));
   const lesson=c.lessons[i];
   if(!lesson)return nf();
   const done=e.done.includes(i),all=e.done.length>=c.completionCount;
-  const prev=i>0?'<a class="btn btn-g" href="#/learn/'+esc(id)+'/'+(i-1)+'">← Bài trước</a>':'';
+  const prev=i>0?'<a class="btn btn-g edn-nav-btn" href="#/learn/'+esc(id)+'/'+(i-1)+'">← Bài trước</a>':'';
   const mark=canTrackProgress
-    ? '<button class="btn '+(done?'btn-g':'btn-p')+'" type="button" data-a="done" data-v="'+esc(id)+','+i+'">'+(done?'Bỏ đánh dấu hoàn thành':'Đánh dấu đã học')+'</button>'
-    : '<span class="edn-lesson-progress-note">Tiến độ học chưa được lưu cho phiên xem này.</span>';
-  const after=i<c.lessons.length-1?'<a class="btn btn-g" href="#/learn/'+esc(id)+'/'+(i+1)+'">Bài tiếp →</a>':'';
-  const final=all?'<a class="btn btn-p" href="#/cert/'+esc(id)+'">Kiểm tra điều kiện chứng chỉ</a>':'';
-  return '<div class="cio-learn-shell"><div class="cio-learn-top"><a href="#/course/'+esc(id)+'">← Quay lại khóa học</a><strong>'+esc(c.t)+'</strong><span>'+(canTrackProgress?pct(c)+'% hoàn thành':'Đang xem bài học')+'</span></div>'+
-    '<div class="cio-learn-layout"><aside class="cio-lesson-sidebar"><div class="cio-lesson-head"><span>'+esc(c.cat)+'</span><h2>'+esc(c.t)+'</h2><div class="cio-progress-line"><span style="width:'+pct(c)+'%"></span></div></div><div class="cio-lesson-list">'+c.lessons.map((item,k)=>'<a class="'+(k===i?'active ':'')+(e.done.includes(k)?'done':'')+'" href="#/learn/'+esc(id)+'/'+k+'"><span>'+String(k+1).padStart(2,'0')+'</span><b>'+esc(item.title)+'</b><small>'+(e.done.includes(k)?'Đã học':'Bài học')+'</small></a>').join('')+'</div></aside>'+
-    '<main class="cio-learn-content"><div class="cio-video-wrap">'+videoMarkup(lesson.videoUrl,lesson.title)+'</div><div class="cio-lesson-content"><div class="cio-lesson-heading"><div><span class="cio-eyebrow">BÀI '+(i+1)+'/'+c.lessons.length+'</span><h1>'+esc(lesson.title)+'</h1></div><span class="cio-lesson-badge">'+(done?'Đã hoàn thành':'Đang học')+'</span></div>'+
-    (lesson.content?lessonMaterialMarkup(lesson.content):'<p class="edn-material-pending">Nội dung hướng dẫn chi tiết chưa được bổ sung cho bài này.</p>')+
-    (lesson.resourceUrl?'<p class="edn-lesson-resource"><a class="btn btn-g" href="'+esc(lesson.resourceUrl)+'" target="_blank" rel="noopener noreferrer">Mở học liệu của bài học ↗</a></p>':'')+
-    (lesson.exercise?'<section class="edn-lesson-exercise"><h2>Thực hành</h2><p>'+esc(lesson.exercise)+'</p></section>':'')+
-    '<div class="cio-lesson-actions">'+prev+mark+after+final+'</div></div></main></div></div>';
+    ? '<button class="btn '+(done?'btn-g':'btn-p')+' edn-mark-btn" type="button" data-a="done" data-v="'+esc(id)+','+i+'">'+(done?'✓ Đã hoàn thành (Bấm để hủy)':'Đánh dấu đã học')+'</button>'
+    : '<span class="edn-lesson-progress-note">Đang xem bài học ở chế độ công khai. Đăng ký để lưu tiến độ.</span>';
+  const after=i<c.lessons.length-1?'<a class="btn btn-g edn-nav-btn" href="#/learn/'+esc(id)+'/'+(i+1)+'">Bài tiếp →</a>':'';
+  const final=all?'<a class="btn btn-p edn-cert-btn" href="#/cert/'+esc(id)+'">Nhận chứng chỉ tốt nghiệp 🎓</a>':'';
+
+  return '<div class="edn-classroom-shell">'+
+    '<header class="edn-classroom-bar">'+
+      '<div class="edn-class-bar-left"><a class="edn-exit-classroom" href="#/course/'+esc(id)+'" title="Thoát phòng học">✕ <span>Thoát</span></a><strong class="edn-class-course-title">'+esc(c.t)+'</strong></div>'+
+      '<div class="edn-class-bar-right"><div class="edn-class-progress-box"><span>'+(canTrackProgress?pct(c)+'% hoàn thành':'Chế độ xem thử')+'</span><div class="edn-class-progress-bar"><span style="width:'+pct(c)+'%"></span></div></div></div>'+
+    '</header>'+
+    '<div class="edn-classroom-body">'+
+      '<main class="edn-classroom-player-column">'+
+        '<div class="edn-classroom-player-wrap">'+videoMarkup(lesson.videoUrl,lesson.title)+'</div>'+
+        '<div class="edn-classroom-panel-content">'+
+          '<div class="edn-lesson-banner">'+
+            '<div><span class="edn-overline">BÀI '+(i+1)+' / '+c.lessons.length+'</span><h1>'+esc(lesson.title)+'</h1></div>'+
+            '<span class="edn-lesson-status-pill '+(done?'is-done':'')+'">'+(done?'Đã hoàn thành':'Đang học')+'</span>'+
+          '</div>'+
+          '<div class="edn-classroom-tabs" role="tablist">'+
+            '<button type="button" class="edn-classroom-tab is-active" data-class-tab="summary">Tóm tắt bài học</button>'+
+            '<button type="button" class="edn-classroom-tab" data-class-tab="resources">Tài nguyên đính kèm</button>'+
+            '<button type="button" class="edn-classroom-tab" data-class-tab="qa">Hỏi đáp & Thảo luận</button>'+
+          '</div>'+
+          '<div class="edn-classroom-tab-panes">'+
+            '<div class="edn-tab-pane is-active" id="pane-summary">'+
+              (lesson.content?lessonMaterialMarkup(lesson.content):'<p class="edn-material-pending">Nội dung hướng dẫn chi tiết đang được cập nhật.</p>')+
+              (lesson.exercise?'<section class="edn-lesson-exercise"><h3>Bài tập thực hành</h3><p>'+esc(lesson.exercise)+'</p></section>':'')+
+            '</div>'+
+            '<div class="edn-tab-pane" id="pane-resources" hidden>'+
+              '<div class="edn-resource-items">'+
+                '<p>Tải về học liệu, slide bài giảng và source code mẫu của bài học này:</p>'+
+                (lesson.resourceUrl?'<a class="btn btn-g" href="'+esc(lesson.resourceUrl)+'" target="_blank" rel="noopener noreferrer">📥 Tải về mã nguồn bài giảng ↗</a>':'<p class="edn-material-pending">Chưa có file đính kèm cho bài này.</p>')+
+              '</div>'+
+            '</div>'+
+            '<div class="edn-tab-pane" id="pane-qa" hidden>'+
+              '<div class="edn-qa-simulated">'+
+                '<div class="edn-qa-item"><div class="edn-qa-avatar">H</div><div><strong>Học viên Lê Anh:</strong><p>Thầy cho em hỏi phần kết nối database này nếu dùng PostgreSQL thì connection string cấu hình khác gì không ạ?</p><small class="edn-qa-reply">↳ <b>Giảng viên phản hồi:</b> Chào bạn, với PostgreSQL bạn chỉ cần đổi provider sang Npgsql.EntityFrameworkCore và cập nhật chuỗi kết nối theo chuẩn Host=...;Port=5432 nhé!</small></div></div>'+
+              '</div>'+
+            '</div>'+
+          '</div>'+
+          '<div class="edn-lesson-nav-actions">'+prev+mark+after+final+'</div>'+
+        '</div>'+
+      '</main>'+
+      '<aside class="edn-classroom-sidebar">'+
+        '<div class="edn-sidebar-head"><strong>Danh sách bài học</strong><span>'+c.lessons.length+' bài</span></div>'+
+        '<div class="edn-sidebar-lessons-list">'+
+          c.lessons.map((item,k)=>{
+            const isCurrent=k===i;
+            const isDone=e.done.includes(k);
+            return '<a class="edn-sidebar-lesson-row '+(isCurrent?'is-current ':'')+(isDone?'is-done':'')+'" href="#/learn/'+esc(id)+'/'+k+'">'+
+              '<span class="edn-sidebar-num">'+(isDone?'✓':String(k+1).padStart(2,'0'))+'</span>'+
+              '<div class="edn-sidebar-info"><strong>'+esc(item.title)+'</strong><small>'+(item.videoUrl?'Video HD':'Nội dung')+'</small></div>'+
+            '</a>';
+          }).join('')+
+        '</div>'+
+      '</aside>'+
+    '</div>'+
+  '</div>';
 };
 const certificates=()=>{
   if(!D.me)return guard('/certificates');
@@ -709,19 +1030,68 @@ const dash=()=>{
 };
 const BLOG_ARTICLE_BODY=[[{"heading":"Đừng chỉ nhìn cú pháp, hãy dự đoán kết quả","paragraphs":["Khi học biến, điều kiện hay vòng lặp, nhiều người cố nhớ mẫu code. Cách đó có ích ở bước đầu nhưng thường không đủ khi bài tập thay đổi một chút. Thay vào đó, hãy tự hỏi: biến đang giữ giá trị gì, dòng tiếp theo có thể thay đổi nó ra sao và nhánh nào sẽ được chạy?","Ví dụ, với vòng lặp tính tổng một dãy số, ghi lại giá trị của biến tổng sau từng lượt sẽ giúp bạn thấy lỗi khởi tạo hoặc điều kiện dừng. Một bảng nhỏ gồm lần lặp, giá trị đầu vào và kết quả trung gian đã đủ để bắt đầu."]},{"heading":"Một vòng luyện tập có thể làm trong 20 phút","paragraphs":["Chọn một ý tưởng vừa học, tự viết ví dụ ngắn, chạy thử rồi thay đổi một điều kiện. Sau đó giải thích bằng lời vì sao kết quả đổi. Khi gặp lỗi, đọc dòng báo lỗi và kiểm tra giả định trước khi sửa.","Nếu dùng debugger trong Visual Studio, đặt breakpoint ở nơi bạn nghi ngờ, chạy từng bước và xem giá trị biến. Đây là cách tìm nguyên nhân có kiểm chứng, thay vì thêm câu lệnh in ra khắp nơi rồi đoán."]},{"heading":"Khi nào biết mình đã hiểu?","paragraphs":["Bạn đã tiến bộ khi có thể viết lại ví dụ mà không nhìn lời giải, phát hiện một trường hợp biên và giải thích cách xử lý. Nếu vẫn phải xem lại tài liệu, không sao: ghi đúng điểm mình quên và quay lại bằng một bài tập khác.","Mục tiêu không phải thuộc lòng mọi API. Quan trọng hơn là hiểu vấn đề, biết tra cứu tài liệu đáng tin cậy và kiểm tra chương trình có thật sự làm đúng điều bạn mong đợi hay không."]}],[{"heading":"Tách bài toán thành các bước nhỏ","paragraphs":["Một REST API nhận HTTP request và trả HTTP response. Trước khi thêm xác thực, phân trang hay nhiều lớp kiến trúc, hãy tạo một endpoint như GET /api/tasks trả về danh sách mẫu. Kiểm tra status code, JSON và trường hợp danh sách rỗng.","Khi endpoint đầu tiên chạy đúng, hãy tách phần xử lý nghiệp vụ ra khỏi controller bằng dependency injection. Sau đó mới kết nối cơ sở dữ liệu qua Entity Framework Core. Làm lần lượt giúp bạn biết lỗi xuất hiện ở route, logic, cấu hình hay truy vấn."]},{"heading":"Đừng bỏ qua kiểm tra dữ liệu đầu vào","paragraphs":["Một endpoint tạo mới nên kiểm tra các trường bắt buộc, giới hạn độ dài và định dạng trước khi ghi dữ liệu. Với ASP.NET Core, có thể dùng Data Annotations hoặc cơ chế validation phù hợp. Trả phản hồi lỗi nhất quán giúp frontend biết cần hiển thị thông báo gì.","Dùng Swagger UI hoặc Postman để thử ít nhất ba trường hợp: dữ liệu hợp lệ, dữ liệu thiếu hoặc sai định dạng, và tài nguyên không tồn tại. API không chỉ cần chạy được ở đường đi thuận lợi; nó còn phải trả lời rõ ràng khi có lỗi."]},{"heading":"Xác thực là bước riêng, không phải miếng vá cuối cùng","paragraphs":["Khi các luồng cơ bản đã ổn định, hãy xác định endpoint nào công khai và endpoint nào yêu cầu đăng nhập hoặc vai trò cụ thể. Không nên xem việc ẩn nút trên giao diện là bảo vệ dữ liệu: quyền truy cập cần được kiểm tra ở phía máy chủ.","Một API nhỏ, có validation, status code hợp lý và vài bài kiểm tra sẽ là nền tảng tốt hơn một dự án có nhiều công nghệ nhưng khó hiểu."]}],[{"heading":"Thiết lập bản vẽ trước khi tăng tốc","paragraphs":["Với bản vẽ kỹ thuật 2D, hãy xác định đơn vị và độ chính xác theo yêu cầu của bản vẽ trước khi dựng hình. Nếu dự án dùng milimét, hãy giữ quy ước đó nhất quán trong Model Space; đừng đợi đến lúc in mới tìm cách sửa kích thước lệch.","Bật các hỗ trợ vẽ như Object Snap khi cần bắt điểm cuối, trung điểm hoặc tâm đường tròn. Những công cụ này giúp điểm hình học chính xác hơn so với đặt chuột bằng mắt, đặc biệt ở bản vẽ có nhiều cạnh và chi tiết gần nhau."]},{"heading":"Dùng layer để người khác đọc được bản vẽ","paragraphs":["Tách đối tượng theo mục đích như nét thấy, nét tâm, kích thước và ghi chú. Đặt tên layer dễ hiểu, chọn màu và kiểu nét theo tiêu chuẩn đang áp dụng cho công việc. Layer không chỉ để tô màu; nó giúp kiểm soát hiển thị, in ấn và bàn giao.","Trước khi thêm dimension, kiểm tra lại hình học và thiết lập kiểu kích thước. Con số kích thước nên mô tả đúng hình học và quy ước của bản vẽ, không chỉnh bằng tay chỉ để làm đẹp nếu điều đó khiến thông tin sai lệch."]},{"heading":"Kiểm tra bản in bằng một trang thử","paragraphs":["Layout, viewport và tỷ lệ in cần được cấu hình phù hợp với khổ giấy và yêu cầu hồ sơ. Trước khi gửi file, xem trước bản in để kiểm tra chữ có đọc được không, nét có phân biệt không, kích thước có bị cắt và khung tên có đúng hay không.","Một checklist ngắn trước khi bàn giao: đơn vị đúng, layer rõ, kích thước đã kiểm tra, font và kiểu nét phù hợp, file tham chiếu không bị thiếu, bản in thử đạt yêu cầu. Với bản vẽ liên quan đến an toàn hoặc tiêu chuẩn chuyên ngành, luôn tuân thủ quy trình kiểm tra và phê duyệt có thẩm quyền."]}],[{"heading":"Trước tiên, hãy xác định dữ liệu cần trả về","paragraphs":["Khi một truy vấn SQL chậm hoặc khó hiểu, hãy viết rõ kết quả cuối cùng cần có: những cột nào, lọc theo điều kiện gì, và quan hệ nào giữa các bảng. Việc này giúp bạn phân biệt vấn đề mô hình dữ liệu với vấn đề cú pháp.","Ví dụ, nếu muốn liệt kê đơn hàng kèm tên khách hàng, cần hiểu bảng nào chứa đơn, bảng nào chứa khách và khóa nào liên kết hai bảng. Dùng JOIN trên quan hệ đúng giúp kết quả có ý nghĩa; nối nhầm cột có thể làm mất bản ghi hoặc nhân số dòng."]},{"heading":"Kiểm tra tính nhất quán trước khi tối ưu","paragraphs":["Khóa chính định danh một bản ghi; khóa ngoại thể hiện quan hệ giữa dữ liệu. Thiết kế cột và quan hệ rõ ràng giúp hạn chế các bản ghi mồ côi và giảm trùng lặp không cần thiết.","Sau đó mới xem execution plan, số dòng đọc và các điều kiện lọc thường dùng. Index có thể giúp một số truy vấn, nhưng cũng làm tăng chi phí ghi và chiếm dung lượng. Thêm index chỉ vì nghe rằng nó làm truy vấn nhanh hơn có thể không giải quyết đúng nguyên nhân."]},{"heading":"Một cách học thực hành hiệu quả","paragraphs":["Tạo một bộ dữ liệu thử nhỏ với vài trường hợp bình thường và trường hợp thiếu dữ liệu. Viết truy vấn, dự đoán kết quả, chạy thử rồi so sánh. Khi dùng GROUP BY, JOIN hoặc subquery, thay đổi từng phần để biết nó ảnh hưởng đến kết quả thế nào.","Hiểu dữ liệu được tạo, đọc, cập nhật và xóa ra sao sẽ giúp bạn viết phần truy cập dữ liệu ổn định hơn, chứ không chỉ nhớ được cú pháp SQL."]}],[{"heading":"Dùng AI để giải thích, không chỉ để sinh code","paragraphs":["Khi bị kẹt, hãy đưa cho AI đoạn code tối thiểu, thông báo lỗi và điều bạn đã thử. Hỏi vì sao lỗi có thể xảy ra, giả định nào cần kiểm tra hoặc cách tạo một ví dụ nhỏ để tái hiện. Câu trả lời như vậy thường giúp bạn học được phương pháp xử lý vấn đề.","Tránh gửi khóa bí mật, token, dữ liệu khách hàng hoặc mã nguồn nhạy cảm vào công cụ không được tổ chức cho phép. Khi làm việc với dự án thật, hãy tuân thủ chính sách bảo mật của bạn."]},{"heading":"Xác minh kết quả trước khi sử dụng","paragraphs":["AI có thể tạo ra API không tồn tại, lời giải thiếu trường hợp biên hoặc mã có lỗ hổng. Đối chiếu tài liệu chính thức, chạy test và xem lại luồng dữ liệu là bước không thể bỏ qua. Nếu AI đề xuất thư viện hay hàm cụ thể, hãy kiểm tra phiên bản và chữ ký thực tế.","Một mẹo hữu ích là yêu cầu AI nêu các rủi ro và bài kiểm tra có thể làm thất bại phương án của nó. Sau đó tự chọn những kiểm tra phù hợp và chạy chúng trong môi trường kiểm soát."]},{"heading":"Giữ lại phần tư duy của mình","paragraphs":["Trước khi hỏi AI, hãy thử tự giải quyết trong một khoảng thời gian có giới hạn. Sau khi tham khảo câu trả lời, đóng nó lại và tự viết lại cách giải bằng lời hoặc code. Cuối cùng, giải một bài tương tự mà không sao chép.","Mục tiêu là dùng AI để rút ngắn thời gian tìm hiểu, không bỏ qua quá trình hình thành kỹ năng."]}],[{"heading":"Bắt đầu từ việc người dùng muốn hoàn thành","paragraphs":["Một màn hình đẹp chưa chắc giúp người dùng hoàn thành việc họ đến để làm. Với trang đăng ký, chẳng hạn, người dùng cần hiểu trường nào bắt buộc, lỗi nằm ở đâu và sau khi gửi thành công thì điều gì xảy ra. Những câu hỏi đó nên được giải quyết trước khi chọn màu hay hiệu ứng.","Hãy phác thảo luồng thao tác bằng vài khung wireframe đơn giản. Chỉ ra điểm bắt đầu, các bước chính, trạng thái trống, trạng thái lỗi và kết quả thành công. Khi luồng đã rõ, việc chọn bố cục và thành phần giao diện có cơ sở hơn."]},{"heading":"Kiểm tra bằng nhiệm vụ cụ thể","paragraphs":["Mời vài người thử làm một nhiệm vụ, chẳng hạn tìm một khóa học rồi xem thông tin cần thiết. Quan sát chỗ họ dừng lại, bấm nhầm hoặc phải hỏi hướng dẫn. Đừng chỉ hỏi họ có thích giao diện hay không; hãy quan sát xem họ có làm xong việc không.","Sau đó sửa điểm gây cản trở nhiều nhất và thử lại. Một vài vòng kiểm tra ngắn thường phát hiện vấn đề sớm hơn việc hoàn thiện mọi chi tiết rồi mới đưa cho người khác xem."]},{"heading":"Đừng quên khả năng tiếp cận","paragraphs":["Chữ cần đủ tương phản, trạng thái không nên chỉ phân biệt bằng màu, và các nút cần có nhãn dễ hiểu. Kiểm tra thao tác bằng bàn phím, tiêu đề có thứ bậc rõ ràng và giao diện ở màn hình nhỏ.","UI/UX không phải chỉ là phần nhìn. Một thiết kế tốt giúp người dùng biết mình đang ở đâu, hiểu lựa chọn và dự đoán được kết quả hành động tiếp theo."]}],[{"heading":"Bắt đầu từ câu hỏi của người tìm kiếm","paragraphs":["Trước khi viết, hãy tìm hiểu người đọc đang muốn học khái niệm, so sánh lựa chọn hay làm theo hướng dẫn. Một bài hướng dẫn cài đặt và một bài giải thích khái niệm có cấu trúc khác nhau vì người đọc đang ở những bước khác nhau.","Từ khóa có ích để phát hiện ngôn ngữ mà người dùng hay sử dụng, nhưng không nên chèn lặp đi lặp lại vào mọi đoạn. Hãy trả lời trực tiếp câu hỏi chính, giải thích thuật ngữ cần thiết và đưa ví dụ đúng với tình huống của người đọc."]},{"heading":"Tạo cấu trúc giúp người đọc tìm được đáp án","paragraphs":["Tiêu đề nên mô tả đúng nội dung của mục. Mở đầu nói rõ bài sẽ giải quyết việc gì; phần thân đi từ khái niệm đến ví dụ hoặc các bước; phần cuối tóm tắt quyết định hay hành động tiếp theo. Dùng ảnh minh họa khi nó thực sự giúp hiểu nhanh hơn.","Liên kết đến tài liệu gốc, hướng dẫn liên quan và các bài có chủ đề gần nhau giúp người đọc đi sâu hơn. Với nội dung kỹ thuật, hãy thử làm theo chính các bước bạn viết và kiểm tra phiên bản."]},{"heading":"Đo chất lượng bằng giá trị, không phải mật độ từ khóa","paragraphs":["Sau khi xuất bản, xem truy vấn nào đưa người đọc tới bài, họ có tìm được thông tin chính và bài có cần cập nhật không. Lượt xem không phải chỉ số duy nhất; bài viết hữu ích có thể giúp người đọc giải quyết vấn đề ngay cả khi nó không quá dài.","Tránh hứa hẹn quá mức, sao chép nhiều bài thành một hoặc dùng tiêu đề giật gân không được nội dung hỗ trợ. SEO bền vững bắt đầu từ nội dung chính xác, có mục đích rõ và dễ sử dụng."]}],[{"heading":"Phân biệt lượt nhấp với chuyển đổi","paragraphs":["Lượt hiển thị cho biết quảng cáo đã xuất hiện bao nhiêu lần; lượt nhấp cho biết có bao nhiêu lần người xem bấm vào. Nhưng điều doanh nghiệp cần thường là một hành động sau cú nhấp: gửi biểu mẫu, đặt lịch, mua hàng hoặc để lại thông tin phù hợp.","Nếu chiến dịch nhiều lượt nhấp nhưng ít chuyển đổi, đừng vội tăng ngân sách. Hãy kiểm tra trang đích có tải tốt không, thông điệp có khớp với quảng cáo không, biểu mẫu có quá dài không và conversion tracking có được cài đúng không."]},{"heading":"Đọc các chỉ số theo mục tiêu","paragraphs":["CTR giúp nhìn mức độ người xem nhấp vào quảng cáo; CPC là chi phí trung bình cho một lượt nhấp; tỷ lệ chuyển đổi cho biết bao nhiêu lượt truy cập tạo ra hành động mong muốn. Những chỉ số này phải được đọc cùng nhau và trong đúng bối cảnh ngành, kênh và giai đoạn chiến dịch.","Nếu mục tiêu là khách hàng tiềm năng, hãy nhìn thêm chất lượng lead và chi phí cho lead đủ điều kiện. Nếu mục tiêu là doanh thu, hãy xem đơn hàng và biên lợi nhuận chứ không chỉ dựa vào lượt tương tác."]},{"heading":"Thử nghiệm có giả thuyết rõ ràng","paragraphs":["Thay một yếu tố mỗi lần khi có thể: thông điệp quảng cáo, nhóm đối tượng hoặc trang đích. Ghi lại giả thuyết và khoảng thời gian đánh giá để tránh kết luận từ vài dữ liệu ngẫu nhiên.","Số liệu chỉ có ý nghĩa khi tracking được thiết lập đúng và có đủ dữ liệu để so sánh. Hãy kiểm tra sự kiện chuyển đổi trước, rồi mới dùng nó để quyết định chi tiêu."]}],[{"heading":"Đọc để hiểu ý chính trước khi tra từ","paragraphs":["Khi mở một trang tài liệu tiếng Anh, hãy nhìn tiêu đề, đoạn giới thiệu và các ví dụ trước. Đặt mục tiêu nhỏ như hiểu cách cấu hình một tùy chọn hoặc tìm lý do của một thông báo lỗi, thay vì cố dịch toàn bộ trang.","Đừng tra mọi từ mới. Nếu từ đó lặp lại hoặc khiến bạn hiểu sai bước cần làm, hãy tra trong từ điển hoặc tài liệu chính thức. Ghi kèm một câu ví dụ giúp bạn nhớ cách dùng từ trong ngữ cảnh."]},{"heading":"Dùng tài liệu thật làm bài luyện tập","paragraphs":["Chọn một mục ngắn trong README, tài liệu API hoặc hướng dẫn cài đặt. Tóm tắt bằng tiếng Việt hai hoặc ba ý chính, sau đó quay lại văn bản để kiểm tra mình có bỏ sót điều kiện quan trọng không.","Với thông báo lỗi, học cả cấu trúc câu và từ vựng kỹ thuật. Ví dụ, phân biệt required, unsupported và deprecated có thể giúp bạn hiểu một tính năng bắt buộc, không được hỗ trợ hay đang được khuyến nghị thay thế."]},{"heading":"Tích lũy đều thay vì nhồi từ vựng","paragraphs":["Mỗi ngày chọn một đoạn ngắn và vài từ thật sự hữu ích. Ôn lại sau một khoảng thời gian, rồi thử dùng từ trong câu liên quan đến dự án của mình.","Mục tiêu không nhất thiết là đọc thật nhanh ngay từ đầu. Quan trọng là dần nhận ra cấu trúc, biết tìm đúng thông tin và đủ tự tin để kiểm tra tài liệu gốc thay vì chỉ dựa vào bản dịch."]}],[{"heading":"Khoanh vùng trước khi đổi cấu hình","paragraphs":["Khi không truy cập được một dịch vụ, trước tiên hãy xác định lỗi xảy ra ở một máy hay nhiều máy, chỉ một trang web hay toàn bộ mạng. Kiểm tra kết nối vật lý hoặc Wi-Fi và trạng thái giao diện mạng trước khi thay đổi địa chỉ IP.","Nếu có quyền quản trị, hãy kiểm tra địa chỉ IP, subnet mask và default gateway theo sơ đồ mạng được cấp. Những thông số này cần nhất quán với mạng hiện tại; thay ngẫu nhiên có thể làm mất kết nối hoặc gây xung đột địa chỉ."]},{"heading":"Phân biệt lỗi kết nối IP với lỗi tên miền","paragraphs":["Nếu kết nối tới địa chỉ IP hoạt động nhưng truy cập tên miền không được, DNS là một hướng cần kiểm tra. Nếu không kết nối được tới gateway, cần xem lại liên kết mạng, cấu hình IP hoặc thiết bị mạng trước khi kết luận do DNS.","Các công cụ như ping, ipconfig trên Windows hoặc ip addr trên Linux có thể cung cấp manh mối. Không phải mọi máy chủ đều cho phép phản hồi ping, vì vậy hãy kết hợp kết quả với kiểm tra DNS và khả năng truy cập dịch vụ thực tế."]},{"heading":"Ghi lại thay đổi và kiểm tra sau mỗi bước","paragraphs":["Thay một yếu tố mỗi lần và ghi kết quả giúp bạn biết thay đổi nào có tác dụng. Trong môi trường doanh nghiệp, không tự ý chỉnh thiết bị mạng hoặc thông số hệ thống nếu chưa được phân quyền.","Quy trình chẩn đoán có thứ tự giúp tránh những thay đổi không cần thiết và tạo ghi chú hữu ích cho người tiếp nhận xử lý tiếp theo."]}],[{"heading":"Định nghĩa phiên bản nhỏ nhất có ích","paragraphs":["Một dự án đầu tiên có thể là ứng dụng quản lý việc cần làm, ghi chú hoặc theo dõi chi tiêu. Thay vì viết danh sách hàng chục tính năng, hãy chọn một luồng hoàn chỉnh: nhập dữ liệu, lưu lại, xem danh sách và sửa hoặc xóa một mục.","Viết vài tiêu chí chấp nhận bằng ngôn ngữ bình thường. Ví dụ: khi người dùng thêm một công việc có tiêu đề hợp lệ, công việc phải xuất hiện trong danh sách; nếu tiêu đề rỗng, ứng dụng phải báo lỗi và không lưu."]},{"heading":"Làm theo lát cắt hoàn chỉnh","paragraphs":["Dựng một phần chạy được từ giao diện tới dữ liệu trước, rồi cải thiện nó. Điều này thường giúp phát hiện sớm các vấn đề về mô hình dữ liệu, luồng thao tác hoặc cách xử lý lỗi.","Chia công việc thành các bước có thể kiểm tra và lưu lịch sử thay đổi bằng Git. Khi lỗi xuất hiện, bạn có thể xác định gần đúng thay đổi nào gây ra lỗi thay vì phải đọc lại cả dự án."]},{"heading":"Một dự án hoàn thành còn cần hướng dẫn","paragraphs":["Trước khi xem là xong, hãy chạy lại các luồng chính, xử lý trường hợp thiếu hoặc sai dữ liệu và viết README gồm mục tiêu, công nghệ, cách cài đặt và cách chạy. Nếu cần cấu hình biến môi trường, giải thích rõ tên biến nhưng tuyệt đối không đưa mật khẩu hay token thật vào kho mã nguồn.","Một dự án nhỏ mà bạn có thể giải thích quyết định thiết kế, nêu giới hạn và chứng minh bằng cách chạy thử sẽ hữu ích hơn một dự án lớn chỉ hoạt động trên máy của người hướng dẫn."]}]];
 const blogPage=()=>{
-  const cards=BLOG_ARTICLES.map((article,index)=>{
-    const reverse=index%2===1?' blog-page-card-reverse':'';
-    return '<article class="blog-page-card'+reverse+'" data-blog-tag="'+esc(article.tag)+'">'+
-      '<a class="blog-page-card-image" href="#/blog/'+slugify(article.title)+'" aria-label="Đọc bài: '+esc(article.title)+'"><img src="'+esc(article.image||'')+'" alt="'+esc(article.title)+'" loading="lazy"><span>'+esc(article.tag)+'</span></a>'+
-      '<div class="blog-page-card-body"><div class="blog-home-meta"><span>'+esc(article.time)+'</span><span>EduNext · Blog</span></div>'+
-      '<h2><a href="#/blog/'+slugify(article.title)+'">'+esc(article.title)+'</a></h2><p>'+esc(article.excerpt)+'</p>'+
-      '<a class="blog-read-link" href="#/blog/'+slugify(article.title)+'">Đọc bài viết <span aria-hidden="true">↗</span></a></div></article>';
-  }).join('');
   const topics=['Tất cả',...new Set(BLOG_ARTICLES.map(article=>article.tag))];
-  return '<div class="wrap page blog-page"><div class="blog-page-head"><div><span class="content-kicker">EDUNEXT · BLOG</span><h1>Kiến thức dễ hiểu, áp dụng được</h1><p>Ghi chú thực hành về lập trình, dữ liệu, thiết kế, marketing và những kỹ năng cần trong công việc. Mỗi bài tập trung vào một vấn đề cụ thể, có ví dụ và bước tiếp theo để bạn tự thử.</p></div><a class="btn btn-p" href="#/courses">Khám phá chương trình học</a></div>'+
-    '<div class="blog-topic-row" aria-label="Lọc bài viết">'+topics.map((topic,index)=>'<button type="button" class="topic '+(index===0?'active':'')+'" data-blog-topic="'+esc(topic)+'" aria-pressed="'+(index===0?'true':'false')+'">'+esc(topic)+'</button>').join('')+'</div>'+
-    '<div class="blog-page-grid">'+cards+'</div>'+
-    '<div class="blog-page-footer"><div><span class="eyebrow">GỢI Ý ĐỂ BẮT ĐẦU</span><h2>Đọc xong, hãy thử một việc nhỏ.</h2><p>Chọn một bước trong bài viết, tự làm thử trên ví dụ của bạn và ghi lại điều đã học được.</p></div><a class="btn btn-p" href="#/courses">Tìm lộ trình phù hợp</a></div></div>';
+  const featured=BLOG_ARTICLES[0];
+  const restArticles=BLOG_ARTICLES.slice(1);
+
+  const featuredMarkup=featured
+    ? '<article class="edn-mag-lead" data-blog-tag="'+esc(featured.tag)+'">'+
+        '<a class="edn-mag-lead-media" href="#/blog/'+slugify(featured.title)+'" aria-label="Đọc bài: '+esc(featured.title)+'">'+
+          '<img src="'+esc(featured.image||'')+'" alt="'+esc(featured.title)+'" loading="eager">'+
+          '<span class="edn-mag-badge-featured">Tiêu điểm</span>'+
+        '</a>'+
+        '<div class="edn-mag-lead-content">'+
+          '<div class="edn-mag-meta-row"><span class="edn-mag-tag-pill">'+esc(featured.tag)+'</span><span class="edn-mag-read-time">⏱ '+esc(featured.time)+'</span></div>'+
+          '<h2 class="edn-mag-lead-title"><a href="#/blog/'+slugify(featured.title)+'">'+esc(featured.title)+'</a></h2>'+
+          '<p class="edn-mag-lead-excerpt">'+esc(featured.excerpt)+'</p>'+
+          '<div class="edn-mag-author-row">'+
+            '<div class="edn-mag-author-info"><span class="edn-mag-author-avatar">E</span><span>Biên tập viên EduNext · Chuyên mục Kỹ thuật</span></div>'+
+            '<a class="btn btn-p btn-s" href="#/blog/'+slugify(featured.title)+'">Đọc bài viết ↗</a>'+
+          '</div>'+
+        '</div>'+
+      '</article>'
+    : '';
+
+  const cards=restArticles.map(article=>{
+    return '<article class="edn-mag-card" data-blog-tag="'+esc(article.tag)+'">'+
+      '<a class="edn-mag-card-media" href="#/blog/'+slugify(article.title)+'" aria-label="Đọc bài: '+esc(article.title)+'">'+
+        '<img src="'+esc(article.image||'')+'" alt="'+esc(article.title)+'" loading="lazy">'+
+        '<span class="edn-mag-tag-pill">'+esc(article.tag)+'</span>'+
+      '</a>'+
+      '<div class="edn-mag-card-body">'+
+        '<div class="edn-mag-meta-row"><span class="edn-mag-read-time">⏱ '+esc(article.time)+'</span><span>EduNext Magazine</span></div>'+
+        '<h3 class="edn-mag-card-title"><a href="#/blog/'+slugify(article.title)+'">'+esc(article.title)+'</a></h3>'+
+        '<p class="edn-mag-card-excerpt">'+esc(article.excerpt)+'</p>'+
+        '<div class="edn-mag-card-footer">'+
+          '<span class="edn-mag-card-author">Biên tập EduNext</span>'+
+          '<a class="edn-mag-read-link" href="#/blog/'+slugify(article.title)+'">Đọc tiếp →</a>'+
+        '</div>'+
+      '</div>'+
+    '</article>';
+  }).join('');
+
+  return '<div class="wrap page edn-magazine-page">'+
+    '<div class="edn-mag-header">'+
+      '<span class="edn-overline">EDUNEXT MAGAZINE · CHUYÊN MÔN & THỰC CHIẾN</span>'+
+      '<h1>Kiến thức thực tế, ứng dụng ngay</h1>'+
+      '<p>Ghi chép chuyên sâu về kiến trúc phần mềm, tư duy hệ thống, thiết kế sản phẩm và phương pháp làm việc hiệu quả từ các kỹ sư giàu kinh nghiệm.</p>'+
+    '</div>'+
+    '<div class="edn-mag-topic-row" aria-label="Lọc bài viết theo chủ đề">'+
+      topics.map((topic,index)=>
+        '<button type="button" class="edn-mag-topic-pill '+(index===0?'is-active':'')+'" data-blog-topic="'+esc(topic)+'" aria-pressed="'+(index===0?'true':'false')+'">'+esc(topic)+'</button>'
+      ).join('')+
+    '</div>'+
+    featuredMarkup+
+    '<div class="edn-mag-grid">'+cards+'</div>'+
+    '<section class="edn-mag-cta-box">'+
+      '<div>'+
+        '<span class="edn-overline">HỌC ĐI ĐÔI VỚI HÀNH</span>'+
+        '<h2>Sẵn sàng biến kiến thức thành kỹ năng thực tế?</h2>'+
+        '<p>Khám phá hơn 50 lộ trình học tập bài bản được thiết kế cùng các chuyên gia hàng đầu.</p>'+
+      '</div>'+
+      '<a class="btn btn-p" href="#/courses">Xem tất cả khóa học ↗</a>'+
+    '</section>'+
+  '</div>';
 };
 const blogDetail=slug=>{
   const index=BLOG_ARTICLES.findIndex(article=>slugify(article.title)===slug);
@@ -729,6 +1099,8 @@ const blogDetail=slug=>{
   const article=BLOG_ARTICLES[index];
   const sections=BLOG_ARTICLE_BODY[index]||[];
   const course=find(article.course);
+  const instructor=course?getCourseInstructor(course):INSTRUCTORS[0];
+
   const body=sections.map(section=>{
     const heading=section.heading?'<h2>'+esc(section.heading)+'</h2>':'';
     const paragraphs=(section.paragraphs||[]).map(paragraph=>'<p>'+esc(paragraph)+'</p>').join('');
@@ -736,17 +1108,71 @@ const blogDetail=slug=>{
       ?'<ul>'+section.bullets.map(item=>'<li>'+esc(item)+'</li>').join('')+'</ul>':'';
     return '<section class="edn-blog-content-section">'+heading+paragraphs+bullets+'</section>';
   }).join('');
-  const relatedCourse=course
-    ?'<a class="btn btn-p" href="#/course/'+esc(course.id)+'">Xem chương trình liên quan</a>'
-    :'<a class="btn btn-p" href="#/courses">Khám phá chương trình</a>';
+
   const previous=BLOG_ARTICLES[(index-1+BLOG_ARTICLES.length)%BLOG_ARTICLES.length];
   const next=BLOG_ARTICLES[(index+1)%BLOG_ARTICLES.length];
-  return '<article class="wrap page edn-blog-article"><nav class="edn-breadcrumb" aria-label="Đường dẫn"><a href="#/">Trang chủ</a><span>›</span><a href="#/blog">Blog</a><span>›</span><span>'+esc(article.tag)+'</span></nav>'+
-    '<header class="edn-blog-article-head"><span class="content-kicker">'+esc(article.tag)+'</span><h1>'+esc(article.title)+'</h1><p class="edn-blog-article-lead">'+esc(article.excerpt)+'</p><div class="edn-blog-meta"><span>'+esc(article.time)+'</span><span>Biên tập EduNext</span></div></header>'+
-    (article.image?'<figure class="edn-blog-article-image"><img src="'+esc(article.image)+'" alt="'+esc(article.title)+'" loading="eager"><figcaption>'+esc(article.tag)+' · Blog EduNext</figcaption></figure>':'')+
-    '<div class="edn-blog-article-layout"><div class="edn-blog-article-body">'+body+'<p class="edn-blog-editor-note">Gợi ý thực hành: hãy thử áp dụng một bước trong bài vào ví dụ nhỏ của chính bạn và kiểm tra kết quả trước khi mở rộng.</p></div>'+
-    '<aside class="edn-blog-article-aside"><span class="edn-overline">ĐỌC TIẾP</span><h2>'+esc(article.tag)+'</h2><p>'+esc(article.excerpt)+'</p>'+relatedCourse+'<a class="btn btn-g" href="#/blog">Tất cả bài viết</a></aside></div>'+
-    '<nav class="edn-blog-post-navigation" aria-label="Bài viết khác"><a href="#/blog/'+slugify(previous.title)+'"><small>← BÀI TRƯỚC</small><strong>'+esc(previous.title)+'</strong></a><a href="#/blog/'+slugify(next.title)+'"><small>BÀI TIẾP THEO →</small><strong>'+esc(next.title)+'</strong></a></nav></article>';
+
+  const relatedArticles=BLOG_ARTICLES.filter((_,i)=>i!==index).slice(0,2);
+  const relatedArticlesMarkup=relatedArticles.map(a=>
+    '<a class="edn-sidebar-related-item" href="#/blog/'+slugify(a.title)+'">'+
+      '<img src="'+esc(a.image||'')+'" alt="" loading="lazy">'+
+      '<div><strong>'+esc(a.title)+'</strong><small>'+esc(a.tag)+' · '+esc(a.time)+'</small></div>'+
+    '</a>'
+  ).join('');
+
+  const courseWidget=course
+    ? '<div class="edn-sidebar-course-widget">'+
+        '<span class="edn-sidebar-widget-label">KHÓA HỌC THỰC CHIẾN LIÊN QUAN</span>'+
+        '<div class="edn-sidebar-course-thumb"><img src="'+esc(getCourseImage(course))+'" alt="'+esc(course.t)+'"></div>'+
+        '<h3>'+esc(course.t)+'</h3>'+
+        '<p class="edn-sidebar-instructor-row"><img src="'+esc(instructor.avatar)+'" alt=""> <span>'+esc(instructor.name)+' · '+esc(instructor.org)+'</span></p>'+
+        '<div class="edn-sidebar-course-price"><strong>'+esc(money(course.p))+'</strong>'+(typeof course.o==='number'&&course.o>course.p?'<del>'+esc(money(course.o))+'</del>':'')+'</div>'+
+        '<a class="btn btn-p btn-block" href="#/course/'+esc(course.id)+'">Xem chi tiết lộ trình ↗</a>'+
+      '</div>'
+    : '';
+
+  return '<article class="wrap page edn-blog-article-page">'+
+    '<nav class="edn-breadcrumb" aria-label="Đường dẫn"><a href="#/">Trang chủ</a><span>›</span><a href="#/blog">Blog</a><span>›</span><span>'+esc(article.tag)+'</span></nav>'+
+    '<header class="edn-article-header">'+
+      '<div class="edn-article-meta-badges"><span class="edn-mag-tag-pill">'+esc(article.tag)+'</span><span class="edn-mag-read-time">⏱ '+esc(article.time)+'</span><span class="edn-article-date">Cập nhật 2026</span></div>'+
+      '<h1>'+esc(article.title)+'</h1>'+
+      '<p class="edn-article-lead-summary">'+esc(article.excerpt)+'</p>'+
+      '<div class="edn-article-author-byline">'+
+        '<div class="edn-author-badge"><span class="edn-author-av">E</span><div><strong>Ban Biên tập EduNext</strong><small>Chuyên mục Kỹ thuật & Công nghệ</small></div></div>'+
+        '<div class="edn-article-share-actions"><a class="btn btn-g btn-s" href="#/blog">← Quay lại Blog</a></div>'+
+      '</div>'+
+    '</header>'+
+    (article.image?'<div class="edn-article-hero-cover"><img src="'+esc(article.image)+'" alt="'+esc(article.title)+'"><figcaption>Hình ảnh minh họa chuyên mục '+esc(article.tag)+' · EduNext Magazine</figcaption></div>':'')+
+    '<div class="edn-article-layout-grid">'+
+      '<div class="edn-article-main-content">'+
+        body+
+        '<div class="edn-article-callout-box">'+
+          '<div class="edn-callout-icon">💡</div>'+
+          '<div>'+
+            '<h4>Lời khuyên từ ban biên tập EduNext</h4>'+
+            '<p>Kiến thức chỉ thật sự trở thành kỹ năng khi bạn trực tiếp bắt tay vào thực hành. Hãy mở ngay môi trường phát triển của bạn, thử nghiệm một đoạn code hoặc tạo một prototype nhỏ từ các nguyên tắc trong bài viết này.</p>'+
+          '</div>'+
+        '</div>'+
+      '</div>'+
+      '<aside class="edn-article-sticky-sidebar">'+
+        courseWidget+
+        '<div class="edn-sidebar-related-box">'+
+          '<h4>Bài viết cùng chủ đề</h4>'+
+          '<div class="edn-sidebar-related-list">'+relatedArticlesMarkup+'</div>'+
+        '</div>'+
+      '</aside>'+
+    '</div>'+
+    '<nav class="edn-blog-post-nav" aria-label="Điều hướng bài viết">'+
+      '<a class="edn-post-nav-card prev" href="#/blog/'+slugify(previous.title)+'">'+
+        '<small>← BÀI TRƯỚC</small>'+
+        '<strong>'+esc(previous.title)+'</strong>'+
+      '</a>'+
+      '<a class="edn-post-nav-card next" href="#/blog/'+slugify(next.title)+'">'+
+        '<small>BÀI TIẾP THEO →</small>'+
+        '<strong>'+esc(next.title)+'</strong>'+
+      '</a>'+
+    '</nav>'+
+  '</article>';
 };
 const faqItems=[
 ['EduNext hiện có những lĩnh vực nào?','Danh mục khởi đầu có 50 lĩnh vực cùng các chủ đề chuyên môn liên quan. Danh mục có thể mở rộng khi có chương trình mới.'],
@@ -890,6 +1316,9 @@ function nav(){
   const user=me(),path=location.hash.slice(1)||'/';
   document.body.classList.add('edunext-ready');
   document.body.classList.remove('lms-mobile-open');
+  if(!path.startsWith('/learn/')){
+    document.body.classList.remove('edn-classroom-active');
+  }
   const profileAvatarMarkup=user&&user.profile&&user.profile.avatar
     ? '<img class="edn-header-avatar-image" src="'+esc(user.profile.avatar)+'" alt="">'
     : '<svg viewBox="0 0 24 24" focusable="false" aria-hidden="true"><circle cx="12" cy="8" r="3.5"></circle><path d="M5 20c.5-3.3 3.2-5 7-5s6.5 1.7 7 5"></path></svg>';
@@ -1209,6 +1638,7 @@ const openCoursePlayer=(id,index=0)=>{
 
 const A={
   'retry-catalog':()=>initializeEduNext(),
+  'home-filter':value=>{homeFilterTab=value;render(true);},
   menu:()=>{
     document.body.classList.toggle('lms-mobile-open');
     const button=$('.lms-mobile-menu');
@@ -1358,13 +1788,31 @@ document.addEventListener('click',event=>{
   const topic=button.dataset.blogTopic||'Tất cả';
   const normalizedTopic=topic.toLocaleLowerCase('vi-VN');
   const matches=tag=>topic==='Tất cả'||String(tag||'').toLocaleLowerCase('vi-VN')===normalizedTopic;
-  document.querySelectorAll('.blog-page-card[data-blog-tag]').forEach(item=>{
+  document.querySelectorAll('.blog-page-card[data-blog-tag], .edn-mag-card[data-blog-tag], .edn-mag-lead[data-blog-tag]').forEach(item=>{
     item.style.display=matches(item.dataset.blogTag||'')?'':'none';
   });
-  document.querySelectorAll('.blog-topic-row [data-blog-topic]').forEach(item=>{
+  document.querySelectorAll('[data-blog-topic]').forEach(item=>{
     const active=item.dataset.blogTopic===topic;
     item.classList.toggle('active',active);
+    item.classList.toggle('is-active',active);
     item.setAttribute('aria-pressed',String(active));
+  });
+});
+
+/* Classroom tab switching listener */
+document.addEventListener('click',event=>{
+  const tab=event.target.closest('[data-class-tab]');
+  if(!tab)return;
+  const targetId=tab.dataset.classTab;
+  const container=tab.closest('.edn-classroom-panel-content');
+  if(!container)return;
+  container.querySelectorAll('[data-class-tab]').forEach(t=>{
+    t.classList.toggle('is-active',t===tab);
+  });
+  container.querySelectorAll('.edn-tab-pane').forEach(p=>{
+    const isTarget=p.id==='pane-'+targetId;
+    p.hidden=!isTarget;
+    p.classList.toggle('is-active',isTarget);
   });
 });
 
@@ -1517,6 +1965,86 @@ document.addEventListener('keydown',event=>{
   }
 });
 let catalogLoaded=false;
+const initLiveSearch=()=>{
+  const headerSearchInput=document.querySelector('.edunext-header-search input[name="q"], #edn-header-search-input');
+  const dropdown=document.getElementById('edn-live-search-dropdown');
+  if(!headerSearchInput||!dropdown)return;
+
+  const handleSearch=()=>{
+    const q=headerSearchInput.value.trim().toLocaleLowerCase('vi-VN');
+    if(q.length<2){
+      dropdown.hidden=true;
+      dropdown.innerHTML='';
+      return;
+    }
+    const matchedCourses=C.filter(c=>{
+      const text=(c.id+' '+c.t+' '+(c.cat||'')+' '+(c.shortDescription||'')).toLocaleLowerCase('vi-VN');
+      return text.includes(q);
+    }).slice(0,4);
+
+    const matchedDomains=DOMAINS.filter(d=>{
+      const text=(d.name+' '+(d.groupName||'')+' '+((d.topics||[]).join(' '))).toLocaleLowerCase('vi-VN');
+      return text.includes(q);
+    }).slice(0,2);
+
+    if(!matchedCourses.length&&!matchedDomains.length){
+      dropdown.innerHTML='<div class="edn-search-no-result">Không tìm thấy kết quả cho "<strong>'+esc(q)+'</strong>"</div>';
+      dropdown.hidden=false;
+      return;
+    }
+
+    let html='';
+    if(matchedDomains.length){
+      html+='<div class="edn-search-group-title">Lĩnh vực & Chuyên ngành</div>'+
+        matchedDomains.map(d=>
+          '<a class="edn-search-domain-item" href="#/domain/'+esc(d.slug)+'">'+
+            '<span class="edn-search-icon">📁</span>'+
+            '<div class="edn-search-info"><strong>'+esc(d.name)+'</strong><small>'+esc(d.groupName||'Chuyên ngành')+'</small></div>'+
+          '</a>'
+        ).join('');
+    }
+
+    if(matchedCourses.length){
+      html+='<div class="edn-search-group-title">Khóa học trực tuyến</div>'+
+        matchedCourses.map(c=>
+          '<a class="edn-search-course-item" href="#/course/'+esc(c.id)+'">'+
+            '<img class="edn-search-course-thumb" src="'+esc(getCourseImage(c))+'" alt="">'+
+            '<div class="edn-search-info"><strong>'+esc(c.t)+'</strong><small>'+esc(c.cat)+' · '+esc(money(c.p))+'</small></div>'+
+          '</a>'
+        ).join('');
+    }
+
+    html+='<a class="edn-search-view-all" href="#/courses" data-a="search-all">Xem tất cả kết quả cho "'+esc(q)+'" →</a>';
+
+    dropdown.innerHTML=html;
+    dropdown.hidden=false;
+  };
+
+  headerSearchInput.addEventListener('input',handleSearch);
+  headerSearchInput.addEventListener('focus',handleSearch);
+
+  dropdown.addEventListener('click',e=>{
+    const link=e.target.closest('a');
+    if(link){
+      dropdown.hidden=true;
+      if(link.dataset.a==='search-all'){
+        f=F0();f.q=headerSearchInput.value.trim();
+        to('/courses');
+      }
+    }
+  });
+
+  document.addEventListener('click',e=>{
+    if(!dropdown.contains(e.target)&&!headerSearchInput.contains(e.target)){
+      dropdown.hidden=true;
+    }
+  });
+
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape'){dropdown.hidden=true;}
+  });
+};
+
 window.addEventListener('hashchange',()=>{if(catalogLoaded)render();});
 const initializeEduNext=async()=>{
   const currentPath=location.hash.slice(1)||'/';
@@ -1545,6 +2073,7 @@ const initializeEduNext=async()=>{
     C=CATALOG.courses.map(course=>mapCourse(course,videoCounts));
     syncCartWithCatalog();
     catalogLoaded=true;
+    initLiveSearch();
     render();
   }catch(error){
     app.innerHTML='<div class="wrap page"><div class="empty" role="alert"><h1>Chưa thể tải danh mục EduNext</h1><p>Hãy tải lại trang. Nếu lỗi tiếp tục xảy ra, quản trị viên cần kiểm tra tệp danh mục chương trình.</p><button class="btn btn-g" type="button" data-a="retry-catalog">Thử lại</button></div></div>';

@@ -43,7 +43,8 @@
 
             <form class="sf lms-search edunext-header-search" data-form="search" role="search">
                 <button type="submit" class="lms-search-icon" aria-label="Tìm kiếm"></button>
-                <input name="q" placeholder="Tìm khóa học hoặc lĩnh vực..." aria-label="Tìm khóa học hoặc lĩnh vực">
+                <input name="q" placeholder="Tìm khóa học hoặc lĩnh vực..." aria-label="Tìm khóa học hoặc lĩnh vực" autocomplete="off">
+                <div class="edn-live-search-dropdown" id="edn-live-search-dropdown" hidden></div>
             </form>
 
             <div class="edn-header-tools" role="group" aria-label="Tiện ích học viên">
