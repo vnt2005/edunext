@@ -16,6 +16,8 @@ declare module "react" {
     [key: string]: any;
   }
   export function createElement(...args: any[]): any;
+  export function useState<T = any>(initialState?: T | (() => T)): [T, (newState: T | ((prev: T) => T)) => void];
+  export function useEffect(effect: () => void | (() => void), deps?: any[]): void;
   const React: any;
   export default React;
 }
@@ -47,6 +49,15 @@ declare module "framer-motion" {
 
 declare module "lucide-react" {
   export const ArrowRight: any;
+  export const Star: any;
+  export const Play: any;
+  export const Check: any;
+  export const Clock: any;
+  export const Lock: any;
+  export const Plus: any;
+  export const ChevronDown: any;
+  export const ShoppingBag: any;
+  export const MessageSquare: any;
 }
 
 declare namespace JSX {

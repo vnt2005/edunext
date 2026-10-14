@@ -317,7 +317,7 @@ const nf=()=>'<div class="wrap page"><div class="empty" role="status"><h2>Không
 const slugify=value=>String(value||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/g,'d').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
 
 const home=()=>{
-  const arrowIcon='<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M8 3l5 5-5 5"></path></svg>';
+  const arrowIcon='<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 8h11M8 3l5 5-5 5"></path></svg>';
   const checkIcon='<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg>';
 
   // Course filtering by Tab
@@ -353,19 +353,19 @@ const home=()=>{
   ];
 
   const categoriesMarkup=categoryHighlights.map(cat=>
-    '<a class="edn-top-category-card" href="#/group/'+esc(cat.slug)+'">'+
-      '<div class="edn-top-cat-thumb"><img src="'+esc(cat.img)+'" alt="" loading="lazy"></div>'+
+    '<a class="edn-top-category-card group" href="#/group/'+esc(cat.slug)+'">'+
+      '<div class="edn-top-cat-icon">'+cat.icon+'</div>'+
       '<div class="edn-top-cat-info">'+
-        '<div class="edn-top-cat-icon">'+cat.icon+'</div>'+
         '<h3>'+esc(cat.name)+'</h3>'+
-        '<span>'+esc(cat.count)+'</span>'+
+        '<span class="edn-top-cat-count">'+esc(cat.count)+'</span>'+
       '</div>'+
+      '<div class="edn-top-cat-arrow" aria-hidden="true">'+arrowIcon+'</div>'+
     '</a>'
   ).join('');
 
   // Top Instructors
   const instructorsMarkup=INSTRUCTORS.slice(0,4).map(inst=>
-    '<article class="edn-mentor-card">'+
+    '<article class="edn-mentor-card group">'+
       '<div class="edn-mentor-avatar"><img src="'+esc(inst.avatar)+'" alt="'+esc(inst.name)+'" loading="lazy"><span class="edn-mentor-badge">✓ Verified</span></div>'+
       '<div class="edn-mentor-info">'+
         '<h3>'+esc(inst.name)+'</h3>'+
@@ -384,7 +384,8 @@ const home=()=>{
   ];
 
   const testimonialsMarkup=testimonials.map(t=>
-    '<div class="edn-testimonial-card">'+
+    '<div class="edn-testimonial-card group">'+
+      '<div class="edn-testimonial-quote-icon" aria-hidden="true">“</div>'+
       '<div class="edn-testimonial-stars">'+starIconMarkup+starIconMarkup+starIconMarkup+starIconMarkup+starIconMarkup+'</div>'+
       '<p class="edn-testimonial-quote">“'+esc(t.quote)+'”</p>'+
       '<div class="edn-testimonial-author">'+
@@ -402,15 +403,16 @@ const home=()=>{
 
   // Blog Highlights
   const articles=BLOG_ARTICLES.slice(0,3).map((art,idx)=>
-    '<article class="edn-journal-card'+(idx===0?' is-lead':'')+'">'+
+    '<article class="edn-journal-card group'+(idx===0?' is-lead':'')+'">'+
       '<a class="edn-journal-thumb" href="#/blog/'+slugify(art.title)+'">'+
         '<img src="'+esc(art.image||'')+'" alt="" loading="lazy">'+
         '<span class="edn-journal-tag">'+esc(art.tag)+'</span>'+
       '</a>'+
       '<div class="edn-journal-body">'+
-        '<span class="edn-journal-time">'+esc(art.time)+'</span>'+
+        '<span class="edn-journal-time"><svg class="edn-clock-icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/><path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/></svg> '+esc(art.time)+'</span>'+
         '<h3><a href="#/blog/'+slugify(art.title)+'">'+esc(art.title)+'</a></h3>'+
         '<p>'+esc(art.excerpt)+'</p>'+
+        '<div class="edn-journal-readmore"><a href="#/blog/'+slugify(art.title)+'">'+animatedText('Đọc bài viết')+' '+arrowIcon+'</a></div>'+
       '</div>'+
     '</article>'
   ).join('');
@@ -420,7 +422,7 @@ const home=()=>{
     ['Làm sao biết một khóa học đã mở bán?','Trạng thái được hiển thị rõ bằng huy hiệu Bán chạy hoặc Đề cương trên mỗi thẻ khóa học và trang chi tiết.'],
     ['Tôi có thể xem nội dung trước khi đăng ký không?','Có! Bạn có thể xem đề cương chi tiết từng bài học, mục tiêu đầu ra và video xem trước miễn phí.'],
     ['Tiến độ học tập và chứng chỉ được lưu như thế nào?','Khi tài khoản hoàn thành các bài học, hệ thống tự động ghi nhận tiến độ và cấp chứng chỉ số chính thức có mã định danh xác thực.']
-  ].map(item=>'<details class="edn-im-faq-item"><summary>'+esc(item[0])+'<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10"></path></svg></summary><p>'+esc(item[1])+'</p></details>').join('');
+  ].map(item=>'<details class="edn-im-faq-item"><summary><span>'+esc(item[0])+'</span><svg class="edn-faq-plus" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10"></path></svg></summary><div class="edn-faq-body"><p>'+esc(item[1])+'</p></div></details>').join('');
 
   return '<div class="edn-home-page edn-marketplace-home">'+
     // ZiroBuild Dark Video Hero Section
@@ -517,30 +519,44 @@ const home=()=>{
       '</div>'+
     '</section>'+
 
-    // Top Categories Grid
+    // 1. Top Categories Grid (Jiro Build Feature Grid style)
     '<section class="edn-categories-section"><div class="wrap">'+
-      '<div class="edn-section-header"><div><h2>Khám phá theo lĩnh vực hàng đầu</h2><p>Chọn đúng định hướng nghề nghiệp từ 50 chuyên ngành được chuẩn hóa theo thực tế doanh nghiệp.</p></div><a class="edn-header-link" href="#/categories">Xem tất cả 50 lĩnh vực '+arrowIcon+'</a></div>'+
+      '<div class="edn-section-header">'+
+        '<div>'+
+          '<div class="edn-jiro-badge"><span class="edn-jiro-badge-dot"></span><span>50 Chuyên ngành thực chiến</span></div>'+
+          '<h2>Khám phá theo <span class="edn-ziro-gradient-text">lĩnh vực hàng đầu</span></h2>'+
+          '<p>Chọn đúng định hướng nghề nghiệp từ 50 chuyên ngành được chuẩn hóa theo thực tế doanh nghiệp.</p>'+
+        '</div>'+
+        '<a class="edn-header-link group" href="#/categories">'+animatedText('Xem tất cả 50 lĩnh vực')+' '+arrowIcon+'</a>'+
+      '</div>'+
       '<div class="edn-top-categories-grid">'+categoriesMarkup+'</div>'+
     '</div></section>'+
 
-    // Featured Courses with 1-Click Filter Tabs
+    // 2. Featured Courses with 1-Click Filter Tabs (Jiro Build Showcase style)
     '<section class="edn-courses-section"><div class="wrap">'+
-      '<div class="edn-section-header"><div><h2>Khóa học thực chiến nổi bật</h2><p>Giáo trình cô đọng, bài tập thực hành theo dự án thật, hỗ trợ hỏi đáp trực tiếp cùng mentor.</p></div><a class="edn-header-link" href="#/courses">Xem tất cả '+C.length+' khóa học '+arrowIcon+'</a></div>'+
+      '<div class="edn-section-header">'+
+        '<div>'+
+          '<div class="edn-jiro-badge"><span class="edn-jiro-badge-dot"></span><span>Chương trình chọn lọc</span></div>'+
+          '<h2>Khóa học <span class="edn-ziro-gradient-text">thực chiến nổi bật</span></h2>'+
+          '<p>Giáo trình cô đọng, bài tập thực hành theo dự án thật, hỗ trợ hỏi đáp trực tiếp cùng mentor.</p>'+
+        '</div>'+
+        '<a class="edn-header-link group" href="#/courses">'+animatedText('Xem tất cả '+C.length+' khóa học')+' '+arrowIcon+'</a>'+
+      '</div>'+
       '<div class="edn-home-tabs-bar">'+tabsMarkup+'</div>'+
       '<div class="edn-featured-grid">'+visibleCourses.map(card).join('')+'</div>'+
-      '<div class="edn-section-footer-cta"><a class="btn btn-p" href="#/courses">Xem thêm toàn bộ danh mục khóa học '+arrowIcon+'</a></div>'+
+      '<div class="edn-section-footer-cta"><a class="edn-jiro-btn-outline group" href="#/courses">'+animatedText('Xem thêm toàn bộ danh mục khóa học')+' '+arrowIcon+'</a></div>'+
     '</div></section>'+
 
-    // How It Works / Value Prop
+    // 3. How It Works / Value Prop (Jiro Build Bento Split Value Proposition)
     '<section class="edn-workflow-section"><div class="wrap edn-workflow-layout">'+
       '<div class="edn-workflow-copy">'+
-        '<span class="edn-overline">TRẢI NGHIỆM TINH GỌN</span>'+
-        '<h2>Học tập chủ động.<br>Tiến bộ từng ngày.</h2>'+
-        '<p>EduNext loại bỏ rườm rà, tập trung 100% vào việc giúp bạn xây dựng kỹ năng và sản phẩm thật.</p>'+
+        '<div class="edn-jiro-badge"><span class="edn-jiro-badge-dot"></span><span>Trải nghiệm tinh gọn</span></div>'+
+        '<h2>Học tập chủ động.<br><span class="edn-ziro-gradient-text">Tiến bộ từng ngày.</span></h2>'+
+        '<p class="edn-workflow-lead">EduNext loại bỏ rườm rà, tập trung 100% vào việc giúp bạn xây dựng kỹ năng và sản phẩm thật.</p>'+
         '<div class="edn-workflow-steps">'+
-          '<div class="edn-wf-step"><div class="edn-wf-num">01</div><div><h3>Lộ trình chuẩn hóa</h3><p>Xem trước đề cương chi tiết, mục tiêu đầu ra và video giới thiệu trước khi đăng ký.</p></div></div>'+
-          '<div class="edn-wf-step"><div class="edn-wf-num">02</div><div><h3>Thực hành theo dự án</h3><p>Mỗi bài giảng đều đi kèm code mẫu, tài liệu cheat sheet và bài tập áp dụng thực tế.</p></div></div>'+
-          '<div class="edn-wf-step"><div class="edn-wf-num">03</div><div><h3>Chứng chỉ số định danh</h3><p>Hoàn thành toàn bộ bài học để nhận chứng chỉ chính thức có mã tra cứu trên hệ thống.</p></div></div>'+
+          '<div class="edn-wf-step group"><div class="edn-wf-num">01</div><div><h3>Lộ trình chuẩn hóa</h3><p>Xem trước đề cương chi tiết, mục tiêu đầu ra và video giới thiệu trước khi đăng ký.</p></div></div>'+
+          '<div class="edn-wf-step group"><div class="edn-wf-num">02</div><div><h3>Thực hành theo dự án</h3><p>Mỗi bài giảng đều đi kèm code mẫu, tài liệu cheat sheet và bài tập áp dụng thực tế.</p></div></div>'+
+          '<div class="edn-wf-step group"><div class="edn-wf-num">03</div><div><h3>Chứng chỉ số định danh</h3><p>Hoàn thành toàn bộ bài học để nhận chứng chỉ chính thức có mã tra cứu trên hệ thống.</p></div></div>'+
         '</div>'+
       '</div>'+
       '<div class="edn-workflow-preview">'+
@@ -548,6 +564,7 @@ const home=()=>{
           '<div class="edn-prev-video-box">'+
             '<img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=700" alt="Video bài giảng">'+
             '<span class="edn-prev-play-btn">▶</span>'+
+            '<div class="edn-prev-badge">Trải nghiệm bài giảng</div>'+
           '</div>'+
           '<div class="edn-prev-details">'+
             '<div class="edn-prev-header"><span>Bài 03 / 24</span><strong>Xây dựng REST API với ASP.NET Core</strong></div>'+
@@ -561,34 +578,75 @@ const home=()=>{
       '</div>'+
     '</div></section>'+
 
-    // Top Mentors / Instructors
+    // 4. Top Mentors / Instructors (Jiro Build Mentors Monday style)
     '<section class="edn-mentors-section"><div class="wrap">'+
-      '<div class="edn-section-header"><div><h2>Đội ngũ chuyên gia giảng dạy hàng đầu</h2><p>Học hỏi trực tiếp từ các Tech Lead, Principal Engineer và Head of Product tại các tập đoàn công nghệ lớn.</p></div></div>'+
+      '<div class="edn-section-header">'+
+        '<div>'+
+          '<div class="edn-jiro-badge"><span class="edn-jiro-badge-dot"></span><span>Đội ngũ chuyên gia</span></div>'+
+          '<h2>Giảng viên <span class="edn-ziro-gradient-text">hàng đầu ngành</span></h2>'+
+          '<p>Học hỏi trực tiếp từ các Tech Lead, Principal Engineer và Head of Product tại các tập đoàn công nghệ lớn.</p>'+
+        '</div>'+
+      '</div>'+
       '<div class="edn-mentors-grid">'+instructorsMarkup+'</div>'+
     '</div></section>'+
 
-    // Testimonials
+    // 5. Testimonials (Jiro Build Testimonials style)
     '<section class="edn-testimonials-section"><div class="wrap">'+
-      '<div class="edn-section-header"><div><h2>Cảm nhận từ học viên</h2><p>Hơn 15,000 học viên đã nâng cao kỹ năng và bứt phá sự nghiệp cùng EduNext.</p></div></div>'+
+      '<div class="edn-section-header">'+
+        '<div>'+
+          '<div class="edn-jiro-badge"><span class="edn-jiro-badge-dot"></span><span>Đánh giá thực tế</span></div>'+
+          '<h2>Cảm nhận từ <span class="edn-ziro-gradient-text">học viên</span></h2>'+
+          '<p>Hơn 15,000 học viên đã nâng cao kỹ năng và bứt phá sự nghiệp cùng EduNext.</p>'+
+        '</div>'+
+      '</div>'+
       '<div class="edn-testimonials-grid">'+testimonialsMarkup+'</div>'+
     '</div></section>'+
 
-    // Knowledge Magazine (Blog)
+    // 6. Knowledge Magazine / Blog (Jiro Build Blogs style)
     '<section class="edn-journal-section"><div class="wrap">'+
-      '<div class="edn-section-header"><div><h2>Góc kiến thức & Kinh nghiệm thực tế</h2><p>Những bài học ngắn, phương pháp tư duy và kinh nghiệm đúc kết từ các dự án phát triển phần mềm.</p></div><a class="edn-header-link" href="#/blog">Xem tất cả bài viết '+arrowIcon+'</a></div>'+
+      '<div class="edn-section-header">'+
+        '<div>'+
+          '<div class="edn-jiro-badge"><span class="edn-jiro-badge-dot"></span><span>Góc chuyên môn</span></div>'+
+          '<h2>Kiến thức & <span class="edn-ziro-gradient-text">Kinh nghiệm thực tế</span></h2>'+
+          '<p>Những bài học ngắn, phương pháp tư duy và kinh nghiệm đúc kết từ các dự án phát triển phần mềm.</p>'+
+        '</div>'+
+        '<a class="edn-header-link group" href="#/blog">'+animatedText('Xem tất cả bài viết')+' '+arrowIcon+'</a>'+
+      '</div>'+
       '<div class="edn-journal-cards-grid">'+articles+'</div>'+
     '</div></section>'+
 
-    // FAQ Accordion
+    // 7. FAQ Accordion (Jiro Build FAQ style)
     '<section class="edn-faq-section"><div class="wrap edn-faq-layout">'+
-      '<div class="edn-faq-intro"><h2>Những điều cần biết trước khi học</h2><p>Giải đáp thắc mắc về lộ trình đào tạo, quyền truy cập và chính sách cấp chứng chỉ tại EduNext.</p><a class="edn-header-link" href="#/faq">Xem toàn bộ câu hỏi '+arrowIcon+'</a></div>'+
+      '<div class="edn-faq-intro">'+
+        '<div class="edn-jiro-badge"><span class="edn-jiro-badge-dot"></span><span>Hỏi đáp & Hỗ trợ</span></div>'+
+        '<h2>Những điều cần biết <br><span class="edn-ziro-gradient-text">trước khi học</span></h2>'+
+        '<p>Giải đáp thắc mắc về lộ trình đào tạo, quyền truy cập và chính sách cấp chứng chỉ tại EduNext.</p>'+
+        '<div class="edn-faq-help-box">'+
+          '<h4>Bạn có câu hỏi khác?</h4>'+
+          '<p>Đội ngũ cố vấn luôn sẵn sàng giải đáp thắc mắc 24/7 qua cộng đồng và live chat.</p>'+
+          '<a class="edn-header-link group" href="#/faq">'+animatedText('Xem toàn bộ câu hỏi')+' '+arrowIcon+'</a>'+
+        '</div>'+
+      '</div>'+
       '<div class="edn-faq-accordion">'+qa+'</div>'+
     '</div></section>'+
 
-    // Final High-Converting CTA
+    // 8. Final High-Converting CTA (Jiro Build Pre-Footer Cosmic CTA)
     '<section class="edn-final-cta"><div class="wrap edn-cta-box">'+
-      '<div><h2>Sẵn sàng bắt đầu lộ trình của bạn?</h2><p>Gia nhập cộng đồng hơn 15,000 học viên nâng tầm kỹ năng số ngay hôm nay.</p></div>'+
-      '<div class="edn-cta-actions"><a class="btn btn-p" href="#/courses">Khám phá khóa học ngay '+arrowIcon+'</a><a class="btn btn-g" href="#/categories">Duyệt 50 lĩnh vực</a></div>'+
+      '<div class="edn-cta-ambient" aria-hidden="true"></div>'+
+      '<div class="edn-jiro-badge"><span class="edn-jiro-badge-dot"></span><span>Bắt đầu ngay hôm nay</span></div>'+
+      '<h2>Sẵn sàng bắt đầu <span class="edn-ziro-gradient-text">lộ trình của bạn?</span></h2>'+
+      '<p>Gia nhập cộng đồng hơn 15,000 học viên nâng tầm kỹ năng số ngay hôm nay.</p>'+
+      '<div class="edn-cta-actions">'+
+        '<a class="edn-ziro-btn-primary group" href="#/courses">'+animatedText('Khám phá khóa học ngay')+' '+arrowIcon+'</a>'+
+        '<a class="edn-ziro-btn-secondary group" href="#/categories">'+animatedText('Duyệt 50 lĩnh vực')+'</a>'+
+      '</div>'+
+      '<div class="edn-cta-trust-bar">'+
+        '<span>🔒 Truy cập vĩnh viễn</span>'+
+        '<span class="edn-cta-trust-sep">•</span>'+
+        '<span>🎓 Chứng chỉ số định danh</span>'+
+        '<span class="edn-cta-trust-sep">•</span>'+
+        '<span>💬 Hỏi đáp 1-1 cùng Mentor</span>'+
+      '</div>'+
     '</div></section>'+
   '</div>';
 };
@@ -1600,31 +1658,25 @@ const triggerGsapAnimations = () => {
     );
   }
 
-  if (window.ScrollTrigger) {
-    const cardGrids = ['.edn-featured-grid', '.edn-domain-visual-grid', '.edn-steps-visual-grid', '.edn-journal-cards-grid'];
-    cardGrids.forEach((selector) => {
-      const grid = document.querySelector(selector);
-      if (grid && grid.children.length) {
-        gsap.from(
-          grid.children,
-          {
-            y: 24,
-            opacity: 0,
-            duration: 0.5,
-            stagger: 0.06,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: grid,
-              start: 'top 92%',
-              toggleActions: 'play none none none',
-              once: true
-            }
-          }
-        );
-      }
+  const cardGrids = [
+    '.edn-featured-grid',
+    '.edn-top-categories-grid',
+    '.edn-mentors-grid',
+    '.edn-testimonials-grid',
+    '.edn-journal-cards-grid',
+    '.edn-workflow-steps',
+    '.edn-classroom-preview-card'
+  ];
+
+  cardGrids.forEach((selector) => {
+    const grid = document.querySelector(selector);
+    if (!grid) return;
+    const targets = selector === '.edn-classroom-preview-card' ? [grid] : Array.from(grid.children);
+    targets.forEach(el => {
+      el.style.opacity = '1';
+      el.style.transform = 'none';
     });
-    window.ScrollTrigger.refresh();
-  }
+  });
 };
 
 function render(keep){

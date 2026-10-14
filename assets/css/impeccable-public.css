@@ -3988,6 +3988,7 @@ body.edn-home-active .edunext-header-auth .btn-g:hover {
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
+  gap: 8px !important;
   padding: 14px 32px !important;
   background: #FFFFFF !important;
   color: #000000 !important;
@@ -4004,6 +4005,17 @@ body.edn-home-active .edunext-header-auth .btn-g:hover {
   transform: translateY(-2px) !important;
   box-shadow: 0 15px 30px -5px rgba(255, 255, 255, 0.35) !important;
   color: #000000 !important;
+}
+.edn-ziro-btn-primary svg {
+  width: 16px !important;
+  height: 16px !important;
+  stroke: currentColor !important;
+  fill: none !important;
+  stroke-width: 2 !important;
+  transition: transform 0.25s ease !important;
+}
+.edn-ziro-btn-primary:hover svg {
+  transform: translateX(4px) !important;
 }
 .edn-ziro-btn-secondary {
   display: inline-flex !important;
@@ -4407,5 +4419,1416 @@ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-luma-stats,
   height: 100px !important;
   opacity: 0.25 !important;
   pointer-events: none !important;
+}
+
+
+/* ========================================================
+ * JIRO BUILD REDESIGN — 8 Core Marketing Sections
+ * Full Dark Palette, Glassmorphism & Cyan/Teal Accents
+ * ======================================================== */
+
+/* Home page canvas background */
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-marketplace-home,
+.edn-marketplace-home {
+  background-color: #07080B !important;
+  color: #FFFFFF !important;
+  overflow-x: clip !important;
+}
+
+/* Jiro Build Eyebrow Badges */
+.edn-jiro-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 6px 16px !important;
+  border-radius: 9999px !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: #CBD5E1 !important;
+  letter-spacing: 0.025em !important;
+  margin-bottom: 16px !important;
+}
+
+.edn-jiro-badge-dot {
+  width: 6px !important;
+  height: 6px !important;
+  border-radius: 50% !important;
+  background-color: #2DD4BF !important;
+  box-shadow: 0 0 8px rgba(45, 212, 191, 0.8) !important;
+  display: inline-block !important;
+  animation: ednPulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite !important;
+}
+
+/* Common Section Headers in Jiro Build Style */
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-section-header,
+.edn-section-header {
+  display: flex !important;
+  align-items: flex-end !important;
+  justify-content: space-between !important;
+  gap: 24px !important;
+  margin-bottom: 40px !important;
+  flex-wrap: wrap !important;
+}
+
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-section-header h2,
+.edn-section-header h2 {
+  font-size: clamp(28px, 3.5vw, 42px) !important;
+  line-height: 1.2 !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.03em !important;
+  color: #FFFFFF !important;
+  font-family: "Space Grotesk", sans-serif !important;
+  margin: 0 0 10px !important;
+}
+
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-section-header p,
+.edn-section-header p {
+  color: #94A3B8 !important;
+  font-size: 15px !important;
+  line-height: 1.6 !important;
+  max-width: 640px !important;
+  margin: 0 !important;
+  font-weight: 400 !important;
+}
+
+/* Jiro Build Header Link Pill */
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-header-link,
+.edn-header-link {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 8px 18px !important;
+  border-radius: 9999px !important;
+  background: rgba(45, 212, 191, 0.08) !important;
+  border: 1px solid rgba(45, 212, 191, 0.25) !important;
+  color: #2DD4BF !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  transition: all 0.25s ease !important;
+  white-space: nowrap !important;
+}
+
+.edn-header-link:hover {
+  background: rgba(45, 212, 191, 0.16) !important;
+  border-color: #2DD4BF !important;
+  color: #FFFFFF !important;
+  transform: translateY(-1px) !important;
+}
+
+.edn-header-link svg {
+  width: 14px !important;
+  height: 14px !important;
+  stroke: currentColor !important;
+  fill: none !important;
+  stroke-width: 2 !important;
+  transition: transform 0.25s ease !important;
+}
+
+.edn-header-link:hover svg {
+  transform: translateX(3px) !important;
+}
+
+/* ========================================================
+ * 1. CATEGORY GRID (Jiro Build Feature Grid)
+ * ======================================================== */
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-categories-section,
+.edn-categories-section {
+  padding: 80px 0 !important;
+  background-color: #07080B !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+.edn-top-categories-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 16px !important;
+}
+
+@media (max-width: 1024px) {
+  .edn-top-categories-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .edn-top-categories-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+.edn-top-category-card {
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 16px !important;
+  padding: 20px 22px !important;
+  background: #0D0F17 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 20px !important;
+  text-decoration: none !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  overflow: hidden !important;
+}
+
+.edn-top-category-card:hover {
+  background: #121522 !important;
+  border-color: rgba(45, 212, 191, 0.4) !important;
+  transform: translateY(-4px) !important;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(45, 212, 191, 0.1) !important;
+}
+
+.edn-top-cat-icon {
+  width: 48px !important;
+  height: 48px !important;
+  border-radius: 14px !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 24px !important;
+  flex-shrink: 0 !important;
+  transition: all 0.3s ease !important;
+}
+
+.edn-top-category-card:hover .edn-top-cat-icon {
+  background: rgba(45, 212, 191, 0.12) !important;
+  border-color: rgba(45, 212, 191, 0.35) !important;
+  transform: scale(1.08) !important;
+}
+
+.edn-top-cat-thumb {
+  display: none !important;
+}
+
+.edn-top-cat-info {
+  flex: 1 !important;
+  min-width: 0 !important;
+}
+
+.edn-top-cat-info h3 {
+  color: #FFFFFF !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  margin: 0 0 4px !important;
+  letter-spacing: -0.015em !important;
+  transition: color 0.25s ease !important;
+}
+
+.edn-top-category-card:hover .edn-top-cat-info h3 {
+  color: #99F6E4 !important;
+}
+
+.edn-top-cat-count {
+  display: inline-block !important;
+  font-size: 12px !important;
+  color: #94A3B8 !important;
+  font-weight: 500 !important;
+  transition: color 0.25s ease !important;
+}
+
+.edn-top-category-card:hover .edn-top-cat-count {
+  color: #5EEAD4 !important;
+}
+
+.edn-top-cat-arrow {
+  color: #94A3B8 !important;
+  opacity: 0.3 !important;
+  transition: all 0.25s ease !important;
+  flex-shrink: 0 !important;
+}
+
+.edn-top-cat-arrow svg {
+  width: 16px !important;
+  height: 16px !important;
+  stroke: currentColor !important;
+  fill: none !important;
+  stroke-width: 2 !important;
+}
+
+.edn-top-category-card:hover .edn-top-cat-arrow {
+  opacity: 1 !important;
+  color: #2DD4BF !important;
+  transform: translateX(4px) !important;
+}
+
+/* ========================================================
+ * 2. FEATURED COURSES / SHOWCASE (Jiro Build Showcase)
+ * ======================================================== */
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-courses-section,
+.edn-courses-section {
+  padding: 80px 0 !important;
+  background-color: #0B0C10 !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+/* Jiro Build Capsule Tab Filter Bar */
+.edn-home-tabs-bar {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 6px !important;
+  border-radius: 9999px !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  overflow-x: auto !important;
+  scrollbar-width: none !important;
+  margin-bottom: 36px !important;
+  width: fit-content !important;
+  max-width: 100% !important;
+}
+
+.edn-home-tabs-bar::-webkit-scrollbar {
+  display: none !important;
+}
+
+.edn-home-tab-pill {
+  padding: 8px 18px !important;
+  border-radius: 9999px !important;
+  background: transparent !important;
+  border: none !important;
+  color: #94A3B8 !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  transition: all 0.25s ease !important;
+  white-space: nowrap !important;
+}
+
+.edn-home-tab-pill:hover {
+  color: #FFFFFF !important;
+}
+
+.edn-home-tab-pill.is-active {
+  background: #0F766E !important;
+  color: #FFFFFF !important;
+  font-weight: 600 !important;
+  box-shadow: 0 4px 14px rgba(15, 118, 110, 0.4) !important;
+}
+
+/* Course Grid in Jiro Build Style */
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-featured-grid,
+.edn-featured-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 20px !important;
+  margin-bottom: 40px !important;
+}
+
+@media (max-width: 1200px) {
+  .edn-featured-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .edn-featured-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .edn-featured-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Jiro Course Card */
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-card,
+.edn-course-card {
+  position: relative !important;
+  background: #0D0F17 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 20px !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3) !important;
+}
+
+.edn-course-card:hover {
+  transform: translateY(-6px) !important;
+  border-color: rgba(45, 212, 191, 0.4) !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 24px rgba(45, 212, 191, 0.12) !important;
+}
+
+.edn-course-card-link {
+  text-decoration: none !important;
+  color: inherit !important;
+  display: flex !important;
+  flex-direction: column !important;
+  flex: 1 !important;
+}
+
+.edn-course-card-media {
+  position: relative !important;
+  width: 100% !important;
+  aspect-ratio: 16/9 !important;
+  overflow: hidden !important;
+  background: #1A1D27 !important;
+}
+
+.edn-course-card-media img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.edn-course-card:hover .edn-course-card-media img {
+  transform: scale(1.06) !important;
+}
+
+.edn-card-badge-group {
+  position: absolute !important;
+  top: 12px !important;
+  left: 12px !important;
+  display: flex !important;
+  gap: 6px !important;
+  z-index: 2 !important;
+}
+
+.edn-card-badge {
+  padding: 4px 10px !important;
+  border-radius: 9999px !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+}
+
+.edn-card-badge.is-verified {
+  background: rgba(15, 118, 110, 0.85) !important;
+  border: 1px solid rgba(45, 212, 191, 0.4) !important;
+  color: #FFFFFF !important;
+}
+
+.edn-card-badge.is-draft {
+  background: rgba(30, 41, 59, 0.85) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  color: #CBD5E1 !important;
+}
+
+.edn-card-discount-badge {
+  background: #E11D48 !important;
+  color: #FFFFFF !important;
+  padding: 4px 8px !important;
+  border-radius: 9999px !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+}
+
+.edn-course-card-content {
+  padding: 20px 20px 16px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  flex: 1 !important;
+}
+
+.edn-card-meta-top {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  margin-bottom: 8px !important;
+}
+
+.edn-card-category {
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  color: #2DD4BF !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+}
+
+.edn-card-level {
+  font-size: 11px !important;
+  color: #94A3B8 !important;
+}
+
+.edn-card-title {
+  color: #FFFFFF !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  line-height: 1.4 !important;
+  margin: 0 0 14px !important;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 2 !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+  transition: color 0.25s ease !important;
+}
+
+.edn-course-card:hover .edn-card-title {
+  color: #99F6E4 !important;
+}
+
+.edn-card-instructor {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  margin-bottom: 14px !important;
+}
+
+.edn-instructor-thumb {
+  width: 28px !important;
+  height: 28px !important;
+  border-radius: 50% !important;
+  border: 1px solid rgba(45, 212, 191, 0.4) !important;
+  object-fit: cover !important;
+}
+
+.edn-instructor-name {
+  font-size: 13px !important;
+  color: #CBD5E1 !important;
+  font-weight: 500 !important;
+}
+
+.edn-instructor-name small {
+  color: #64748B !important;
+}
+
+.edn-card-meta {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  font-size: 12px !important;
+  color: #94A3B8 !important;
+  padding-top: 12px !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+.edn-card-rating {
+  display: flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+}
+
+.edn-card-rating svg {
+  width: 14px !important;
+  height: 14px !important;
+  fill: #F59E0B !important;
+  color: #F59E0B !important;
+}
+
+.edn-card-rating b {
+  color: #FFFFFF !important;
+  font-weight: 700 !important;
+}
+
+.edn-card-rating small {
+  color: #64748B !important;
+}
+
+.edn-card-lessons svg {
+  width: 13px !important;
+  height: 13px !important;
+  stroke: currentColor !important;
+  fill: none !important;
+  stroke-width: 1.8 !important;
+}
+
+/* Course Card Footer (Price & Action) */
+.edn-course-card-footer {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 14px 20px 18px !important;
+  background: rgba(255, 255, 255, 0.02) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+.edn-card-pricing {
+  display: flex !important;
+  align-items: baseline !important;
+  gap: 6px !important;
+}
+
+.edn-price-current {
+  font-size: 18px !important;
+  font-weight: 800 !important;
+  color: #FFFFFF !important;
+  font-family: "Space Grotesk", sans-serif !important;
+}
+
+.edn-price-orig {
+  font-size: 13px !important;
+  color: #64748B !important;
+  text-decoration: line-through !important;
+}
+
+.edn-card-btn-action {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  padding: 7px 14px !important;
+  border-radius: 9999px !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  color: #FFFFFF !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  text-decoration: none !important;
+}
+
+.edn-card-btn-action:hover {
+  background: #0F766E !important;
+  border-color: #0F766E !important;
+  color: #FFFFFF !important;
+}
+
+.edn-card-btn-action.is-in-cart {
+  background: rgba(45, 212, 191, 0.15) !important;
+  border-color: #2DD4BF !important;
+  color: #2DD4BF !important;
+}
+
+.edn-card-btn-action svg {
+  width: 14px !important;
+  height: 14px !important;
+  stroke: currentColor !important;
+  fill: none !important;
+  stroke-width: 2 !important;
+}
+
+/* Jiro Outline Action Button */
+.edn-jiro-btn-outline {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  padding: 14px 32px !important;
+  border-radius: 9999px !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  color: #FFFFFF !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  transition: all 0.25s ease !important;
+}
+
+.edn-jiro-btn-outline:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-color: #2DD4BF !important;
+  color: #2DD4BF !important;
+  transform: translateY(-2px) !important;
+}
+
+.edn-jiro-btn-outline svg {
+  width: 16px !important;
+  height: 16px !important;
+  stroke: currentColor !important;
+  fill: none !important;
+  stroke-width: 2 !important;
+  transition: transform 0.25s ease !important;
+}
+
+.edn-jiro-btn-outline:hover svg {
+  transform: translateX(4px) !important;
+}
+
+.edn-section-footer-cta {
+  text-align: center !important;
+  margin-top: 10px !important;
+}
+
+/* ========================================================
+ * 3. VALUE PROPOSITION / BENTO (Jiro Build Workflow)
+ * ======================================================== */
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-workflow-section,
+.edn-workflow-section {
+  padding: 96px 0 !important;
+  background-color: #07080B !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+.edn-workflow-layout {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 56px !important;
+  align-items: center !important;
+}
+
+@media (max-width: 992px) {
+  .edn-workflow-layout {
+    grid-template-columns: 1fr !important;
+    gap: 40px !important;
+  }
+}
+
+.edn-workflow-copy h2 {
+  font-size: clamp(32px, 4vw, 48px) !important;
+  font-weight: 700 !important;
+  line-height: 1.15 !important;
+  letter-spacing: -0.03em !important;
+  color: #FFFFFF !important;
+  font-family: "Space Grotesk", sans-serif !important;
+  margin: 0 0 16px !important;
+}
+
+.edn-workflow-lead {
+  font-size: 16px !important;
+  line-height: 1.6 !important;
+  color: #94A3B8 !important;
+  margin-bottom: 32px !important;
+}
+
+.edn-workflow-steps {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 16px !important;
+}
+
+.edn-wf-step {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 20px !important;
+  padding: 20px 24px !important;
+  background: #0D0F17 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 20px !important;
+  transition: all 0.3s ease !important;
+}
+
+.edn-wf-step:hover {
+  background: #121522 !important;
+  border-color: rgba(45, 212, 191, 0.4) !important;
+  transform: translateX(6px) !important;
+}
+
+.edn-wf-num {
+  font-size: 24px !important;
+  font-weight: 800 !important;
+  font-family: "Space Grotesk", sans-serif !important;
+  background: linear-gradient(135deg, #FFFFFF 0%, #2DD4BF 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  line-height: 1 !important;
+  padding-top: 2px !important;
+}
+
+.edn-wf-step h3 {
+  color: #FFFFFF !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  margin: 0 0 6px !important;
+  letter-spacing: -0.015em !important;
+}
+
+.edn-wf-step p {
+  color: #94A3B8 !important;
+  font-size: 14px !important;
+  line-height: 1.6 !important;
+  margin: 0 !important;
+}
+
+/* Glass Classroom Mockup */
+.edn-classroom-preview-card {
+  background: #0D0F17 !important;
+  border: 1px solid rgba(45, 212, 191, 0.25) !important;
+  border-radius: 24px !important;
+  overflow: hidden !important;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), 0 0 40px rgba(45, 212, 191, 0.12) !important;
+  position: relative !important;
+}
+
+.edn-prev-video-box {
+  position: relative !important;
+  width: 100% !important;
+  aspect-ratio: 16/9 !important;
+  overflow: hidden !important;
+}
+
+.edn-prev-video-box img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+.edn-prev-play-btn {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  width: 60px !important;
+  height: 60px !important;
+  border-radius: 50% !important;
+  background: rgba(15, 118, 110, 0.9) !important;
+  color: #FFFFFF !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 18px !important;
+  padding-left: 3px !important;
+  box-shadow: 0 0 30px rgba(45, 212, 191, 0.6) !important;
+  cursor: pointer !important;
+  transition: transform 0.25s ease !important;
+}
+
+.edn-classroom-preview-card:hover .edn-prev-play-btn {
+  transform: translate(-50%, -50%) scale(1.1) !important;
+}
+
+.edn-prev-badge {
+  position: absolute !important;
+  bottom: 12px !important;
+  right: 12px !important;
+  padding: 4px 12px !important;
+  border-radius: 9999px !important;
+  background: rgba(0, 0, 0, 0.75) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  color: #FFFFFF !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  backdrop-filter: blur(8px) !important;
+}
+
+.edn-prev-details {
+  padding: 24px !important;
+}
+
+.edn-prev-header {
+  margin-bottom: 20px !important;
+}
+
+.edn-prev-header span {
+  display: inline-block !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  color: #2DD4BF !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  margin-bottom: 6px !important;
+}
+
+.edn-prev-header strong {
+  display: block !important;
+  font-size: 17px !important;
+  color: #FFFFFF !important;
+  font-weight: 700 !important;
+}
+
+.edn-prev-checklist {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+}
+
+.edn-prev-checklist div {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  font-size: 13px !important;
+  color: #CBD5E1 !important;
+}
+
+.edn-prev-checklist svg {
+  width: 16px !important;
+  height: 16px !important;
+  color: #2DD4BF !important;
+  flex-shrink: 0 !important;
+}
+
+/* ========================================================
+ * 4. INSTRUCTORS / TEAM (Jiro Build Mentors Monday)
+ * ======================================================== */
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-mentors-section,
+.edn-mentors-section {
+  padding: 80px 0 !important;
+  background-color: #0B0C10 !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+.edn-mentors-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 20px !important;
+}
+
+@media (max-width: 1024px) {
+  .edn-mentors-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .edn-mentors-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+.edn-mentor-card {
+  position: relative !important;
+  background: #0D0F17 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 20px !important;
+  padding: 32px 24px 28px !important;
+  text-align: center !important;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  overflow: hidden !important;
+}
+
+.edn-mentor-card:hover {
+  transform: translateY(-6px) !important;
+  border-color: rgba(45, 212, 191, 0.4) !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), 0 0 24px rgba(45, 212, 191, 0.1) !important;
+}
+
+.edn-mentor-avatar {
+  position: relative !important;
+  width: 96px !important;
+  height: 96px !important;
+  margin: 0 auto 18px !important;
+}
+
+.edn-mentor-avatar img {
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 50% !important;
+  object-fit: cover !important;
+  border: 2px solid rgba(45, 212, 191, 0.4) !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4) !important;
+}
+
+.edn-mentor-badge {
+  position: absolute !important;
+  bottom: 0 !important;
+  right: 0 !important;
+  padding: 2px 8px !important;
+  border-radius: 9999px !important;
+  background: #0F766E !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  color: #FFFFFF !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+}
+
+.edn-mentor-info h3 {
+  color: #FFFFFF !important;
+  font-size: 17px !important;
+  font-weight: 700 !important;
+  margin: 0 0 6px !important;
+  letter-spacing: -0.015em !important;
+  transition: color 0.25s ease !important;
+}
+
+.edn-mentor-card:hover .edn-mentor-info h3 {
+  color: #99F6E4 !important;
+}
+
+.edn-mentor-role {
+  color: #94A3B8 !important;
+  font-size: 13px !important;
+  margin: 0 0 12px !important;
+}
+
+.edn-mentor-org {
+  margin-bottom: 16px !important;
+}
+
+.edn-org-pill {
+  display: inline-block !important;
+  padding: 4px 12px !important;
+  border-radius: 9999px !important;
+  background: rgba(45, 212, 191, 0.1) !important;
+  border: 1px solid rgba(45, 212, 191, 0.25) !important;
+  color: #2DD4BF !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+}
+
+.edn-mentor-metrics {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 12px !important;
+  font-size: 12px !important;
+  color: #94A3B8 !important;
+  padding-top: 14px !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+.edn-mentor-metrics span:first-child {
+  color: #F59E0B !important;
+  font-weight: 700 !important;
+}
+
+/* ========================================================
+ * 5. TESTIMONIALS (Jiro Build Testimonials Monday)
+ * ======================================================== */
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-testimonials-section,
+.edn-testimonials-section {
+  padding: 88px 0 !important;
+  background-color: #07080B !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+.edn-testimonials-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 24px !important;
+}
+
+@media (max-width: 900px) {
+  .edn-testimonials-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+.edn-testimonial-card {
+  position: relative !important;
+  background: #0D0F17 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 20px !important;
+  padding: 32px 28px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.edn-testimonial-card:hover {
+  transform: translateY(-5px) !important;
+  border-color: rgba(45, 212, 191, 0.4) !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(45, 212, 191, 0.08) !important;
+}
+
+.edn-testimonial-quote-icon {
+  position: absolute !important;
+  top: 20px !important;
+  right: 24px !important;
+  font-size: 48px !important;
+  line-height: 1 !important;
+  font-family: Georgia, serif !important;
+  color: rgba(45, 212, 191, 0.15) !important;
+  pointer-events: none !important;
+}
+
+.edn-testimonial-stars {
+  display: flex !important;
+  gap: 4px !important;
+  margin-bottom: 16px !important;
+}
+
+.edn-testimonial-stars svg {
+  width: 16px !important;
+  height: 16px !important;
+  fill: #F59E0B !important;
+  color: #F59E0B !important;
+}
+
+.edn-testimonial-quote {
+  color: #CBD5E1 !important;
+  font-size: 14px !important;
+  line-height: 1.7 !important;
+  margin: 0 0 24px !important;
+  font-style: italic !important;
+  flex: 1 !important;
+}
+
+.edn-testimonial-author {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  padding-top: 18px !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+.edn-testimonial-author img {
+  width: 44px !important;
+  height: 44px !important;
+  border-radius: 50% !important;
+  border: 1px solid rgba(45, 212, 191, 0.4) !important;
+  object-fit: cover !important;
+}
+
+.edn-testimonial-author strong {
+  display: block !important;
+  font-size: 14px !important;
+  color: #FFFFFF !important;
+  font-weight: 700 !important;
+}
+
+.edn-testimonial-author small {
+  display: block !important;
+  font-size: 12px !important;
+  color: #2DD4BF !important;
+  font-weight: 500 !important;
+}
+
+/* ========================================================
+ * 6. KNOWLEDGE MAGAZINE / BLOG (Jiro Build Blogs)
+ * ======================================================== */
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-journal-section,
+.edn-journal-section {
+  padding: 80px 0 !important;
+  background-color: #0B0C10 !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+.edn-journal-cards-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 24px !important;
+}
+
+@media (max-width: 900px) {
+  .edn-journal-cards-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+.edn-journal-card {
+  position: relative !important;
+  background: #0D0F17 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 20px !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.edn-journal-card:hover {
+  transform: translateY(-6px) !important;
+  border-color: rgba(45, 212, 191, 0.4) !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(45, 212, 191, 0.1) !important;
+}
+
+.edn-journal-thumb {
+  position: relative !important;
+  width: 100% !important;
+  aspect-ratio: 16/9 !important;
+  overflow: hidden !important;
+  display: block !important;
+}
+
+.edn-journal-thumb img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  transition: transform 0.5s ease !important;
+}
+
+.edn-journal-card:hover .edn-journal-thumb img {
+  transform: scale(1.06) !important;
+}
+
+.edn-journal-tag {
+  position: absolute !important;
+  top: auto !important;
+  bottom: 12px !important;
+  left: 12px !important;
+  height: auto !important;
+  padding: 4px 10px !important;
+  border-radius: 9999px !important;
+  background: rgba(15, 118, 110, 0.85) !important;
+  border: 1px solid rgba(45, 212, 191, 0.4) !important;
+  color: #FFFFFF !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  backdrop-filter: blur(8px) !important;
+}
+
+.edn-journal-body {
+  padding: 24px 22px 20px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  flex: 1 !important;
+}
+
+.edn-journal-time {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  font-size: 12px !important;
+  color: #94A3B8 !important;
+  margin-bottom: 10px !important;
+}
+
+.edn-clock-icon {
+  width: 13px !important;
+  height: 13px !important;
+  color: #64748B !important;
+}
+
+.edn-journal-body h3 {
+  font-size: 17px !important;
+  font-weight: 700 !important;
+  line-height: 1.4 !important;
+  margin: 0 0 10px !important;
+}
+
+.edn-journal-body h3 a {
+  color: #FFFFFF !important;
+  text-decoration: none !important;
+  transition: color 0.25s ease !important;
+}
+
+.edn-journal-card:hover .edn-journal-body h3 a {
+  color: #99F6E4 !important;
+}
+
+.edn-journal-body p {
+  color: #94A3B8 !important;
+  font-size: 14px !important;
+  line-height: 1.6 !important;
+  margin: 0 0 18px !important;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 3 !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+  flex: 1 !important;
+}
+
+.edn-journal-readmore a {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: #2DD4BF !important;
+  text-decoration: none !important;
+}
+
+.edn-journal-readmore a svg {
+  width: 14px !important;
+  height: 14px !important;
+  stroke: currentColor !important;
+  fill: none !important;
+  stroke-width: 2 !important;
+  transition: transform 0.25s ease !important;
+}
+
+.edn-journal-card:hover .edn-journal-readmore a svg {
+  transform: translateX(4px) !important;
+}
+
+/* ========================================================
+ * 7. FAQ SECTION (Jiro Build FAQ Growlio)
+ * ======================================================== */
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-faq-section,
+.edn-faq-section {
+  padding: 96px 0 !important;
+  background-color: #07080B !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+.edn-faq-layout {
+  display: grid !important;
+  grid-template-columns: 1fr 1.3fr !important;
+  gap: 56px !important;
+  align-items: flex-start !important;
+}
+
+@media (max-width: 992px) {
+  .edn-faq-layout {
+    grid-template-columns: 1fr !important;
+    gap: 40px !important;
+  }
+}
+
+.edn-faq-intro h2 {
+  font-size: clamp(30px, 3.8vw, 44px) !important;
+  font-weight: 700 !important;
+  line-height: 1.2 !important;
+  letter-spacing: -0.03em !important;
+  color: #FFFFFF !important;
+  font-family: "Space Grotesk", sans-serif !important;
+  margin: 0 0 16px !important;
+}
+
+.edn-faq-intro p {
+  color: #94A3B8 !important;
+  font-size: 15px !important;
+  line-height: 1.6 !important;
+  margin-bottom: 28px !important;
+}
+
+.edn-faq-help-box {
+  background: #0D0F17 !important;
+  border: 1px solid rgba(45, 212, 191, 0.2) !important;
+  border-radius: 20px !important;
+  padding: 24px !important;
+  margin-top: 24px !important;
+}
+
+.edn-faq-help-box h4 {
+  color: #FFFFFF !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  margin: 0 0 8px !important;
+}
+
+.edn-faq-help-box p {
+  color: #94A3B8 !important;
+  font-size: 13px !important;
+  line-height: 1.5 !important;
+  margin-bottom: 16px !important;
+}
+
+/* Jiro Accordion Items */
+.edn-faq-accordion {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 14px !important;
+}
+
+.edn-im-faq-item {
+  background: #0D0F17 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 16px !important;
+  overflow: hidden !important;
+  transition: all 0.3s ease !important;
+}
+
+.edn-im-faq-item:hover,
+.edn-im-faq-item[open] {
+  border-color: rgba(45, 212, 191, 0.4) !important;
+  background: #111420 !important;
+}
+
+.edn-im-faq-item summary {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 16px !important;
+  padding: 20px 24px !important;
+  color: #FFFFFF !important;
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  list-style: none !important;
+  user-select: none !important;
+}
+
+.edn-im-faq-item summary::-webkit-details-marker {
+  display: none !important;
+}
+
+.edn-im-faq-item summary::after {
+  display: none !important;
+  content: none !important;
+}
+
+.edn-faq-plus {
+  width: 18px !important;
+  height: 18px !important;
+  stroke: #2DD4BF !important;
+  fill: none !important;
+  stroke-width: 2 !important;
+  flex-shrink: 0 !important;
+  transition: transform 0.3s ease !important;
+}
+
+.edn-im-faq-item[open] .edn-faq-plus {
+  transform: rotate(45deg) !important;
+}
+
+.edn-faq-body {
+  padding: 0 24px 22px !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
+  margin-top: 4px !important;
+  padding-top: 16px !important;
+}
+
+.edn-faq-body p {
+  color: #CBD5E1 !important;
+  font-size: 14px !important;
+  line-height: 1.7 !important;
+  margin: 0 !important;
+}
+
+/* ========================================================
+ * 8. BOTTOM CTA BANNER (Jiro Build Pre-Footer Cosmic CTA)
+ * ======================================================== */
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-final-cta,
+.edn-final-cta {
+  padding: 80px 0 100px !important;
+  background-color: #050608 !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+.edn-cta-box {
+  position: relative !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center !important;
+  background: linear-gradient(180deg, #0D0F17 0%, #06070A 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 32px !important;
+  padding: 72px 40px !important;
+  overflow: hidden !important;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), 0 0 60px rgba(45, 212, 191, 0.1) !important;
+}
+
+.edn-cta-box .edn-jiro-badge {
+  margin: 0 auto 20px !important;
+}
+
+.edn-cta-ambient {
+  position: absolute !important;
+  top: -120px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: 600px !important;
+  height: 300px !important;
+  border-radius: 50% !important;
+  background: radial-gradient(ellipse, rgba(45, 212, 191, 0.22) 0%, transparent 70%) !important;
+  pointer-events: none !important;
+}
+
+.edn-cta-box h2 {
+  font-size: clamp(32px, 4.5vw, 56px) !important;
+  font-weight: 700 !important;
+  line-height: 1.15 !important;
+  letter-spacing: -0.035em !important;
+  color: #FFFFFF !important;
+  font-family: "Space Grotesk", sans-serif !important;
+  margin: 0 auto 16px !important;
+  max-width: 760px !important;
+}
+
+.edn-cta-box p {
+  color: #CBD5E1 !important;
+  font-size: 16px !important;
+  line-height: 1.6 !important;
+  max-width: 620px !important;
+  margin: 0 auto 36px !important;
+  font-weight: 300 !important;
+}
+
+.edn-cta-actions {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 16px !important;
+  flex-wrap: wrap !important;
+  margin-bottom: 32px !important;
+}
+
+.edn-cta-trust-bar {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 12px !important;
+  color: #94A3B8 !important;
+  font-size: 13px !important;
+  flex-wrap: wrap !important;
+}
+
+.edn-cta-trust-sep {
+  opacity: 0.3 !important;
 }
 
