@@ -276,7 +276,7 @@ const card=c=>{
     : '';
   const inCart=cartIds.includes(c.id);
   const cartAction=!own
-    ? '<button class="edn-card-btn-action edn-add-to-cart'+(inCart?' is-in-cart':'')+'" type="button" data-a="cart-add" data-v="'+esc(c.id)+'" aria-label="'+(inCart?'Trong giỏ hàng':'Thêm vào giỏ')+'" title="'+(inCart?'Trong giỏ hàng':'Thêm vào giỏ')+'"'+(inCart?' aria-pressed="true"':'')+'>'+cartIconMarkup+'<span>'+(inCart?'Trong giỏ':'Chọn học')+'</span></button>'
+    ? '<button class="edn-card-btn-action edn-add-to-cart'+(inCart?' is-in-cart':'')+'" type="button" data-a="cart-add" data-v="'+esc(c.id)+'" aria-label="'+(inCart?'Trong giỏ hàng':'Thêm vào giỏ')+'" title="'+(inCart?'Trong giỏ hàng':'Thêm vào giỏ')+'"'+(inCart?' aria-pressed="true"':'')+'>'+cartIconMarkup+'</button>'
     : '';
 
   const instructor=getCourseInstructor(c);

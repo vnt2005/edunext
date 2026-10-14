@@ -1729,25 +1729,26 @@ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-journal-body p
   scrollbar-width: none !important;
 }
 .edn-home-tab-pill {
-  padding: 9px 18px !important;
-  border-radius: 999px !important;
-  border: 1px solid #E2E8F0 !important;
-  background: #FFFFFF !important;
+  padding: 8px 18px !important;
+  border-radius: 9999px !important;
+  border: none !important;
+  background: transparent !important;
   font-size: 13px !important;
-  font-weight: 600 !important;
-  color: #475569 !important;
+  font-weight: 500 !important;
+  color: #94A3B8 !important;
   cursor: pointer !important;
   white-space: nowrap !important;
-  transition: all 0.15s ease !important;
+  transition: all 0.25s ease !important;
 }
 .edn-home-tab-pill:hover {
-  background: #F1F5F9 !important;
-  color: #0F172A !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: #FFFFFF !important;
 }
 .edn-home-tab-pill.is-active {
-  background: #0F172A !important;
+  background: #0F766E !important;
   color: #FFFFFF !important;
-  border-color: #0F172A !important;
+  font-weight: 600 !important;
+  box-shadow: 0 4px 14px rgba(15, 118, 110, 0.4) !important;
 }
 
 /* Workflow Preview Section */
@@ -4723,7 +4724,7 @@ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-courses-sectio
   padding: 8px 18px !important;
   border-radius: 9999px !important;
   background: transparent !important;
-  border: none !important;
+  border: 1px solid transparent !important;
   color: #94A3B8 !important;
   font-size: 13px !important;
   font-weight: 500 !important;
@@ -4733,11 +4734,14 @@ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-courses-sectio
 }
 
 .edn-home-tab-pill:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
   color: #FFFFFF !important;
 }
 
 .edn-home-tab-pill.is-active {
   background: #0F766E !important;
+  border-color: #0F766E !important;
   color: #FFFFFF !important;
   font-weight: 600 !important;
   box-shadow: 0 4px 14px rgba(15, 118, 110, 0.4) !important;
@@ -4973,19 +4977,19 @@ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-card,
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
-  padding: 14px 20px 18px !important;
-  background: rgba(255, 255, 255, 0.02) !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
+  padding: 0 20px 20px !important;
+  background: transparent !important;
+  border-top: none !important;
 }
 
 .edn-card-pricing {
   display: flex !important;
   align-items: baseline !important;
-  gap: 6px !important;
+  gap: 8px !important;
 }
 
 .edn-price-current {
-  font-size: 18px !important;
+  font-size: 19px !important;
   font-weight: 800 !important;
   color: #FFFFFF !important;
   font-family: "Space Grotesk", sans-serif !important;
@@ -5000,37 +5004,36 @@ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-card,
 .edn-card-btn-action {
   display: inline-flex !important;
   align-items: center !important;
-  gap: 6px !important;
-  padding: 7px 14px !important;
-  border-radius: 9999px !important;
-  background: rgba(255, 255, 255, 0.08) !important;
-  border: 1px solid rgba(255, 255, 255, 0.15) !important;
-  color: #FFFFFF !important;
-  font-size: 12px !important;
-  font-weight: 600 !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  color: #94A3B8 !important;
   cursor: pointer !important;
   transition: all 0.2s ease !important;
   text-decoration: none !important;
 }
 
 .edn-card-btn-action:hover {
-  background: #0F766E !important;
-  border-color: #0F766E !important;
-  color: #FFFFFF !important;
+  background: transparent !important;
+  border: none !important;
+  color: #2DD4BF !important;
+  transform: scale(1.15) !important;
 }
 
 .edn-card-btn-action.is-in-cart {
-  background: rgba(45, 212, 191, 0.15) !important;
-  border-color: #2DD4BF !important;
+  background: transparent !important;
+  border: none !important;
   color: #2DD4BF !important;
 }
 
 .edn-card-btn-action svg {
-  width: 14px !important;
-  height: 14px !important;
+  width: 20px !important;
+  height: 20px !important;
   stroke: currentColor !important;
   fill: none !important;
   stroke-width: 2 !important;
+  transition: stroke 0.2s ease, transform 0.2s ease !important;
 }
 
 /* Jiro Outline Action Button */
