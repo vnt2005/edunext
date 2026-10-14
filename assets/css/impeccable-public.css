@@ -61,18 +61,17 @@ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inne
  color:var(--im-accent)!important;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:7px
 }
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .edunext-header-search{
- grid-area:search;display:flex;align-items:center;gap:8px;width:100%;min-width:0;max-width:none;height:42px;margin:0;padding:0 5px 0 12px;
- border:1px solid #D3E0D5!important;border-radius:8px!important;background:#F8FAF6!important;box-shadow:none!important
+ grid-area:search;display:flex;align-items:center;gap:10px;width:100%;min-width:0;max-width:none;height:42px;margin:0;padding:0 14px;
+ border:1px solid #D3E0D5!important;border-radius:10px!important;background:#F8FAF6!important;box-shadow:none!important
 }
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .edunext-header-search:focus-within{
- border-color:var(--im-teal)!important;box-shadow:0 0 0 3px rgba(15,118,110,.12)!important
+ border-color:var(--im-teal)!important;box-shadow:0 0 0 3px rgba(15,118,110,.12)!important;background:#fff!important
 }
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .edunext-header-search input{
- min-width:0;height:38px;padding:0;border:0!important;outline:0!important;background:transparent!important;box-shadow:none!important;color:var(--im-ink)!important;font-size:11px!important
+ flex:1;width:100%;min-width:0;height:38px;padding:0;border:0!important;outline:0!important;background:transparent!important;box-shadow:none!important;color:var(--im-ink)!important;font-size:13px!important
 }
-body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .edunext-header-search button{
- display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;min-height:32px;padding:6px 10px;border:0!important;border-radius:6px!important;
- background:var(--im-teal)!important;color:#fff!important;font-size:11px!important;font-weight:750;white-space:nowrap
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .edunext-header-search button.lms-search-icon{
+ display:inline-block!important;flex:0 0 16px;width:16px!important;height:16px!important;min-height:16px!important;padding:0!important;margin:0!important;border:0!important;border-radius:0!important;background:transparent!important;color:#667168!important;cursor:pointer;box-shadow:none!important;outline:none!important
 }
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .edn-header-tools{
  grid-area:tools;display:flex;align-items:center;justify-content:flex-end;gap:12px;min-width:max-content
@@ -403,8 +402,7 @@ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-public-footer-
  body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .edunext-brand-copy small{font-size:9px}
  body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .edn-cart-trigger{width:36px;height:36px}
  body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .edunext-header-search{height:40px}
- body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .edunext-header-search input{font-size:10px!important}
- body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .edunext-header-search button{min-height:30px;padding-inline:9px}
+ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .edunext-header-search input{font-size:12px!important}
  body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-hero{padding-top:29px}
  body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-hero h1{font-size:34px!important}
  body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-hero-art{min-height:240px}
