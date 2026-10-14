@@ -239,6 +239,7 @@ const lessonMaterialMarkup=value=>{
 const coursePriceMarkup=c=>'<div class="edn-course-pricing"'+(c.demoPrice?' title="Giá demo tham khảo"':'')+'><strong class="edn-course-price-current">'+esc(money(c.p))+'</strong>'+(typeof c.o==='number'&&c.o>c.p?'<del class="edn-course-price-original">'+esc(money(c.o))+'</del>':'')+'</div>';
 const cartIconMarkup='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>';
 const starIconMarkup='<svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>';
+const animatedText=text=>'<span class="edn-animated-text"><span class="edn-text-top">'+esc(text)+'</span><span class="edn-text-bottom" aria-hidden="true">'+esc(text)+'</span></span>';
 
 const INSTRUCTORS=[
   {name:'Nguyễn Văn Minh',role:'Senior .NET Architect',org:'VNG',avatar:'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200'},
@@ -396,7 +397,7 @@ const home=()=>{
   // Quick topics
   const quickTopics=['Python','React & Next.js','UI/UX Design','Digital Marketing','Data & SQL','Flutter Mobile'];
   const quickTopicPills=quickTopics.map(topic=>
-    '<button type="button" class="edn-quick-topic-btn" data-a="topic" data-v="'+esc(topic)+'">'+esc(topic)+'</button>'
+    '<button type="button" class="edn-quick-topic-btn group" data-a="topic" data-v="'+esc(topic)+'">'+animatedText(topic)+'</button>'
   ).join('');
 
   // Blog Highlights
@@ -422,40 +423,40 @@ const home=()=>{
   ].map(item=>'<details class="edn-im-faq-item"><summary>'+esc(item[0])+'<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10"></path></svg></summary><p>'+esc(item[1])+'</p></details>').join('');
 
   return '<div class="edn-home-page edn-marketplace-home">'+
-    // Hero Section
-    '<section class="edn-modern-hero">'+
-      '<div class="wrap edn-modern-hero-inner">'+
-        '<div class="edn-hero-content">'+
-          '<span class="edn-hero-pill-badge"><span class="edn-pill-pulse"></span> Nền tảng học kỹ năng số thực chiến</span>'+
-          '<h1>Khám phá lộ trình chuẩn.<br><span>Nâng tầm sự nghiệp số.</span></h1>'+
-          '<p class="edn-hero-lead">Hơn 100 chương trình thực hành từ chuyên gia công nghệ, dữ liệu, thiết kế và kinh doanh. Học theo dự án thực tế, tích lũy portfolio chuyên nghiệp.</p>'+
-          '<form class="edn-hero-search-form" data-form="search">'+
-            '<div class="edn-hero-search-wrap">'+
-              '<svg class="edn-search-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>'+
-              '<input name="q" placeholder="Bạn muốn học gì hôm nay? (VD: C#, React, UI/UX...)" aria-label="Tìm khóa học">'+
-              '<button type="submit" class="edn-hero-search-btn">Tìm kiếm</button>'+
+    // ZiroBuild Dark Video Hero Section
+    '<section class="edn-ziro-hero">'+
+      '<video autoplay loop muted playsinline class="edn-ziro-video" src="https://cdn.jiro.build/BG%20effect%20for%20Tanvir/bg-video.mp4"></video>'+
+      '<div class="edn-ziro-overlay"></div>'+
+      '<div class="wrap edn-ziro-wrapper">'+
+        '<div class="edn-ziro-content">'+
+          '<div class="edn-ziro-pill">'+
+            '<span class="edn-ziro-pill-dot" aria-hidden="true"></span>'+
+            '<span>Trusted by 500+ Innovation Teams</span>'+
+          '</div>'+
+          '<h1 class="edn-ziro-headline">'+
+            'Build The Future With<br>'+
+            '<span class="edn-ziro-gradient-text">AI-Native Products</span>'+
+          '</h1>'+
+          '<p class="edn-ziro-paragraph">'+
+            'Design, build, and scale intelligent products, with powerful AI tools built for modern teams.'+
+          '</p>'+
+          '<div class="edn-ziro-cta-row">'+
+            '<a href="#/courses" class="edn-ziro-btn-primary group">'+
+              animatedText('Explore More')+
+            '</a>'+
+            '<a href="#/categories" class="edn-ziro-btn-secondary group">'+
+              animatedText('Get Started')+
+              '<svg class="w-4 h-4 ml-1 inline-block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>'+
+            '</a>'+
+          '</div>'+
+          '<form class="edn-hero-search-form edn-ziro-search" data-form="search">'+
+            '<div class="edn-ziro-search-box">'+
+              '<svg class="edn-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>'+
+              '<input name="q" placeholder="Bạn muốn học gì hôm nay? (VD: C#, React, UI/UX, AI, Python...)" aria-label="Tìm khóa học">'+
+              '<button type="submit" class="edn-ziro-search-btn group">'+animatedText('Tìm kiếm')+'</button>'+
             '</div>'+
           '</form>'+
-          '<div class="edn-hero-quick-topics"><span>Tìm kiếm phổ biến:</span>'+quickTopicPills+'</div>'+
-        '</div>'+
-        '<div class="edn-hero-visual-showcase">'+
-          '<div class="edn-hero-visual-card is-main">'+
-            '<img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=900" alt="Sinh viên học tập thực tế" loading="eager">'+
-            '<div class="edn-hero-visual-overlay"></div>'+
-            '<div class="edn-hero-visual-meta">'+
-              '<span class="edn-hero-course-tag">Lộ trình nổi bật</span>'+
-              '<h3>Phát triển Web Fullstack & API</h3>'+
-              '<div class="edn-hero-author-row"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=100" alt=""><span>Nguyễn Văn Minh · Senior Architect</span></div>'+
-            '</div>'+
-          '</div>'+
-          '<div class="edn-hero-float-card edn-float-stat-1">'+
-            '<div class="edn-float-stat-icon">🎓</div>'+
-            '<div class="edn-float-stat-text"><strong>15,000+</strong><small>Học viên đang học</small></div>'+
-          '</div>'+
-          '<div class="edn-hero-float-card edn-float-stat-2">'+
-            '<div class="edn-float-stat-icon">⭐</div>'+
-            '<div class="edn-float-stat-text"><strong>4.9 / 5.0</strong><small>Từ 25,000+ đánh giá</small></div>'+
-          '</div>'+
+          '<div class="edn-ziro-quick-topics"><span>Tìm kiếm phổ biến:</span>'+quickTopicPills+'</div>'+
         '</div>'+
       '</div>'+
     '</section>'+
@@ -1319,6 +1320,7 @@ function nav(){
   if(!path.startsWith('/learn/')){
     document.body.classList.remove('edn-classroom-active');
   }
+  document.body.classList.toggle('edn-home-active',path==='/');
   const profileAvatarMarkup=user&&user.profile&&user.profile.avatar
     ? '<img class="edn-header-avatar-image" src="'+esc(user.profile.avatar)+'" alt="">'
     : '<svg viewBox="0 0 24 24" focusable="false" aria-hidden="true"><circle cx="12" cy="8" r="3.5"></circle><path d="M5 20c.5-3.3 3.2-5 7-5s6.5 1.7 7 5"></path></svg>';
