@@ -52,6 +52,28 @@ export const DEFAULT_STATS: StatItem[] = [
   },
 ];
 
+// Motion animation variants using framer-motion type Variants
+const dotDriftVariants: Variants = {
+  drift: {
+    x: [0, 5, 0],
+    y: [0, 5, 0],
+    transition: {
+      duration: 10,
+      repeat: Infinity,
+      ease: "linear",
+    },
+  },
+};
+
+const cardMotionVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, delay: i * 0.1, ease: "easeOut" },
+  }),
+};
+
 interface DotGridProps {
   id: string;
 }
@@ -81,6 +103,7 @@ function DotGrid({ id }: DotGridProps) {
 interface StatCardProps {
   item: StatItem;
   index: number;
+  key?: string | number;
 }
 
 function StatCard({ item, index }: StatCardProps) {
@@ -88,10 +111,11 @@ function StatCard({ item, index }: StatCardProps) {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      custom={index}
+      initial="hidden"
+      whileInView="visible"
       viewport={{ once: true }}
-      transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
+      variants={cardMotionVariants}
       whileHover={{ y: -8, scale: 1.02 }}
       className={`relative bg-[#0A0B0B] border border-[#1B1B1A] hover:border-teal-500/40 rounded-[20px] ${
         hasBody ? "h-[320px] p-8" : "h-[200px] p-7"
@@ -128,8 +152,8 @@ function StatCard({ item, index }: StatCardProps) {
       {/* Corner: Drifting Dot-Grid */}
       <div className="absolute bottom-0 right-0 w-1/2 h-1/2 overflow-hidden pointer-events-none">
         <motion.div
-          animate={{ x: [0, 5, 0], y: [0, 5, 0] }}
-          transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+          animate="drift"
+          variants={dotDriftVariants}
           className="w-full h-full relative"
         >
           <DotGrid id={`lumaDotGrid-${index}`} />
