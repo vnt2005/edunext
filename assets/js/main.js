@@ -425,11 +425,6 @@ const home=()=>{
   ].map(item=>'<details class="edn-im-faq-item"><summary><span>'+esc(item[0])+'</span><svg class="edn-faq-plus" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10"></path></svg></summary><div class="edn-faq-body"><p>'+esc(item[1])+'</p></div></details>').join('');
 
   return '<div class="edn-home-page edn-marketplace-home">'+
-    '<!-- Full Homepage Ambient Background Video -->'+
-    '<div class="edn-home-video-bg-wrap" aria-hidden="true">'+
-      '<video autoplay loop muted playsinline class="edn-home-video-bg" src="https://cdn.jiro.build/BG%20effect%20for%20Tanvir/bg-video.mp4"></video>'+
-      '<div class="edn-home-video-overlay"></div>'+
-    '</div>'+
     // ZiroBuild Dark Hero Section
     '<section class="edn-ziro-hero">'+
       '<div class="wrap edn-ziro-wrapper">'+
@@ -702,7 +697,6 @@ const courses=()=>{
   ].map(p=>'<button type="button" class="edn-course-cat-pill'+(f.cat===p.cat?' is-active':'')+'" data-a="cat" data-v="'+esc(p.cat)+'">'+esc(p.label)+'</button>').join('');
 
   return '<div class="wrap page cio-courses-page edn-course-catalog-page">'+
-    '<div class="edn-catalog-header"><div><span class="edn-overline">DANH MỤC ĐÀO TẠO THỰC CHIẾN</span><h1>Tất cả khóa học trực tuyến</h1><p>Khám phá lộ trình bài bản cùng các chuyên gia hàng đầu. Đăng ký một lần, học trọn đời.</p></div></div>'+
     '<div class="edn-catalog-pills-row">'+categoryPills+'</div>'+
     '<div class="cio-course-toolbar"><div class="cio-search-local"><span aria-hidden="true">⌕</span><input data-f="q" value="'+esc(f.q)+'" placeholder="Tìm tên khóa học, lĩnh vực hoặc kỹ năng..." aria-label="Tìm trong danh mục"></div>'+
     '<div class="cio-toolbar-right"><select data-f="cat" aria-label="Lọc chuyên ngành"><option value="">Tất cả chuyên ngành</option>'+domainOptions+'</select>'+
@@ -1348,11 +1342,11 @@ const R=[
   [/^\/cart$/,cartPage],
   [/^\/best-sellers$/,courses],
   [/^\/categories$/,domainsPage],
-  [/^\/group\/([a-z0-9-]+)$/i,groupDetail],
-  [/^\/domain\/([a-z0-9-]+)$/i,domainDetail],
-  [/^\/course\/([a-z0-9-]+)$/i,detail],
-  [/^\/checkout\/([a-z0-9-]+)$/i,checkout],
-  [/^\/learn\/([a-z0-9-]+)\/([0-9]+)$/i,learn],
+  [/^\/group\/(.+)$/i,s=>groupDetail(decodeURIComponent(s).trim().toLowerCase().replace(/\s+/g,'-'))],
+  [/^\/domain\/(.+)$/i,s=>domainDetail(decodeURIComponent(s).trim().toLowerCase().replace(/\s+/g,'-'))],
+  [/^\/course\/(.+)$/i,s=>detail(decodeURIComponent(s).trim().toLowerCase().replace(/\s+/g,'-'))],
+  [/^\/checkout\/(.+)$/i,s=>checkout(decodeURIComponent(s).trim().toLowerCase().replace(/\s+/g,'-'))],
+  [/^\/learn\/([^\/]+)\/([0-9]+)$/i,(s,l)=>learn(decodeURIComponent(s).trim().toLowerCase().replace(/\s+/g,'-'),l)],
   [/^\/certificates$/,certificates],
   [/^\/cert\/([a-z0-9-]+)$/i,cert],
   [/^\/orders$/,ordersPage],

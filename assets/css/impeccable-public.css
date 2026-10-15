@@ -3792,85 +3792,85 @@ html body.edunext-app {
 
 
 /* ========================================================
- * ZIROBUILD HERO — Full Viewport Dark Video Hero & Roll-up Hover
+ * ZIROBUILD HEADER — Global Dark Translucent Sticky Header
  * ======================================================== */
-body.edunext-app.edn-home-active:not(.lms-admin-mode):not(.lms-builder-mode) .edunext-site-header.edn-im-header,
-body.edunext-app.edn-home-active .edunext-site-header {
-  position: absolute !important;
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edunext-site-header.edn-im-header,
+body.edunext-app .edunext-site-header {
+  position: sticky !important;
   top: 0 !important;
   left: 0 !important;
   right: 0 !important;
   width: 100% !important;
   z-index: 50 !important;
-  background: rgba(0, 0, 0, 0.45) !important;
-  backdrop-filter: blur(16px) !important;
-  -webkit-backdrop-filter: blur(16px) !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
+  background: rgba(3, 4, 6, 0.75) !important;
+  backdrop-filter: blur(16px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5) !important;
 }
-body.edunext-app.edn-home-active:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header .edunext-header-main,
-body.edunext-app.edn-home-active .edunext-header-main {
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header .edunext-header-main,
+body.edunext-app .edunext-header-main {
   background: transparent !important;
   border: none !important;
   box-shadow: none !important;
 }
-body.edunext-app.edn-home-active:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner > .edunext-brand,
-body.edunext-app.edn-home-active:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .edunext-brand-copy strong,
-body.edn-home-active .edunext-brand {
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner > .edunext-brand,
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .edunext-brand-copy strong,
+body.edunext-app .edunext-brand {
   color: #FFFFFF !important;
 }
-body.edunext-app.edn-home-active:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .edunext-brand-copy small {
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .edunext-brand-copy small {
   color: #94A3B8 !important;
 }
-body.edunext-app.edn-home-active:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .edunext-main-nav .edunext-nav-link,
-body.edn-home-active .edunext-nav a {
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .edunext-main-nav .edunext-nav-link,
+body.edunext-app .edunext-nav a {
   color: #E2E8F0 !important;
 }
-body.edunext-app.edn-home-active:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .edunext-main-nav .edunext-nav-link:hover,
-body.edunext-app.edn-home-active:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .edunext-main-nav .edunext-nav-link.active,
-body.edn-home-active .edunext-nav a:hover,
-body.edn-home-active .edunext-nav a.active {
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .edunext-main-nav .edunext-nav-link:hover,
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .edunext-main-nav .edunext-nav-link.active,
+body.edunext-app .edunext-nav a:hover,
+body.edunext-app .edunext-nav a.active {
   color: #2DD4BF !important;
 }
-body.edunext-app.edn-home-active:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .edunext-main-nav .edunext-nav-link.active::after {
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .edunext-main-nav .edunext-nav-link.active::after {
   background: #2DD4BF !important;
 }
-body.edunext-app.edn-home-active:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .edunext-header-search,
-body.edn-home-active .edunext-header-search {
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .edunext-header-search,
+body.edunext-app .edunext-header-search {
   background: rgba(255, 255, 255, 0.08) !important;
   border: 1px solid rgba(255, 255, 255, 0.2) !important;
 }
-body.edunext-app.edn-home-active:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .edunext-header-search:focus-within,
-body.edn-home-active .edunext-header-search:focus-within {
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .edunext-header-search:focus-within,
+body.edunext-app .edunext-header-search:focus-within {
   background: rgba(255, 255, 255, 0.14) !important;
   border-color: #2DD4BF !important;
 }
-body.edunext-app.edn-home-active:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .edunext-header-search input,
-body.edn-home-active .edunext-header-search input {
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .edunext-header-search input,
+body.edunext-app .edunext-header-search input {
   color: #FFFFFF !important;
 }
-body.edunext-app.edn-home-active:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .edunext-header-search input::placeholder,
-body.edn-home-active .edunext-header-search input::placeholder {
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .edunext-header-search input::placeholder,
+body.edunext-app .edunext-header-search input::placeholder {
   color: #94A3B8 !important;
 }
-body.edunext-app.edn-home-active:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .edunext-header-search button.lms-search-icon,
-body.edn-home-active .edunext-header-search-icon {
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .edunext-header-search button.lms-search-icon,
+body.edunext-app .edunext-header-search-icon {
   color: #94A3B8 !important;
 }
-body.edunext-app.edn-home-active:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .edn-cart-trigger,
-body.edn-home-active .edunext-cart-btn {
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .edn-cart-trigger,
+body.edunext-app .edunext-cart-btn {
   background: rgba(255, 255, 255, 0.1) !important;
   border: 1px solid rgba(255, 255, 255, 0.2) !important;
   color: #FFFFFF !important;
 }
-body.edunext-app.edn-home-active:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .btn.btn-g,
-body.edn-home-active .edunext-header-auth .btn-g {
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .btn.btn-g,
+body.edunext-app .edunext-header-auth .btn-g {
   background: rgba(255, 255, 255, 0.1) !important;
   border-color: rgba(255, 255, 255, 0.25) !important;
   color: #FFFFFF !important;
 }
-body.edunext-app.edn-home-active:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .btn.btn-g:hover,
-body.edn-home-active .edunext-header-auth .btn-g:hover {
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header-inner .btn.btn-g:hover,
+body.edunext-app .edunext-header-auth .btn-g:hover {
   background: rgba(255, 255, 255, 0.2) !important;
 }
 
@@ -6149,6 +6149,828 @@ body.edunext-app .edn-public-footer-bottom,
 .edn-public-footer-bottom span {
   font-size: 13px !important;
   color: #94A3B8 !important;
+}
+
+/* ========================================================
+ * GLOBAL DARK THEME & GLASSMORPHISM FOR INNER PAGES
+ * (Courses Catalog, Course Detail, Video Player, Checkout)
+ * ======================================================== */
+
+/* 1. Global Page Wrapper & Typography */
+body.edunext-app,
+html body.edunext-app {
+  background-color: #030406 !important;
+  color: #FFFFFF !important;
+}
+
+body.edunext-app #app {
+  position: relative !important;
+  z-index: 1 !important;
+  background-color: transparent !important;
+  min-height: calc(100vh - 80px) !important;
+}
+
+body.edunext-app .wrap.page {
+  background-color: transparent !important;
+}
+
+/* 2. COURSES CATALOG PAGE */
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page,
+.edn-course-catalog-page {
+  padding-top: 40px !important;
+  padding-bottom: 80px !important;
+  background-color: transparent !important;
+}
+
+.edn-catalog-pills-row {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  overflow-x: auto !important;
+  padding: 8px 0 20px !important;
+  margin-bottom: 24px !important;
+  scrollbar-width: none !important;
+}
+
+.edn-catalog-pills-row::-webkit-scrollbar {
+  display: none !important;
+}
+
+.edn-course-cat-pill {
+  padding: 8px 18px !important;
+  border-radius: 9999px !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: #94A3B8 !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  transition: all 0.25s ease !important;
+  white-space: nowrap !important;
+  backdrop-filter: blur(12px) !important;
+}
+
+.edn-course-cat-pill:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-color: rgba(45, 212, 191, 0.3) !important;
+  color: #FFFFFF !important;
+}
+
+.edn-course-cat-pill.is-active {
+  background: #0F766E !important;
+  border-color: #0F766E !important;
+  color: #FFFFFF !important;
+  font-weight: 600 !important;
+  box-shadow: 0 4px 14px rgba(15, 118, 110, 0.4) !important;
+}
+
+/* Catalog Filter Toolbar */
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page .cio-course-toolbar,
+.cio-course-toolbar {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  gap: 14px !important;
+  padding: 16px 20px !important;
+  border-radius: 20px !important;
+  background: rgba(13, 16, 26, 0.45) !important;
+  backdrop-filter: blur(16px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(160%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37) !important;
+  margin-bottom: 24px !important;
+}
+
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page .cio-search-local,
+.cio-search-local {
+  flex: 1 1 280px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  padding: 0 16px !important;
+  min-height: 44px !important;
+  border-radius: 12px !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: #FFFFFF !important;
+  transition: all 0.25s ease !important;
+}
+
+.cio-search-local:focus-within {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-color: #2DD4BF !important;
+  box-shadow: 0 0 16px rgba(45, 212, 191, 0.2) !important;
+}
+
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page .cio-search-local input,
+.cio-search-local input {
+  background: transparent !important;
+  border: none !important;
+  color: #FFFFFF !important;
+  font-size: 14px !important;
+  width: 100% !important;
+  outline: none !important;
+}
+
+.cio-search-local input::placeholder {
+  color: #64748B !important;
+}
+
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page .cio-toolbar-right,
+.cio-toolbar-right {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  flex-wrap: wrap !important;
+}
+
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page .cio-toolbar-right select,
+.cio-toolbar-right select {
+  min-height: 44px !important;
+  padding: 0 16px !important;
+  border-radius: 12px !important;
+  background: rgba(13, 16, 26, 0.75) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: #E2E8F0 !important;
+  font-size: 13px !important;
+  outline: none !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+
+.cio-toolbar-right select:hover,
+.cio-toolbar-right select:focus {
+  border-color: #2DD4BF !important;
+  background: rgba(18, 22, 38, 0.9) !important;
+}
+
+.cio-toolbar-right select option {
+  background: #0D0F17 !important;
+  color: #FFFFFF !important;
+}
+
+.edn-course-filter-meta {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  color: #94A3B8 !important;
+  font-size: 13px !important;
+  margin-bottom: 20px !important;
+}
+
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-clear-filters,
+.edn-clear-filters {
+  padding: 6px 14px !important;
+  border-radius: 9999px !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  color: #94A3B8 !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+
+.edn-clear-filters:hover {
+  background: rgba(239, 68, 68, 0.15) !important;
+  border-color: #EF4444 !important;
+  color: #F87171 !important;
+}
+
+.cio-count-row {
+  color: #94A3B8 !important;
+  font-size: 13px !important;
+  margin-bottom: 24px !important;
+}
+
+.cio-count-row #cnt {
+  color: #2DD4BF !important;
+  font-weight: 700 !important;
+}
+
+/* 3. COURSE DETAIL PAGE (Ảnh 3) */
+body.edunext-app .edn-course-detail-page,
+.edn-course-detail-page {
+  background-color: transparent !important;
+  color: #FFFFFF !important;
+}
+
+body.edunext-app .edn-course-detail-page .edn-course-hero,
+.edn-course-hero {
+  background: transparent !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  padding: 48px 0 60px !important;
+}
+
+.edn-breadcrumb,
+.edn-course-breadcrumb {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  font-size: 13px !important;
+  color: #64748B !important;
+  margin-bottom: 20px !important;
+  flex-wrap: wrap !important;
+}
+
+.edn-breadcrumb a,
+.edn-course-breadcrumb a {
+  color: #94A3B8 !important;
+  text-decoration: none !important;
+  transition: color 0.2s ease !important;
+}
+
+.edn-breadcrumb a:hover,
+.edn-course-breadcrumb a:hover {
+  color: #2DD4BF !important;
+}
+
+.edn-breadcrumb span,
+.edn-course-breadcrumb span {
+  color: #64748B !important;
+}
+
+.edn-course-category-badge {
+  display: inline-block !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  color: #2DD4BF !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  margin-bottom: 12px !important;
+}
+
+.edn-course-intro h1 {
+  font-size: clamp(32px, 4.2vw, 48px) !important;
+  font-weight: 700 !important;
+  line-height: 1.2 !important;
+  letter-spacing: -0.03em !important;
+  color: #FFFFFF !important;
+  font-family: "Space Grotesk", sans-serif !important;
+  margin: 0 0 16px !important;
+}
+
+.edn-course-subtitle {
+  color: #94A3B8 !important;
+  font-size: 16px !important;
+  line-height: 1.7 !important;
+  margin-bottom: 24px !important;
+  max-width: 720px !important;
+}
+
+.edn-course-rating-row {
+  display: flex !important;
+  align-items: center !important;
+  gap: 16px !important;
+  color: #CBD5E1 !important;
+  font-size: 14px !important;
+  margin-bottom: 24px !important;
+}
+
+.edn-course-rating-row .edn-stars svg {
+  fill: #F59E0B !important;
+  color: #F59E0B !important;
+}
+
+.edn-course-tags-row {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  flex-wrap: wrap !important;
+  margin-bottom: 28px !important;
+}
+
+.edn-course-tag-pill {
+  padding: 6px 14px !important;
+  border-radius: 9999px !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: #94A3B8 !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+}
+
+.edn-course-instructor-row {
+  display: flex !important;
+  align-items: center !important;
+  gap: 14px !important;
+  padding-top: 20px !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.edn-course-instructor-row img {
+  width: 48px !important;
+  height: 48px !important;
+  border-radius: 50% !important;
+  border: 2px solid rgba(45, 212, 191, 0.4) !important;
+  object-fit: cover !important;
+}
+
+.edn-course-instructor-row strong {
+  display: block !important;
+  color: #FFFFFF !important;
+  font-size: 15px !important;
+}
+
+.edn-course-instructor-row small {
+  color: #94A3B8 !important;
+  font-size: 13px !important;
+}
+
+/* Course Sticky Buy Card (Ảnh 3 - Box bên phải) */
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-buy-card,
+.edn-course-buy-card {
+  background: rgba(13, 16, 26, 0.55) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 24px !important;
+  overflow: hidden !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(45, 212, 191, 0.08) !important;
+}
+
+.edn-course-preview-static {
+  position: relative !important;
+}
+
+.edn-preview-play-icon {
+  background: rgba(15, 118, 110, 0.9) !important;
+  box-shadow: 0 0 25px rgba(45, 212, 191, 0.6) !important;
+  border: 2px solid #FFFFFF !important;
+  color: #FFFFFF !important;
+  transition: transform 0.25s ease !important;
+}
+
+.edn-preview-play-icon:hover {
+  transform: translate(-50%, -50%) scale(1.1) !important;
+}
+
+.edn-preview-label {
+  background: rgba(0, 0, 0, 0.8) !important;
+  color: #FFFFFF !important;
+  backdrop-filter: blur(8px) !important;
+}
+
+.edn-course-buy-content {
+  padding: 28px !important;
+  background: transparent !important;
+}
+
+.edn-detail-price-curr {
+  font-size: 32px !important;
+  font-weight: 800 !important;
+  color: #FFFFFF !important;
+  font-family: "Space Grotesk", sans-serif !important;
+}
+
+.edn-detail-price-old {
+  font-size: 16px !important;
+  color: #64748B !important;
+  text-decoration: line-through !important;
+}
+
+.edn-detail-discount-tag {
+  background: rgba(225, 29, 72, 0.2) !important;
+  border: 1px solid #E11D48 !important;
+  color: #FDA4AF !important;
+  font-weight: 700 !important;
+  padding: 4px 10px !important;
+  border-radius: 9999px !important;
+  font-size: 12px !important;
+}
+
+.edn-buy-actions-stack .btn.btn-p {
+  background: linear-gradient(135deg, #0F766E 0%, #0D9488 100%) !important;
+  border: none !important;
+  color: #FFFFFF !important;
+  font-weight: 700 !important;
+  padding: 14px 24px !important;
+  border-radius: 14px !important;
+  box-shadow: 0 8px 25px rgba(15, 118, 110, 0.4) !important;
+  transition: all 0.25s ease !important;
+}
+
+.edn-buy-actions-stack .btn.btn-p:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 12px 30px rgba(15, 118, 110, 0.6) !important;
+}
+
+.edn-buy-actions-stack .btn.btn-g {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  color: #FFFFFF !important;
+  font-weight: 600 !important;
+  padding: 12px 24px !important;
+  border-radius: 14px !important;
+  transition: all 0.25s ease !important;
+}
+
+.edn-buy-actions-stack .btn.btn-g:hover {
+  background: rgba(45, 212, 191, 0.15) !important;
+  border-color: #2DD4BF !important;
+  color: #2DD4BF !important;
+}
+
+.edn-buy-actions-stack .btn.btn-subtle {
+  background: transparent !important;
+  border: none !important;
+  color: #94A3B8 !important;
+  font-size: 13px !important;
+}
+
+.edn-buy-actions-stack .btn.btn-subtle:hover {
+  color: #FFFFFF !important;
+}
+
+.edn-course-includes {
+  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+  padding-top: 20px !important;
+  margin-top: 20px !important;
+}
+
+.edn-course-includes strong {
+  color: #FFFFFF !important;
+  font-size: 14px !important;
+  margin-bottom: 12px !important;
+}
+
+.edn-course-includes span {
+  color: #94A3B8 !important;
+  font-size: 13px !important;
+}
+
+.edn-course-includes svg {
+  color: #2DD4BF !important;
+}
+
+/* Course Main Content Blocks (What you'll learn, Curriculum, Instructor) */
+.edn-course-outcomes,
+.edn-course-curriculum,
+.edn-instructor-full-card,
+.edn-course-requirements {
+  background: rgba(13, 16, 26, 0.45) !important;
+  backdrop-filter: blur(16px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(160%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 20px !important;
+  padding: 32px !important;
+  margin-bottom: 28px !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37) !important;
+}
+
+.edn-course-outcomes h2,
+.edn-course-curriculum h2,
+.edn-instructor-full-card h2,
+.edn-course-requirements h2 {
+  color: #FFFFFF !important;
+  font-size: 22px !important;
+  font-weight: 700 !important;
+  margin-bottom: 20px !important;
+  font-family: "Space Grotesk", sans-serif !important;
+}
+
+.edn-course-outcome p {
+  color: #CBD5E1 !important;
+  font-size: 14px !important;
+  line-height: 1.6 !important;
+}
+
+.edn-course-outcome svg {
+  color: #2DD4BF !important;
+}
+
+.edn-curriculum-item,
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-curriculum-item {
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 12px !important;
+  margin-bottom: 10px !important;
+  transition: all 0.2s ease !important;
+}
+
+.edn-curriculum-item:hover {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border-color: rgba(45, 212, 191, 0.3) !important;
+}
+
+.edn-curriculum-row strong {
+  color: #FFFFFF !important;
+  font-size: 14px !important;
+}
+
+.edn-curriculum-number {
+  color: #2DD4BF !important;
+  font-weight: 700 !important;
+}
+
+.edn-curriculum-badge {
+  background: rgba(15, 118, 110, 0.2) !important;
+  border: 1px solid #0F766E !important;
+  color: #2DD4BF !important;
+}
+
+/* 4. VIDEO PLAYER MODAL (Ảnh 4) */
+body.edunext-app .edn-preview-modal,
+.edn-preview-modal {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 9999 !important;
+  display: grid !important;
+  place-items: center !important;
+  padding: 24px !important;
+  background: rgba(0, 0, 0, 0.85) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+}
+
+body.edunext-app .edn-course-player-dialog,
+.edn-course-player-dialog {
+  width: min(840px, 100%) !important;
+  background: rgba(13, 16, 26, 0.95) !important;
+  backdrop-filter: blur(24px) !important;
+  -webkit-backdrop-filter: blur(24px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 20px !important;
+  overflow: hidden !important;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(45, 212, 191, 0.15) !important;
+}
+
+.edn-preview-dialog-head {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 16px 24px !important;
+  background: rgba(255, 255, 255, 0.02) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.edn-preview-dialog-head strong {
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  color: #FFFFFF !important;
+}
+
+.edn-preview-dialog-head span {
+  font-size: 13px !important;
+  color: #94A3B8 !important;
+}
+
+.edn-preview-dialog-head button {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: #FFFFFF !important;
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+
+.edn-preview-dialog-head button:hover {
+  background: rgba(239, 68, 68, 0.2) !important;
+  border-color: #EF4444 !important;
+  color: #F87171 !important;
+}
+
+.edn-course-player-now {
+  padding: 16px 24px !important;
+  background: rgba(255, 255, 255, 0.02) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+.edn-course-player-now span {
+  color: #2DD4BF !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.05em !important;
+}
+
+.edn-course-player-now h2 {
+  color: #FFFFFF !important;
+  font-size: 17px !important;
+  margin: 4px 0 0 !important;
+}
+
+.edn-course-player-playlist {
+  background: rgba(6, 8, 12, 0.8) !important;
+}
+
+.edn-course-player-playlist-head {
+  padding: 14px 24px !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  color: #FFFFFF !important;
+}
+
+.edn-course-player-item {
+  background: transparent !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+  padding: 12px 24px !important;
+  color: #CBD5E1 !important;
+  transition: all 0.2s ease !important;
+}
+
+.edn-course-player-item:hover {
+  background: rgba(255, 255, 255, 0.05) !important;
+  color: #FFFFFF !important;
+}
+
+.edn-course-player-item.is-active {
+  background: rgba(15, 118, 110, 0.2) !important;
+  border-left: 3px solid #2DD4BF !important;
+  color: #FFFFFF !important;
+}
+
+.edn-course-player-item-number {
+  background: rgba(255, 255, 255, 0.06) !important;
+  color: #2DD4BF !important;
+  border-radius: 6px !important;
+}
+
+.edn-course-player-item.is-active .edn-course-player-item-number {
+  background: #0F766E !important;
+  color: #FFFFFF !important;
+}
+
+/* 5. CHECKOUT PAGE (Ảnh 5) */
+body.edunext-app .edn-checkout-page,
+.edn-checkout-page {
+  padding-top: 40px !important;
+  padding-bottom: 80px !important;
+  background-color: transparent !important;
+  color: #FFFFFF !important;
+}
+
+.edn-checkout-heading h1 {
+  font-size: clamp(32px, 4vw, 44px) !important;
+  font-weight: 700 !important;
+  color: #FFFFFF !important;
+  font-family: "Space Grotesk", sans-serif !important;
+  margin: 0 0 10px !important;
+}
+
+.edn-checkout-heading p {
+  color: #94A3B8 !important;
+  font-size: 15px !important;
+}
+
+.edn-checkout-back {
+  color: #2DD4BF !important;
+  text-decoration: none !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+}
+
+.edn-checkout-back:hover {
+  text-decoration: underline !important;
+}
+
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-checkout-section,
+.edn-checkout-section {
+  background: rgba(13, 16, 26, 0.45) !important;
+  backdrop-filter: blur(16px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(160%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 20px !important;
+  padding: 28px !important;
+  margin-bottom: 24px !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37) !important;
+}
+
+.edn-checkout-section-heading h2 {
+  color: #FFFFFF !important;
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  margin: 0 0 6px !important;
+}
+
+.edn-checkout-section-heading p {
+  color: #94A3B8 !important;
+  font-size: 13px !important;
+}
+
+.edn-checkout-step {
+  background: #0F766E !important;
+  color: #FFFFFF !important;
+  font-weight: 700 !important;
+}
+
+.edn-checkout-learner div {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 12px !important;
+  padding: 14px 18px !important;
+}
+
+.edn-checkout-learner span {
+  color: #64748B !important;
+  font-size: 12px !important;
+}
+
+.edn-checkout-learner strong {
+  color: #FFFFFF !important;
+  font-size: 15px !important;
+}
+
+.edn-checkout-payment-notice {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 14px !important;
+  padding: 18px 20px !important;
+  color: #CBD5E1 !important;
+}
+
+.edn-checkout-payment-notice strong {
+  color: #FFFFFF !important;
+}
+
+.edn-checkout-payment-notice p {
+  color: #94A3B8 !important;
+}
+
+.edn-checkout-course {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 14px !important;
+  padding: 16px !important;
+}
+
+.edn-checkout-course h3 {
+  color: #FFFFFF !important;
+}
+
+.edn-checkout-course p {
+  color: #94A3B8 !important;
+}
+
+.edn-checkout-course-price strong {
+  color: #FFFFFF !important;
+  font-family: "Space Grotesk", sans-serif !important;
+}
+
+/* Checkout Aside Summary */
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-checkout-summary,
+.edn-checkout-summary {
+  background: rgba(13, 16, 26, 0.55) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 24px !important;
+  padding: 28px !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6) !important;
+}
+
+.edn-checkout-summary-title h2 {
+  color: #FFFFFF !important;
+  font-size: 20px !important;
+  font-weight: 700 !important;
+}
+
+.edn-checkout-price-line span {
+  color: #94A3B8 !important;
+}
+
+.edn-checkout-price-line strong {
+  color: #FFFFFF !important;
+  font-family: "Space Grotesk", sans-serif !important;
+}
+
+.edn-checkout-grand-total {
+  border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+  padding-top: 16px !important;
+  margin-top: 16px !important;
+}
+
+.edn-checkout-grand-total span {
+  color: #FFFFFF !important;
+  font-weight: 600 !important;
+}
+
+.edn-checkout-grand-total strong {
+  color: #2DD4BF !important;
+  font-size: 24px !important;
+  font-family: "Space Grotesk", sans-serif !important;
+}
+
+.edn-checkout-terms {
+  color: #64748B !important;
+  font-size: 12px !important;
+  line-height: 1.5 !important;
+}
+
+.edn-checkout-secure-note {
+  background: rgba(45, 212, 191, 0.08) !important;
+  border: 1px solid rgba(45, 212, 191, 0.2) !important;
+  border-radius: 12px !important;
+  padding: 12px 14px !important;
+  color: #CBD5E1 !important;
+  font-size: 12px !important;
+}
+
+.edn-checkout-secure-note span {
+  color: #2DD4BF !important;
 }
 
 
