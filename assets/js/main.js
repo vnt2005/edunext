@@ -1133,10 +1133,35 @@ const checkout=id=>{
 };
 const cartPage=()=>{
   const items=cartIds.map(find).filter(Boolean);
-  const continueLink='<a class="btn btn-g" href="#/courses">Tiếp tục khám phá khóa học</a>';
+  const continueLink='<a class="btn btn-p edn-cart-cta-btn" href="#/courses">Khám phá khóa học</a>';
+  
+  // Lấy danh sách khóa học gợi ý từ catalog EduNext (loại trừ các khóa đã có trong giỏ hàng hoặc đã sở hữu)
+  const owned=EN();
+  const recommendedCourses=C.filter(c=>!cartIds.includes(c.id)&&!owned[c.id]).slice(0,4);
+  const recommendedMarkup=recommendedCourses.length
+    ? '<section class="edn-cart-recommended-section">'+
+        '<h2 class="edn-cart-recommended-title">Khóa học có thể bạn quan tâm</h2>'+
+        '<div class="edn-cart-recommended-grid">'+
+          recommendedCourses.map(card).join('')+
+        '</div>'+
+      '</section>'
+    : '';
+
   if(!items.length){
-    return '<main class="wrap page edn-cart-page"><nav class="edn-breadcrumb" aria-label="Đường dẫn"><a href="#/">Trang chủ</a><span>›</span><span>Giỏ hàng</span></nav>'+
-      '<section class="edn-cart-empty"><div class="edn-cart-empty-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle><path d="M1 1h4l2.7 13.1a2 2 0 0 0 2 1.6h9.8a2 2 0 0 0 2-1.6L23 6H6"></path></svg></div><span class="edn-overline">GIỎ HÀNG EDUNEXT</span><h1>Giỏ hàng của bạn đang trống</h1><p>Hãy khám phá các lĩnh vực và thêm những chương trình bạn quan tâm vào giỏ hàng để xem lại ở đây.</p>'+continueLink+'</section></main>';
+    return '<main class="wrap page edn-cart-page">'+
+      '<nav class="edn-breadcrumb" aria-label="Đường dẫn"><a href="#/">Trang chủ</a><span>›</span><span>Giỏ hàng</span></nav>'+
+      '<header class="edn-cart-header">'+
+        '<h1 class="edn-cart-title">Giỏ hàng</h1>'+
+      '</header>'+
+      '<section class="edn-cart-empty">'+
+        '<div class="edn-cart-empty-message">'+
+          '<h2>Giỏ hàng của bạn đang trống</h2>'+
+          '<p>Hãy khám phá các khóa học và thêm những chương trình bạn quan tâm vào giỏ hàng.</p>'+
+        '</div>'+
+        '<div class="edn-cart-empty-action">'+continueLink+'</div>'+
+      '</section>'+
+      recommendedMarkup+
+    '</main>';
   }
   const pricesAvailable=items.every(course=>typeof course.p==='number'&&Number.isFinite(course.p));
   const pricesVerified=items.every(course=>course.ready&&typeof course.p==='number'&&Number.isFinite(course.p));
@@ -1157,10 +1182,16 @@ const cartPage=()=>{
   const priceNotice=pricesVerified
     ? 'Giá chương trình đã được xác minh, nhưng cổng thanh toán chưa được cấu hình.'
     : 'Giá đang hiển thị là giá demo tham khảo. Các khóa học chưa mở bán và chưa thể thanh toán.';
-  return '<main class="wrap page edn-cart-page"><nav class="edn-breadcrumb" aria-label="Đường dẫn"><a href="#/">Trang chủ</a><span>›</span><span>Giỏ hàng</span></nav>'+
-    '<header class="edn-cart-heading"><div><span class="edn-overline">LỰA CHỌN CỦA BẠN</span><h1>Giỏ hàng</h1><p>Xem lại những chương trình bạn đã chọn trước khi đăng ký.</p></div><span class="edn-cart-item-count">'+items.length+' chương trình</span></header>'+
+  return '<main class="wrap page edn-cart-page">'+
+    '<nav class="edn-breadcrumb" aria-label="Đường dẫn"><a href="#/">Trang chủ</a><span>›</span><span>Giỏ hàng</span></nav>'+
+    '<header class="edn-cart-header">'+
+      '<h1 class="edn-cart-title">Giỏ hàng</h1>'+
+      '<p class="edn-cart-subtitle">'+items.length+' khóa học trong giỏ hàng của bạn</p>'+
+    '</header>'+
     '<div class="edn-cart-layout"><section class="edn-cart-items-panel"><div class="edn-cart-panel-heading"><h2>Khóa học đã chọn</h2><button type="button" class="edn-cart-clear" data-a="cart-clear">Xóa tất cả</button></div><div class="edn-cart-items">'+rows+'</div><div class="edn-cart-continue">'+continueLink+'</div></section>'+
-    '<aside class="edn-cart-summary"><h2>Tóm tắt đơn hàng</h2><div class="edn-cart-summary-line"><span>Số chương trình</span><strong>'+items.length+'</strong></div><div class="edn-cart-summary-line"><span>Tạm tính</span><strong>'+totalDisplay+'</strong></div><div class="edn-cart-summary-total"><span>'+totalLabel+'</span><strong>'+totalDisplay+'</strong></div><button type="button" class="btn btn-p w edn-cart-checkout" disabled>Thanh toán chưa khả dụng</button><p class="edn-cart-payment-note">'+priceNotice+'</p><div class="edn-cart-trust-note"><span aria-hidden="true">✓</span><p>Không tạo đơn hàng hoặc ghi nhận thanh toán khi chương trình chưa đủ điều kiện mở bán.</p></div></aside></div></main>';
+    '<aside class="edn-cart-summary"><h2>Tóm tắt đơn hàng</h2><div class="edn-cart-summary-line"><span>Số chương trình</span><strong>'+items.length+'</strong></div><div class="edn-cart-summary-line"><span>Tạm tính</span><strong>'+totalDisplay+'</strong></div><div class="edn-cart-summary-total"><span>'+totalLabel+'</span><strong>'+totalDisplay+'</strong></div><button type="button" class="btn btn-p w edn-cart-checkout" disabled>Thanh toán chưa khả dụng</button><p class="edn-cart-payment-note">'+priceNotice+'</p><div class="edn-cart-trust-note"><span aria-hidden="true">✓</span><p>Không tạo đơn hàng hoặc ghi nhận thanh toán khi chương trình chưa đủ điều kiện mở bán.</p></div></aside></div>'+
+    recommendedMarkup+
+  '</main>';
 };
 const learn=(id,index)=>{
   const c=find(id);

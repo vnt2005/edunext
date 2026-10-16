@@ -7828,13 +7828,149 @@ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .empty p,
   color: #94A3B8 !important;
 }
 
-/* 2. Cart Page */
+/* 2. Cart Page — Dark, Clean, Frameless Layout */
 #app .edn-cart-page,
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-cart-page,
 body.edunext-app .edn-cart-page,
 .edn-cart-page {
-  background-color: transparent !important;
+  background: transparent !important;
   color: #FFFFFF !important;
+  max-width: 1240px !important;
+  margin: 0 auto !important;
+  padding: 24px 20px 80px !important;
+}
+
+/* Breadcrumb */
+.edn-cart-page .edn-breadcrumb {
+  margin-bottom: 16px !important;
+  font-size: 13px !important;
+  color: #94A3B8 !important;
+}
+.edn-cart-page .edn-breadcrumb a {
+  color: #94A3B8 !important;
+  text-decoration: none !important;
+  transition: color 0.15s ease !important;
+}
+.edn-cart-page .edn-breadcrumb a:hover {
+  color: #2DD4BF !important;
+}
+.edn-cart-page .edn-breadcrumb span {
+  margin: 0 8px !important;
+  color: #64748B !important;
+}
+
+/* Heading: large, bold, left-aligned like reference */
+.edn-cart-header {
+  margin-bottom: 32px !important;
+  text-align: left !important;
+}
+.edn-cart-title {
+  font-size: clamp(38px, 4.5vw, 50px) !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.035em !important;
+  color: #FFFFFF !important;
+  line-height: 1.1 !important;
+  margin: 0 0 8px !important;
+}
+.edn-cart-subtitle {
+  font-size: 15px !important;
+  color: #94A3B8 !important;
+  margin: 0 !important;
+}
+
+/* Empty State: completely frameless, resting naturally on background */
+#app .edn-cart-empty,
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-cart-empty,
+body.edunext-app .edn-cart-empty,
+.edn-cart-empty {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 40px 0 60px !important;
+  margin: 0 !important;
+  text-align: left !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  justify-content: flex-start !important;
+  min-height: auto !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+.edn-cart-empty-message h2 {
+  font-size: 22px !important;
+  font-weight: 700 !important;
+  color: #FFFFFF !important;
+  margin: 0 0 10px !important;
+  letter-spacing: -0.02em !important;
+}
+.edn-cart-empty-message p {
+  font-size: 15px !important;
+  color: #94A3B8 !important;
+  margin: 0 0 24px !important;
+  max-width: 600px !important;
+  line-height: 1.6 !important;
+}
+.edn-cart-cta-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 12px 28px !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  border-radius: 9999px !important;
+  background: linear-gradient(135deg, #2DD4BF, #0D9488) !important;
+  color: #042F2E !important;
+  box-shadow: 0 4px 18px rgba(45, 212, 191, 0.35) !important;
+  transition: transform 0.15s ease, box-shadow 0.15s ease !important;
+  text-decoration: none !important;
+  border: none !important;
+}
+.edn-cart-cta-btn:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 24px rgba(45, 212, 191, 0.5) !important;
+  color: #042F2E !important;
+}
+
+/* Recommended Courses Section */
+.edn-cart-recommended-section {
+  padding-top: 48px !important;
+  margin-top: 8px !important;
+}
+.edn-cart-recommended-title {
+  font-size: 24px !important;
+  font-weight: 800 !important;
+  color: #FFFFFF !important;
+  letter-spacing: -0.025em !important;
+  margin: 0 0 24px !important;
+}
+.edn-cart-recommended-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 20px !important;
+}
+@media (max-width: 1024px) {
+  .edn-cart-recommended-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+@media (max-width: 640px) {
+  .edn-cart-recommended-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+}
+
+/* Cart Items & Summary Layout when items exist */
+.edn-cart-layout {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) 360px !important;
+  gap: 32px !important;
+  align-items: start !important;
+  margin-bottom: 56px !important;
+}
+@media (max-width: 900px) {
+  .edn-cart-layout {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
 }
 
 #app .edn-cart-items-panel,
@@ -7842,13 +7978,39 @@ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-cart-items-pan
 body.edunext-app .edn-cart-items-panel,
 .edn-cart-items-panel,
 section.edn-cart-items-panel {
-  background: rgba(13, 16, 26, 0.5) !important;
-  backdrop-filter: blur(16px) saturate(160%) !important;
-  -webkit-backdrop-filter: blur(16px) saturate(160%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  background: rgba(14, 18, 38, 0.6) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
   border-radius: 20px !important;
   padding: 24px !important;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35) !important;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4) !important;
+}
+.edn-cart-panel-heading {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding-bottom: 16px !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+.edn-cart-panel-heading h2 {
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  color: #FFFFFF !important;
+  margin: 0 !important;
+}
+.edn-cart-clear {
+  background: transparent !important;
+  border: none !important;
+  color: #F87171 !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: color 0.15s ease !important;
+}
+.edn-cart-clear:hover {
+  color: #EF4444 !important;
+  text-decoration: underline !important;
 }
 
 #app .edn-cart-item,
@@ -7857,9 +8019,13 @@ body.edunext-app .edn-cart-item,
 .edn-cart-item,
 article.edn-cart-item {
   background: transparent !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
   padding: 20px 0 !important;
   color: #CBD5E1 !important;
+}
+#app .edn-cart-item:last-child,
+.edn-cart-item:last-child {
+  border-bottom: none !important;
 }
 
 #app .edn-cart-item h2,
@@ -7872,7 +8038,6 @@ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-cart-item h2 a
   font-weight: 700 !important;
   text-decoration: none !important;
 }
-
 .edn-cart-item h2 a:hover {
   color: #2DD4BF !important;
 }
@@ -7885,10 +8050,31 @@ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-cart-item span
 .edn-cart-item span {
   color: #94A3B8 !important;
 }
-
 .edn-cart-item-domain {
   color: #2DD4BF !important;
-  font-weight: 600 !important;
+  font-weight: 700 !important;
+}
+.edn-cart-item-price small {
+  color: #64748B !important;
+}
+.edn-cart-item-price strong {
+  color: #FFFFFF !important;
+  font-size: 16px !important;
+}
+.edn-cart-item-price del {
+  color: #64748B !important;
+  margin-left: 6px !important;
+}
+.edn-cart-remove {
+  color: #94A3B8 !important;
+  background: transparent !important;
+  border: none !important;
+  cursor: pointer !important;
+  transition: color 0.15s ease, transform 0.15s ease !important;
+}
+.edn-cart-remove:hover {
+  color: #F87171 !important;
+  transform: scale(1.1) !important;
 }
 
 #app .edn-cart-summary,
@@ -7896,35 +8082,77 @@ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-cart-summary,
 body.edunext-app .edn-cart-summary,
 .edn-cart-summary,
 aside.edn-cart-summary {
-  background: rgba(13, 16, 26, 0.55) !important;
+  background: rgba(14, 18, 38, 0.7) !important;
   backdrop-filter: blur(20px) saturate(180%) !important;
   -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
-  border-radius: 24px !important;
-  padding: 28px !important;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 20px !important;
+  padding: 26px !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5) !important;
   color: #FFFFFF !important;
 }
-
-#app .edn-cart-summary span,
-#app .edn-cart-summary p,
-body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-cart-summary span,
-body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-cart-summary p,
-.edn-cart-summary span,
-.edn-cart-summary p {
+.edn-cart-summary h2 {
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  color: #FFFFFF !important;
+  margin: 0 0 20px !important;
+  padding-bottom: 12px !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+.edn-cart-summary-line {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 10px 0 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+  font-size: 14px !important;
   color: #94A3B8 !important;
 }
-
-#app .edn-cart-summary strong,
-body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-cart-summary strong,
-.edn-cart-summary strong {
+.edn-cart-summary-line strong {
   color: #FFFFFF !important;
 }
-
-.edn-cart-summary .edn-cart-grand-total strong,
-.edn-cart-summary .edn-checkout-grand-total strong {
+.edn-cart-summary-total {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 16px 0 !important;
+  color: #FFFFFF !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+}
+.edn-cart-summary-total strong {
   color: #2DD4BF !important;
-  font-size: 24px !important;
+  font-size: 22px !important;
+}
+.edn-cart-payment-note {
+  margin-top: 14px !important;
+  color: #E2E8F0 !important;
+  font-size: 12px !important;
+  line-height: 1.6 !important;
+}
+.edn-cart-trust-note {
+  margin-top: 16px !important;
+  padding-top: 14px !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+  display: flex !important;
+  gap: 10px !important;
+  align-items: flex-start !important;
+}
+.edn-cart-trust-note > span {
+  background: rgba(45, 212, 191, 0.15) !important;
+  color: #2DD4BF !important;
+  width: 20px !important;
+  height: 20px !important;
+  display: grid !important;
+  place-items: center !important;
+  border-radius: 50% !important;
+  font-size: 11px !important;
+}
+.edn-cart-trust-note p {
+  margin: 0 !important;
+  font-size: 11px !important;
+  color: #94A3B8 !important;
+  line-height: 1.5 !important;
 }
 
 /* 3. FAQ Page */
