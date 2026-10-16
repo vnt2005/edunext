@@ -1695,7 +1695,6 @@ const profilePage=section=>{
           '</div>'+
         '</div>'+
       '</div>'+
-      '<div class="edn-profile-divider"></div>'+
       '<div class="edn-form-block">'+
         '<h3 class="edn-form-section-title">Đường liên kết:</h3>'+
         '<div class="edn-field-col">'+

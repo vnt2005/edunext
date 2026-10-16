@@ -9833,8 +9833,12 @@ body.edunext-app .edn-profile-form {
 }
 
 body.edunext-app .edn-form-block {
-  margin-bottom: 0 !important;
+  margin-bottom: 16px !important;
   padding: 0 !important;
+}
+
+body.edunext-app .edn-form-block:last-of-type {
+  margin-bottom: 0 !important;
 }
 
 #app .edn-profile-form .edn-form-section-title,
@@ -9844,7 +9848,7 @@ body.edunext-app .edn-form-section-title {
   font-weight: 700 !important;
   color: #2DD4BF !important;
   letter-spacing: 0.02em !important;
-  margin: 0 0 8px !important;
+  margin: 0 0 10px !important;
   padding: 0 !important;
   border: none !important;
 }
@@ -9854,7 +9858,7 @@ body.edunext-app .edn-profile-form .edn-field-col,
 body.edunext-app .edn-field-col {
   display: flex !important;
   flex-direction: column !important;
-  gap: 8px !important;
+  gap: 10px !important;
   margin: 0 !important;
   padding: 0 !important;
 }
