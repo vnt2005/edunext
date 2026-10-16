@@ -2222,11 +2222,22 @@ document.addEventListener('click',event=>{
     if(selectWrapper){
       selectWrapper.classList.remove('is-open');
       selectWrapper.querySelector('.edn-custom-select-trigger')?.setAttribute('aria-expanded','false');
+      const label=selectWrapper.querySelector('.edn-custom-select-label');
+      if(label)label.textContent=optionItem.textContent.trim();
+      selectWrapper.querySelectorAll('.edn-custom-select-item').forEach(el=>{
+        el.classList.toggle('is-selected',el===optionItem);
+      });
     }
-    if(field && f[field]!==value){
+    if(field){
       f[field]=value;
+      if(field==='cat')f.domainId='';
       f.page=1;
-      render(true);
+      if(field==='cat'){
+        document.querySelectorAll('.edn-course-cat-pill').forEach(pill=>{
+          pill.classList.toggle('is-active',(pill.dataset.v||'')===value);
+        });
+      }
+      list();
     }
     return;
   }

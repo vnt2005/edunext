@@ -6343,30 +6343,30 @@ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog
 .edn-custom-select-trigger {
   width: 100%;
   min-height: 44px;
-  padding: 0 14px;
+  padding: 0 16px;
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
   border-radius: 12px;
-  background: rgba(13, 16, 28, 0.65) !important;
-  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
   color: #F1F5F9 !important;
   font-size: 13px;
   font-weight: 500;
   text-align: left;
   cursor: pointer;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
-  transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: none;
+  transition: all 0.2s ease;
 }
 
 .edn-custom-select-trigger:hover,
 .edn-custom-select.is-open .edn-custom-select-trigger {
   border-color: #2DD4BF !important;
-  background: rgba(18, 24, 42, 0.85) !important;
-  box-shadow: 0 0 20px rgba(45, 212, 191, 0.2) !important;
+  background: rgba(45, 212, 191, 0.08) !important;
+  box-shadow: 0 0 16px rgba(45, 212, 191, 0.2) !important;
 }
 
 .edn-custom-select-label {
@@ -6393,24 +6393,24 @@ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog
 
 .edn-custom-select-menu {
   position: absolute;
-  top: calc(100% + 6px);
+  top: calc(100% + 8px);
   left: 0;
   right: 0;
-  min-width: 220px;
-  max-height: 290px;
+  min-width: 240px;
+  max-height: 300px;
   overflow-y: auto;
   overflow-x: hidden;
-  background: rgba(10, 13, 24, 0.95) !important;
-  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  background: rgba(14, 18, 38, 0.82) !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
   border-radius: 14px;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9), 0 0 30px rgba(45, 212, 191, 0.08) !important;
-  backdrop-filter: blur(24px) !important;
-  -webkit-backdrop-filter: blur(24px) !important;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.5), 0 0 24px rgba(99, 102, 241, 0.12) !important;
+  backdrop-filter: blur(24px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
   padding: 6px;
   z-index: 1050;
   display: none;
   scrollbar-width: thin;
-  scrollbar-color: rgba(45, 212, 191, 0.3) transparent;
+  scrollbar-color: rgba(45, 212, 191, 0.35) transparent;
 }
 
 .edn-custom-select-menu::-webkit-scrollbar {
@@ -6445,7 +6445,7 @@ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog
 .edn-custom-select-group {
   margin-top: 6px;
   padding-top: 6px;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .edn-custom-select-group:first-child {
@@ -6458,8 +6458,8 @@ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog
   font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: #2DD4BF;
+  letter-spacing: 0.05em;
+  color: #5EEAD4;
   padding: 6px 10px 4px;
   user-select: none;
 }
@@ -6471,7 +6471,7 @@ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog
   border-radius: 8px;
   border: none;
   background: transparent;
-  color: #CBD5E1;
+  color: #E2E8F0;
   font-size: 13px;
   line-height: 1.35;
   text-align: left;
