@@ -9649,7 +9649,7 @@ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-profile-sideba
   border-right: 1px solid rgba(255, 255, 255, 0.08) !important;
   border-radius: 0 !important;
   box-shadow: none !important;
-  padding: 28px 0 !important;
+  padding: 24px 0 !important;
   display: flex !important;
   flex-direction: column !important;
   align-items: stretch !important;
@@ -9663,7 +9663,7 @@ body.edunext-app .edn-profile-person {
   text-align: center !important;
   padding: 0 16px 20px !important;
   margin-bottom: 8px !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+  border-bottom: none !important;
 }
 
 body.edunext-app .edn-profile-avatar-circle {
@@ -9776,33 +9776,33 @@ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-profile-main {
   border: none !important;
   border-radius: 0 !important;
   box-shadow: none !important;
-  padding: 32px 40px 44px !important;
+  padding: 28px 36px 36px !important;
   color: #E2E8F0 !important;
   min-width: 0 !important;
 }
 
-/* Header Heading: Center-aligned with clean full-width border */
+/* Header Heading: Center-aligned with clean spacing */
 body.edunext-app .edn-profile-heading {
   text-align: center !important;
-  padding-bottom: 20px !important;
+  padding-bottom: 16px !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
-  margin-bottom: 28px !important;
+  margin-bottom: 20px !important;
   width: 100% !important;
 }
 
 body.edunext-app .edn-profile-heading h1,
 body.edunext-app #app .edn-profile-heading h1 {
   font-family: "Space Grotesk", system-ui, sans-serif !important;
-  font-size: 24px !important;
+  font-size: 22px !important;
   font-weight: 800 !important;
   color: #FFFFFF !important;
   letter-spacing: -0.02em !important;
-  margin: 0 0 6px !important;
+  margin: 0 0 4px !important;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3) !important;
 }
 
 body.edunext-app .edn-profile-heading p {
-  font-size: 14px !important;
+  font-size: 13.5px !important;
   color: #94A3B8 !important;
   margin: 0 !important;
 }
@@ -9824,54 +9824,65 @@ body.edunext-app .edn-form-block {
   padding: 0 !important;
 }
 
+#app .edn-profile-form .edn-form-section-title,
+body.edunext-app .edn-profile-form .edn-form-section-title,
 body.edunext-app .edn-form-section-title {
-  font-size: 14px !important;
+  font-size: 13.5px !important;
   font-weight: 700 !important;
   color: #2DD4BF !important;
   letter-spacing: 0.02em !important;
-  margin: 0 0 14px !important;
+  margin: 0 0 8px !important;
   padding: 0 !important;
   border: none !important;
 }
 
+#app .edn-profile-form .edn-field-col,
+body.edunext-app .edn-profile-form .edn-field-col,
 body.edunext-app .edn-field-col {
   display: flex !important;
   flex-direction: column !important;
-  gap: 12px !important;
+  gap: 8px !important;
   margin: 0 !important;
   padding: 0 !important;
 }
 
 /* First Name & Last Name Horizontal Row */
+#app .edn-profile-form .edn-name-row,
+body.edunext-app .edn-profile-form .edn-name-row,
 body.edunext-app .edn-name-row {
   display: grid !important;
   grid-template-columns: 1fr 1fr !important;
-  gap: 12px !important;
+  gap: 10px !important;
   margin: 0 !important;
   padding: 0 !important;
 }
 
-/* Field Container */
+/* Field Container - Override learner-experience margin: 15px 0 */
+#app .edn-profile-form .edn-field,
 body.edunext-app .edn-profile-form .edn-field,
 body.edunext-app .edn-field {
   display: flex !important;
   flex-direction: column !important;
-  gap: 5px !important;
+  gap: 3px !important;
   margin: 0 !important;
   padding: 0 !important;
 }
 
+#app .edn-profile-form .edn-field label,
 body.edunext-app .edn-profile-form .edn-field label,
 body.edunext-app .edn-field-label {
-  font-size: 13px !important;
+  font-size: 12.5px !important;
   font-weight: 600 !important;
   color: #E2E8F0 !important;
   margin: 0 !important;
   padding: 0 !important;
-  line-height: 1.3 !important;
+  line-height: 1.25 !important;
 }
 
-/* Input Fields & Select Controls: 38px height, dark glass styling matching EduNext */
+/* Input Fields & Select Controls: 36px height, dark glass styling matching EduNext */
+#app .edn-profile-form input:not([type=checkbox]):not([type=file]),
+#app .edn-profile-form textarea,
+#app .edn-profile-form select,
 body.edunext-app .edn-profile-form input:not([type=checkbox]):not([type=file]),
 body.edunext-app .edn-profile-form textarea,
 body.edunext-app .edn-profile-form select,
@@ -9881,10 +9892,10 @@ body.edunext-app .edn-profile-main select,
 body.edunext-app .edn-profile-main textarea {
   width: 100% !important;
   box-sizing: border-box !important;
-  height: 38px !important;
-  min-height: 38px !important;
-  padding: 7px 12px !important;
-  font-size: 13.5px !important;
+  height: 36px !important;
+  min-height: 36px !important;
+  padding: 6px 12px !important;
+  font-size: 13px !important;
   color: #FFFFFF !important;
   background: rgba(15, 23, 42, 0.6) !important;
   border: 1px solid rgba(255, 255, 255, 0.12) !important;
@@ -9897,7 +9908,7 @@ body.edunext-app .edn-profile-main textarea {
 body.edunext-app .edn-profile-form input::placeholder,
 body.edunext-app .edn-profile-form textarea::placeholder {
   color: #64748B !important;
-  font-size: 13px !important;
+  font-size: 12.5px !important;
 }
 
 body.edunext-app .edn-profile-form input:focus,
@@ -9938,9 +9949,9 @@ body.edunext-app .edn-field-counter-wrap span {
 }
 
 body.edunext-app .edn-field-hint {
-  font-size: 11.5px !important;
+  font-size: 11px !important;
   color: #94A3B8 !important;
-  line-height: 1.35 !important;
+  line-height: 1.3 !important;
   margin-top: 1px !important;
   margin-bottom: 0 !important;
 }
@@ -9984,8 +9995,8 @@ body.edunext-app .edn-input-addon-group {
   border-radius: 6px !important;
   background: rgba(15, 23, 42, 0.6) !important;
   overflow: hidden !important;
-  height: 38px !important;
-  min-height: 38px !important;
+  height: 36px !important;
+  min-height: 36px !important;
   width: 100% !important;
   box-sizing: border-box !important;
 }
@@ -9993,11 +10004,11 @@ body.edunext-app .edn-input-addon-group {
 body.edunext-app .edn-input-addon {
   display: flex !important;
   align-items: center !important;
-  padding: 0 12px !important;
+  padding: 0 10px !important;
   background: rgba(255, 255, 255, 0.04) !important;
   border-right: 1px solid rgba(255, 255, 255, 0.08) !important;
   color: #94A3B8 !important;
-  font-size: 12.5px !important;
+  font-size: 12px !important;
   white-space: nowrap !important;
   user-select: none !important;
   flex: 0 0 auto !important;
@@ -10008,7 +10019,7 @@ body.edunext-app .edn-input-addon-group input {
   border-radius: 0 !important;
   outline: none !important;
   box-shadow: none !important;
-  padding: 7px 10px !important;
+  padding: 6px 10px !important;
   font-size: 13px !important;
   height: 100% !important;
   min-height: auto !important;
@@ -10017,30 +10028,35 @@ body.edunext-app .edn-input-addon-group input {
 }
 
 /* Precise horizontal divider across the form */
+#app .edn-profile-form .edn-profile-divider,
+body.edunext-app .edn-profile-form .edn-profile-divider,
 body.edunext-app .edn-profile-divider {
   width: 100% !important;
   height: 1px !important;
   background: rgba(255, 255, 255, 0.08) !important;
-  margin: 24px 0 !important;
+  margin: 16px 0 !important;
   border: none !important;
   padding: 0 !important;
 }
 
-/* Save Row & Button */
+/* Save Row & Button: Aligned to the RIGHT, cleanly spaced away from inputs */
+#app .edn-profile-form .edn-profile-save-row,
+body.edunext-app .edn-profile-form .edn-profile-save-row,
 body.edunext-app .edn-profile-save-row {
-  margin-top: 24px !important;
+  margin-top: 20px !important;
   display: flex !important;
-  justify-content: flex-start !important;
+  justify-content: flex-end !important;
   padding: 0 !important;
+  border: none !important;
 }
 
 body.edunext-app .edn-btn-save-profile,
 body.edunext-app .edn-profile-save-row .btn.btn-p {
   background: #0F766E !important;
   color: #FFFFFF !important;
-  font-size: 14px !important;
+  font-size: 13.5px !important;
   font-weight: 750 !important;
-  padding: 10px 28px !important;
+  padding: 9px 24px !important;
   border-radius: 6px !important;
   border: 1px solid rgba(45, 212, 191, 0.4) !important;
   cursor: pointer !important;
@@ -10061,7 +10077,7 @@ body.edunext-app .edn-profile-save-row .btn.btn-p:hover {
 body.edunext-app .edn-profile-error {
   color: #F87171 !important;
   font-size: 13px !important;
-  margin: 10px 0 0 !important;
+  margin: 8px 0 0 !important;
 }
 
 /* Sub-views in Profile Scope (Photo, Security, Public) */
