@@ -6254,11 +6254,11 @@ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog
   gap: 14px !important;
   padding: 16px 20px !important;
   border-radius: 20px !important;
-  background: rgba(13, 16, 26, 0.45) !important;
-  backdrop-filter: blur(16px) saturate(160%) !important;
-  -webkit-backdrop-filter: blur(16px) saturate(160%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37) !important;
+  background: rgba(10, 13, 24, 0.4) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35) !important;
   margin-bottom: 24px !important;
 }
 
@@ -6271,16 +6271,16 @@ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog
   padding: 0 16px !important;
   min-height: 44px !important;
   border-radius: 12px !important;
-  background: rgba(255, 255, 255, 0.06) !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
   color: #FFFFFF !important;
   transition: all 0.25s ease !important;
 }
 
 .cio-search-local:focus-within {
-  background: rgba(255, 255, 255, 0.1) !important;
+  background: rgba(255, 255, 255, 0.09) !important;
   border-color: #2DD4BF !important;
-  box-shadow: 0 0 16px rgba(45, 212, 191, 0.2) !important;
+  box-shadow: 0 0 16px rgba(45, 212, 191, 0.25) !important;
 }
 
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page .cio-search-local input,
@@ -6294,7 +6294,7 @@ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog
 }
 
 .cio-search-local input::placeholder {
-  color: #64748B !important;
+  color: #94A3B8 !important;
 }
 
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page .cio-toolbar-right,
@@ -6310,23 +6310,26 @@ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog
   min-height: 44px !important;
   padding: 0 16px !important;
   border-radius: 12px !important;
-  background: rgba(13, 16, 26, 0.75) !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
-  color: #E2E8F0 !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  color: #F1F5F9 !important;
   font-size: 13px !important;
   outline: none !important;
   cursor: pointer !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
   transition: all 0.2s ease !important;
 }
 
 .cio-toolbar-right select:hover,
 .cio-toolbar-right select:focus {
   border-color: #2DD4BF !important;
-  background: rgba(18, 22, 38, 0.9) !important;
+  background: rgba(45, 212, 191, 0.1) !important;
+  box-shadow: 0 0 16px rgba(45, 212, 191, 0.15) !important;
 }
 
 .cio-toolbar-right select option {
-  background: #0D0F17 !important;
+  background: #0B0E1E !important;
   color: #FFFFFF !important;
 }
 
