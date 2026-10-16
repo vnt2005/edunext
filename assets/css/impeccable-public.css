@@ -11712,10 +11712,10 @@ body.edunext-app .edn-order-badge.status-refunded {
 
 /* ==========================================================================
    L. EDUNEXT AUTHENTICATION PAGES (LOGIN & REGISTER)
-   High-contrast light card on navy background with unified EduNext branding
+   Unified Dark Navy Glassmorphism Design synchronized with EduNext Background
    ========================================================================== */
 
-/* 1. Page container & background */
+/* 1. Page container */
 body.edunext-app .edn-auth-page {
   min-height: calc(100vh - 160px) !important;
   display: flex !important;
@@ -11724,45 +11724,48 @@ body.edunext-app .edn-auth-page {
   padding: 48px 16px 80px !important;
 }
 
-/* 2. Authentication Card Container */
+/* 2. Authentication Card Container: Glassmorphic Dark Navy */
 body.edunext-app .edn-auth-page .ac,
+body.edunext-app .edn-auth-page .edn-auth-card,
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-auth-page .box {
   width: min(480px, 100%) !important;
   margin: 0 auto !important;
   padding: 40px 36px 36px !important;
-  background: #FFFFFF !important;
-  border: 1px solid rgba(226, 232, 240, 0.9) !important;
-  border-radius: 20px !important;
-  box-shadow: 0 20px 48px -10px rgba(0, 0, 0, 0.4), 0 0 1px 1px rgba(255, 255, 255, 0.1) !important;
-  color: #0F172A !important;
+  background: rgba(13, 18, 38, 0.78) !important;
+  backdrop-filter: blur(24px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  border-radius: 24px !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55), 0 0 30px rgba(45, 212, 191, 0.08) !important;
+  color: #FFFFFF !important;
   text-align: left !important;
 }
 
 /* 3. Overline / Eyebrow badge */
 body.edunext-app .edn-auth-page .edn-overline {
   display: inline-block !important;
-  color: #0D9488 !important;
+  color: #2DD4BF !important;
   font-size: 11.5px !important;
   font-weight: 800 !important;
   letter-spacing: 0.12em !important;
   text-transform: uppercase !important;
-  margin-bottom: 6px !important;
+  margin-bottom: 8px !important;
 }
 
 /* 4. Headings & Subheadings */
 body.edunext-app .edn-auth-page h1 {
-  color: #0F172A !important;
-  font-size: 28px !important;
+  color: #FFFFFF !important;
+  font-size: 30px !important;
   font-weight: 800 !important;
-  letter-spacing: -0.025em !important;
-  margin: 0 0 8px 0 !important;
-  text-shadow: none !important;
+  letter-spacing: -0.03em !important;
+  margin: 0 0 10px 0 !important;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4) !important;
   line-height: 1.25 !important;
 }
 
 body.edunext-app .edn-auth-page form > p:not(.err) {
-  color: #475569 !important;
-  font-size: 13.5px !important;
+  color: #94A3B8 !important;
+  font-size: 14px !important;
   line-height: 1.6 !important;
   margin: 0 0 24px 0 !important;
   font-weight: 450 !important;
@@ -11777,9 +11780,9 @@ body.edunext-app .edn-auth-page .fg {
 
 body.edunext-app .edn-auth-page .fg label,
 body.edunext-app .edn-auth-page label {
-  color: #0F172A !important;
-  font-size: 13px !important;
-  font-weight: 700 !important;
+  color: #E2E8F0 !important;
+  font-size: 13.5px !important;
+  font-weight: 650 !important;
   letter-spacing: -0.01em !important;
   display: block !important;
 }
@@ -11790,24 +11793,24 @@ body.edunext-app .edn-auth-page input[type="text"],
 body.edunext-app .edn-auth-page input[type="email"],
 body.edunext-app .edn-auth-page input[type="password"] {
   width: 100% !important;
-  min-height: 46px !important;
-  padding: 11px 14px !important;
-  border: 1px solid #CBD5E1 !important;
-  border-radius: 10px !important;
-  background: #FFFFFF !important;
-  color: #0F172A !important;
-  font-size: 14px !important;
+  min-height: 48px !important;
+  padding: 12px 16px !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  border-radius: 12px !important;
+  background: rgba(15, 23, 42, 0.65) !important;
+  color: #FFFFFF !important;
+  font-size: 14.5px !important;
   font-weight: 500 !important;
   font-family: inherit !important;
   transition: all 0.2s ease !important;
-  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04) !important;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2) !important;
   outline: none !important;
   box-sizing: border-box !important;
 }
 
 body.edunext-app .edn-auth-page .fg input::placeholder,
 body.edunext-app .edn-auth-page input::placeholder {
-  color: #94A3B8 !important;
+  color: #64748B !important;
   font-weight: 450 !important;
   opacity: 1 !important;
 }
@@ -11816,17 +11819,17 @@ body.edunext-app .edn-auth-page .fg input:hover,
 body.edunext-app .edn-auth-page input[type="text"]:hover,
 body.edunext-app .edn-auth-page input[type="email"]:hover,
 body.edunext-app .edn-auth-page input[type="password"]:hover {
-  border-color: #94A3B8 !important;
+  border-color: rgba(45, 212, 191, 0.5) !important;
 }
 
 body.edunext-app .edn-auth-page .fg input:focus,
 body.edunext-app .edn-auth-page input[type="text"]:focus,
 body.edunext-app .edn-auth-page input[type="email"]:focus,
 body.edunext-app .edn-auth-page input[type="password"]:focus {
-  border-color: #0D9488 !important;
-  box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.18) !important;
-  background: #FFFFFF !important;
-  color: #0F172A !important;
+  border-color: #2DD4BF !important;
+  box-shadow: 0 0 0 3px rgba(45, 212, 191, 0.25), inset 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+  background: rgba(15, 23, 42, 0.85) !important;
+  color: #FFFFFF !important;
 }
 
 /* 7. Terms Agreement Checkbox */
@@ -11835,7 +11838,7 @@ body.edunext-app .edn-auth-page .chk {
   align-items: center !important;
   gap: 10px !important;
   margin: 16px 0 20px 0 !important;
-  color: #334155 !important;
+  color: #CBD5E1 !important;
   font-size: 13px !important;
   font-weight: 500 !important;
   line-height: 1.5 !important;
@@ -11843,12 +11846,13 @@ body.edunext-app .edn-auth-page .chk {
 }
 
 body.edunext-app .edn-auth-page .chk input[type="checkbox"] {
-  width: 17px !important;
-  height: 17px !important;
-  min-height: 17px !important;
+  width: 18px !important;
+  height: 18px !important;
+  min-height: 18px !important;
   margin: 0 !important;
-  border: 1.5px solid #CBD5E1 !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.25) !important;
   border-radius: 4px !important;
+  background: rgba(15, 23, 42, 0.6) !important;
   cursor: pointer !important;
   accent-color: #0D9488 !important;
   flex-shrink: 0 !important;
@@ -11858,7 +11862,7 @@ body.edunext-app .edn-auth-page .chk input[type="checkbox"] {
 body.edunext-app .edn-auth-page .edn-auth-error,
 body.edunext-app .edn-auth-page .err {
   min-height: 20px !important;
-  color: #DC2626 !important;
+  color: #F87171 !important;
   font-size: 13px !important;
   font-weight: 600 !important;
   line-height: 1.4 !important;
@@ -11869,7 +11873,7 @@ body.edunext-app .edn-auth-page .err:empty {
   display: none !important;
 }
 
-/* 9. Primary Action Button */
+/* 9. Primary Action Button: EduNext Teal Glow */
 body.edunext-app .edn-auth-page .btn.btn-p,
 body.edunext-app .edn-auth-page button[type="submit"] {
   width: 100% !important;
@@ -11878,34 +11882,34 @@ body.edunext-app .edn-auth-page button[type="submit"] {
   align-items: center !important;
   justify-content: center !important;
   padding: 12px 20px !important;
-  border-radius: 10px !important;
-  background: #14B8A6 !important;
-  border: 1px solid #0D9488 !important;
-  color: #042F2E !important;
-  font-size: 14.5px !important;
+  border-radius: 12px !important;
+  background: #0D9488 !important;
+  border: 1px solid rgba(45, 212, 191, 0.4) !important;
+  color: #FFFFFF !important;
+  font-size: 15px !important;
   font-weight: 800 !important;
   letter-spacing: -0.01em !important;
   cursor: pointer !important;
-  box-shadow: 0 4px 14px rgba(20, 184, 166, 0.3) !important;
+  box-shadow: 0 4px 16px rgba(13, 148, 136, 0.4) !important;
   transition: all 0.2s ease !important;
   margin-top: 6px !important;
-  margin-bottom: 20px !important;
+  margin-bottom: 22px !important;
   text-shadow: none !important;
 }
 
 body.edunext-app .edn-auth-page .btn.btn-p:hover,
 body.edunext-app .edn-auth-page button[type="submit"]:hover {
-  background: #2DD4BF !important;
-  border-color: #14B8A6 !important;
-  color: #042F2E !important;
-  box-shadow: 0 6px 20px rgba(45, 212, 191, 0.45) !important;
+  background: #14B8A6 !important;
+  border-color: #2DD4BF !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 6px 24px rgba(45, 212, 191, 0.5) !important;
   transform: translateY(-1px) !important;
 }
 
 body.edunext-app .edn-auth-page .btn.btn-p:active,
 body.edunext-app .edn-auth-page button[type="submit"]:active {
   transform: translateY(0) !important;
-  box-shadow: 0 2px 8px rgba(20, 184, 166, 0.3) !important;
+  box-shadow: 0 2px 8px rgba(13, 148, 136, 0.4) !important;
 }
 
 body.edunext-app .edn-auth-page .btn.btn-p:disabled,
@@ -11918,7 +11922,7 @@ body.edunext-app .edn-auth-page button[type="submit"]:disabled {
 /* 10. Switch / Redirect Links */
 body.edunext-app .edn-auth-page .sw {
   text-align: center !important;
-  color: #475569 !important;
+  color: #94A3B8 !important;
   font-size: 13.5px !important;
   font-weight: 500 !important;
   margin: 10px 0 0 0 !important;
@@ -11926,14 +11930,14 @@ body.edunext-app .edn-auth-page .sw {
 }
 
 body.edunext-app .edn-auth-page .sw a {
-  color: #0D9488 !important;
-  font-weight: 750 !important;
+  color: #2DD4BF !important;
+  font-weight: 700 !important;
   text-decoration: none !important;
   transition: color 0.15s ease !important;
 }
 
 body.edunext-app .edn-auth-page .sw a:hover {
-  color: #0F766E !important;
+  color: #5EEAD4 !important;
   text-decoration: underline !important;
 }
 
@@ -11943,12 +11947,14 @@ body.edunext-app .edn-auth-page .sw a:hover {
     padding: 32px 16px 56px !important;
   }
   body.edunext-app .edn-auth-page .ac,
+  body.edunext-app .edn-auth-page .edn-auth-card,
   body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-auth-page .box {
     padding: 30px 20px 26px !important;
-    border-radius: 16px !important;
+    border-radius: 18px !important;
   }
   body.edunext-app .edn-auth-page h1 {
-    font-size: 24px !important;
+    font-size: 25px !important;
   }
 }
+
 

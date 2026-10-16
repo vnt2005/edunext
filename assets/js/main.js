@@ -1360,7 +1360,7 @@ const field=(n,l,t,placeholder,min)=>'<div class="fg"><label for="f-'+n+'">'+l+'
 const auth=m=>{
   if(D.me){go('/dashboard');return '';}
   const register=m==='register';
-  return '<div class="auth edn-auth-page"><form class="box ac" data-form="'+m+'" novalidate><span class="edn-overline">TÀI KHOẢN EDUNEXT</span><h1>'+(register?'Tạo tài khoản':'Đăng nhập')+'</h1><p>'+(register?'Tạo tài khoản để lưu hồ sơ và theo dõi những khóa học đã được cấp quyền.':'Đăng nhập bằng tài khoản WordPress của bạn để tiếp tục học tập.')+'</p>'+
+  return '<div class="auth edn-auth-page"><form class="box ac edn-auth-card" data-form="'+m+'" novalidate><span class="edn-overline">TÀI KHOẢN EDUNEXT</span><h1>'+(register?'Tạo tài khoản':'Đăng nhập')+'</h1><p>'+(register?'Tạo tài khoản để lưu hồ sơ và theo dõi những khóa học đã được cấp quyền.':'Đăng nhập bằng tài khoản WordPress của bạn để tiếp tục học tập.')+'</p>'+
     (register?field('name','Họ và tên','text','Tên hiển thị','2'):'')+
     field('email','Email','email','name@example.com','')+
     field('pw','Mật khẩu','password','Tối thiểu 8 ký tự','8')+
