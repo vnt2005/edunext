@@ -1677,35 +1677,21 @@ const profilePage=section=>{
     content='<div class="edn-public-profile"><div class="edn-public-avatar">'+avatar+'</div><h2>'+esc(full)+'</h2><p class="edn-public-headline">'+esc(meta.headline||'')+'</p><p>'+esc(meta.bio||'')+'</p><div class="edn-profile-public-links">'+(meta.website?'<a href="'+esc(meta.website)+'" target="_blank" rel="noopener noreferrer">Website</a>':'')+(meta.linkedin?'<a href="'+esc(meta.linkedin)+'" target="_blank" rel="noopener noreferrer">LinkedIn</a>':'')+(meta.facebook?'<a href="'+esc(meta.facebook)+'" target="_blank" rel="noopener noreferrer">Facebook</a>':'')+'</div><a class="btn btn-g" href="#/profile/profile">Chỉnh sửa hồ sơ</a></div>';
   }else{
     section='profile';
-    const lang=meta.language||'vi';
     content='<form class="edn-profile-form" data-form="profile-save" novalidate>'+
       '<div class="edn-form-block">'+
         '<h3 class="edn-form-section-title">Thông tin cơ bản:</h3>'+
         '<div class="edn-field-col">'+
           '<div class="edn-name-row">'+
-            '<div class="edn-field"><input id="edn-first-name" name="firstName" value="'+esc(first)+'" maxlength="60" autocomplete="given-name" placeholder="Tên" required></div>'+
-            '<div class="edn-field"><input id="edn-last-name" name="lastName" value="'+esc(last)+'" maxlength="60" autocomplete="family-name" placeholder="Họ" required></div>'+
+            '<div class="edn-field"><label class="edn-field-label" for="edn-first-name">Tên</label><input id="edn-first-name" name="firstName" value="'+esc(first)+'" maxlength="60" autocomplete="given-name" placeholder="Tên" required></div>'+
+            '<div class="edn-field"><label class="edn-field-label" for="edn-last-name">Họ</label><input id="edn-last-name" name="lastName" value="'+esc(last)+'" maxlength="60" autocomplete="family-name" placeholder="Họ" required></div>'+
           '</div>'+
           '<div class="edn-field">'+
+            '<label class="edn-field-label" for="edn-headline">Dòng giới thiệu ngắn</label>'+
             '<div class="edn-field-counter-wrap">'+
-              '<input id="edn-headline" name="headline" maxlength="60" value="'+esc(meta.headline||'')+'" placeholder="Đầu đề">'+
+              '<input id="edn-headline" name="headline" maxlength="120" value="'+esc(meta.headline||'')+'" placeholder="Ví dụ: Giảng viên Lập trình Web tại EduNext">'+
               '<span id="edn-headline-count">'+String(meta.headline||'').length+'</span>'+
             '</div>'+
-            '<small class="edn-field-hint">Thêm dòng tiêu đề về nghề nghiệp, chẳng hạn như "Giảng viên tại EduNext" hoặc "Kỹ sư giải pháp".</small>'+
-          '</div>'+
-          '<div class="edn-field">'+
-            '<label class="edn-field-label" for="edn-bio">Tiểu sử</label>'+
-            '<div class="edn-editor-mock">'+
-              '<div class="edn-editor-toolbar" aria-hidden="true"><span><b>B</b></span><span><i>I</i></span></div>'+
-              '<textarea id="edn-bio" name="bio" rows="4" maxlength="600" placeholder="Tiểu sử">'+esc(meta.bio||'')+'</textarea>'+
-            '</div>'+
-            '<small class="edn-field-hint">Không được phép sử dụng đường liên kết và mã coupon trong phần này.</small>'+
-          '</div>'+
-          '<div class="edn-field">'+
-            '<select id="edn-language" name="language" class="edn-select-control">'+
-              '<option value="vi" '+(lang==='vi'?'selected':'')+'>Tiếng Việt</option>'+
-              '<option value="en" '+(lang==='en'?'selected':'')+'>English</option>'+
-            '</select>'+
+            '<small class="edn-field-hint">Dòng giới thiệu ngắn gọn về nghề nghiệp hoặc chuyên môn của bạn.</small>'+
           '</div>'+
         '</div>'+
       '</div>'+
@@ -1714,55 +1700,30 @@ const profilePage=section=>{
         '<h3 class="edn-form-section-title">Đường liên kết:</h3>'+
         '<div class="edn-field-col">'+
           '<div class="edn-field">'+
-            '<input id="edn-website" name="website" type="url" value="'+esc(meta.website||'')+'" placeholder="Trang web (http(s)://...)">'+
+            '<label class="edn-field-label" for="edn-website">Website cá nhân</label>'+
+            '<input id="edn-website" name="website" type="url" value="'+esc(meta.website||'')+'" placeholder="https://yourwebsite.com">'+
           '</div>'+
           '<div class="edn-field">'+
+            '<label class="edn-field-label" for="edn-facebook">Facebook</label>'+
             '<div class="edn-input-addon-group">'+
               '<span class="edn-input-addon">facebook.com/</span>'+
               '<input id="edn-facebook" name="facebook" value="'+esc(meta.facebook||'')+'" placeholder="Tên người dùng">'+
             '</div>'+
-            '<small class="edn-field-hint">Nhập tên người dùng Facebook của bạn (ví dụ: johnsmith).</small>'+
+            '<small class="edn-field-hint">Nhập tên người dùng hoặc đường dẫn trang cá nhân Facebook của bạn.</small>'+
           '</div>'+
           '<div class="edn-field">'+
-            '<div class="edn-input-addon-group">'+
-              '<span class="edn-input-addon">instagram.com/</span>'+
-              '<input id="edn-instagram" name="instagram" value="'+esc(meta.instagram||'')+'" placeholder="Tên người dùng">'+
-            '</div>'+
-            '<small class="edn-field-hint">Nhập tên người dùng Instagram của bạn (ví dụ: johnsmith).</small>'+
-          '</div>'+
-          '<div class="edn-field">'+
+            '<label class="edn-field-label" for="edn-linkedin">LinkedIn</label>'+
             '<div class="edn-input-addon-group">'+
               '<span class="edn-input-addon">linkedin.com/</span>'+
-              '<input id="edn-linkedin" name="linkedin" value="'+esc(meta.linkedin||'')+'" placeholder="URL Hồ sơ công khai">'+
+              '<input id="edn-linkedin" name="linkedin" value="'+esc(meta.linkedin||'')+'" placeholder="in/ten-nguoi-dung">'+
             '</div>'+
-            '<small class="edn-field-hint">Nhập URL hồ sơ công khai LinkedIn của bạn (ví dụ: in/johnsmith, company/edunext).</small>'+
-          '</div>'+
-          '<div class="edn-field">'+
-            '<div class="edn-input-addon-group">'+
-              '<span class="edn-input-addon">tiktok.com/</span>'+
-              '<input id="edn-tiktok" name="tiktok" value="'+esc(meta.tiktok||'')+'" placeholder="@Tên người dùng">'+
-            '</div>'+
-            '<small class="edn-field-hint">Nhập tên người dùng TikTok của bạn (ví dụ: @johnsmith).</small>'+
-          '</div>'+
-          '<div class="edn-field">'+
-            '<div class="edn-input-addon-group">'+
-              '<span class="edn-input-addon">x.com/</span>'+
-              '<input id="edn-x" name="x" value="'+esc(meta.x||'')+'" placeholder="Tên người dùng">'+
-            '</div>'+
-            '<small class="edn-field-hint">Thêm tên người dùng X của bạn (ví dụ: johnsmith).</small>'+
-          '</div>'+
-          '<div class="edn-field">'+
-            '<div class="edn-input-addon-group">'+
-              '<span class="edn-input-addon">youtube.com/</span>'+
-              '<input id="edn-youtube" name="youtube" value="'+esc(meta.youtube||'')+'" placeholder="Tên người dùng">'+
-            '</div>'+
-            '<small class="edn-field-hint">Nhập tên người dùng YouTube của bạn (ví dụ: johnsmith).</small>'+
+            '<small class="edn-field-hint">Nhập đường dẫn hồ sơ công khai LinkedIn của bạn.</small>'+
           '</div>'+
         '</div>'+
       '</div>'+
       '<p class="edn-profile-error" id="edn-profile-error" role="alert"></p>'+
       '<div class="edn-profile-save-row">'+
-        '<button class="btn btn-p edn-btn-save-profile" type="submit">Lưu</button>'+
+        '<button class="btn btn-p edn-btn-save-profile" type="submit">Lưu hồ sơ</button>'+
       '</div>'+
     '</form>';
   }
