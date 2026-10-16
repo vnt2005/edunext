@@ -10988,8 +10988,16 @@ body.edunext-app .edn-orders-tabs {
   border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
   margin: 0 0 44px !important;
   padding: 0 !important;
-  overflow-x: auto !important;
+  overflow: visible !important;
   background: transparent !important;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+body.edunext-app .edn-orders-tabs::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
 }
 
 body.edunext-app .edn-orders-tab {
@@ -11165,6 +11173,14 @@ body.edunext-app .edn-order-badge.status-refunded {
   body.edunext-app .edn-orders-tabs {
     gap: 16px !important;
     margin-bottom: 28px !important;
+    overflow-x: auto !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+  }
+  body.edunext-app .edn-orders-tabs::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
   }
   body.edunext-app .edn-orders-tab {
     font-size: 14px !important;
