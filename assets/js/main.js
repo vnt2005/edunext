@@ -733,7 +733,6 @@ const groupDetail=slug=>{
   const courseCount=C.filter(course=>domainIds.has(course.domainId)).length;
   const arrowIcon='<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M8 3l5 5-5 5"></path></svg>';
   return '<div class="wrap page edn-domain-detail edn-domain-group-detail"><nav class="edn-breadcrumb" aria-label="Đường dẫn"><a href="#/">Trang chủ</a><span>›</span><a href="#/categories">Nhóm lĩnh vực</a><span>›</span><span>'+esc(group.name)+'</span></nav>'+
-    '<div class="edn-page-intro"><h1>'+esc(group.name)+'</h1></div>'+
     '<section class="edn-domain-programs"><div class="edn-domain-visual-grid">'+group.domains.map(domain=>{
       const cCount=C.filter(course=>course.domainId===domain.id).length;
       const bgImg=getDomainImage(domain);
@@ -751,7 +750,6 @@ const domainDetail=slug=>{
   const coursesInDomain=C.filter(c=>c.domainId===d.id);
   const arrowIcon='<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M8 3l5 5-5 5"></path></svg>';
   return '<div class="wrap page edn-domain-detail"><nav class="edn-breadcrumb" aria-label="Đường dẫn"><a href="#/">Trang chủ</a><span>›</span><a href="#/categories">Nhóm lĩnh vực</a><span>›</span>'+(group?'<a href="#/group/'+esc(group.slug)+'">'+esc(group.name)+'</a><span>›</span>':'')+'<span>'+esc(d.name)+'</span></nav>'+
-    '<div class="edn-page-intro"><h1>'+esc(d.name)+'</h1></div>'+
     '<section class="edn-domain-programs"><div class="edn-section-header"><div><h2>Các khóa học trong chuyên ngành</h2><p>Lựa chọn chương trình phù hợp với mục tiêu học tập của bạn.</p></div></div><div class="edn-courses-grid edn-domain-course-grid">'+(coursesInDomain.length?coursesInDomain.map(card).join(''):'<div class="empty"><h3>Chưa có khóa học nào</h3><p>Các khóa học trong chuyên ngành này đang được biên soạn.</p><a class="btn btn-g" href="#/courses">Xem tất cả khóa học</a></div>')+'</div></section></div>';
 };
 const TOPIC_VIDEOS = {
