@@ -432,10 +432,6 @@ const home=()=>{
     '<section class="edn-ziro-hero">'+
       '<div class="wrap edn-ziro-wrapper">'+
         '<div class="edn-ziro-content">'+
-          '<div class="edn-ziro-pill">'+
-            '<span class="edn-ziro-pill-dot" aria-hidden="true"></span>'+
-            '<span>Nền tảng học kỹ năng số thực chiến</span>'+
-          '</div>'+
           '<h1 class="edn-ziro-headline">'+
             'Khám phá lộ trình chuẩn.<br>'+
             '<span class="edn-ziro-gradient-text">Nâng tầm sự nghiệp số.</span>'+
