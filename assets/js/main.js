@@ -1657,8 +1657,14 @@ const profilePage=section=>{
   const last=meta.lastName!==undefined?meta.lastName:defaultLast;
   const full=[first,last].filter(Boolean).join(' ')||u.name||'Học viên EduNext';
   const avatar=meta.avatar?'<img src="'+esc(meta.avatar)+'" alt="Ảnh hồ sơ">':'<svg class="edn-profile-avatar-placeholder" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"></circle><path d="M5 20c.5-3.3 3.2-5 7-5s6.5 1.7 7 5"></path></svg>';
-  const navItems=[['profile','Thông tin cá nhân'],['photo','Ảnh đại diện'],['security','Mật khẩu']];
-  const nav=navItems.map(([id,label])=>'<a class="edn-profile-menu-item '+(section===id?'is-active':'')+'" '+(section===id?'aria-current="page"':'')+' href="#/profile/'+id+'">'+label+'</a>').join('');
+  const navItems=[
+    {href:'#/dashboard',label:'Trang học tập',id:'dashboard'},
+    {href:'#/profile/profile',label:'Thông tin cá nhân',id:'profile'},
+    {href:'#/profile/photo',label:'Ảnh đại diện',id:'photo'},
+    {href:'#/profile/security',label:'Mật khẩu',id:'security'},
+    {href:'#/orders',label:'Lịch sử mua hàng',id:'orders'}
+  ];
+  const nav=navItems.map(item=>'<a class="edn-profile-menu-item '+(section===item.id?'is-active':'')+'" '+(section===item.id?'aria-current="page"':'')+' href="'+item.href+'">'+item.label+'</a>').join('');
   let title='Thông tin cá nhân',subtitle='Cập nhật thông tin cơ bản cho tài khoản EduNext.',content='';
   if(section==='photo'){
     title='Ảnh đại diện';subtitle='Tải ảnh lên để cập nhật ảnh hồ sơ tài khoản.';
