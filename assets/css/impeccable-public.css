@@ -6248,6 +6248,8 @@ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog
 /* Catalog Filter Toolbar */
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog-page .cio-course-toolbar,
 .cio-course-toolbar {
+  position: relative !important;
+  z-index: 40 !important;
   display: flex !important;
   flex-wrap: wrap !important;
   align-items: center !important;
@@ -6338,6 +6340,11 @@ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog
   position: relative;
   flex: 1 1 170px;
   min-width: 150px;
+  z-index: 10;
+}
+
+.edn-custom-select.is-open {
+  z-index: 50;
 }
 
 .edn-custom-select-trigger {
@@ -6395,9 +6402,10 @@ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog
   position: absolute;
   top: calc(100% + 8px);
   left: 0;
-  right: 0;
+  right: auto;
   min-width: 240px;
-  max-height: 300px;
+  max-width: min(340px, 92vw);
+  max-height: 320px;
   overflow-y: auto;
   overflow-x: hidden;
   background: rgba(14, 18, 38, 0.82) !important;
@@ -6406,24 +6414,35 @@ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-course-catalog
   box-shadow: 0 20px 48px rgba(0, 0, 0, 0.5), 0 0 24px rgba(99, 102, 241, 0.12) !important;
   backdrop-filter: blur(24px) saturate(180%) !important;
   -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
-  padding: 6px;
-  z-index: 1050;
+  padding: 6px 4px 6px 6px;
+  z-index: 100;
   display: none;
   scrollbar-width: thin;
-  scrollbar-color: rgba(45, 212, 191, 0.35) transparent;
+  scrollbar-color: rgba(45, 212, 191, 0.4) transparent;
+}
+
+.edn-custom-select[data-select-id="sort"] .edn-custom-select-menu {
+  left: auto;
+  right: 0;
+}
+
+.edn-custom-select.is-dropup .edn-custom-select-menu {
+  top: auto;
+  bottom: calc(100% + 8px);
 }
 
 .edn-custom-select-menu::-webkit-scrollbar {
-  width: 5px;
+  width: 6px;
 }
 
 .edn-custom-select-menu::-webkit-scrollbar-thumb {
-  background: rgba(45, 212, 191, 0.35);
+  background: rgba(45, 212, 191, 0.4);
   border-radius: 9999px;
 }
 
 .edn-custom-select-menu::-webkit-scrollbar-track {
   background: transparent;
+  margin: 6px 0;
 }
 
 .edn-custom-select.is-open .edn-custom-select-menu {

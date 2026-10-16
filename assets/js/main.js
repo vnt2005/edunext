@@ -2206,12 +2206,28 @@ document.addEventListener('click',event=>{
     // Close other dropdowns first
     document.querySelectorAll('.edn-custom-select.is-open').forEach(el=>{
       if(el!==selectWrapper){
-        el.classList.remove('is-open');
+        el.classList.remove('is-open','is-dropup');
         el.querySelector('.edn-custom-select-trigger')?.setAttribute('aria-expanded','false');
       }
     });
-    selectWrapper.classList.toggle('is-open',!isOpen);
-    trigger.setAttribute('aria-expanded',String(!isOpen));
+
+    if(!isOpen){
+      // Viewport collision detection: if not enough space below, open upward
+      const rect=selectWrapper.getBoundingClientRect();
+      const menuHeight=320; // max-height of dropdown menu
+      const spaceBelow=window.innerHeight-rect.bottom;
+      const spaceAbove=rect.top;
+      if(spaceBelow<menuHeight&&spaceAbove>spaceBelow){
+        selectWrapper.classList.add('is-dropup');
+      }else{
+        selectWrapper.classList.remove('is-dropup');
+      }
+      selectWrapper.classList.add('is-open');
+      trigger.setAttribute('aria-expanded','true');
+    }else{
+      selectWrapper.classList.remove('is-open','is-dropup');
+      trigger.setAttribute('aria-expanded','false');
+    }
     return;
   }
 
@@ -2220,7 +2236,7 @@ document.addEventListener('click',event=>{
     const field=optionItem.dataset.customSelect;
     const value=optionItem.dataset.value;
     if(selectWrapper){
-      selectWrapper.classList.remove('is-open');
+      selectWrapper.classList.remove('is-open','is-dropup');
       selectWrapper.querySelector('.edn-custom-select-trigger')?.setAttribute('aria-expanded','false');
       const label=selectWrapper.querySelector('.edn-custom-select-label');
       if(label)label.textContent=optionItem.textContent.trim();
@@ -2245,11 +2261,20 @@ document.addEventListener('click',event=>{
   // Click outside closes any open custom select
   if(!event.target.closest('.edn-custom-select')){
     document.querySelectorAll('.edn-custom-select.is-open').forEach(el=>{
-      el.classList.remove('is-open');
+      el.classList.remove('is-open','is-dropup');
       el.querySelector('.edn-custom-select-trigger')?.setAttribute('aria-expanded','false');
     });
   }
 });
+
+// Auto-close open select dropdowns on window scroll for stability
+window.addEventListener('scroll',()=>{
+  const openSelect=document.querySelector('.edn-custom-select.is-open');
+  if(openSelect){
+    openSelect.classList.remove('is-open','is-dropup');
+    openSelect.querySelector('.edn-custom-select-trigger')?.setAttribute('aria-expanded','false');
+  }
+},{passive:true});
 
 document.addEventListener('submit',async event=>{
   const form=event.target.closest('[data-form]');
