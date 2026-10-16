@@ -1471,10 +1471,10 @@ const blogPage=()=>{
         '<a class="edn-udemy-subnav-brand" href="#/" aria-label="EduNext - Quay về trang chủ"><strong>EduNext</strong> <span>Blog</span></a>'+
         '<nav class="edn-udemy-subnav-links" aria-label="Danh mục chuyên đề">'+
           '<button type="button" class="edn-udemy-subnav-link" data-blog-topic="AI & Machine Learning">AI & Machine Learning</button>'+
-          '<button type="button" class="edn-udemy-subnav-link" data-blog-topic="Lập trình">Phát triển phần mềm</button>'+
-          '<button type="button" class="edn-udemy-subnav-link" data-blog-topic="UI/UX">Thiết kế UI/UX</button>'+
-          '<button type="button" class="edn-udemy-subnav-link" data-blog-topic="Digital Marketing">Kinh doanh & Quản trị</button>'+
-          '<button type="button" class="edn-udemy-subnav-link" data-blog-topic="Kỹ năng dự án">Kỹ năng sự nghiệp</button>'+
+          '<button type="button" class="edn-udemy-subnav-link" data-blog-topic="Phát triển phần mềm">Phát triển phần mềm</button>'+
+          '<button type="button" class="edn-udemy-subnav-link" data-blog-topic="Thiết kế UI/UX">Thiết kế UI/UX</button>'+
+          '<button type="button" class="edn-udemy-subnav-link" data-blog-topic="Kinh doanh & Quản trị">Kinh doanh & Quản trị</button>'+
+          '<button type="button" class="edn-udemy-subnav-link" data-blog-topic="Kỹ năng sự nghiệp">Kỹ năng sự nghiệp</button>'+
         '</nav>'+
         '<a class="edn-udemy-subnav-cta" href="#/courses">Khám phá khóa học</a>'+
       '</div>'+
@@ -2314,18 +2314,42 @@ document.addEventListener('click',event=>{
 document.addEventListener('click',event=>{
   const button=event.target.closest('[data-blog-topic]');
   if(!button)return;
-  const topic=button.dataset.blogTopic||'Tất cả';
+  const topic=(button.dataset.blogTopic||'Tất cả').trim();
   const normalizedTopic=topic.toLocaleLowerCase('vi-VN');
-  const matches=tag=>topic==='Tất cả'||String(tag||'').toLocaleLowerCase('vi-VN')===normalizedTopic;
+
+  // Mapping from broad categories to article tags
+  const BLOG_CATEGORY_MAP = {
+    'tất cả': [],
+    'ai & machine learning': ['ai & machine learning'],
+    'phát triển phần mềm': ['lập trình', 'asp.net core', 'cơ sở dữ liệu', 'mạng máy tính'],
+    'thiết kế ui/ux': ['ui/ux', 'autocad 2d'],
+    'kinh doanh & quản trị': ['digital marketing', 'seo'],
+    'kỹ năng sự nghiệp': ['kỹ năng sự nghiệp', 'kỹ năng dự án', 'tiếng anh it']
+  };
+
+  const allowedTags = BLOG_CATEGORY_MAP[normalizedTopic] || [normalizedTopic];
+  const matches = tag => topic === 'Tất cả' || allowedTags.includes(String(tag || '').trim().toLocaleLowerCase('vi-VN'));
+
   document.querySelectorAll('.blog-page-card[data-blog-tag], .edn-mag-card[data-blog-tag], .edn-mag-lead[data-blog-tag], .edn-udemy-card[data-blog-tag], .edn-udemy-hero-featured[data-blog-tag]').forEach(item=>{
     item.style.display=matches(item.dataset.blogTag||'')?'':'none';
   });
+
   document.querySelectorAll('[data-blog-topic]').forEach(item=>{
-    const active=item.dataset.blogTopic===topic;
+    const itemTopic=(item.dataset.blogTopic||'').trim();
+    const itemNorm=itemTopic.toLocaleLowerCase('vi-VN');
+    const active=itemNorm===normalizedTopic || (allowedTags.length===1 && allowedTags[0]===itemNorm);
     item.classList.toggle('active',active);
     item.classList.toggle('is-active',active);
     item.setAttribute('aria-pressed',String(active));
   });
+
+  // If clicked from top subnav, scroll smoothly to the content section so user sees filtered articles
+  if(button.closest('.edn-udemy-subnav-links')){
+    const targetEl=document.querySelector('.edn-udemy-filter-section')||document.querySelector('.edn-udemy-subhero-grid');
+    if(targetEl){
+      targetEl.scrollIntoView({behavior:'smooth',block:'start'});
+    }
+  }
 });
 
 document.addEventListener('input',event=>{
