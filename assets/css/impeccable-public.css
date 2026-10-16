@@ -11959,7 +11959,7 @@ body.edunext-app .edn-auth-page .sw a:hover {
 
 /* ==========================================================================
    M. HOMEPAGE VERTICAL RHYTHM & SECTION SPACING HARMONIZATION
-   Standardize 80px vertical section spacing across all home sections
+   Standardize balanced vertical rhythm across hero, stats, and sections
    ========================================================================== */
 
 /* 1. Reset and establish consistent top & bottom padding for all homepage sections */
@@ -11969,10 +11969,31 @@ body.edunext-app .edn-home-page > section {
   margin-bottom: 0 !important;
 }
 
-/* 2. Stats bar following Hero: 64px top & bottom */
+/* 2. Hero Section: Eliminate excess 100vh gap and balance top/bottom spacing */
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-ziro-hero,
+body.edunext-app .edn-ziro-hero {
+  min-height: auto !important;
+  padding: 0 !important;
+}
+
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-ziro-wrapper,
+body.edunext-app .edn-ziro-wrapper {
+  min-height: auto !important;
+  padding: 64px 32px 36px !important;
+}
+
+body.edunext-app .edn-ziro-content .edn-ziro-cta-row {
+  margin-bottom: 22px !important;
+}
+
+body.edunext-app .edn-ziro-content .edn-ziro-quick-topics {
+  margin-top: 0 !important;
+}
+
+/* 3. Stats bar following Hero: balanced 48px top & 64px bottom */
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-luma-stats,
 body.edunext-app .edn-luma-stats {
-  padding-top: 64px !important;
+  padding-top: 36px !important;
   padding-bottom: 64px !important;
 }
 
