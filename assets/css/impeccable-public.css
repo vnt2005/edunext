@@ -9629,6 +9629,7 @@ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-profile-page {
   display: grid !important;
   grid-template-columns: 220px minmax(0, 1fr) !important;
   gap: 0 !important;
+  align-items: stretch !important;
   border: 1px solid rgba(255, 255, 255, 0.1) !important;
   border-radius: 16px !important;
   box-sizing: border-box !important;
@@ -9653,6 +9654,8 @@ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-profile-sideba
   display: flex !important;
   flex-direction: column !important;
   align-items: stretch !important;
+  height: 100% !important;
+  box-sizing: border-box !important;
 }
 
 /* User Avatar & Name in Sidebar */
