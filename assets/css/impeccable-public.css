@@ -9763,7 +9763,30 @@ body.edunext-app .edn-cart-trigger svg {
   stroke: currentColor !important;
 }
 
-body.edunext-app .edn-cart-count {
+body.edunext-app .edn-cart-count,
+body.edunext-app .edn-header-tools .edn-cart-count {
+  position: absolute !important;
+  top: -5px !important;
+  right: -7px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-width: 17px !important;
+  height: 17px !important;
+  padding: 0 4px !important;
+  border-radius: 9999px !important;
+  background: #EF4444 !important;
+  color: #FFFFFF !important;
+  border: 2px solid #050814 !important;
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+  box-shadow: 0 2px 6px rgba(239, 68, 68, 0.4) !important;
+  pointer-events: none !important;
+  box-sizing: border-box !important;
+}
+body.edunext-app .edn-cart-count[hidden],
+body.edunext-app .edn-header-tools .edn-cart-count[hidden] {
   display: none !important;
 }
 
