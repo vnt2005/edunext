@@ -7067,6 +7067,14 @@ body.edunext-app .edn-course-player-dialog,
 .edn-course-player-items {
   max-height: 180px !important;
   overflow-y: auto !important;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+.edn-course-player-items::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
 }
 
 .edn-course-player-item {
