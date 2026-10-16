@@ -9621,12 +9621,12 @@ body.edunext-app .edn-profile-page,
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-profile-page {
   background: #FFFFFF !important;
   color: #1C1D1F !important;
-  max-width: 1060px !important;
+  max-width: 980px !important;
   width: 100% !important;
-  margin: 0 auto !important;
-  padding: 40px 24px 80px !important;
+  margin: 32px auto 60px !important;
+  padding: 0 !important;
   display: grid !important;
-  grid-template-columns: 220px minmax(0, 1fr) !important;
+  grid-template-columns: 200px minmax(0, 1fr) !important;
   gap: 0 !important;
   border: 1px solid #D1D7DC !important;
   border-radius: 0 !important;
@@ -9645,7 +9645,7 @@ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-profile-sideba
   border-right: 1px solid #D1D7DC !important;
   border-radius: 0 !important;
   box-shadow: none !important;
-  padding: 32px 0 32px 0 !important;
+  padding: 24px 0 !important;
   display: flex !important;
   flex-direction: column !important;
   align-items: stretch !important;
@@ -9657,21 +9657,21 @@ body.edunext-app .edn-profile-person {
   flex-direction: column !important;
   align-items: center !important;
   text-align: center !important;
-  padding: 0 16px 24px !important;
+  padding: 0 16px 16px !important;
   margin-bottom: 8px !important;
   border-bottom: none !important;
 }
 
 body.edunext-app .edn-profile-avatar-circle {
-  width: 96px !important;
-  height: 96px !important;
+  width: 72px !important;
+  height: 72px !important;
   border-radius: 50% !important;
   background: #1C1D1F !important;
   color: #FFFFFF !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  margin-bottom: 14px !important;
+  margin-bottom: 10px !important;
   overflow: hidden !important;
 }
 
@@ -9682,19 +9682,19 @@ body.edunext-app .edn-profile-avatar-circle img {
 }
 
 body.edunext-app .edn-profile-avatar-circle svg {
-  width: 48px !important;
-  height: 48px !important;
+  width: 38px !important;
+  height: 38px !important;
   stroke: #FFFFFF !important;
-  stroke-width: 1.5 !important;
+  stroke-width: 1.6 !important;
   fill: none !important;
 }
 
 body.edunext-app .edn-profile-person strong {
-  font-size: 15px !important;
+  font-size: 14px !important;
   font-weight: 700 !important;
   color: #1C1D1F !important;
   line-height: 1.3 !important;
-  max-width: 180px !important;
+  max-width: 170px !important;
   word-break: break-word !important;
 }
 
@@ -9711,8 +9711,8 @@ body.edunext-app .edn-profile-menu-item,
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-profile-menu-item {
   display: flex !important;
   align-items: center !important;
-  padding: 10px 24px !important;
-  font-size: 14px !important;
+  padding: 8px 18px !important;
+  font-size: 13.5px !important;
   font-weight: 400 !important;
   color: #2D2F31 !important;
   text-decoration: none !important;
@@ -9720,7 +9720,7 @@ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-profile-menu-i
   background: transparent !important;
   border: none !important;
   transition: background 0.15s ease, color 0.15s ease !important;
-  line-height: 1.4 !important;
+  line-height: 1.35 !important;
 }
 
 body.edunext-app .edn-profile-menu-item:hover,
@@ -9734,20 +9734,20 @@ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-profile-menu-i
   background: #E8F5F3 !important;
   color: #0F766E !important;
   font-weight: 700 !important;
-  border-left: 4px solid #0F766E !important;
-  padding-left: 20px !important;
+  border-left: 3px solid #0F766E !important;
+  padding-left: 15px !important;
 }
 
 #app .edn-profile-logout,
 body.edunext-app .edn-profile-logout {
   display: flex !important;
   align-items: center !important;
-  margin: 16px 24px 0 !important;
-  padding: 8px 0 !important;
+  margin: 12px 18px 0 !important;
+  padding: 6px 0 !important;
   background: transparent !important;
   border: none !important;
   color: #6A6F73 !important;
-  font-size: 13.5px !important;
+  font-size: 13px !important;
   font-weight: 500 !important;
   cursor: pointer !important;
   text-align: left !important;
@@ -9770,7 +9770,7 @@ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-profile-main {
   border: none !important;
   border-radius: 0 !important;
   box-shadow: none !important;
-  padding: 36px 48px 48px !important;
+  padding: 30px 40px 44px !important;
   color: #1C1D1F !important;
   min-width: 0 !important;
 }
@@ -9778,25 +9778,25 @@ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-profile-main {
 /* Header Heading */
 body.edunext-app .edn-profile-heading {
   text-align: center !important;
-  padding-bottom: 24px !important;
+  padding-bottom: 18px !important;
   border-bottom: 1px solid #D1D7DC !important;
-  margin-bottom: 32px !important;
+  margin-bottom: 24px !important;
 }
 
 body.edunext-app .edn-profile-heading h1,
 body.edunext-app #app .edn-profile-heading h1 {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
-  font-size: 24px !important;
+  font-size: 20px !important;
   font-weight: 700 !important;
   color: #1C1D1F !important;
   letter-spacing: -0.01em !important;
-  margin: 0 0 6px !important;
+  margin: 0 0 4px !important;
   text-shadow: none !important;
 }
 
 body.edunext-app .edn-profile-heading p {
-  font-size: 14px !important;
-  color: #6A6F73 !important;
+  font-size: 13px !important;
+  color: #565656 !important;
   margin: 0 !important;
 }
 
@@ -9806,19 +9806,19 @@ body.edunext-app .edn-profile-form {
   border: none !important;
   box-shadow: none !important;
   padding: 0 !important;
-  max-width: 600px !important;
+  max-width: 580px !important;
   margin: 0 auto !important;
 }
 
 body.edunext-app .edn-form-block {
-  margin-bottom: 32px !important;
+  margin-bottom: 24px !important;
 }
 
 body.edunext-app .edn-form-section-title {
-  font-size: 15px !important;
+  font-size: 14px !important;
   font-weight: 700 !important;
   color: #1C1D1F !important;
-  margin: 0 0 16px !important;
+  margin: 0 0 12px !important;
   padding: 0 !important;
   border: none !important;
 }
@@ -9826,23 +9826,30 @@ body.edunext-app .edn-form-section-title {
 body.edunext-app .edn-field-col {
   display: flex !important;
   flex-direction: column !important;
-  gap: 16px !important;
+  gap: 12px !important;
+}
+
+/* First Name & Last Name Horizontal Row */
+body.edunext-app .edn-name-row {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 12px !important;
 }
 
 body.edunext-app .edn-field {
   display: flex !important;
   flex-direction: column !important;
-  gap: 6px !important;
+  gap: 4px !important;
   margin: 0 !important;
 }
 
 body.edunext-app .edn-field-label {
-  font-size: 14px !important;
+  font-size: 13px !important;
   font-weight: 700 !important;
   color: #1C1D1F !important;
 }
 
-/* Input Fields (Clean white with gray border) */
+/* Input Fields (Clean white with thin #94A3B8 / #CBD5E1 gray border, height 38px) */
 body.edunext-app .edn-profile-form input:not([type=checkbox]):not([type=file]),
 body.edunext-app .edn-profile-form textarea,
 body.edunext-app .edn-select-control,
@@ -9850,12 +9857,13 @@ body.edunext-app .edn-profile-main input,
 body.edunext-app .edn-profile-main textarea {
   width: 100% !important;
   box-sizing: border-box !important;
-  padding: 11px 14px !important;
-  font-size: 14px !important;
+  height: 38px !important;
+  padding: 8px 12px !important;
+  font-size: 13.5px !important;
   color: #1C1D1F !important;
   background: #FFFFFF !important;
-  border: 1px solid #1C1D1F !important;
-  border-radius: 0 !important;
+  border: 1px solid #94A3B8 !important;
+  border-radius: 3px !important;
   outline: none !important;
   transition: border-color 0.15s ease, box-shadow 0.15s ease !important;
 }
@@ -9863,7 +9871,7 @@ body.edunext-app .edn-profile-main textarea {
 body.edunext-app .edn-profile-form input::placeholder,
 body.edunext-app .edn-profile-form textarea::placeholder {
   color: #6A6F73 !important;
-  font-size: 14px !important;
+  font-size: 13px !important;
 }
 
 body.edunext-app .edn-profile-form input:focus,
@@ -9883,85 +9891,95 @@ body.edunext-app .edn-field-counter-wrap {
 }
 
 body.edunext-app .edn-field-counter-wrap input {
-  padding-right: 48px !important;
+  padding-right: 42px !important;
 }
 
 body.edunext-app .edn-field-counter-wrap span {
   position: absolute !important;
-  right: 14px !important;
+  right: 12px !important;
   color: #6A6F73 !important;
-  font-size: 13px !important;
+  font-size: 12px !important;
   pointer-events: none !important;
 }
 
 body.edunext-app .edn-field-hint {
-  font-size: 12px !important;
+  font-size: 11.5px !important;
   color: #6A6F73 !important;
-  line-height: 1.4 !important;
+  line-height: 1.35 !important;
   margin-top: 2px !important;
 }
 
 /* Editor Mockup */
 body.edunext-app .edn-editor-mock {
-  border: 1px solid #1C1D1F !important;
+  border: 1px solid #94A3B8 !important;
+  border-radius: 3px !important;
   background: #FFFFFF !important;
+  overflow: hidden !important;
 }
 
 body.edunext-app .edn-editor-toolbar {
   display: flex !important;
   gap: 12px !important;
-  padding: 8px 12px !important;
-  border-bottom: 1px solid #D1D7DC !important;
-  background: #F7F9FA !important;
+  padding: 6px 12px !important;
+  border-bottom: 1px solid #E2E8F0 !important;
+  background: #F8FAFC !important;
   color: #1C1D1F !important;
-  font-size: 13px !important;
+  font-size: 12.5px !important;
 }
 
 body.edunext-app .edn-editor-mock textarea {
   border: none !important;
+  border-radius: 0 !important;
   outline: none !important;
   box-shadow: none !important;
   resize: vertical !important;
-  min-height: 100px !important;
+  height: 90px !important;
+  min-height: 80px !important;
 }
 
 /* Addon Group for Social Links (e.g., facebook.com/) */
 body.edunext-app .edn-input-addon-group {
   display: flex !important;
-  border: 1px solid #1C1D1F !important;
+  align-items: stretch !important;
+  border: 1px solid #94A3B8 !important;
+  border-radius: 3px !important;
   background: #FFFFFF !important;
+  overflow: hidden !important;
+  height: 38px !important;
 }
 
 body.edunext-app .edn-input-addon {
   display: flex !important;
   align-items: center !important;
-  padding: 0 12px !important;
-  background: #F7F9FA !important;
+  padding: 0 10px !important;
+  background: #F8FAFC !important;
   border-right: 1px solid #D1D7DC !important;
   color: #6A6F73 !important;
-  font-size: 13.5px !important;
+  font-size: 12.5px !important;
   white-space: nowrap !important;
   user-select: none !important;
 }
 
 body.edunext-app .edn-input-addon-group input {
   border: none !important;
+  border-radius: 0 !important;
   outline: none !important;
   box-shadow: none !important;
-  padding: 10px 12px !important;
-  font-size: 14px !important;
+  padding: 8px 10px !important;
+  font-size: 13px !important;
+  height: 100% !important;
 }
 
 body.edunext-app .edn-profile-divider {
   height: 1px !important;
-  background: #D1D7DC !important;
-  margin: 32px 0 !important;
+  background: #E2E8F0 !important;
+  margin: 22px 0 !important;
   border: none !important;
 }
 
 /* Save Row & Button */
 body.edunext-app .edn-profile-save-row {
-  margin-top: 36px !important;
+  margin-top: 24px !important;
   display: flex !important;
   justify-content: flex-start !important;
 }
@@ -9970,9 +9988,9 @@ body.edunext-app .edn-btn-save-profile,
 body.edunext-app .edn-profile-save-row .btn.btn-p {
   background: #0F766E !important;
   color: #FFFFFF !important;
-  font-size: 15px !important;
+  font-size: 14px !important;
   font-weight: 700 !important;
-  padding: 12px 28px !important;
+  padding: 10px 24px !important;
   border-radius: 4px !important;
   border: none !important;
   cursor: pointer !important;
@@ -9988,7 +10006,7 @@ body.edunext-app .edn-profile-save-row .btn.btn-p:hover {
 body.edunext-app .edn-profile-error {
   color: #B91C1C !important;
   font-size: 13px !important;
-  margin: 12px 0 0 !important;
+  margin: 10px 0 0 !important;
 }
 
 /* Responsive */
@@ -9998,20 +10016,23 @@ body.edunext-app .edn-profile-error {
   body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-profile-page {
     grid-template-columns: 1fr !important;
     border: none !important;
-    padding: 24px 16px 60px !important;
+    padding: 20px 16px 50px !important;
   }
   #app .edn-profile-sidebar,
   body.edunext-app .edn-profile-sidebar,
   body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-profile-sidebar {
     border-right: none !important;
     border-bottom: 1px solid #D1D7DC !important;
-    padding-bottom: 24px !important;
-    margin-bottom: 24px !important;
+    padding-bottom: 20px !important;
+    margin-bottom: 20px !important;
   }
   #app .edn-profile-main,
   body.edunext-app .edn-profile-main,
   body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-profile-main {
-    padding: 16px 0 !important;
+    padding: 12px 0 !important;
+  }
+  body.edunext-app .edn-name-row {
+    grid-template-columns: 1fr !important;
   }
 }
 

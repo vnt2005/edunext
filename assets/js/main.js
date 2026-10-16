@@ -1682,14 +1682,16 @@ const profilePage=section=>{
       '<div class="edn-form-block">'+
         '<h3 class="edn-form-section-title">Thông tin cơ bản:</h3>'+
         '<div class="edn-field-col">'+
-          '<div class="edn-field"><input id="edn-first-name" name="firstName" value="'+esc(first)+'" maxlength="60" autocomplete="given-name" placeholder="Tên" required></div>'+
-          '<div class="edn-field"><input id="edn-last-name" name="lastName" value="'+esc(last)+'" maxlength="60" autocomplete="family-name" placeholder="Họ" required></div>'+
+          '<div class="edn-name-row">'+
+            '<div class="edn-field"><input id="edn-first-name" name="firstName" value="'+esc(first)+'" maxlength="60" autocomplete="given-name" placeholder="Tên" required></div>'+
+            '<div class="edn-field"><input id="edn-last-name" name="lastName" value="'+esc(last)+'" maxlength="60" autocomplete="family-name" placeholder="Họ" required></div>'+
+          '</div>'+
           '<div class="edn-field">'+
             '<div class="edn-field-counter-wrap">'+
-              '<input id="edn-headline" name="headline" maxlength="60" value="'+esc(meta.headline||'')+'" placeholder="Đầu đề (nghề nghiệp hoặc vai trò)">'+
+              '<input id="edn-headline" name="headline" maxlength="60" value="'+esc(meta.headline||'')+'" placeholder="Đầu đề">'+
               '<span id="edn-headline-count">'+String(meta.headline||'').length+'</span>'+
             '</div>'+
-            '<small class="edn-field-hint">Thêm dòng tiêu đề về nghề nghiệp, chẳng hạn như "Kỹ sư phần mềm" hoặc "Chuyên viên phân tích dữ liệu".</small>'+
+            '<small class="edn-field-hint">Thêm dòng tiêu đề về nghề nghiệp, chẳng hạn như "Giảng viên tại EduNext" hoặc "Kỹ sư giải pháp".</small>'+
           '</div>'+
           '<div class="edn-field">'+
             '<label class="edn-field-label" for="edn-bio">Tiểu sử</label>'+
@@ -1697,7 +1699,7 @@ const profilePage=section=>{
               '<div class="edn-editor-toolbar" aria-hidden="true"><span><b>B</b></span><span><i>I</i></span></div>'+
               '<textarea id="edn-bio" name="bio" rows="4" maxlength="600" placeholder="Tiểu sử">'+esc(meta.bio||'')+'</textarea>'+
             '</div>'+
-            '<small class="edn-field-hint">Giới thiệu ngắn gọn về bản thân, kỹ năng và mục tiêu học tập trên EduNext.</small>'+
+            '<small class="edn-field-hint">Không được phép sử dụng đường liên kết và mã coupon trong phần này.</small>'+
           '</div>'+
           '<div class="edn-field">'+
             '<select id="edn-language" name="language" class="edn-select-control">'+
@@ -1712,7 +1714,7 @@ const profilePage=section=>{
         '<h3 class="edn-form-section-title">Đường liên kết:</h3>'+
         '<div class="edn-field-col">'+
           '<div class="edn-field">'+
-            '<input id="edn-website" name="website" type="url" value="'+esc(meta.website||'')+'" placeholder="Trang web (http://...)">'+
+            '<input id="edn-website" name="website" type="url" value="'+esc(meta.website||'')+'" placeholder="Trang web (http(s)://...)">'+
           '</div>'+
           '<div class="edn-field">'+
             '<div class="edn-input-addon-group">'+
@@ -1731,9 +1733,9 @@ const profilePage=section=>{
           '<div class="edn-field">'+
             '<div class="edn-input-addon-group">'+
               '<span class="edn-input-addon">linkedin.com/</span>'+
-              '<input id="edn-linkedin" name="linkedin" value="'+esc(meta.linkedin||'')+'" placeholder="URL Hồ sơ công khai hoặc tên người dùng">'+
+              '<input id="edn-linkedin" name="linkedin" value="'+esc(meta.linkedin||'')+'" placeholder="URL Hồ sơ công khai">'+
             '</div>'+
-            '<small class="edn-field-hint">Nhập URL hồ sơ công khai LinkedIn của bạn (ví dụ: in/johnsmith).</small>'+
+            '<small class="edn-field-hint">Nhập URL hồ sơ công khai LinkedIn của bạn (ví dụ: in/johnsmith, company/edunext).</small>'+
           '</div>'+
           '<div class="edn-field">'+
             '<div class="edn-input-addon-group">'+
@@ -1760,7 +1762,7 @@ const profilePage=section=>{
       '</div>'+
       '<p class="edn-profile-error" id="edn-profile-error" role="alert"></p>'+
       '<div class="edn-profile-save-row">'+
-        '<button class="btn btn-p edn-btn-save-profile" type="submit">Lưu hồ sơ</button>'+
+        '<button class="btn btn-p edn-btn-save-profile" type="submit">Lưu</button>'+
       '</div>'+
     '</form>';
   }
