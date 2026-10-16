@@ -8653,19 +8653,48 @@ body.admin-bar .edn-udemy-subnav {
   font-size: 13.5px !important;
   font-weight: 500 !important;
   white-space: nowrap !important;
-  transition: color 0.2s ease !important;
+  transition: all 0.2s ease !important;
+  background: transparent !important;
+  border: none !important;
+  cursor: pointer !important;
+  padding: 6px 12px !important;
+  border-radius: 9999px !important;
+  font-family: inherit !important;
+  line-height: 1.2 !important;
 }
-.edn-udemy-subnav-link:hover {
+.edn-udemy-subnav-link:hover,
+.edn-udemy-subnav-link.is-active,
+.edn-udemy-subnav-link.active {
   color: #2DD4BF !important;
+  background: rgba(45, 212, 191, 0.12) !important;
 }
-.edn-udemy-subnav-cta {
-  padding: 8px 18px !important;
+.edn-udemy-subnav-cta,
+a.edn-udemy-subnav-cta,
+body.edunext-app .edn-udemy-subnav-cta {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 8px 20px !important;
   border-radius: 9999px !important;
   font-size: 13px !important;
   font-weight: 700 !important;
   white-space: nowrap !important;
   background: #0D9488 !important;
   color: #FFFFFF !important;
+  text-decoration: none !important;
+  border: 1px solid rgba(45, 212, 191, 0.4) !important;
+  box-shadow: 0 4px 14px rgba(13, 148, 136, 0.3) !important;
+  transition: all 0.2s ease !important;
+  min-height: auto !important;
+}
+.edn-udemy-subnav-cta:hover,
+a.edn-udemy-subnav-cta:hover,
+body.edunext-app .edn-udemy-subnav-cta:hover {
+  background: #14B8A6 !important;
+  border-color: #2DD4BF !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 6px 20px rgba(45, 212, 191, 0.45) !important;
+  transform: translateY(-1px) !important;
 }
 .edn-udemy-blog-title {
   font-size: clamp(32px, 4.5vw, 48px) !important;

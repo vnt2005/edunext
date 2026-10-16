@@ -1470,13 +1470,13 @@ const blogPage=()=>{
       '<div class="edn-udemy-subnav">'+
         '<a class="edn-udemy-subnav-brand" href="#/" aria-label="EduNext - Quay về trang chủ"><strong>EduNext</strong> <span>Blog</span></a>'+
         '<nav class="edn-udemy-subnav-links" aria-label="Danh mục chuyên đề">'+
-          '<a href="#/courses" class="edn-udemy-subnav-link">AI & Machine Learning</a>'+
-          '<a href="#/courses" class="edn-udemy-subnav-link">Phát triển phần mềm</a>'+
-          '<a href="#/courses" class="edn-udemy-subnav-link">Thiết kế UI/UX</a>'+
-          '<a href="#/courses" class="edn-udemy-subnav-link">Kinh doanh & Quản trị</a>'+
-          '<a href="#/courses" class="edn-udemy-subnav-link">Kỹ năng sự nghiệp</a>'+
+          '<button type="button" class="edn-udemy-subnav-link" data-blog-topic="AI & Machine Learning">AI & Machine Learning</button>'+
+          '<button type="button" class="edn-udemy-subnav-link" data-blog-topic="Lập trình">Phát triển phần mềm</button>'+
+          '<button type="button" class="edn-udemy-subnav-link" data-blog-topic="UI/UX">Thiết kế UI/UX</button>'+
+          '<button type="button" class="edn-udemy-subnav-link" data-blog-topic="Digital Marketing">Kinh doanh & Quản trị</button>'+
+          '<button type="button" class="edn-udemy-subnav-link" data-blog-topic="Kỹ năng dự án">Kỹ năng sự nghiệp</button>'+
         '</nav>'+
-        '<a class="btn btn-p edn-udemy-subnav-cta" href="#/courses">Khám phá khóa học</a>'+
+        '<a class="edn-udemy-subnav-cta" href="#/courses">Khám phá khóa học</a>'+
       '</div>'+
       '<h1 class="edn-udemy-blog-title">Chào mừng bạn đến với EduNext Blog</h1>'+
     '</header>'+
