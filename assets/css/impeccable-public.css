@@ -8369,16 +8369,13 @@ body.edunext-app .edn-blog-filter-pill.is-active,
   box-shadow: 0 0 15px rgba(45, 212, 191, 0.3) !important;
 }
 
-/* 5. About Page */
+/* 5. About Page Cards */
 #app .edn-im-about,
 #app .edn-about-card,
-#app .edn-about-page,
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-about,
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-about-card,
-body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-about-page,
 body.edunext-app .edn-im-about,
 body.edunext-app .edn-about-card,
-body.edunext-app .edn-about-page,
 .edn-im-about,
 .edn-about-card {
   background: rgba(13, 16, 26, 0.5) !important;
@@ -9176,93 +9173,274 @@ body.edunext-app .edn-faq-list details p {
   color: #CBD5E1 !important;
 }
 
-/* 4. About Page */
+/* 4. About Page — Independent Sections, No Container Frame & Crisp Contrast */
 #app .edn-about-page,
-body.edunext-app .edn-about-page {
+body.edunext-app .edn-about-page,
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-about-page,
+.edn-about-page {
   background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  padding: 24px 20px 80px !important;
   color: #FFFFFF !important;
 }
 
+/* Breadcrumb in About Page */
+.edn-about-page .edn-breadcrumb {
+  margin-bottom: 24px !important;
+  font-size: 13px !important;
+  color: #CBD5E1 !important;
+}
+.edn-about-page .edn-breadcrumb a {
+  color: #CBD5E1 !important;
+  text-decoration: none !important;
+}
+.edn-about-page .edn-breadcrumb a:hover {
+  color: #2DD4BF !important;
+}
+.edn-about-page .edn-breadcrumb span {
+  color: #64748B !important;
+}
+
+/* Section A: Hero "Học có định hướng. Tiến bộ từng bước." */
 #app .edn-about-hero,
-body.edunext-app .edn-about-hero {
+body.edunext-app .edn-about-hero,
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-about-hero {
   background: rgba(13, 16, 26, 0.55) !important;
   backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
   border: 1px solid rgba(255, 255, 255, 0.08) !important;
   border-radius: 24px !important;
   color: #FFFFFF !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4) !important;
+  margin-bottom: 40px !important;
 }
-
 #app .edn-about-hero-copy h1,
 body.edunext-app .edn-about-hero-copy h1 {
   color: #FFFFFF !important;
+  font-weight: 800 !important;
 }
-
+#app .edn-about-hero-copy h1 em,
+body.edunext-app .edn-about-hero-copy h1 em {
+  color: #FB923C !important;
+  font-style: normal !important;
+}
 #app .edn-about-hero-copy p,
 body.edunext-app .edn-about-hero-copy p {
   color: #CBD5E1 !important;
+  font-size: 15px !important;
 }
-
-#app .edn-about-intro,
-body.edunext-app .edn-about-intro {
-  background: rgba(13, 16, 26, 0.5) !important;
-  backdrop-filter: blur(14px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
-  border-radius: 20px !important;
-  color: #FFFFFF !important;
-}
-
-#app .edn-about-intro-copy h2,
-body.edunext-app .edn-about-intro-copy h2 {
-  color: #FFFFFF !important;
-}
-
-#app .edn-about-intro-copy p,
-body.edunext-app .edn-about-intro-copy p {
-  color: #CBD5E1 !important;
-}
-
-#app .edn-about-goal-card,
-body.edunext-app .edn-about-goal-card {
-  background: rgba(13, 16, 26, 0.55) !important;
-  backdrop-filter: blur(14px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
-  color: #FFFFFF !important;
-}
-
-#app .edn-about-goal-card h3,
-body.edunext-app .edn-about-goal-card h3 {
-  color: #FFFFFF !important;
-}
-
-#app .edn-about-goal-card p,
-body.edunext-app .edn-about-goal-card p {
-  color: #94A3B8 !important;
-}
-
-#app .edn-about-value-symbol,
-body.edunext-app .edn-about-value-symbol {
-  background: rgba(45, 212, 191, 0.15) !important;
-  color: #2DD4BF !important;
-  border: 1px solid rgba(45, 212, 191, 0.3) !important;
-}
-
-#app .edn-about-final-cta,
-body.edunext-app .edn-about-final-cta {
-  background: rgba(13, 16, 26, 0.55) !important;
-  backdrop-filter: blur(16px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
-  border-radius: 20px !important;
-}
-
 #app .edn-about-visual-step.is-highlighted,
 body.edunext-app .edn-about-visual-step.is-highlighted {
   background: rgba(45, 212, 191, 0.12) !important;
   border: 1px solid rgba(45, 212, 191, 0.35) !important;
   color: #FFFFFF !important;
 }
-
 #app .edn-about-visual-step,
 body.edunext-app .edn-about-visual-step {
+  color: #CBD5E1 !important;
+}
+
+/* Section: Intro "01 Vì sao có EduNext" */
+#app .edn-about-intro,
+body.edunext-app .edn-about-intro {
+  background: rgba(13, 16, 26, 0.5) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 20px !important;
+  color: #FFFFFF !important;
+  margin-bottom: 40px !important;
+}
+#app .edn-about-intro-copy h2,
+body.edunext-app .edn-about-intro-copy h2 {
+  color: #FFFFFF !important;
+}
+#app .edn-about-intro-copy h2 em,
+body.edunext-app .edn-about-intro-copy h2 em {
+  color: #FB923C !important;
+  font-style: normal !important;
+}
+#app .edn-about-intro-copy p,
+body.edunext-app .edn-about-intro-copy p {
+  color: #CBD5E1 !important;
+}
+
+/* Mission & Goals */
+#app .edn-about-mission-card,
+body.edunext-app .edn-about-mission-card {
+  border-radius: 18px !important;
+}
+#app .edn-about-goal-card,
+body.edunext-app .edn-about-goal-card {
+  background: rgba(13, 16, 26, 0.55) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  color: #FFFFFF !important;
+  border-radius: 16px !important;
+}
+#app .edn-about-goal-card h3,
+body.edunext-app .edn-about-goal-card h3 {
+  color: #FFFFFF !important;
+  font-weight: 750 !important;
+}
+#app .edn-about-goal-card p,
+body.edunext-app .edn-about-goal-card p {
+  color: #CBD5E1 !important;
+}
+
+/* ==========================================================================
+   LIGHT BACKGROUND SECTIONS: CRITICAL CONTRAST FIX (Navy/Dark Text on Light)
+   ========================================================================== */
+
+/* Section B: "Rõ ràng trước. Hoàn thiện dần." (.edn-about-direction) */
+body.edunext-app .edn-about-direction,
+#app .edn-about-direction {
+  background: #F5F6EF !important;
+  border: 1px solid #E0E5DF !important;
+  border-radius: 20px !important;
+  color: #111827 !important;
+  margin-top: 50px !important;
+  margin-bottom: 50px !important;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25) !important;
+}
+body.edunext-app .edn-about-direction .edn-about-eyebrow {
+  color: #0F766E !important;
+  font-weight: 800 !important;
+}
+body.edunext-app .edn-about-direction-heading h2,
+#app .edn-about-direction-heading h2 {
+  color: #111827 !important;
+  font-weight: 800 !important;
+  text-shadow: none !important;
+}
+body.edunext-app .edn-about-direction-heading h2 em,
+#app .edn-about-direction-heading h2 em {
+  color: #EA580C !important;
+  font-style: normal !important;
+}
+body.edunext-app .edn-about-direction-heading > p,
+#app .edn-about-direction-heading > p {
+  color: #334155 !important;
+  font-size: 14px !important;
+  font-weight: 450 !important;
+}
+body.edunext-app .edn-about-roadmap article {
+  border-top: 1px solid #DCE3D9 !important;
+}
+body.edunext-app .edn-about-roadmap-index {
+  color: #0F766E !important;
+  font-weight: 800 !important;
+}
+body.edunext-app .edn-about-roadmap h3,
+#app .edn-about-roadmap h3 {
+  color: #111827 !important;
+  font-weight: 750 !important;
+}
+body.edunext-app .edn-about-roadmap p,
+#app .edn-about-roadmap p {
+  color: #475569 !important;
+  font-size: 13px !important;
+  font-weight: 450 !important;
+}
+body.edunext-app .edn-about-roadmap-mark {
+  border: 1px solid #CBD5E1 !important;
+  color: #0F766E !important;
+  background: #FFFFFF !important;
+}
+
+/* Section C: Value Cards (.edn-about-value-grid article) */
+body.edunext-app .edn-about-values,
+#app .edn-about-values {
+  margin-bottom: 50px !important;
+}
+body.edunext-app .edn-about-values .edn-about-section-head h2,
+#app .edn-about-values .edn-about-section-head h2 {
+  color: #FFFFFF !important;
+}
+body.edunext-app .edn-about-values .edn-about-section-head > p,
+#app .edn-about-values .edn-about-section-head > p {
+  color: #CBD5E1 !important;
+}
+body.edunext-app .edn-about-value-grid article,
+#app .edn-about-value-grid article {
+  background: #F8F9F6 !important;
+  border-radius: 14px !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2) !important;
+  color: #111827 !important;
+}
+body.edunext-app .edn-about-value-symbol,
+#app .edn-about-value-symbol {
+  background: #FFFFFF !important;
+  color: #0F766E !important;
+  border: 1px solid #DDE7E5 !important;
+}
+body.edunext-app .edn-about-value-grid h3,
+#app .edn-about-value-grid h3 {
+  color: #111827 !important;
+  font-weight: 750 !important;
+  text-shadow: none !important;
+}
+body.edunext-app .edn-about-value-grid p,
+#app .edn-about-value-grid p {
+  color: #475569 !important;
+  font-size: 13px !important;
+  font-weight: 450 !important;
+  line-height: 1.75 !important;
+}
+
+/* Section D: "Cam kết với người học" (.edn-about-promise) */
+body.edunext-app .edn-about-promise,
+#app .edn-about-promise {
+  background: #F6EEE4 !important;
+  border-radius: 20px !important;
+  border: 1px solid #E8DDD0 !important;
+  color: #111827 !important;
+  margin-top: 50px !important;
+  margin-bottom: 50px !important;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25) !important;
+}
+body.edunext-app .edn-about-promise .edn-about-eyebrow {
+  color: #C2410C !important;
+  font-weight: 800 !important;
+}
+body.edunext-app .edn-about-promise-mark {
+  color: #EA580C !important;
+}
+body.edunext-app .edn-about-promise h2,
+#app .edn-about-promise h2 {
+  color: #111827 !important;
+  font-weight: 800 !important;
+  text-shadow: none !important;
+}
+body.edunext-app .edn-about-promise p,
+#app .edn-about-promise p {
+  color: #334155 !important;
+  font-size: 14px !important;
+  font-weight: 450 !important;
+  line-height: 1.85 !important;
+}
+
+/* Section E: Final CTA (.edn-about-final-cta) */
+#app .edn-about-final-cta,
+body.edunext-app .edn-about-final-cta {
+  background: rgba(13, 16, 26, 0.6) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 20px !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4) !important;
+}
+#app .edn-about-final-cta h2,
+body.edunext-app .edn-about-final-cta h2 {
+  color: #FFFFFF !important;
+  font-weight: 800 !important;
+}
+#app .edn-about-final-cta p,
+body.edunext-app .edn-about-final-cta p {
   color: #CBD5E1 !important;
 }
 
