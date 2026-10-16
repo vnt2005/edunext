@@ -10310,9 +10310,27 @@ body.edunext-app .edn-header-tools .edn-cart-count[hidden] {
   display: none !important;
 }
 
-/* 2. Homepage Features: Align left and right columns centered evenly */
+/* 2. Homepage Features: Make right card height and alignment strictly equal to left column */
 .edn-features-container {
-  align-items: center !important;
+  align-items: stretch !important;
+}
+
+.edn-features-right {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.edn-features-right .edn-mock-player-card {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+}
+
+.edn-features-right .edn-mock-body {
+  flex: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
 }
 
 /* 3. Bottom CTA Banner: Dark cosmic glassmorphic background & seamless border */
