@@ -11990,61 +11990,61 @@ body.edunext-app .edn-ziro-content .edn-ziro-quick-topics {
   margin-top: 0 !important;
 }
 
-/* 3. Stats bar following Hero: balanced 48px top & 64px bottom */
+/* 3. Stats bar following Hero: compact and balanced */
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-luma-stats,
 body.edunext-app .edn-luma-stats {
-  padding-top: 36px !important;
-  padding-bottom: 64px !important;
+  padding-top: 32px !important;
+  padding-bottom: 36px !important;
 }
 
-/* 3. Core content sections: Uniform 80px top & bottom padding */
+/* 4. Core content sections: Compact & uniform 48px-54px top & bottom padding */
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-domains,
 body.edunext-app .edn-im-domains {
-  padding-top: 80px !important;
-  padding-bottom: 80px !important;
+  padding-top: 48px !important;
+  padding-bottom: 52px !important;
 }
 
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-courses,
 body.edunext-app .edn-im-courses {
-  padding-top: 80px !important;
-  padding-bottom: 80px !important;
+  padding-top: 52px !important;
+  padding-bottom: 54px !important;
 }
 
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-steps,
 body.edunext-app .edn-im-steps {
-  padding-top: 80px !important;
-  padding-bottom: 80px !important;
+  padding-top: 52px !important;
+  padding-bottom: 54px !important;
 }
 
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-instructors,
 body.edunext-app .edn-im-instructors {
-  padding-top: 80px !important;
-  padding-bottom: 80px !important;
+  padding-top: 52px !important;
+  padding-bottom: 54px !important;
 }
 
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-testimonials,
 body.edunext-app .edn-im-testimonials {
-  padding-top: 80px !important;
-  padding-bottom: 80px !important;
+  padding-top: 52px !important;
+  padding-bottom: 54px !important;
 }
 
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-journal,
 body.edunext-app .edn-im-journal {
-  padding-top: 80px !important;
-  padding-bottom: 80px !important;
+  padding-top: 52px !important;
+  padding-bottom: 54px !important;
 }
 
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-faq,
 body.edunext-app .edn-im-faq {
-  padding-top: 80px !important;
-  padding-bottom: 80px !important;
+  padding-top: 52px !important;
+  padding-bottom: 54px !important;
 }
 
-/* 4. Final CTA banner: 80px top & 96px bottom */
+/* 5. Final CTA banner: 54px top & 64px bottom */
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-cta,
 body.edunext-app .edn-im-cta {
-  padding-top: 80px !important;
-  padding-bottom: 96px !important;
+  padding-top: 54px !important;
+  padding-bottom: 64px !important;
 }
 
 /* 5. Responsive adjustments for tablets and mobile */
