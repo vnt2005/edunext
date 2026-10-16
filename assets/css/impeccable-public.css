@@ -9292,63 +9292,182 @@ body.edunext-app .edn-about-goal-card p {
 }
 
 /* ==========================================================================
-   LIGHT BACKGROUND SECTIONS: CRITICAL CONTRAST FIX (Navy/Dark Text on Light)
+   ALL ABOUT SECTIONS: UNIFIED DARK NAVY / INDIGO GLASSMORPHISM
    ========================================================================== */
+
+/* Section: Learning Path Visual Card (Hero Graphic) */
+body.edunext-app .edn-about-visual,
+#app .edn-about-visual {
+  background: rgba(14, 18, 38, 0.75) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 20px !important;
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.5), 0 0 30px rgba(45, 212, 191, 0.08) !important;
+}
+body.edunext-app .edn-about-visual-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  color: #94A3B8 !important;
+}
+body.edunext-app .edn-about-visual-live {
+  color: #2DD4BF !important;
+}
+body.edunext-app .edn-about-visual-live i {
+  background: #2DD4BF !important;
+  box-shadow: 0 0 8px #2DD4BF !important;
+}
+body.edunext-app .edn-about-visual-step {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(255, 255, 255, 0.07) !important;
+  color: #E2E8F0 !important;
+  border-radius: 12px !important;
+}
+body.edunext-app .edn-about-visual-step strong {
+  color: #FFFFFF !important;
+}
+body.edunext-app .edn-about-visual-step p {
+  color: #94A3B8 !important;
+}
+body.edunext-app .edn-about-visual-step small {
+  color: #2DD4BF !important;
+}
+body.edunext-app .edn-about-visual-step-num {
+  color: #64748B !important;
+}
+body.edunext-app .edn-about-step-icon {
+  background: rgba(45, 212, 191, 0.12) !important;
+  border: 1px solid rgba(45, 212, 191, 0.3) !important;
+  color: #2DD4BF !important;
+}
+body.edunext-app .edn-about-visual-step.is-highlighted {
+  background: rgba(45, 212, 191, 0.14) !important;
+  border: 1px solid #2DD4BF !important;
+  box-shadow: 0 0 20px rgba(45, 212, 191, 0.15) !important;
+}
+body.edunext-app .edn-about-visual-step.is-highlighted strong {
+  color: #FFFFFF !important;
+}
+body.edunext-app .edn-about-visual-step.is-highlighted p {
+  color: #E2E8F0 !important;
+}
+body.edunext-app .edn-about-visual-step.is-highlighted .edn-about-step-icon {
+  background: #2DD4BF !important;
+  color: #042F2E !important;
+  border-color: #2DD4BF !important;
+}
+body.edunext-app .edn-about-visual-foot {
+  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+  color: #94A3B8 !important;
+}
+body.edunext-app .edn-about-visual-foot b {
+  color: #2DD4BF !important;
+}
+
+/* Section: Mission & Vision Cards */
+body.edunext-app .edn-about-mission-grid {
+  gap: 20px !important;
+  margin-bottom: 50px !important;
+}
+body.edunext-app .edn-about-mission-card,
+#app .edn-about-mission-card {
+  background: rgba(14, 18, 38, 0.65) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 20px !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4) !important;
+}
+body.edunext-app .edn-about-mission-main {
+  background: linear-gradient(135deg, rgba(14, 18, 38, 0.85) 0%, rgba(20, 26, 56, 0.75) 100%) !important;
+  border-color: rgba(45, 212, 191, 0.35) !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), 0 0 24px rgba(45, 212, 191, 0.08) !important;
+}
+body.edunext-app .edn-about-vision-card {
+  background: linear-gradient(135deg, rgba(14, 18, 38, 0.85) 0%, rgba(26, 20, 48, 0.75) 100%) !important;
+  border-color: rgba(251, 146, 60, 0.3) !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), 0 0 24px rgba(251, 146, 60, 0.08) !important;
+}
+body.edunext-app .edn-about-card-overline {
+  color: #2DD4BF !important;
+  font-weight: 800 !important;
+}
+body.edunext-app .edn-about-vision-card .edn-about-card-overline {
+  color: #FB923C !important;
+}
+body.edunext-app .edn-about-card-symbol {
+  color: rgba(45, 212, 191, 0.6) !important;
+}
+body.edunext-app .edn-about-vision-card .edn-about-card-symbol {
+  color: rgba(251, 146, 60, 0.6) !important;
+}
+body.edunext-app .edn-about-mission-card h2,
+#app .edn-about-mission-card h2 {
+  color: #FFFFFF !important;
+  font-weight: 800 !important;
+}
+body.edunext-app .edn-about-mission-card p,
+#app .edn-about-mission-card p {
+  color: #CBD5E1 !important;
+  font-size: 14px !important;
+  line-height: 1.8 !important;
+}
 
 /* Section B: "Rõ ràng trước. Hoàn thiện dần." (.edn-about-direction) */
 body.edunext-app .edn-about-direction,
 #app .edn-about-direction {
-  background: #F5F6EF !important;
-  border: 1px solid #E0E5DF !important;
+  background: rgba(14, 18, 38, 0.68) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
   border-radius: 20px !important;
-  color: #111827 !important;
+  color: #FFFFFF !important;
   margin-top: 50px !important;
   margin-bottom: 50px !important;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25) !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45) !important;
 }
 body.edunext-app .edn-about-direction .edn-about-eyebrow {
-  color: #0F766E !important;
+  color: #2DD4BF !important;
   font-weight: 800 !important;
 }
 body.edunext-app .edn-about-direction-heading h2,
 #app .edn-about-direction-heading h2 {
-  color: #111827 !important;
+  color: #FFFFFF !important;
   font-weight: 800 !important;
-  text-shadow: none !important;
 }
 body.edunext-app .edn-about-direction-heading h2 em,
 #app .edn-about-direction-heading h2 em {
-  color: #EA580C !important;
+  color: #FB923C !important;
   font-style: normal !important;
 }
 body.edunext-app .edn-about-direction-heading > p,
 #app .edn-about-direction-heading > p {
-  color: #334155 !important;
+  color: #CBD5E1 !important;
   font-size: 14px !important;
   font-weight: 450 !important;
 }
 body.edunext-app .edn-about-roadmap article {
-  border-top: 1px solid #DCE3D9 !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
 }
 body.edunext-app .edn-about-roadmap-index {
-  color: #0F766E !important;
+  color: #2DD4BF !important;
   font-weight: 800 !important;
 }
 body.edunext-app .edn-about-roadmap h3,
 #app .edn-about-roadmap h3 {
-  color: #111827 !important;
+  color: #FFFFFF !important;
   font-weight: 750 !important;
 }
 body.edunext-app .edn-about-roadmap p,
 #app .edn-about-roadmap p {
-  color: #475569 !important;
+  color: #94A3B8 !important;
   font-size: 13px !important;
   font-weight: 450 !important;
 }
 body.edunext-app .edn-about-roadmap-mark {
-  border: 1px solid #CBD5E1 !important;
-  color: #0F766E !important;
-  background: #FFFFFF !important;
+  border: 1px solid rgba(45, 212, 191, 0.3) !important;
+  color: #2DD4BF !important;
+  background: rgba(45, 212, 191, 0.12) !important;
 }
 
 /* Section C: Value Cards (.edn-about-value-grid article) */
@@ -9366,26 +9485,57 @@ body.edunext-app .edn-about-values .edn-about-section-head > p,
 }
 body.edunext-app .edn-about-value-grid article,
 #app .edn-about-value-grid article {
-  background: #F8F9F6 !important;
-  border-radius: 14px !important;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2) !important;
-  color: #111827 !important;
+  background: rgba(14, 18, 38, 0.68) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-top: 2px solid #2DD4BF !important;
+  border-radius: 16px !important;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4) !important;
+  color: #FFFFFF !important;
+  transition: transform 0.2s ease, border-color 0.2s ease !important;
+}
+body.edunext-app .edn-about-value-grid article:nth-child(2) {
+  border-top-color: #FB923C !important;
+}
+body.edunext-app .edn-about-value-grid article:nth-child(3) {
+  border-top-color: #818CF8 !important;
+}
+body.edunext-app .edn-about-value-grid article:nth-child(4) {
+  border-top-color: #34D399 !important;
+}
+body.edunext-app .edn-about-value-grid article:hover {
+  transform: translateY(-3px) !important;
 }
 body.edunext-app .edn-about-value-symbol,
 #app .edn-about-value-symbol {
-  background: #FFFFFF !important;
-  color: #0F766E !important;
-  border: 1px solid #DDE7E5 !important;
+  background: rgba(45, 212, 191, 0.12) !important;
+  color: #2DD4BF !important;
+  border: 1px solid rgba(45, 212, 191, 0.3) !important;
+}
+body.edunext-app .edn-about-value-grid article:nth-child(2) .edn-about-value-symbol {
+  background: rgba(251, 146, 60, 0.12) !important;
+  color: #FB923C !important;
+  border-color: rgba(251, 146, 60, 0.3) !important;
+}
+body.edunext-app .edn-about-value-grid article:nth-child(3) .edn-about-value-symbol {
+  background: rgba(129, 140, 248, 0.12) !important;
+  color: #818CF8 !important;
+  border-color: rgba(129, 140, 248, 0.3) !important;
+}
+body.edunext-app .edn-about-value-grid article:nth-child(4) .edn-about-value-symbol {
+  background: rgba(52, 211, 153, 0.12) !important;
+  color: #34D399 !important;
+  border-color: rgba(52, 211, 153, 0.3) !important;
 }
 body.edunext-app .edn-about-value-grid h3,
 #app .edn-about-value-grid h3 {
-  color: #111827 !important;
+  color: #FFFFFF !important;
   font-weight: 750 !important;
-  text-shadow: none !important;
 }
 body.edunext-app .edn-about-value-grid p,
 #app .edn-about-value-grid p {
-  color: #475569 !important;
+  color: #CBD5E1 !important;
   font-size: 13px !important;
   font-weight: 450 !important;
   line-height: 1.75 !important;
@@ -9394,30 +9544,31 @@ body.edunext-app .edn-about-value-grid p,
 /* Section D: "Cam kết với người học" (.edn-about-promise) */
 body.edunext-app .edn-about-promise,
 #app .edn-about-promise {
-  background: #F6EEE4 !important;
+  background: rgba(14, 18, 38, 0.72) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
   border-radius: 20px !important;
-  border: 1px solid #E8DDD0 !important;
-  color: #111827 !important;
+  color: #FFFFFF !important;
   margin-top: 50px !important;
   margin-bottom: 50px !important;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25) !important;
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.45) !important;
 }
 body.edunext-app .edn-about-promise .edn-about-eyebrow {
-  color: #C2410C !important;
+  color: #FB923C !important;
   font-weight: 800 !important;
 }
 body.edunext-app .edn-about-promise-mark {
-  color: #EA580C !important;
+  color: #FB923C !important;
 }
 body.edunext-app .edn-about-promise h2,
 #app .edn-about-promise h2 {
-  color: #111827 !important;
+  color: #FFFFFF !important;
   font-weight: 800 !important;
-  text-shadow: none !important;
 }
 body.edunext-app .edn-about-promise p,
 #app .edn-about-promise p {
-  color: #334155 !important;
+  color: #CBD5E1 !important;
   font-size: 14px !important;
   font-weight: 450 !important;
   line-height: 1.85 !important;
@@ -9426,13 +9577,13 @@ body.edunext-app .edn-about-promise p,
 /* Section E: Final CTA (.edn-about-final-cta) */
 #app .edn-about-final-cta,
 body.edunext-app .edn-about-final-cta {
-  background: rgba(13, 16, 26, 0.6) !important;
-  backdrop-filter: blur(16px) !important;
-  -webkit-backdrop-filter: blur(16px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  background: rgba(14, 18, 38, 0.65) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
   border-radius: 20px !important;
   color: #FFFFFF !important;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4) !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45) !important;
 }
 #app .edn-about-final-cta h2,
 body.edunext-app .edn-about-final-cta h2 {
