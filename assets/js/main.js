@@ -1879,6 +1879,7 @@ function nav(){
   }
   document.body.classList.toggle('edn-blog-active',path==='/blog'||path.startsWith('/blog/'));
   document.body.classList.toggle('edn-home-active',path==='/');
+  document.body.classList.toggle('edn-profile-active',path==='/profile'||path.startsWith('/profile/'));
   const profileAvatarMarkup=user&&user.profile&&user.profile.avatar
     ? '<img class="edn-header-avatar-image" src="'+esc(user.profile.avatar)+'" alt="">'
     : '<svg viewBox="0 0 24 24" focusable="false" aria-hidden="true"><circle cx="12" cy="8" r="3.5"></circle><path d="M5 20c.5-3.3 3.2-5 7-5s6.5 1.7 7 5"></path></svg>';
