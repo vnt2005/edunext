@@ -11957,4 +11957,135 @@ body.edunext-app .edn-auth-page .sw a:hover {
   }
 }
 
+/* ==========================================================================
+   M. HOMEPAGE VERTICAL RHYTHM & SECTION SPACING HARMONIZATION
+   Standardize 80px vertical section spacing across all home sections
+   ========================================================================== */
+
+/* 1. Reset and establish consistent top & bottom padding for all homepage sections */
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-home-page > section,
+body.edunext-app .edn-home-page > section {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* 2. Stats bar following Hero: 64px top & bottom */
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-luma-stats,
+body.edunext-app .edn-luma-stats {
+  padding-top: 64px !important;
+  padding-bottom: 64px !important;
+}
+
+/* 3. Core content sections: Uniform 80px top & bottom padding */
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-domains,
+body.edunext-app .edn-im-domains {
+  padding-top: 80px !important;
+  padding-bottom: 80px !important;
+}
+
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-courses,
+body.edunext-app .edn-im-courses {
+  padding-top: 80px !important;
+  padding-bottom: 80px !important;
+}
+
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-steps,
+body.edunext-app .edn-im-steps {
+  padding-top: 80px !important;
+  padding-bottom: 80px !important;
+}
+
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-instructors,
+body.edunext-app .edn-im-instructors {
+  padding-top: 80px !important;
+  padding-bottom: 80px !important;
+}
+
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-testimonials,
+body.edunext-app .edn-im-testimonials {
+  padding-top: 80px !important;
+  padding-bottom: 80px !important;
+}
+
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-journal,
+body.edunext-app .edn-im-journal {
+  padding-top: 80px !important;
+  padding-bottom: 80px !important;
+}
+
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-faq,
+body.edunext-app .edn-im-faq {
+  padding-top: 80px !important;
+  padding-bottom: 80px !important;
+}
+
+/* 4. Final CTA banner: 80px top & 96px bottom */
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-cta,
+body.edunext-app .edn-im-cta {
+  padding-top: 80px !important;
+  padding-bottom: 96px !important;
+}
+
+/* 5. Responsive adjustments for tablets and mobile */
+@media (max-width: 991px) {
+  body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-luma-stats,
+  body.edunext-app .edn-luma-stats {
+    padding-top: 48px !important;
+    padding-bottom: 48px !important;
+  }
+  body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-domains,
+  body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-courses,
+  body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-steps,
+  body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-instructors,
+  body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-testimonials,
+  body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-journal,
+  body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-faq,
+  body.edunext-app .edn-im-domains,
+  body.edunext-app .edn-im-courses,
+  body.edunext-app .edn-im-steps,
+  body.edunext-app .edn-im-instructors,
+  body.edunext-app .edn-im-testimonials,
+  body.edunext-app .edn-im-journal,
+  body.edunext-app .edn-im-faq {
+    padding-top: 60px !important;
+    padding-bottom: 60px !important;
+  }
+  body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-cta,
+  body.edunext-app .edn-im-cta {
+    padding-top: 60px !important;
+    padding-bottom: 72px !important;
+  }
+}
+
+@media (max-width: 640px) {
+  body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-luma-stats,
+  body.edunext-app .edn-luma-stats {
+    padding-top: 36px !important;
+    padding-bottom: 36px !important;
+  }
+  body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-domains,
+  body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-courses,
+  body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-steps,
+  body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-instructors,
+  body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-testimonials,
+  body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-journal,
+  body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-faq,
+  body.edunext-app .edn-im-domains,
+  body.edunext-app .edn-im-courses,
+  body.edunext-app .edn-im-steps,
+  body.edunext-app .edn-im-instructors,
+  body.edunext-app .edn-im-testimonials,
+  body.edunext-app .edn-im-journal,
+  body.edunext-app .edn-im-faq {
+    padding-top: 48px !important;
+    padding-bottom: 48px !important;
+  }
+  body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-cta,
+  body.edunext-app .edn-im-cta {
+    padding-top: 48px !important;
+    padding-bottom: 56px !important;
+  }
+}
+
+
 
