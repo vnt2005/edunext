@@ -10655,3 +10655,264 @@ body.edunext-app .edn-my-learning-no-results p {
     padding: 44px 20px !important;
   }
 }
+
+/* ==========================================================================
+   L. CERTIFICATES PAGE (EDUNEXT CERTIFICATES / STUDENT CREDENTIALS)
+   Modern Dark Navy & Glassmorphic Certificates Hub
+   ========================================================================== */
+
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .cio-certificates-page {
+  padding-top: 40px !important;
+  padding-bottom: 80px !important;
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+/* 1. Page Head */
+body.edunext-app .cio-certificates-page .cio-page-head {
+  display: flex !important;
+  align-items: flex-end !important;
+  justify-content: space-between !important;
+  gap: 24px !important;
+  padding: 0 0 24px !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  margin-bottom: 36px !important;
+}
+body.edunext-app .cio-certificates-page .cio-eyebrow {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  padding: 4px 12px !important;
+  border-radius: 9999px !important;
+  background: rgba(45, 212, 191, 0.12) !important;
+  border: 1px solid rgba(45, 212, 191, 0.3) !important;
+  color: #2DD4BF !important;
+  font-size: 11px !important;
+  font-weight: 750 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  margin-bottom: 10px !important;
+}
+body.edunext-app .cio-certificates-page .cio-page-head h1 {
+  font-family: "Space Grotesk", system-ui, sans-serif !important;
+  font-size: clamp(28px, 3.2vw, 38px) !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.035em !important;
+  color: #FFFFFF !important;
+  margin: 0 0 8px !important;
+  line-height: 1.25 !important;
+}
+body.edunext-app .cio-certificates-page .cio-page-head p {
+  font-size: 15px !important;
+  color: #94A3B8 !important;
+  max-width: 680px !important;
+  margin: 0 !important;
+  line-height: 1.6 !important;
+}
+body.edunext-app .cio-certificates-page .cio-page-head .btn.btn-p {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 11px 22px !important;
+  border-radius: 10px !important;
+  background: #2DD4BF !important;
+  color: #03201F !important;
+  font-weight: 750 !important;
+  font-size: 13.5px !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+  box-shadow: 0 4px 14px rgba(45, 212, 191, 0.25) !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+  flex-shrink: 0 !important;
+}
+body.edunext-app .cio-certificates-page .cio-page-head .btn.btn-p:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 20px rgba(45, 212, 191, 0.4) !important;
+}
+
+/* 2. Empty Notice Container (Override style.css light teal / white box) */
+body.edunext-app .cio-certificates-page .cio-empty,
+body.edunext-app .wrap.page.narrow .cio-empty {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center !important;
+  padding: 56px 32px !important;
+  margin: 20px auto 0 !important;
+  max-width: 720px !important;
+  background: rgba(15, 23, 42, 0.6) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 20px !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.3) !important;
+}
+body.edunext-app .cio-certificates-page .cio-empty h3,
+body.edunext-app .cio-certificates-page .cio-empty h2,
+body.edunext-app .wrap.page.narrow .cio-empty h2,
+body.edunext-app .wrap.page.narrow .cio-empty h1 {
+  font-family: "Space Grotesk", system-ui, sans-serif !important;
+  font-size: clamp(20px, 2.4vw, 24px) !important;
+  font-weight: 750 !important;
+  color: #FFFFFF !important;
+  margin: 0 0 10px !important;
+  letter-spacing: -0.02em !important;
+}
+body.edunext-app .cio-certificates-page .cio-empty p,
+body.edunext-app .wrap.page.narrow .cio-empty p {
+  color: #CBD5E1 !important;
+  font-size: 14.5px !important;
+  line-height: 1.65 !important;
+  max-width: 520px !important;
+  margin: 0 0 24px !important;
+}
+body.edunext-app .cio-certificates-page .cio-empty .btn.btn-p,
+body.edunext-app .wrap.page.narrow .cio-empty .btn.btn-p {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  padding: 12px 28px !important;
+  border-radius: 9999px !important;
+  background: #2DD4BF !important;
+  color: #03201F !important;
+  font-weight: 750 !important;
+  font-size: 14px !important;
+  text-decoration: none !important;
+  box-shadow: 0 4px 16px rgba(45, 212, 191, 0.28) !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+}
+body.edunext-app .cio-certificates-page .cio-empty .btn.btn-p:hover,
+body.edunext-app .wrap.page.narrow .cio-empty .btn.btn-p:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 22px rgba(45, 212, 191, 0.42) !important;
+}
+
+/* 3. Certificate Cards Grid (when certificates exist) */
+body.edunext-app .cio-certificates-page .cio-certificate-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 24px !important;
+}
+body.edunext-app .cio-certificate-card {
+  display: flex !important;
+  gap: 16px !important;
+  padding: 22px !important;
+  background: rgba(15, 23, 42, 0.65) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 16px !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25) !important;
+  transition: transform 0.2s ease, border-color 0.2s ease !important;
+}
+body.edunext-app .cio-certificate-card:hover {
+  transform: translateY(-3px) !important;
+  border-color: rgba(45, 212, 191, 0.35) !important;
+}
+body.edunext-app .cio-certificate-mark {
+  display: inline-grid !important;
+  place-items: center !important;
+  width: 48px !important;
+  height: 48px !important;
+  border-radius: 12px !important;
+  background: rgba(45, 212, 191, 0.15) !important;
+  border: 1px solid rgba(45, 212, 191, 0.3) !important;
+  color: #2DD4BF !important;
+  font-family: "Space Grotesk", sans-serif !important;
+  font-size: 22px !important;
+  font-weight: 800 !important;
+  flex-shrink: 0 !important;
+}
+body.edunext-app .cio-certificate-card .cio-card-status {
+  display: inline-block !important;
+  padding: 3px 8px !important;
+  border-radius: 9999px !important;
+  background: rgba(16, 185, 129, 0.15) !important;
+  border: 1px solid rgba(16, 185, 129, 0.3) !important;
+  color: #34D399 !important;
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.06em !important;
+  margin-bottom: 6px !important;
+}
+body.edunext-app .cio-certificate-card h3 {
+  font-family: "Space Grotesk", system-ui, sans-serif !important;
+  font-size: 16px !important;
+  font-weight: 750 !important;
+  color: #FFFFFF !important;
+  margin: 0 0 4px !important;
+  line-height: 1.4 !important;
+}
+body.edunext-app .cio-certificate-card p {
+  color: #94A3B8 !important;
+  font-size: 13px !important;
+  margin: 0 0 14px !important;
+}
+body.edunext-app .cio-certificate-foot {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 12px !important;
+  padding-top: 12px !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+  color: #64748B !important;
+  font-size: 12px !important;
+}
+
+/* 4. Certificate View Sheet */
+body.edunext-app .edn-certificate-sheet {
+  background: rgba(15, 23, 42, 0.75) !important;
+  border: 1px solid rgba(45, 212, 191, 0.3) !important;
+  border-radius: 20px !important;
+  padding: 40px 32px !important;
+  text-align: center !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4) !important;
+  margin-bottom: 24px !important;
+}
+body.edunext-app .edn-certificate-sheet .edn-certificate-name {
+  color: #2DD4BF !important;
+  font-size: 24px !important;
+  font-weight: 800 !important;
+  font-family: "Space Grotesk", sans-serif !important;
+  margin: 14px 0 !important;
+}
+body.edunext-app .edn-certificate-sheet h1 {
+  color: #FFFFFF !important;
+}
+body.edunext-app .edn-certificate-sheet p {
+  color: #94A3B8 !important;
+}
+body.edunext-app .edn-certificate-details {
+  display: flex !important;
+  justify-content: center !important;
+  gap: 32px !important;
+  margin-top: 24px !important;
+  padding-top: 20px !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+body.edunext-app .edn-certificate-details small {
+  color: #64748B !important;
+}
+body.edunext-app .edn-certificate-details b {
+  color: #FFFFFF !important;
+}
+
+/* Responsive */
+@media (max-width: 760px) {
+  body.edunext-app .cio-certificates-page .cio-page-head {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 16px !important;
+  }
+  body.edunext-app .cio-certificates-page .cio-empty,
+  body.edunext-app .wrap.page.narrow .cio-empty {
+    padding: 40px 20px !important;
+  }
+  body.edunext-app .cio-certificates-page .cio-certificate-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
