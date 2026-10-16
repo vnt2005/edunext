@@ -11709,3 +11709,246 @@ body.edunext-app .edn-order-badge.status-refunded {
     padding: 44px 18px !important;
   }
 }
+
+/* ==========================================================================
+   L. EDUNEXT AUTHENTICATION PAGES (LOGIN & REGISTER)
+   High-contrast light card on navy background with unified EduNext branding
+   ========================================================================== */
+
+/* 1. Page container & background */
+body.edunext-app .edn-auth-page {
+  min-height: calc(100vh - 160px) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 48px 16px 80px !important;
+}
+
+/* 2. Authentication Card Container */
+body.edunext-app .edn-auth-page .ac,
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-auth-page .box {
+  width: min(480px, 100%) !important;
+  margin: 0 auto !important;
+  padding: 40px 36px 36px !important;
+  background: #FFFFFF !important;
+  border: 1px solid rgba(226, 232, 240, 0.9) !important;
+  border-radius: 20px !important;
+  box-shadow: 0 20px 48px -10px rgba(0, 0, 0, 0.4), 0 0 1px 1px rgba(255, 255, 255, 0.1) !important;
+  color: #0F172A !important;
+  text-align: left !important;
+}
+
+/* 3. Overline / Eyebrow badge */
+body.edunext-app .edn-auth-page .edn-overline {
+  display: inline-block !important;
+  color: #0D9488 !important;
+  font-size: 11.5px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  margin-bottom: 6px !important;
+}
+
+/* 4. Headings & Subheadings */
+body.edunext-app .edn-auth-page h1 {
+  color: #0F172A !important;
+  font-size: 28px !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.025em !important;
+  margin: 0 0 8px 0 !important;
+  text-shadow: none !important;
+  line-height: 1.25 !important;
+}
+
+body.edunext-app .edn-auth-page form > p:not(.err) {
+  color: #475569 !important;
+  font-size: 13.5px !important;
+  line-height: 1.6 !important;
+  margin: 0 0 24px 0 !important;
+  font-weight: 450 !important;
+}
+
+/* 5. Form Group & Labels */
+body.edunext-app .edn-auth-page .fg {
+  display: grid !important;
+  gap: 7px !important;
+  margin: 0 0 18px 0 !important;
+}
+
+body.edunext-app .edn-auth-page .fg label,
+body.edunext-app .edn-auth-page label {
+  color: #0F172A !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.01em !important;
+  display: block !important;
+}
+
+/* 6. Text / Password Inputs */
+body.edunext-app .edn-auth-page .fg input,
+body.edunext-app .edn-auth-page input[type="text"],
+body.edunext-app .edn-auth-page input[type="email"],
+body.edunext-app .edn-auth-page input[type="password"] {
+  width: 100% !important;
+  min-height: 46px !important;
+  padding: 11px 14px !important;
+  border: 1px solid #CBD5E1 !important;
+  border-radius: 10px !important;
+  background: #FFFFFF !important;
+  color: #0F172A !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  font-family: inherit !important;
+  transition: all 0.2s ease !important;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04) !important;
+  outline: none !important;
+  box-sizing: border-box !important;
+}
+
+body.edunext-app .edn-auth-page .fg input::placeholder,
+body.edunext-app .edn-auth-page input::placeholder {
+  color: #94A3B8 !important;
+  font-weight: 450 !important;
+  opacity: 1 !important;
+}
+
+body.edunext-app .edn-auth-page .fg input:hover,
+body.edunext-app .edn-auth-page input[type="text"]:hover,
+body.edunext-app .edn-auth-page input[type="email"]:hover,
+body.edunext-app .edn-auth-page input[type="password"]:hover {
+  border-color: #94A3B8 !important;
+}
+
+body.edunext-app .edn-auth-page .fg input:focus,
+body.edunext-app .edn-auth-page input[type="text"]:focus,
+body.edunext-app .edn-auth-page input[type="email"]:focus,
+body.edunext-app .edn-auth-page input[type="password"]:focus {
+  border-color: #0D9488 !important;
+  box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.18) !important;
+  background: #FFFFFF !important;
+  color: #0F172A !important;
+}
+
+/* 7. Terms Agreement Checkbox */
+body.edunext-app .edn-auth-page .chk {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  margin: 16px 0 20px 0 !important;
+  color: #334155 !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  line-height: 1.5 !important;
+  cursor: pointer !important;
+}
+
+body.edunext-app .edn-auth-page .chk input[type="checkbox"] {
+  width: 17px !important;
+  height: 17px !important;
+  min-height: 17px !important;
+  margin: 0 !important;
+  border: 1.5px solid #CBD5E1 !important;
+  border-radius: 4px !important;
+  cursor: pointer !important;
+  accent-color: #0D9488 !important;
+  flex-shrink: 0 !important;
+}
+
+/* 8. Error Message Box */
+body.edunext-app .edn-auth-page .edn-auth-error,
+body.edunext-app .edn-auth-page .err {
+  min-height: 20px !important;
+  color: #DC2626 !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  line-height: 1.4 !important;
+  margin: 8px 0 14px 0 !important;
+}
+
+body.edunext-app .edn-auth-page .err:empty {
+  display: none !important;
+}
+
+/* 9. Primary Action Button */
+body.edunext-app .edn-auth-page .btn.btn-p,
+body.edunext-app .edn-auth-page button[type="submit"] {
+  width: 100% !important;
+  min-height: 48px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 12px 20px !important;
+  border-radius: 10px !important;
+  background: #14B8A6 !important;
+  border: 1px solid #0D9488 !important;
+  color: #042F2E !important;
+  font-size: 14.5px !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.01em !important;
+  cursor: pointer !important;
+  box-shadow: 0 4px 14px rgba(20, 184, 166, 0.3) !important;
+  transition: all 0.2s ease !important;
+  margin-top: 6px !important;
+  margin-bottom: 20px !important;
+  text-shadow: none !important;
+}
+
+body.edunext-app .edn-auth-page .btn.btn-p:hover,
+body.edunext-app .edn-auth-page button[type="submit"]:hover {
+  background: #2DD4BF !important;
+  border-color: #14B8A6 !important;
+  color: #042F2E !important;
+  box-shadow: 0 6px 20px rgba(45, 212, 191, 0.45) !important;
+  transform: translateY(-1px) !important;
+}
+
+body.edunext-app .edn-auth-page .btn.btn-p:active,
+body.edunext-app .edn-auth-page button[type="submit"]:active {
+  transform: translateY(0) !important;
+  box-shadow: 0 2px 8px rgba(20, 184, 166, 0.3) !important;
+}
+
+body.edunext-app .edn-auth-page .btn.btn-p:disabled,
+body.edunext-app .edn-auth-page button[type="submit"]:disabled {
+  opacity: 0.65 !important;
+  cursor: not-allowed !important;
+  transform: none !important;
+}
+
+/* 10. Switch / Redirect Links */
+body.edunext-app .edn-auth-page .sw {
+  text-align: center !important;
+  color: #475569 !important;
+  font-size: 13.5px !important;
+  font-weight: 500 !important;
+  margin: 10px 0 0 0 !important;
+  line-height: 1.5 !important;
+}
+
+body.edunext-app .edn-auth-page .sw a {
+  color: #0D9488 !important;
+  font-weight: 750 !important;
+  text-decoration: none !important;
+  transition: color 0.15s ease !important;
+}
+
+body.edunext-app .edn-auth-page .sw a:hover {
+  color: #0F766E !important;
+  text-decoration: underline !important;
+}
+
+/* 11. Mobile Responsiveness */
+@media (max-width: 520px) {
+  body.edunext-app .edn-auth-page {
+    padding: 32px 16px 56px !important;
+  }
+  body.edunext-app .edn-auth-page .ac,
+  body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-auth-page .box {
+    padding: 30px 20px 26px !important;
+    border-radius: 16px !important;
+  }
+  body.edunext-app .edn-auth-page h1 {
+    font-size: 24px !important;
+  }
+}
+
