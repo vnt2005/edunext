@@ -753,14 +753,6 @@ const domainDetail=slug=>{
   return '<div class="wrap page edn-domain-detail"><nav class="edn-breadcrumb" aria-label="Đường dẫn"><a href="#/">Trang chủ</a><span>›</span><a href="#/categories">Nhóm lĩnh vực</a><span>›</span>'+(group?'<a href="#/group/'+esc(group.slug)+'">'+esc(group.name)+'</a><span>›</span>':'')+'<span>'+esc(d.name)+'</span></nav>'+
     '<div class="edn-page-intro"><span class="edn-overline">CHUYÊN NGÀNH ĐÀO TẠO</span><h1>'+esc(d.name)+'</h1><p>'+esc(d.description||'Chương trình đào tạo thực tế trong lĩnh vực này cùng các giảng viên đầu ngành.')+'</p><span class="edn-domain-count">'+coursesInDomain.length+' khóa học chuyên sâu</span></div>'+
     '<section class="edn-related-topics"><div class="edn-topic-chip-row">'+related+'</div></section>'+
-    '<section class="edn-career-pathway">'+
-      '<div class="edn-pathway-header"><span class="edn-overline">LỘ TRÌNH PHÁT TRIỂN NGHỀ NGHIỆP</span><h2>Lộ trình thăng tiến chuẩn doanh nghiệp</h2><p>Khung năng lực từ cơ bản đến làm chủ kiến trúc hệ thống và dẫn dắt dự án.</p></div>'+
-      '<div class="edn-pathway-steps">'+
-        '<div class="edn-path-step"><span class="edn-path-badge">Giai đoạn 1</span><h3>Nền tảng & Tư duy</h3><p>Nắm vững nguyên lý cốt lõi, cú pháp chuẩn và công cụ lập trình cần thiết.</p></div>'+
-        '<div class="edn-path-step"><span class="edn-path-badge">Giai đoạn 2</span><h3>Dự án Thực chiến</h3><p>Tự tay xây dựng sản phẩm hoàn chỉnh, kết nối CSDL và kiểm thử chuyên nghiệp.</p></div>'+
-        '<div class="edn-path-step"><span class="edn-path-badge">Giai đoạn 3</span><h3>Chuyên sâu & Scale</h3><p>Thiết kế kiến trúc mở rộng, tối ưu hiệu năng và lãnh đạo đội ngũ kỹ thuật.</p></div>'+
-      '</div>'+
-    '</section>'+
     '<section class="edn-domain-programs"><div class="edn-section-header"><div><h2>Các khóa học trong chuyên ngành</h2><p>Lựa chọn chương trình phù hợp với mục tiêu học tập của bạn.</p></div></div><div class="edn-courses-grid edn-domain-course-grid">'+(coursesInDomain.length?coursesInDomain.map(card).join(''):'<div class="empty"><h3>Chưa có khóa học nào</h3><p>Các khóa học trong chuyên ngành này đang được biên soạn.</p><a class="btn btn-g" href="#/courses">Xem tất cả khóa học</a></div>')+'</div></section></div>';
 };
 const TOPIC_VIDEOS = {
