@@ -10034,7 +10034,7 @@ body.edunext-app .edn-profile-divider {
   width: 100% !important;
   height: 1px !important;
   background: rgba(255, 255, 255, 0.08) !important;
-  margin: 16px 0 !important;
+  margin: 8px 0 10px !important;
   border: none !important;
   padding: 0 !important;
 }
