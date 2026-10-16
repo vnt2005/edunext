@@ -699,12 +699,54 @@ const courses=()=>{
     {label:'Quản trị kinh doanh',cat:'Quản trị doanh nghiệp'}
   ].map(p=>'<button type="button" class="edn-course-cat-pill'+(f.cat===p.cat?' is-active':'')+'" data-a="cat" data-v="'+esc(p.cat)+'">'+esc(p.label)+'</button>').join('');
 
+  const sortOptions = [
+    { value: 'name', label: 'Tên A–Z' },
+    { value: 'name-desc', label: 'Tên Z–A' },
+    { value: 'domain', label: 'Theo lĩnh vực' }
+  ];
+
+  // Helper to build custom select dropdown markup
+  const currentCatLabel = (f.cat ? (DOMAINS.find(d => d.name === f.cat)?.name || f.cat) : 'Tất cả chuyên ngành');
+  const currentTopicLabel = f.topic || 'Tất cả chủ đề';
+  const currentSortLabel = sortOptions.find(s => s.value === f.sort)?.label || 'Tên A–Z';
+
+  const catOptionsMarkup = '<button type="button" class="edn-custom-select-item'+(!f.cat?' is-selected':'')+'" data-custom-select="cat" data-value="">Tất cả chuyên ngành</button>' +
+    domainGroups().map(group =>
+      '<div class="edn-custom-select-group"><div class="edn-custom-select-group-title">'+esc(group.name)+'</div>' +
+      group.domains.map(d => '<button type="button" class="edn-custom-select-item'+(f.cat===d.name?' is-selected':'')+'" data-custom-select="cat" data-value="'+esc(d.name)+'">'+esc(d.name)+'</button>').join('') +
+      '</div>'
+    ).join('');
+
+  const topicOptionsMarkup = '<button type="button" class="edn-custom-select-item'+(!f.topic?' is-selected':'')+'" data-custom-select="topic" data-value="">Tất cả chủ đề</button>' +
+    selectedTopics.map(t => '<button type="button" class="edn-custom-select-item'+(f.topic===t?' is-selected':'')+'" data-custom-select="topic" data-value="'+esc(t)+'">'+esc(t)+'</button>').join('');
+
+  const sortOptionsMarkup = sortOptions.map(s => '<button type="button" class="edn-custom-select-item'+(f.sort===s.value?' is-selected':'')+'" data-custom-select="sort" data-value="'+esc(s.value)+'">'+esc(s.label)+'</button>').join('');
+
+  const chevronIcon = '<svg class="edn-custom-select-chevron" viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4"/></svg>';
+
   return '<div class="wrap page cio-courses-page edn-course-catalog-page">'+
     '<div class="edn-catalog-pills-row">'+categoryPills+'</div>'+
     '<div class="cio-course-toolbar"><div class="cio-search-local"><span aria-hidden="true">⌕</span><input data-f="q" value="'+esc(f.q)+'" placeholder="Tìm tên khóa học, lĩnh vực hoặc kỹ năng..." aria-label="Tìm trong danh mục"></div>'+
-    '<div class="cio-toolbar-right"><select data-f="cat" aria-label="Lọc chuyên ngành"><option value="">Tất cả chuyên ngành</option>'+domainOptions+'</select>'+
-    '<select data-f="topic" aria-label="Lọc chủ đề"><option value="">Tất cả chủ đề</option>'+selectedTopics.map(t=>'<option value="'+esc(t)+'" '+(f.topic===t?'selected':'')+'>'+esc(t)+'</option>').join('')+'</select>'+
-    '<select data-f="sort" aria-label="Sắp xếp"><option value="name" '+(f.sort==='name'?'selected':'')+'>Tên A–Z</option><option value="name-desc" '+(f.sort==='name-desc'?'selected':'')+'>Tên Z–A</option><option value="domain" '+(f.sort==='domain'?'selected':'')+'>Theo lĩnh vực</option></select></div></div>'+
+    '<div class="cio-toolbar-right">'+
+      '<div class="edn-custom-select" data-select-id="cat">'+
+        '<button type="button" class="edn-custom-select-trigger" aria-haspopup="listbox" aria-expanded="false" aria-label="Lọc chuyên ngành">'+
+          '<span class="edn-custom-select-label">'+esc(currentCatLabel)+'</span>'+chevronIcon+
+        '</button>'+
+        '<div class="edn-custom-select-menu" role="listbox">'+catOptionsMarkup+'</div>'+
+      '</div>'+
+      '<div class="edn-custom-select" data-select-id="topic">'+
+        '<button type="button" class="edn-custom-select-trigger" aria-haspopup="listbox" aria-expanded="false" aria-label="Lọc chủ đề">'+
+          '<span class="edn-custom-select-label">'+esc(currentTopicLabel)+'</span>'+chevronIcon+
+        '</button>'+
+        '<div class="edn-custom-select-menu" role="listbox">'+topicOptionsMarkup+'</div>'+
+      '</div>'+
+      '<div class="edn-custom-select" data-select-id="sort">'+
+        '<button type="button" class="edn-custom-select-trigger" aria-haspopup="listbox" aria-expanded="false" aria-label="Sắp xếp">'+
+          '<span class="edn-custom-select-label">'+esc(currentSortLabel)+'</span>'+chevronIcon+
+        '</button>'+
+        '<div class="edn-custom-select-menu" role="listbox">'+sortOptionsMarkup+'</div>'+
+      '</div>'+
+    '</div></div>'+
     '<div class="edn-course-filter-meta"><span id="course-filter-summary">Tất cả chuyên ngành và chủ đề</span><button type="button" class="edn-clear-filters" data-a="clear">Xóa bộ lọc</button></div>'+
     '<div class="cio-count-row"><span id="cnt"></span><span>khóa học tìm thấy</span></div>'+
     '<div class="grid cio-course-grid edn-courses-grid" id="list" aria-live="polite"></div>'+
@@ -2151,6 +2193,52 @@ const onf=event=>{
 };
 document.addEventListener('input',onf);
 document.addEventListener('change',onf);
+
+// Interaction for Custom Select Dropdowns in Courses Filter
+document.addEventListener('click',event=>{
+  const trigger=event.target.closest('.edn-custom-select-trigger');
+  const optionItem=event.target.closest('.edn-custom-select-item[data-custom-select]');
+
+  if(trigger){
+    const selectWrapper=trigger.closest('.edn-custom-select');
+    if(!selectWrapper)return;
+    const isOpen=selectWrapper.classList.contains('is-open');
+    // Close other dropdowns first
+    document.querySelectorAll('.edn-custom-select.is-open').forEach(el=>{
+      if(el!==selectWrapper){
+        el.classList.remove('is-open');
+        el.querySelector('.edn-custom-select-trigger')?.setAttribute('aria-expanded','false');
+      }
+    });
+    selectWrapper.classList.toggle('is-open',!isOpen);
+    trigger.setAttribute('aria-expanded',String(!isOpen));
+    return;
+  }
+
+  if(optionItem){
+    const selectWrapper=optionItem.closest('.edn-custom-select');
+    const field=optionItem.dataset.customSelect;
+    const value=optionItem.dataset.value;
+    if(selectWrapper){
+      selectWrapper.classList.remove('is-open');
+      selectWrapper.querySelector('.edn-custom-select-trigger')?.setAttribute('aria-expanded','false');
+    }
+    if(field && f[field]!==value){
+      f[field]=value;
+      f.page=1;
+      render(true);
+    }
+    return;
+  }
+
+  // Click outside closes any open custom select
+  if(!event.target.closest('.edn-custom-select')){
+    document.querySelectorAll('.edn-custom-select.is-open').forEach(el=>{
+      el.classList.remove('is-open');
+      el.querySelector('.edn-custom-select-trigger')?.setAttribute('aria-expanded','false');
+    });
+  }
+});
 
 document.addEventListener('submit',async event=>{
   const form=event.target.closest('[data-form]');
