@@ -4,14 +4,40 @@
  * Public + learner surfaces only. No wp-admin or builder styling.
  */
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode){
-  --im-ink:#FFFFFF;--im-forest:#2DD4BF;--im-teal:#2DD4BF;--im-accent:#0D9488;--im-accent-hover:#14B8A6;
-  --im-paper:transparent;--im-paper-deep:transparent;--im-mint:#2DD4BF;--im-line:rgba(255,255,255,0.08);
-  --im-muted:#94A3B8;--im-soft-muted:#64748B;
-  color:#FFFFFF!important;background:transparent!important;
-  font-family:"Be Vietnam Pro",sans-serif!important;font-size:15px;line-height:1.7;accent-color:var(--im-teal);
-  scrollbar-color:#334155 transparent;
+  /* Unified Typography Design Tokens */
+  --edn-text-primary: #F8FAFC;
+  --edn-text-heading: #FFFFFF;
+  --edn-text-secondary: #E2E8F0;
+  --edn-text-muted: #CBD5E1;
+  --edn-text-subtle: #94A3B8;
+  --edn-text-accent: #2DD4BF;
+  --edn-text-accent-hover: #5EEAD4;
+  
+  --im-ink: #F8FAFC;
+  --im-forest: #2DD4BF;
+  --im-teal: #2DD4BF;
+  --im-accent: #0D9488;
+  --im-accent-hover: #14B8A6;
+  --im-paper: transparent;
+  --im-paper-deep: transparent;
+  --im-mint: #2DD4BF;
+  --im-line: rgba(255, 255, 255, 0.08);
+  --im-muted: #CBD5E1;
+  --im-soft-muted: #94A3B8;
+
+  color: var(--edn-text-secondary) !important;
+  background: transparent !important;
+  font-family: "Be Vietnam Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  font-size: 15px;
+  font-weight: 450;
+  line-height: 1.7;
+  accent-color: var(--im-teal);
+  scrollbar-color: #334155 transparent;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
-body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) ::selection{background:rgba(45,212,191,0.3);color:#FFFFFF}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) ::selection{background:rgba(45,212,191,0.35);color:#FFFFFF}
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) :focus-visible{outline:3px solid #2DD4BF!important;outline-offset:3px!important}
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .wrap,
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .page{width:min(1260px,calc(100% - 56px))!important;max-width:1260px!important;margin-inline:auto!important}
@@ -22,8 +48,14 @@ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) select,
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) textarea{font-family:"Be Vietnam Pro",sans-serif}
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) h1,
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) h2,
-body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) h3{
- color:#FFFFFF!important;font-family:"Space Grotesk","Be Vietnam Pro",sans-serif;font-weight:700;letter-spacing:-.025em
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) h3,
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) h4,
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) h5,
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) h6{
+ color: var(--edn-text-heading) !important;
+ font-family: "Space Grotesk", "Be Vietnam Pro", sans-serif;
+ font-weight: 750;
+ letter-spacing: -0.025em;
 }
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .btn{min-height:43px;padding:11px 16px;border-radius:8px!important;font-size:12px;font-weight:750}
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .btn.btn-p{border-color:var(--im-teal)!important;background:var(--im-teal)!important;color:#0F172A!important}
@@ -112,10 +144,10 @@ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-hero-layout
 }
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-hero-copy{max-width:610px}
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-hero h1{
- max-width:640px;margin:0 0 20px;color:#FFFFFF!important;font-family:"Space Grotesk","Be Vietnam Pro",sans-serif;font-size:clamp(42px,4.5vw,65px)!important;font-weight:700;line-height:1.02;letter-spacing:-.03em
+ max-width:640px;margin:0 0 20px;color:#FFFFFF!important;font-family:"Space Grotesk","Be Vietnam Pro",sans-serif;font-size:clamp(42px,4.5vw,65px)!important;font-weight:800;line-height:1.05;letter-spacing:-.03em
 }
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-hero h1 span{color:var(--im-teal)}
-body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-hero-copy>p{max-width:52ch;margin:0;color:#94A3B8!important;font-size:15px;line-height:1.85}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-hero-copy>p{max-width:52ch;margin:0;color:#E2E8F0!important;font-size:15px;font-weight:450;line-height:1.85}
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-hero-actions{display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin-top:27px}
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-button-primary,
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-button-secondary{
@@ -9569,5 +9601,226 @@ body.admin-bar.edunext-app .edunext-site-header {
   }
 }
 
+/* 8. Comprehensive Site-Wide Typography & Contrast Elevation
+   ========================================================================== */
 
+/* A. Global Headings Hierarchy */
+body.edunext-app h1,
+body.edunext-app .h1 {
+  color: #FFFFFF !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.03em !important;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4) !important;
+}
 
+body.edunext-app h2,
+body.edunext-app .h2 {
+  color: #F8FAFC !important;
+  font-weight: 750 !important;
+  letter-spacing: -0.025em !important;
+}
+
+body.edunext-app h3,
+body.edunext-app .h3 {
+  color: #F1F5F9 !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.015em !important;
+}
+
+body.edunext-app h4,
+body.edunext-app h5,
+body.edunext-app h6 {
+  color: #E2E8F0 !important;
+  font-weight: 650 !important;
+}
+
+/* B. Body Copy & Paragraphs */
+body.edunext-app p,
+body.edunext-app .wrap p,
+body.edunext-app .page p {
+  color: #E2E8F0 !important;
+  font-weight: 450 !important;
+  line-height: 1.75 !important;
+}
+
+/* C. Eyebrows & Overlines */
+body.edunext-app .edn-overline,
+body.edunext-app .cio-eyebrow,
+body.edunext-app .edn-sidebar-widget-label,
+body.edunext-app .edn-about-eyebrow {
+  color: #2DD4BF !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+}
+
+/* D. Breadcrumbs */
+body.edunext-app .edn-breadcrumb,
+body.edunext-app .edn-breadcrumb a {
+  color: #CBD5E1 !important;
+  font-weight: 500 !important;
+}
+body.edunext-app .edn-breadcrumb a:hover {
+  color: #2DD4BF !important;
+}
+body.edunext-app .edn-breadcrumb span {
+  color: #64748B !important;
+}
+
+/* E. Course Cards & Catalog Items */
+body.edunext-app .edn-card-title,
+body.edunext-app .edn-card-title a,
+body.edunext-app .edn-course-card-content h3 {
+  color: #FFFFFF !important;
+  font-weight: 750 !important;
+  letter-spacing: -0.015em !important;
+  line-height: 1.4 !important;
+}
+body.edunext-app .edn-card-category {
+  color: #2DD4BF !important;
+  font-weight: 750 !important;
+  letter-spacing: 0.05em !important;
+}
+body.edunext-app .edn-card-level {
+  color: #94A3B8 !important;
+  font-weight: 500 !important;
+}
+body.edunext-app .edn-instructor-name {
+  color: #E2E8F0 !important;
+  font-weight: 550 !important;
+}
+body.edunext-app .edn-instructor-name small {
+  color: #94A3B8 !important;
+}
+body.edunext-app .edn-card-rating b {
+  color: #FFFFFF !important;
+  font-weight: 750 !important;
+}
+body.edunext-app .edn-card-rating small {
+  color: #94A3B8 !important;
+}
+body.edunext-app .edn-card-lessons {
+  color: #CBD5E1 !important;
+  font-weight: 500 !important;
+}
+body.edunext-app .edn-price-current,
+body.edunext-app .edn-course-price-current {
+  color: #FFFFFF !important;
+  font-weight: 800 !important;
+  font-family: "Space Grotesk", sans-serif !important;
+}
+body.edunext-app .edn-price-orig,
+body.edunext-app .edn-course-price-original {
+  color: #94A3B8 !important;
+}
+
+/* F. Domain Cards & Section Grids */
+body.edunext-app .edn-domain-card h2,
+body.edunext-app .edn-visual-domain-card strong {
+  color: #FFFFFF !important;
+  font-weight: 750 !important;
+}
+body.edunext-app .edn-domain-card p,
+body.edunext-app .edn-visual-domain-card p {
+  color: #CBD5E1 !important;
+}
+body.edunext-app .edn-domain-card-foot {
+  color: #2DD4BF !important;
+  font-weight: 750 !important;
+}
+body.edunext-app .edn-topic-chip {
+  color: #E2E8F0 !important;
+  font-weight: 600 !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+}
+body.edunext-app .edn-topic-chip:hover {
+  background: rgba(45, 212, 191, 0.15) !important;
+  border-color: #2DD4BF !important;
+  color: #FFFFFF !important;
+}
+
+/* G. Section Headings & Intro */
+body.edunext-app .edn-page-intro h1,
+body.edunext-app .cio-page-head h1,
+body.edunext-app .edn-im-section-heading h2 {
+  color: #FFFFFF !important;
+  font-weight: 800 !important;
+}
+body.edunext-app .edn-page-intro p,
+body.edunext-app .cio-page-head p,
+body.edunext-app .edn-im-section-heading p {
+  color: #CBD5E1 !important;
+  font-size: 15px !important;
+  font-weight: 450 !important;
+}
+
+/* H. Course Detail & Learning Classroom */
+body.edunext-app .edn-course-hero h1,
+body.edunext-app .edn-classroom-bar strong,
+body.edunext-app .edn-lesson-banner h1 {
+  color: #FFFFFF !important;
+  font-weight: 800 !important;
+}
+body.edunext-app .edn-course-hero-copy p,
+body.edunext-app .edn-lesson-content-section p {
+  color: #E2E8F0 !important;
+  font-weight: 450 !important;
+}
+body.edunext-app .edn-lesson-content-section h2,
+body.edunext-app .edn-lesson-content-section h3 {
+  color: #FFFFFF !important;
+  font-weight: 750 !important;
+}
+body.edunext-app .edn-lesson-material ol,
+body.edunext-app .edn-lesson-material ul {
+  color: #E2E8F0 !important;
+}
+body.edunext-app .edn-lesson-material li {
+  margin-bottom: 8px !important;
+  line-height: 1.7 !important;
+}
+
+/* I. Buttons & Interactive Links */
+body.edunext-app .btn.btn-p,
+body.edunext-app .edn-im-button-primary {
+  font-weight: 750 !important;
+  letter-spacing: -0.01em !important;
+  color: #042F2E !important;
+  text-shadow: none !important;
+}
+body.edunext-app .btn.btn-g,
+body.edunext-app .edn-im-button-secondary {
+  font-weight: 650 !important;
+  color: #FFFFFF !important;
+}
+body.edunext-app .edunext-nav-link {
+  color: #E2E8F0 !important;
+  font-weight: 600 !important;
+}
+body.edunext-app .edunext-nav-link:hover,
+body.edunext-app .edunext-nav-link.active {
+  color: #2DD4BF !important;
+}
+
+/* J. Account, Settings & Form Labels */
+body.edunext-app .edn-profile-heading h1,
+body.edunext-app .edn-orders-page h1,
+body.edunext-app .edn-certificates-page h1 {
+  color: #FFFFFF !important;
+  font-weight: 800 !important;
+}
+body.edunext-app label,
+body.edunext-app .edn-form-label {
+  color: #E2E8F0 !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+}
+body.edunext-app .edn-setting-card h3,
+body.edunext-app .edn-profile-form h2 {
+  color: #FFFFFF !important;
+  font-weight: 750 !important;
+}
+body.edunext-app .edn-setting-card p {
+  color: #CBD5E1 !important;
+}
