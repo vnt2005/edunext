@@ -10310,9 +10310,9 @@ body.edunext-app .edn-header-tools .edn-cart-count[hidden] {
   display: none !important;
 }
 
-/* 2. Homepage Features: Align left and right columns evenly at top */
+/* 2. Homepage Features: Align left and right columns centered evenly */
 .edn-features-container {
-  align-items: flex-start !important;
+  align-items: center !important;
 }
 
 /* 3. Bottom CTA Banner: Dark cosmic glassmorphic background & seamless border */
