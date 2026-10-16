@@ -33,7 +33,17 @@ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .btn.btn-g:hover{bo
 
 /* One compact consumer header, never an admin-style toolbar. */
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edunext-site-header.edn-im-header{
- position:sticky;top:0;z-index:1000;border-bottom:1px solid rgba(255,255,255,0.05)!important;background:transparent!important;background-image:linear-gradient(180deg, rgba(7, 9, 15, 0.45) 0%, rgba(7, 9, 15, 0.15) 60%, transparent 100%)!important;box-shadow:none!important;backdrop-filter:blur(8px)!important;-webkit-backdrop-filter:blur(8px)!important
+ position:sticky;top:0;z-index:1000;border-bottom:1px solid rgba(255,255,255,0.08)!important;background:#060814!important;background-image:linear-gradient(180deg, #070A18 0%, #060814 100%)!important;box-shadow:0 4px 20px rgba(0,0,0,0.6)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important
+}
+body.admin-bar.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edunext-site-header.edn-im-header,
+body.admin-bar.edunext-app .edunext-site-header {
+  top: 32px !important;
+}
+@media (max-width: 782px) {
+  body.admin-bar.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edunext-site-header.edn-im-header,
+  body.admin-bar.edunext-app .edunext-site-header {
+    top: 46px !important;
+  }
 }
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header .edunext-header-main{background:transparent!important}
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edunext-header-inner.edn-im-header-inner{
@@ -3802,12 +3812,22 @@ body.edunext-app .edunext-site-header {
   right: 0 !important;
   width: 100% !important;
   z-index: 50 !important;
-  background: transparent !important;
-  background-image: linear-gradient(180deg, rgba(7, 9, 15, 0.45) 0%, rgba(7, 9, 15, 0.15) 60%, transparent 100%) !important;
-  backdrop-filter: blur(8px) !important;
-  -webkit-backdrop-filter: blur(8px) !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
-  box-shadow: none !important;
+  background: #060814 !important;
+  background-image: linear-gradient(180deg, #070A18 0%, #060814 100%) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6) !important;
+}
+body.admin-bar.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edunext-site-header.edn-im-header,
+body.admin-bar.edunext-app .edunext-site-header {
+  top: 32px !important;
+}
+@media (max-width: 782px) {
+  body.admin-bar.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edunext-site-header.edn-im-header,
+  body.admin-bar.edunext-app .edunext-site-header {
+    top: 46px !important;
+  }
 }
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-header .edunext-header-main,
 body.edunext-app .edunext-header-main {
@@ -8713,15 +8733,28 @@ body.edunext-app .edn-profile-dropdown-logout:focus-visible {
   color: #FCA5A5 !important;
 }
 
-/* 7. Unified Header Background: Seamless continuity with cosmic hero background */
+/* 7. Unified Header Background: Solid opaque cosmic navy/indigo background */
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edunext-site-header.edn-im-header,
 body.edunext-app .edunext-site-header {
-  background: transparent !important;
-  background-image: linear-gradient(180deg, rgba(7, 9, 15, 0.45) 0%, rgba(7, 9, 15, 0.15) 60%, transparent 100%) !important;
-  backdrop-filter: blur(8px) !important;
-  -webkit-backdrop-filter: blur(8px) !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
-  box-shadow: none !important;
+  background: #060814 !important;
+  background-image: linear-gradient(180deg, #070A18 0%, #060814 100%) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6) !important;
 }
+
+body.admin-bar.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edunext-site-header.edn-im-header,
+body.admin-bar.edunext-app .edunext-site-header {
+  top: 32px !important;
+}
+
+@media (max-width: 782px) {
+  body.admin-bar.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edunext-site-header.edn-im-header,
+  body.admin-bar.edunext-app .edunext-site-header {
+    top: 46px !important;
+  }
+}
+
 
 
