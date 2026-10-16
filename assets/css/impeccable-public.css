@@ -9776,18 +9776,28 @@ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-profile-main {
   border: none !important;
   border-radius: 0 !important;
   box-shadow: none !important;
-  padding: 28px 36px 36px !important;
+  padding: 0 !important;
   color: #E2E8F0 !important;
   min-width: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
 }
 
-/* Header Heading: Center-aligned with clean spacing */
+/* Header Heading: Full-width top banner across the right column with divider */
 body.edunext-app .edn-profile-heading {
   text-align: center !important;
-  padding-bottom: 16px !important;
+  padding: 28px 36px 18px !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
-  margin-bottom: 20px !important;
+  margin: 0 !important;
   width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+#app .edn-profile-content,
+body.edunext-app .edn-profile-content {
+  padding: 24px 36px 36px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
 }
 
 body.edunext-app .edn-profile-heading h1,
