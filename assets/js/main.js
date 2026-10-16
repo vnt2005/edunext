@@ -1284,14 +1284,77 @@ const cert=id=>{
 const ordersPage=()=>{
   if(!D.me)return guard('/orders');
   const orders=Array.isArray(CFG.orders)?CFG.orders:[];
-  return '<div class="wrap page edn-orders-page"><div class="edn-page-intro"><span class="edn-overline">TÀI KHOẢN</span><h1>Lịch sử mua hàng</h1><p>Chỉ hiển thị đơn hàng được ghi nhận bởi cơ chế thanh toán đã tích hợp.</p></div>'+
-    (orders.length?'<div class="edn-orders-list">'+orders.map(order=>{
-      const c=find(order.courseId);
-      const status=String(order.status||'pending');
-      const statusLabel=({paid:'Đã thanh toán',pending:'Chờ thanh toán',failed:'Thanh toán thất bại',cancelled:'Đã hủy',refunded:'Đã hoàn tiền'})[status]||'Đang xác minh';
-      return '<article class="edn-order-row"><div><strong>'+esc(c?c.t:'Khóa học')+'</strong><small>'+esc(order.id||'')+' · '+(order.createdAt?new Date(order.createdAt).toLocaleString('vi-VN'):'')+'</small></div><div><b>'+(typeof order.amount==='number'?money(order.amount):'—')+'</b><span class="edn-order-status">'+statusLabel+'</span></div></article>';
-    }).join('')+'</div>':'<div class="cio-empty"><h2>Chưa có đơn hàng</h2><p>EduNext chưa có giao dịch được xác nhận cho tài khoản này. Khóa học đang ở trạng thái đề cương sẽ không tạo đơn hàng giả.</p><a class="btn btn-p" href="#/courses">Khám phá khóa học</a></div>')+
-    '</div>';
+  const refunds=orders.filter(o=>o.status==='refunded');
+  
+  const renderOrdersTable=(list)=>{
+    if(!list.length){
+      return '<div class="edn-orders-empty-state">'+
+        '<div class="edn-orders-empty-circle" aria-hidden="true">'+
+          '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'+
+            '<circle cx="8" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle>'+
+            '<path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>'+
+          '</svg>'+
+        '</div>'+
+        '<p class="edn-orders-empty-msg">Bạn không có giao dịch mua nào.</p>'+
+      '</div>';
+    }
+    return '<div class="edn-orders-table-wrap"><table class="edn-orders-table"><thead><tr>'+
+      '<th>Khóa học</th><th>Mã đơn hàng</th><th>Ngày mua</th><th>Số tiền</th><th>Trạng thái</th>'+
+      '</tr></thead><tbody>'+
+      list.map(order=>{
+        const c=find(order.courseId);
+        const status=String(order.status||'pending');
+        const statusLabel=({paid:'Đã thanh toán',pending:'Chờ thanh toán',failed:'Thanh toán thất bại',cancelled:'Đã hủy',refunded:'Đã hoàn tiền'})[status]||'Đang xác minh';
+        const dateStr=order.createdAt?new Date(order.createdAt).toLocaleDateString('vi-VN'):'—';
+        return '<tr>'+
+          '<td><strong>'+esc(c?c.t:'Khóa học')+'</strong></td>'+
+          '<td><code>'+esc(order.id||'—')+'</code></td>'+
+          '<td>'+dateStr+'</td>'+
+          '<td><b>'+(typeof order.amount==='number'?money(order.amount):'—')+'</b></td>'+
+          '<td><span class="edn-order-badge status-'+status+'">'+statusLabel+'</span></td>'+
+          '</tr>';
+      }).join('')+
+      '</tbody></table></div>';
+  };
+
+  const purchasesHtml=renderOrdersTable(orders);
+  
+  const subscriptionsHtml='<div class="edn-orders-empty-state">'+
+    '<div class="edn-orders-empty-circle" aria-hidden="true">'+
+      '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'+
+        '<path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>'+
+        '<polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>'+
+        '<line x1="12" y1="22.08" x2="12" y2="12"></line>'+
+      '</svg>'+
+    '</div>'+
+    '<p class="edn-orders-empty-msg">Bạn chưa có gói thuê bao nào đang hoạt động.</p>'+
+  '</div>';
+
+  const refundsHtml=refunds.length?renderOrdersTable(refunds):'<div class="edn-orders-empty-state">'+
+    '<div class="edn-orders-empty-circle" aria-hidden="true">'+
+      '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'+
+        '<polyline points="1 4 1 10 7 10"></polyline>'+
+        '<path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>'+
+      '</svg>'+
+    '</div>'+
+    '<p class="edn-orders-empty-msg">Bạn không có yêu cầu hoàn tiền nào.</p>'+
+  '</div>';
+
+  return '<main class="edn-orders-scope"><div class="wrap page edn-orders-page">'+
+    '<header class="edn-orders-header">'+
+      '<h1 class="edn-orders-title">Lịch sử mua</h1>'+
+    '</header>'+
+    '<nav class="edn-orders-tabs" role="tablist" aria-label="Phân loại lịch sử mua hàng">'+
+      '<button type="button" class="edn-orders-tab is-active" role="tab" aria-selected="true" data-orders-tab="purchases">Giao dịch mua</button>'+
+      '<button type="button" class="edn-orders-tab" role="tab" aria-selected="false" data-orders-tab="subscriptions">Thuê bao</button>'+
+      '<button type="button" class="edn-orders-tab" role="tab" aria-selected="false" data-orders-tab="refunds">Hoàn tiền</button>'+
+    '</nav>'+
+    '<div class="edn-orders-body">'+
+      '<section class="edn-orders-panel is-active" id="edn-panel-purchases" role="tabpanel">'+purchasesHtml+'</section>'+
+      '<section class="edn-orders-panel" id="edn-panel-subscriptions" role="tabpanel" hidden>'+subscriptionsHtml+'</section>'+
+      '<section class="edn-orders-panel" id="edn-panel-refunds" role="tabpanel" hidden>'+refundsHtml+'</section>'+
+    '</div>'+
+  '</div></main>';
 };
 const field=(n,l,t,placeholder,min)=>'<div class="fg"><label for="f-'+n+'">'+l+'</label><input id="f-'+n+'" name="'+n+'" type="'+t+'" '+(placeholder?'placeholder="'+esc(placeholder)+'" ':'')+(min?'minlength="'+min+'" ':'')+'autocomplete="'+(n==='pw'?(t==='password'?'current-password':'off'):n)+'" required></div>';
 const auth=m=>{
@@ -2268,6 +2331,23 @@ document.addEventListener('click',event=>{
     item.setAttribute('aria-pressed',String(active));
   });
   applyMyLearningFilters();
+});
+document.addEventListener('click',event=>{
+  const tab=event.target.closest('.edn-orders-tab[data-orders-tab]');
+  if(!tab)return;
+  const scope=tab.closest('.edn-orders-scope')||tab.closest('.edn-orders-page');
+  if(!scope)return;
+  const targetTab=tab.getAttribute('data-orders-tab');
+  scope.querySelectorAll('.edn-orders-tab').forEach(item=>{
+    const active=item===tab;
+    item.classList.toggle('is-active',active);
+    item.setAttribute('aria-selected',String(active));
+  });
+  scope.querySelectorAll('.edn-orders-panel').forEach(panel=>{
+    const match=panel.id==='edn-panel-'+targetTab;
+    panel.classList.toggle('is-active',match);
+    panel.hidden=!match;
+  });
 });
 document.addEventListener('input',event=>{
   if(event.target.matches('#edn-my-learning-search'))applyMyLearningFilters();

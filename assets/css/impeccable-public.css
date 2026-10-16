@@ -10155,7 +10155,6 @@ body.edunext-app .edunext-nav-link.active {
 
 /* J. Account, Settings & Form Labels */
 body.edunext-app .edn-profile-heading h1,
-body.edunext-app .edn-orders-page h1,
 body.edunext-app .edn-certificates-page h1 {
   color: #FFFFFF !important;
   font-weight: 800 !important;
@@ -10922,6 +10921,7 @@ body.edunext-app .edn-certificate-details b {
 }
 
 /* Responsive */
+/* Responsive */
 @media (max-width: 760px) {
   body.edunext-app .cio-certificates-page .cio-page-head {
     flex-direction: column !important;
@@ -10937,3 +10937,216 @@ body.edunext-app .edn-certificate-details b {
   }
 }
 
+/* ==========================================================================
+   L. PURCHASE HISTORY (LỊCH SỬ MUA HÀNG - UDEMY INSPIRED CLEAN LAYOUT)
+   ========================================================================== */
+
+body.edunext-app .edn-orders-scope {
+  background: #FFFFFF !important;
+  color: #1C1D1F !important;
+  min-height: calc(100vh - 380px) !important;
+  position: relative !important;
+  z-index: 10 !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-orders-page {
+  background: #FFFFFF !important;
+  color: #1C1D1F !important;
+  max-width: 1200px !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+  padding: 40px 24px 64px !important;
+  box-sizing: border-box !important;
+  flex: 1 0 auto !important;
+}
+
+/* Header & Title */
+body.edunext-app .edn-orders-header {
+  margin-bottom: 24px !important;
+  text-align: left !important;
+}
+
+body.edunext-app .edn-orders-title,
+body.edunext-app .edn-orders-page h1 {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+  font-size: 32px !important;
+  font-weight: 700 !important;
+  color: #1C1D1F !important;
+  letter-spacing: -0.02em !important;
+  margin: 0 !important;
+  text-align: left !important;
+}
+
+/* Underline Tabs */
+body.edunext-app .edn-orders-tabs {
+  display: flex !important;
+  align-items: center !important;
+  gap: 24px !important;
+  border-bottom: 1px solid #D1D7DC !important;
+  margin: 0 0 48px !important;
+  padding: 0 !important;
+  overflow-x: auto !important;
+  background: transparent !important;
+}
+
+body.edunext-app .edn-orders-tab {
+  background: transparent !important;
+  border: none !important;
+  border-bottom: 2px solid transparent !important;
+  padding: 12px 2px 14px !important;
+  font-size: 15px !important;
+  font-weight: 500 !important;
+  color: #565656 !important;
+  cursor: pointer !important;
+  white-space: nowrap !important;
+  transition: all 0.15s ease !important;
+  margin-bottom: -1px !important;
+}
+
+body.edunext-app .edn-orders-tab:hover {
+  color: #1C1D1F !important;
+}
+
+body.edunext-app .edn-orders-tab.is-active {
+  color: #1C1D1F !important;
+  font-weight: 700 !important;
+  border-bottom-color: #1C1D1F !important;
+}
+
+/* Empty State - Centered circular icon with subtle light gray background */
+body.edunext-app .edn-orders-body {
+  min-height: 280px !important;
+}
+
+body.edunext-app .edn-orders-empty-state {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 56px 20px 72px !important;
+  text-align: center !important;
+}
+
+body.edunext-app .edn-orders-empty-circle {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 56px !important;
+  height: 56px !important;
+  border-radius: 50% !important;
+  background: #F2F3F5 !important;
+  color: #6A6F73 !important;
+  margin-bottom: 18px !important;
+}
+
+body.edunext-app .edn-orders-empty-circle svg {
+  display: block !important;
+  width: 24px !important;
+  height: 24px !important;
+  stroke: #6A6F73 !important;
+}
+
+body.edunext-app .edn-orders-empty-msg {
+  color: #2D2F31 !important;
+  font-size: 15px !important;
+  font-weight: 400 !important;
+  margin: 0 !important;
+  line-height: 1.5 !important;
+}
+
+/* Orders Table (When user has real purchases) */
+body.edunext-app .edn-orders-table-wrap {
+  width: 100% !important;
+  overflow-x: auto !important;
+  border: 1px solid #E2E8F0 !important;
+  border-radius: 10px !important;
+  background: #FFFFFF !important;
+}
+
+body.edunext-app .edn-orders-table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  text-align: left !important;
+  font-size: 14px !important;
+  color: #1C1D1F !important;
+}
+
+body.edunext-app .edn-orders-table th {
+  background: #F8FAFC !important;
+  color: #475569 !important;
+  font-weight: 600 !important;
+  padding: 14px 16px !important;
+  border-bottom: 1px solid #E2E8F0 !important;
+  font-size: 13px !important;
+}
+
+body.edunext-app .edn-orders-table td {
+  padding: 16px !important;
+  border-bottom: 1px solid #F1F5F9 !important;
+  vertical-align: middle !important;
+}
+
+body.edunext-app .edn-orders-table tbody tr:last-child td {
+  border-bottom: none !important;
+}
+
+body.edunext-app .edn-orders-table tbody tr:hover td {
+  background: #F8FAFC !important;
+}
+
+body.edunext-app .edn-orders-table code {
+  background: #F1F5F9 !important;
+  padding: 3px 6px !important;
+  border-radius: 4px !important;
+  font-size: 12px !important;
+  color: #0F172A !important;
+}
+
+body.edunext-app .edn-order-badge {
+  display: inline-flex !important;
+  padding: 4px 10px !important;
+  border-radius: 9999px !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  line-height: 1 !important;
+}
+
+body.edunext-app .edn-order-badge.status-paid {
+  background: #DCFCE7 !important;
+  color: #166534 !important;
+}
+
+body.edunext-app .edn-order-badge.status-pending {
+  background: #FEF3C7 !important;
+  color: #92400E !important;
+}
+
+body.edunext-app .edn-order-badge.status-failed,
+body.edunext-app .edn-order-badge.status-cancelled {
+  background: #FEE2E2 !important;
+  color: #991B1B !important;
+}
+
+body.edunext-app .edn-order-badge.status-refunded {
+  background: #F1F5F9 !important;
+  color: #475569 !important;
+}
+
+@media (max-width: 640px) {
+  body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-orders-page {
+    padding: 24px 16px 40px !important;
+  }
+  body.edunext-app .edn-orders-title {
+    font-size: 26px !important;
+  }
+  body.edunext-app .edn-orders-tabs {
+    gap: 16px !important;
+    margin-bottom: 32px !important;
+  }
+  body.edunext-app .edn-orders-tab {
+    font-size: 14px !important;
+    padding: 10px 0 12px !important;
+  }
+}
