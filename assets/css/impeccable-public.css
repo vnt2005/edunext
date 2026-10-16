@@ -10060,7 +10060,7 @@ body.edunext-app .edn-profile-divider {
 #app .edn-profile-form .edn-profile-save-row,
 body.edunext-app .edn-profile-form .edn-profile-save-row,
 body.edunext-app .edn-profile-save-row {
-  margin-top: 20px !important;
+  margin-top: 12px !important;
   display: flex !important;
   justify-content: flex-end !important;
   padding: 0 !important;
@@ -10091,10 +10091,17 @@ body.edunext-app .edn-profile-save-row .btn.btn-p:hover {
   transform: translateY(-1px) !important;
 }
 
+#app .edn-profile-form .edn-profile-error:empty,
+body.edunext-app .edn-profile-form .edn-profile-error:empty {
+  display: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
 body.edunext-app .edn-profile-error {
   color: #F87171 !important;
   font-size: 13px !important;
-  margin: 8px 0 0 !important;
+  margin: 6px 0 0 !important;
 }
 
 /* Sub-views in Profile Scope (Photo, Security, Public) */
