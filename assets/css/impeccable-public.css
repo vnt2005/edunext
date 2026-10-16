@@ -12028,15 +12028,17 @@ body.edunext-app .edn-im-courses {
 }
 
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-steps,
-body.edunext-app .edn-im-steps {
-  padding-top: 26px !important;
-  padding-bottom: 26px !important;
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-home-features,
+body.edunext-app .edn-im-steps,
+body.edunext-app .edn-home-features {
+  padding-top: 24px !important;
+  padding-bottom: 12px !important;
 }
 
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-instructors,
 body.edunext-app .edn-im-instructors {
-  padding-top: 30px !important;
-  padding-bottom: 32px !important;
+  padding-top: 14px !important;
+  padding-bottom: 30px !important;
 }
 
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-testimonials,
