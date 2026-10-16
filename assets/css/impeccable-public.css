@@ -9764,19 +9764,7 @@ body.edunext-app .edn-cart-trigger svg {
 }
 
 body.edunext-app .edn-cart-count {
-  position: absolute !important;
-  top: -8px !important;
-  right: -10px !important;
-  background: #ea580c !important;
-  color: #FFFFFF !important;
-  border: 2px solid #040814 !important;
-  font-size: 11px !important;
-  font-weight: 700 !important;
-  line-height: 1 !important;
-  padding: 3px 6px !important;
-  border-radius: 9999px !important;
-  min-width: 18px !important;
-  text-align: center !important;
+  display: none !important;
 }
 
 /* 2. Homepage Features: Align left and right columns evenly at top */
