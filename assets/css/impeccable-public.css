@@ -8283,123 +8283,461 @@ body.edunext-app .edn-course-curriculum .edn-curriculum-exercise p {
    Comprehensive Dark Glassmorphic Theme Overrides (Blog, Single Post, FAQ, About, Profile)
    ========================================================================== */
 
-/* 1. Blog & Magazine Section */
+/* 1. Blog & Magazine Section — Udemy Insprired Layout */
 #app .edn-magazine-page,
 body.edunext-app .edn-magazine-page {
   background: transparent !important;
   color: #FFFFFF !important;
+  max-width: 1320px !important;
+  margin: 0 auto !important;
+  padding: 32px 20px 80px !important;
 }
 
-#app .edn-mag-header h1,
-body.edunext-app .edn-mag-header h1 {
-  color: #FFFFFF !important;
+/* Udemy Blog Subnav */
+.edn-udemy-blog-header {
+  margin-bottom: 36px !important;
 }
-
-#app .edn-mag-header p,
-body.edunext-app .edn-mag-header p {
-  color: #94A3B8 !important;
-}
-
-#app .edn-mag-topic-pill,
-body.edunext-app .edn-mag-topic-pill {
-  background: rgba(255, 255, 255, 0.05) !important;
+.edn-udemy-subnav {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 16px !important;
+  padding: 12px 24px !important;
+  border-radius: 9999px !important;
+  background: rgba(14, 18, 38, 0.65) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
   border: 1px solid rgba(255, 255, 255, 0.1) !important;
-  color: #CBD5E1 !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4) !important;
+  margin-bottom: 40px !important;
 }
-
-#app .edn-mag-topic-pill:hover,
-body.edunext-app .edn-mag-topic-pill:hover {
-  background: rgba(255, 255, 255, 0.12) !important;
+.edn-udemy-subnav-brand {
+  display: inline-flex !important;
+  align-items: baseline !important;
+  gap: 6px !important;
+  text-decoration: none !important;
   color: #FFFFFF !important;
-  border-color: rgba(255, 255, 255, 0.2) !important;
+  font-size: 19px !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.02em !important;
 }
-
-#app .edn-mag-topic-pill.is-active,
-body.edunext-app .edn-mag-topic-pill.is-active {
-  background: #0F766E !important;
-  color: #FFFFFF !important;
-  border-color: #2DD4BF !important;
-  box-shadow: 0 0 16px rgba(45, 212, 191, 0.25) !important;
+.edn-udemy-subnav-brand strong {
+  color: #2DD4BF !important;
 }
-
-#app .edn-mag-lead,
-#app .edn-mag-card,
-body.edunext-app .edn-mag-lead,
-body.edunext-app .edn-mag-card {
-  background: rgba(13, 16, 26, 0.55) !important;
-  backdrop-filter: blur(16px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
-  color: #FFFFFF !important;
-}
-
-#app .edn-mag-lead:hover,
-#app .edn-mag-card:hover,
-body.edunext-app .edn-mag-lead:hover,
-body.edunext-app .edn-mag-card:hover {
-  border-color: rgba(45, 212, 191, 0.3) !important;
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.45) !important;
-}
-
-#app .edn-mag-card-body,
-body.edunext-app .edn-mag-card-body {
-  background: transparent !important;
-}
-
-#app .edn-mag-lead-title,
-#app .edn-mag-card-title,
-#app .edn-mag-lead-title a,
-#app .edn-mag-card-title a,
-body.edunext-app .edn-mag-lead-title,
-body.edunext-app .edn-mag-card-title,
-body.edunext-app .edn-mag-lead-title a,
-body.edunext-app .edn-mag-card-title a {
-  color: #FFFFFF !important;
-}
-
-#app .edn-mag-lead-excerpt,
-#app .edn-mag-card-excerpt,
-body.edunext-app .edn-mag-lead-excerpt,
-body.edunext-app .edn-mag-card-excerpt {
+.edn-udemy-subnav-brand span {
+  font-size: 15px !important;
+  font-weight: 500 !important;
   color: #94A3B8 !important;
 }
+.edn-udemy-subnav-links {
+  display: flex !important;
+  align-items: center !important;
+  gap: 20px !important;
+  overflow-x: auto !important;
+  scrollbar-width: none !important;
+}
+.edn-udemy-subnav-links::-webkit-scrollbar {
+  display: none !important;
+}
+.edn-udemy-subnav-link {
+  color: #CBD5E1 !important;
+  text-decoration: none !important;
+  font-size: 13.5px !important;
+  font-weight: 500 !important;
+  white-space: nowrap !important;
+  transition: color 0.2s ease !important;
+}
+.edn-udemy-subnav-link:hover {
+  color: #2DD4BF !important;
+}
+.edn-udemy-subnav-cta {
+  padding: 8px 18px !important;
+  border-radius: 9999px !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  white-space: nowrap !important;
+  background: #0D9488 !important;
+  color: #FFFFFF !important;
+}
+.edn-udemy-blog-title {
+  font-size: clamp(32px, 4.5vw, 48px) !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.03em !important;
+  text-align: center !important;
+  color: #FFFFFF !important;
+  margin: 0 0 16px !important;
+}
 
-#app .edn-mag-tag-pill,
-body.edunext-app .edn-mag-tag-pill {
-  background: rgba(13, 16, 26, 0.8) !important;
-  backdrop-filter: blur(8px) !important;
+/* Featured Hero Banner Card (Ảnh 1) */
+.edn-udemy-hero-featured {
+  display: grid !important;
+  grid-template-columns: 1.15fr 1fr !important;
+  background: rgba(14, 18, 38, 0.7) !important;
+  backdrop-filter: blur(24px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 28px !important;
+  overflow: hidden !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45), 0 0 30px rgba(45, 212, 191, 0.08) !important;
+  margin-bottom: 48px !important;
+  transition: transform 0.3s ease, border-color 0.3s ease !important;
+}
+.edn-udemy-hero-featured:hover {
+  transform: translateY(-4px) !important;
+  border-color: rgba(45, 212, 191, 0.35) !important;
+}
+.edn-udemy-hero-content {
+  padding: 44px 44px 40px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+}
+.edn-udemy-hero-tags {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  margin-bottom: 18px !important;
+}
+.edn-udemy-badge-featured {
+  display: inline-block !important;
+  padding: 4px 14px !important;
+  border-radius: 9999px !important;
+  background: rgba(45, 212, 191, 0.15) !important;
   border: 1px solid rgba(45, 212, 191, 0.3) !important;
   color: #2DD4BF !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
 }
-
-#app .edn-mag-card-media .edn-mag-tag-pill {
-  background: rgba(13, 16, 26, 0.8) !important;
-  backdrop-filter: blur(8px) !important;
-  color: #2DD4BF !important;
-  border: 1px solid rgba(45, 212, 191, 0.25) !important;
-}
-
-#app .edn-mag-read-link,
-body.edunext-app .edn-mag-read-link {
-  color: #2DD4BF !important;
-}
-
-#app .edn-mag-cta-box,
-body.edunext-app .edn-mag-cta-box {
-  background: rgba(13, 16, 26, 0.55) !important;
-  backdrop-filter: blur(16px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
-  color: #FFFFFF !important;
-}
-
-#app .edn-mag-cta-box h3,
-body.edunext-app .edn-mag-cta-box h3 {
-  color: #FFFFFF !important;
-}
-
-#app .edn-mag-cta-box p,
-body.edunext-app .edn-mag-cta-box p {
+.edn-udemy-meta-time,
+.edn-udemy-meta-date {
+  font-size: 13px !important;
   color: #94A3B8 !important;
+}
+.edn-udemy-hero-title {
+  font-size: clamp(24px, 2.5vw, 34px) !important;
+  font-weight: 800 !important;
+  line-height: 1.3 !important;
+  letter-spacing: -0.02em !important;
+  margin: 0 0 16px !important;
+}
+.edn-udemy-hero-title a {
+  color: #FFFFFF !important;
+  text-decoration: none !important;
+  transition: color 0.2s ease !important;
+}
+.edn-udemy-hero-title a:hover {
+  color: #2DD4BF !important;
+}
+.edn-udemy-hero-excerpt {
+  font-size: 15px !important;
+  line-height: 1.65 !important;
+  color: #CBD5E1 !important;
+  margin: 0 0 28px !important;
+}
+.edn-udemy-author-info {
+  display: flex !important;
+  align-items: center !important;
+  gap: 14px !important;
+  margin-top: auto !important;
+}
+.edn-udemy-author-avatar {
+  width: 44px !important;
+  height: 44px !important;
+  border-radius: 50% !important;
+  object-fit: cover !important;
+  border: 2px solid #2DD4BF !important;
+}
+.edn-udemy-author-info strong {
+  display: block !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  color: #FFFFFF !important;
+}
+.edn-udemy-author-info small {
+  font-size: 12px !important;
+  color: #94A3B8 !important;
+}
+.edn-udemy-hero-media {
+  position: relative !important;
+  overflow: hidden !important;
+  min-height: 340px !important;
+}
+.edn-udemy-hero-media img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  transition: transform 0.5s ease !important;
+}
+.edn-udemy-hero-featured:hover .edn-udemy-hero-media img {
+  transform: scale(1.05) !important;
+}
+
+/* Filter & Search Bar (Ảnh 2) */
+.edn-udemy-filter-section {
+  margin-bottom: 40px !important;
+}
+.edn-udemy-search-bar {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  padding: 0 20px !important;
+  min-height: 52px !important;
+  border-radius: 9999px !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  backdrop-filter: blur(16px) !important;
+  margin-bottom: 24px !important;
+  max-width: 640px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  transition: all 0.25s ease !important;
+}
+.edn-udemy-search-bar:focus-within {
+  background: rgba(255, 255, 255, 0.09) !important;
+  border-color: #2DD4BF !important;
+  box-shadow: 0 0 20px rgba(45, 212, 191, 0.25) !important;
+}
+.edn-udemy-search-icon {
+  font-size: 18px !important;
+  color: #94A3B8 !important;
+}
+.edn-udemy-search-bar input {
+  width: 100% !important;
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  color: #FFFFFF !important;
+  font-size: 14.5px !important;
+}
+.edn-udemy-search-bar input::placeholder {
+  color: #94A3B8 !important;
+}
+.edn-udemy-topic-pills {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 10px !important;
+  flex-wrap: wrap !important;
+}
+.edn-udemy-topic-pill {
+  padding: 9px 20px !important;
+  border-radius: 9999px !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  color: #CBD5E1 !important;
+  font-size: 13.5px !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  backdrop-filter: blur(12px) !important;
+  transition: all 0.2s ease !important;
+}
+.edn-udemy-topic-pill:hover {
+  background: rgba(255, 255, 255, 0.12) !important;
+  border-color: rgba(45, 212, 191, 0.4) !important;
+  color: #FFFFFF !important;
+}
+.edn-udemy-topic-pill.is-active {
+  background: #0F766E !important;
+  border-color: #2DD4BF !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 0 16px rgba(45, 212, 191, 0.3) !important;
+}
+
+/* Sub-Hero Split Grid (Ảnh 2) */
+.edn-udemy-subhero-grid {
+  display: grid !important;
+  grid-template-columns: 1.8fr 1fr !important;
+  gap: 28px !important;
+  margin-bottom: 36px !important;
+}
+
+/* Standard 4-Column Articles Grid (Ảnh 3, 4) */
+.edn-udemy-articles-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 24px !important;
+  margin-bottom: 48px !important;
+}
+
+/* Card Component */
+.edn-udemy-card {
+  display: flex !important;
+  flex-direction: column !important;
+  background: rgba(14, 18, 38, 0.65) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 20px !important;
+  overflow: hidden !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35) !important;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease !important;
+}
+.edn-udemy-card:hover {
+  transform: translateY(-5px) !important;
+  border-color: rgba(45, 212, 191, 0.4) !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), 0 0 24px rgba(45, 212, 191, 0.15) !important;
+}
+.edn-udemy-card-media {
+  position: relative !important;
+  width: 100% !important;
+  aspect-ratio: 16 / 10 !important;
+  overflow: hidden !important;
+  background: #111424 !important;
+}
+.edn-udemy-card-media img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  transition: transform 0.45s ease !important;
+}
+.edn-udemy-card:hover .edn-udemy-card-media img {
+  transform: scale(1.06) !important;
+}
+.edn-udemy-card-body {
+  padding: 20px 22px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  flex: 1 !important;
+}
+.edn-udemy-card-title {
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  line-height: 1.4 !important;
+  color: #FFFFFF !important;
+  margin: 0 0 12px !important;
+}
+.edn-udemy-card-title a {
+  color: inherit !important;
+  text-decoration: none !important;
+  transition: color 0.2s ease !important;
+}
+.edn-udemy-card-title a:hover {
+  color: #2DD4BF !important;
+}
+.edn-udemy-card-meta {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  font-size: 12.5px !important;
+  color: #94A3B8 !important;
+  margin-top: auto !important;
+}
+
+/* Horizontal Split Card Variant (Ảnh 2 trái) */
+.edn-udemy-card-split {
+  flex-direction: row !important;
+  align-items: stretch !important;
+}
+.edn-udemy-card-split .edn-udemy-card-media {
+  width: 50% !important;
+  aspect-ratio: auto !important;
+  min-height: 240px !important;
+}
+.edn-udemy-card-split .edn-udemy-card-body {
+  width: 50% !important;
+  padding: 28px !important;
+  justify-content: center !important;
+}
+.edn-udemy-card-split .edn-udemy-card-title {
+  font-size: 20px !important;
+  line-height: 1.35 !important;
+}
+.edn-udemy-card-excerpt {
+  font-size: 14px !important;
+  line-height: 1.6 !important;
+  color: #94A3B8 !important;
+  margin: 0 0 18px !important;
+}
+
+/* Promo Banner Card (Ảnh 4) */
+.edn-udemy-banner-promo {
+  display: grid !important;
+  grid-template-columns: 1.2fr 1fr !important;
+  align-items: center !important;
+  background: linear-gradient(135deg, rgba(14, 18, 38, 0.9) 0%, rgba(20, 26, 54, 0.85) 100%) !important;
+  backdrop-filter: blur(24px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 28px !important;
+  overflow: hidden !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5) !important;
+  margin-bottom: 48px !important;
+}
+.edn-udemy-banner-copy {
+  padding: 48px !important;
+}
+.edn-udemy-banner-copy h2 {
+  font-size: clamp(24px, 2.5vw, 32px) !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.02em !important;
+  color: #FFFFFF !important;
+  margin: 0 0 14px !important;
+  line-height: 1.25 !important;
+}
+.edn-udemy-banner-copy p {
+  font-size: 15px !important;
+  line-height: 1.65 !important;
+  color: #94A3B8 !important;
+  margin: 0 0 24px !important;
+}
+.edn-udemy-banner-btn {
+  display: inline-flex !important;
+  padding: 12px 28px !important;
+  border-radius: 9999px !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  background: #0D9488 !important;
+  color: #FFFFFF !important;
+  text-decoration: none !important;
+}
+.edn-udemy-banner-btn:hover {
+  background: #14B8A6 !important;
+}
+.edn-udemy-banner-graphic {
+  position: relative !important;
+  height: 100% !important;
+  min-height: 280px !important;
+}
+.edn-udemy-banner-graphic img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+/* Responsive adjustments for Udemy Blog */
+@media (max-width: 1100px) {
+  .edn-udemy-articles-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}
+@media (max-width: 900px) {
+  .edn-udemy-hero-featured,
+  .edn-udemy-subhero-grid,
+  .edn-udemy-banner-promo {
+    grid-template-columns: 1fr !important;
+  }
+  .edn-udemy-card-split {
+    flex-direction: column !important;
+  }
+  .edn-udemy-card-split .edn-udemy-card-media,
+  .edn-udemy-card-split .edn-udemy-card-body {
+    width: 100% !important;
+  }
+  .edn-udemy-articles-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .edn-udemy-subnav-links {
+    display: none !important;
+  }
+  .edn-udemy-hero-content,
+  .edn-udemy-banner-copy {
+    padding: 32px 24px !important;
+  }
+}
+@media (max-width: 580px) {
+  .edn-udemy-articles-grid {
+    grid-template-columns: 1fr !important;
+  }
 }
 
 /* 2. Single Article / Blog Post */

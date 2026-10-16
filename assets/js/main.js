@@ -1317,66 +1317,128 @@ const dash=()=>{
 const BLOG_ARTICLE_BODY=[[{"heading":"Đừng chỉ nhìn cú pháp, hãy dự đoán kết quả","paragraphs":["Khi học biến, điều kiện hay vòng lặp, nhiều người cố nhớ mẫu code. Cách đó có ích ở bước đầu nhưng thường không đủ khi bài tập thay đổi một chút. Thay vào đó, hãy tự hỏi: biến đang giữ giá trị gì, dòng tiếp theo có thể thay đổi nó ra sao và nhánh nào sẽ được chạy?","Ví dụ, với vòng lặp tính tổng một dãy số, ghi lại giá trị của biến tổng sau từng lượt sẽ giúp bạn thấy lỗi khởi tạo hoặc điều kiện dừng. Một bảng nhỏ gồm lần lặp, giá trị đầu vào và kết quả trung gian đã đủ để bắt đầu."]},{"heading":"Một vòng luyện tập có thể làm trong 20 phút","paragraphs":["Chọn một ý tưởng vừa học, tự viết ví dụ ngắn, chạy thử rồi thay đổi một điều kiện. Sau đó giải thích bằng lời vì sao kết quả đổi. Khi gặp lỗi, đọc dòng báo lỗi và kiểm tra giả định trước khi sửa.","Nếu dùng debugger trong Visual Studio, đặt breakpoint ở nơi bạn nghi ngờ, chạy từng bước và xem giá trị biến. Đây là cách tìm nguyên nhân có kiểm chứng, thay vì thêm câu lệnh in ra khắp nơi rồi đoán."]},{"heading":"Khi nào biết mình đã hiểu?","paragraphs":["Bạn đã tiến bộ khi có thể viết lại ví dụ mà không nhìn lời giải, phát hiện một trường hợp biên và giải thích cách xử lý. Nếu vẫn phải xem lại tài liệu, không sao: ghi đúng điểm mình quên và quay lại bằng một bài tập khác.","Mục tiêu không phải thuộc lòng mọi API. Quan trọng hơn là hiểu vấn đề, biết tra cứu tài liệu đáng tin cậy và kiểm tra chương trình có thật sự làm đúng điều bạn mong đợi hay không."]}],[{"heading":"Tách bài toán thành các bước nhỏ","paragraphs":["Một REST API nhận HTTP request và trả HTTP response. Trước khi thêm xác thực, phân trang hay nhiều lớp kiến trúc, hãy tạo một endpoint như GET /api/tasks trả về danh sách mẫu. Kiểm tra status code, JSON và trường hợp danh sách rỗng.","Khi endpoint đầu tiên chạy đúng, hãy tách phần xử lý nghiệp vụ ra khỏi controller bằng dependency injection. Sau đó mới kết nối cơ sở dữ liệu qua Entity Framework Core. Làm lần lượt giúp bạn biết lỗi xuất hiện ở route, logic, cấu hình hay truy vấn."]},{"heading":"Đừng bỏ qua kiểm tra dữ liệu đầu vào","paragraphs":["Một endpoint tạo mới nên kiểm tra các trường bắt buộc, giới hạn độ dài và định dạng trước khi ghi dữ liệu. Với ASP.NET Core, có thể dùng Data Annotations hoặc cơ chế validation phù hợp. Trả phản hồi lỗi nhất quán giúp frontend biết cần hiển thị thông báo gì.","Dùng Swagger UI hoặc Postman để thử ít nhất ba trường hợp: dữ liệu hợp lệ, dữ liệu thiếu hoặc sai định dạng, và tài nguyên không tồn tại. API không chỉ cần chạy được ở đường đi thuận lợi; nó còn phải trả lời rõ ràng khi có lỗi."]},{"heading":"Xác thực là bước riêng, không phải miếng vá cuối cùng","paragraphs":["Khi các luồng cơ bản đã ổn định, hãy xác định endpoint nào công khai và endpoint nào yêu cầu đăng nhập hoặc vai trò cụ thể. Không nên xem việc ẩn nút trên giao diện là bảo vệ dữ liệu: quyền truy cập cần được kiểm tra ở phía máy chủ.","Một API nhỏ, có validation, status code hợp lý và vài bài kiểm tra sẽ là nền tảng tốt hơn một dự án có nhiều công nghệ nhưng khó hiểu."]}],[{"heading":"Thiết lập bản vẽ trước khi tăng tốc","paragraphs":["Với bản vẽ kỹ thuật 2D, hãy xác định đơn vị và độ chính xác theo yêu cầu của bản vẽ trước khi dựng hình. Nếu dự án dùng milimét, hãy giữ quy ước đó nhất quán trong Model Space; đừng đợi đến lúc in mới tìm cách sửa kích thước lệch.","Bật các hỗ trợ vẽ như Object Snap khi cần bắt điểm cuối, trung điểm hoặc tâm đường tròn. Những công cụ này giúp điểm hình học chính xác hơn so với đặt chuột bằng mắt, đặc biệt ở bản vẽ có nhiều cạnh và chi tiết gần nhau."]},{"heading":"Dùng layer để người khác đọc được bản vẽ","paragraphs":["Tách đối tượng theo mục đích như nét thấy, nét tâm, kích thước và ghi chú. Đặt tên layer dễ hiểu, chọn màu và kiểu nét theo tiêu chuẩn đang áp dụng cho công việc. Layer không chỉ để tô màu; nó giúp kiểm soát hiển thị, in ấn và bàn giao.","Trước khi thêm dimension, kiểm tra lại hình học và thiết lập kiểu kích thước. Con số kích thước nên mô tả đúng hình học và quy ước của bản vẽ, không chỉnh bằng tay chỉ để làm đẹp nếu điều đó khiến thông tin sai lệch."]},{"heading":"Kiểm tra bản in bằng một trang thử","paragraphs":["Layout, viewport và tỷ lệ in cần được cấu hình phù hợp với khổ giấy và yêu cầu hồ sơ. Trước khi gửi file, xem trước bản in để kiểm tra chữ có đọc được không, nét có phân biệt không, kích thước có bị cắt và khung tên có đúng hay không.","Một checklist ngắn trước khi bàn giao: đơn vị đúng, layer rõ, kích thước đã kiểm tra, font và kiểu nét phù hợp, file tham chiếu không bị thiếu, bản in thử đạt yêu cầu. Với bản vẽ liên quan đến an toàn hoặc tiêu chuẩn chuyên ngành, luôn tuân thủ quy trình kiểm tra và phê duyệt có thẩm quyền."]}],[{"heading":"Trước tiên, hãy xác định dữ liệu cần trả về","paragraphs":["Khi một truy vấn SQL chậm hoặc khó hiểu, hãy viết rõ kết quả cuối cùng cần có: những cột nào, lọc theo điều kiện gì, và quan hệ nào giữa các bảng. Việc này giúp bạn phân biệt vấn đề mô hình dữ liệu với vấn đề cú pháp.","Ví dụ, nếu muốn liệt kê đơn hàng kèm tên khách hàng, cần hiểu bảng nào chứa đơn, bảng nào chứa khách và khóa nào liên kết hai bảng. Dùng JOIN trên quan hệ đúng giúp kết quả có ý nghĩa; nối nhầm cột có thể làm mất bản ghi hoặc nhân số dòng."]},{"heading":"Kiểm tra tính nhất quán trước khi tối ưu","paragraphs":["Khóa chính định danh một bản ghi; khóa ngoại thể hiện quan hệ giữa dữ liệu. Thiết kế cột và quan hệ rõ ràng giúp hạn chế các bản ghi mồ côi và giảm trùng lặp không cần thiết.","Sau đó mới xem execution plan, số dòng đọc và các điều kiện lọc thường dùng. Index có thể giúp một số truy vấn, nhưng cũng làm tăng chi phí ghi và chiếm dung lượng. Thêm index chỉ vì nghe rằng nó làm truy vấn nhanh hơn có thể không giải quyết đúng nguyên nhân."]},{"heading":"Một cách học thực hành hiệu quả","paragraphs":["Tạo một bộ dữ liệu thử nhỏ với vài trường hợp bình thường và trường hợp thiếu dữ liệu. Viết truy vấn, dự đoán kết quả, chạy thử rồi so sánh. Khi dùng GROUP BY, JOIN hoặc subquery, thay đổi từng phần để biết nó ảnh hưởng đến kết quả thế nào.","Hiểu dữ liệu được tạo, đọc, cập nhật và xóa ra sao sẽ giúp bạn viết phần truy cập dữ liệu ổn định hơn, chứ không chỉ nhớ được cú pháp SQL."]}],[{"heading":"Dùng AI để giải thích, không chỉ để sinh code","paragraphs":["Khi bị kẹt, hãy đưa cho AI đoạn code tối thiểu, thông báo lỗi và điều bạn đã thử. Hỏi vì sao lỗi có thể xảy ra, giả định nào cần kiểm tra hoặc cách tạo một ví dụ nhỏ để tái hiện. Câu trả lời như vậy thường giúp bạn học được phương pháp xử lý vấn đề.","Tránh gửi khóa bí mật, token, dữ liệu khách hàng hoặc mã nguồn nhạy cảm vào công cụ không được tổ chức cho phép. Khi làm việc với dự án thật, hãy tuân thủ chính sách bảo mật của bạn."]},{"heading":"Xác minh kết quả trước khi sử dụng","paragraphs":["AI có thể tạo ra API không tồn tại, lời giải thiếu trường hợp biên hoặc mã có lỗ hổng. Đối chiếu tài liệu chính thức, chạy test và xem lại luồng dữ liệu là bước không thể bỏ qua. Nếu AI đề xuất thư viện hay hàm cụ thể, hãy kiểm tra phiên bản và chữ ký thực tế.","Một mẹo hữu ích là yêu cầu AI nêu các rủi ro và bài kiểm tra có thể làm thất bại phương án của nó. Sau đó tự chọn những kiểm tra phù hợp và chạy chúng trong môi trường kiểm soát."]},{"heading":"Giữ lại phần tư duy của mình","paragraphs":["Trước khi hỏi AI, hãy thử tự giải quyết trong một khoảng thời gian có giới hạn. Sau khi tham khảo câu trả lời, đóng nó lại và tự viết lại cách giải bằng lời hoặc code. Cuối cùng, giải một bài tương tự mà không sao chép.","Mục tiêu là dùng AI để rút ngắn thời gian tìm hiểu, không bỏ qua quá trình hình thành kỹ năng."]}],[{"heading":"Bắt đầu từ việc người dùng muốn hoàn thành","paragraphs":["Một màn hình đẹp chưa chắc giúp người dùng hoàn thành việc họ đến để làm. Với trang đăng ký, chẳng hạn, người dùng cần hiểu trường nào bắt buộc, lỗi nằm ở đâu và sau khi gửi thành công thì điều gì xảy ra. Những câu hỏi đó nên được giải quyết trước khi chọn màu hay hiệu ứng.","Hãy phác thảo luồng thao tác bằng vài khung wireframe đơn giản. Chỉ ra điểm bắt đầu, các bước chính, trạng thái trống, trạng thái lỗi và kết quả thành công. Khi luồng đã rõ, việc chọn bố cục và thành phần giao diện có cơ sở hơn."]},{"heading":"Kiểm tra bằng nhiệm vụ cụ thể","paragraphs":["Mời vài người thử làm một nhiệm vụ, chẳng hạn tìm một khóa học rồi xem thông tin cần thiết. Quan sát chỗ họ dừng lại, bấm nhầm hoặc phải hỏi hướng dẫn. Đừng chỉ hỏi họ có thích giao diện hay không; hãy quan sát xem họ có làm xong việc không.","Sau đó sửa điểm gây cản trở nhiều nhất và thử lại. Một vài vòng kiểm tra ngắn thường phát hiện vấn đề sớm hơn việc hoàn thiện mọi chi tiết rồi mới đưa cho người khác xem."]},{"heading":"Đừng quên khả năng tiếp cận","paragraphs":["Chữ cần đủ tương phản, trạng thái không nên chỉ phân biệt bằng màu, và các nút cần có nhãn dễ hiểu. Kiểm tra thao tác bằng bàn phím, tiêu đề có thứ bậc rõ ràng và giao diện ở màn hình nhỏ.","UI/UX không phải chỉ là phần nhìn. Một thiết kế tốt giúp người dùng biết mình đang ở đâu, hiểu lựa chọn và dự đoán được kết quả hành động tiếp theo."]}],[{"heading":"Bắt đầu từ câu hỏi của người tìm kiếm","paragraphs":["Trước khi viết, hãy tìm hiểu người đọc đang muốn học khái niệm, so sánh lựa chọn hay làm theo hướng dẫn. Một bài hướng dẫn cài đặt và một bài giải thích khái niệm có cấu trúc khác nhau vì người đọc đang ở những bước khác nhau.","Từ khóa có ích để phát hiện ngôn ngữ mà người dùng hay sử dụng, nhưng không nên chèn lặp đi lặp lại vào mọi đoạn. Hãy trả lời trực tiếp câu hỏi chính, giải thích thuật ngữ cần thiết và đưa ví dụ đúng với tình huống của người đọc."]},{"heading":"Tạo cấu trúc giúp người đọc tìm được đáp án","paragraphs":["Tiêu đề nên mô tả đúng nội dung của mục. Mở đầu nói rõ bài sẽ giải quyết việc gì; phần thân đi từ khái niệm đến ví dụ hoặc các bước; phần cuối tóm tắt quyết định hay hành động tiếp theo. Dùng ảnh minh họa khi nó thực sự giúp hiểu nhanh hơn.","Liên kết đến tài liệu gốc, hướng dẫn liên quan và các bài có chủ đề gần nhau giúp người đọc đi sâu hơn. Với nội dung kỹ thuật, hãy thử làm theo chính các bước bạn viết và kiểm tra phiên bản."]},{"heading":"Đo chất lượng bằng giá trị, không phải mật độ từ khóa","paragraphs":["Sau khi xuất bản, xem truy vấn nào đưa người đọc tới bài, họ có tìm được thông tin chính và bài có cần cập nhật không. Lượt xem không phải chỉ số duy nhất; bài viết hữu ích có thể giúp người đọc giải quyết vấn đề ngay cả khi nó không quá dài.","Tránh hứa hẹn quá mức, sao chép nhiều bài thành một hoặc dùng tiêu đề giật gân không được nội dung hỗ trợ. SEO bền vững bắt đầu từ nội dung chính xác, có mục đích rõ và dễ sử dụng."]}],[{"heading":"Phân biệt lượt nhấp với chuyển đổi","paragraphs":["Lượt hiển thị cho biết quảng cáo đã xuất hiện bao nhiêu lần; lượt nhấp cho biết có bao nhiêu lần người xem bấm vào. Nhưng điều doanh nghiệp cần thường là một hành động sau cú nhấp: gửi biểu mẫu, đặt lịch, mua hàng hoặc để lại thông tin phù hợp.","Nếu chiến dịch nhiều lượt nhấp nhưng ít chuyển đổi, đừng vội tăng ngân sách. Hãy kiểm tra trang đích có tải tốt không, thông điệp có khớp với quảng cáo không, biểu mẫu có quá dài không và conversion tracking có được cài đúng không."]},{"heading":"Đọc các chỉ số theo mục tiêu","paragraphs":["CTR giúp nhìn mức độ người xem nhấp vào quảng cáo; CPC là chi phí trung bình cho một lượt nhấp; tỷ lệ chuyển đổi cho biết bao nhiêu lượt truy cập tạo ra hành động mong muốn. Những chỉ số này phải được đọc cùng nhau và trong đúng bối cảnh ngành, kênh và giai đoạn chiến dịch.","Nếu mục tiêu là khách hàng tiềm năng, hãy nhìn thêm chất lượng lead và chi phí cho lead đủ điều kiện. Nếu mục tiêu là doanh thu, hãy xem đơn hàng và biên lợi nhuận chứ không chỉ dựa vào lượt tương tác."]},{"heading":"Thử nghiệm có giả thuyết rõ ràng","paragraphs":["Thay một yếu tố mỗi lần khi có thể: thông điệp quảng cáo, nhóm đối tượng hoặc trang đích. Ghi lại giả thuyết và khoảng thời gian đánh giá để tránh kết luận từ vài dữ liệu ngẫu nhiên.","Số liệu chỉ có ý nghĩa khi tracking được thiết lập đúng và có đủ dữ liệu để so sánh. Hãy kiểm tra sự kiện chuyển đổi trước, rồi mới dùng nó để quyết định chi tiêu."]}],[{"heading":"Đọc để hiểu ý chính trước khi tra từ","paragraphs":["Khi mở một trang tài liệu tiếng Anh, hãy nhìn tiêu đề, đoạn giới thiệu và các ví dụ trước. Đặt mục tiêu nhỏ như hiểu cách cấu hình một tùy chọn hoặc tìm lý do của một thông báo lỗi, thay vì cố dịch toàn bộ trang.","Đừng tra mọi từ mới. Nếu từ đó lặp lại hoặc khiến bạn hiểu sai bước cần làm, hãy tra trong từ điển hoặc tài liệu chính thức. Ghi kèm một câu ví dụ giúp bạn nhớ cách dùng từ trong ngữ cảnh."]},{"heading":"Dùng tài liệu thật làm bài luyện tập","paragraphs":["Chọn một mục ngắn trong README, tài liệu API hoặc hướng dẫn cài đặt. Tóm tắt bằng tiếng Việt hai hoặc ba ý chính, sau đó quay lại văn bản để kiểm tra mình có bỏ sót điều kiện quan trọng không.","Với thông báo lỗi, học cả cấu trúc câu và từ vựng kỹ thuật. Ví dụ, phân biệt required, unsupported và deprecated có thể giúp bạn hiểu một tính năng bắt buộc, không được hỗ trợ hay đang được khuyến nghị thay thế."]},{"heading":"Tích lũy đều thay vì nhồi từ vựng","paragraphs":["Mỗi ngày chọn một đoạn ngắn và vài từ thật sự hữu ích. Ôn lại sau một khoảng thời gian, rồi thử dùng từ trong câu liên quan đến dự án của mình.","Mục tiêu không nhất thiết là đọc thật nhanh ngay từ đầu. Quan trọng là dần nhận ra cấu trúc, biết tìm đúng thông tin và đủ tự tin để kiểm tra tài liệu gốc thay vì chỉ dựa vào bản dịch."]}],[{"heading":"Khoanh vùng trước khi đổi cấu hình","paragraphs":["Khi không truy cập được một dịch vụ, trước tiên hãy xác định lỗi xảy ra ở một máy hay nhiều máy, chỉ một trang web hay toàn bộ mạng. Kiểm tra kết nối vật lý hoặc Wi-Fi và trạng thái giao diện mạng trước khi thay đổi địa chỉ IP.","Nếu có quyền quản trị, hãy kiểm tra địa chỉ IP, subnet mask và default gateway theo sơ đồ mạng được cấp. Những thông số này cần nhất quán với mạng hiện tại; thay ngẫu nhiên có thể làm mất kết nối hoặc gây xung đột địa chỉ."]},{"heading":"Phân biệt lỗi kết nối IP với lỗi tên miền","paragraphs":["Nếu kết nối tới địa chỉ IP hoạt động nhưng truy cập tên miền không được, DNS là một hướng cần kiểm tra. Nếu không kết nối được tới gateway, cần xem lại liên kết mạng, cấu hình IP hoặc thiết bị mạng trước khi kết luận do DNS.","Các công cụ như ping, ipconfig trên Windows hoặc ip addr trên Linux có thể cung cấp manh mối. Không phải mọi máy chủ đều cho phép phản hồi ping, vì vậy hãy kết hợp kết quả với kiểm tra DNS và khả năng truy cập dịch vụ thực tế."]},{"heading":"Ghi lại thay đổi và kiểm tra sau mỗi bước","paragraphs":["Thay một yếu tố mỗi lần và ghi kết quả giúp bạn biết thay đổi nào có tác dụng. Trong môi trường doanh nghiệp, không tự ý chỉnh thiết bị mạng hoặc thông số hệ thống nếu chưa được phân quyền.","Quy trình chẩn đoán có thứ tự giúp tránh những thay đổi không cần thiết và tạo ghi chú hữu ích cho người tiếp nhận xử lý tiếp theo."]}],[{"heading":"Định nghĩa phiên bản nhỏ nhất có ích","paragraphs":["Một dự án đầu tiên có thể là ứng dụng quản lý việc cần làm, ghi chú hoặc theo dõi chi tiêu. Thay vì viết danh sách hàng chục tính năng, hãy chọn một luồng hoàn chỉnh: nhập dữ liệu, lưu lại, xem danh sách và sửa hoặc xóa một mục.","Viết vài tiêu chí chấp nhận bằng ngôn ngữ bình thường. Ví dụ: khi người dùng thêm một công việc có tiêu đề hợp lệ, công việc phải xuất hiện trong danh sách; nếu tiêu đề rỗng, ứng dụng phải báo lỗi và không lưu."]},{"heading":"Làm theo lát cắt hoàn chỉnh","paragraphs":["Dựng một phần chạy được từ giao diện tới dữ liệu trước, rồi cải thiện nó. Điều này thường giúp phát hiện sớm các vấn đề về mô hình dữ liệu, luồng thao tác hoặc cách xử lý lỗi.","Chia công việc thành các bước có thể kiểm tra và lưu lịch sử thay đổi bằng Git. Khi lỗi xuất hiện, bạn có thể xác định gần đúng thay đổi nào gây ra lỗi thay vì phải đọc lại cả dự án."]},{"heading":"Một dự án hoàn thành còn cần hướng dẫn","paragraphs":["Trước khi xem là xong, hãy chạy lại các luồng chính, xử lý trường hợp thiếu hoặc sai dữ liệu và viết README gồm mục tiêu, công nghệ, cách cài đặt và cách chạy. Nếu cần cấu hình biến môi trường, giải thích rõ tên biến nhưng tuyệt đối không đưa mật khẩu hay token thật vào kho mã nguồn.","Một dự án nhỏ mà bạn có thể giải thích quyết định thiết kế, nêu giới hạn và chứng minh bằng cách chạy thử sẽ hữu ích hơn một dự án lớn chỉ hoạt động trên máy của người hướng dẫn."]}]];
 const blogPage=()=>{
   const topics=['Tất cả',...new Set(BLOG_ARTICLES.map(article=>article.tag))];
-  const featured=BLOG_ARTICLES[0];
-  const restArticles=BLOG_ARTICLES.slice(1);
+  const heroArticle=BLOG_ARTICLES[0];
+  const subHeroArticle1=BLOG_ARTICLES[1];
+  const subHeroArticle2=BLOG_ARTICLES[2];
+  const standardArticles=BLOG_ARTICLES.slice(3, 7);
+  const bannerArticle=BLOG_ARTICLES[7]||BLOG_ARTICLES[0];
+  const bottomArticles=BLOG_ARTICLES.slice(7);
 
-  const featuredMarkup=featured
-    ? '<article class="edn-mag-lead" data-blog-tag="'+esc(featured.tag)+'">'+
-        '<a class="edn-mag-lead-media" href="#/blog/'+slugify(featured.title)+'" aria-label="Đọc bài: '+esc(featured.title)+'">'+
-          '<img src="'+esc(featured.image||'')+'" alt="'+esc(featured.title)+'" loading="eager">'+
-          '<span class="edn-mag-badge-featured">Tiêu điểm</span>'+
+  // Sub-hero card (horizontal split)
+  const subHeroMarkup1=subHeroArticle1
+    ? '<article class="edn-udemy-card edn-udemy-card-split" data-blog-tag="'+esc(subHeroArticle1.tag)+'">'+
+        '<a class="edn-udemy-card-media" href="#/blog/'+slugify(subHeroArticle1.title)+'" aria-label="Đọc bài: '+esc(subHeroArticle1.title)+'">'+
+          '<img src="'+esc(subHeroArticle1.image||'')+'" alt="'+esc(subHeroArticle1.title)+'" loading="lazy">'+
         '</a>'+
-        '<div class="edn-mag-lead-content">'+
-          '<div class="edn-mag-meta-row"><span class="edn-mag-tag-pill">'+esc(featured.tag)+'</span><span class="edn-mag-read-time">⏱ '+esc(featured.time)+'</span></div>'+
-          '<h2 class="edn-mag-lead-title"><a href="#/blog/'+slugify(featured.title)+'">'+esc(featured.title)+'</a></h2>'+
-          '<p class="edn-mag-lead-excerpt">'+esc(featured.excerpt)+'</p>'+
-          '<div class="edn-mag-author-row">'+
-            '<div class="edn-mag-author-info"><span class="edn-mag-author-avatar">E</span><span>Biên tập viên EduNext · Chuyên mục Kỹ thuật</span></div>'+
-            '<a class="btn btn-p btn-s" href="#/blog/'+slugify(featured.title)+'">Đọc bài viết ↗</a>'+
-          '</div>'+
+        '<div class="edn-udemy-card-body">'+
+          '<h3 class="edn-udemy-card-title"><a href="#/blog/'+slugify(subHeroArticle1.title)+'">'+esc(subHeroArticle1.title)+'</a></h3>'+
+          '<p class="edn-udemy-card-excerpt">'+esc(subHeroArticle1.excerpt)+'</p>'+
+          '<div class="edn-udemy-card-meta"><span class="edn-udemy-meta-time">⏱ '+esc(subHeroArticle1.time)+'</span><span class="edn-udemy-meta-date">Tháng 10, 2026</span></div>'+
         '</div>'+
       '</article>'
     : '';
 
-  const cards=restArticles.map(article=>{
-    return '<article class="edn-mag-card" data-blog-tag="'+esc(article.tag)+'">'+
-      '<a class="edn-mag-card-media" href="#/blog/'+slugify(article.title)+'" aria-label="Đọc bài: '+esc(article.title)+'">'+
-        '<img src="'+esc(article.image||'')+'" alt="'+esc(article.title)+'" loading="lazy">'+
-        '<span class="edn-mag-tag-pill">'+esc(article.tag)+'</span>'+
-      '</a>'+
-      '<div class="edn-mag-card-body">'+
-        '<div class="edn-mag-meta-row"><span class="edn-mag-read-time">⏱ '+esc(article.time)+'</span><span>EduNext Magazine</span></div>'+
-        '<h3 class="edn-mag-card-title"><a href="#/blog/'+slugify(article.title)+'">'+esc(article.title)+'</a></h3>'+
-        '<p class="edn-mag-card-excerpt">'+esc(article.excerpt)+'</p>'+
-        '<div class="edn-mag-card-footer">'+
-          '<span class="edn-mag-card-author">Biên tập EduNext</span>'+
-          '<a class="edn-mag-read-link" href="#/blog/'+slugify(article.title)+'">Đọc tiếp →</a>'+
+  // Sub-hero card (vertical standard)
+  const subHeroMarkup2=subHeroArticle2
+    ? '<article class="edn-udemy-card" data-blog-tag="'+esc(subHeroArticle2.tag)+'">'+
+        '<a class="edn-udemy-card-media" href="#/blog/'+slugify(subHeroArticle2.title)+'" aria-label="Đọc bài: '+esc(subHeroArticle2.title)+'">'+
+          '<img src="'+esc(subHeroArticle2.image||'')+'" alt="'+esc(subHeroArticle2.title)+'" loading="lazy">'+
+        '</a>'+
+        '<div class="edn-udemy-card-body">'+
+          '<h3 class="edn-udemy-card-title"><a href="#/blog/'+slugify(subHeroArticle2.title)+'">'+esc(subHeroArticle2.title)+'</a></h3>'+
+          '<div class="edn-udemy-card-meta"><span class="edn-udemy-meta-time">⏱ '+esc(subHeroArticle2.time)+'</span><span class="edn-udemy-meta-date">Tháng 10, 2026</span></div>'+
         '</div>'+
+      '</article>'
+    : '';
+
+  const renderGridCard=(article)=>
+    '<article class="edn-udemy-card" data-blog-tag="'+esc(article.tag)+'">'+
+      '<a class="edn-udemy-card-media" href="#/blog/'+slugify(article.title)+'" aria-label="Đọc bài: '+esc(article.title)+'">'+
+        '<img src="'+esc(article.image||'')+'" alt="'+esc(article.title)+'" loading="lazy">'+
+      '</a>'+
+      '<div class="edn-udemy-card-body">'+
+        '<h3 class="edn-udemy-card-title"><a href="#/blog/'+slugify(article.title)+'">'+esc(article.title)+'</a></h3>'+
+        '<div class="edn-udemy-card-meta"><span class="edn-udemy-meta-time">⏱ '+esc(article.time)+'</span><span class="edn-udemy-meta-date">Tháng 10, 2026</span></div>'+
       '</div>'+
     '</article>';
-  }).join('');
 
-  return '<div class="wrap page edn-magazine-page">'+
-    '<div class="edn-mag-header">'+
-      '<span class="edn-overline">EDUNEXT MAGAZINE · CHUYÊN MÔN & THỰC CHIẾN</span>'+
-      '<h1>Kiến thức thực tế, ứng dụng ngay</h1>'+
-      '<p>Ghi chép chuyên sâu về kiến trúc phần mềm, tư duy hệ thống, thiết kế sản phẩm và phương pháp làm việc hiệu quả từ các kỹ sư giàu kinh nghiệm.</p>'+
-    '</div>'+
-    '<div class="edn-mag-topic-row" aria-label="Lọc bài viết theo chủ đề">'+
-      topics.map((topic,index)=>
-        '<button type="button" class="edn-mag-topic-pill '+(index===0?'is-active':'')+'" data-blog-topic="'+esc(topic)+'" aria-pressed="'+(index===0?'true':'false')+'">'+esc(topic)+'</button>'
-      ).join('')+
-    '</div>'+
-    featuredMarkup+
-    '<div class="edn-mag-grid">'+cards+'</div>'+
-    '<section class="edn-mag-cta-box">'+
-      '<div>'+
-        '<span class="edn-overline">HỌC ĐI ĐÔI VỚI HÀNH</span>'+
-        '<h2>Sẵn sàng biến kiến thức thành kỹ năng thực tế?</h2>'+
-        '<p>Khám phá hơn 50 lộ trình học tập bài bản được thiết kế cùng các chuyên gia hàng đầu.</p>'+
+  return '<div class="wrap page edn-udemy-blog-page edn-magazine-page">'+
+    // Top Sub-Nav Bar (Ảnh 1 header)
+    '<header class="edn-udemy-blog-header">'+
+      '<div class="edn-udemy-subnav">'+
+        '<a class="edn-udemy-subnav-brand" href="#/blog"><strong>EduNext</strong> <span>Blog</span></a>'+
+        '<nav class="edn-udemy-subnav-links" aria-label="Danh mục chuyên đề">'+
+          '<a href="#/courses" class="edn-udemy-subnav-link">AI & Machine Learning</a>'+
+          '<a href="#/courses" class="edn-udemy-subnav-link">Phát triển phần mềm</a>'+
+          '<a href="#/courses" class="edn-udemy-subnav-link">Thiết kế UI/UX</a>'+
+          '<a href="#/courses" class="edn-udemy-subnav-link">Kinh doanh & Quản trị</a>'+
+          '<a href="#/courses" class="edn-udemy-subnav-link">Kỹ năng sự nghiệp</a>'+
+        '</nav>'+
+        '<a class="btn btn-p edn-udemy-subnav-cta" href="#/courses">Khám phá khóa học</a>'+
       '</div>'+
-      '<a class="btn btn-p" href="#/courses">Xem tất cả khóa học ↗</a>'+
+      '<h1 class="edn-udemy-blog-title">Chào mừng bạn đến với EduNext Blog</h1>'+
+    '</header>'+
+
+    // Featured Hero Article (Ảnh 1)
+    (heroArticle
+      ? '<section class="edn-udemy-hero-featured" data-blog-tag="'+esc(heroArticle.tag)+'">'+
+          '<div class="edn-udemy-hero-content">'+
+            '<div class="edn-udemy-hero-tags"><span class="edn-udemy-badge-featured">Bài viết tiêu điểm</span><span class="edn-udemy-meta-time">⏱ '+esc(heroArticle.time)+'</span><span class="edn-udemy-meta-date">Tháng 10, 2026</span></div>'+
+            '<h2 class="edn-udemy-hero-title"><a href="#/blog/'+slugify(heroArticle.title)+'">'+esc(heroArticle.title)+'</a></h2>'+
+            '<p class="edn-udemy-hero-excerpt">'+esc(heroArticle.excerpt)+'</p>'+
+            '<div class="edn-udemy-author-info">'+
+              '<img class="edn-udemy-author-avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=120" alt="Nguyễn Văn Minh">'+
+              '<div><strong>Nguyễn Văn Minh</strong><small>Senior .NET Architect · Chuyên gia EduNext</small></div>'+
+            '</div>'+
+          '</div>'+
+          '<a class="edn-udemy-hero-media" href="#/blog/'+slugify(heroArticle.title)+'" aria-label="Đọc bài: '+esc(heroArticle.title)+'">'+
+            '<img src="'+esc(heroArticle.image||'')+'" alt="'+esc(heroArticle.title)+'" loading="eager">'+
+          '</a>'+
+        '</section>'
+      : '')+
+
+    // Search & Category Filters (Ảnh 2)
+    '<section class="edn-udemy-filter-section">'+
+      '<div class="edn-udemy-search-bar">'+
+        '<span class="edn-udemy-search-icon" aria-hidden="true">⌕</span>'+
+        '<input type="search" id="edn-udemy-search-input" placeholder="Tìm kiếm bài viết, chủ đề hoặc kỹ năng..." aria-label="Tìm kiếm bài viết">'+
+      '</div>'+
+      '<div class="edn-udemy-topic-pills" aria-label="Lọc bài viết theo chủ đề">'+
+        topics.map((topic,index)=>
+          '<button type="button" class="edn-udemy-topic-pill '+(index===0?'is-active':'')+'" data-blog-topic="'+esc(topic)+'" aria-pressed="'+(index===0?'true':'false')+'">'+esc(topic)+'</button>'
+        ).join('')+
+      '</div>'+
     '</section>'+
+
+    // Sub-Hero Grid (1 card ngang split + 1 card dọc - Ảnh 2)
+    '<section class="edn-udemy-subhero-grid">'+
+      subHeroMarkup1+
+      subHeroMarkup2+
+    '</section>'+
+
+    // 4-Column Grid Section 1 (Ảnh 3)
+    '<section class="edn-udemy-articles-grid">'+
+      standardArticles.map(renderGridCard).join('')+
+    '</section>'+
+
+    // Full-width Business Promo Banner (Ảnh 4)
+    '<section class="edn-udemy-banner-promo">'+
+      '<div class="edn-udemy-banner-copy">'+
+        '<h2>Trải nghiệm Nền tảng Đào tạo Doanh nghiệp EduNext</h2>'+
+        '<p>Khám phá giải pháp học tập tích hợp giúp nâng cao kỹ năng cho đội ngũ kỹ sư và nhân sự công nghệ của bạn.</p>'+
+        '<a class="btn btn-p edn-udemy-banner-btn" href="#/courses">Bắt đầu trải nghiệm</a>'+
+      '</div>'+
+      '<div class="edn-udemy-banner-graphic">'+
+        '<img src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&q=82&w=800" alt="EduNext Business" loading="lazy">'+
+      '</div>'+
+    '</section>'+
+
+    // 4-Column Grid Section 2 (Ảnh 4 bottom)
+    (bottomArticles.length
+      ? '<section class="edn-udemy-articles-grid">'+
+          bottomArticles.map(renderGridCard).join('')+
+        '</section>'
+      : '')+
   '</div>';
 };
 const blogDetail=slug=>{
@@ -2090,7 +2152,7 @@ document.addEventListener('click',event=>{
   const topic=button.dataset.blogTopic||'Tất cả';
   const normalizedTopic=topic.toLocaleLowerCase('vi-VN');
   const matches=tag=>topic==='Tất cả'||String(tag||'').toLocaleLowerCase('vi-VN')===normalizedTopic;
-  document.querySelectorAll('.blog-page-card[data-blog-tag], .edn-mag-card[data-blog-tag], .edn-mag-lead[data-blog-tag]').forEach(item=>{
+  document.querySelectorAll('.blog-page-card[data-blog-tag], .edn-mag-card[data-blog-tag], .edn-mag-lead[data-blog-tag], .edn-udemy-card[data-blog-tag], .edn-udemy-hero-featured[data-blog-tag]').forEach(item=>{
     item.style.display=matches(item.dataset.blogTag||'')?'':'none';
   });
   document.querySelectorAll('[data-blog-topic]').forEach(item=>{
@@ -2099,6 +2161,16 @@ document.addEventListener('click',event=>{
     item.classList.toggle('is-active',active);
     item.setAttribute('aria-pressed',String(active));
   });
+});
+
+document.addEventListener('input',event=>{
+  if(event.target.id==='edn-udemy-search-input'){
+    const q=(event.target.value||'').trim().toLocaleLowerCase('vi-VN');
+    document.querySelectorAll('.edn-udemy-card, .edn-udemy-hero-featured').forEach(item=>{
+      const text=(item.textContent||'').toLocaleLowerCase('vi-VN');
+      item.style.display=(!q||text.includes(q))?'':'none';
+    });
+  }
 });
 
 /* Classroom tab switching listener */
