@@ -1674,6 +1674,7 @@ function nav(){
   if(!path.startsWith('/learn/')){
     document.body.classList.remove('edn-classroom-active');
   }
+  document.body.classList.toggle('edn-blog-active',path==='/blog'||path.startsWith('/blog/'));
   document.body.classList.toggle('edn-home-active',path==='/');
   const profileAvatarMarkup=user&&user.profile&&user.profile.avatar
     ? '<img class="edn-header-avatar-image" src="'+esc(user.profile.avatar)+'" alt="">'
