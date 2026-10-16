@@ -1366,7 +1366,7 @@ const blogPage=()=>{
     // Top Sub-Nav Bar (Ảnh 1 header)
     '<header class="edn-udemy-blog-header">'+
       '<div class="edn-udemy-subnav">'+
-        '<a class="edn-udemy-subnav-brand" href="#/blog"><strong>EduNext</strong> <span>Blog</span></a>'+
+        '<a class="edn-udemy-subnav-brand" href="#/" aria-label="EduNext - Quay về trang chủ"><strong>EduNext</strong> <span>Blog</span></a>'+
         '<nav class="edn-udemy-subnav-links" aria-label="Danh mục chuyên đề">'+
           '<a href="#/courses" class="edn-udemy-subnav-link">AI & Machine Learning</a>'+
           '<a href="#/courses" class="edn-udemy-subnav-link">Phát triển phần mềm</a>'+
