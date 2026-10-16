@@ -12010,23 +12010,27 @@ body.edunext-app .edn-home-page .edn-im-section-heading h2 {
   margin-bottom: 6px !important;
 }
 
-/* 5. Core content sections: Compact & uniform 28px-34px top & bottom padding */
+body.edunext-app .edn-section-footer-action {
+  margin-top: 18px !important;
+}
+
+/* 5. Core content sections: Compact & uniform 24px-30px top & bottom padding */
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-domains,
 body.edunext-app .edn-im-domains {
-  padding-top: 28px !important;
-  padding-bottom: 30px !important;
+  padding-top: 26px !important;
+  padding-bottom: 26px !important;
 }
 
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-courses,
 body.edunext-app .edn-im-courses {
-  padding-top: 30px !important;
-  padding-bottom: 32px !important;
+  padding-top: 26px !important;
+  padding-bottom: 22px !important;
 }
 
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-steps,
 body.edunext-app .edn-im-steps {
-  padding-top: 30px !important;
-  padding-bottom: 32px !important;
+  padding-top: 26px !important;
+  padding-bottom: 26px !important;
 }
 
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-im-instructors,
