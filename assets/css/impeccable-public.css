@@ -841,28 +841,34 @@ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-price-orig {
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-card-add-cart {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 8px 14px;
-  border-radius: 8px;
-  border: 1px solid #C4D9CB;
-  background: #fff;
-  color: var(--im-forest);
-  font-size: 12px;
-  font-weight: 750;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.05);
+  color: #94A3B8;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-card-add-cart svg {
-  width: 15px;
-  height: 15px;
+  width: 18px;
+  height: 18px;
   fill: none;
   stroke: currentColor;
   stroke-width: 1.8;
 }
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-card-add-cart:hover {
-  background: var(--im-teal);
-  border-color: var(--im-teal);
-  color: #fff;
+  background: rgba(45, 212, 191, 0.15);
+  border-color: rgba(45, 212, 191, 0.4);
+  color: #2DD4BF;
+  transform: translateY(-2px);
+}
+body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-card-add-cart.is-in-cart {
+  background: rgba(45, 212, 191, 0.2);
+  border-color: #2DD4BF;
+  color: #2DD4BF;
 }
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-section-footer-action {
   text-align: center;
@@ -1441,25 +1447,25 @@ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-journal-body p
   background: #0D9488 !important;
 }
 .edn-add-to-cart {
-  background: #FFF7ED !important;
-  border-color: #FDBA74 !important;
-  color: #EA580C !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  color: #94A3B8 !important;
 }
 .edn-add-to-cart svg {
-  width: 14px !important;
-  height: 14px !important;
+  width: 18px !important;
+  height: 18px !important;
   stroke: currentColor !important;
   fill: none !important;
 }
 .edn-add-to-cart:hover {
-  background: #EA580C !important;
-  border-color: #EA580C !important;
-  color: #FFFFFF !important;
+  background: rgba(45, 212, 191, 0.15) !important;
+  border-color: rgba(45, 212, 191, 0.4) !important;
+  color: #2DD4BF !important;
 }
 .edn-add-to-cart.is-in-cart {
-  background: #F1F5F9 !important;
-  border-color: #CBD5E1 !important;
-  color: #475569 !important;
+  background: rgba(45, 212, 191, 0.2) !important;
+  border-color: #2DD4BF !important;
+  color: #2DD4BF !important;
 }
 
 /* Catalog Filter Pills Row */

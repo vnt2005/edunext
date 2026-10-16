@@ -106,9 +106,8 @@ $cart_svg = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circ
                             <?php endif; ?>
                         </div>
 
-                        <button class="edn-card-add-cart edn-add-to-cart" type="button" data-a="cart-add" data-v="<?php echo esc_attr($c['id']); ?>" aria-label="Thêm <?php echo esc_attr($c['title']); ?> vào giỏ hàng" title="Thêm vào giỏ hàng">
+                        <button class="edn-card-btn-action edn-add-to-cart" type="button" data-a="cart-add" data-v="<?php echo esc_attr($c['id']); ?>" aria-label="Thêm <?php echo esc_attr($c['title']); ?> vào giỏ hàng" title="Thêm vào giỏ hàng">
                             <?php echo $cart_svg; ?>
-                            <span>Chọn học</span>
                         </button>
                     </div>
                 </article>

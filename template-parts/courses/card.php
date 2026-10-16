@@ -42,9 +42,8 @@ $level = $course['level'] ?? 'Thực chiến';
         </div>
         <div class="edn-card-footer">
             <div class="edn-card-price"><?php echo esc_html($price); ?></div>
-            <a class="edn-card-btn" href="#/courses/<?php echo esc_attr($course_id); ?>">
-                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle><path d="M1 1h4l2.7 13.1a2 2 0 0 0 2 1.6h9.8a2 2 0 0 0 2-1.6L23 6H6"></path></svg>
-                <span>Chọn học</span>
+            <a class="edn-card-btn-action edn-card-btn" href="#/courses/<?php echo esc_attr($course_id); ?>" aria-label="Xem khóa học <?php echo esc_attr($title); ?>" title="Xem khóa học">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle><path d="M1 1h4l2.7 13.1a2 2 0 0 0 2 1.6h9.8a2 2 0 0 0 2-1.6L23 6H6"></path></svg>
             </a>
         </div>
     </div>
