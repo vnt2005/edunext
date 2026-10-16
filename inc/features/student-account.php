@@ -24,12 +24,18 @@ function edunext_frontend_user_payload(): ?array {
 
     $user = wp_get_current_user();
     $profile = [
+        'firstName' => (string) ($user->first_name ?: get_user_meta($user->ID, 'first_name', true)),
+        'lastName' => (string) ($user->last_name ?: get_user_meta($user->ID, 'last_name', true)),
         'headline' => (string) get_user_meta($user->ID, 'edunext_headline', true),
         'bio' => (string) get_user_meta($user->ID, 'description', true),
         'language' => (string) (get_user_meta($user->ID, 'edunext_language', true) ?: 'vi'),
         'website' => (string) get_user_meta($user->ID, 'edunext_website', true),
         'linkedin' => (string) get_user_meta($user->ID, 'edunext_linkedin', true),
         'facebook' => (string) get_user_meta($user->ID, 'edunext_facebook', true),
+        'instagram' => (string) get_user_meta($user->ID, 'edunext_instagram', true),
+        'tiktok' => (string) get_user_meta($user->ID, 'edunext_tiktok', true),
+        'x' => (string) get_user_meta($user->ID, 'edunext_x', true),
+        'youtube' => (string) get_user_meta($user->ID, 'edunext_youtube', true),
         'avatar' => (string) get_user_meta($user->ID, 'edunext_avatar_url', true),
     ];
 
@@ -142,13 +148,18 @@ function edunext_ajax_profile_save(): void {
     $bio = sanitize_textarea_field(wp_unslash($_POST['bio'] ?? ''));
     $language = sanitize_key(wp_unslash($_POST['language'] ?? 'vi'));
     $links = [];
-    foreach (['website', 'linkedin', 'facebook'] as $key) {
+    foreach (['website', 'linkedin', 'facebook', 'instagram', 'tiktok', 'x', 'youtube'] as $key) {
         $raw = trim((string) wp_unslash($_POST[$key] ?? ''));
-        $url = $raw === '' ? '' : esc_url_raw($raw, ['http', 'https']);
-        if ($raw !== '' && $url === '') {
-            edunext_ajax_error('Các liên kết phải là URL bắt đầu bằng http:// hoặc https://.');
+        if ($key === 'website') {
+            $url = $raw === '' ? '' : esc_url_raw($raw, ['http', 'https']);
+            if ($raw !== '' && $url === '') {
+                edunext_ajax_error('Website cá nhân phải là URL bắt đầu bằng http:// hoặc https://.');
+            }
+            $links[$key] = $url;
+        } else {
+            // Can be username or URL
+            $links[$key] = sanitize_text_field($raw);
         }
-        $links[$key] = $url;
     }
 
     if ($first === '' || $last === '') {
@@ -170,6 +181,10 @@ function edunext_ajax_profile_save(): void {
     update_user_meta($user_id, 'edunext_website', $links['website']);
     update_user_meta($user_id, 'edunext_linkedin', $links['linkedin']);
     update_user_meta($user_id, 'edunext_facebook', $links['facebook']);
+    update_user_meta($user_id, 'edunext_instagram', $links['instagram']);
+    update_user_meta($user_id, 'edunext_tiktok', $links['tiktok']);
+    update_user_meta($user_id, 'edunext_x', $links['x']);
+    update_user_meta($user_id, 'edunext_youtube', $links['youtube']);
 
     wp_send_json_success(['message' => 'Đã lưu hồ sơ.']);
 }
