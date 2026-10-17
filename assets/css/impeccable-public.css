@@ -918,7 +918,7 @@ body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-visual-domain-
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-domain-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(14, 53, 49, 0.2) 0%, rgba(14, 53, 49, 0.85) 75%, rgba(14, 53, 49, 0.96) 100%);
+  background: linear-gradient(90deg, #090E1A 0%, #090E1A 28%, rgba(9, 14, 26, 0.85) 48%, rgba(9, 14, 26, 0.4) 72%, rgba(9, 14, 26, 0.15) 100%);
 }
 body.edunext-app:not(.lms-admin-mode):not(.lms-builder-mode) .edn-domain-card-content {
   position: relative;
@@ -12496,39 +12496,40 @@ body.edunext-app .edn-domain-card-bg img {
   position: absolute !important;
   top: 0 !important;
   right: 0 !important;
-  width: 60% !important;
+  width: 72% !important;
   height: 100% !important;
   object-fit: cover !important;
   object-position: center center !important;
-  opacity: 0.45 !important;
-  filter: saturate(120%) contrast(108%) !important;
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease !important;
+  opacity: 0.92 !important;
+  filter: saturate(135%) contrast(110%) brightness(105%) !important;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease, filter 0.35s ease !important;
 }
 
 body.edunext-app .edn-visual-domain-card:hover .edn-domain-card-bg img {
-  transform: scale(1.08) !important;
-  opacity: 0.65 !important;
+  transform: scale(1.06) !important;
+  opacity: 1 !important;
+  filter: saturate(145%) contrast(112%) brightness(110%) !important;
 }
 
-/* Deep Cosmic Gradient Overlay protecting text contrast */
+/* Translucent directional gradient overlay: protects text on left, lets image pop on right */
 body.edunext-app .edn-domain-overlay {
   position: absolute !important;
   inset: 0 !important;
   background: 
-    linear-gradient(90deg, #090E1A 0%, #090E1A 38%, rgba(9, 14, 26, 0.88) 62%, rgba(9, 14, 26, 0.45) 86%, rgba(9, 14, 26, 0.22) 100%),
-    linear-gradient(0deg, #090E1A 0%, rgba(9, 14, 26, 0.65) 50%, transparent 100%) !important;
+    linear-gradient(90deg, #090E1A 0%, #090E1A 28%, rgba(9, 14, 26, 0.85) 48%, rgba(9, 14, 26, 0.4) 72%, rgba(9, 14, 26, 0.15) 100%),
+    linear-gradient(0deg, rgba(9, 14, 26, 0.85) 0%, rgba(9, 14, 26, 0.25) 45%, transparent 75%) !important;
   z-index: 2 !important;
 }
 
-/* Glowing Neon Backdrop accent */
+/* Glowing Neon Backdrop accent with subtle vibrancy */
 body.edunext-app .edn-domain-card-bg::after {
   content: "" !important;
   position: absolute !important;
   top: -20% !important;
   right: -10% !important;
-  width: 240px !important;
-  height: 240px !important;
-  background: radial-gradient(circle, rgba(45, 212, 191, 0.2) 0%, transparent 70%) !important;
+  width: 260px !important;
+  height: 260px !important;
+  background: radial-gradient(circle, rgba(45, 212, 191, 0.22) 0%, transparent 70%) !important;
   pointer-events: none !important;
   z-index: 3 !important;
 }
@@ -12597,6 +12598,7 @@ body.edunext-app .edn-visual-domain-card h3 {
   min-height: 54px !important;
   display: flex !important;
   align-items: flex-start !important;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.75) !important;
 }
 
 body.edunext-app .edn-domain-desc {
@@ -12604,14 +12606,15 @@ body.edunext-app .edn-domain-desc {
   font-size: 13px !important;
   font-weight: 400 !important;
   line-height: 1.55 !important;
-  color: #94A3B8 !important;
+  color: #CBD5E1 !important;
   margin: 0 0 16px 0 !important;
-  max-width: 80% !important;
+  max-width: 82% !important;
   height: 40px !important;
   display: -webkit-box !important;
   -webkit-line-clamp: 2 !important;
   -webkit-box-orient: vertical !important;
   overflow: hidden !important;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.75) !important;
 }
 
 body.edunext-app .edn-domain-card-footer {
