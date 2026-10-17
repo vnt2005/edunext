@@ -131,6 +131,16 @@ const getGroupImage = (group) => {
   if (group && group.domains && group.domains[0] && DOMAIN_IMAGES[group.domains[0].id]) return resolveAssetUrl(DOMAIN_IMAGES[group.domains[0].id]);
   return 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=800';
 };
+
+const slugify=value=>String(value||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/g,'d').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+
+const getBlogImage = (article) => {
+  if (!article) return '';
+  if (article.image) return resolveAssetUrl(article.image);
+  const slug = slugify(article.title || '');
+  if (slug) return resolveAssetUrl('assets/images/blog/' + slug + '.jpg');
+  return '';
+};
 const mapCourse=(raw,videoCounts={})=>{
   const lessons=Array.isArray(raw.lessons)?raw.lessons:[];
   const L=lessons.map(item=>item.title);
@@ -181,7 +191,19 @@ const mapCourse=(raw,videoCounts={})=>{
     ready
   };
 };
-const BLOG_ARTICLES=[{"tag":"Lập trình","title":"Học C# bằng cách lần theo dữ liệu, không phải học thuộc cú pháp","excerpt":"Có thể bạn đã xem khá nhiều video C# nhưng khi mở Visual Studio lên vẫn lúng túng. Một cách học dễ bám hơn là theo dõi dữ liệu đi qua từng dòng chương trình, rồi tự thay đổi bài toán.","time":"7 phút đọc","course":"csharp","image":"https://images.unsplash.com/photo-1618477247222-acbdb0e159b3?auto=format&fit=crop&q=82&w=1200"},{"tag":"ASP.NET Core","title":"Xây dựng REST API: bắt đầu từ một endpoint chạy đúng","excerpt":"Routing, controller, dependency injection và cơ sở dữ liệu dễ thành một mớ khái niệm nếu học cùng lúc. Hãy tạo một endpoint nhỏ, kiểm tra kết quả rồi mới nối thêm từng lớp.","time":"8 phút đọc","course":"api","image":"https://images.unsplash.com/photo-1637044527362-5ac1dc1d7446?auto=format&fit=crop&q=82&w=1200"},{"tag":"AutoCAD 2D","title":"Bản vẽ AutoCAD rõ ràng bắt đầu từ đơn vị và layer","excerpt":"Trước khi vẽ nhanh, hãy làm cho bản vẽ đúng đơn vị, dễ đọc và có thể in ra đúng tỷ lệ. Vài thiết lập đầu buổi sẽ giúp bạn tránh nhiều lỗi ở cuối.","time":"7 phút đọc","course":"autocad-2d-cho-ban-ve-ky-thuat","image":"https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&q=82&w=1200"},{"tag":"Cơ sở dữ liệu","title":"Trước khi tối ưu SQL, hãy hỏi ba câu về dữ liệu","excerpt":"Truy vấn chậm chưa chắc chỉ vì thiếu index. Hãy bắt đầu từ kết quả mong muốn, quan hệ giữa các bảng và cách ứng dụng thực sự sử dụng dữ liệu.","time":"6 phút đọc","course":"sql-server-va-sql-tu-co-ban-den-thuc-hanh","image":"https://worldbank.scene7.com/is/image/worldbankprod/shutterstock_2588443437?qlt=88&resMode=sharp2"},{"tag":"AI & Machine Learning","title":"Dùng AI để học code mà không giao luôn bài tập cho AI","excerpt":"AI có thể giải thích thông báo lỗi và đề xuất cách kiểm tra. Nhưng nếu nhận nguyên lời giải rồi chép vào dự án, bạn rất khó biết mình đã hiểu đến đâu.","time":"6 phút đọc","course":"xay-dung-ung-dung-voi-generative-ai-va-llm","image":"https://worldbank.scene7.com/is/image/worldbankprod/shutterstock_2588443437?qlt=88&resMode=sharp2"},{"tag":"UI/UX","title":"Một giao diện dễ dùng không bắt đầu từ màu sắc","excerpt":"Trước khi chọn bảng màu hay hiệu ứng, hãy xác định người dùng đến để làm việc gì, họ cần thông tin nào và bước tiếp theo có dễ nhận ra không.","time":"7 phút đọc","course":"design","image":"https://miro.medium.com/v2/resize:fit:1400/1*ezbw1Z06SzRSOhShXfwOTg.png"},{"tag":"SEO","title":"Viết bài SEO mà không biến nội dung thành danh sách từ khóa","excerpt":"Một bài viết tốt bắt đầu từ câu hỏi thật của người đọc. Từ khóa giúp bạn hiểu chủ đề cần nói, chứ không thay thế việc giải thích rõ ràng và có ích.","time":"6 phút đọc","course":"viet-noi-dung-seo-tu-nghien-cuu-den-xuat-ban","image":"https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?auto=format&fit=crop&q=82&w=1200"},{"tag":"Digital Marketing","title":"Đọc số liệu quảng cáo: lượt nhấp chưa phải kết quả cuối cùng","excerpt":"Một chiến dịch có nhiều lượt nhấp chưa chắc tạo ra khách hàng. Cần nhìn tiếp trang đích, chuyển đổi và chi phí để hiểu quảng cáo đang giúp doanh nghiệp đến đâu.","time":"7 phút đọc","course":"marketing","image":"https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=82&w=1200"},{"tag":"Tiếng Anh IT","title":"Đọc tài liệu tiếng Anh khi vốn từ chuyên ngành còn ít","excerpt":"Không cần dịch mọi từ mới trước khi đọc. Bắt đầu bằng mục tiêu nhỏ, dùng tiêu đề và ví dụ để đoán ý, rồi chỉ tra những từ thật sự cản trở việc hiểu.","time":"5 phút đọc","course":"english","image":"https://images.unsplash.com/photo-1672248652488-73f8a07e3307?auto=format&fit=crop&q=82&w=1200"},{"tag":"Mạng máy tính","title":"Khi mạng lỗi, đừng đổi thiết lập liên tục: hãy kiểm tra theo thứ tự","excerpt":"Kết nối chập chờn có thể đến từ nhiều nguyên nhân khác nhau. Kiểm tra từ kết nối vật lý đến IP, gateway và DNS sẽ giúp bạn khoanh vùng thay vì thử ngẫu nhiên.","time":"6 phút đọc","course":"mang-may-tinh-tu-nen-tang-den-cau-hinh","image":"https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&q=82&w=1200"},{"tag":"Kỹ năng dự án","title":"Dự án đầu tiên nên nhỏ đến mức nào?","excerpt":"Đừng bắt đầu bằng một danh sách tính năng dài. Chọn một vấn đề, một nhóm người dùng và một luồng hoàn chỉnh; sau đó mở rộng khi phiên bản đầu đã chạy ổn.","time":"6 phút đọc","course":"csharp","image":"https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=82&w=1200"}];
+const BLOG_ARTICLES=[
+  {"tag":"Lập trình","title":"Học C# bằng cách lần theo dữ liệu, không phải học thuộc cú pháp","excerpt":"Có thể bạn đã xem khá nhiều video C# nhưng khi mở Visual Studio lên vẫn lúng túng. Một cách học dễ bám hơn là theo dõi dữ liệu đi qua từng dòng chương trình, rồi tự thay đổi bài toán.","time":"7 phút đọc","course":"csharp","image":"assets/images/blog/hoc-c-bang-cach-lan-theo-du-lieu-khong-phai-hoc-thuoc-cu-phap.jpg"},
+  {"tag":"ASP.NET Core","title":"Xây dựng REST API: bắt đầu từ một endpoint chạy đúng","excerpt":"Routing, controller, dependency injection và cơ sở dữ liệu dễ thành một mớ khái niệm nếu học cùng lúc. Hãy tạo một endpoint nhỏ, kiểm tra kết quả rồi mới nối thêm từng lớp.","time":"8 phút đọc","course":"api","image":"assets/images/blog/xay-dung-rest-api-bat-dau-tu-mot-endpoint-chay-dung.jpg"},
+  {"tag":"AutoCAD 2D","title":"Bản vẽ AutoCAD rõ ràng bắt đầu từ đơn vị và layer","excerpt":"Trước khi vẽ nhanh, hãy làm cho bản vẽ đúng đơn vị, dễ đọc và có thể in ra đúng tỷ lệ. Vài thiết lập đầu buổi sẽ giúp bạn tránh nhiều lỗi ở cuối.","time":"7 phút đọc","course":"autocad-2d-cho-ban-ve-ky-thuat","image":"assets/images/blog/ban-ve-autocad-ro-rang-bat-dau-tu-don-vi-va-layer.jpg"},
+  {"tag":"Cơ sở dữ liệu","title":"Trước khi tối ưu SQL, hãy hỏi ba câu về dữ liệu","excerpt":"Truy vấn chậm chưa chắc chỉ vì thiếu index. Hãy bắt đầu từ kết quả mong muốn, quan hệ giữa các bảng và cách ứng dụng thực sự sử dụng dữ liệu.","time":"6 phút đọc","course":"sql-server-va-sql-tu-co-ban-den-thuc-hanh","image":"assets/images/blog/truoc-khi-toi-uu-sql-hay-hoi-ba-cau-ve-du-lieu.jpg"},
+  {"tag":"AI & Machine Learning","title":"Dùng AI để học code mà không giao luôn bài tập cho AI","excerpt":"AI có thể giải thích thông báo lỗi và đề xuất cách kiểm tra. Nhưng nếu nhận nguyên lời giải rồi chép vào dự án, bạn rất khó biết mình đã hiểu đến đâu.","time":"6 phút đọc","course":"xay-dung-ung-dung-voi-generative-ai-va-llm","image":"assets/images/blog/dung-ai-de-hoc-code-ma-khong-giao-luon-bai-tap-cho-ai.jpg"},
+  {"tag":"UI/UX","title":"Một giao diện dễ dùng không bắt đầu từ màu sắc","excerpt":"Trước khi chọn bảng màu hay hiệu ứng, hãy xác định người dùng đến để làm việc gì, họ cần thông tin nào và bước tiếp theo có dễ nhận ra không.","time":"7 phút đọc","course":"design","image":"assets/images/blog/mot-giao-dien-de-dung-khong-bat-dau-tu-mau-sac.jpg"},
+  {"tag":"SEO","title":"Viết bài SEO mà không biến nội dung thành danh sách từ khóa","excerpt":"Một bài viết tốt bắt đầu từ câu hỏi thật của người đọc. Từ khóa giúp bạn hiểu chủ đề cần nói, chứ không thay thế việc giải thích rõ ràng và có ích.","time":"6 phút đọc","course":"viet-noi-dung-seo-tu-nghien-cuu-den-xuat-ban","image":"assets/images/blog/viet-bai-seo-ma-khong-bien-noi-dung-thanh-danh-sach-tu-khoa.jpg"},
+  {"tag":"Digital Marketing","title":"Đọc số liệu quảng cáo: lượt nhấp chưa phải kết quả cuối cùng","excerpt":"Một chiến dịch có nhiều lượt nhấp chưa chắc tạo ra khách hàng. Cần nhìn tiếp trang đích, chuyển đổi và chi phí để hiểu quảng cáo đang giúp doanh nghiệp đến đâu.","time":"7 phút đọc","course":"marketing","image":"assets/images/blog/doc-so-lieu-quang-cao-luot-nhap-chua-phai-ket-qua-cuoi-cung.jpg"},
+  {"tag":"Tiếng Anh IT","title":"Đọc tài liệu tiếng Anh khi vốn từ chuyên ngành còn ít","excerpt":"Không cần dịch mọi từ mới trước khi đọc. Bắt đầu bằng mục tiêu nhỏ, dùng tiêu đề và ví dụ để đoán ý, rồi chỉ tra những từ thật sự cản trở việc hiểu.","time":"5 phút đọc","course":"english","image":"assets/images/blog/doc-tai-lieu-tieng-anh-khi-von-tu-chuyen-nganh-con-it.jpg"},
+  {"tag":"Mạng máy tính","title":"Khi mạng lỗi, đừng đổi thiết lập liên tục: hãy kiểm tra theo thứ tự","excerpt":"Kết nối chập chờn có thể đến từ nhiều nguyên nhân khác nhau. Kiểm tra từ kết nối vật lý đến IP, gateway và DNS sẽ giúp bạn khoanh vùng thay vì thử ngẫu nhiên.","time":"6 phút đọc","course":"mang-may-tinh-tu-nen-tang-den-cau-hinh","image":"assets/images/blog/khi-mang-loi-dung-doi-thiet-lap-lien-tuc-hay-kiem-tra-theo-thu-tu.jpg"},
+  {"tag":"Kỹ năng dự án","title":"Dự án đầu tiên nên nhỏ đến mức nào?","excerpt":"Đừng bắt đầu bằng một danh sách tính năng dài. Chọn một vấn đề, một nhóm người dùng và một luồng hoàn chỉnh; sau đó mở rộng khi phiên bản đầu đã chạy ổn.","time":"6 phút đọc","course":"csharp","image":"assets/images/blog/du-an-dau-tien-nen-nho-den-muc-nao.jpg"}
+];
 const D={users:CFG.user?[CFG.user]:[],me:CFG.user&&CFG.user.email?CFG.user.email:null,en:{},orders:Array.isArray(CFG.orders)?CFG.orders:[]};
 if(D.me){
   D.en[D.me]={};
@@ -381,7 +403,6 @@ const card=c=>{
 let homeFilterTab='all';
 let initialServerHomeHtml='';
 const nf=()=>'<div class="wrap page"><div class="empty" role="status"><h2>Không tìm thấy nội dung này</h2><p>Liên kết có thể đã thay đổi hoặc nội dung chưa được xuất bản.</p><a href="#/">Về trang chủ</a></div></div>';
-const slugify=value=>String(value||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/g,'d').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
 
 const home=()=>{
   if(initialServerHomeHtml)return initialServerHomeHtml;
@@ -473,7 +494,7 @@ const home=()=>{
   const articles=BLOG_ARTICLES.slice(0,3).map((art,idx)=>
     '<article class="edn-journal-card group'+(idx===0?' is-lead':'')+'">'+
       '<a class="edn-journal-thumb" href="#/blog/'+slugify(art.title)+'">'+
-        '<img src="'+esc(art.image||'')+'" alt="" loading="lazy">'+
+        '<img src="'+esc(getBlogImage(art))+'" alt="" loading="lazy">'+
         '<span class="edn-journal-tag">'+esc(art.tag)+'</span>'+
       '</a>'+
       '<div class="edn-journal-body">'+
@@ -1565,7 +1586,7 @@ const blogPage=()=>{
   const subHeroMarkup1=subHeroArticle1
     ? '<article class="edn-udemy-card edn-udemy-card-split" data-blog-tag="'+esc(subHeroArticle1.tag)+'">'+
         '<a class="edn-udemy-card-media" href="#/blog/'+slugify(subHeroArticle1.title)+'" aria-label="Đọc bài: '+esc(subHeroArticle1.title)+'">'+
-          '<img src="'+esc(subHeroArticle1.image||'')+'" alt="'+esc(subHeroArticle1.title)+'" loading="lazy">'+
+          '<img src="'+esc(getBlogImage(subHeroArticle1))+'" alt="'+esc(subHeroArticle1.title)+'" loading="lazy">'+
         '</a>'+
         '<div class="edn-udemy-card-body">'+
           '<h3 class="edn-udemy-card-title"><a href="#/blog/'+slugify(subHeroArticle1.title)+'">'+esc(subHeroArticle1.title)+'</a></h3>'+
@@ -1579,7 +1600,7 @@ const blogPage=()=>{
   const subHeroMarkup2=subHeroArticle2
     ? '<article class="edn-udemy-card" data-blog-tag="'+esc(subHeroArticle2.tag)+'">'+
         '<a class="edn-udemy-card-media" href="#/blog/'+slugify(subHeroArticle2.title)+'" aria-label="Đọc bài: '+esc(subHeroArticle2.title)+'">'+
-          '<img src="'+esc(subHeroArticle2.image||'')+'" alt="'+esc(subHeroArticle2.title)+'" loading="lazy">'+
+          '<img src="'+esc(getBlogImage(subHeroArticle2))+'" alt="'+esc(subHeroArticle2.title)+'" loading="lazy">'+
         '</a>'+
         '<div class="edn-udemy-card-body">'+
           '<h3 class="edn-udemy-card-title"><a href="#/blog/'+slugify(subHeroArticle2.title)+'">'+esc(subHeroArticle2.title)+'</a></h3>'+
@@ -1591,7 +1612,7 @@ const blogPage=()=>{
   const renderGridCard=(article)=>
     '<article class="edn-udemy-card" data-blog-tag="'+esc(article.tag)+'">'+
       '<a class="edn-udemy-card-media" href="#/blog/'+slugify(article.title)+'" aria-label="Đọc bài: '+esc(article.title)+'">'+
-        '<img src="'+esc(article.image||'')+'" alt="'+esc(article.title)+'" loading="lazy">'+
+        '<img src="'+esc(getBlogImage(article))+'" alt="'+esc(article.title)+'" loading="lazy">'+
       '</a>'+
       '<div class="edn-udemy-card-body">'+
         '<h3 class="edn-udemy-card-title"><a href="#/blog/'+slugify(article.title)+'">'+esc(article.title)+'</a></h3>'+
@@ -1629,7 +1650,7 @@ const blogPage=()=>{
             '</div>'+
           '</div>'+
           '<a class="edn-udemy-hero-media" href="#/blog/'+slugify(heroArticle.title)+'" aria-label="Đọc bài: '+esc(heroArticle.title)+'">'+
-            '<img src="'+esc(heroArticle.image||'')+'" alt="'+esc(heroArticle.title)+'" loading="eager">'+
+            '<img src="'+esc(getBlogImage(heroArticle))+'" alt="'+esc(heroArticle.title)+'" loading="eager">'+
           '</a>'+
         '</section>'
       : '')+
@@ -1687,7 +1708,7 @@ const blogDetail=slug=>{
   const relatedArticles=BLOG_ARTICLES.filter((_,i)=>i!==index).slice(0,2);
   const relatedArticlesMarkup=relatedArticles.map(a=>
     '<a class="edn-sidebar-related-item" href="#/blog/'+slugify(a.title)+'">'+
-      '<img src="'+esc(a.image||'')+'" alt="" loading="lazy">'+
+      '<img src="'+esc(getBlogImage(a))+'" alt="" loading="lazy">'+
       '<div><strong>'+esc(a.title)+'</strong><small>'+esc(a.tag)+' · '+esc(a.time)+'</small></div>'+
     '</a>'
   ).join('');
@@ -1703,6 +1724,8 @@ const blogDetail=slug=>{
       '</div>'
     : '';
 
+  const articleCoverImg=getBlogImage(article);
+
   return '<article class="wrap page edn-blog-article-page">'+
     '<nav class="edn-breadcrumb" aria-label="Đường dẫn"><a href="#/">Trang chủ</a><span>›</span><a href="#/blog">Blog</a><span>›</span><span>'+esc(article.tag)+'</span></nav>'+
     '<header class="edn-article-header">'+
@@ -1714,7 +1737,7 @@ const blogDetail=slug=>{
         '<div class="edn-article-share-actions"><a class="btn btn-g btn-s" href="#/blog">← Quay lại Blog</a></div>'+
       '</div>'+
     '</header>'+
-    (article.image?'<div class="edn-article-hero-cover"><img src="'+esc(article.image)+'" alt="'+esc(article.title)+'"><figcaption>Hình ảnh minh họa chuyên mục '+esc(article.tag)+' · EduNext Magazine</figcaption></div>':'')+
+    (articleCoverImg?'<div class="edn-article-hero-cover"><img src="'+esc(articleCoverImg)+'" alt="'+esc(article.title)+'"><figcaption>Hình ảnh minh họa chuyên mục '+esc(article.tag)+' · EduNext Magazine</figcaption></div>':'')+
     '<div class="edn-article-layout-grid">'+
       '<div class="edn-article-main-content">'+
         body+
