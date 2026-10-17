@@ -92,21 +92,43 @@ const GROUP_IMAGES = {
   'du-lich-dich-vu': 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&q=80&w=800'
 };
 
+const resolveAssetUrl = (url) => {
+  if (!url) return '';
+  if (/^https?:\/\//i.test(url) || url.startsWith('data:')) return url;
+  const base = String(CFG.themeUri || '').replace(/\/+$/, '');
+  const clean = String(url).replace(/^\/+/, '');
+  return base ? `${base}/${clean}` : clean;
+};
+
 const getCourseImage = (c) => {
   if (!c) return 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=800';
-  if (COURSE_IMAGES[c.id]) return COURSE_IMAGES[c.id];
-  if (c.domainId && DOMAIN_IMAGES[c.domainId]) return DOMAIN_IMAGES[c.domainId];
-  return 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=800';
+  if (c.image) return resolveAssetUrl(c.image);
+  if (COURSE_IMAGES[c.id]) return resolveAssetUrl(COURSE_IMAGES[c.id]);
+  if (c.domainId && DOMAIN_IMAGES[c.domainId]) return resolveAssetUrl(DOMAIN_IMAGES[c.domainId]);
+  return resolveAssetUrl('assets/images/courses/' + c.id + '.svg');
 };
 
 const getDomainImage = (d) => {
-  if (d && DOMAIN_IMAGES[d.id]) return DOMAIN_IMAGES[d.id];
+  if (!d) return 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=800';
+  if (d.image) return resolveAssetUrl(d.image);
+  if (DOMAIN_IMAGES[d.id]) return resolveAssetUrl(DOMAIN_IMAGES[d.id]);
+  const slug = d.slug || (d.id ? d.id.replace('field-', '') : '');
+  if (slug) return resolveAssetUrl('assets/images/domains/' + slug + '.svg');
   return 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=800';
 };
 
+const getLessonImage = (lesson, c, index = 0) => {
+  if (lesson && lesson.image) return resolveAssetUrl(lesson.image);
+  if (c && c.id) {
+    const order = (lesson && lesson.order) || (index + 1);
+    return resolveAssetUrl('assets/images/lessons/' + c.id + '-lesson-' + order + '.svg');
+  }
+  return getCourseImage(c);
+};
+
 const getGroupImage = (group) => {
-  if (group && GROUP_IMAGES[group.slug]) return GROUP_IMAGES[group.slug];
-  if (group && group.domains && group.domains[0] && DOMAIN_IMAGES[group.domains[0].id]) return DOMAIN_IMAGES[group.domains[0].id];
+  if (group && GROUP_IMAGES[group.slug]) return resolveAssetUrl(GROUP_IMAGES[group.slug]);
+  if (group && group.domains && group.domains[0] && DOMAIN_IMAGES[group.domains[0].id]) return resolveAssetUrl(DOMAIN_IMAGES[group.domains[0].id]);
   return 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=800';
 };
 const mapCourse=(raw,videoCounts={})=>{
@@ -153,6 +175,7 @@ const mapCourse=(raw,videoCounts={})=>{
     previewVideoUrl:mediaValid(raw.previewVideoUrl||'')?String(raw.previewVideoUrl||''):'',
     s:[],r:null,n:null,lvl:level,p:displayPrice,o:displayOriginalPrice,demoPrice:isDemoPrice,
     h:raw.durationHours,tag:ready?'Đã xuất bản':'Đang hoàn thiện nội dung',
+    image:raw.image||'',
     c:'',published:raw.published===true,contentStatus:raw.contentStatus||'outline',
     completionCount:Number(raw.completionRule&&raw.completionRule.requiredCount)||L.length,
     ready
@@ -920,8 +943,10 @@ const detail=id=>{
     const sRows = sectionLessons.map((lesson, lIdx) => {
       const globalIdx = start + lIdx;
       const durationText = (2 + ((globalIdx * 7) % 5)) + ':' + String((globalIdx * 17 + 12) % 60).padStart(2, '0');
+      const itemImg = getLessonImage(lesson, c, globalIdx);
       return '<div class="edn-udemy-lecture-row is-preview">' +
         '<div class="edn-lecture-left">' +
+          '<div class="edn-lecture-thumb-mini"><img src="' + esc(itemImg) + '" alt="" loading="lazy"></div>' +
           '<span class="edn-lecture-play-icon" aria-hidden="true">' +
             '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8" fill="currentColor"></polygon></svg>' +
           '</span>' +
@@ -1206,6 +1231,7 @@ const learn=(id,index)=>{
   const after=i<c.lessons.length-1?'<a class="btn btn-g edn-nav-btn" href="#/learn/'+esc(id)+'/'+(i+1)+'">Bài tiếp →</a>':'';
   const final=all?'<a class="btn btn-p edn-cert-btn" href="#/cert/'+esc(id)+'">Nhận chứng chỉ tốt nghiệp 🎓</a>':'';
 
+  const lessonImg = getLessonImage(lesson, c, i);
   return '<div class="edn-classroom-shell">'+
     '<header class="edn-classroom-bar">'+
       '<div class="edn-class-bar-left"><a class="edn-exit-classroom" href="#/course/'+esc(id)+'" title="Thoát phòng học">✕ <span>Thoát</span></a><strong class="edn-class-course-title">'+esc(c.t)+'</strong></div>'+
@@ -1218,6 +1244,10 @@ const learn=(id,index)=>{
           '<div class="edn-lesson-banner">'+
             '<div><span class="edn-overline">BÀI '+(i+1)+' / '+c.lessons.length+'</span><h1>'+esc(lesson.title)+'</h1></div>'+
             '<span class="edn-lesson-status-pill '+(done?'is-done':'')+'">'+(done?'Đã hoàn thành':'Đang học')+'</span>'+
+          '</div>'+
+          '<div class="edn-lesson-illustration-box">'+
+            '<img class="edn-lesson-illustration-img" src="'+esc(lessonImg)+'" alt="'+esc(lesson.title)+'" loading="lazy">'+
+            '<div class="edn-lesson-illustration-caption"><span class="edn-lesson-ill-tag">✦ Minh họa bài học</span><span>Bài '+(i+1)+': '+esc(lesson.title)+'</span></div>'+
           '</div>'+
           '<div class="edn-classroom-tabs" role="tablist">'+
             '<button type="button" class="edn-classroom-tab is-active" data-class-tab="summary">Tóm tắt bài học</button>'+
@@ -1250,9 +1280,11 @@ const learn=(id,index)=>{
           c.lessons.map((item,k)=>{
             const isCurrent=k===i;
             const isDone=e.done.includes(k);
+            const itemImg=getLessonImage(item,c,k);
             return '<a class="edn-sidebar-lesson-row '+(isCurrent?'is-current ':'')+(isDone?'is-done':'')+'" href="#/learn/'+esc(id)+'/'+k+'">'+
-              '<span class="edn-sidebar-num">'+(isDone?'✓':String(k+1).padStart(2,'0'))+'</span>'+
+              '<div class="edn-sidebar-thumb-col"><img class="edn-sidebar-lesson-thumb" src="'+esc(itemImg)+'" alt="" loading="lazy"></div>'+
               '<div class="edn-sidebar-info"><strong>'+esc(item.title)+'</strong><small>'+(item.videoUrl?'Video HD':'Nội dung')+'</small></div>'+
+              '<span class="edn-sidebar-num">'+(isDone?'✓':String(k+1).padStart(2,'0'))+'</span>'+
             '</a>';
           }).join('')+
         '</div>'+
@@ -2144,7 +2176,13 @@ const openCoursePlayer=(id,index=0)=>{
   const playlist=c.lessons.map((item,k)=>{
     const isActive=k===activeIndex;
     const lessonVid=resolveLessonVideo(item,c,k);
-    return '<button type="button" class="edn-course-player-item'+(isActive?' is-active':'')+'" data-a="course-player-select" data-v="'+esc(id)+','+k+'"'+(isActive?' aria-current="true"':'')+'><span class="edn-course-player-item-number">'+(isActive?'▶':String(k+1).padStart(2,'0'))+'</span><span class="edn-course-player-item-copy"><strong>'+esc(item.title)+'</strong><small>Video bài giảng chuẩn HD</small></span><span class="edn-course-player-item-arrow" aria-hidden="true">'+(isActive?'●':'›')+'</span></button>';
+    const itemImg=getLessonImage(item,c,k);
+    return '<button type="button" class="edn-course-player-item'+(isActive?' is-active':'')+'" data-a="course-player-select" data-v="'+esc(id)+','+k+'"'+(isActive?' aria-current="true"':'')+'>'+
+      '<span class="edn-course-player-item-number">'+(isActive?'▶':String(k+1).padStart(2,'0'))+'</span>'+
+      '<div class="edn-course-player-item-thumb-wrap"><img src="'+esc(itemImg)+'" alt="" loading="lazy"></div>'+
+      '<span class="edn-course-player-item-copy"><strong>'+esc(item.title)+'</strong><small>Video bài giảng chuẩn HD</small></span>'+
+      '<span class="edn-course-player-item-arrow" aria-hidden="true">'+(isActive?'●':'›')+'</span>'+
+    '</button>';
   }).join('');
   const currentVideoUrl = resolveLessonVideo(lesson, c, activeIndex);
   modal.innerHTML='<section class="edn-preview-dialog edn-course-player-dialog"><header class="edn-preview-dialog-head"><div><strong>Trình phát bài học</strong><span>'+esc(c.t)+'</span></div><button type="button" data-a="course-player-close" aria-label="Đóng trình phát">×</button></header><div class="edn-course-player-now"><span>BÀI '+String(activeIndex+1).padStart(2,'0')+' / '+c.lessons.length+'</span><h2>'+esc(lesson.title)+'</h2></div><div class="edn-preview-video">'+videoMarkup(currentVideoUrl,lesson.title)+'</div><section class="edn-course-player-playlist"><div class="edn-course-player-playlist-head"><strong>Danh sách bài học</strong><span>'+c.lessons.length+' bài</span></div><div class="edn-course-player-items">'+playlist+'</div></section></section>';

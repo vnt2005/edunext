@@ -7202,8 +7202,10 @@ body.edunext-app .edn-preview-modal,
 
 body.edunext-app .edn-course-player-dialog,
 .edn-course-player-dialog {
-  width: min(620px, 92vw) !important;
-  max-height: 88vh !important;
+  width: min(640px, 92vw) !important;
+  max-height: 92vh !important;
+  display: flex !important;
+  flex-direction: column !important;
   background: rgba(10, 13, 24, 0.96) !important;
   backdrop-filter: blur(24px) !important;
   -webkit-backdrop-filter: blur(24px) !important;
@@ -7220,6 +7222,7 @@ body.edunext-app .edn-course-player-dialog,
   padding: 10px 16px !important;
   background: rgba(255, 255, 255, 0.02) !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  flex-shrink: 0 !important;
 }
 
 .edn-preview-dialog-head strong {
@@ -7259,6 +7262,7 @@ body.edunext-app .edn-course-player-dialog,
   padding: 10px 16px !important;
   background: rgba(255, 255, 255, 0.02) !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+  flex-shrink: 0 !important;
 }
 
 .edn-course-player-now span {
@@ -7275,8 +7279,27 @@ body.edunext-app .edn-course-player-dialog,
   margin: 2px 0 0 !important;
 }
 
+.edn-preview-video {
+  flex-shrink: 0 !important;
+  max-height: 270px !important;
+  background: #000000 !important;
+  display: flex !important;
+  justify-content: center !important;
+}
+
+.edn-course-player-dialog .edn-preview-video iframe,
+.edn-course-player-dialog .edn-preview-video video {
+  max-height: 270px !important;
+  width: 100% !important;
+  aspect-ratio: 16 / 9 !important;
+}
+
 .edn-course-player-playlist {
   background: rgba(6, 8, 12, 0.8) !important;
+  flex: 1 1 auto !important;
+  min-height: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
 }
 
 .edn-course-player-playlist-head {
@@ -7284,13 +7307,15 @@ body.edunext-app .edn-course-player-dialog,
   border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
   color: #FFFFFF !important;
   font-size: 12px !important;
+  flex-shrink: 0 !important;
 }
 
 .edn-course-player-items {
-  max-height: 180px !important;
+  flex: 1 1 auto !important;
+  min-height: 120px !important;
+  max-height: 220px !important;
   overflow-y: auto !important;
-  scrollbar-width: none !important;
-  -ms-overflow-style: none !important;
+  scrollbar-width: thin !important;
 }
 
 .edn-course-player-items::-webkit-scrollbar {
@@ -12141,6 +12166,157 @@ body.edunext-app .edn-im-cta {
     padding-top: 48px !important;
     padding-bottom: 56px !important;
   }
+}
+
+/* ========================================================
+ * EDUNEXT VISUAL ASSETS & LESSON ILLUSTRATION SYSTEM
+ * ======================================================== */
+
+/* Classroom Lesson Illustration Banner */
+.edn-lesson-illustration-box {
+  margin: 18px 0 24px !important;
+  border-radius: 16px !important;
+  overflow: hidden !important;
+  background: #0B0F19 !important;
+  border: 1px solid rgba(45, 212, 191, 0.28) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 25px rgba(45, 212, 191, 0.12) !important;
+  position: relative !important;
+}
+
+.edn-lesson-illustration-img {
+  width: 100% !important;
+  height: auto !important;
+  max-height: 420px !important;
+  aspect-ratio: 16 / 9 !important;
+  object-fit: cover !important;
+  display: block !important;
+  background: #0B0F19 !important;
+}
+
+.edn-lesson-illustration-caption {
+  padding: 10px 18px !important;
+  background: rgba(15, 23, 42, 0.9) !important;
+  backdrop-filter: blur(8px) !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  font-size: 13px !important;
+  color: #94A3B8 !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.edn-lesson-ill-tag {
+  background: rgba(45, 212, 191, 0.15) !important;
+  color: #2DD4BF !important;
+  padding: 3px 10px !important;
+  border-radius: 6px !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.5px !important;
+  text-transform: uppercase !important;
+  border: 1px solid rgba(45, 212, 191, 0.3) !important;
+  white-space: nowrap !important;
+}
+
+/* Sidebar Lesson Thumbnails */
+.edn-sidebar-thumb-col {
+  width: 54px !important;
+  height: 32px !important;
+  flex-shrink: 0 !important;
+  border-radius: 6px !important;
+  overflow: hidden !important;
+  background: #0B0F19 !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3) !important;
+}
+
+.edn-sidebar-lesson-thumb {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+}
+
+.edn-sidebar-lesson-row.is-current .edn-sidebar-thumb-col {
+  border-color: #2DD4BF !important;
+  box-shadow: 0 0 10px rgba(45, 212, 191, 0.3) !important;
+}
+
+/* Course Player Modal Playlist Thumbnails */
+body.edunext-app .edn-course-player-item,
+.edn-course-player-item {
+  display: grid !important;
+  grid-template-columns: 26px 52px minmax(0, 1fr) 18px !important;
+  align-items: center !important;
+  gap: 10px !important;
+}
+
+.edn-course-player-item-thumb-wrap {
+  width: 50px !important;
+  height: 28px !important;
+  flex-shrink: 0 !important;
+  border-radius: 4px !important;
+  overflow: hidden !important;
+  background: #0B0F19 !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  margin: 0 !important;
+}
+
+.edn-course-player-item-thumb-wrap img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+}
+
+.edn-course-player-item.is-active .edn-course-player-item-thumb-wrap {
+  border-color: #2DD4BF !important;
+}
+
+/* Curriculum Lecture Row Thumbnails */
+.edn-lecture-thumb-mini {
+  width: 44px !important;
+  height: 26px !important;
+  flex-shrink: 0 !important;
+  border-radius: 4px !important;
+  overflow: hidden !important;
+  background: #0B0F19 !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  margin-right: 10px !important;
+}
+
+.edn-lecture-thumb-mini img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+}
+
+/* PHP Curriculum Accordion Thumbnails */
+.edn-curriculum-thumb-wrap {
+  max-width: 320px !important;
+  aspect-ratio: 16 / 9 !important;
+  border-radius: 10px !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  margin-bottom: 12px !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3) !important;
+}
+
+.edn-curriculum-thumb-wrap img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+}
+
+/* Universal Course & Domain Image Sizing & Fallback Polish */
+.edn-card-thumb-wrap img,
+.edn-checkout-course-image img,
+.edn-sidebar-course-thumb img,
+.edn-search-course-thumb {
+  aspect-ratio: 16 / 9 !important;
+  object-fit: cover !important;
 }
 
 
