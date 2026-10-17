@@ -1634,19 +1634,6 @@ const blogPage=()=>{
         '</section>'
       : '')+
 
-    // Search & Category Filters (Ảnh 2)
-    '<section class="edn-udemy-filter-section">'+
-      '<div class="edn-udemy-search-bar">'+
-        '<span class="edn-udemy-search-icon" aria-hidden="true">⌕</span>'+
-        '<input type="search" id="edn-udemy-search-input" placeholder="Tìm kiếm bài viết, chủ đề hoặc kỹ năng..." aria-label="Tìm kiếm bài viết">'+
-      '</div>'+
-      '<div class="edn-udemy-topic-pills" aria-label="Lọc bài viết theo chủ đề">'+
-        topics.map((topic,index)=>
-          '<button type="button" class="edn-udemy-topic-pill '+(index===0?'is-active':'')+'" data-blog-topic="'+esc(topic)+'" aria-pressed="'+(index===0?'true':'false')+'">'+esc(topic)+'</button>'
-        ).join('')+
-      '</div>'+
-    '</section>'+
-
     // Sub-Hero Grid (1 card ngang split + 1 card dọc - Ảnh 2)
     '<section class="edn-udemy-subhero-grid">'+
       subHeroMarkup1+

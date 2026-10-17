@@ -8741,7 +8741,7 @@ body.edunext-app .edn-udemy-subnav-cta:hover {
   border-radius: 28px !important;
   overflow: hidden !important;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45), 0 0 30px rgba(45, 212, 191, 0.08) !important;
-  margin-bottom: 48px !important;
+  margin-bottom: 36px !important;
   transition: transform 0.3s ease, border-color 0.3s ease !important;
 }
 .edn-udemy-hero-featured:hover {
@@ -8921,7 +8921,7 @@ body.edunext-app .edn-udemy-subnav-cta:hover {
   display: grid !important;
   grid-template-columns: repeat(4, 1fr) !important;
   gap: 24px !important;
-  margin-bottom: 48px !important;
+  margin-bottom: 36px !important;
 }
 
 /* Card Component */
@@ -9058,7 +9058,7 @@ body.edunext-app .edn-udemy-subnav-cta:hover {
   border-radius: 28px !important;
   overflow: hidden !important;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5) !important;
-  margin-bottom: 48px !important;
+  margin-bottom: 36px !important;
 }
 .edn-udemy-banner-copy {
   padding: 48px !important;
