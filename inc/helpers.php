@@ -187,13 +187,16 @@ function edunext_domain_images(): array {
         'field-du-lich-va-dich-vu' => 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&q=80&w=800',
     ];
 
-    // Priority: local SVG illustration if file exists
+    // Priority: local JPG photography if file exists, then SVG illustration
     $theme_dir = get_template_directory();
     $theme_uri = get_template_directory_uri();
     foreach ($domains as $domain_id => $remote_url) {
         $slug = str_replace('field-', '', $domain_id);
+        $local_jpg = "assets/images/domains/{$slug}.jpg";
         $local_svg = "assets/images/domains/{$slug}.svg";
-        if (file_exists("{$theme_dir}/{$local_svg}")) {
+        if (file_exists("{$theme_dir}/{$local_jpg}")) {
+            $domains[$domain_id] = "{$theme_uri}/{$local_jpg}";
+        } elseif (file_exists("{$theme_dir}/{$local_svg}")) {
             $domains[$domain_id] = "{$theme_uri}/{$local_svg}";
         }
     }

@@ -109,12 +109,12 @@ const getCourseImage = (c) => {
 };
 
 const getDomainImage = (d) => {
-  if (!d) return 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=800';
+  if (!d) return resolveAssetUrl('assets/images/domains/lap-trinh-va-phat-trien-phan-mem.jpg');
   if (d.image) return resolveAssetUrl(d.image);
-  if (DOMAIN_IMAGES[d.id]) return resolveAssetUrl(DOMAIN_IMAGES[d.id]);
   const slug = d.slug || (d.id ? d.id.replace('field-', '') : '');
-  if (slug) return resolveAssetUrl('assets/images/domains/' + slug + '.svg');
-  return 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=800';
+  if (slug) return resolveAssetUrl('assets/images/domains/' + slug + '.jpg');
+  if (DOMAIN_IMAGES[d.id]) return resolveAssetUrl(DOMAIN_IMAGES[d.id]);
+  return resolveAssetUrl('assets/images/domains/lap-trinh-va-phat-trien-phan-mem.jpg');
 };
 
 const getLessonImage = (lesson, c, index = 0) => {
@@ -814,36 +814,97 @@ const courses=()=>{
     '<div id="course-pagination"></div>'+
   '</div>';
 };
-const domainsPage=()=>{
-  const groups=domainGroups();
-  const arrowIcon='<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M8 3l5 5-5 5"></path></svg>';
-  return '<div class="wrap page edn-domain-page">'+
-    '<div class="edn-page-intro"><span class="edn-hero-badge"><span class="edn-badge-dot"></span> KHÁM PHÁ THEO LĨNH VỰC</span><h1>50 Chuyên ngành đào tạo</h1><p>Tìm đúng hướng đi từ công nghệ thông tin, thiết kế, marketing, quản trị kinh doanh đến ngoại ngữ và kỹ năng số.</p></div>'+
-    '<div class="edn-domain-visual-grid">'+groups.map((group,index)=>{
-      const groupIds=new Set(group.domains.map(domain=>domain.id));
-      const courseCount=C.filter(course=>groupIds.has(course.domainId)).length;
-      const bgImg=getGroupImage(group);
-      return '<a class="edn-visual-domain-card" href="#/group/'+esc(group.slug)+'">'+
-        '<div class="edn-domain-card-bg"><img src="'+esc(bgImg)+'" alt="" loading="lazy"><div class="edn-domain-overlay"></div></div>'+
-        '<div class="edn-domain-card-content"><h3>'+esc(group.name)+'</h3><span>'+group.domains.length+' chuyên ngành · '+courseCount+' chương trình</span><span class="edn-domain-explore-btn">Khám phá '+arrowIcon+'</span></div>'+
-      '</a>';
-    }).join('')+'</div></div>';
+const domainCardMarkup = (domain) => {
+  const num = String(domain.number || 1).padStart(2, '0');
+  const desc = esc(domain.description || 'Chuyên ngành thực chiến chuẩn hóa theo nhu cầu thực tế.');
+  const bgImg = getDomainImage(domain);
+  const cCount = C.filter(course => course.domainId === domain.id).length;
+  const topics = (domain.topics || []).slice(0, 2).map(t => '<span class="edn-domain-topic-tag">' + esc(t) + '</span>').join('');
+  const arrowIcon = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M8 3l5 5-5 5"></path></svg>';
+
+  return '<a class="edn-visual-domain-card group" href="#/domain/' + esc(domain.slug) + '" aria-label="' + esc(domain.name) + '">' +
+    '<div class="edn-domain-card-bg">' +
+      '<img src="' + esc(bgImg) + '" alt="' + esc(domain.name) + '" loading="lazy">' +
+      '<div class="edn-domain-overlay"></div>' +
+    '</div>' +
+    '<div class="edn-domain-card-content">' +
+      '<div class="edn-domain-card-top">' +
+        '<span class="edn-domain-num-pill"><span class="edn-badge-dot"></span> LĨNH VỰC ' + num + '</span>' +
+        (topics ? '<div class="edn-domain-tags">' + topics + '</div>' : '') +
+      '</div>' +
+      '<h3>' + esc(domain.name) + '</h3>' +
+      '<p class="edn-domain-desc">' + desc + '</p>' +
+      '<div class="edn-domain-card-footer">' +
+        '<span class="edn-domain-course-count"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 3h12v10H2zM5 6h6M5 9h4"></path></svg> ' + cCount + ' khóa học</span>' +
+        '<span class="edn-domain-explore-btn">Xem chi tiết ' + arrowIcon + '</span>' +
+      '</div>' +
+    '</div>' +
+  '</a>';
 };
-const groupDetail=slug=>{
-  const group=domainGroups().find(item=>item.slug===slug);
-  if(!group)return nf();
-  const domainIds=new Set(group.domains.map(domain=>domain.id));
-  const courseCount=C.filter(course=>domainIds.has(course.domainId)).length;
-  const arrowIcon='<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M8 3l5 5-5 5"></path></svg>';
-  return '<div class="wrap page edn-domain-detail edn-domain-group-detail"><nav class="edn-breadcrumb" aria-label="Đường dẫn"><a href="#/">Trang chủ</a><span>›</span><a href="#/categories">Nhóm lĩnh vực</a><span>›</span><span>'+esc(group.name)+'</span></nav>'+
-    '<section class="edn-domain-programs"><div class="edn-domain-visual-grid">'+group.domains.map(domain=>{
-      const cCount=C.filter(course=>course.domainId===domain.id).length;
-      const bgImg=getDomainImage(domain);
-      return '<a class="edn-visual-domain-card" href="#/domain/'+esc(domain.slug)+'">'+
-        '<div class="edn-domain-card-bg"><img src="'+esc(bgImg)+'" alt="" loading="lazy"><div class="edn-domain-overlay"></div></div>'+
-        '<div class="edn-domain-card-content"><h3>'+esc(domain.name)+'</h3><span>'+cCount+' khóa học</span><span class="edn-domain-explore-btn">Xem chi tiết '+arrowIcon+'</span></div>'+
-      '</a>';
-    }).join('')+'</div></section></div>';
+
+const groupCardMarkup = (group) => {
+  const groupIds = new Set(group.domains.map(domain => domain.id));
+  const courseCount = C.filter(course => groupIds.has(course.domainId)).length;
+  const bgImg = getGroupImage(group);
+  const arrowIcon = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M8 3l5 5-5 5"></path></svg>';
+  const domainCount = group.domains.length;
+
+  return '<a class="edn-visual-domain-card edn-group-card group" href="#/group/' + esc(group.slug) + '" aria-label="' + esc(group.name) + '">' +
+    '<div class="edn-domain-card-bg">' +
+      '<img src="' + esc(bgImg) + '" alt="' + esc(group.name) + '" loading="lazy">' +
+      '<div class="edn-domain-overlay"></div>' +
+    '</div>' +
+    '<div class="edn-domain-card-content">' +
+      '<div class="edn-domain-card-top">' +
+        '<span class="edn-domain-num-pill"><span class="edn-badge-dot"></span> NHÓM CHUYÊN NGÀNH</span>' +
+      '</div>' +
+      '<h3>' + esc(group.name) + '</h3>' +
+      '<p class="edn-domain-desc">' + esc(group.description || '') + '</p>' +
+      '<div class="edn-domain-card-footer">' +
+        '<span class="edn-domain-course-count"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 3h12v10H2zM5 6h6M5 9h4"></path></svg> ' + domainCount + ' lĩnh vực · ' + courseCount + ' khóa học</span>' +
+        '<span class="edn-domain-explore-btn">Khám phá ' + arrowIcon + '</span>' +
+      '</div>' +
+    '</div>' +
+  '</a>';
+};
+
+let domainViewMode = 'all';
+
+const domainsPage = () => {
+  return '<div class="wrap page edn-domain-page">' +
+    '<div class="edn-page-intro">' +
+      '<span class="edn-hero-badge"><span class="edn-badge-dot"></span> KHÁM PHÁ THEO LĨNH VỰC</span>' +
+      '<h1>50 Chuyên ngành đào tạo</h1>' +
+      '<p>Tìm đúng hướng đi từ công nghệ thông tin, thiết kế, marketing, quản trị kinh doanh đến ngoại ngữ và kỹ năng số.</p>' +
+      '<div class="edn-domain-filter-pills" role="tablist">' +
+        '<button type="button" class="edn-filter-pill' + (domainViewMode === 'all' ? ' is-active' : '') + '" data-a="domain-view" data-v="all" role="tab" aria-selected="' + (domainViewMode === 'all') + '">Tất cả 50 Lĩnh vực</button>' +
+        '<button type="button" class="edn-filter-pill' + (domainViewMode === 'groups' ? ' is-active' : '') + '" data-a="domain-view" data-v="groups" role="tab" aria-selected="' + (domainViewMode === 'groups') + '">11 Nhóm chuyên ngành</button>' +
+      '</div>' +
+    '</div>' +
+    '<div class="edn-domain-visual-grid" id="edn-domains-grid">' +
+      (domainViewMode === 'all' ? DOMAINS.map(domainCardMarkup).join('') : domainGroups().map(groupCardMarkup).join('')) +
+    '</div>' +
+  '</div>';
+};
+
+const groupDetail = slug => {
+  const group = domainGroups().find(item => item.slug === slug);
+  if (!group) return nf();
+  const domainIds = new Set(group.domains.map(domain => domain.id));
+  const courseCount = C.filter(course => domainIds.has(course.domainId)).length;
+  return '<div class="wrap page edn-domain-detail edn-domain-group-detail">' +
+    '<nav class="edn-breadcrumb" aria-label="Đường dẫn"><a href="#/">Trang chủ</a><span>›</span><a href="#/categories">Nhóm lĩnh vực</a><span>›</span><span>' + esc(group.name) + '</span></nav>' +
+    '<header class="edn-domain-group-header">' +
+      '<span class="edn-hero-badge"><span class="edn-badge-dot"></span> NHÓM CHUYÊN NGÀNH</span>' +
+      '<h1>' + esc(group.name) + '</h1>' +
+      '<p>' + esc(group.description || '') + ' · ' + group.domains.length + ' chuyên ngành · ' + courseCount + ' khóa học</p>' +
+    '</header>' +
+    '<section class="edn-domain-programs">' +
+      '<div class="edn-domain-visual-grid">' +
+        group.domains.map(domainCardMarkup).join('') +
+      '</div>' +
+    '</section>' +
+  '</div>';
 };
 const domainDetail=slug=>{
   const d=DOMAINS.find(item=>item.slug===slug);
@@ -2236,6 +2297,7 @@ const openCoursePlayer=(id,index=0)=>{
 const A={
   'retry-catalog':()=>initializeEduNext(),
   'home-filter':value=>{homeFilterTab=value;render(true);},
+  'domain-view':value=>{domainViewMode=value;render(true);},
   menu:()=>{
     document.body.classList.toggle('lms-mobile-open');
     const button=$('.lms-mobile-menu');
