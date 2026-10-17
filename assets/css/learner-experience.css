@@ -1196,40 +1196,61 @@ body.edunext-app .edn-market-course-footer{
 }
 
 
-/* Shared pagination for home, domains, and course catalog: 10 items per page. */
+/* Shared pagination for home, domains, and course catalog */
 body.edunext-app .edn-pagination{
-  display:flex;align-items:center;justify-content:center;gap:16px;
-  width:100%;margin:26px 0 8px;padding:15px 0 4px;border-top:1px solid #e7ebf1;
+  display:flex;align-items:center;justify-content:center;
+  width:100%;margin:28px 0 12px;padding:16px 0 0;border-top:1px solid rgba(255,255,255,0.08);
 }
 body.edunext-app .edn-pagination-controls{
-  display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:5px;
-  min-width:0;width:100%;
+  display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  background:rgba(14,18,38,0.65);backdrop-filter:blur(16px) saturate(180%);
+  -webkit-backdrop-filter:blur(16px) saturate(180%);
+  border:1px solid rgba(255,255,255,0.1);border-radius:14px;
+  padding:6px 8px;box-shadow:0 10px 30px rgba(0,0,0,0.35);
+}
+body.edunext-app .edn-pagination-pages{
+  display:inline-flex;align-items:center;gap:6px;
 }
 body.edunext-app .edn-page-button{
-  display:inline-flex;align-items:center;justify-content:center;min-width:36px;height:36px;
-  padding:0 10px;border:1px solid #dce2ea;border-radius:7px;background:#fff;color:#344054;
-  font-family:inherit;font-size:12px;font-weight:700;line-height:1;text-decoration:none;
-  cursor:pointer;transition:border-color .15s,background .15s,color .15s;
+  display:inline-flex;align-items:center;justify-content:center;min-width:34px;height:34px;
+  padding:0 10px;border:1px solid rgba(255,255,255,0.08);border-radius:9px;
+  background:rgba(255,255,255,0.04);color:#CBD5E1;
+  font-family:inherit;font-size:13px;font-weight:600;line-height:1;text-decoration:none;
+  cursor:pointer;transition:border-color .2s,background .2s,color .2s,transform .2s;
+  user-select:none;
 }
 body.edunext-app .edn-page-button:hover:not(:disabled):not(.is-current){
-  border-color:#0F766E;background:#f4f7ff;color:#0F766E;
+  border-color:rgba(45,212,191,0.4);background:rgba(45,212,191,0.12);color:#2DD4BF;
+  transform:translateY(-1px);
 }
 body.edunext-app .edn-page-button.is-current{
-  border-color:#0F766E;background:#0F766E;color:#fff;cursor:default;
+  border-color:#2DD4BF;background:linear-gradient(135deg,#0D9488 0%,#0F766E 100%);
+  color:#FFFFFF;cursor:default;box-shadow:0 0 16px rgba(45,212,191,0.35);
+  font-weight:700;
 }
-body.edunext-app .edn-page-button:disabled{opacity:.4;cursor:not-allowed}
-body.edunext-app .edn-page-button:focus-visible{outline:3px solid rgba(36,87,214,.22);outline-offset:2px}
+body.edunext-app .edn-page-button:disabled{
+  opacity:.35;cursor:not-allowed;pointer-events:none;background:transparent;
+  border-color:rgba(255,255,255,0.04);color:#64748B;
+}
+body.edunext-app .edn-page-button:focus-visible{
+  outline:2px solid #2DD4BF;outline-offset:2px;
+}
+body.edunext-app .edn-pagination-ellipsis{
+  display:inline-flex;align-items:center;justify-content:center;min-width:24px;height:34px;
+  color:#64748B;font-size:14px;font-weight:700;user-select:none;letter-spacing:0.05em;
+}
+body.edunext-app .edn-pagination-mobile-info{
+  display:none;align-items:center;justify-content:center;padding:0 12px;height:34px;
+  font-size:12.5px;font-weight:600;color:#CBD5E1;white-space:nowrap;
+}
 body.edunext-app .edn-domain-page .edn-pagination{margin-top:30px}
 body.edunext-app .edn-home-page .edn-pagination{border-top:0;padding-top:6px}
 body.edunext-app .edn-course-catalog-page #course-pagination:empty{display:none}
-@media(max-width:760px){
-  body.edunext-app .edn-pagination{align-items:center;flex-direction:column;gap:10px}
-  body.edunext-app .edn-pagination-controls{justify-content:center;width:100%;gap:4px}
-  body.edunext-app .edn-page-button{min-width:32px;height:34px;padding:0 8px}
-}
-@media(max-width:420px){
-  body.edunext-app .edn-pagination-controls{gap:3px}
-  body.edunext-app .edn-page-button{min-width:29px;height:32px;padding:0 6px;font-size:11px}
+@media(max-width:600px){
+  body.edunext-app .edn-pagination-pages{display:none}
+  body.edunext-app .edn-pagination-mobile-info{display:inline-flex}
+  body.edunext-app .edn-pagination-controls{gap:8px;padding:5px 8px;width:auto}
+  body.edunext-app .edn-page-button{min-width:32px;height:32px;padding:0 10px;font-size:12px}
 }
 
 

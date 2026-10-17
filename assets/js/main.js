@@ -202,8 +202,50 @@ const F0=()=>({q:'',cat:'',domainId:'',topic:'',sort:'name',page:1});
 const paginationMarkup=(area,current,total,label='mục')=>{
   if(total<=1)return '';
   const pageButton=(page,text,active=false,disabled=false)=>'<button type="button" class="edn-page-button'+(active?' is-current':'')+'" data-a="page-change" data-v="'+esc(area)+','+page+'" aria-label="Trang '+page+'"'+(active?' aria-current="page"':'')+(disabled?' disabled':'')+'>'+text+'</button>';
-  const numbered=Array.from({length:total},(_,index)=>index+1).map(page=>pageButton(page,String(page),page===current,false)).join('');
-  return '<nav class="edn-pagination" aria-label="Phân trang '+esc(label)+'"><div class="edn-pagination-controls">'+pageButton(Math.max(1,current-1),'‹ Trước',false,current<=1)+numbered+pageButton(Math.min(total,current+1),'Sau ›',false,current>=total)+'</div></nav>';
+  const ellipsisSpan='<span class="edn-pagination-ellipsis" aria-hidden="true">…</span>';
+
+  let pageItems=[];
+  if(total<=6){
+    for(let i=1;i<=total;i++) pageItems.push(i);
+  }else{
+    if(current<=3){
+      const end=current===3?4:3;
+      for(let i=1;i<=end;i++) pageItems.push(i);
+      pageItems.push('...');
+      pageItems.push(total);
+    }else if(current>=total-2){
+      pageItems.push(1);
+      pageItems.push('...');
+      const start=current===total-2?total-3:total-2;
+      for(let i=start;i<=total;i++) pageItems.push(i);
+    }else{
+      pageItems.push(1);
+      pageItems.push('...');
+      pageItems.push(current-1);
+      pageItems.push(current);
+      pageItems.push(current+1);
+      pageItems.push('...');
+      pageItems.push(total);
+    }
+  }
+
+  const numberedHtml=pageItems.map(item=>{
+    if(item==='...') return ellipsisSpan;
+    return pageButton(item,String(item),item===current,false);
+  }).join('');
+
+  const prevBtn=pageButton(Math.max(1,current-1),'‹ Trước',false,current<=1);
+  const nextBtn=pageButton(Math.min(total,current+1),'Sau ›',false,current>=total);
+  const mobileIndicator='<span class="edn-pagination-mobile-info" aria-label="Trang '+current+' trên '+total+'">Trang '+current+' / '+total+'</span>';
+
+  return '<nav class="edn-pagination" aria-label="Phân trang '+esc(label)+'">'+
+    '<div class="edn-pagination-controls">'+
+      prevBtn+
+      '<div class="edn-pagination-pages">'+numberedHtml+'</div>'+
+      mobileIndicator+
+      nextBtn+
+    '</div>'+
+  '</nav>';
 };
 const CART_STORAGE_KEY='edunext-cart-v1';
 let cartIds=(()=>{
