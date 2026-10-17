@@ -519,7 +519,7 @@ const home=()=>{
       '<div class="wrap edn-ziro-wrapper">'+
         '<div class="edn-ziro-content">'+
           '<h1 class="edn-ziro-headline">'+
-            'Khám phá lộ trình chuẩn.<br>'+
+            '<span class="edn-ziro-headline-primary">Khám phá lộ trình chuẩn.</span>'+
             '<span class="edn-ziro-gradient-text">Nâng tầm sự nghiệp số.</span>'+
           '</h1>'+
           '<p class="edn-ziro-paragraph">'+
