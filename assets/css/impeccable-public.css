@@ -8724,7 +8724,7 @@ body.edunext-app .edn-udemy-subnav-cta:hover {
   border-color: rgba(45, 212, 191, 0.35) !important;
 }
 .edn-udemy-hero-content {
-  padding: 44px 44px 40px !important;
+  padding: 36px 40px !important;
   display: flex !important;
   flex-direction: column !important;
   justify-content: center !important;
@@ -8733,7 +8733,7 @@ body.edunext-app .edn-udemy-subnav-cta:hover {
   display: flex !important;
   align-items: center !important;
   gap: 12px !important;
-  margin-bottom: 18px !important;
+  margin-bottom: 16px !important;
 }
 .edn-udemy-badge-featured {
   display: inline-block !important;
@@ -8755,7 +8755,7 @@ body.edunext-app .edn-udemy-subnav-cta:hover {
   font-weight: 800 !important;
   line-height: 1.3 !important;
   letter-spacing: -0.02em !important;
-  margin: 0 0 16px !important;
+  margin: 0 0 14px !important;
 }
 .edn-udemy-hero-title a {
   color: #FFFFFF !important;
@@ -8769,13 +8769,13 @@ body.edunext-app .edn-udemy-subnav-cta:hover {
   font-size: 15px !important;
   line-height: 1.65 !important;
   color: #CBD5E1 !important;
-  margin: 0 0 28px !important;
+  margin: 0 0 20px !important;
 }
 .edn-udemy-author-info {
   display: flex !important;
   align-items: center !important;
   gap: 14px !important;
-  margin-top: auto !important;
+  margin-top: 0 !important;
 }
 .edn-udemy-author-avatar {
   width: 44px !important;
@@ -8797,9 +8797,12 @@ body.edunext-app .edn-udemy-subnav-cta:hover {
 .edn-udemy-hero-media {
   position: relative !important;
   overflow: hidden !important;
-  min-height: 340px !important;
+  height: 100% !important;
+  min-height: 0 !important;
 }
 .edn-udemy-hero-media img {
+  position: absolute !important;
+  inset: 0 !important;
   width: 100% !important;
   height: 100% !important;
   object-fit: cover !important;
@@ -8967,23 +8970,55 @@ body.edunext-app .edn-udemy-subnav-cta:hover {
 }
 .edn-udemy-card-split .edn-udemy-card-media {
   width: 50% !important;
+  position: relative !important;
   aspect-ratio: auto !important;
-  min-height: 240px !important;
+  min-height: 0 !important;
+  height: 100% !important;
+}
+.edn-udemy-card-split .edn-udemy-card-media img {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
 }
 .edn-udemy-card-split .edn-udemy-card-body {
   width: 50% !important;
-  padding: 28px !important;
+  padding: 24px 28px !important;
+  display: flex !important;
+  flex-direction: column !important;
   justify-content: center !important;
 }
 .edn-udemy-card-split .edn-udemy-card-title {
-  font-size: 20px !important;
+  font-size: 19px !important;
   line-height: 1.35 !important;
+  margin: 0 0 10px !important;
 }
-.edn-udemy-card-excerpt {
-  font-size: 14px !important;
-  line-height: 1.6 !important;
+.edn-udemy-card-split .edn-udemy-card-excerpt {
+  font-size: 13.5px !important;
+  line-height: 1.55 !important;
   color: #94A3B8 !important;
-  margin: 0 0 18px !important;
+  margin: 0 0 14px !important;
+}
+.edn-udemy-card-split .edn-udemy-card-meta {
+  margin-top: 0 !important;
+}
+
+/* Vertical Sub-hero Card (AutoCAD 2D - Ảnh 2 phải) */
+.edn-udemy-subhero-grid .edn-udemy-card:not(.edn-udemy-card-split) .edn-udemy-card-media {
+  aspect-ratio: 16 / 9 !important;
+}
+.edn-udemy-subhero-grid .edn-udemy-card:not(.edn-udemy-card-split) .edn-udemy-card-body {
+  padding: 20px 24px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+}
+.edn-udemy-subhero-grid .edn-udemy-card:not(.edn-udemy-card-split) .edn-udemy-card-title {
+  margin-bottom: 8px !important;
+}
+.edn-udemy-subhero-grid .edn-udemy-card:not(.edn-udemy-card-split) .edn-udemy-card-meta {
+  margin-top: 0 !important;
 }
 
 /* Promo Banner Card (Ảnh 4) */
@@ -9053,12 +9088,23 @@ body.edunext-app .edn-udemy-subnav-cta:hover {
   .edn-udemy-banner-promo {
     grid-template-columns: 1fr !important;
   }
+  .edn-udemy-hero-media {
+    aspect-ratio: 16 / 9 !important;
+    height: auto !important;
+    min-height: 220px !important;
+  }
   .edn-udemy-card-split {
     flex-direction: column !important;
   }
-  .edn-udemy-card-split .edn-udemy-card-media,
+  .edn-udemy-card-split .edn-udemy-card-media {
+    width: 100% !important;
+    aspect-ratio: 16 / 9 !important;
+    height: auto !important;
+    min-height: 200px !important;
+  }
   .edn-udemy-card-split .edn-udemy-card-body {
     width: 100% !important;
+    padding: 24px !important;
   }
   .edn-udemy-articles-grid {
     grid-template-columns: repeat(2, 1fr) !important;
