@@ -27,9 +27,6 @@
   <rect width="1280" height="720" fill="url(#c_orb)" />
   <rect width="1280" height="720" fill="url(#c_grid)" />
 
-  <!-- Outer Neon Border Frame -->
-  <rect x="24" y="24" width="1232" height="672" rx="28" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1.5" />
-  <rect x="24" y="24" width="1232" height="672" rx="28" fill="none" stroke="#a855f7" stroke-width="1" stroke-dasharray="16 12" opacity="0.3" />
 
   <!-- Thematic Right-Hand Diagram (Cyber Tech Isometric Schematics) -->
   <g transform="translate(860, 240)">

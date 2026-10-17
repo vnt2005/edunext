@@ -251,9 +251,6 @@ function generateCourseSvg(course) {
   <rect width="1280" height="720" fill="url(#c_orb)" />
   <rect width="1280" height="720" fill="url(#c_grid)" />
 
-  <!-- Outer Neon Border Frame -->
-  <rect x="24" y="24" width="1232" height="672" rx="28" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1.5" />
-  <rect x="24" y="24" width="1232" height="672" rx="28" fill="none" stroke="${p.accent}" stroke-width="1" stroke-dasharray="16 12" opacity="0.3" />
 
   <!-- Thematic Right-Hand Diagram (Cyber Tech Isometric Schematics) -->
   <g transform="translate(860, 240)">
@@ -407,8 +404,6 @@ function generateLessonSvg(course, lesson, index) {
   <rect width="960" height="540" fill="url(#l_nebula)" />
   <rect width="960" height="540" fill="url(#l_grid)" />
 
-  <!-- Outer Glass Frame -->
-  <rect x="20" y="20" width="920" height="500" rx="20" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1.5" />
 
   <!-- Right Schematic Art -->
   <g transform="translate(680, 180)">
@@ -531,3 +526,4 @@ function main() {
 }
 
 main();
+
