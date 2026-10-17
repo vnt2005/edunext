@@ -12143,5 +12143,137 @@ body.edunext-app .edn-im-cta {
   }
 }
 
+/* ==========================================================================
+   Section N: Modern Glassmorphic Responsive Pagination
+   ========================================================================== */
+body.edunext-app .edn-pagination {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  margin: 32px 0 16px !important;
+  padding: 16px 0 0 !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+body.edunext-app .edn-pagination-controls {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  flex-wrap: nowrap !important;
+  background: rgba(14, 18, 38, 0.65) !important;
+  backdrop-filter: blur(16px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 14px !important;
+  padding: 6px 8px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+}
+
+body.edunext-app .edn-pagination-pages {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+}
+
+body.edunext-app .edn-page-button {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-width: 34px !important;
+  height: 34px !important;
+  padding: 0 10px !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 9px !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+  color: #CBD5E1 !important;
+  font-family: inherit !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  line-height: 1 !important;
+  text-decoration: none !important;
+  cursor: pointer !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  user-select: none !important;
+}
+
+body.edunext-app .edn-page-button:hover:not(:disabled):not(.is-current) {
+  border-color: rgba(45, 212, 191, 0.4) !important;
+  background: rgba(45, 212, 191, 0.12) !important;
+  color: #2DD4BF !important;
+  transform: translateY(-1px) !important;
+}
+
+body.edunext-app .edn-page-button.is-current {
+  border-color: #2DD4BF !important;
+  background: linear-gradient(135deg, #0D9488 0%, #0F766E 100%) !important;
+  color: #FFFFFF !important;
+  cursor: default !important;
+  box-shadow: 0 0 16px rgba(45, 212, 191, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+  font-weight: 700 !important;
+  transform: none !important;
+}
+
+body.edunext-app .edn-page-button:disabled {
+  opacity: 0.35 !important;
+  cursor: not-allowed !important;
+  pointer-events: none !important;
+  background: transparent !important;
+  border-color: rgba(255, 255, 255, 0.04) !important;
+  color: #64748B !important;
+}
+
+body.edunext-app .edn-page-button:focus-visible {
+  outline: 2px solid #2DD4BF !important;
+  outline-offset: 2px !important;
+}
+
+body.edunext-app .edn-pagination-ellipsis {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-width: 24px !important;
+  height: 34px !important;
+  color: #64748B !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  user-select: none !important;
+  letter-spacing: 0.05em !important;
+}
+
+body.edunext-app .edn-pagination-mobile-info {
+  display: none !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 12px !important;
+  height: 34px !important;
+  font-size: 12.5px !important;
+  font-weight: 600 !important;
+  color: #CBD5E1 !important;
+  white-space: nowrap !important;
+}
+
+@media (max-width: 600px) {
+  body.edunext-app .edn-pagination-pages {
+    display: none !important;
+  }
+  body.edunext-app .edn-pagination-mobile-info {
+    display: inline-flex !important;
+  }
+  body.edunext-app .edn-pagination-controls {
+    gap: 8px !important;
+    padding: 5px 8px !important;
+    width: auto !important;
+  }
+  body.edunext-app .edn-page-button {
+    min-width: 32px !important;
+    height: 32px !important;
+    padding: 0 10px !important;
+    font-size: 12px !important;
+  }
+}
+
+
 
 
