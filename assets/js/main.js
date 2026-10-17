@@ -1153,12 +1153,10 @@ const detail=id=>{
               : '<a class="btn btn-p w edn-btn-big" href="#/checkout/'+esc(id)+'">Mua ngay với giá ưu đãi</a><button class="btn btn-g w" type="button" data-a="cart-add" data-v="'+esc(id)+'">'+cartIconMarkup+' Thêm vào giỏ hàng</button>')+
             '<button class="btn btn-subtle w" type="button" data-a="course-player" data-v="'+esc(id)+',0">Học thử bài giảng miễn phí</button>'+
           '</div>'+
-          '<div class="edn-course-includes">'+
-            '<strong>Khóa học bao gồm:</strong>'+
-            '<span>'+checkIcon+' '+c.L.length+' bài giảng video chất lượng cao</span>'+
-            '<span>'+checkIcon+' Tài nguyên, code mẫu & cheat sheet</span>'+
-            '<span>'+checkIcon+' Quyền truy cập trọn đời trên mọi thiết bị</span>'+
-            '<span>'+checkIcon+' Chứng chỉ số chính thức khi hoàn thành</span>'+
+          '<div class="edn-course-includes-compact">'+
+            '<span>'+checkIcon+' '+c.L.length+' bài video HD</span>'+
+            '<span>'+checkIcon+' Quyền học trọn đời</span>'+
+            '<span>'+checkIcon+' Cấp chứng chỉ số</span>'+
           '</div>'+
         '</div>'+
       '</aside>'+
@@ -1169,6 +1167,16 @@ const detail=id=>{
         '<h2>Bạn sẽ học được gì sau khóa học?</h2>'+
         '<div class="edn-course-outcomes-grid">'+
           outcomes.map(item=>'<div class="edn-course-outcome">'+checkIcon+'<p>'+esc(item)+'</p></div>').join('')+
+        '</div>'+
+      '</section>'+
+
+      '<section class="edn-course-includes-full-section">'+
+        '<h2>Khóa học bao gồm những gì?</h2>'+
+        '<div class="edn-course-includes-grid">'+
+          '<div class="edn-course-include-card">'+checkIcon+'<div><strong>'+c.L.length+' bài giảng video chất lượng cao</strong><p>Nội dung cô đọng, biên soạn thực tế và cập nhật liên tục.</p></div></div>'+
+          '<div class="edn-course-include-card">'+checkIcon+'<div><strong>Tài nguyên, code mẫu & cheat sheet</strong><p>Tải toàn bộ mã nguồn bài giảng, slide tóm tắt và bài tập thực hành.</p></div></div>'+
+          '<div class="edn-course-include-card">'+checkIcon+'<div><strong>Quyền truy cập trọn đời trên mọi thiết bị</strong><p>Học tập linh hoạt trên máy tính, máy tính bảng và điện thoại mọi lúc.</p></div></div>'+
+          '<div class="edn-course-include-card">'+checkIcon+'<div><strong>Chứng chỉ số chính thức khi hoàn thành</strong><p>Chứng chỉ định danh có mã xác thực hệ thống để bổ sung vào hồ sơ.</p></div></div>'+
         '</div>'+
       '</section>'+
 
