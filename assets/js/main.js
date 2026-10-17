@@ -92,22 +92,54 @@ const GROUP_IMAGES = {
   'du-lich-dich-vu': 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&q=80&w=800'
 };
 
+const resolveAssetUrl = (url) => {
+  if (!url) return '';
+  if (/^https?:\/\//i.test(url) || url.startsWith('data:')) return url;
+  const base = String(CFG.themeUri || '').replace(/\/+$/, '');
+  const clean = String(url).replace(/^\/+/, '');
+  return base ? `${base}/${clean}` : clean;
+};
+
 const getCourseImage = (c) => {
   if (!c) return 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=800';
-  if (COURSE_IMAGES[c.id]) return COURSE_IMAGES[c.id];
-  if (c.domainId && DOMAIN_IMAGES[c.domainId]) return DOMAIN_IMAGES[c.domainId];
-  return 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=800';
+  if (c.image) return resolveAssetUrl(c.image);
+  if (COURSE_IMAGES[c.id]) return resolveAssetUrl(COURSE_IMAGES[c.id]);
+  if (c.domainId && DOMAIN_IMAGES[c.domainId]) return resolveAssetUrl(DOMAIN_IMAGES[c.domainId]);
+  return resolveAssetUrl('assets/images/courses/' + c.id + '.svg');
 };
 
 const getDomainImage = (d) => {
-  if (d && DOMAIN_IMAGES[d.id]) return DOMAIN_IMAGES[d.id];
-  return 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=800';
+  if (!d) return resolveAssetUrl('assets/images/domains/lap-trinh-va-phat-trien-phan-mem.jpg');
+  if (d.image) return resolveAssetUrl(d.image);
+  const slug = d.slug || (d.id ? d.id.replace('field-', '') : '');
+  if (slug) return resolveAssetUrl('assets/images/domains/' + slug + '.jpg');
+  if (DOMAIN_IMAGES[d.id]) return resolveAssetUrl(DOMAIN_IMAGES[d.id]);
+  return resolveAssetUrl('assets/images/domains/lap-trinh-va-phat-trien-phan-mem.jpg');
+};
+
+const getLessonImage = (lesson, c, index = 0) => {
+  if (lesson && lesson.image) return resolveAssetUrl(lesson.image);
+  if (c && c.id) {
+    const order = (lesson && lesson.order) || (index + 1);
+    return resolveAssetUrl('assets/images/lessons/' + c.id + '-lesson-' + order + '.svg');
+  }
+  return getCourseImage(c);
 };
 
 const getGroupImage = (group) => {
-  if (group && GROUP_IMAGES[group.slug]) return GROUP_IMAGES[group.slug];
-  if (group && group.domains && group.domains[0] && DOMAIN_IMAGES[group.domains[0].id]) return DOMAIN_IMAGES[group.domains[0].id];
+  if (group && GROUP_IMAGES[group.slug]) return resolveAssetUrl(GROUP_IMAGES[group.slug]);
+  if (group && group.domains && group.domains[0] && DOMAIN_IMAGES[group.domains[0].id]) return resolveAssetUrl(DOMAIN_IMAGES[group.domains[0].id]);
   return 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=800';
+};
+
+const slugify=value=>String(value||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/g,'d').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+
+const getBlogImage = (article) => {
+  if (!article) return '';
+  if (article.image) return resolveAssetUrl(article.image);
+  const slug = slugify(article.title || '');
+  if (slug) return resolveAssetUrl('assets/images/blog/' + slug + '.jpg');
+  return '';
 };
 const mapCourse=(raw,videoCounts={})=>{
   const lessons=Array.isArray(raw.lessons)?raw.lessons:[];
@@ -153,12 +185,25 @@ const mapCourse=(raw,videoCounts={})=>{
     previewVideoUrl:mediaValid(raw.previewVideoUrl||'')?String(raw.previewVideoUrl||''):'',
     s:[],r:null,n:null,lvl:level,p:displayPrice,o:displayOriginalPrice,demoPrice:isDemoPrice,
     h:raw.durationHours,tag:ready?'Đã xuất bản':'Đang hoàn thiện nội dung',
+    image:raw.image||'',
     c:'',published:raw.published===true,contentStatus:raw.contentStatus||'outline',
     completionCount:Number(raw.completionRule&&raw.completionRule.requiredCount)||L.length,
     ready
   };
 };
-const BLOG_ARTICLES=[{"tag":"Lập trình","title":"Học C# bằng cách lần theo dữ liệu, không phải học thuộc cú pháp","excerpt":"Có thể bạn đã xem khá nhiều video C# nhưng khi mở Visual Studio lên vẫn lúng túng. Một cách học dễ bám hơn là theo dõi dữ liệu đi qua từng dòng chương trình, rồi tự thay đổi bài toán.","time":"7 phút đọc","course":"csharp","image":"https://images.unsplash.com/photo-1618477247222-acbdb0e159b3?auto=format&fit=crop&q=82&w=1200"},{"tag":"ASP.NET Core","title":"Xây dựng REST API: bắt đầu từ một endpoint chạy đúng","excerpt":"Routing, controller, dependency injection và cơ sở dữ liệu dễ thành một mớ khái niệm nếu học cùng lúc. Hãy tạo một endpoint nhỏ, kiểm tra kết quả rồi mới nối thêm từng lớp.","time":"8 phút đọc","course":"api","image":"https://images.unsplash.com/photo-1637044527362-5ac1dc1d7446?auto=format&fit=crop&q=82&w=1200"},{"tag":"AutoCAD 2D","title":"Bản vẽ AutoCAD rõ ràng bắt đầu từ đơn vị và layer","excerpt":"Trước khi vẽ nhanh, hãy làm cho bản vẽ đúng đơn vị, dễ đọc và có thể in ra đúng tỷ lệ. Vài thiết lập đầu buổi sẽ giúp bạn tránh nhiều lỗi ở cuối.","time":"7 phút đọc","course":"autocad-2d-cho-ban-ve-ky-thuat","image":"https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&q=82&w=1200"},{"tag":"Cơ sở dữ liệu","title":"Trước khi tối ưu SQL, hãy hỏi ba câu về dữ liệu","excerpt":"Truy vấn chậm chưa chắc chỉ vì thiếu index. Hãy bắt đầu từ kết quả mong muốn, quan hệ giữa các bảng và cách ứng dụng thực sự sử dụng dữ liệu.","time":"6 phút đọc","course":"sql-server-va-sql-tu-co-ban-den-thuc-hanh","image":"https://worldbank.scene7.com/is/image/worldbankprod/shutterstock_2588443437?qlt=88&resMode=sharp2"},{"tag":"AI & Machine Learning","title":"Dùng AI để học code mà không giao luôn bài tập cho AI","excerpt":"AI có thể giải thích thông báo lỗi và đề xuất cách kiểm tra. Nhưng nếu nhận nguyên lời giải rồi chép vào dự án, bạn rất khó biết mình đã hiểu đến đâu.","time":"6 phút đọc","course":"xay-dung-ung-dung-voi-generative-ai-va-llm","image":"https://worldbank.scene7.com/is/image/worldbankprod/shutterstock_2588443437?qlt=88&resMode=sharp2"},{"tag":"UI/UX","title":"Một giao diện dễ dùng không bắt đầu từ màu sắc","excerpt":"Trước khi chọn bảng màu hay hiệu ứng, hãy xác định người dùng đến để làm việc gì, họ cần thông tin nào và bước tiếp theo có dễ nhận ra không.","time":"7 phút đọc","course":"design","image":"https://miro.medium.com/v2/resize:fit:1400/1*ezbw1Z06SzRSOhShXfwOTg.png"},{"tag":"SEO","title":"Viết bài SEO mà không biến nội dung thành danh sách từ khóa","excerpt":"Một bài viết tốt bắt đầu từ câu hỏi thật của người đọc. Từ khóa giúp bạn hiểu chủ đề cần nói, chứ không thay thế việc giải thích rõ ràng và có ích.","time":"6 phút đọc","course":"viet-noi-dung-seo-tu-nghien-cuu-den-xuat-ban","image":"https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?auto=format&fit=crop&q=82&w=1200"},{"tag":"Digital Marketing","title":"Đọc số liệu quảng cáo: lượt nhấp chưa phải kết quả cuối cùng","excerpt":"Một chiến dịch có nhiều lượt nhấp chưa chắc tạo ra khách hàng. Cần nhìn tiếp trang đích, chuyển đổi và chi phí để hiểu quảng cáo đang giúp doanh nghiệp đến đâu.","time":"7 phút đọc","course":"marketing","image":"https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=82&w=1200"},{"tag":"Tiếng Anh IT","title":"Đọc tài liệu tiếng Anh khi vốn từ chuyên ngành còn ít","excerpt":"Không cần dịch mọi từ mới trước khi đọc. Bắt đầu bằng mục tiêu nhỏ, dùng tiêu đề và ví dụ để đoán ý, rồi chỉ tra những từ thật sự cản trở việc hiểu.","time":"5 phút đọc","course":"english","image":"https://images.unsplash.com/photo-1672248652488-73f8a07e3307?auto=format&fit=crop&q=82&w=1200"},{"tag":"Mạng máy tính","title":"Khi mạng lỗi, đừng đổi thiết lập liên tục: hãy kiểm tra theo thứ tự","excerpt":"Kết nối chập chờn có thể đến từ nhiều nguyên nhân khác nhau. Kiểm tra từ kết nối vật lý đến IP, gateway và DNS sẽ giúp bạn khoanh vùng thay vì thử ngẫu nhiên.","time":"6 phút đọc","course":"mang-may-tinh-tu-nen-tang-den-cau-hinh","image":"https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&q=82&w=1200"},{"tag":"Kỹ năng dự án","title":"Dự án đầu tiên nên nhỏ đến mức nào?","excerpt":"Đừng bắt đầu bằng một danh sách tính năng dài. Chọn một vấn đề, một nhóm người dùng và một luồng hoàn chỉnh; sau đó mở rộng khi phiên bản đầu đã chạy ổn.","time":"6 phút đọc","course":"csharp","image":"https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=82&w=1200"}];
+const BLOG_ARTICLES=[
+  {"tag":"Lập trình","title":"Học C# bằng cách lần theo dữ liệu, không phải học thuộc cú pháp","excerpt":"Có thể bạn đã xem khá nhiều video C# nhưng khi mở Visual Studio lên vẫn lúng túng. Một cách học dễ bám hơn là theo dõi dữ liệu đi qua từng dòng chương trình, rồi tự thay đổi bài toán.","time":"7 phút đọc","course":"csharp","image":"assets/images/blog/hoc-c-bang-cach-lan-theo-du-lieu-khong-phai-hoc-thuoc-cu-phap.jpg"},
+  {"tag":"ASP.NET Core","title":"Xây dựng REST API: bắt đầu từ một endpoint chạy đúng","excerpt":"Routing, controller, dependency injection và cơ sở dữ liệu dễ thành một mớ khái niệm nếu học cùng lúc. Hãy tạo một endpoint nhỏ, kiểm tra kết quả rồi mới nối thêm từng lớp.","time":"8 phút đọc","course":"api","image":"assets/images/blog/xay-dung-rest-api-bat-dau-tu-mot-endpoint-chay-dung.jpg"},
+  {"tag":"AutoCAD 2D","title":"Bản vẽ AutoCAD rõ ràng bắt đầu từ đơn vị và layer","excerpt":"Trước khi vẽ nhanh, hãy làm cho bản vẽ đúng đơn vị, dễ đọc và có thể in ra đúng tỷ lệ. Vài thiết lập đầu buổi sẽ giúp bạn tránh nhiều lỗi ở cuối.","time":"7 phút đọc","course":"autocad-2d-cho-ban-ve-ky-thuat","image":"assets/images/blog/ban-ve-autocad-ro-rang-bat-dau-tu-don-vi-va-layer.jpg"},
+  {"tag":"Cơ sở dữ liệu","title":"Trước khi tối ưu SQL, hãy hỏi ba câu về dữ liệu","excerpt":"Truy vấn chậm chưa chắc chỉ vì thiếu index. Hãy bắt đầu từ kết quả mong muốn, quan hệ giữa các bảng và cách ứng dụng thực sự sử dụng dữ liệu.","time":"6 phút đọc","course":"sql-server-va-sql-tu-co-ban-den-thuc-hanh","image":"assets/images/blog/truoc-khi-toi-uu-sql-hay-hoi-ba-cau-ve-du-lieu.jpg"},
+  {"tag":"AI & Machine Learning","title":"Dùng AI để học code mà không giao luôn bài tập cho AI","excerpt":"AI có thể giải thích thông báo lỗi và đề xuất cách kiểm tra. Nhưng nếu nhận nguyên lời giải rồi chép vào dự án, bạn rất khó biết mình đã hiểu đến đâu.","time":"6 phút đọc","course":"xay-dung-ung-dung-voi-generative-ai-va-llm","image":"assets/images/blog/dung-ai-de-hoc-code-ma-khong-giao-luon-bai-tap-cho-ai.jpg"},
+  {"tag":"UI/UX","title":"Một giao diện dễ dùng không bắt đầu từ màu sắc","excerpt":"Trước khi chọn bảng màu hay hiệu ứng, hãy xác định người dùng đến để làm việc gì, họ cần thông tin nào và bước tiếp theo có dễ nhận ra không.","time":"7 phút đọc","course":"design","image":"assets/images/blog/mot-giao-dien-de-dung-khong-bat-dau-tu-mau-sac.jpg"},
+  {"tag":"SEO","title":"Viết bài SEO mà không biến nội dung thành danh sách từ khóa","excerpt":"Một bài viết tốt bắt đầu từ câu hỏi thật của người đọc. Từ khóa giúp bạn hiểu chủ đề cần nói, chứ không thay thế việc giải thích rõ ràng và có ích.","time":"6 phút đọc","course":"viet-noi-dung-seo-tu-nghien-cuu-den-xuat-ban","image":"assets/images/blog/viet-bai-seo-ma-khong-bien-noi-dung-thanh-danh-sach-tu-khoa.jpg"},
+  {"tag":"Digital Marketing","title":"Đọc số liệu quảng cáo: lượt nhấp chưa phải kết quả cuối cùng","excerpt":"Một chiến dịch có nhiều lượt nhấp chưa chắc tạo ra khách hàng. Cần nhìn tiếp trang đích, chuyển đổi và chi phí để hiểu quảng cáo đang giúp doanh nghiệp đến đâu.","time":"7 phút đọc","course":"marketing","image":"assets/images/blog/doc-so-lieu-quang-cao-luot-nhap-chua-phai-ket-qua-cuoi-cung.jpg"},
+  {"tag":"Tiếng Anh IT","title":"Đọc tài liệu tiếng Anh khi vốn từ chuyên ngành còn ít","excerpt":"Không cần dịch mọi từ mới trước khi đọc. Bắt đầu bằng mục tiêu nhỏ, dùng tiêu đề và ví dụ để đoán ý, rồi chỉ tra những từ thật sự cản trở việc hiểu.","time":"5 phút đọc","course":"english","image":"assets/images/blog/doc-tai-lieu-tieng-anh-khi-von-tu-chuyen-nganh-con-it.jpg"},
+  {"tag":"Mạng máy tính","title":"Khi mạng lỗi, đừng đổi thiết lập liên tục: hãy kiểm tra theo thứ tự","excerpt":"Kết nối chập chờn có thể đến từ nhiều nguyên nhân khác nhau. Kiểm tra từ kết nối vật lý đến IP, gateway và DNS sẽ giúp bạn khoanh vùng thay vì thử ngẫu nhiên.","time":"6 phút đọc","course":"mang-may-tinh-tu-nen-tang-den-cau-hinh","image":"assets/images/blog/khi-mang-loi-dung-doi-thiet-lap-lien-tuc-hay-kiem-tra-theo-thu-tu.jpg"},
+  {"tag":"Kỹ năng dự án","title":"Dự án đầu tiên nên nhỏ đến mức nào?","excerpt":"Đừng bắt đầu bằng một danh sách tính năng dài. Chọn một vấn đề, một nhóm người dùng và một luồng hoàn chỉnh; sau đó mở rộng khi phiên bản đầu đã chạy ổn.","time":"6 phút đọc","course":"csharp","image":"assets/images/blog/du-an-dau-tien-nen-nho-den-muc-nao.jpg"}
+];
 const D={users:CFG.user?[CFG.user]:[],me:CFG.user&&CFG.user.email?CFG.user.email:null,en:{},orders:Array.isArray(CFG.orders)?CFG.orders:[]};
 if(D.me){
   D.en[D.me]={};
@@ -179,8 +224,50 @@ const F0=()=>({q:'',cat:'',domainId:'',topic:'',sort:'name',page:1});
 const paginationMarkup=(area,current,total,label='mục')=>{
   if(total<=1)return '';
   const pageButton=(page,text,active=false,disabled=false)=>'<button type="button" class="edn-page-button'+(active?' is-current':'')+'" data-a="page-change" data-v="'+esc(area)+','+page+'" aria-label="Trang '+page+'"'+(active?' aria-current="page"':'')+(disabled?' disabled':'')+'>'+text+'</button>';
-  const numbered=Array.from({length:total},(_,index)=>index+1).map(page=>pageButton(page,String(page),page===current,false)).join('');
-  return '<nav class="edn-pagination" aria-label="Phân trang '+esc(label)+'"><div class="edn-pagination-controls">'+pageButton(Math.max(1,current-1),'‹ Trước',false,current<=1)+numbered+pageButton(Math.min(total,current+1),'Sau ›',false,current>=total)+'</div></nav>';
+  const ellipsisSpan='<span class="edn-pagination-ellipsis" aria-hidden="true">…</span>';
+
+  let pageItems=[];
+  if(total<=6){
+    for(let i=1;i<=total;i++) pageItems.push(i);
+  }else{
+    if(current<=3){
+      const end=current===3?4:3;
+      for(let i=1;i<=end;i++) pageItems.push(i);
+      pageItems.push('...');
+      pageItems.push(total);
+    }else if(current>=total-2){
+      pageItems.push(1);
+      pageItems.push('...');
+      const start=current===total-2?total-3:total-2;
+      for(let i=start;i<=total;i++) pageItems.push(i);
+    }else{
+      pageItems.push(1);
+      pageItems.push('...');
+      pageItems.push(current-1);
+      pageItems.push(current);
+      pageItems.push(current+1);
+      pageItems.push('...');
+      pageItems.push(total);
+    }
+  }
+
+  const numberedHtml=pageItems.map(item=>{
+    if(item==='...') return ellipsisSpan;
+    return pageButton(item,String(item),item===current,false);
+  }).join('');
+
+  const prevBtn=pageButton(Math.max(1,current-1),'‹ Trước',false,current<=1);
+  const nextBtn=pageButton(Math.min(total,current+1),'Sau ›',false,current>=total);
+  const mobileIndicator='<span class="edn-pagination-mobile-info" aria-label="Trang '+current+' trên '+total+'">Trang '+current+' / '+total+'</span>';
+
+  return '<nav class="edn-pagination" aria-label="Phân trang '+esc(label)+'">'+
+    '<div class="edn-pagination-controls">'+
+      prevBtn+
+      '<div class="edn-pagination-pages">'+numberedHtml+'</div>'+
+      mobileIndicator+
+      nextBtn+
+    '</div>'+
+  '</nav>';
 };
 const CART_STORAGE_KEY='edunext-cart-v1';
 let cartIds=(()=>{
@@ -316,7 +403,6 @@ const card=c=>{
 let homeFilterTab='all';
 let initialServerHomeHtml='';
 const nf=()=>'<div class="wrap page"><div class="empty" role="status"><h2>Không tìm thấy nội dung này</h2><p>Liên kết có thể đã thay đổi hoặc nội dung chưa được xuất bản.</p><a href="#/">Về trang chủ</a></div></div>';
-const slugify=value=>String(value||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/g,'d').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
 
 const home=()=>{
   if(initialServerHomeHtml)return initialServerHomeHtml;
@@ -408,7 +494,7 @@ const home=()=>{
   const articles=BLOG_ARTICLES.slice(0,3).map((art,idx)=>
     '<article class="edn-journal-card group'+(idx===0?' is-lead':'')+'">'+
       '<a class="edn-journal-thumb" href="#/blog/'+slugify(art.title)+'">'+
-        '<img src="'+esc(art.image||'')+'" alt="" loading="lazy">'+
+        '<img src="'+esc(getBlogImage(art))+'" alt="" loading="lazy">'+
         '<span class="edn-journal-tag">'+esc(art.tag)+'</span>'+
       '</a>'+
       '<div class="edn-journal-body">'+
@@ -433,7 +519,7 @@ const home=()=>{
       '<div class="wrap edn-ziro-wrapper">'+
         '<div class="edn-ziro-content">'+
           '<h1 class="edn-ziro-headline">'+
-            'Khám phá lộ trình chuẩn.<br>'+
+            '<span class="edn-ziro-headline-primary">Khám phá lộ trình chuẩn.</span>'+
             '<span class="edn-ziro-gradient-text">Nâng tầm sự nghiệp số.</span>'+
           '</h1>'+
           '<p class="edn-ziro-paragraph">'+
@@ -749,36 +835,97 @@ const courses=()=>{
     '<div id="course-pagination"></div>'+
   '</div>';
 };
-const domainsPage=()=>{
-  const groups=domainGroups();
-  const arrowIcon='<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M8 3l5 5-5 5"></path></svg>';
-  return '<div class="wrap page edn-domain-page">'+
-    '<div class="edn-page-intro"><span class="edn-hero-badge"><span class="edn-badge-dot"></span> KHÁM PHÁ THEO LĨNH VỰC</span><h1>50 Chuyên ngành đào tạo</h1><p>Tìm đúng hướng đi từ công nghệ thông tin, thiết kế, marketing, quản trị kinh doanh đến ngoại ngữ và kỹ năng số.</p></div>'+
-    '<div class="edn-domain-visual-grid">'+groups.map((group,index)=>{
-      const groupIds=new Set(group.domains.map(domain=>domain.id));
-      const courseCount=C.filter(course=>groupIds.has(course.domainId)).length;
-      const bgImg=getGroupImage(group);
-      return '<a class="edn-visual-domain-card" href="#/group/'+esc(group.slug)+'">'+
-        '<div class="edn-domain-card-bg"><img src="'+esc(bgImg)+'" alt="" loading="lazy"><div class="edn-domain-overlay"></div></div>'+
-        '<div class="edn-domain-card-content"><h3>'+esc(group.name)+'</h3><span>'+group.domains.length+' chuyên ngành · '+courseCount+' chương trình</span><span class="edn-domain-explore-btn">Khám phá '+arrowIcon+'</span></div>'+
-      '</a>';
-    }).join('')+'</div></div>';
+const domainCardMarkup = (domain) => {
+  const num = String(domain.number || 1).padStart(2, '0');
+  const desc = esc(domain.description || 'Chuyên ngành thực chiến chuẩn hóa theo nhu cầu thực tế.');
+  const bgImg = getDomainImage(domain);
+  const cCount = C.filter(course => course.domainId === domain.id).length;
+  const topics = (domain.topics || []).slice(0, 2).map(t => '<span class="edn-domain-topic-tag">' + esc(t) + '</span>').join('');
+  const arrowIcon = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M8 3l5 5-5 5"></path></svg>';
+
+  return '<a class="edn-visual-domain-card group" href="#/domain/' + esc(domain.slug) + '" aria-label="' + esc(domain.name) + '">' +
+    '<div class="edn-domain-card-bg">' +
+      '<img src="' + esc(bgImg) + '" alt="' + esc(domain.name) + '" loading="lazy">' +
+      '<div class="edn-domain-overlay"></div>' +
+    '</div>' +
+    '<div class="edn-domain-card-content">' +
+      '<div class="edn-domain-card-top">' +
+        '<span class="edn-domain-num-pill"><span class="edn-badge-dot"></span> LĨNH VỰC ' + num + '</span>' +
+        (topics ? '<div class="edn-domain-tags">' + topics + '</div>' : '') +
+      '</div>' +
+      '<h3>' + esc(domain.name) + '</h3>' +
+      '<p class="edn-domain-desc">' + desc + '</p>' +
+      '<div class="edn-domain-card-footer">' +
+        '<span class="edn-domain-course-count"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 3h12v10H2zM5 6h6M5 9h4"></path></svg> ' + cCount + ' khóa học</span>' +
+        '<span class="edn-domain-explore-btn">Xem chi tiết ' + arrowIcon + '</span>' +
+      '</div>' +
+    '</div>' +
+  '</a>';
 };
-const groupDetail=slug=>{
-  const group=domainGroups().find(item=>item.slug===slug);
-  if(!group)return nf();
-  const domainIds=new Set(group.domains.map(domain=>domain.id));
-  const courseCount=C.filter(course=>domainIds.has(course.domainId)).length;
-  const arrowIcon='<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M8 3l5 5-5 5"></path></svg>';
-  return '<div class="wrap page edn-domain-detail edn-domain-group-detail"><nav class="edn-breadcrumb" aria-label="Đường dẫn"><a href="#/">Trang chủ</a><span>›</span><a href="#/categories">Nhóm lĩnh vực</a><span>›</span><span>'+esc(group.name)+'</span></nav>'+
-    '<section class="edn-domain-programs"><div class="edn-domain-visual-grid">'+group.domains.map(domain=>{
-      const cCount=C.filter(course=>course.domainId===domain.id).length;
-      const bgImg=getDomainImage(domain);
-      return '<a class="edn-visual-domain-card" href="#/domain/'+esc(domain.slug)+'">'+
-        '<div class="edn-domain-card-bg"><img src="'+esc(bgImg)+'" alt="" loading="lazy"><div class="edn-domain-overlay"></div></div>'+
-        '<div class="edn-domain-card-content"><h3>'+esc(domain.name)+'</h3><span>'+cCount+' khóa học</span><span class="edn-domain-explore-btn">Xem chi tiết '+arrowIcon+'</span></div>'+
-      '</a>';
-    }).join('')+'</div></section></div>';
+
+const groupCardMarkup = (group) => {
+  const groupIds = new Set(group.domains.map(domain => domain.id));
+  const courseCount = C.filter(course => groupIds.has(course.domainId)).length;
+  const bgImg = getGroupImage(group);
+  const arrowIcon = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M8 3l5 5-5 5"></path></svg>';
+  const domainCount = group.domains.length;
+
+  return '<a class="edn-visual-domain-card edn-group-card group" href="#/group/' + esc(group.slug) + '" aria-label="' + esc(group.name) + '">' +
+    '<div class="edn-domain-card-bg">' +
+      '<img src="' + esc(bgImg) + '" alt="' + esc(group.name) + '" loading="lazy">' +
+      '<div class="edn-domain-overlay"></div>' +
+    '</div>' +
+    '<div class="edn-domain-card-content">' +
+      '<div class="edn-domain-card-top">' +
+        '<span class="edn-domain-num-pill"><span class="edn-badge-dot"></span> NHÓM CHUYÊN NGÀNH</span>' +
+      '</div>' +
+      '<h3>' + esc(group.name) + '</h3>' +
+      '<p class="edn-domain-desc">' + esc(group.description || '') + '</p>' +
+      '<div class="edn-domain-card-footer">' +
+        '<span class="edn-domain-course-count"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 3h12v10H2zM5 6h6M5 9h4"></path></svg> ' + domainCount + ' lĩnh vực · ' + courseCount + ' khóa học</span>' +
+        '<span class="edn-domain-explore-btn">Khám phá ' + arrowIcon + '</span>' +
+      '</div>' +
+    '</div>' +
+  '</a>';
+};
+
+let domainViewMode = 'all';
+
+const domainsPage = () => {
+  return '<div class="wrap page edn-domain-page">' +
+    '<div class="edn-page-intro">' +
+      '<span class="edn-hero-badge"><span class="edn-badge-dot"></span> KHÁM PHÁ THEO LĨNH VỰC</span>' +
+      '<h1>50 Chuyên ngành đào tạo</h1>' +
+      '<p>Tìm đúng hướng đi từ công nghệ thông tin, thiết kế, marketing, quản trị kinh doanh đến ngoại ngữ và kỹ năng số.</p>' +
+      '<div class="edn-domain-filter-pills" role="tablist">' +
+        '<button type="button" class="edn-filter-pill' + (domainViewMode === 'all' ? ' is-active' : '') + '" data-a="domain-view" data-v="all" role="tab" aria-selected="' + (domainViewMode === 'all') + '">Tất cả 50 Lĩnh vực</button>' +
+        '<button type="button" class="edn-filter-pill' + (domainViewMode === 'groups' ? ' is-active' : '') + '" data-a="domain-view" data-v="groups" role="tab" aria-selected="' + (domainViewMode === 'groups') + '">11 Nhóm chuyên ngành</button>' +
+      '</div>' +
+    '</div>' +
+    '<div class="edn-domain-visual-grid" id="edn-domains-grid">' +
+      (domainViewMode === 'all' ? DOMAINS.map(domainCardMarkup).join('') : domainGroups().map(groupCardMarkup).join('')) +
+    '</div>' +
+  '</div>';
+};
+
+const groupDetail = slug => {
+  const group = domainGroups().find(item => item.slug === slug);
+  if (!group) return nf();
+  const domainIds = new Set(group.domains.map(domain => domain.id));
+  const courseCount = C.filter(course => domainIds.has(course.domainId)).length;
+  return '<div class="wrap page edn-domain-detail edn-domain-group-detail">' +
+    '<nav class="edn-breadcrumb" aria-label="Đường dẫn"><a href="#/">Trang chủ</a><span>›</span><a href="#/categories">Nhóm lĩnh vực</a><span>›</span><span>' + esc(group.name) + '</span></nav>' +
+    '<header class="edn-domain-group-header">' +
+      '<span class="edn-hero-badge"><span class="edn-badge-dot"></span> NHÓM CHUYÊN NGÀNH</span>' +
+      '<h1>' + esc(group.name) + '</h1>' +
+      '<p>' + esc(group.description || '') + ' · ' + group.domains.length + ' chuyên ngành · ' + courseCount + ' khóa học</p>' +
+    '</header>' +
+    '<section class="edn-domain-programs">' +
+      '<div class="edn-domain-visual-grid">' +
+        group.domains.map(domainCardMarkup).join('') +
+      '</div>' +
+    '</section>' +
+  '</div>';
 };
 const domainDetail=slug=>{
   const d=DOMAINS.find(item=>item.slug===slug);
@@ -920,8 +1067,10 @@ const detail=id=>{
     const sRows = sectionLessons.map((lesson, lIdx) => {
       const globalIdx = start + lIdx;
       const durationText = (2 + ((globalIdx * 7) % 5)) + ':' + String((globalIdx * 17 + 12) % 60).padStart(2, '0');
+      const itemImg = getLessonImage(lesson, c, globalIdx);
       return '<div class="edn-udemy-lecture-row is-preview">' +
         '<div class="edn-lecture-left">' +
+          '<div class="edn-lecture-thumb-mini"><img src="' + esc(itemImg) + '" alt="" loading="lazy"></div>' +
           '<span class="edn-lecture-play-icon" aria-hidden="true">' +
             '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8" fill="currentColor"></polygon></svg>' +
           '</span>' +
@@ -1004,12 +1153,10 @@ const detail=id=>{
               : '<a class="btn btn-p w edn-btn-big" href="#/checkout/'+esc(id)+'">Mua ngay với giá ưu đãi</a><button class="btn btn-g w" type="button" data-a="cart-add" data-v="'+esc(id)+'">'+cartIconMarkup+' Thêm vào giỏ hàng</button>')+
             '<button class="btn btn-subtle w" type="button" data-a="course-player" data-v="'+esc(id)+',0">Học thử bài giảng miễn phí</button>'+
           '</div>'+
-          '<div class="edn-course-includes">'+
-            '<strong>Khóa học bao gồm:</strong>'+
-            '<span>'+checkIcon+' '+c.L.length+' bài giảng video chất lượng cao</span>'+
-            '<span>'+checkIcon+' Tài nguyên, code mẫu & cheat sheet</span>'+
-            '<span>'+checkIcon+' Quyền truy cập trọn đời trên mọi thiết bị</span>'+
-            '<span>'+checkIcon+' Chứng chỉ số chính thức khi hoàn thành</span>'+
+          '<div class="edn-course-includes-compact">'+
+            '<span>'+checkIcon+' '+c.L.length+' bài video HD</span>'+
+            '<span>'+checkIcon+' Quyền học trọn đời</span>'+
+            '<span>'+checkIcon+' Cấp chứng chỉ số</span>'+
           '</div>'+
         '</div>'+
       '</aside>'+
@@ -1020,6 +1167,16 @@ const detail=id=>{
         '<h2>Bạn sẽ học được gì sau khóa học?</h2>'+
         '<div class="edn-course-outcomes-grid">'+
           outcomes.map(item=>'<div class="edn-course-outcome">'+checkIcon+'<p>'+esc(item)+'</p></div>').join('')+
+        '</div>'+
+      '</section>'+
+
+      '<section class="edn-course-includes-full-section">'+
+        '<h2>Khóa học bao gồm những gì?</h2>'+
+        '<div class="edn-course-includes-grid">'+
+          '<div class="edn-course-include-card">'+checkIcon+'<div><strong>'+c.L.length+' bài giảng video chất lượng cao</strong><p>Nội dung cô đọng, biên soạn thực tế và cập nhật liên tục.</p></div></div>'+
+          '<div class="edn-course-include-card">'+checkIcon+'<div><strong>Tài nguyên, code mẫu & cheat sheet</strong><p>Tải toàn bộ mã nguồn bài giảng, slide tóm tắt và bài tập thực hành.</p></div></div>'+
+          '<div class="edn-course-include-card">'+checkIcon+'<div><strong>Quyền truy cập trọn đời trên mọi thiết bị</strong><p>Học tập linh hoạt trên máy tính, máy tính bảng và điện thoại mọi lúc.</p></div></div>'+
+          '<div class="edn-course-include-card">'+checkIcon+'<div><strong>Chứng chỉ số chính thức khi hoàn thành</strong><p>Chứng chỉ định danh có mã xác thực hệ thống để bổ sung vào hồ sơ.</p></div></div>'+
         '</div>'+
       '</section>'+
 
@@ -1206,6 +1363,7 @@ const learn=(id,index)=>{
   const after=i<c.lessons.length-1?'<a class="btn btn-g edn-nav-btn" href="#/learn/'+esc(id)+'/'+(i+1)+'">Bài tiếp →</a>':'';
   const final=all?'<a class="btn btn-p edn-cert-btn" href="#/cert/'+esc(id)+'">Nhận chứng chỉ tốt nghiệp 🎓</a>':'';
 
+  const lessonImg = getLessonImage(lesson, c, i);
   return '<div class="edn-classroom-shell">'+
     '<header class="edn-classroom-bar">'+
       '<div class="edn-class-bar-left"><a class="edn-exit-classroom" href="#/course/'+esc(id)+'" title="Thoát phòng học">✕ <span>Thoát</span></a><strong class="edn-class-course-title">'+esc(c.t)+'</strong></div>'+
@@ -1218,6 +1376,10 @@ const learn=(id,index)=>{
           '<div class="edn-lesson-banner">'+
             '<div><span class="edn-overline">BÀI '+(i+1)+' / '+c.lessons.length+'</span><h1>'+esc(lesson.title)+'</h1></div>'+
             '<span class="edn-lesson-status-pill '+(done?'is-done':'')+'">'+(done?'Đã hoàn thành':'Đang học')+'</span>'+
+          '</div>'+
+          '<div class="edn-lesson-illustration-box">'+
+            '<img class="edn-lesson-illustration-img" src="'+esc(lessonImg)+'" alt="'+esc(lesson.title)+'" loading="lazy">'+
+            '<div class="edn-lesson-illustration-caption"><span class="edn-lesson-ill-tag">✦ Minh họa bài học</span><span>Bài '+(i+1)+': '+esc(lesson.title)+'</span></div>'+
           '</div>'+
           '<div class="edn-classroom-tabs" role="tablist">'+
             '<button type="button" class="edn-classroom-tab is-active" data-class-tab="summary">Tóm tắt bài học</button>'+
@@ -1250,9 +1412,11 @@ const learn=(id,index)=>{
           c.lessons.map((item,k)=>{
             const isCurrent=k===i;
             const isDone=e.done.includes(k);
+            const itemImg=getLessonImage(item,c,k);
             return '<a class="edn-sidebar-lesson-row '+(isCurrent?'is-current ':'')+(isDone?'is-done':'')+'" href="#/learn/'+esc(id)+'/'+k+'">'+
-              '<span class="edn-sidebar-num">'+(isDone?'✓':String(k+1).padStart(2,'0'))+'</span>'+
+              '<div class="edn-sidebar-thumb-col"><img class="edn-sidebar-lesson-thumb" src="'+esc(itemImg)+'" alt="" loading="lazy"></div>'+
               '<div class="edn-sidebar-info"><strong>'+esc(item.title)+'</strong><small>'+(item.videoUrl?'Video HD':'Nội dung')+'</small></div>'+
+              '<span class="edn-sidebar-num">'+(isDone?'✓':String(k+1).padStart(2,'0'))+'</span>'+
             '</a>';
           }).join('')+
         '</div>'+
@@ -1430,7 +1594,7 @@ const blogPage=()=>{
   const subHeroMarkup1=subHeroArticle1
     ? '<article class="edn-udemy-card edn-udemy-card-split" data-blog-tag="'+esc(subHeroArticle1.tag)+'">'+
         '<a class="edn-udemy-card-media" href="#/blog/'+slugify(subHeroArticle1.title)+'" aria-label="Đọc bài: '+esc(subHeroArticle1.title)+'">'+
-          '<img src="'+esc(subHeroArticle1.image||'')+'" alt="'+esc(subHeroArticle1.title)+'" loading="lazy">'+
+          '<img src="'+esc(getBlogImage(subHeroArticle1))+'" alt="'+esc(subHeroArticle1.title)+'" loading="lazy">'+
         '</a>'+
         '<div class="edn-udemy-card-body">'+
           '<h3 class="edn-udemy-card-title"><a href="#/blog/'+slugify(subHeroArticle1.title)+'">'+esc(subHeroArticle1.title)+'</a></h3>'+
@@ -1444,7 +1608,7 @@ const blogPage=()=>{
   const subHeroMarkup2=subHeroArticle2
     ? '<article class="edn-udemy-card" data-blog-tag="'+esc(subHeroArticle2.tag)+'">'+
         '<a class="edn-udemy-card-media" href="#/blog/'+slugify(subHeroArticle2.title)+'" aria-label="Đọc bài: '+esc(subHeroArticle2.title)+'">'+
-          '<img src="'+esc(subHeroArticle2.image||'')+'" alt="'+esc(subHeroArticle2.title)+'" loading="lazy">'+
+          '<img src="'+esc(getBlogImage(subHeroArticle2))+'" alt="'+esc(subHeroArticle2.title)+'" loading="lazy">'+
         '</a>'+
         '<div class="edn-udemy-card-body">'+
           '<h3 class="edn-udemy-card-title"><a href="#/blog/'+slugify(subHeroArticle2.title)+'">'+esc(subHeroArticle2.title)+'</a></h3>'+
@@ -1456,7 +1620,7 @@ const blogPage=()=>{
   const renderGridCard=(article)=>
     '<article class="edn-udemy-card" data-blog-tag="'+esc(article.tag)+'">'+
       '<a class="edn-udemy-card-media" href="#/blog/'+slugify(article.title)+'" aria-label="Đọc bài: '+esc(article.title)+'">'+
-        '<img src="'+esc(article.image||'')+'" alt="'+esc(article.title)+'" loading="lazy">'+
+        '<img src="'+esc(getBlogImage(article))+'" alt="'+esc(article.title)+'" loading="lazy">'+
       '</a>'+
       '<div class="edn-udemy-card-body">'+
         '<h3 class="edn-udemy-card-title"><a href="#/blog/'+slugify(article.title)+'">'+esc(article.title)+'</a></h3>'+
@@ -1494,23 +1658,10 @@ const blogPage=()=>{
             '</div>'+
           '</div>'+
           '<a class="edn-udemy-hero-media" href="#/blog/'+slugify(heroArticle.title)+'" aria-label="Đọc bài: '+esc(heroArticle.title)+'">'+
-            '<img src="'+esc(heroArticle.image||'')+'" alt="'+esc(heroArticle.title)+'" loading="eager">'+
+            '<img src="'+esc(getBlogImage(heroArticle))+'" alt="'+esc(heroArticle.title)+'" loading="eager">'+
           '</a>'+
         '</section>'
       : '')+
-
-    // Search & Category Filters (Ảnh 2)
-    '<section class="edn-udemy-filter-section">'+
-      '<div class="edn-udemy-search-bar">'+
-        '<span class="edn-udemy-search-icon" aria-hidden="true">⌕</span>'+
-        '<input type="search" id="edn-udemy-search-input" placeholder="Tìm kiếm bài viết, chủ đề hoặc kỹ năng..." aria-label="Tìm kiếm bài viết">'+
-      '</div>'+
-      '<div class="edn-udemy-topic-pills" aria-label="Lọc bài viết theo chủ đề">'+
-        topics.map((topic,index)=>
-          '<button type="button" class="edn-udemy-topic-pill '+(index===0?'is-active':'')+'" data-blog-topic="'+esc(topic)+'" aria-pressed="'+(index===0?'true':'false')+'">'+esc(topic)+'</button>'
-        ).join('')+
-      '</div>'+
-    '</section>'+
 
     // Sub-Hero Grid (1 card ngang split + 1 card dọc - Ảnh 2)
     '<section class="edn-udemy-subhero-grid">'+
@@ -1565,7 +1716,7 @@ const blogDetail=slug=>{
   const relatedArticles=BLOG_ARTICLES.filter((_,i)=>i!==index).slice(0,2);
   const relatedArticlesMarkup=relatedArticles.map(a=>
     '<a class="edn-sidebar-related-item" href="#/blog/'+slugify(a.title)+'">'+
-      '<img src="'+esc(a.image||'')+'" alt="" loading="lazy">'+
+      '<img src="'+esc(getBlogImage(a))+'" alt="" loading="lazy">'+
       '<div><strong>'+esc(a.title)+'</strong><small>'+esc(a.tag)+' · '+esc(a.time)+'</small></div>'+
     '</a>'
   ).join('');
@@ -1581,6 +1732,8 @@ const blogDetail=slug=>{
       '</div>'
     : '';
 
+  const articleCoverImg=getBlogImage(article);
+
   return '<article class="wrap page edn-blog-article-page">'+
     '<nav class="edn-breadcrumb" aria-label="Đường dẫn"><a href="#/">Trang chủ</a><span>›</span><a href="#/blog">Blog</a><span>›</span><span>'+esc(article.tag)+'</span></nav>'+
     '<header class="edn-article-header">'+
@@ -1592,7 +1745,7 @@ const blogDetail=slug=>{
         '<div class="edn-article-share-actions"><a class="btn btn-g btn-s" href="#/blog">← Quay lại Blog</a></div>'+
       '</div>'+
     '</header>'+
-    (article.image?'<div class="edn-article-hero-cover"><img src="'+esc(article.image)+'" alt="'+esc(article.title)+'"><figcaption>Hình ảnh minh họa chuyên mục '+esc(article.tag)+' · EduNext Magazine</figcaption></div>':'')+
+    (articleCoverImg?'<div class="edn-article-hero-cover"><img src="'+esc(articleCoverImg)+'" alt="'+esc(article.title)+'"><figcaption>Hình ảnh minh họa chuyên mục '+esc(article.tag)+' · EduNext Magazine</figcaption></div>':'')+
     '<div class="edn-article-layout-grid">'+
       '<div class="edn-article-main-content">'+
         body+
@@ -2144,7 +2297,13 @@ const openCoursePlayer=(id,index=0)=>{
   const playlist=c.lessons.map((item,k)=>{
     const isActive=k===activeIndex;
     const lessonVid=resolveLessonVideo(item,c,k);
-    return '<button type="button" class="edn-course-player-item'+(isActive?' is-active':'')+'" data-a="course-player-select" data-v="'+esc(id)+','+k+'"'+(isActive?' aria-current="true"':'')+'><span class="edn-course-player-item-number">'+(isActive?'▶':String(k+1).padStart(2,'0'))+'</span><span class="edn-course-player-item-copy"><strong>'+esc(item.title)+'</strong><small>Video bài giảng chuẩn HD</small></span><span class="edn-course-player-item-arrow" aria-hidden="true">'+(isActive?'●':'›')+'</span></button>';
+    const itemImg=getLessonImage(item,c,k);
+    return '<button type="button" class="edn-course-player-item'+(isActive?' is-active':'')+'" data-a="course-player-select" data-v="'+esc(id)+','+k+'"'+(isActive?' aria-current="true"':'')+'>'+
+      '<span class="edn-course-player-item-number">'+(isActive?'▶':String(k+1).padStart(2,'0'))+'</span>'+
+      '<div class="edn-course-player-item-thumb-wrap"><img src="'+esc(itemImg)+'" alt="" loading="lazy"></div>'+
+      '<span class="edn-course-player-item-copy"><strong>'+esc(item.title)+'</strong><small>Video bài giảng chuẩn HD</small></span>'+
+      '<span class="edn-course-player-item-arrow" aria-hidden="true">'+(isActive?'●':'›')+'</span>'+
+    '</button>';
   }).join('');
   const currentVideoUrl = resolveLessonVideo(lesson, c, activeIndex);
   modal.innerHTML='<section class="edn-preview-dialog edn-course-player-dialog"><header class="edn-preview-dialog-head"><div><strong>Trình phát bài học</strong><span>'+esc(c.t)+'</span></div><button type="button" data-a="course-player-close" aria-label="Đóng trình phát">×</button></header><div class="edn-course-player-now"><span>BÀI '+String(activeIndex+1).padStart(2,'0')+' / '+c.lessons.length+'</span><h2>'+esc(lesson.title)+'</h2></div><div class="edn-preview-video">'+videoMarkup(currentVideoUrl,lesson.title)+'</div><section class="edn-course-player-playlist"><div class="edn-course-player-playlist-head"><strong>Danh sách bài học</strong><span>'+c.lessons.length+' bài</span></div><div class="edn-course-player-items">'+playlist+'</div></section></section>';
@@ -2156,6 +2315,7 @@ const openCoursePlayer=(id,index=0)=>{
 const A={
   'retry-catalog':()=>initializeEduNext(),
   'home-filter':value=>{homeFilterTab=value;render(true);},
+  'domain-view':value=>{domainViewMode=value;render(true);},
   menu:()=>{
     document.body.classList.toggle('lms-mobile-open');
     const button=$('.lms-mobile-menu');

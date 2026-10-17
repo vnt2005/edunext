@@ -70,6 +70,7 @@ function edunext_frontend_config(): array {
         'paymentReady' => false,
         'domainImages' => edunext_domain_images(),
         'courseImages' => edunext_course_images(),
+        'themeUri'     => get_template_directory_uri(),
     ];
 }
 

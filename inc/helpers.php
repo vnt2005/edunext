@@ -134,7 +134,7 @@ function edunext_course_required_lessons(array $course): int {
 }
 
 function edunext_domain_images(): array {
-    return [
+    $domains = [
         'field-lap-trinh-va-phat-trien-phan-mem' => 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=800',
         'field-phat-trien-web' => 'https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&q=80&w=800',
         'field-phat-trien-ung-dung-di-dong' => 'https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&q=80&w=800',
@@ -160,7 +160,7 @@ function edunext_domain_images(): array {
         'field-kinh-doanh-va-ban-hang' => 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=800',
         'field-thuong-mai-dien-tu' => 'https://images.unsplash.com/photo-1556742044-3c52d6e88c62?auto=format&fit=crop&q=80&w=800',
         'field-quan-tri-doanh-nghiep' => 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800',
-        'field-quan-ly-du-an' => 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=800',
+        'field-quan-ly-du-an' => 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80&w=800',
         'field-tai-chinh-va-dau-tu' => 'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?auto=format&fit=crop&q=80&w=800',
         'field-ke-toan-va-kiem-toan' => 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&q=80&w=800',
         'field-nhan-su' => 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&q=80&w=800',
@@ -169,7 +169,7 @@ function edunext_domain_images(): array {
         'field-ngoai-ngu-khac' => 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=800',
         'field-giao-duc-va-dao-tao' => 'https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=800',
         'field-ky-nang-mem' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=800',
-        'field-nang-suat-va-phat-trien-ca-nhan' => 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&q=80&w=800',
+        'field-nang-suat-va-phat-trien-ca-nhan' => 'https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?auto=format&fit=crop&q=80&w=800',
         'field-tin-hoc-van-phong' => 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=800',
         'field-phan-tich-nghiep-vu' => 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&q=80&w=800',
         'field-khoa-hoc-va-toan-hoc' => 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&q=80&w=800',
@@ -186,26 +186,64 @@ function edunext_domain_images(): array {
         'field-nong-nghiep-va-moi-truong' => 'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&q=80&w=800',
         'field-du-lich-va-dich-vu' => 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&q=80&w=800',
     ];
+
+    // Priority: local JPG photography if file exists, then SVG illustration
+    $theme_dir = get_template_directory();
+    $theme_uri = get_template_directory_uri();
+    foreach ($domains as $domain_id => $remote_url) {
+        $slug = str_replace('field-', '', $domain_id);
+        $local_jpg = "assets/images/domains/{$slug}.jpg";
+        $local_svg = "assets/images/domains/{$slug}.svg";
+        if (file_exists("{$theme_dir}/{$local_jpg}")) {
+            $domains[$domain_id] = "{$theme_uri}/{$local_jpg}";
+        } elseif (file_exists("{$theme_dir}/{$local_svg}")) {
+            $domains[$domain_id] = "{$theme_uri}/{$local_svg}";
+        }
+    }
+    return $domains;
 }
 
 function edunext_course_images(): array {
-    return [
-        'csharp' => 'https://images.unsplash.com/photo-1618477247222-acbdb0e159b3?auto=format&fit=crop&q=82&w=1200',
-        'api' => 'https://images.unsplash.com/photo-1637044527362-5ac1dc1d7446?auto=format&fit=crop&q=82&w=1200',
-        'data' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=82&w=1200',
-        'english' => 'https://images.unsplash.com/photo-1672248652488-73f8a07e3307?auto=format&fit=crop&q=82&w=1200',
-        'design' => 'https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?auto=format&fit=crop&q=82&w=1200',
-        'marketing' => 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=82&w=1200',
-        'autocad-2d-cho-ban-ve-ky-thuat' => 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&q=82&w=1200',
-        'sql-server-va-sql-tu-co-ban-den-thuc-hanh' => 'https://images.unsplash.com/photo-1544383835-bda2bc66a55d?auto=format&fit=crop&q=82&w=1200',
-        'xay-dung-ung-dung-voi-generative-ai-va-llm' => 'https://images.unsplash.com/photo-1677442136019-21780efad99a?auto=format&fit=crop&q=82&w=1200',
-        'lap-trinh-flutter-tu-dau' => 'https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&q=82&w=1200',
-        'phat-trien-ung-dung-android-voi-kotlin' => 'https://images.unsplash.com/photo-1607252650355-f7fd0460ccdb?auto=format&fit=crop&q=82&w=1200',
-        'blender-3d-tu-modeling-den-rendering' => 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=82&w=1200',
-    ];
+    $theme_dir = get_template_directory();
+    $theme_uri = get_template_directory_uri();
+
+    $courses = [];
+    $catalog = edunext_catalog_data();
+    if (isset($catalog['courses']) && is_array($catalog['courses'])) {
+        foreach ($catalog['courses'] as $course) {
+            $cid = (string) ($course['id'] ?? '');
+            if ($cid === '') {
+                continue;
+            }
+            // Check for flagship AI jpg first
+            $jpg_file = "assets/images/courses/{$cid}.jpg";
+            $svg_file = "assets/images/courses/{$cid}.svg";
+            if (file_exists("{$theme_dir}/{$jpg_file}")) {
+                $courses[$cid] = "{$theme_uri}/{$jpg_file}";
+            } elseif (file_exists("{$theme_dir}/{$svg_file}")) {
+                $courses[$cid] = "{$theme_uri}/{$svg_file}";
+            }
+        }
+    }
+    return $courses;
 }
 
 function edunext_get_course_image(string $course_id, ?string $domain_id = null): string {
+    $theme_dir = get_template_directory();
+    $theme_uri = get_template_directory_uri();
+
+    // Check flagship jpg
+    $jpg = "assets/images/courses/{$course_id}.jpg";
+    if (file_exists("{$theme_dir}/{$jpg}")) {
+        return "{$theme_uri}/{$jpg}";
+    }
+
+    // Check local svg
+    $svg = "assets/images/courses/{$course_id}.svg";
+    if (file_exists("{$theme_dir}/{$svg}")) {
+        return "{$theme_uri}/{$svg}";
+    }
+
     $c_imgs = edunext_course_images();
     if (isset($c_imgs[$course_id])) {
         return $c_imgs[$course_id];
@@ -217,5 +255,37 @@ function edunext_get_course_image(string $course_id, ?string $domain_id = null):
         }
     }
     return 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=800';
+}
+
+function edunext_course_image_url($course): string {
+    if (!is_array($course)) {
+        return edunext_get_course_image('');
+    }
+    $image = (string) ($course['image'] ?? '');
+    if ($image !== '') {
+        if (preg_match('#^https?://#i', $image)) {
+            return $image;
+        }
+        $theme_dir = get_template_directory();
+        $theme_uri = get_template_directory_uri();
+        $relative = ltrim($image, '/');
+        if (file_exists("{$theme_dir}/{$relative}")) {
+            return "{$theme_uri}/{$relative}";
+        }
+    }
+    return edunext_get_course_image((string) ($course['id'] ?? ''), isset($course['domainId']) ? (string) $course['domainId'] : null);
+}
+
+function edunext_get_lesson_image($course, int $lesson_index = 0): string {
+    $course_id = is_array($course) ? (string) ($course['id'] ?? '') : (string) $course;
+    $order = $lesson_index + 1;
+    $theme_dir = get_template_directory();
+    $theme_uri = get_template_directory_uri();
+
+    $lesson_svg = "assets/images/lessons/{$course_id}-lesson-{$order}.svg";
+    if (file_exists("{$theme_dir}/{$lesson_svg}")) {
+        return "{$theme_uri}/{$lesson_svg}";
+    }
+    return edunext_get_course_image($course_id);
 }
 

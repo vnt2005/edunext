@@ -16,7 +16,7 @@ $articles = [
         'tag' => 'Lập trình',
         'readTime' => '7 phút đọc',
         'excerpt' => 'Phương pháp tiếp cận lập trình thực chiến giúp bạn nắm chắc luồng dữ liệu của chương trình.',
-        'image' => 'https://images.unsplash.com/photo-1618477247222-acbdb0e159b3?auto=format&fit=crop&q=82&w=800',
+        'image' => get_theme_file_uri('assets/images/blog/hoc-c-bang-cach-lan-theo-du-lieu-khong-phai-hoc-thuoc-cu-phap.jpg'),
     ],
     [
         'title' => 'Xây dựng REST API: bắt đầu từ một endpoint chạy đúng',
@@ -24,7 +24,7 @@ $articles = [
         'tag' => 'ASP.NET Core',
         'readTime' => '8 phút đọc',
         'excerpt' => 'Cách tách nhỏ kiến trúc API thành từng lớp độc lập dễ kiểm thử và mở rộng.',
-        'image' => 'https://images.unsplash.com/photo-1637044527362-5ac1dc1d7446?auto=format&fit=crop&q=82&w=800',
+        'image' => get_theme_file_uri('assets/images/blog/xay-dung-rest-api-bat-dau-tu-mot-endpoint-chay-dung.jpg'),
     ],
     [
         'title' => 'Bản vẽ AutoCAD rõ ràng bắt đầu từ đơn vị và layer',
@@ -32,7 +32,7 @@ $articles = [
         'tag' => 'Thiết kế 2D',
         'readTime' => '7 phút đọc',
         'excerpt' => 'Thiết lập bản vẽ chuẩn xác ngay từ ban đầu để tiết kiệm thời gian chỉnh sửa về sau.',
-        'image' => 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&q=82&w=800',
+        'image' => get_theme_file_uri('assets/images/blog/ban-ve-autocad-ro-rang-bat-dau-tu-don-vi-va-layer.jpg'),
     ],
 ];
 ?>
