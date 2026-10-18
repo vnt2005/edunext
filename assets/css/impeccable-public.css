@@ -7108,6 +7108,81 @@ body.edunext-app .edn-course-buy-card,
   color: #2DD4BF !important;
 }
 
+/* Instructor Card Layout */
+.edn-inst-card-layout {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 24px !important;
+}
+
+.edn-inst-card-avatar {
+  width: 130px !important;
+  height: 130px !important;
+  border-radius: 16px !important;
+  object-fit: cover !important;
+  flex-shrink: 0 !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
+}
+
+.edn-inst-card-body {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+}
+
+.edn-inst-card-body h3 {
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  color: #FFFFFF !important;
+  margin: 0 0 6px !important;
+  font-family: "Space Grotesk", sans-serif !important;
+}
+
+.edn-inst-title {
+  font-size: 14px !important;
+  color: #94A3B8 !important;
+  margin: 0 0 10px !important;
+  line-height: 1.4 !important;
+}
+
+.edn-inst-title strong {
+  color: #F8FAFC !important;
+}
+
+.edn-inst-stats {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  gap: 16px !important;
+  margin-bottom: 12px !important;
+  font-size: 13px !important;
+  color: #CBD5E1 !important;
+}
+
+.edn-inst-stats span {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+}
+
+.edn-inst-bio {
+  font-size: 14px !important;
+  line-height: 1.6 !important;
+  color: #94A3B8 !important;
+  margin: 0 !important;
+}
+
+@media (max-width: 640px) {
+  .edn-inst-card-layout {
+    flex-direction: column !important;
+    gap: 16px !important;
+  }
+  .edn-inst-card-avatar {
+    width: 90px !important;
+    height: 90px !important;
+  }
+}
+
 .edn-course-content-grid {
   display: grid !important;
   grid-template-columns: minmax(0, 1fr) 350px !important;
