@@ -3368,40 +3368,62 @@ body.edn-classroom-active {
 }
 .edn-blog-post-nav {
   display: grid !important;
-  grid-template-columns: 1fr 1fr !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   gap: 20px !important;
-  margin-top: 48px !important;
-  padding-top: 32px !important;
-  border-top: 1px solid #E2E8F0 !important;
+  margin-top: 40px !important;
+  padding-top: 28px !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+  align-items: stretch !important;
 }
 .edn-post-nav-card {
-  padding: 18px 24px !important;
-  background: #F8FAFC !important;
-  border: 1px solid #E2E8F0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  min-height: auto !important;
+  height: auto !important;
+  padding: 18px 22px !important;
+  background: rgba(13, 16, 26, 0.6) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
   border-radius: 14px !important;
   text-decoration: none !important;
-  color: #0F172A !important;
-  transition: all 0.2s ease !important;
+  color: #FFFFFF !important;
+  transition: all 0.25s ease !important;
+  box-sizing: border-box !important;
 }
 .edn-post-nav-card:hover {
-  background: #FFFFFF !important;
-  border-color: #0F766E !important;
-  box-shadow: 0 4px 12px -2px rgba(15, 23, 42, 0.06) !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(45, 212, 191, 0.45) !important;
+  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.4) !important;
+  transform: translateY(-2px) !important;
+  color: #FFFFFF !important;
 }
-.edn-post-nav-card.next {
+.edn-post-nav-card.is-prev {
+  text-align: left !important;
+  align-items: flex-start !important;
+}
+.edn-post-nav-card.next,
+.edn-post-nav-card.is-next {
   text-align: right !important;
+  align-items: flex-end !important;
 }
 .edn-post-nav-card small {
   display: block !important;
   font-size: 11px !important;
   font-weight: 750 !important;
-  color: #0F766E !important;
-  margin-bottom: 4px !important;
+  letter-spacing: 0.06em !important;
+  color: #2DD4BF !important;
+  margin: 0 0 8px 0 !important;
+  line-height: 1.2 !important;
 }
 .edn-post-nav-card strong {
   display: block !important;
-  font-size: 14px !important;
-  line-height: 1.4 !important;
+  font-size: 14.5px !important;
+  font-weight: 650 !important;
+  line-height: 1.45 !important;
+  color: #F1F5F9 !important;
+  margin: 0 !important;
 }
 
 /* 8. Global Responsive Overrides */
@@ -9568,22 +9590,30 @@ body.edunext-app .edn-sidebar-related-item {
 
 #app .edn-post-nav-card,
 body.edunext-app .edn-post-nav-card {
-  background: rgba(13, 16, 26, 0.55) !important;
+  background: rgba(13, 16, 26, 0.6) !important;
   backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
   border: 1px solid rgba(255, 255, 255, 0.08) !important;
   color: #FFFFFF !important;
+  min-height: auto !important;
+  height: auto !important;
 }
 
 #app .edn-post-nav-card:hover,
 body.edunext-app .edn-post-nav-card:hover {
   background: rgba(255, 255, 255, 0.08) !important;
-  border-color: rgba(45, 212, 191, 0.35) !important;
+  border-color: rgba(45, 212, 191, 0.45) !important;
   color: #FFFFFF !important;
+}
+
+#app .edn-post-nav-card small,
+body.edunext-app .edn-post-nav-card small {
+  color: #2DD4BF !important;
 }
 
 #app .edn-post-nav-card strong,
 body.edunext-app .edn-post-nav-card strong {
-  color: #FFFFFF !important;
+  color: #F1F5F9 !important;
 }
 
 /* 3. FAQ Section & FAQ Page */
