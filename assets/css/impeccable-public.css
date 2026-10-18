@@ -6676,31 +6676,40 @@ body.edunext-app .edn-course-detail-page,
 .edn-course-detail-page {
   background-color: transparent !important;
   color: #FFFFFF !important;
+  padding: 32px 0 54px !important;
 }
 
-body.edunext-app .edn-course-detail-page .edn-course-hero,
-.edn-course-hero {
-  background: transparent !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
-  padding: 36px 0 44px !important;
-  min-height: auto !important;
-}
-
-body.edunext-app .edn-course-detail-page .edn-course-hero-inner,
-.edn-course-hero-inner {
+body.edunext-app .edn-course-detail-container,
+.edn-course-detail-container {
   display: grid !important;
   grid-template-columns: minmax(0, 1fr) 350px !important;
   gap: 32px !important;
   align-items: start !important;
-  min-height: auto !important;
-  padding: 0 !important;
+}
+
+body.edunext-app .edn-course-main-column,
+.edn-course-main-column {
+  min-width: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+body.edunext-app .edn-course-sidebar-column,
+.edn-course-sidebar-column {
+  position: sticky !important;
+  top: 24px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 24px !important;
 }
 
 body.edunext-app .edn-course-intro,
 .edn-course-intro {
   width: 100% !important;
   max-width: none !important;
-  padding: 0 !important;
+  padding: 0 0 24px 0 !important;
+  margin-bottom: 24px !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
   color: #FFFFFF !important;
 }
 
@@ -6828,6 +6837,7 @@ body.edunext-app .edn-course-intro,
 .edn-instructor-compact strong {
   color: #FFFFFF !important;
   font-size: 14.5px !important;
+  display: block !important;
 }
 
 .edn-instructor-compact span {
@@ -6842,7 +6852,6 @@ body.edunext-app .edn-course-buy-card,
   position: static !important;
   width: 100% !important;
   max-width: 350px !important;
-  justify-self: end !important;
   background: rgba(13, 16, 28, 0.72) !important;
   backdrop-filter: blur(20px) saturate(180%) !important;
   -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
@@ -7208,11 +7217,16 @@ body.edunext-app .edn-course-buy-card,
 }
 
 @media (max-width: 980px) {
+  body.edunext-app .edn-course-detail-page .edn-course-detail-container,
+  .edn-course-detail-container,
   body.edunext-app .edn-course-detail-page .edn-course-hero-inner,
   .edn-course-hero-inner,
   .edn-course-content-grid {
     grid-template-columns: 1fr !important;
     gap: 24px !important;
+  }
+  .edn-course-sidebar-column {
+    position: static !important;
   }
   .edn-course-buy-card {
     max-width: 100% !important;
