@@ -7111,16 +7111,18 @@ body.edunext-app .edn-course-buy-card,
 /* Instructor Card Layout */
 .edn-inst-card-layout {
   display: flex !important;
-  align-items: flex-start !important;
+  align-items: stretch !important;
   gap: 24px !important;
 }
 
 .edn-inst-card-avatar {
-  width: 130px !important;
-  height: 130px !important;
+  width: 140px !important;
+  min-height: 100% !important;
+  height: auto !important;
   border-radius: 16px !important;
   object-fit: cover !important;
   flex-shrink: 0 !important;
+  align-self: stretch !important;
   border: 1px solid rgba(255, 255, 255, 0.12) !important;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
 }
