@@ -1765,16 +1765,6 @@ const blogDetail=slug=>{
         '</div>'+
       '</aside>'+
     '</div>'+
-    '<nav class="edn-blog-post-nav" aria-label="Điều hướng bài viết">'+
-      '<a class="edn-post-nav-card is-prev" href="#/blog/'+slugify(previous.title)+'">'+
-        '<small>← BÀI TRƯỚC</small>'+
-        '<strong>'+esc(previous.title)+'</strong>'+
-      '</a>'+
-      '<a class="edn-post-nav-card is-next next" href="#/blog/'+slugify(next.title)+'">'+
-        '<small>BÀI TIẾP THEO →</small>'+
-        '<strong>'+esc(next.title)+'</strong>'+
-      '</a>'+
-    '</nav>'+
   '</article>';
 };
 const faqItems=[
