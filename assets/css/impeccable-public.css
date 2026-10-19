@@ -13154,3 +13154,29 @@ body.edunext-app .edn-domain-group-header p {
 
 
 
+
+.edn-course-related-section {
+  background: rgba(13, 16, 26, 0.5) !important;
+  backdrop-filter: blur(16px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(160%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 18px !important;
+  padding: 26px 28px !important;
+  margin-bottom: 22px !important;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.3) !important;
+}
+
+.edn-course-related-section h2 {
+  color: #FFFFFF !important;
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  margin-bottom: 0 !important;
+  font-family: "Space Grotesk", sans-serif !important;
+}
+
+.edn-course-related-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)) !important;
+  gap: 18px !important;
+  margin-top: 18px !important;
+}

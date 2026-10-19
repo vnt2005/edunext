@@ -1043,6 +1043,15 @@ const detail=id=>{
   const topics=(c.topics||[]).map(topic=>'<button type="button" class="edn-topic-chip" data-a="topic" data-v="'+esc(topic)+'">'+esc(topic)+'</button>').join('');
   const checkIcon='<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg>';
 
+  // Related courses in the same domain or domain group
+  const relatedCourses = C.filter(item => {
+    if (item.id === c.id) return false;
+    if (item.domainId === c.domainId) return true;
+    const itemDomain = DOMAINS.find(d => d.id === item.domainId);
+    const itemGroup = findDomainGroup(itemDomain);
+    return group && itemGroup && group.slug === itemGroup.slug;
+  }).slice(0, 3);
+
   // Build multi-section chapters matching Udemy layout (3 sections: Căn bản & Chuẩn bị, Thực hành chuyên sâu, Dự án thực chiến & Tối ưu)
   const totalLessons = c.lessons.length;
   const totalDuration = c.h ? c.h + ' giờ' : (totalLessons * 14) + ' phút';
@@ -1207,6 +1216,11 @@ const detail=id=>{
           '<div class="edn-section-heading"><div><span class="edn-overline">CHỦ ĐỀ LIÊN QUAN</span><h2>Mở rộng kiến thức cùng lĩnh vực</h2></div><a class="edn-header-link" href="#/domain/'+esc(domain?domain.slug:'')+'">Xem lĩnh vực ↗</a></div>'+
           '<div class="edn-topic-chip-row">'+topics+'</div>'+
         '</section>'+
+
+        (relatedCourses.length ? '<section class="edn-course-related-section">'+
+          '<div class="edn-section-heading"><div><span class="edn-overline">KHÓA HỌC LIÊN QUAN</span><h2>Học viên cũng tìm hiểu</h2></div><a class="edn-header-link" href="#/domain/'+esc(domain?domain.slug:'')+'">Xem thêm khóa học ↗</a></div>'+
+          '<div class="edn-course-related-grid">'+relatedCourses.map(card).join('')+'</div>'+
+        '</section>' : '')+
       '</main>'+
 
       // Sticky sidebar column with buy card & resources

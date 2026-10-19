@@ -27,6 +27,6 @@ if (!defined('ABSPATH')) {
     </div>
     <a id="edn-nav-dashboard" href="#/dashboard" class="edunext-nav-link edn-nav-dashboard" hidden>Trang học tập</a>
     <a href="#/blog" class="edunext-nav-link">Blog</a>
-    <a href="#/faq" class="edunext-nav-link">Hỏi đáp</a>
+    <a href="#/about" class="edunext-nav-link">Về EduNext</a>
 </nav>
 

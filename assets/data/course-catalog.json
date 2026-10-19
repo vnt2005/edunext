@@ -11966,7 +11966,7 @@
         "Bán hàng B2B và quản lý cơ hội",
         "hàng"
       ],
-      "description": "Lộ trình dự kiến gồm 8 đề mục, từ \"Mô hình B2B, hội đồng mua và quy trình ra quyết định\" đến \"Dự án cuối khóa: pipeline mẫu với kế hoạch tiếp cận 10 tài khoản\". Nội dung giảng dạy và học liệu chi tiết chưa được xác minh; khóa học chưa mở bán.",
+      "description": "Khóa học cung cấp phương pháp tiếp cận khách hàng doanh nghiệp bài bản, xây dựng kịch bản tiếp cận và quy trình quản trị cơ hội bán hàng (Opportunity Management). Bạn sẽ học cách phân tích cơ cấu hội đồng mua, thực hiện cuộc gọi khám phá nhu cầu (Discovery Call), xây dựng Business Case thuyết phục, quản trị đường ống bán hàng (Sales Pipeline) trên CRM và hoàn thiện kế hoạch tiếp cận 10 tài khoản mục tiêu.",
       "lessons": [
         {
           "id": "ban-hang-b2b-va-quan-ly-co-hoi-lesson-1",
@@ -12092,13 +12092,16 @@
         "type": "all_lessons",
         "requiredCount": 8
       },
-      "shortDescription": "Đề cương ban đầu về Bán hàng B2B và quản lý cơ hội, thuộc lĩnh vực Kinh doanh và bán hàng.",
-      "audience": "Người học quan tâm đến kinh doanh và bán hàng và muốn tìm hiểu chủ đề \"Bán hàng B2B và quản lý cơ hội\". Đối tượng cụ thể sẽ được xác định khi học liệu hoàn thiện.",
-      "prerequisites": "Chưa được xác minh; yêu cầu đầu vào sẽ được công bố trước khi khóa học mở bán.",
+      "shortDescription": "Làm chủ quy trình bán hàng B2B chuyên nghiệp: từ phân tích hội đồng mua hàng, thiết lập discovery call, đánh giá cơ hội đến quản lý pipeline và đàm phán hợp đồng giá trị cao.",
+      "audience": "Chuyên viên kinh doanh B2B (B2B Sales / Account Executive), Business Development (BDR/SDR), Trưởng nhóm kinh doanh, chủ doanh nghiệp vừa và nhỏ hoặc bất kỳ ai muốn nâng cao năng lực bán hàng và đàm phán với khách hàng doanh nghiệp.",
+      "prerequisites": "Không yêu cầu kinh nghiệm B2B từ trước. Chỉ cần có tư duy chủ động, hiểu biết cơ bản về giao tiếp công việc và mong muốn phát triển sự nghiệp trong mảng kinh doanh doanh nghiệp.",
       "outcomes": [
-        "Hiểu đề mục nền tảng: Mô hình B2B, hội đồng mua và quy trình ra quyết định.",
-        "Khám phá chủ đề chuyên môn: Đánh giá nhu cầu, ngân sách, quyền quyết định và thời gian.",
-        "Tổng hợp lộ trình qua đề mục cuối: Dự án cuối khóa: pipeline mẫu với kế hoạch tiếp cận 10 tài khoản."
+        "Nắm vững mô hình B2B, hiểu rõ hành vi hội đồng mua (Buying Center) và quy trình ra quyết định của doanh nghiệp.",
+        "Kỹ năng tìm kiếm khách hàng tiềm năng, nghiên cứu tài khoản mục tiêu (Account-Based Selling) và viết email tiếp cận chuẩn.",
+        "Phương pháp thực hiện Discovery Call để đánh giá chính xác nhu cầu, ngân sách, quyền quyết định và tiến độ (BANT/MEDDPICC).",
+        "Xây dựng bản đề xuất giải pháp, chuẩn bị buổi demo sản phẩm và chứng minh bài toán kinh tế (Business Case/ROI).",
+        "Quản trị phễu bán hàng (Sales Pipeline), dự báo doanh thu và ứng dụng CRM để theo dõi sát sao từng cơ hội kinh doanh.",
+        "Hoàn thành đồ án thực chiến: Thiết lập bộ pipeline mẫu và kế hoạch chi tiết tiếp cận 10 khách hàng doanh nghiệp mục tiêu."
       ],
       "metadataStatus": "draft",
       "image": "assets/images/courses/ban-hang-b2b-va-quan-ly-co-hoi.svg",
