@@ -27,10 +27,6 @@ $quick_topics = [
                 <span class="edn-ziro-gradient-text">Nâng tầm sự nghiệp số.</span>
             </h1>
 
-            <p class="edn-ziro-paragraph">
-                Hơn 100 chương trình thực hành từ chuyên gia công nghệ, dữ liệu, thiết kế và kinh doanh. Học theo dự án thực tế, tích lũy portfolio chuyên nghiệp.
-            </p>
-
             <div class="edn-ziro-cta-row">
                 <a href="#/courses" class="edn-ziro-btn-primary group">
                     <span class="edn-btn-text">Khám phá khóa học</span>
@@ -42,7 +38,7 @@ $quick_topics = [
             </div>
 
             <div class="edn-ziro-quick-topics">
-                <span>Tìm kiếm phổ biến:</span>
+                <span>Các Khóa Học Phổ Biến:</span>
                 <?php foreach ($quick_topics as $topic): ?>
                     <a href="#/courses" class="edn-quick-topic-pill"><?php echo esc_html($topic['name']); ?></a>
                 <?php endforeach; ?>
@@ -73,7 +69,7 @@ $quick_topics = [
 
             <div class="edn-luma-card group">
                 <div class="edn-luma-glow" aria-hidden="true"></div>
-                <div class="edn-luma-num edn-luma-grad-3">15.000+</div>
+                <div class="edn-luma-num edn-luma-grad-3">100+</div>
                 <div class="edn-luma-card-body">
                     <h4>Học viên theo học</h4>
                 </div>
@@ -83,7 +79,7 @@ $quick_topics = [
                 <div class="edn-luma-glow" aria-hidden="true"></div>
                 <div class="edn-luma-num edn-luma-grad-4">98%</div>
                 <div class="edn-luma-card-body">
-                    <h4>Hài lòng & Có việc</h4>
+                    <h4>Hài Lòng</h4>
                 </div>
             </div>
         </div>

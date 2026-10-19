@@ -37,7 +37,7 @@ $faqs = [
     <div class="edn-im-shell edn-im-faq-layout">
         <div class="edn-im-faq-intro">
             <span class="edn-hero-badge"><span class="edn-badge-dot"></span> Hỏi đáp & Trợ giúp</span>
-            <h2>Giải đáp thắc mắc thường gặp</h2>
+            <h2>Góc Giải Đáp</h2>
             <p>Những điều bạn cần biết trước khi bắt đầu học tập cùng EduNext.</p>
             <a class="edn-im-text-link" href="#/faq">
                 Tới trang hỏi đáp đầy đủ <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M8 3l5 5-5 5"></path></svg>

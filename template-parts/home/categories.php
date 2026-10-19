@@ -27,7 +27,6 @@ $categories_showcase = [
             <div>
                 <span class="edn-hero-badge"><span class="edn-badge-dot"></span> 50 Chuyên ngành thực chiến</span>
                 <h2>Khám phá theo lĩnh vực hàng đầu</h2>
-                <p>Chọn đúng định hướng nghề nghiệp từ 50 chuyên ngành được chuẩn hóa theo thực tế doanh nghiệp.</p>
             </div>
             <a class="edn-im-text-link" href="#/categories">
                 Xem tất cả 50 lĩnh vực <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M8 3l5 5-5 5"></path></svg>

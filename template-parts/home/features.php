@@ -51,7 +51,6 @@ if (!defined('ABSPATH')) {
                     <a href="#/courses" class="edn-mock-play-btn" aria-label="Xem khóa học">
                         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
                     </a>
-                    <span class="edn-mock-badge">Demo thực chiến</span>
                 </div>
                 <div class="edn-mock-body">
                     <span class="edn-mock-meta">Bài 03 / 24 · Video HD</span>

@@ -11,28 +11,28 @@ if (!defined('ABSPATH')) {
 
 $instructors = [
     [
-        'name' => 'Nguyễn Văn Minh',
+        'name' => 'Nguyễn Thị Ánh',
         'role' => 'Senior .NET Architect',
         'org' => 'VNG',
         'avatar' => 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=250',
-        'rating' => '4.95',
-        'students' => '3.500+ học viên',
+        'rating' => '4.50',
+        'students' => '500+học viên',
     ],
     [
         'name' => 'Trần Thu Trang',
         'role' => 'Head of Product Design',
         'org' => 'Tiki',
         'avatar' => 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=250',
-        'rating' => '4.95',
-        'students' => '3.500+ học viên',
+        'rating' => '4.45',
+        'students' => '400+ học viên',
     ],
     [
         'name' => 'Lê Hoàng Nam',
         'role' => 'Lead Data Scientist',
         'org' => 'FPT Software',
         'avatar' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=250',
-        'rating' => '4.95',
-        'students' => '3.500+ học viên',
+        'rating' => '4.60',
+        'students' => '1000+ học viên',
     ],
     [
         'name' => 'Đặng Mai Phương',
@@ -40,7 +40,7 @@ $instructors = [
         'org' => 'Shopee',
         'avatar' => 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=250',
         'rating' => '4.95',
-        'students' => '3.500+ học viên',
+        'students' => '2000+ học viên',
     ],
 ];
 ?>
@@ -50,8 +50,7 @@ $instructors = [
         <div class="edn-im-section-heading">
             <div>
                 <span class="edn-hero-badge"><span class="edn-badge-dot"></span> Đội ngũ chuyên gia</span>
-                <h2>Giảng viên hàng đầu ngành</h2>
-                <p>Học hỏi trực tiếp từ các Tech Lead, Principal Engineer và Head of Product tại các tập đoàn công nghệ lớn.</p>
+                <h2>Giảng Viên</h2>
             </div>
         </div>
 
