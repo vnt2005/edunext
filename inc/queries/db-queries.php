@@ -139,3 +139,33 @@ function edunext_format_course_post(WP_Post $p): array {
     ];
 }
 
+function edunext_db_get_all_instructors(): array {
+    $posts = get_posts([
+        'post_type'      => 'edunext_instructor',
+        'post_status'    => 'publish',
+        'posts_per_page' => -1,
+        'orderby'        => 'ID',
+        'order'          => 'ASC',
+    ]);
+
+    $instructors = [];
+    foreach ($posts as $p) {
+        $avatar = get_post_meta($p->ID, '_edunext_avatar', true);
+        if (!$avatar && has_post_thumbnail($p->ID)) {
+            $avatar = get_the_post_thumbnail_url($p->ID, 'medium');
+        }
+
+        $instructors[] = [
+            'id'       => $p->ID,
+            'name'     => $p->post_title,
+            'role'     => get_post_meta($p->ID, '_edunext_role', true) ?: 'Chuyên gia giảng dạy',
+            'org'      => get_post_meta($p->ID, '_edunext_org', true) ?: 'EduNext',
+            'avatar'   => $avatar ?: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=250',
+            'rating'   => get_post_meta($p->ID, '_edunext_rating', true) ?: '4.9',
+            'students' => get_post_meta($p->ID, '_edunext_students', true) ?: '500+ học viên',
+            'bio'      => $p->post_content,
+        ];
+    }
+
+    return $instructors;
+}
