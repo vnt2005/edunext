@@ -269,16 +269,29 @@ const paginationMarkup=(area,current,total,label='mục')=>{
     '</div>'+
   '</nav>';
 };
-const CART_STORAGE_KEY='edunext-cart-v1';
+const getCartStorageKey=()=>{
+  const userId=CFG.user&&CFG.user.id?String(CFG.user.id):'guest';
+  return 'edunext-cart-user-'+userId;
+};
 let cartIds=(()=>{
   try{
-    const saved=JSON.parse(window.localStorage.getItem(CART_STORAGE_KEY)||'[]');
+    if(Array.isArray(CFG.initialCartIds)&&CFG.initialCartIds.length){
+      return Array.from(new Set(CFG.initialCartIds.map(id=>String(id||'')).filter(Boolean))).slice(0,100);
+    }
+    const saved=JSON.parse(window.localStorage.getItem(getCartStorageKey())||'[]');
     return Array.isArray(saved)?Array.from(new Set(saved.map(id=>String(id||'')).filter(Boolean))).slice(0,100):[];
   }catch(error){return [];}
 })();
 const persistCart=()=>{
-  try{window.localStorage.setItem(CART_STORAGE_KEY,JSON.stringify(cartIds));}catch(error){}
+  try{
+    window.localStorage.setItem(getCartStorageKey(),JSON.stringify(cartIds));
+  }catch(error){}
   updateCartBadge();
+  if(CFG.ajaxUrl&&CFG.nonce){
+    try{
+      request('edunext_sync_cart',{cartIds:JSON.stringify(cartIds)}).catch(()=>{});
+    }catch(e){}
+  }
 };
 const updateCartBadge=()=>{
   const badge=$('#edn-cart-count'),link=$('#edn-cart-trigger'),count=cartIds.length;
@@ -621,11 +634,11 @@ const home=()=>{
         '<div>'+
           '<div class="edn-jiro-badge"><span class="edn-jiro-badge-dot"></span><span>Chương trình chọn lọc</span></div>'+
           '<h2>Khóa học <span class="edn-ziro-gradient-text">thực chiến nổi bật</span></h2>'+
-          '<p>Giáo trình cô đọng, bài tập thực hành theo dự án thật, hỗ trợ hỏi đáp trực tiếp cùng mentor.</p>'+
+          ''+
         '</div>'+
-        '<a class="edn-header-link group" href="#/courses">'+animatedText('Xem tất cả '+C.length+' khóa học')+' '+arrowIcon+'</a>'+
+        ''+
       '</div>'+
-      '<div class="edn-home-tabs-bar">'+tabsMarkup+'</div>'+
+      
       '<div class="edn-featured-grid">'+visibleCourses.map(card).join('')+'</div>'+
       '<div class="edn-section-footer-cta"><a class="edn-jiro-btn-outline group" href="#/courses">'+animatedText('Xem thêm toàn bộ danh mục khóa học')+' '+arrowIcon+'</a></div>'+
     '</div></section>'+
@@ -2456,6 +2469,8 @@ const A={
       button.textContent='Đang đăng xuất…';
     }
     try{
+      try{window.localStorage.removeItem(getCartStorageKey());}catch(e){}
+      try{window.localStorage.removeItem('edunext-cart-user-guest');}catch(e){}
       const result=await request('edunext_logout',{});
       const target=result.redirect||'#/';
       window.location.hash=target.startsWith('#')?target:'#'+target;

@@ -77,15 +77,6 @@ usort($mapped_courses, static function ($a, $b) {
 $featured_courses = array_slice($mapped_courses, 0, 8);
 $cart_svg = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="9" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle><path d="M1 1h4l2.7 13.1a2 2 0 0 0 2 1.6h9.8a2 2 0 0 0 2-1.6L23 6H6"></path></svg>';
 $star_svg = '<svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>';
-
-$filter_tabs = [
-    ['id' => 'all',       'label' => 'Tất cả khóa học'],
-    ['id' => 'cntt',      'label' => 'Lập trình & CNTT'],
-    ['id' => 'design',    'label' => 'Thiết kế & Sáng tạo'],
-    ['id' => 'marketing', 'label' => 'Marketing & Sales'],
-    ['id' => 'data',      'label' => 'Dữ liệu & AI'],
-    ['id' => 'business',  'label' => 'Kinh doanh & Quản trị'],
-];
 ?>
 
 <section class="edn-im-courses edn-courses-section">
@@ -94,19 +85,7 @@ $filter_tabs = [
             <div>
                 <span class="edn-hero-badge"><span class="edn-badge-dot"></span> Tuyển chọn thực chiến</span>
                 <h2>Khóa học thực chiến nổi bật</h2>
-                <p>Chương trình được thiết kế bài bản theo từng dự án thực tế cùng các chuyên gia hàng đầu.</p>
             </div>
-            <a class="edn-im-text-link" href="#/courses">
-                Xem tất cả khóa học <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M8 3l5 5-5 5"></path></svg>
-            </a>
-        </div>
-
-        <div class="edn-home-tabs-bar">
-            <?php foreach ($filter_tabs as $idx => $t): ?>
-                <button type="button" class="edn-home-tab-pill<?php echo $idx === 0 ? ' is-active' : ''; ?>" data-a="home-filter" data-v="<?php echo esc_attr($t['id']); ?>">
-                    <?php echo esc_html($t['label']); ?>
-                </button>
-            <?php endforeach; ?>
         </div>
 
         <div class="edn-featured-grid">
