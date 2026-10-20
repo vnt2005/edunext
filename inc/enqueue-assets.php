@@ -71,6 +71,7 @@ function edunext_frontend_config(): array {
         'domainImages' => edunext_domain_images(),
         'courseImages' => edunext_course_images(),
         'themeUri'     => get_template_directory_uri(),
+        'instructors'  => function_exists('edunext_db_get_all_instructors') ? edunext_db_get_all_instructors() : [],
     ];
 }
 
