@@ -894,9 +894,6 @@ let domainViewMode = 'all';
 const domainsPage = () => {
   return '<div class="wrap page edn-domain-page">' +
     '<div class="edn-page-intro">' +
-      '<span class="edn-hero-badge"><span class="edn-badge-dot"></span> KHÁM PHÁ THEO LĨNH VỰC</span>' +
-      '<h1>50 Chuyên ngành đào tạo</h1>' +
-      '<p>Tìm đúng hướng đi từ công nghệ thông tin, thiết kế, marketing, quản trị kinh doanh đến ngoại ngữ và kỹ năng số.</p>' +
       '<div class="edn-domain-filter-pills" role="tablist">' +
         '<button type="button" class="edn-filter-pill' + (domainViewMode === 'all' ? ' is-active' : '') + '" data-a="domain-view" data-v="all" role="tab" aria-selected="' + (domainViewMode === 'all') + '">Tất cả 50 Lĩnh vực</button>' +
         '<button type="button" class="edn-filter-pill' + (domainViewMode === 'groups' ? ' is-active' : '') + '" data-a="domain-view" data-v="groups" role="tab" aria-selected="' + (domainViewMode === 'groups') + '">11 Nhóm chuyên ngành</button>' +
