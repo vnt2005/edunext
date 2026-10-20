@@ -13275,3 +13275,41 @@ body.edunext-app .edn-domain-group-header p {
   gap: 18px !important;
   margin-top: 18px !important;
 }
+
+/* Input Wrapper & Password Toggle Button */
+body.edunext-app .edn-auth-page .edn-input-wrapper {
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  width: 100% !important;
+}
+
+body.edunext-app .edn-auth-page .edn-password-fg .edn-input-wrapper input {
+  padding-right: 46px !important;
+}
+
+body.edunext-app .edn-auth-page .edn-toggle-pw {
+  position: absolute !important;
+  right: 12px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 32px !important;
+  height: 32px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+  border-radius: 8px !important;
+  background: transparent !important;
+  color: #94A3B8 !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  z-index: 2 !important;
+}
+
+body.edunext-app .edn-auth-page .edn-toggle-pw:hover {
+  color: #2DD4BF !important;
+  background: rgba(45, 212, 191, 0.1) !important;
+}

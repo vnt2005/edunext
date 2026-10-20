@@ -1531,14 +1531,14 @@ const ordersPage=()=>{
     '</div>'+
   '</div></main>';
 };
-const field=(n,l,t,placeholder,min)=>'<div class="fg"><label for="f-'+n+'">'+l+'</label><input id="f-'+n+'" name="'+n+'" type="'+t+'" '+(placeholder?'placeholder="'+esc(placeholder)+'" ':'')+(min?'minlength="'+min+'" ':'')+'autocomplete="'+(n==='pw'?(t==='password'?'current-password':'off'):n)+'" required></div>';
+const field=(n,l,t,placeholder,min)=>'<div class="fg"'+(t==='password'?' edn-password-fg':'')+'><label for="f-'+n+'">'+l+'</label><div class="edn-input-wrapper"><input id="f-'+n+'" name="'+n+'" type="'+t+'" '+(placeholder?'placeholder="'+esc(placeholder)+'" ':'')+(min?'minlength="'+min+'" ':'')+'autocomplete="'+(n==='pw'?(t==='password'?'current-password':'off'):n)+'" required>'+(t==='password'?'<button type="button" class="edn-toggle-pw" data-a="toggle-pw" data-v="f-'+n+'" aria-label="Hiện hoặc ẩn mật khẩu"><svg class="edn-eye-open" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg><svg class="edn-eye-closed" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:none"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg></button>':'')+'</div></div>';
 const auth=m=>{
   if(D.me){go('/dashboard');return '';}
   const register=m==='register';
-  return '<div class="auth edn-auth-page"><form class="box ac edn-auth-card" data-form="'+m+'" novalidate><span class="edn-overline">TÀI KHOẢN EDUNEXT</span><h1>'+(register?'Tạo tài khoản':'Đăng nhập')+'</h1><p>'+(register?'Tạo tài khoản để lưu hồ sơ và theo dõi những khóa học đã được cấp quyền.':'Đăng nhập bằng tài khoản WordPress của bạn để tiếp tục học tập.')+'</p>'+
+  return '<div class="auth edn-auth-page"><form class="box ac edn-auth-card" data-form="'+m+'" novalidate><span class="edn-overline">TÀI KHOẢN EDUNEXT</span><h1>'+(register?'Tạo tài khoản':'Đăng nhập')+'</h1>'+
     (register?field('name','Họ và tên','text','Tên hiển thị','2'):'')+
-    field('email','Email','email','name@example.com','')+
-    field('pw','Mật khẩu','password','Tối thiểu 8 ký tự','8')+
+    field('email','Email','email','','')+
+    field('pw','Mật khẩu','password','','8')+
     (register?'<label class="chk"><input type="checkbox" name="ok" value="1" required> Tôi đồng ý với điều khoản sử dụng.</label>':'')+
     '<p class="err edn-auth-error" id="err" role="alert"></p><button class="btn btn-p w" type="submit">'+(register?'Tạo tài khoản':'Đăng nhập')+'</button>'+
     (register?'<p class="sw">Đã có tài khoản? <a href="#/login">Đăng nhập</a></p>':'<p class="sw"><a href="'+esc(CFG.lostPasswordUrl||'#')+'">Quên mật khẩu?</a></p><p class="sw">Chưa có tài khoản? <a href="#/register">Đăng ký</a></p>')+
@@ -2323,6 +2323,19 @@ const openCoursePlayer=(id,index=0)=>{
 };
 
 const A={
+  'toggle-pw':(targetId, btn)=>{
+    const input=document.getElementById(targetId);
+    if(!input)return;
+    const isPw=input.type==='password';
+    input.type=isPw?'text':'password';
+    if(btn){
+      const openIcon=btn.querySelector('.edn-eye-open');
+      const closedIcon=btn.querySelector('.edn-eye-closed');
+      if(openIcon)openIcon.style.display=isPw?'none':'inline-block';
+      if(closedIcon)closedIcon.style.display=isPw?'inline-block':'none';
+      btn.setAttribute('aria-label',isPw?'Ẩn mật khẩu':'Hiện mật khẩu');
+    }
+  },
   'retry-catalog':()=>initializeEduNext(),
   'home-filter':value=>{homeFilterTab=value;render(true);},
   'domain-view':value=>{domainViewMode=value;render(true);},
