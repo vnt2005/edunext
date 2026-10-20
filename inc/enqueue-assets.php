@@ -53,7 +53,7 @@ function edunext_frontend_config(): array {
 
     return [
         'ajaxUrl' => admin_url('admin-ajax.php'),
-        'catalogUrl' => esc_url_raw(get_theme_file_uri('assets/data/course-catalog.json')),
+        'catalogUrl' => esc_url_raw(rest_url('edunext/v1/catalog')),
         'nonce' => wp_create_nonce('edunext_user_action'),
         'loggedIn' => (bool) $user_id,
         'user' => edunext_frontend_user_payload(),
