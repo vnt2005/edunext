@@ -2375,8 +2375,8 @@ const A={
     const targetSelector=area==='home'
       ? '.edn-im-courses .edn-im-section-heading, .edn-popular-section .edn-editorial-heading'
       : area==='domains'
-        ? '.edn-domain-page .edn-page-intro'
-        : '.edn-course-catalog-page .cio-page-head';
+        ? '.edn-domain-page .edn-page-intro, .edn-domain-page'
+        : '.edn-course-catalog-page .cio-course-toolbar, .edn-course-catalog-page .edn-catalog-pills-row, .edn-course-catalog-page';
     const target=document.querySelector(targetSelector);
     if(target){
       const header=document.querySelector('.edunext-site-header');
