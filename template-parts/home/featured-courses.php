@@ -85,11 +85,7 @@ $star_svg = '<svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><pa
             <div>
                 <span class="edn-hero-badge"><span class="edn-badge-dot"></span> Tuyển chọn thực chiến</span>
                 <h2>Khóa học thực chiến nổi bật</h2>
-                <p>Chương trình được thiết kế bài bản theo từng dự án thực tế cùng các chuyên gia hàng đầu.</p>
             </div>
-            <a class="edn-im-text-link" href="#/courses">
-                Xem tất cả khóa học <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M8 3l5 5-5 5"></path></svg>
-            </a>
         </div>
 
         <div class="edn-featured-grid">
