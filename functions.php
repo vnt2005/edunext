@@ -4,6 +4,7 @@
  *
  * Standardized WordPress theme architecture:
  * - inc/setup.php: Theme supports and setup
+ * - inc/queries/db-queries.php: Native WordPress Database Queries for Courses & Fields
  * - inc/helpers.php: Catalog queries, images, and validation helpers
  * - inc/features/student-account.php: Account, auth, and profile AJAX handlers
  * - inc/features/learning-progress.php: Progress tracking and certificate issuance
@@ -18,6 +19,7 @@ if (!defined('ABSPATH')) {
 
 require_once get_theme_file_path('inc/security.php');
 require_once get_theme_file_path('inc/setup.php');
+require_once get_theme_file_path('inc/queries/db-queries.php');
 require_once get_theme_file_path('inc/helpers.php');
 require_once get_theme_file_path('inc/queries/courses.php');
 require_once get_theme_file_path('inc/queries/fields.php');
