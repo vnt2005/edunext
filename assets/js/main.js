@@ -218,7 +218,7 @@ const find=id=>C.find(c=>c.id===id);
 const pct=c=>{const e=EN()[c.id];return e?Math.round(Math.min(e.done.length,c.L.length)/Math.max(c.L.length,1)*100):0};
 const nextL=c=>{const e=EN()[c.id]||{done:[]},k=c.L.findIndex((_,i)=>!e.done.includes(i));return k<0?Math.max(c.L.length-1,0):k};
 const passed=c=>{const e=EN()[c.id];return !!e&&e.done.length>=(c.completionCount||c.L.length)&&c.L.length>0};
-const PAGE_SIZE=10;
+const PAGE_SIZE=8;
 let homeCoursePage=1,domainListPage=1;
 const F0=()=>({q:'',cat:'',domainId:'',topic:'',sort:'name',page:1});
 const paginationMarkup=(area,current,total,label='mục')=>{
