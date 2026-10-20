@@ -34,7 +34,6 @@ get_header();
         get_template_part('template-parts/home/testimonials');
         get_template_part('template-parts/home/blog');
         get_template_part('template-parts/home/faq');
-        get_template_part('template-parts/home/cta-banner');
         ?>
     </div>
 
