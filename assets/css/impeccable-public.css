@@ -10146,10 +10146,26 @@ body.edunext-app .edn-about-final-cta h2 {
 body.edunext-app .edn-about-final-cta p {
   color: #CBD5E1 !important;
 }
+#app .edn-about-hero-actions .btn,
+body.edunext-app .edn-about-hero-actions .btn,
+.edn-about-hero-actions .btn,
 #app .edn-about-final-actions .btn,
 body.edunext-app .edn-about-final-actions .btn,
 .edn-about-final-actions .btn {
   border-radius: 12px !important;
+}
+#app .edn-about-hero-actions .btn.btn-g,
+body.edunext-app .edn-about-hero-actions .btn.btn-g,
+.edn-about-hero-actions .btn.btn-g {
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+  color: #FFFFFF !important;
+}
+#app .edn-about-hero-actions .btn.btn-g:hover,
+body.edunext-app .edn-about-hero-actions .btn.btn-g:hover,
+.edn-about-hero-actions .btn.btn-g:hover {
+  border-color: #2DD4BF !important;
+  background: rgba(45, 212, 191, 0.15) !important;
 }
 
 /* 5. Profile & Account Settings (Udemy Layout adapted to EduNext Dark Theme) */
