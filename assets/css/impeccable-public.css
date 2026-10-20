@@ -9711,9 +9711,9 @@ body.edunext-app .edn-about-hero-copy p {
 }
 #app .edn-about-visual-step.is-highlighted,
 body.edunext-app .edn-about-visual-step.is-highlighted {
-  background: rgba(45, 212, 191, 0.12) !important;
-  border: 1px solid rgba(45, 212, 191, 0.35) !important;
-  color: #FFFFFF !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(255, 255, 255, 0.07) !important;
+  color: #E2E8F0 !important;
 }
 #app .edn-about-visual-step,
 body.edunext-app .edn-about-visual-step {
@@ -9892,20 +9892,20 @@ body.edunext-app .edn-about-step-icon {
   color: #2DD4BF !important;
 }
 body.edunext-app .edn-about-visual-step.is-highlighted {
-  background: rgba(45, 212, 191, 0.14) !important;
-  border: 1px solid #2DD4BF !important;
-  box-shadow: 0 0 20px rgba(45, 212, 191, 0.15) !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(255, 255, 255, 0.07) !important;
+  box-shadow: none !important;
 }
 body.edunext-app .edn-about-visual-step.is-highlighted strong {
   color: #FFFFFF !important;
 }
 body.edunext-app .edn-about-visual-step.is-highlighted p {
-  color: #E2E8F0 !important;
+  color: #94A3B8 !important;
 }
 body.edunext-app .edn-about-visual-step.is-highlighted .edn-about-step-icon {
-  background: #2DD4BF !important;
-  color: #042F2E !important;
-  border-color: #2DD4BF !important;
+  background: rgba(45, 212, 191, 0.12) !important;
+  border: 1px solid rgba(45, 212, 191, 0.3) !important;
+  color: #2DD4BF !important;
 }
 body.edunext-app .edn-about-visual-foot {
   border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
