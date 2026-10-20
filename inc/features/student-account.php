@@ -93,7 +93,7 @@ function edunext_ajax_register(): void {
     wp_set_current_user((int) $user_id);
     wp_set_auth_cookie((int) $user_id, true, is_ssl());
 
-    wp_send_json_success(['message' => 'Tài khoản đã được tạo.', 'redirect' => '#/dashboard']);
+    wp_send_json_success(['message' => 'Tài khoản đã được tạo.', 'redirect' => '#/']);
 }
 add_action('wp_ajax_nopriv_edunext_register', 'edunext_ajax_register');
 
@@ -121,7 +121,7 @@ function edunext_ajax_login(): void {
         edunext_ajax_error('Email hoặc mật khẩu chưa chính xác.', 401);
     }
 
-    wp_send_json_success(['message' => 'Đăng nhập thành công.', 'redirect' => '#/dashboard']);
+    wp_send_json_success(['message' => 'Đăng nhập thành công.', 'redirect' => '#/']);
 }
 add_action('wp_ajax_nopriv_edunext_login', 'edunext_ajax_login');
 

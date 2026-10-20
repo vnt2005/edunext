@@ -218,7 +218,7 @@ const find=id=>C.find(c=>c.id===id);
 const pct=c=>{const e=EN()[c.id];return e?Math.round(Math.min(e.done.length,c.L.length)/Math.max(c.L.length,1)*100):0};
 const nextL=c=>{const e=EN()[c.id]||{done:[]},k=c.L.findIndex((_,i)=>!e.done.includes(i));return k<0?Math.max(c.L.length-1,0):k};
 const passed=c=>{const e=EN()[c.id];return !!e&&e.done.length>=(c.completionCount||c.L.length)&&c.L.length>0};
-const PAGE_SIZE=10;
+const PAGE_SIZE=8;
 let homeCoursePage=1,domainListPage=1;
 const F0=()=>({q:'',cat:'',domainId:'',topic:'',sort:'name',page:1});
 const paginationMarkup=(area,current,total,label='mục')=>{
@@ -894,9 +894,6 @@ let domainViewMode = 'all';
 const domainsPage = () => {
   return '<div class="wrap page edn-domain-page">' +
     '<div class="edn-page-intro">' +
-      '<span class="edn-hero-badge"><span class="edn-badge-dot"></span> KHÁM PHÁ THEO LĨNH VỰC</span>' +
-      '<h1>50 Chuyên ngành đào tạo</h1>' +
-      '<p>Tìm đúng hướng đi từ công nghệ thông tin, thiết kế, marketing, quản trị kinh doanh đến ngoại ngữ và kỹ năng số.</p>' +
       '<div class="edn-domain-filter-pills" role="tablist">' +
         '<button type="button" class="edn-filter-pill' + (domainViewMode === 'all' ? ' is-active' : '') + '" data-a="domain-view" data-v="all" role="tab" aria-selected="' + (domainViewMode === 'all') + '">Tất cả 50 Lĩnh vực</button>' +
         '<button type="button" class="edn-filter-pill' + (domainViewMode === 'groups' ? ' is-active' : '') + '" data-a="domain-view" data-v="groups" role="tab" aria-selected="' + (domainViewMode === 'groups') + '">11 Nhóm chuyên ngành</button>' +
@@ -1534,14 +1531,14 @@ const ordersPage=()=>{
     '</div>'+
   '</div></main>';
 };
-const field=(n,l,t,placeholder,min)=>'<div class="fg"><label for="f-'+n+'">'+l+'</label><input id="f-'+n+'" name="'+n+'" type="'+t+'" '+(placeholder?'placeholder="'+esc(placeholder)+'" ':'')+(min?'minlength="'+min+'" ':'')+'autocomplete="'+(n==='pw'?(t==='password'?'current-password':'off'):n)+'" required></div>';
+const field=(n,l,t,placeholder,min)=>'<div class="fg"'+(t==='password'?' edn-password-fg':'')+'><label for="f-'+n+'">'+l+'</label><div class="edn-input-wrapper"><input id="f-'+n+'" name="'+n+'" type="'+t+'" '+(placeholder?'placeholder="'+esc(placeholder)+'" ':'')+(min?'minlength="'+min+'" ':'')+'autocomplete="'+(n==='pw'?(t==='password'?'current-password':'off'):n)+'" required>'+(t==='password'?'<button type="button" class="edn-toggle-pw" data-a="toggle-pw" data-v="f-'+n+'" aria-label="Hiện hoặc ẩn mật khẩu"><svg class="edn-eye-open" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg><svg class="edn-eye-closed" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:none"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg></button>':'')+'</div></div>';
 const auth=m=>{
   if(D.me){go('/dashboard');return '';}
   const register=m==='register';
-  return '<div class="auth edn-auth-page"><form class="box ac edn-auth-card" data-form="'+m+'" novalidate><span class="edn-overline">TÀI KHOẢN EDUNEXT</span><h1>'+(register?'Tạo tài khoản':'Đăng nhập')+'</h1><p>'+(register?'Tạo tài khoản để lưu hồ sơ và theo dõi những khóa học đã được cấp quyền.':'Đăng nhập bằng tài khoản WordPress của bạn để tiếp tục học tập.')+'</p>'+
+  return '<div class="auth edn-auth-page"><form class="box ac edn-auth-card" data-form="'+m+'" novalidate><span class="edn-overline">TÀI KHOẢN EDUNEXT</span><h1>'+(register?'Tạo tài khoản':'Đăng nhập')+'</h1>'+
     (register?field('name','Họ và tên','text','Tên hiển thị','2'):'')+
-    field('email','Email','email','name@example.com','')+
-    field('pw','Mật khẩu','password','Tối thiểu 8 ký tự','8')+
+    field('email','Email','email','','')+
+    field('pw','Mật khẩu','password','','8')+
     (register?'<label class="chk"><input type="checkbox" name="ok" value="1" required> Tôi đồng ý với điều khoản sử dụng.</label>':'')+
     '<p class="err edn-auth-error" id="err" role="alert"></p><button class="btn btn-p w" type="submit">'+(register?'Tạo tài khoản':'Đăng nhập')+'</button>'+
     (register?'<p class="sw">Đã có tài khoản? <a href="#/login">Đăng nhập</a></p>':'<p class="sw"><a href="'+esc(CFG.lostPasswordUrl||'#')+'">Quên mật khẩu?</a></p><p class="sw">Chưa có tài khoản? <a href="#/register">Đăng ký</a></p>')+
@@ -1793,9 +1790,18 @@ const faqPage=()=>'<div class="wrap page edn-faq-page"><div class="edn-page-intr
 const aboutPage=()=>{
   return '<main class="wrap page edn-about-page">'+
     '<nav class="edn-breadcrumb" aria-label="Đường dẫn"><a href="#/">Trang chủ</a><span>›</span><span>Về EduNext</span></nav>'+
-    '<section class="edn-about-hero"><div class="edn-about-hero-copy"><span class="edn-about-eyebrow"><span class="edn-about-eyebrow-dot"></span> VỀ EDUNEXT</span><h1>Học có định hướng.<br><em>Tiến bộ từng bước.</em></h1><p>Không phải lúc nào chúng ta cũng biết nên học gì tiếp theo. EduNext được xây dựng để giúp bạn khám phá lĩnh vực phù hợp, hiểu rõ lộ trình học và chủ động biến kiến thức thành kỹ năng qua thực hành.</p><div class="edn-about-hero-actions"><a class="btn btn-p" href="#/categories">Khám phá lĩnh vực <span aria-hidden="true">↗</span></a><a class="edn-about-text-link" href="#/blog">Đọc Blog <span aria-hidden="true">→</span></a></div><div class="edn-about-hero-note"><span aria-hidden="true">✳</span><span>Không cần biết tất cả ngay từ đầu. Hãy bắt đầu từ bước kế tiếp.</span></div></div>'+
+    '<section class="edn-about-hero"><div class="edn-about-hero-copy"><span class="edn-about-eyebrow"><span class="edn-about-eyebrow-dot"></span> VỀ EDUNEXT</span><h1>Học có định hướng.<br><em>Tiến bộ từng bước.</em></h1><p>Không phải lúc nào chúng ta cũng biết nên học gì tiếp theo. EduNext được xây dựng để giúp bạn khám phá lĩnh vực phù hợp, hiểu rõ lộ trình học và chủ động biến kiến thức thành kỹ năng qua thực hành.</p><div class="edn-about-hero-actions"><a class="btn btn-p" href="#/categories">Khám phá lĩnh vực <span aria-hidden="true">↗</span></a><a class="btn btn-g" href="#/blog">Đọc Blog</a></div><div class="edn-about-hero-note"><span aria-hidden="true">✳</span><span>Không cần biết tất cả ngay từ đầu. Hãy bắt đầu từ bước kế tiếp.</span></div></div>'+
     '<div class="edn-about-visual" aria-label="Ba bước trong hành trình học tập"><div class="edn-about-visual-orbit edn-about-orbit-one"></div><div class="edn-about-visual-orbit edn-about-orbit-two"></div><div class="edn-about-visual-header"><span>EDUNEXT LEARNING PATH</span><span class="edn-about-visual-live"><i></i> HÀNH TRÌNH CỦA BẠN</span></div><div class="edn-about-visual-steps"><div class="edn-about-visual-step"><span class="edn-about-step-num">01</span><span class="edn-about-step-icon" aria-hidden="true">⌕</span><div><small>BƯỚC MỘT</small><strong>Khám phá</strong><p>Tìm lĩnh vực bạn muốn hiểu sâu hơn.</p></div><span class="edn-about-step-check" aria-hidden="true">↗</span></div><div class="edn-about-visual-step is-highlighted"><span class="edn-about-step-num">02</span><span class="edn-about-step-icon" aria-hidden="true">▤</span><div><small>BƯỚC HAI</small><strong>Học theo lộ trình</strong><p>Đi từ nền tảng đến từng chủ đề cụ thể.</p></div><span class="edn-about-step-check" aria-hidden="true">↗</span></div><div class="edn-about-visual-step"><span class="edn-about-step-num">03</span><span class="edn-about-step-icon" aria-hidden="true">↗</span><div><small>BƯỚC BA</small><strong>Thực hành và nhìn lại</strong><p>Thử áp dụng, kiểm tra và tiếp tục tiến bộ.</p></div><span class="edn-about-step-check" aria-hidden="true">✓</span></div></div><div class="edn-about-visual-foot"><span>HỌC HÔM NAY</span><span>TIẾN BỘ NGÀY MAI <b aria-hidden="true">↗</b></span></div></div></section>'+
-    '<section class="edn-about-intro"><div class="edn-about-section-label"><span>01</span><span>VÌ SAO CÓ EDUNEXT?</span></div><div class="edn-about-intro-copy"><h2>Kiến thức chỉ thật sự có ích khi bạn biết <em>đưa nó vào việc mình làm.</em></h2><p>Học trực tuyến có thể bắt đầu bằng một video hay một bài viết. Nhưng để đi xa hơn, người học cần biết mình đang học chủ đề gì, kiến thức đó liên quan đến đâu và có thể thử áp dụng bằng cách nào. EduNext hướng tới việc làm cho hành trình ấy mạch lạc hơn — từ lúc khám phá, đến lúc thực hành và tự đánh giá điều mình đã hiểu.</p></div></section>'+
+    '<section class="edn-about-intro">'+
+      '<div class="edn-about-intro-left">'+
+        '<div class="edn-about-section-label"><span>01</span><span>VÌ SAO CÓ EDUNEXT?</span></div>'+
+        '<p class="edn-about-intro-aside">Mục tiêu phát triển nền tảng giáo dục số gắn liền với tư duy thực hành và sự chủ động của người học.</p>'+
+      '</div>'+
+      '<div class="edn-about-intro-copy">'+
+        '<h2>Kiến thức chỉ thật sự có ích khi bạn biết <em>đưa nó vào việc mình làm.</em></h2>'+
+        '<p>Học trực tuyến có thể bắt đầu bằng một video hay một bài viết. Nhưng để đi xa hơn, người học cần biết mình đang học chủ đề gì, kiến thức đó liên quan đến đâu và có thể thử áp dụng bằng cách nào. EduNext hướng tới việc làm cho hành trình ấy mạch lạc hơn — từ lúc khám phá, đến lúc thực hành và tự đánh giá điều mình đã hiểu.</p>'+
+      '</div>'+
+    '</section>'+
     '<section class="edn-about-mission-grid"><article class="edn-about-mission-card edn-about-mission-main"><span class="edn-about-card-overline">SỨ MỆNH</span><div class="edn-about-card-symbol" aria-hidden="true">↗</div><h2>Giúp việc học trở nên rõ ràng và chủ động hơn.</h2><p>Chúng tôi muốn người học dễ tìm thấy lĩnh vực mình quan tâm, biết phạm vi của từng chương trình và có định hướng cụ thể cho bước học tiếp theo.</p></article><article class="edn-about-mission-card edn-about-vision-card"><span class="edn-about-card-overline">TẦM NHÌN</span><div class="edn-about-card-symbol" aria-hidden="true">✳</div><h2>Một điểm bắt đầu đáng tin cậy cho việc học suốt đời.</h2><p>EduNext hướng tới một không gian học tập có cấu trúc, gần với nhu cầu thực tế và không ngừng được cải thiện dựa trên phản hồi của người học.</p></article></section>'+
     '<section class="edn-about-goals"><header class="edn-about-section-head"><div><span class="edn-about-eyebrow">MỤC TIÊU</span><h2>Thiết kế trải nghiệm xoay quanh <em>người học.</em></h2></div><p>Ba điều EduNext ưu tiên khi phát triển danh mục, nội dung và các công cụ học tập.</p></header><div class="edn-about-goal-grid"><article class="edn-about-goal-card"><span class="edn-about-card-number">01 / ĐỊNH HƯỚNG</span><div class="edn-about-goal-icon" aria-hidden="true">⌖</div><h3>Dễ biết nên bắt đầu từ đâu</h3><p>Nhóm lĩnh vực và chuyên ngành giúp bạn thu hẹp lựa chọn, so sánh chủ đề và tìm nội dung gần với mục tiêu cá nhân.</p></article><article class="edn-about-goal-card"><span class="edn-about-card-number">02 / THỰC HÀNH</span><div class="edn-about-goal-icon" aria-hidden="true">▧</div><h3>Nối kiến thức với việc làm</h3><p>Ưu tiên bài học có cấu trúc, ví dụ cụ thể và gợi ý thực hành để bạn kiểm tra điều mình vừa học.</p></article><article class="edn-about-goal-card"><span class="edn-about-card-number">03 / TIẾN BỘ</span><div class="edn-about-goal-icon" aria-hidden="true">↗</div><h3>Nhìn thấy bước tiếp theo</h3><p>Giúp người học biết mình đã tìm hiểu gì, cần đào sâu phần nào và có thể tiếp tục theo hướng nào.</p></article></div></section>'+
     '<section class="edn-about-direction"><div class="edn-about-direction-heading"><span class="edn-about-eyebrow">ĐỊNH HƯỚNG PHÁT TRIỂN</span><h2>Rõ ràng trước.<br><em>Hoàn thiện dần.</em></h2><p>EduNext được phát triển theo từng lớp nền tảng, ưu tiên sự dễ hiểu và hữu ích thay vì thêm tính năng chỉ để làm giao diện trông phức tạp hơn.</p><a class="edn-about-text-link" href="#/blog">Khám phá các góc nhìn học tập <span aria-hidden="true">→</span></a></div><div class="edn-about-roadmap"><article><span class="edn-about-roadmap-index">01</span><div><h3>Danh mục có cấu trúc</h3><p>Sắp xếp lĩnh vực lớn và chuyên ngành hợp lý để người học tìm đúng hướng.</p></div><span class="edn-about-roadmap-mark" aria-hidden="true">✓</span></article><article><span class="edn-about-roadmap-index">02</span><div><h3>Nội dung có ích</h3><p>Phát triển bài viết, ví dụ và học liệu với giải thích rõ ràng, phù hợp từng chủ đề.</p></div><span class="edn-about-roadmap-mark" aria-hidden="true">↗</span></article><article><span class="edn-about-roadmap-index">03</span><div><h3>Công cụ hỗ trợ học tập</h3><p>Từng bước hoàn thiện trải nghiệm xem bài, quản lý tiến độ và các chức năng cho người học.</p></div><span class="edn-about-roadmap-mark" aria-hidden="true">↗</span></article><article><span class="edn-about-roadmap-index">04</span><div><h3>Cải thiện từ phản hồi</h3><p>Tiếp tục điều chỉnh nội dung và giao diện dựa trên vấn đề người học thực sự gặp.</p></div><span class="edn-about-roadmap-mark" aria-hidden="true">↗</span></article></div></section>'+
@@ -1845,10 +1851,10 @@ const profilePage=section=>{
           '<div class="edn-field">'+
             '<label class="edn-field-label" for="edn-headline">Dòng giới thiệu ngắn</label>'+
             '<div class="edn-field-counter-wrap">'+
-              '<input id="edn-headline" name="headline" maxlength="120" value="'+esc(meta.headline||'')+'" placeholder="Ví dụ: Giảng viên Lập trình Web tại EduNext">'+
+              '<input id="edn-headline" name="headline" maxlength="120" value="'+esc(meta.headline||'')+'" >'+
               '<span id="edn-headline-count">'+String(meta.headline||'').length+'</span>'+
             '</div>'+
-            '<small class="edn-field-hint">Dòng giới thiệu ngắn gọn về nghề nghiệp hoặc chuyên môn của bạn.</small>'+
+            
           '</div>'+
         '</div>'+
       '</div>'+
@@ -1857,23 +1863,23 @@ const profilePage=section=>{
         '<div class="edn-field-col">'+
           '<div class="edn-field">'+
             '<label class="edn-field-label" for="edn-website">Website cá nhân</label>'+
-            '<input id="edn-website" name="website" type="url" value="'+esc(meta.website||'')+'" placeholder="https://yourwebsite.com">'+
+            '<input id="edn-website" name="website" type="url" value="'+esc(meta.website||'')+'" >'+
           '</div>'+
           '<div class="edn-field">'+
             '<label class="edn-field-label" for="edn-facebook">Facebook</label>'+
             '<div class="edn-input-addon-group">'+
               '<span class="edn-input-addon">facebook.com/</span>'+
-              '<input id="edn-facebook" name="facebook" value="'+esc(meta.facebook||'')+'" placeholder="Tên người dùng">'+
+              '<input id="edn-facebook" name="facebook" value="'+esc(meta.facebook||'')+'" >'+
             '</div>'+
-            '<small class="edn-field-hint">Nhập tên người dùng hoặc đường dẫn trang cá nhân Facebook của bạn.</small>'+
+            '<small class="edn-field-hint">Nhập link Facebook.</small>'+
           '</div>'+
           '<div class="edn-field">'+
             '<label class="edn-field-label" for="edn-linkedin">LinkedIn</label>'+
             '<div class="edn-input-addon-group">'+
               '<span class="edn-input-addon">linkedin.com/</span>'+
-              '<input id="edn-linkedin" name="linkedin" value="'+esc(meta.linkedin||'')+'" placeholder="in/ten-nguoi-dung">'+
+              '<input id="edn-linkedin" name="linkedin" value="'+esc(meta.linkedin||'')+'" >'+
             '</div>'+
-            '<small class="edn-field-hint">Nhập đường dẫn hồ sơ công khai LinkedIn của bạn.</small>'+
+            '<small class="edn-field-hint">Nhập link LinkedIn.</small>'+
           '</div>'+
         '</div>'+
       '</div>'+
@@ -2317,6 +2323,19 @@ const openCoursePlayer=(id,index=0)=>{
 };
 
 const A={
+  'toggle-pw':(targetId, btn)=>{
+    const input=document.getElementById(targetId);
+    if(!input)return;
+    const isPw=input.type==='password';
+    input.type=isPw?'text':'password';
+    if(btn){
+      const openIcon=btn.querySelector('.edn-eye-open');
+      const closedIcon=btn.querySelector('.edn-eye-closed');
+      if(openIcon)openIcon.style.display=isPw?'none':'inline-block';
+      if(closedIcon)closedIcon.style.display=isPw?'inline-block':'none';
+      btn.setAttribute('aria-label',isPw?'Ẩn mật khẩu':'Hiện mật khẩu');
+    }
+  },
   'retry-catalog':()=>initializeEduNext(),
   'home-filter':value=>{homeFilterTab=value;render(true);},
   'domain-view':value=>{domainViewMode=value;render(true);},
@@ -2366,8 +2385,8 @@ const A={
     const targetSelector=area==='home'
       ? '.edn-im-courses .edn-im-section-heading, .edn-popular-section .edn-editorial-heading'
       : area==='domains'
-        ? '.edn-domain-page .edn-page-intro'
-        : '.edn-course-catalog-page .cio-page-head';
+        ? '.edn-domain-page .edn-page-intro, .edn-domain-page'
+        : '.edn-course-catalog-page .cio-course-toolbar, .edn-course-catalog-page .edn-catalog-pills-row, .edn-course-catalog-page';
     const target=document.querySelector(targetSelector);
     if(target){
       const header=document.querySelector('.edunext-site-header');
@@ -2748,7 +2767,7 @@ document.addEventListener('submit',async event=>{
       const action=kind==='register'?'edunext_register':'edunext_login';
       const result=await request(action,{email,password,name:String(values.name||'').trim(),accepted:values.ok?'1':'0'});
       toast(result.message||'Thành công.');
-      const target=next||(result.redirect||'#/dashboard');
+      const target=next||(result.redirect||'#/');
       next='';
       window.location.hash=target.startsWith('#')?target:'#'+target;
       window.location.reload();
