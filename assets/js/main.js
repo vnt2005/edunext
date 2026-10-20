@@ -2754,7 +2754,7 @@ document.addEventListener('submit',async event=>{
       const action=kind==='register'?'edunext_register':'edunext_login';
       const result=await request(action,{email,password,name:String(values.name||'').trim(),accepted:values.ok?'1':'0'});
       toast(result.message||'Thành công.');
-      const target=next||(result.redirect||'#/dashboard');
+      const target=next||(result.redirect||'#/');
       next='';
       window.location.hash=target.startsWith('#')?target:'#'+target;
       window.location.reload();
