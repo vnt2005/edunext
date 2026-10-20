@@ -72,6 +72,7 @@ function edunext_frontend_config(): array {
         'courseImages' => edunext_course_images(),
         'themeUri'     => get_template_directory_uri(),
         'instructors'  => function_exists('edunext_db_get_all_instructors') ? edunext_db_get_all_instructors() : [],
+        'initialCartIds' => function_exists('edunext_get_cart_course_ids') ? edunext_get_cart_course_ids() : [],
     ];
 }
 
