@@ -821,7 +821,8 @@ const courses=()=>{
 
   return '<div class="wrap page cio-courses-page edn-course-catalog-page">'+
     '<div class="edn-catalog-pills-row">'+categoryPills+'</div>'+
-    '<div class="cio-course-toolbar"><div class="cio-search-local"><span aria-hidden="true">⌕</span><input data-f="q" value="'+esc(f.q)+'" placeholder="Tìm tên khóa học, lĩnh vực hoặc kỹ năng..." aria-label="Tìm trong danh mục"></div>'+
+    '<div class="cio-course-toolbar">'+
+    '<div class="cio-search-local"><span aria-hidden="true">⌕</span><input data-f="q" value="'+esc(f.q)+'" placeholder="Tìm tên khóa học, lĩnh vực hoặc kỹ năng..." aria-label="Tìm trong danh mục">'+(f.q?'<button type="button" class="edn-search-clear-btn" data-a="clear-search" aria-label="Xóa từ khóa">✕</button>':'')+'</div>'+
     '<div class="cio-toolbar-right">'+
       '<div class="edn-custom-select" data-select-id="cat">'+
         '<button type="button" class="edn-custom-select-trigger" aria-haspopup="listbox" aria-expanded="false" aria-label="Lọc chuyên ngành">'+
@@ -842,7 +843,13 @@ const courses=()=>{
         '<div class="edn-custom-select-menu" role="listbox">'+sortOptionsMarkup+'</div>'+
       '</div>'+
     '</div></div>'+
-    '<div class="edn-course-filter-meta"><span id="course-filter-summary">Tất cả chuyên ngành và chủ đề</span><button type="button" class="edn-clear-filters" data-a="clear">Xóa bộ lọc</button></div>'+
+    '<div class="edn-course-quick-suggestions">'+
+    '<span class="edn-suggestion-label">🔥 Gợi ý tìm kiếm phổ biến:</span>'+
+    ['C# .NET','Python','React','UI/UX','Data & SQL','AI LLM','Flutter','DevOps'].map(s=>
+      '<button type="button" class="edn-suggestion-chip'+((f.q||'').toLowerCase()===s.toLowerCase()?' is-active':'')+'" data-a="quick-search" data-v="'+esc(s)+'">'+esc(s)+'</button>'
+    ).join('')+
+  '</div>'+
+  '<div class="edn-course-filter-meta"><span id="course-filter-summary">Tất cả chuyên ngành và chủ đề</span><button type="button" class="edn-clear-filters" data-a="clear">Xóa bộ lọc</button></div>'+
     '<div class="cio-count-row"><span id="cnt"></span><span>khóa học tìm thấy</span></div>'+
     '<div class="grid cio-course-grid edn-courses-grid" id="list" aria-live="polite"></div>'+
     '<div id="course-pagination"></div>'+
@@ -2365,6 +2372,21 @@ const A={
     to('/courses');
   },
   topic:value=>{f=F0();f.topic=value;to('/courses');},
+  'quick-search':value=>{
+    f.q=value;
+    f.page=1;
+    const input=document.querySelector('.cio-search-local input[data-f="q"]');
+    if(input)input.value=value;
+    list();
+    window.scrollTo({top:0,behavior:'smooth'});
+  },
+  'clear-search':()=>{
+    f.q='';
+    f.page=1;
+    const input=document.querySelector('.cio-search-local input[data-f="q"]');
+    if(input){input.value='';input.focus();}
+    list();
+  },
   'cart-add':id=>{
     const course=find(id);
     if(!course){toast('Không tìm thấy chương trình trong danh mục.');return;}
