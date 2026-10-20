@@ -10146,6 +10146,11 @@ body.edunext-app .edn-about-final-cta h2 {
 body.edunext-app .edn-about-final-cta p {
   color: #CBD5E1 !important;
 }
+#app .edn-about-final-actions .btn,
+body.edunext-app .edn-about-final-actions .btn,
+.edn-about-final-actions .btn {
+  border-radius: 12px !important;
+}
 
 /* 5. Profile & Account Settings (Udemy Layout adapted to EduNext Dark Theme) */
 body.edunext-app .edn-profile-scope {
