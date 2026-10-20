@@ -56,24 +56,24 @@ if ($recent_posts_query->have_posts()) {
             </a>
         </div>
 
-        <div class="edn-journal-grid">
+        <div class="edn-journal-cards-grid">
             <?php foreach ($articles as $art): ?>
-                <article class="edn-journal-card">
-                    <a class="edn-journal-card-media" href="#/blog/<?php echo esc_attr($art['slug']); ?>" aria-label="Đọc bài: <?php echo esc_attr($art['title']); ?>">
-                        <img src="<?php echo esc_url($art['image']); ?>" alt="<?php echo esc_attr($art['title']); ?>" loading="lazy">
+                <article class="edn-journal-card group">
+                    <a class="edn-journal-thumb" href="#/blog/<?php echo esc_attr($art['slug']); ?>" aria-label="<?php echo esc_attr($art['title']); ?>">
+                        <img src="<?php echo esc_url($art['image']); ?>" alt="" loading="lazy">
+                        <span class="edn-journal-tag"><?php echo esc_html($art['tag']); ?></span>
                     </a>
-                    <div class="edn-journal-card-body">
-                        <div class="edn-journal-card-meta">
-                            <span class="edn-badge edn-badge-cyan"><?php echo esc_html($art['tag']); ?></span>
-                            <span class="edn-journal-card-readtime">⏱ <?php echo esc_html($art['readTime']); ?></span>
-                        </div>
-                        <h3>
-                            <a href="#/blog/<?php echo esc_attr($art['slug']); ?>"><?php echo esc_html($art['title']); ?></a>
-                        </h3>
+                    <div class="edn-journal-body">
+                        <span class="edn-journal-time">
+                            <svg class="edn-clock-icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/><path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/></svg>
+                            <?php echo esc_html($art['readTime']); ?>
+                        </span>
+                        <h3><a href="#/blog/<?php echo esc_attr($art['slug']); ?>"><?php echo esc_html($art['title']); ?></a></h3>
                         <p><?php echo esc_html($art['excerpt']); ?></p>
-                        <div class="edn-journal-card-foot">
-                            <a class="edn-im-text-link" href="#/blog/<?php echo esc_attr($art['slug']); ?>">
-                                Đọc bài viết <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M8 3l5 5-5 5"></path></svg>
+                        <div class="edn-journal-readmore">
+                            <a href="#/blog/<?php echo esc_attr($art['slug']); ?>">
+                                <span class="edn-animated-text"><span class="edn-text-top">Đọc bài viết</span><span class="edn-text-bottom" aria-hidden="true">Đọc bài viết</span></span>
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 8h11M8 3l5 5-5 5"></path></svg>
                             </a>
                         </div>
                     </div>
