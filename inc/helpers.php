@@ -20,6 +20,14 @@ function edunext_catalog_data(): array {
         return $catalog;
     }
 
+    if (function_exists('edunext_db_get_all_courses') && function_exists('edunext_db_get_all_fields')) {
+        $catalog = [
+            'domains' => edunext_db_get_all_fields(),
+            'courses' => edunext_db_get_all_courses(false),
+        ];
+        return $catalog;
+    }
+
     $path = get_theme_file_path('assets/data/course-catalog.json');
     if (!is_readable($path)) {
         $catalog = ['domains' => [], 'courses' => []];
@@ -40,6 +48,12 @@ function edunext_catalog_data(): array {
 }
 
 function edunext_catalog_course(string $course_id): ?array {
+    if (function_exists('edunext_get_course_by_catalog_id')) {
+        $c = edunext_get_course_by_catalog_id($course_id);
+        if ($c) {
+            return $c;
+        }
+    }
     foreach (edunext_catalog_data()['courses'] as $course) {
         if (is_array($course) && isset($course['id']) && hash_equals((string) $course['id'], $course_id)) {
             return $course;
