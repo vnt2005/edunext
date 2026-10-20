@@ -138,3 +138,4 @@ function edunext_format_course_post(WP_Post $p): array {
         'lessons'          => $lessons,
     ];
 }
+

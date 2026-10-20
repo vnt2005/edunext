@@ -2,6 +2,8 @@
 /**
  * Template Part: Home Blog / Latest Articles Section
  *
+ * Powered by WordPress Posts (Native Database)
+ *
  * @package EduNext
  */
 
@@ -9,32 +11,36 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-$articles = [
-    [
-        'title' => 'Học C# bằng cách lần theo dữ liệu, không phải học thuộc cú pháp',
-        'slug' => 'hoc-c-bang-cach-lan-theo-du-lieu-khong-phai-hoc-thuoc-cu-phap',
-        'tag' => 'Lập trình',
-        'readTime' => '7 phút đọc',
-        'excerpt' => 'Phương pháp tiếp cận lập trình thực chiến giúp bạn nắm chắc luồng dữ liệu của chương trình.',
-        'image' => get_theme_file_uri('assets/images/blog/hoc-c-bang-cach-lan-theo-du-lieu-khong-phai-hoc-thuoc-cu-phap.jpg'),
-    ],
-    [
-        'title' => 'Xây dựng REST API: bắt đầu từ một endpoint chạy đúng',
-        'slug' => 'xay-dung-rest-api-bat-dau-tu-mot-endpoint-chay-dung',
-        'tag' => 'ASP.NET Core',
-        'readTime' => '8 phút đọc',
-        'excerpt' => 'Cách tách nhỏ kiến trúc API thành từng lớp độc lập dễ kiểm thử và mở rộng.',
-        'image' => get_theme_file_uri('assets/images/blog/xay-dung-rest-api-bat-dau-tu-mot-endpoint-chay-dung.jpg'),
-    ],
-    [
-        'title' => 'Bản vẽ AutoCAD rõ ràng bắt đầu từ đơn vị và layer',
-        'slug' => 'ban-ve-autocad-ro-rang-bat-dau-tu-don-vi-va-layer',
-        'tag' => 'Thiết kế 2D',
-        'readTime' => '7 phút đọc',
-        'excerpt' => 'Thiết lập bản vẽ chuẩn xác ngay từ ban đầu để tiết kiệm thời gian chỉnh sửa về sau.',
-        'image' => get_theme_file_uri('assets/images/blog/ban-ve-autocad-ro-rang-bat-dau-tu-don-vi-va-layer.jpg'),
-    ],
-];
+$recent_posts_query = edunext_get_recent_posts(3);
+$articles = [];
+
+if ($recent_posts_query->have_posts()) {
+    while ($recent_posts_query->have_posts()) {
+        $recent_posts_query->the_post();
+        $p_id = get_the_ID();
+        $cats = get_the_category($p_id);
+        $tag = !empty($cats) ? $cats[0]->name : 'Kiến thức';
+        $image = get_post_meta($p_id, '_edunext_image', true);
+        if (!$image && has_post_thumbnail($p_id)) {
+            $image = get_the_post_thumbnail_url($p_id, 'medium_large');
+        }
+        if (!$image) {
+            $image = get_theme_file_uri('assets/images/placeholder.jpg');
+        } elseif (!str_starts_with($image, 'http')) {
+            $image = get_theme_file_uri($image);
+        }
+
+        $articles[] = [
+            'title'    => get_the_title(),
+            'slug'     => get_post_field('post_name', $p_id),
+            'tag'      => $tag,
+            'readTime' => get_post_meta($p_id, '_edunext_reading_time', true) ?: '6 phút đọc',
+            'excerpt'  => get_the_excerpt() ?: wp_trim_words(get_the_content(), 20),
+            'image'    => $image,
+        ];
+    }
+    wp_reset_postdata();
+}
 ?>
 
 <section class="edn-im-journal">
@@ -50,21 +56,29 @@ $articles = [
             </a>
         </div>
 
-        <div class="edn-journal-cards-grid">
+        <div class="edn-journal-grid">
             <?php foreach ($articles as $art): ?>
                 <article class="edn-journal-card">
-                    <a class="edn-journal-thumb" href="#/blog/<?php echo esc_attr($art['slug']); ?>" aria-label="<?php echo esc_attr($art['title']); ?>">
-                        <img src="<?php echo esc_url($art['image']); ?>" alt="" loading="lazy">
-                        <span class="edn-journal-tag"><?php echo esc_html($art['tag']); ?></span>
+                    <a class="edn-journal-card-media" href="#/blog/<?php echo esc_attr($art['slug']); ?>" aria-label="Đọc bài: <?php echo esc_attr($art['title']); ?>">
+                        <img src="<?php echo esc_url($art['image']); ?>" alt="<?php echo esc_attr($art['title']); ?>" loading="lazy">
                     </a>
-                    <div class="edn-journal-body">
-                        <span class="edn-journal-time"><?php echo esc_html($art['readTime']); ?></span>
-                        <h3><a href="#/blog/<?php echo esc_attr($art['slug']); ?>"><?php echo esc_html($art['title']); ?></a></h3>
+                    <div class="edn-journal-card-body">
+                        <div class="edn-journal-card-meta">
+                            <span class="edn-badge edn-badge-cyan"><?php echo esc_html($art['tag']); ?></span>
+                            <span class="edn-journal-card-readtime">⏱ <?php echo esc_html($art['readTime']); ?></span>
+                        </div>
+                        <h3>
+                            <a href="#/blog/<?php echo esc_attr($art['slug']); ?>"><?php echo esc_html($art['title']); ?></a>
+                        </h3>
                         <p><?php echo esc_html($art['excerpt']); ?></p>
+                        <div class="edn-journal-card-foot">
+                            <a class="edn-im-text-link" href="#/blog/<?php echo esc_attr($art['slug']); ?>">
+                                Đọc bài viết <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M8 3l5 5-5 5"></path></svg>
+                            </a>
+                        </div>
                     </div>
                 </article>
             <?php endforeach; ?>
         </div>
     </div>
 </section>
-
