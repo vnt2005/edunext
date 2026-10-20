@@ -53,7 +53,7 @@ usort($mapped_courses, static function ($a, $b) {
     return 0;
 });
 
-$featured_courses = array_slice($mapped_courses, 0, 6);
+$featured_courses = array_slice($mapped_courses, 0, 8);
 $cart_svg = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="9" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle><path d="M1 1h4l2.7 13.1a2 2 0 0 0 2 1.6h9.8a2 2 0 0 0 2-1.6L23 6H6"></path></svg>';
 ?>
 
