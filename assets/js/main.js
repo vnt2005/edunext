@@ -625,7 +625,7 @@ const home=()=>{
         '</div>'+
         '<a class="edn-header-link group" href="#/courses">'+animatedText('Xem tất cả '+C.length+' khóa học')+' '+arrowIcon+'</a>'+
       '</div>'+
-      '<div class="edn-home-tabs-bar">'+tabsMarkup+'</div>'+
+      
       '<div class="edn-featured-grid">'+visibleCourses.map(card).join('')+'</div>'+
       '<div class="edn-section-footer-cta"><a class="edn-jiro-btn-outline group" href="#/courses">'+animatedText('Xem thêm toàn bộ danh mục khóa học')+' '+arrowIcon+'</a></div>'+
     '</div></section>'+
