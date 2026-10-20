@@ -1869,9 +1869,9 @@ const profilePage=section=>{
             '<label class="edn-field-label" for="edn-facebook">Facebook</label>'+
             '<div class="edn-input-addon-group">'+
               '<span class="edn-input-addon">facebook.com/</span>'+
-              '<input id="edn-facebook" name="facebook" value="'+esc(meta.facebook||'')+'" placeholder="Tên người dùng">'+
+              '<input id="edn-facebook" name="facebook" value="'+esc(meta.facebook||'')+'" >'+
             '</div>'+
-            '<small class="edn-field-hint">Nhập tên người dùng hoặc đường dẫn trang cá nhân Facebook của bạn.</small>'+
+            '<small class="edn-field-hint">Nhập link Facebook.</small>'+
           '</div>'+
           '<div class="edn-field">'+
             '<label class="edn-field-label" for="edn-linkedin">LinkedIn</label>'+
@@ -1879,7 +1879,7 @@ const profilePage=section=>{
               '<span class="edn-input-addon">linkedin.com/</span>'+
               '<input id="edn-linkedin" name="linkedin" value="'+esc(meta.linkedin||'')+'" >'+
             '</div>'+
-            '<small class="edn-field-hint">Nhập đường dẫn hồ sơ công khai LinkedIn của bạn.</small>'+
+            '<small class="edn-field-hint">Nhập link LinkedIn.</small>'+
           '</div>'+
         '</div>'+
       '</div>'+
