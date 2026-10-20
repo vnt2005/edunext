@@ -1851,10 +1851,10 @@ const profilePage=section=>{
           '<div class="edn-field">'+
             '<label class="edn-field-label" for="edn-headline">Dòng giới thiệu ngắn</label>'+
             '<div class="edn-field-counter-wrap">'+
-              '<input id="edn-headline" name="headline" maxlength="120" value="'+esc(meta.headline||'')+'" placeholder="Ví dụ: Giảng viên Lập trình Web tại EduNext">'+
+              '<input id="edn-headline" name="headline" maxlength="120" value="'+esc(meta.headline||'')+'" >'+
               '<span id="edn-headline-count">'+String(meta.headline||'').length+'</span>'+
             '</div>'+
-            '<small class="edn-field-hint">Dòng giới thiệu ngắn gọn về nghề nghiệp hoặc chuyên môn của bạn.</small>'+
+            
           '</div>'+
         '</div>'+
       '</div>'+
@@ -1863,7 +1863,7 @@ const profilePage=section=>{
         '<div class="edn-field-col">'+
           '<div class="edn-field">'+
             '<label class="edn-field-label" for="edn-website">Website cá nhân</label>'+
-            '<input id="edn-website" name="website" type="url" value="'+esc(meta.website||'')+'" placeholder="https://yourwebsite.com">'+
+            '<input id="edn-website" name="website" type="url" value="'+esc(meta.website||'')+'" >'+
           '</div>'+
           '<div class="edn-field">'+
             '<label class="edn-field-label" for="edn-facebook">Facebook</label>'+
@@ -1877,7 +1877,7 @@ const profilePage=section=>{
             '<label class="edn-field-label" for="edn-linkedin">LinkedIn</label>'+
             '<div class="edn-input-addon-group">'+
               '<span class="edn-input-addon">linkedin.com/</span>'+
-              '<input id="edn-linkedin" name="linkedin" value="'+esc(meta.linkedin||'')+'" placeholder="in/ten-nguoi-dung">'+
+              '<input id="edn-linkedin" name="linkedin" value="'+esc(meta.linkedin||'')+'" >'+
             '</div>'+
             '<small class="edn-field-hint">Nhập đường dẫn hồ sơ công khai LinkedIn của bạn.</small>'+
           '</div>'+
