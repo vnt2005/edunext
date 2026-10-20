@@ -131,6 +131,19 @@ function edunext_ajax_logout(): void {
         wp_send_json_success(['redirect' => '#/']);
     }
     wp_logout();
+
+    // Clear guest cart cookie on logout as well so guest cart starts fresh
+    if (isset($_COOKIE['edunext_cart'])) {
+        setcookie('edunext_cart', '', [
+            'expires'  => time() - 3600,
+            'path'     => COOKIEPATH ?: '/',
+            'domain'   => COOKIE_DOMAIN ?: '',
+            'secure'   => is_ssl(),
+            'httponly' => false,
+            'samesite' => 'Lax',
+        ]);
+    }
+
     wp_send_json_success(['redirect' => '#/']);
 }
 add_action('wp_ajax_edunext_logout', 'edunext_ajax_logout');
