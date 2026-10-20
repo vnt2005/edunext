@@ -23,14 +23,27 @@ function edunext_db_get_all_fields(): array {
     foreach ($terms as $t) {
         $domain_id = get_term_meta($t->term_id, '_edunext_domain_id', true) ?: $t->slug;
         $image = get_term_meta($t->term_id, '_edunext_image', true);
+        $number = (int) get_term_meta($t->term_id, '_edunext_number', true);
+        $topics = get_term_meta($t->term_id, '_edunext_topics', true);
+        if (!is_array($topics)) {
+            $topics = [];
+        }
+
         $fields[] = [
             'id'          => $domain_id,
+            'number'      => $number ?: 1,
             'name'        => $t->name,
             'slug'        => $t->slug,
             'description' => $t->description,
+            'topics'      => $topics,
             'image'       => $image ?: '',
         ];
     }
+
+    // Sort by domain number
+    usort($fields, static function ($a, $b) {
+        return ($a['number'] ?? 0) <=> ($b['number'] ?? 0);
+    });
 
     return $fields;
 }

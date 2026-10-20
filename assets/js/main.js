@@ -405,7 +405,7 @@ let initialServerHomeHtml='';
 const nf=()=>'<div class="wrap page"><div class="empty" role="status"><h2>Không tìm thấy nội dung này</h2><p>Liên kết có thể đã thay đổi hoặc nội dung chưa được xuất bản.</p><a href="#/">Về trang chủ</a></div></div>';
 
 const home=()=>{
-  if(initialServerHomeHtml)return initialServerHomeHtml;
+  if(initialServerHomeHtml && homeFilterTab==='all')return initialServerHomeHtml;
   const arrowIcon='<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 8h11M8 3l5 5-5 5"></path></svg>';
   const checkIcon='<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg>';
 
@@ -2337,7 +2337,7 @@ const A={
     }
   },
   'retry-catalog':()=>initializeEduNext(),
-  'home-filter':value=>{homeFilterTab=value;render(true);},
+  'home-filter':value=>{homeFilterTab=value;initialServerHomeHtml='';render(true);},
   'domain-view':value=>{domainViewMode=value;render(true);},
   menu:()=>{
     document.body.classList.toggle('lms-mobile-open');
