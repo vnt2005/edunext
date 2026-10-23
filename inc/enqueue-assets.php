@@ -61,10 +61,16 @@ function edunext_frontend_config(): array {
         'progress' => $progress,
         'certificates' => edunext_user_certificates($user_id, $owned_ids),
         'orders' => array_values(array_filter($orders, 'is_array')),
-        'contact' => [
-            'zaloUrl' => esc_url_raw((string) get_theme_mod('edunext_zalo_url', '')),
+        'contact' => function_exists('edunext_get_contact_config') ? [
+            'zaloUrl'        => edunext_get_contact_config()['zalo_url'],
+            'facebookUrl'    => edunext_get_contact_config()['facebook_url'],
+            'phone'          => edunext_get_contact_config()['phone'],
+            'phoneDisplay'   => edunext_get_contact_config()['phone_display'],
+            'enableFloating' => edunext_get_contact_config()['enable_floating'],
+        ] : [
+            'zaloUrl'     => esc_url_raw((string) get_theme_mod('edunext_zalo_url', '')),
             'facebookUrl' => esc_url_raw((string) get_theme_mod('edunext_facebook_url', '')),
-            'phone' => sanitize_text_field((string) get_theme_mod('edunext_phone_number', '')),
+            'phone'       => sanitize_text_field((string) get_theme_mod('edunext_phone_number', '')),
         ],
         'lostPasswordUrl' => esc_url_raw(wp_lostpassword_url()),
         'paymentReady' => false,
