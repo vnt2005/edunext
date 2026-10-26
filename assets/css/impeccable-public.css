@@ -13505,3 +13505,46 @@ body.edunext-app.lms-builder-mode .edn-floating-contact {
     display: none !important;
   }
 }
+
+/* Enhanced Footer Social Icons with authentic SVGs */
+.edn-public-socials .edn-social-zalo,
+.edn-public-socials .edn-social-facebook,
+.edn-public-socials .edn-social-phone {
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 50% !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-decoration: none !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  cursor: pointer !important;
+}
+
+.edn-public-socials .edn-social-zalo:hover {
+  background: rgba(0, 104, 255, 0.2) !important;
+  border-color: #0068FF !important;
+  transform: translateY(-3px) scale(1.08) !important;
+  box-shadow: 0 6px 18px rgba(0, 104, 255, 0.4) !important;
+}
+
+.edn-public-socials .edn-social-facebook:hover {
+  background: rgba(24, 119, 242, 0.2) !important;
+  border-color: #1877F2 !important;
+  transform: translateY(-3px) scale(1.08) !important;
+  box-shadow: 0 6px 18px rgba(24, 119, 242, 0.4) !important;
+}
+
+.edn-public-socials .edn-social-phone {
+  color: #34D399 !important;
+}
+
+.edn-public-socials .edn-social-phone:hover {
+  background: rgba(16, 185, 129, 0.2) !important;
+  border-color: #10B981 !important;
+  color: #FFFFFF !important;
+  transform: translateY(-3px) scale(1.08) !important;
+  box-shadow: 0 6px 18px rgba(16, 185, 129, 0.4) !important;
+}
