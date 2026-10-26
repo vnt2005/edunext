@@ -13313,3 +13313,238 @@ body.edunext-app .edn-auth-page .edn-toggle-pw:hover {
   color: #2DD4BF !important;
   background: rgba(45, 212, 191, 0.1) !important;
 }
+
+/* ========================================================
+ * FLOATING CONTACT CHANNELS (Zalo, Hotline, Facebook)
+ * Modern Dark Cosmic aesthetic with glowing tooltips
+ * ======================================================== */
+.edn-floating-contact {
+  position: fixed !important;
+  right: 22px !important;
+  bottom: 28px !important;
+  z-index: 99999 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 14px !important;
+  pointer-events: auto !important;
+}
+
+.edn-floating-item {
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 50px !important;
+  height: 50px !important;
+  border-radius: 50% !important;
+  background: rgba(15, 23, 42, 0.85) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.14) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35), 0 2px 6px rgba(0, 0, 0, 0.2) !important;
+  color: #fff !important;
+  text-decoration: none !important;
+  transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.28s ease, border-color 0.28s ease !important;
+  cursor: pointer !important;
+  user-select: none !important;
+}
+
+.edn-floating-item:hover {
+  transform: translateY(-4px) scale(1.08) !important;
+}
+
+.edn-floating-icon {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 50% !important;
+  z-index: 2 !important;
+}
+
+.edn-floating-icon svg {
+  display: block !important;
+  transition: transform 0.25s ease !important;
+}
+
+.edn-floating-item:hover .edn-floating-icon svg {
+  transform: scale(1.1) !important;
+}
+
+/* Tooltip on the left */
+.edn-floating-tooltip {
+  position: absolute !important;
+  right: calc(100% + 14px) !important;
+  top: 50% !important;
+  transform: translateY(-50%) translateX(6px) !important;
+  padding: 6px 12px !important;
+  background: rgba(13, 17, 30, 0.92) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 8px !important;
+  color: #F8FAFC !important;
+  font-size: 12.5px !important;
+  font-weight: 600 !important;
+  white-space: nowrap !important;
+  pointer-events: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4) !important;
+  transition: opacity 0.22s ease, transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.22s !important;
+  z-index: 10 !important;
+}
+
+.edn-floating-tooltip::after {
+  content: "" !important;
+  position: absolute !important;
+  top: 50% !important;
+  right: -5px !important;
+  transform: translateY(-50%) !important;
+  width: 0 !important;
+  height: 0 !important;
+  border-top: 5px solid transparent !important;
+  border-bottom: 5px solid transparent !important;
+  border-left: 5px solid rgba(13, 17, 30, 0.92) !important;
+}
+
+.edn-floating-item:hover .edn-floating-tooltip {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateY(-50%) translateX(0) !important;
+}
+
+/* 1. Zalo Button */
+.edn-floating-zalo {
+  border-color: rgba(0, 104, 255, 0.4) !important;
+}
+.edn-floating-zalo:hover {
+  border-color: #0068FF !important;
+  box-shadow: 0 10px 28px rgba(0, 104, 255, 0.45), 0 0 18px rgba(0, 104, 255, 0.3) !important;
+}
+.edn-floating-zalo .edn-floating-tooltip {
+  border-color: rgba(0, 104, 255, 0.4) !important;
+}
+
+/* 2. Hotline Phone Button */
+.edn-floating-phone {
+  background: linear-gradient(135deg, #10B981, #059669) !important;
+  border-color: rgba(52, 211, 153, 0.6) !important;
+  color: #FFFFFF !important;
+}
+.edn-floating-phone:hover {
+  border-color: #34D399 !important;
+  box-shadow: 0 10px 30px rgba(16, 185, 129, 0.55), 0 0 22px rgba(16, 185, 129, 0.4) !important;
+}
+.edn-floating-phone .edn-floating-tooltip {
+  border-color: rgba(16, 185, 129, 0.4) !important;
+}
+
+/* Pulse radar ring for phone button */
+.edn-floating-pulse {
+  position: absolute !important;
+  inset: -6px !important;
+  border-radius: 50% !important;
+  border: 2px solid #10B981 !important;
+  opacity: 0.8 !important;
+  animation: ednPhonePulse 2.2s cubic-bezier(0.24, 0, 0.38, 1) infinite !important;
+  pointer-events: none !important;
+  z-index: 1 !important;
+}
+
+@keyframes ednPhonePulse {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.9;
+  }
+  70% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.45);
+    opacity: 0;
+  }
+}
+
+/* 3. Facebook Button */
+.edn-floating-facebook {
+  border-color: rgba(24, 119, 242, 0.4) !important;
+}
+.edn-floating-facebook:hover {
+  border-color: #1877F2 !important;
+  box-shadow: 0 10px 28px rgba(24, 119, 242, 0.45), 0 0 18px rgba(24, 119, 242, 0.3) !important;
+}
+.edn-floating-facebook .edn-floating-tooltip {
+  border-color: rgba(24, 119, 242, 0.4) !important;
+}
+
+/* Hide on LMS course builder / admin distraction-free mode */
+body.edunext-app.lms-admin-mode .edn-floating-contact,
+body.edunext-app.lms-builder-mode .edn-floating-contact {
+  display: none !important;
+}
+
+/* Responsive adjust for mobile */
+@media (max-width: 640px) {
+  .edn-floating-contact {
+    right: 14px !important;
+    bottom: 20px !important;
+    gap: 10px !important;
+  }
+  .edn-floating-item {
+    width: 44px !important;
+    height: 44px !important;
+  }
+  .edn-floating-item .edn-floating-icon svg {
+    transform: scale(0.88) !important;
+  }
+  .edn-floating-tooltip {
+    display: none !important;
+  }
+}
+
+/* Enhanced Footer Social Icons with authentic SVGs */
+.edn-public-socials .edn-social-zalo,
+.edn-public-socials .edn-social-facebook,
+.edn-public-socials .edn-social-phone {
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 50% !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-decoration: none !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  cursor: pointer !important;
+}
+
+.edn-public-socials .edn-social-zalo:hover {
+  background: rgba(0, 104, 255, 0.2) !important;
+  border-color: #0068FF !important;
+  transform: translateY(-3px) scale(1.08) !important;
+  box-shadow: 0 6px 18px rgba(0, 104, 255, 0.4) !important;
+}
+
+.edn-public-socials .edn-social-facebook:hover {
+  background: rgba(24, 119, 242, 0.2) !important;
+  border-color: #1877F2 !important;
+  transform: translateY(-3px) scale(1.08) !important;
+  box-shadow: 0 6px 18px rgba(24, 119, 242, 0.4) !important;
+}
+
+.edn-public-socials .edn-social-phone {
+  color: #34D399 !important;
+}
+
+.edn-public-socials .edn-social-phone:hover {
+  background: rgba(16, 185, 129, 0.2) !important;
+  border-color: #10B981 !important;
+  color: #FFFFFF !important;
+  transform: translateY(-3px) scale(1.08) !important;
+  box-shadow: 0 6px 18px rgba(16, 185, 129, 0.4) !important;
+}

@@ -8,6 +8,7 @@
  * - inc/helpers.php: Catalog queries, images, and validation helpers
  * - inc/features/student-account.php: Account, auth, and profile AJAX handlers
  * - inc/features/learning-progress.php: Progress tracking and certificate issuance
+ * - inc/features/contact.php: Contact settings and Customizer integration
  * - inc/enqueue-assets.php: Assets loading and frontend localization
  *
  * @package EduNext
@@ -28,6 +29,7 @@ require_once get_theme_file_path('inc/queries/learning.php');
 require_once get_theme_file_path('inc/template-functions.php');
 require_once get_theme_file_path('inc/template-tags.php');
 require_once get_theme_file_path('inc/features/search.php');
+require_once get_theme_file_path('inc/features/contact.php');
 require_once get_theme_file_path('inc/features/cart.php');
 require_once get_theme_file_path('inc/features/checkout.php');
 require_once get_theme_file_path('inc/features/student-account.php');
